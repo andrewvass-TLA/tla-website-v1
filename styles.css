@@ -223,20 +223,10 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Inline CTA band — between Who We Serve and Testimonials */
 .inline-cta {
-  background: var(--primary-container);
-  background-image: url('assets/inline-cta-bg.png');
-  background-size: cover;
-  background-position: center;
+  background: linear-gradient(135deg, #021c36 0%, #0a1628 50%, #131b2e 100%);
   position: relative;
   overflow: hidden;
   padding-block: clamp(48px, 6vw, 72px);
-}
-.inline-cta::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: rgba(2, 28, 54, 0.78);
-  z-index: 0;
 }
 .inline-cta::before {
   content: '';
