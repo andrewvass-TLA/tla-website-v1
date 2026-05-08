@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Faculty — The Loan Atlas</title>
+  <meta name="description" content="Meet 18 active originators, leaders, and strategists — collectively responsible for $29B+ in funded loan volume — who teach inside The Loan Atlas every week." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ── Faculty page ─────────────────────────────────────────────── */
+
+    .fh-hero {
+      position: relative;
+      background-color: #021c36;
+      background-image: url('assets/faculty-bg.png');
+      background-size: cover;
+      background-position: center top;
+      overflow: hidden;
+      padding-block: clamp(56px, 8vw, 104px);
+    }
+    .fh-hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(4,10,22,0.93) 0%, rgba(2,28,54,0.86) 100%);
+    }
+    .fh-hero__inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-md);
+    }
+    .fh-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 1.6rem + 3.5vw, 4.25rem);
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      max-width: 14ch;
+      margin-inline: auto;
+    }
+    .fh-hero__sub {
+      font-size: clamp(1rem, 0.875rem + 0.5vw, 1.25rem);
+      line-height: 1.65;
+      color: rgba(255,255,255,0.78);
+      max-width: 42rem;
+      margin-inline: auto;
+    }
+    .fh-hero__sub strong { color: #ffffff; font-weight: 700; }
+    .fh-hero__body {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.58);
+      max-width: 38rem;
+      margin-inline: auto;
+    }
+
+    /* Stat band */
+    .stat-band {
+      background: var(--surface-container-lowest);
+      border-block: 1px solid var(--outline-variant);
+      padding-block: clamp(32px, 4vw, 56px);
+    }
+    .stat-band__inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-lg);
+    }
+    @media (min-width: 640px) {
+      .stat-band__inner { flex-direction: row; justify-content: center; gap: 0; }
+    }
+    .stat-item {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+    }
+    .stat-item + .stat-item {
+      border-top: 1px solid var(--outline-variant);
+      padding-top: var(--space-lg);
+    }
+    @media (min-width: 640px) {
+      .stat-item + .stat-item {
+        border-top: 0;
+        border-left: 1px solid var(--outline-variant);
+        padding-top: 0;
+        padding-left: var(--space-xl);
+        margin-left: var(--space-xl);
+      }
+    }
+    .stat-item__num {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 2rem + 2vw, 3.75rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--primary-container);
+      line-height: 1;
+    }
+    .stat-item__num .gold { color: var(--brass); }
+    .stat-item__label {
+      font-size: 0.9375rem;
+      color: var(--on-surface-variant);
+      line-height: 1.45;
+      max-width: 20ch;
+    }
+
+    /* Leadership section wrapper */
+    .leaders-section {
+      background: linear-gradient(160deg, #040c18 0%, #021c36 100%);
+      padding-block: clamp(56px, 7vw, 96px);
+      position: relative;
+      overflow: hidden;
+    }
+    .leaders-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(60% 50% at 80% 10%, rgba(234,194,90,0.07), transparent 70%);
+      pointer-events: none;
+    }
+    .leaders-section > .container { position: relative; }
+
+    /* Tim featured card */
+    .leader-tim {
+      background: linear-gradient(135deg, #050d1a 0%, #021c36 100%);
+      border: 1px solid rgba(234,194,90,0.22);
+      border-radius: var(--radius-3xl);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.55);
+    }
+    .leader-tim::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, #c9961c, #eac25a, #ffd56c);
+      z-index: 1;
+    }
+    @media (min-width: 760px) {
+      .leader-tim { flex-direction: row; align-items: stretch; min-height: 500px; }
+    }
+    .leader-tim__content {
+      flex: 1;
+      padding: clamp(32px, 4vw, 56px);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+    .leader-tim__name {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 1.5rem + 1.5vw, 2.875rem);
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin-top: var(--space-sm);
+    }
+    .leader-tim__bio {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: rgba(255,255,255,0.7);
+    }
+    .leader-tim__portrait {
+      flex-shrink: 0;
+      width: 100%;
+      height: 280px;
+      background: linear-gradient(160deg, #0a223d, #050d1a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    @media (min-width: 760px) {
+      .leader-tim__portrait {
+        width: clamp(220px, 34%, 380px);
+        height: auto;
+      }
+    }
+    .leader-tim__portrait .avatar-ph {
+      font-size: 4rem;
+      background: linear-gradient(135deg, #1a3556, #0d2540);
+    }
+
+    /* Craig & Josh cards */
+    .leader-pair {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+    @media (min-width: 760px) { .leader-pair { grid-template-columns: 1fr 1fr; } }
+
+    .leader-card {
+      background: linear-gradient(135deg, #0a1628 0%, #0e2240 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.45);
+    }
+    .leader-card__head {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+    .leader-card__avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 2px solid rgba(234,194,90,0.3);
+      flex-shrink: 0;
+    }
+    .leader-card__avatar .avatar-ph {
+      font-size: 1.5rem;
+      background: linear-gradient(135deg, #1a3556, #0d2540);
+    }
+    .leader-card__name {
+      font-family: var(--font-display);
+      font-size: 1.625rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+    .leader-card__role {
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--brass);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+    .leader-card__bio {
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.7);
+    }
+    .leader-card .checklist { font-size: 0.875rem; gap: 10px; }
+
+    /* Mentor section */
+    .mentor-section {
+      background: var(--surface);
+      padding-block: clamp(56px, 7vw, 96px);
+    }
+    .mentor-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+    @media (min-width: 640px) { .mentor-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1040px) { .mentor-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .mentor-card {
+      background: var(--surface-container-lowest);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-xl);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 200ms ease, transform 200ms ease;
+    }
+    .mentor-card:hover {
+      box-shadow: var(--shadow);
+      transform: translateY(-2px);
+    }
+    .mentor-card__head {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .mentor-card__avatar {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 1.5px solid var(--outline-variant);
+      flex-shrink: 0;
+    }
+    .mentor-card__name {
+      font-family: var(--font-display);
+      font-size: 1.0625rem;
+      font-weight: 700;
+      color: var(--on-surface);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+    .mentor-card__title {
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+      line-height: 1.4;
+      margin-top: 3px;
+    }
+    .mentor-card__divider {
+      height: 1px;
+      background: var(--outline-variant);
+    }
+    .mentor-card__bio {
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--on-surface-variant);
+    }
+    .mentor-card__specialty {
+      border-left: 3px solid var(--brass);
+      padding-left: var(--space-sm);
+      margin-top: 4px;
+    }
+    .mentor-card__specialty-label {
+      font-family: var(--font-body);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: 4px;
+    }
+    .mentor-card__specialty-text {
+      font-size: 0.875rem;
+      line-height: 1.55;
+      color: var(--on-surface-variant);
+    }
+
+    /* Testimonials */
+    .fac-quotes {
+      background: var(--surface-container-low);
+      border-block: 1px solid var(--outline-variant);
+      padding-block: clamp(48px, 6vw, 80px);
+    }
+    .fac-quote-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+    @media (min-width: 760px) { .fac-quote-grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .fac-quote-card {
+      background: var(--surface-container-lowest);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-xl);
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      box-shadow: var(--shadow-sm);
+    }
+    .fac-quote-mark {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      line-height: 0.8;
+      color: var(--brass);
+    }
+    .fac-quote-text {
+      font-style: italic;
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: var(--on-surface-variant);
+      flex: 1;
+    }
+    .fac-quote-attr {
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary-container);
+      padding-top: var(--space-sm);
+      border-top: 1px solid var(--outline-variant);
+    }
+
+    /* Access cards */
+    .access-section { padding-block: clamp(48px, 6vw, 80px); }
+    .access-lead {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: var(--primary-container);
+      font-weight: 600;
+      max-width: 48rem;
+      margin-inline: auto;
+      text-align: center;
+    }
+    .access-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+    @media (min-width: 640px) { .access-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    .access-card {
+      background: var(--surface-container-lowest);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 200ms ease, transform 200ms ease;
+    }
+    .access-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .access-card__title {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--on-surface);
+    }
+    .access-card__desc {
+      font-size: 0.9375rem;
+      color: var(--on-surface-variant);
+      line-height: 1.6;
+    }
+
+    /* Final CTA */
+    .fac-cta {
+      background: linear-gradient(135deg, #040c18 0%, #021c36 100%);
+      padding-block: clamp(64px, 8vw, 112px);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .fac-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(60% 70% at 50% 50%, rgba(234,194,90,0.1), transparent 70%);
+      pointer-events: none;
+    }
+    .fac-cta__inner { position: relative; }
+    .fac-cta__heading {
+      font-family: var(--font-display);
+      font-size: clamp(1.875rem, 1rem + 2.8vw, 3rem);
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.025em;
+      line-height: 1.1;
+      margin-bottom: var(--space-md);
+    }
+    .fac-cta__sub {
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.7);
+      max-width: 42rem;
+      margin-inline: auto;
+      margin-bottom: var(--space-xl);
+    }
+    .fac-cta__btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      justify-content: center;
+    }
+
+    /* Checkmark SVG shortcut */
+    .chk { width:18px; height:18px; flex-shrink:0; margin-top:2px; color: var(--brass); }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="brand" aria-label="The Loan Atlas — home">
+        <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a class="nav__link" href="whats-inside.html">What's Inside</a>
+        <a class="nav__link nav__link--active" href="faculty.html">Faculty</a>
+        <a class="nav__link" href="pricing.html">Pricing</a>
+        <a class="nav__link" href="events.html">Events</a>
+        <a class="nav__link" href="#">Resources</a>
+        <a class="nav__link" href="sales-individual.html">Sales</a>
+      </nav>
+      <div class="site-header__actions">
+        <a class="site-header__login" href="#">Login</a>
+        <a class="btn btn--primary btn--header" href="consultation.html">
+          <span class="btn__short">Book Call</span>
+          <span class="btn__full">Book a Consultation</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="site-main">
+
+    <!-- ── Hero ─────────────────────────────────────────────────────── -->
+    <section class="fh-hero">
+      <div class="fh-hero__overlay" aria-hidden="true"></div>
+      <div class="container">
+        <div class="fh-hero__inner">
+          <span class="chip chip--brass">The Faculty</span>
+          <h1 class="fh-hero__title">Learn from the Top&nbsp;1%</h1>
+          <p class="fh-hero__sub">
+            Most coaching platforms give you access to <em>one</em> coach.
+            <strong>The Loan Atlas gives you access to 18 of the best minds in the mortgage business.</strong>
+          </p>
+          <p class="fh-hero__body">
+            Every member of our faculty is an experienced originator, leader, or strategist with decades of experience
+            and hundreds of millions — in many cases, billions — in funded loans.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Stat Band ─────────────────────────────────────────────────── -->
+    <section class="stat-band" aria-label="Faculty at a glance">
+      <div class="container stat-band__inner">
+        <div class="stat-item">
+          <span class="stat-item__num">18</span>
+          <span class="stat-item__label">Active originators, leaders, and strategists on faculty</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-item__num">$<span class="gold">29B</span>+</span>
+          <span class="stat-item__label">In collective mortgage volume produced by the faculty</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-item__num" style="font-size: clamp(2rem,1.5rem + 2vw,3rem);">Top 1%</span>
+          <span class="stat-item__label">Active division presidents and nationally ranked producers — not retired coaches</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Section 2A: Tim, Craig, Josh ─────────────────────────────── -->
+    <section class="leaders-section">
+      <div class="container">
+
+        <!-- Tim Braheem -->
+        <div class="leader-tim">
+          <div class="leader-tim__content">
+            <div>
+              <span class="chip chip--brass">Founder &amp; Chief Content Officer</span>
+              <h2 class="leader-tim__name">Tim Braheem</h2>
+            </div>
+            <p class="leader-tim__bio">
+              Tim is the founder of The Loan Atlas and the foundation it's built on. He's a producer who built coaching
+              because he couldn't find coaching that worked — and now teaches the operating system he wishes he'd had
+              in the seat, every week, alongside the rest of the faculty.
+            </p>
+            <ul class="checklist checklist--inverse" style="font-size:0.9375rem;">
+              <li>
+                <svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                25+ years as a mortgage originator with $1.4B in personal loan volume
+              </li>
+              <li>
+                <svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Founded First Rate Financial in 1995 — one of the top mortgage companies in the country
+              </li>
+              <li>
+                <svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Co-founded Loantoolbox.com in 2001 — 10,800 paying members by 2006, named to the Inc. 500
+              </li>
+              <li>
+                <svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Founder of Performance Experts Coaching and the Leadership 360 Coaching Program
+              </li>
+              <li>
+                <svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Host of <em>The 360 Experience</em> podcast — hundreds of episodes featuring top producers and faculty
+              </li>
+              <li>
+                <svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Architect of the Perfect Loan Process, the scripting frameworks, and the personal development work that
+                runs underneath everything The Loan Atlas teaches
+              </li>
+              <li>
+                <svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Leads Talk to Tim — the monthly coaching session where members bring real situations and Tim works
+                through them live
+              </li>
+            </ul>
+          </div>
+          <div class="leader-tim__portrait" aria-label="Tim Braheem — portrait placeholder">
+            <div class="avatar-ph" style="width:100%;height:100%;font-size:4rem;background:linear-gradient(135deg,#1a3556,#0d2540);">TB</div>
+          </div>
+        </div>
+
+        <!-- Craig & Josh -->
+        <div class="leader-pair">
+
+          <!-- Craig Strent -->
+          <div class="leader-card">
+            <div class="leader-card__head">
+              <div class="leader-card__avatar">
+                <div class="avatar-ph" style="background:linear-gradient(135deg,#1a3556,#0d2540);">CS</div>
+              </div>
+              <div>
+                <div class="leader-card__name">Craig Strent</div>
+                <div class="leader-card__role">Head of Faculty</div>
+              </div>
+            </div>
+            <p class="leader-card__bio">
+              Craig is one of the few originators in the country who built a top 1% mortgage business almost entirely
+              outside the Realtor referral channel. His authority on the faculty centers on advisory-style client
+              relationships and financial planner partnerships at a level very few originators have replicated.
+            </p>
+            <ul class="checklist checklist--inverse leader-card .checklist">
+              <li>
+                <svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                25 years in the mortgage industry with $2B+ in loan volume — primarily through non-Realtor referral sources
+              </li>
+              <li>
+                <svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Top 1% of mortgage bankers nationwide for 15+ years; named among America's Most Influential Mortgage Executives
+              </li>
+              <li>
+                <svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                CMPS and CDLP certified; featured on NBC Nightly News, CNBC, and Fox Morning News
+              </li>
+              <li>
+                <svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Leads curriculum on non-Realtor referral building and trusted advisor positioning
+              </li>
+            </ul>
+          </div>
+
+          <!-- Josh Mettle -->
+          <div class="leader-card">
+            <div class="leader-card__head">
+              <div class="leader-card__avatar">
+                <div class="avatar-ph" style="background:linear-gradient(135deg,#1a3556,#0d2540);">JM</div>
+              </div>
+              <div>
+                <div class="leader-card__name">Josh Mettle</div>
+                <div class="leader-card__role">Head of Faculty</div>
+              </div>
+            </div>
+            <p class="leader-card__bio">
+              Josh is one of the most successful originator-leaders in the country — a top 1% producer who has scaled
+              into division leadership while continuing to publish, podcast, and build a public-facing brand that
+              produces real loan volume.
+            </p>
+            <ul class="checklist checklist--inverse leader-card .checklist">
+              <li>
+                <svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                25+ years in the mortgage industry with $1.17B in personal production
+              </li>
+              <li>
+                <svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Top 1% of mortgage originators in 2020 per <em>Mortgage Executive Magazine</em>
+              </li>
+              <li>
+                <svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Currently leads $250M production team; co-owns a nine-figure real estate portfolio
+              </li>
+              <li>
+                <svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Leads curriculum on marketing that compounds — content, audience-building, consumer-direct strategy
+              </li>
+              <li>
+                <svg class="chk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                Drives the faculty's work on health, energy, and financial freedom
+              </li>
+            </ul>
+          </div>
+
+        </div><!-- /leader-pair -->
+      </div>
+    </section>
+
+    <!-- ── Section 2B: Faculty Mentors ───────────────────────────────── -->
+    <section class="mentor-section">
+      <div class="container">
+        <div class="center" style="max-width:52rem;margin-inline:auto;">
+          <div class="eyebrow" style="justify-content:center;">
+            <span class="eyebrow__text">Faculty Mentors</span>
+          </div>
+          <h2 class="t-headline-lg" style="margin-top:var(--space-md);margin-bottom:var(--space-md);">
+            Fifteen Specialists. Fifteen Different Ways to Build a Better Mortgage Business.
+          </h2>
+          <p class="t-body-lg t-muted">
+            Inside The Loan Atlas, you'll learn weekly from branch managers, division presidents, and top 1% producers
+            — all of them still serving families and leading high-producing teams.
+          </p>
+        </div>
+
+        <div class="mentor-grid">
+
+          <!-- Josh Burruss -->
+          <article class="mentor-card">
+            <div class="mentor-card__head">
+              <div class="mentor-card__avatar"><div class="avatar-ph">JB</div></div>
+              <div>
+                <div class="mentor-card__name">Josh Burruss</div>
+                <div class="mentor-card__title">EVP &amp; Chief Lending Officer, Intercoastal Mortgage</div>
+              </div>
+            </div>
+            <div class="mentor-card__divider"></div>
+            <p class="mentor-card__bio">Josh has personally originated $830M in loan volume and now leads sales at one of the most respected lenders on the East Coast. His career has spanned high-volume personal production, sales leadership, and building lending relationships with national homebuilders.</p>
+            <div class="mentor-card__specialty">
+              <div class="mentor-card__specialty-label">Specialty</div>
+              <p class="mentor-card__specialty-text">Sales leadership and the builder business — winning and retaining builder relationships, building high-performing sales teams, and the loan-program fluency that keeps originators competitive in any market.</p>
+            </div>
+          </article>
+
+          <!-- Julie Weix -->
+          <article class="mentor-card">
+            <div class="mentor-card__head">
+              <div class="mentor-card__avatar"><div class="avatar-ph">JW</div></div>
+              <div>
+                <div class="mentor-card__name">Julie Weix</div>
+                <div class="mentor-card__title">Executive Coach, Performance Experts</div>
+              </div>
+            </div>
+            <div class="mentor-card__divider"></div>
+            <p class="mentor-card__bio">Julie coaches more than 60 of the nation's top-producing originators one-on-one. Her work focuses on the patterns underneath production — how the highest performers protect their time, manage their energy, and lead themselves before they lead anyone else.</p>
+            <div class="mentor-card__specialty">
+              <div class="mentor-card__specialty-label">Specialty</div>
+              <p class="mentor-card__specialty-text">The mindset and the calendar — personal leadership, time and task management, and the inner work that separates originators who hit one strong year from originators who compound year over year.</p>
+            </div>
+          </article>
+
+          <!-- Tyler Osby -->
+          <article class="mentor-card">
+            <div class="mentor-card__head">
+              <div class="mentor-card__avatar"><div class="avatar-ph">TO</div></div>
+              <div>
+                <div class="mentor-card__name">Tyler Osby</div>
+                <div class="mentor-card__title">Branch Manager, Fairway Independent Mortgage; Founder, Osby Labs</div>
+              </div>
+            </div>
+            <div class="mentor-card__divider"></div>
+            <p class="mentor-card__bio">Tyler has personally helped more than 1,962 families across $422M in lifetime production, all while building a parallel reputation as one of the most systems-minded originators in the country. Through Osby Labs, he develops the technology stacks and automated workflows that top originators actually use.</p>
+            <div class="mentor-card__specialty">
+              <div class="mentor-card__specialty-label">Specialty</div>
+              <p class="mentor-card__specialty-text">Systems, technology, and scripting — turning the day-to-day execution of the calls, the follow-ups, the workflows into something that runs without an originator having to remember every step.</p>
+            </div>
+          </article>
+
+          <!-- Brent Hicks -->
+          <article class="mentor-card">
+            <div class="mentor-card__head">
+              <div class="mentor-card__avatar"><div class="avatar-ph">BH</div></div>
+              <div>
+                <div class="mentor-card__name">Brent Hicks</div>
+                <div class="mentor-card__title">Divisional President, Clear Modern Mortgage</div>
+              </div>
+            </div>
+            <div class="mentor-card__divider"></div>
+            <p class="mentor-card__bio">Brent has personally originated more than $1.5B in loan volume, earned top-50-nationwide rankings, and now leads a division as one of the country's most respected mortgage executives. His path moved from elite individual production into building and recruiting teams that perform at the same level.</p>
+            <div class="mentor-card__specialty">
+              <div class="mentor-card__specialty-label">Specialty</div>
+              <p class="mentor-card__specialty-text">Leadership, team building, and recruiting — done at the highest level, first as an elite producer, then as a leader scaling teams that perform at the same level he did.</p>
+            </div>
+          </article>
+
+          <!-- Marc Bui -->
+          <article class="mentor-card">
+            <div class="mentor-card__head">
+              <div class="mentor-card__avatar"><div class="avatar-ph">MB</div></div>
+              <div>
+                <div class="mentor-card__name">Marc Bui</div>
+                <div class="mentor-card__title">Branch Manager, Thrive Lending Group</div>
+              </div>
+            </div>
+            <div class="mentor-card__divider"></div>
+            <p class="mentor-card__bio">Marc has personally originated $750M while building a 75,000+ Instagram audience that generates real loan volume. He's one of the few originators who has cracked social media as a primary lead source instead of a vanity channel.</p>
+            <div class="mentor-card__specialty">
+              <div class="mentor-card__specialty-label">Specialty</div>
+              <p class="mentor-card__specialty-text">Social media marketing, with deep authority on Instagram specifically — the difference between content that builds an audience and content that builds a pipeline, and how to do the latter while running a real origination business.</p>
+            </div>
+          </article>
+
+          <!-- Trevor Carlson -->
+          <article class="mentor-card">
+            <div class="mentor-card__head">
+              <div class="mentor-card__avatar"><div class="avatar-ph">TC</div></div>
+              <div>
+                <div class="mentor-card__name">Trevor Carlson</div>
+                <div class="mentor-card__title">President, Heritage Reverse Mortgage</div>
+              </div>
+            </div>
+            <div class="mentor-card__divider"></div>
+            <p class="mentor-card__bio">Trevor has helped more than 1,700 families across $400M+ in lifetime production, with deep expertise in the reverse mortgage market most originators never touch. He runs his business through a tightly engineered consumer-direct system.</p>
+            <div class="mentor-card__specialty">
+              <div class="mentor-card__specialty-label">Specialty</div>
+              <p class="mentor-card__specialty-text">Reverse mortgage, plus consumer-direct marketing and operational systems — adding reverse as a complementary product line to a traditional mortgage business, and running a high-volume direct-to-consumer model with discipline.</p>
+            </div>
+          </article>
+
+          <!-- Mark Robertson -->
+          <article class="mentor-card">
+            <div class="mentor-card__head">
+              <div class="mentor-card__avatar"><div class="avatar-ph">MR</div></div>
+              <div>
+                <div class="mentor-card__name">Mark Robertson</div>
+                <div class="mentor-card__title">Division President, NEO Home Loans</div>
+              </div>
+            </div>
+            <div class="mentor-card__divider"></div>
+            <p class="mentor-card__bio">Mark has originated more than $931M in lifetime production and has been ranked in the top 1% of originators by <em>Scotsman Guide</em>. He now leads a division at NEO while continuing to operate one of the strongest Realtor referral businesses in the country.</p>
+            <div class="mentor-card__specialty">
+              <div class="mentor-card__specialty-label">Specialty</div>
+              <p class="mentor-card__specialty-text">Realtor business development and the strategy that holds it together — operating a top 1% referral-based business, and building or rebuilding teams around the same model.</p>
+            </div>
+          </article>
+
+          <!-- Caleb LeGrand -->
+          <article class="mentor-card">
+            <div class="mentor-card__head">
+              <div class="mentor-card__avatar"><div class="avatar-ph">CL</div></div>
+              <div>
+                <div class="mentor-card__name">Caleb LeGrand</div>
+                <div class="mentor-card__title">Branch Manager, CL Team at Apex Home Loans</div>
+              </div>
+            </div>
+            <div class="mentor-card__divider"></div>
+            <p class="mentor-card__bio">Caleb has helped more than 5,017 families across $1.12B+ in lifetime production while building one of the most respected branch teams in the industry. His work is grounded in the day-to-day systems that make consistency possible.</p>
+            <div class="mentor-card__specialty">
+              <div class="mentor-card__specialty-label">Specialty</div>
+              <p class="mentor-card__specialty-text">The Perfect Loan Process, the System for Selling, and the builder business — installing the execution systems that take a top originator from solo producer to a team that runs without chaos.</p>
+            </div>
+          </article>
+
+          <!-- Holly Walther -->
+          <article class="mentor-card">
+            <div class="mentor-card__head">
+              <div class="mentor-card__avatar"><div class="avatar-ph">HW</div></div>
+              <div>
+                <div class="mentor-card__name">Holly Walther</div>
+                <div class="mentor-card__title">Branch Manager, Success Mortgage Partners</div>
+              </div>
+            </div>
+            <div class="mentor-card__divider"></div>
+            <p class="mentor-card__bio">Holly has originated $1B in lifetime production and helped more than 5,000 families, all while raising a family and building a business that doesn't run her life. Her authority comes from doing both at a level very few originators in the industry have managed.</p>
+            <div class="mentor-card__specialty">
+              <div class="mentor-card__specialty-label">Specialty</div>
+              <p class="mentor-card__specialty-text">Work, life, and family balance — backed by real workflow systems. Holly is also one of the faculty's strongest voices on women empowerment in the industry, and her work centers on building a high-producing business that doesn't consume the rest of an originator's life.</p>
+            </div>
+          </article>
+
+          <!-- Kelly Marsh -->
+          <article class="mentor-card">
+            <div class="mentor-card__head">
+              <div class="mentor-card__avatar"><div class="avatar-ph">KM</div></div>
+              <div>
+                <div class="mentor-card__name">Kelly Marsh</div>
+                <div class="mentor-card__title">VP and Area Manager, Cornerstone Home Lending; Host, Think &amp; Grow Podcast</div>
+              </div>
+            </div>
+            <div class="mentor-card__divider"></div>
+            <p class="mentor-card__bio">Kelly has originated more than $1B in lifetime production and now leads at Cornerstone while hosting the <em>Think &amp; Grow</em> podcast. Her business has always been built on a database that produces year after year.</p>
+            <div class="mentor-card__specialty">
+              <div class="mentor-card__specialty-label">Specialty</div>
+              <p class="mentor-card__specialty-text">Database nurturing and management, plus mindset and personal development — turning past clients and sphere of influence into a compounding production engine, and the leadership and personal development required to sustain it.</p>
+            </div>
+          </article>
+
+          <!-- Jay Dacey -->
+          <article class="mentor-card">
+            <div class="mentor-card__head">
+              <div class="mentor-card__avatar"><div class="avatar-ph">JD</div></div>
+              <div>
+                <div class="mentor-card__name">Jay Dacey</div>
+                <div class="mentor-card__title">President, Jay Dacey Mortgage Team</div>
+              </div>
+            </div>
+            <div class="mentor-card__divider"></div>
+            <p class="mentor-card__bio">Jay has originated more than $500M in lifetime production and runs one of the most respected mortgage teams in the Twin Cities market. His business runs on database depth and a tightly engineered loan process.</p>
+            <div class="mentor-card__specialty">
+              <div class="mentor-card__specialty-label">Specialty</div>
+              <p class="mentor-card__specialty-text">Database management and the Perfect Loan Process, with deep specialization in first-time homebuyers and divorce-situation lending — serving clients in moments of major life transition, and building a process clean enough to handle them well.</p>
+            </div>
+          </article>
+
+          <!-- Steve Grossman -->
+          <article class="mentor-card">
+            <div class="mentor-card__head">
+              <div class="mentor-card__avatar"><div class="avatar-ph">SG</div></div>
+              <div>
+                <div class="mentor-card__name">Steve Grossman</div>
+                <div class="mentor-card__title">Vice President, NJ Lenders Corp</div>
+              </div>
+            </div>
+            <div class="mentor-card__divider"></div>
+            <p class="mentor-card__bio">Steve has originated more than $3B in residential loans, helped over 7,800 families, and has been ranked in the top 1% of originators every single year since 2001. Two decades of consistency at that level is a credential almost nobody in the industry holds.</p>
+            <div class="mentor-card__specialty">
+              <div class="mentor-card__specialty-label">Specialty</div>
+              <p class="mentor-card__specialty-text">Strategy and vision — the long view. Figuring out where a mortgage business is going and how to position for the next ten years, not the next ninety days.</p>
+            </div>
+          </article>
+
+          <!-- Katrinka Condie -->
+          <article class="mentor-card">
+            <div class="mentor-card__head">
+              <div class="mentor-card__avatar"><div class="avatar-ph">KC</div></div>
+              <div>
+                <div class="mentor-card__name">Katrinka Condie</div>
+                <div class="mentor-card__title">Producing Branch Manager, NEO Home Loans</div>
+              </div>
+            </div>
+            <div class="mentor-card__divider"></div>
+            <p class="mentor-card__bio">Katrinka has originated more than $309M in lifetime production and helped over 755 families, while ranking in the top 1% of originators nationwide since her second year in the business. She is one of the most respected client-relationship operators in the industry.</p>
+            <div class="mentor-card__specialty">
+              <div class="mentor-card__specialty-label">Specialty</div>
+              <p class="mentor-card__specialty-text">Building real relationships and lasting client connection — the work the rest of the industry has tried to automate away. Katrinka is also one of the faculty's strongest voices on women empowerment in mortgage, centered on running a relationship-driven business that consistently produces in the top 1%.</p>
+            </div>
+          </article>
+
+          <!-- Michael Belfor -->
+          <article class="mentor-card">
+            <div class="mentor-card__head">
+              <div class="mentor-card__avatar"><div class="avatar-ph" style="font-size:0.75rem;letter-spacing:-0.02em;">M.BEL</div></div>
+              <div>
+                <div class="mentor-card__name">Michael Belfor</div>
+                <div class="mentor-card__title">Branch Manager – Loan Originator, American Pacific Mortgage</div>
+              </div>
+            </div>
+            <div class="mentor-card__divider"></div>
+            <p class="mentor-card__bio">Michael has been originating since 2010 and ranked among the top 1% of mortgage originators nationwide for over a decade by <em>Scotsman Guide</em> and <em>Mortgage Executive Magazine</em>. He opened American Pacific Mortgage's first retail branch and its flagship Bay Area office, holds the Certified Mortgage Advisor (CMA) designation, and is the author of three books — <em>The Fed Made Simple</em>, <em>Crypto Bro</em>, and <em>Anchor</em>.</p>
+            <div class="mentor-card__specialty">
+              <div class="mentor-card__specialty-label">Specialty</div>
+              <p class="mentor-card__specialty-text">Advanced loan structuring and market literacy at a level very few originators operate at — building scalable production systems, applying AI-powered efficiency across the origination workflow, and creating the kind of content that turns market knowledge into authority.</p>
+            </div>
+          </article>
+
+          <!-- Becky Staples -->
+          <article class="mentor-card">
+            <div class="mentor-card__head">
+              <div class="mentor-card__avatar"><div class="avatar-ph">BS</div></div>
+              <div>
+                <div class="mentor-card__name">Becky Staples</div>
+                <div class="mentor-card__title">Vice President – Loan Originator, Sun American Mortgage</div>
+              </div>
+            </div>
+            <div class="mentor-card__divider"></div>
+            <p class="mentor-card__bio">Becky has spent nearly 20 years in the industry, funded $1B+ in career loan volume, and helped more than 3,600 families. She is ranked as a top-100 U.S. loan officer by volume.</p>
+            <div class="mentor-card__specialty">
+              <div class="mentor-card__specialty-label">Specialty</div>
+              <p class="mentor-card__specialty-text">The fundamentals — done at the highest level. Production systems and process control, developing new loan officers from the ground up, and delivering the kind of high-touch client experience that produces a billion dollars in volume one client at a time.</p>
+            </div>
+          </article>
+
+        </div><!-- /mentor-grid -->
+      </div>
+    </section>
+
+    <!-- ── Section 3: Testimonials ──────────────────────────────────── -->
+    <section class="fac-quotes">
+      <div class="container">
+        <div class="center" style="max-width:40rem;margin-inline:auto;">
+          <div class="eyebrow" style="justify-content:center;">
+            <span class="eyebrow__text">Member Results</span>
+          </div>
+          <h2 class="t-headline-lg" style="margin-top:var(--space-md);">What Members Say</h2>
+        </div>
+        <div class="fac-quote-grid">
+
+          <figure class="fac-quote-card">
+            <div class="fac-quote-mark" aria-hidden="true">&ldquo;</div>
+            <blockquote class="fac-quote-text">I love the depth of knowledge. There are a lot of things out there that just skim the surface, but you get training from people who are at the top of their game and get real one-on-one time with them. That implementation component is huge.</blockquote>
+            <figcaption class="fac-quote-attr">Scott DiGregorio — NEO Home Loans</figcaption>
+          </figure>
+
+          <figure class="fac-quote-card">
+            <div class="fac-quote-mark" aria-hidden="true">&ldquo;</div>
+            <blockquote class="fac-quote-text">Highly recommend The Loan Atlas. Being able to sit in on office hours and the live group coaching is worth the price itself!</blockquote>
+            <figcaption class="fac-quote-attr">Gabe Garza — The Mortgage Brokers</figcaption>
+          </figure>
+
+          <figure class="fac-quote-card">
+            <div class="fac-quote-mark" aria-hidden="true">&ldquo;</div>
+            <blockquote class="fac-quote-text">I truly appreciate The Loan Atlas and the incredible support from the faculty. Kelly Marsh took the time to host a private Zoom call with my team and me, demonstrating how Mortgage Coach works. I'm so grateful that someone as busy and talented as her would invest that time in us.</blockquote>
+            <figcaption class="fac-quote-attr">Charlie Peterson — Member</figcaption>
+          </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Section 4: How You Access the Faculty ─────────────────────── -->
+    <section class="access-section">
+      <div class="container">
+        <p class="access-lead">
+          Learning from elite originators is one thing. Having them available to answer any question you have
+          and guide your next move? That's a game changer.
+        </p>
+        <div class="access-grid">
+
+          <div class="access-card">
+            <span class="icon-tile icon-tile--brass">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
+              </svg>
+            </span>
+            <h3 class="access-card__title">Live Masterclasses</h3>
+            <p class="access-card__desc">In-depth strategy sessions followed by implementation workshops. Learn directly from faculty, then put it into practice with their guidance.</p>
+          </div>
+
+          <div class="access-card">
+            <span class="icon-tile">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+              </svg>
+            </span>
+            <h3 class="access-card__title">Office Hours</h3>
+            <p class="access-card__desc">Weekly calls with faculty specialists to answer your toughest questions. Bring real situations and get real answers from people who've been in your seat.</p>
+          </div>
+
+          <div class="access-card">
+            <span class="icon-tile icon-tile--brass">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
+              </svg>
+            </span>
+            <h3 class="access-card__title">AI Labs &amp; Specialized Workshops</h3>
+            <p class="access-card__desc">Multi-part intensives to master specific disciplines or systems. Built around implementation, not just information.</p>
+          </div>
+
+          <div class="access-card">
+            <span class="icon-tile">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+              </svg>
+            </span>
+            <h3 class="access-card__title">Talk to Tim</h3>
+            <p class="access-card__desc">Monthly coaching with Tim Braheem for real-time business breakthroughs. Members bring real situations — Tim works through them live.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Section 5: Final CTA ──────────────────────────────────────── -->
+    <section class="fac-cta">
+      <div class="container fac-cta__inner">
+        <h2 class="fac-cta__heading">You Deserve to Be Mentored by the Best</h2>
+        <p class="fac-cta__sub">
+          From your first call script to your next hire, The Loan Atlas faculty is here to help you
+          close more, serve better, and scale faster.
+        </p>
+        <div class="fac-cta__btns">
+          <a class="btn btn--gold btn--lg" href="pricing.html">Join The Loan Atlas</a>
+          <a class="btn btn--ghost-on-dark btn--lg" href="consultation.html">Build Your Growth Plan</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__top">
+        <a href="index.html" class="brand">
+          <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
+        </a>
+        <nav class="site-footer__links" aria-label="Footer">
+          <a class="site-footer__link" href="whats-inside.html">What's Inside</a>
+          <a class="site-footer__link" href="faculty.html">Faculty</a>
+          <a class="site-footer__link" href="pricing.html">Pricing</a>
+          <a class="site-footer__link" href="events.html">Events</a>
+          <a class="site-footer__link" href="consultation.html">Book a Consultation</a>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        <p>© 2026 The Loan Atlas. Precision in lending.</p>
+        <nav class="site-footer__links">
+          <a class="site-footer__link" href="#">Privacy Policy</a>
+          <a class="site-footer__link" href="#">Terms of Service</a>
+          <a class="site-footer__link" href="#">Accessibility</a>
+          <a class="site-footer__link" href="#">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pricing — The Loan Atlas</title>
+  <meta name="description" content="One simple membership for individual originators, plus team and enterprise plans for branches and brokerages." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="brand" aria-label="The Loan Atlas — home">
+        <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a class="nav__link" href="whats-inside.html">What's Inside</a>
+        <a class="nav__link" href="faculty.html">Faculty</a>
+        <a class="nav__link nav__link--active" href="pricing.html">Pricing</a>
+        <a class="nav__link" href="events.html">Events</a>
+        <a class="nav__link" href="#">Resources</a>
+        <a class="nav__link" href="sales-individual.html">Sales</a>
+      </nav>
+      <div class="site-header__actions">
+        <a class="site-header__login" href="#">Login</a>
+        <a class="btn btn--primary btn--header" href="consultation.html"><span class="btn__short">Book Call</span><span class="btn__full">Book a Consultation</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main class="site-main">
+
+    <!-- Hero -->
+    <section class="hero" style="text-align: center;">
+      <div class="container">
+        <h1 class="hero__title" style="max-width: 36rem; margin-inline: auto;">Simple, transparent pricing</h1>
+        <p class="hero__subtitle" style="margin-inline: auto;">One membership covers every AI system, all coaching, and the full curriculum. Team and enterprise plans available for branches and brokerages.</p>
+        <div style="margin-top: var(--space-lg); display: flex; justify-content: center;">
+          <div class="toggle" role="tablist" aria-label="Billing cadence">
+            <button class="toggle__btn toggle__btn--active" role="tab" aria-selected="true">Monthly</button>
+            <button class="toggle__btn" role="tab" aria-selected="false">
+              Annually
+              <span class="chip chip--brass" style="font-size: 0.625rem; padding: 2px 8px;">Save 17%</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Plans -->
+    <section class="section section--tight">
+      <div class="container">
+        <div class="pricing-grid">
+
+          <!-- Solo -->
+          <article class="plan">
+            <div>
+              <div class="plan__name">Solo</div>
+              <p class="plan__desc">For individual loan officers and originators.</p>
+            </div>
+            <div class="plan__price">$349<span class="plan__per">/mo</span></div>
+            <a class="btn btn--ghost btn--block" href="consultation.html">Start with a Free Consultation</a>
+            <ul class="checklist">
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> All 5 AI-powered systems</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> 200+ training modules</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Live weekly &amp; monthly coaching</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Scripts, templates &amp; playbooks</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Member community access</li>
+            </ul>
+          </article>
+
+          <!-- Team (featured) -->
+          <article class="plan plan--featured">
+            <span class="plan__badge">Most Popular</span>
+            <div>
+              <div class="plan__name">Team</div>
+              <p class="plan__desc">For branch managers and small teams.</p>
+            </div>
+            <div class="plan__price">$1,499<span class="plan__per">/mo</span></div>
+            <a class="btn btn--brass btn--block" href="consultation.html">Talk to Us</a>
+            <ul class="checklist checklist--inverse">
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg> Everything in Solo, for up to 5 seats</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg> Team performance dashboard</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg> Private team coaching session monthly</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg> Manager analytics &amp; rollups</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg> Priority support</li>
+            </ul>
+          </article>
+
+          <!-- Enterprise -->
+          <article class="plan">
+            <div>
+              <div class="plan__name">Enterprise</div>
+              <p class="plan__desc">For brokerages and high-volume institutions.</p>
+            </div>
+            <div class="plan__price">Custom</div>
+            <a class="btn btn--ghost btn--block" href="consultation.html">Contact Sales</a>
+            <ul class="checklist">
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Unlimited seats</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Dedicated account manager</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Custom curriculum &amp; onboarding</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> SSO &amp; compliance reviews</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> SLA guarantee</li>
+            </ul>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Included in all -->
+    <section class="section">
+      <div class="container">
+        <div class="grid-2" style="gap: var(--space-xl);">
+          <div>
+            <h2 class="t-headline-lg" style="border-bottom: 1px solid var(--outline-variant); padding-bottom: var(--space-sm); margin-bottom: var(--space-md);">What's included in every plan</h2>
+            <div class="grid-2">
+              <div class="card card--hover" style="padding: var(--space-md);">
+                <div class="row" style="gap: 12px; margin-bottom: 8px;">
+                  <span style="color: var(--brass);">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                  </span>
+                  <h3 class="t-label" style="font-weight: 700; font-size: 0.9375rem;">Automated Income Verification</h3>
+                </div>
+                <p class="t-caption t-muted">Instantly parse W-2s, 1099s, and tax returns.</p>
+              </div>
+              <div class="card card--hover" style="padding: var(--space-md);">
+                <div class="row" style="gap: 12px; margin-bottom: 8px;">
+                  <span style="color: var(--brass);">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                  </span>
+                  <h3 class="t-label" style="font-weight: 700; font-size: 0.9375rem;">Bank-Grade Security</h3>
+                </div>
+                <p class="t-caption t-muted">SOC 2 Type II compliant infrastructure.</p>
+              </div>
+              <div class="card card--hover" style="padding: var(--space-md);">
+                <div class="row" style="gap: 12px; margin-bottom: 8px;">
+                  <span style="color: var(--brass);">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                  </span>
+                  <h3 class="t-label" style="font-weight: 700; font-size: 0.9375rem;">Expert Support</h3>
+                </div>
+                <p class="t-caption t-muted">Mortgage-trained support specialists, M-F.</p>
+              </div>
+              <div class="card card--hover" style="padding: var(--space-md);">
+                <div class="row" style="gap: 12px; margin-bottom: 8px;">
+                  <span style="color: var(--brass);">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                  </span>
+                  <h3 class="t-label" style="font-weight: 700; font-size: 0.9375rem;">LOS Integration</h3>
+                </div>
+                <p class="t-caption t-muted">Syncs with Encompass and Point.</p>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <h2 class="t-headline-lg" style="border-bottom: 1px solid var(--outline-variant); padding-bottom: var(--space-sm); margin-bottom: var(--space-md);">Frequently asked questions</h2>
+            <div class="faq">
+              <details class="faq-item">
+                <summary>Can I change plans later?</summary>
+                <div class="faq-item__body">Yes, you can upgrade or downgrade at any time. Prorated charges apply on upgrades; downgrades take effect at the next billing cycle.</div>
+              </details>
+              <details class="faq-item">
+                <summary>Is there a setup fee?</summary>
+                <div class="faq-item__body">No setup fees on Solo or Team plans. Enterprise rollouts may include a one-time integration fee depending on scope.</div>
+              </details>
+              <details class="faq-item">
+                <summary>Do I need to install anything?</summary>
+                <div class="faq-item__body">No. The Loan Atlas runs entirely in your browser. Optional integrations with your LOS take a few clicks.</div>
+              </details>
+              <details class="faq-item">
+                <summary>What if I'm part of a brokerage already?</summary>
+                <div class="faq-item__body">Most members keep their current brokerage relationship. The Loan Atlas operates as a productivity layer on top of whatever LOS or CRM you use today.</div>
+              </details>
+              <details class="faq-item">
+                <summary>How long until I see results?</summary>
+                <div class="faq-item__body">Most members report measurable wins (recovered hours, faster follow-up, new closed loans) within the first 30 days. The full system compounds over 90 days.</div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bottom CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="panel-dark center">
+          <h2 class="t-headline-lg" style="color: var(--on-primary); margin-bottom: var(--space-md);">Not sure which plan fits?</h2>
+          <p class="t-body-lg" style="color: rgba(255,255,255,0.78); margin-bottom: var(--space-lg); max-width: 36rem; margin-inline: auto;">Book a free 60-minute consultation. We'll diagnose your bottlenecks and recommend the right fit — even if it isn't ours.</p>
+          <a class="btn btn--brass btn--lg" href="consultation.html">Book a Consultation</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__top">
+        <a href="index.html" class="brand">
+          <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
+        </a>
+        <nav class="site-footer__links" aria-label="Footer">
+          <a class="site-footer__link" href="whats-inside.html">What's Inside</a>
+          <a class="site-footer__link" href="pricing.html">Pricing</a>
+          <a class="site-footer__link" href="events.html">Events</a>
+          <a class="site-footer__link" href="consultation.html">Book a Consultation</a>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        <p>© 2026 The Loan Atlas. Precision in lending.</p>
+        <nav class="site-footer__links">
+          <a class="site-footer__link" href="#">Privacy Policy</a>
+          <a class="site-footer__link" href="#">Terms of Service</a>
+          <a class="site-footer__link" href="#">Accessibility</a>
+          <a class="site-footer__link" href="#">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

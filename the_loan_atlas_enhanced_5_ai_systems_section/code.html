@@ -1,0 +1,419 @@
+<html class="light" lang="en"><head></head><body class="bg-background text-on-surface font-body-md">```html
+
+
+
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Loan Atlas | Human-Centric AI for Mortgage Professionals</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&amp;family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">tailwind.config = {darkMode: "class", theme: {extend: {colors: {"on-surface-variant": "#45464d", "surface-tint": "#4a607c", outline: "#76777d", "on-tertiary-container": "#76859b", "surface-container-high": "#e6e8ea", "on-secondary-container": "#775b00", "primary-fixed": "#d2e4ff", "on-error": "#ffffff", "inverse-on-surface": "#eff1f3", "on-surface": "#191c1e", "on-tertiary": "#ffffff", error: "#ba1a1a", "surface-container-low": "#f2f4f6", "outline-variant": "#c6c6cd", "primary-container": "#021c36", "secondary-fixed": "#ffdf94", "tertiary-fixed": "#d5e3fd", "surface-container-lowest": "#ffffff", "surface-container-highest": "#e0e3e5", "on-primary-fixed-variant": "#324864", "on-primary-fixed": "#021c36", "on-error-container": "#93000a", "tertiary-container": "#0d1c2f", "surface-container": "#eceef0", "inverse-surface": "#2d3133", "on-tertiary-fixed": "#0d1c2f", "on-secondary": "#ffffff", "error-container": "#ffdad6", "on-secondary-fixed-variant": "#594400", "on-primary-container": "#6f85a4", "surface-variant": "#e0e3e5", "inverse-primary": "#b1c8e9", "secondary-container": "#ffd56c", "primary-fixed-dim": "#b1c8e9", surface: "#f7f9fb", secondary: "#765b00", "on-secondary-fixed": "#251a00", "tertiary-fixed-dim": "#b9c7e0", "on-primary": "#ffffff", "surface-dim": "#d8dadc", background: "#f7f9fb", primary: "#000000", "on-background": "#191c1e", "surface-bright": "#f7f9fb", "on-tertiary-fixed-variant": "#3a485c", tertiary: "#000000", "secondary-fixed-dim": "#eac25a"}, borderRadius: {DEFAULT: "0.125rem", lg: "0.25rem", xl: "0.5rem", full: "0.75rem"}, spacing: {lg: "40px", gutter: "24px", xs: "8px", base: "4px", "container-max": "1280px", md: "24px", sm: "16px", xl: "64px"}, fontFamily: {"body-md": ["Inter"], caption: ["Inter"], "display-xl": ["Manrope"], "headline-md": ["Manrope"], "body-lg": ["Inter"], "headline-lg": ["Manrope"], "label-md": ["Inter"]}, fontSize: {"body-md": ["16px", {lineHeight: "24px", fontWeight: "400"}], caption: ["12px", {lineHeight: "16px", fontWeight: "400"}], "display-xl": ["48px", {lineHeight: "56px", letterSpacing: "-0.02em", fontWeight: "700"}], "headline-md": ["24px", {lineHeight: "32px", fontWeight: "600"}], "body-lg": ["18px", {lineHeight: "28px", fontWeight: "400"}], "headline-lg": ["32px", {lineHeight: "40px", letterSpacing: "-0.01em", fontWeight: "600"}], "label-md": ["14px", {lineHeight: "20px", letterSpacing: "0.01em", fontWeight: "500"}]}}}};</script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .ai-insight-panel {
+            background: linear-gradient(135deg, #131b2e 0%, #1e293b 100%);
+            border: 1px solid #775a19;
+        }
+    </style>
+<!-- TopAppBar -->
+<header class="bg-white/90 dark:bg-slate-900/90 backdrop-blur-md fixed top-0 w-full z-50 border-b border-slate-200 dark:border-slate-800 shadow-sm">
+<div class="flex items-center justify-between px-6 lg:px-12 py-4 max-w-7xl mx-auto">
+<div class="text-xl font-bold tracking-tighter text-slate-900 dark:text-slate-50 font-display-xl">
+                The Loan Atlas
+            </div>
+<nav class="hidden md:flex items-center space-x-8">
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-50 transition-colors font-['Manrope'] text-sm font-semibold tracking-tight" href="#">About Us</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-50 transition-colors font-['Manrope'] text-sm font-semibold tracking-tight" href="#">Membership</a>
+<a class="text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-50 transition-colors font-['Manrope'] text-sm font-semibold tracking-tight" href="#">Resources</a>
+</nav>
+<div class="flex items-center space-x-4">
+<button class="text-slate-900 dark:text-slate-50 font-['Manrope'] text-sm font-semibold tracking-tight px-4 py-2 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all duration-200 active:scale-95">Login</button>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-lg font-['Manrope'] text-sm font-semibold tracking-tight transition-transform active:scale-95 shadow-lg">Book a Consultation</button>
+</div>
+</div>
+</header>
+<main class="pt-20">
+<!-- Hero Section -->
+<section class="relative px-6 lg:px-12 py-12 lg:py-16 max-w-7xl mx-auto overflow-hidden">
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+<div class="z-10">
+<h1 class="font-display-xl text-display-xl text-on-surface mb-6 leading-[1.1]">
+                        The AI-Powered <span class="text-secondary font-extrabold italic">"Easy Button"</span> for Mortgage Originators
+                    </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant mb-10 max-w-xl">
+                        Install AI systems into your business to close more loans in less time and regain control.
+                    </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-primary text-on-primary px-8 py-4 rounded-xl font-headline-md text-body-md flex items-center justify-center gap-2 hover:opacity-90 transition-all active:scale-95 shadow-xl">
+                            Join The Loan Atlas
+                        </button>
+<button class="border border-outline text-on-surface px-8 py-4 rounded-xl font-headline-md text-body-md flex items-center justify-center gap-2 hover:bg-surface-container transition-all active:scale-95">
+                            Book a Consultation
+                        </button>
+</div>
+</div>
+<div class="relative lg:h-[600px] flex items-center justify-center">
+<!-- Background Glow -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-secondary-container/10 rounded-full blur-[120px] pointer-events-none shadow-[0_0_100px_rgba(255,213,108,0.1)]"><div class="absolute inset-0 w-full h-full opacity-30" style="background-image: radial-gradient(circle at 50% 50%, transparent 0%, rgba(255,213,108,0.05) 50%, transparent 100%), linear-gradient(rgba(74, 96, 124, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(74, 96, 124, 0.05) 1px, transparent 1px); background-size: 100% 100%, 40px 40px, 40px 40px;"></div><div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[140%] h-[140%] bg-gradient-to-br from-surface-tint/5 via-transparent to-secondary/5 rounded-full blur-[100px] pointer-events-none"></div></div>
+<!-- Main UI Image with Seamless Integration Effects -->
+<div class="relative z-10 w-full animate-in fade-in slide-in-from-right-8 duration-1000">
+<div class="relative rounded-[2rem] overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] border border-white/20 glass-card shadow-[0_48px_80px_-24px_rgba(2,28,54,0.15)]">
+<img alt="AI Business Planning Dashboard" class="w-full h-auto transform scale-105 hover:scale-100 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida/ADBb0ug5voClYfXr_scwK836U6F28AXwlzTz1VxcxZSvZv5l74BVmM6xL5xOAWac58U1JHiJtXItBtwSt46eyYu1EFzQs3L1ogyrOIWYi96fM_6EeL5_OhkCoy_5NipAv5WEji5-ttuYtvh3nLMIfWNubwa3FQcvmFKs3XRL-h9paTXWQ7fzy45FZu73wEQ7rwjQJoglwh4bqPenApN3TMSd4M2IIYXPQDA7YE3gWjtzQWjStE9xvlDMLfmhTw5d3ypl4PkaG5_hPkM"/>
+<!-- Overlay Gradient for Depth -->
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/20 via-transparent to-white/10 pointer-events-none"></div>
+</div>
+<!-- Floating Glassmorphic Elements for 'Integrated' feel -->
+</div>
+<!-- Decorative Elements -->
+</div>
+</div>
+</section>
+<!-- Trust Bar -->
+<section class="bg-surface-container-low py-12 border-y border-outline-variant">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<p class="text-center font-label-md text-outline uppercase tracking-widest mb-8">Trusted by top mortgage professionals from:</p>
+<div class="flex flex-wrap justify-center items-center gap-8 lg:gap-16 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
+<span class="font-display-xl text-headline-md text-on-surface-variant">CMG Financial</span>
+<span class="font-display-xl text-headline-md text-on-surface-variant">CrossCountry Mortgage</span>
+<span class="font-display-xl text-headline-md text-on-surface-variant">LeaderOne</span>
+<span class="font-display-xl text-headline-md text-on-surface-variant">Arbor</span>
+<span class="font-display-xl text-headline-md text-on-surface-variant">Guaranteed Rate</span>
+</div>
+</div>
+</section>
+<!-- The Problem vs Reality Section -->
+<section class="py-24 px-6 lg:px-12 bg-white">
+<div class="max-w-7xl mx-auto">
+<div class="grid lg:grid-cols-2 gap-16">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">Why Production Feels Inconsistent (And Exhausting)</h2>
+<p class="font-body-lg text-on-surface-variant mb-6">You're working harder than ever, yet your pipeline resembles a rollercoaster. One month you're swamped, the next you're wondering where your next deal will come from. This isn't a lack of effort; it's a lack of systematization.</p>
+<ul class="space-y-4 mb-8">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-error mt-1">cancel</span>
+<span class="font-body-md text-on-surface-variant">You're buying expensive leads but failing to convert them efficiently.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-error mt-1">cancel</span>
+<span class="font-body-md text-on-surface-variant">You have great conversations, but lack a systematic follow-up process.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-error mt-1">cancel</span>
+<span class="font-body-md text-on-surface-variant">Your business oscillates between weeks of frantic processing and weeks of desperate prospecting.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-error mt-1">cancel</span>
+<span class="font-body-md text-on-surface-variant">You're constantly trying the "latest strategy" instead of mastering the fundamentals.</span>
+</li>
+</ul>
+<p class="font-body-lg text-primary font-medium border-l-4 border-secondary pl-6 italic">The hard truth? The industry has sold you a lie about how to scale.</p>
+</div>
+<div class="bg-surface-container rounded-3xl p-8 border border-outline-variant">
+<div class="grid grid-cols-2 gap-8 mb-6 border-b border-outline-variant pb-4">
+<h3 class="font-headline-md text-lg text-error">What You've Been Told</h3>
+<h3 class="font-headline-md text-lg text-primary">What Actually Works</h3>
+</div>
+<div class="space-y-6">
+<div class="grid grid-cols-2 gap-8 items-center group">
+<div class="font-body-md text-on-surface-variant pr-4 border-r border-outline-variant/50 group-hover:text-error transition-colors">Chase more leads</div>
+<div class="font-body-md text-primary font-medium group-hover:text-secondary transition-colors">Double down on what's already producing</div>
+</div>
+<div class="grid grid-cols-2 gap-8 items-center group">
+<div class="font-body-md text-on-surface-variant pr-4 border-r border-outline-variant/50 group-hover:text-error transition-colors">Compete on rate</div>
+<div class="font-body-md text-primary font-medium group-hover:text-secondary transition-colors">Win on trust, speed, and communication</div>
+</div>
+<div class="grid grid-cols-2 gap-8 items-center group">
+<div class="font-body-md text-on-surface-variant pr-4 border-r border-outline-variant/50 group-hover:text-error transition-colors">Work longer hours</div>
+<div class="font-body-md text-primary font-medium group-hover:text-secondary transition-colors">Spend your best hours on the right work</div>
+</div>
+<div class="grid grid-cols-2 gap-8 items-center group">
+<div class="font-body-md text-on-surface-variant pr-4 border-r border-outline-variant/50 group-hover:text-error transition-colors">Hope consistency follows</div>
+<div class="font-body-md text-primary font-medium group-hover:text-secondary transition-colors">Build a system that makes consistency the default</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-16 bg-primary-container rounded-2xl p-8 text-center border border-secondary/30">
+<p class="font-headline-md text-xl text-on-primary-container leading-relaxed">
+<span class="text-secondary font-bold">The loan officers producing consistently are not working harder than you...</span> <br/>
+                If you want a different future, you need a drastically different way of operating now.
+            </p>
+</div>
+</div>
+</section>
+<!-- 5 AI Systems Section -->
+<section class="relative px-6 lg:px-12 py-12 lg:py-16 max-w-7xl mx-auto overflow-hidden" style="background-image: linear-gradient(to bottom, rgba(15, 23, 42, 0.9), rgba(15, 23, 42, 0.85)), url('https://lh3.googleusercontent.com/aida-public/AB6AXuCHczIEMwWSP4WvmGsLanvMTVt5FfNwUDrCOcPfcgaJM8qeLZ57S1BzG4DbwiBMQR1TbXoOyS8ISqMBH2EU-CEai8TElfhEmfVQNLiGHdJlECYbcyAmtmNVQ9k1h1j9qpbxS4j97zv5wkSgdpF73nVC4ds-SVasQvcS6gSnJlsbyu92A3ugRVRF8wU5c_Vx7eV4kWQJexo_A_FCLRk4WPwHq4ZZLA5m9y960Rgd2ZbWpbZRREunO3fbvoTqgM9BSBf0wrKQaw-O'); background-attachment: fixed; background-size: cover; background-position: center;">
+<div class="max-w-7xl mx-auto relative z-10">
+<div class="mb-20 text-center max-w-3xl mx-auto"><h2 class="font-headline-lg text-display-xl text-transparent bg-clip-text bg-gradient-to-r from-secondary to-[#FFD56C] mb-6 font-extrabold">Five AI-Powered Systems That Help You Close More Loans With Less Chaos</h2><p class="font-body-lg text-body-lg text-slate-300 leading-relaxed">Most loan officers use AI like a tool. Top producers use it like infrastructure. Inside The Loan Atlas, five AI-powered systems work together to help you make better decisions, execute faster, and stay focused on what actually drives production.</p></div>
+<div class="space-y-12 lg:space-y-24">
+<!-- 01 -->
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+<div class="order-2 lg:order-1">
+<span class="font-display-xl text-[64px] text-secondary/20 leading-none block mb-4">01</span>
+<h3 class="font-headline-md text-xl text-secondary mb-2 uppercase tracking-wide">Stop Flying Blind</h3>
+<h4 class="font-headline-lg text-headline-lg text-primary mb-4 text-white">AI Business Intelligence System</h4>
+<p class="font-body-lg text-on-surface-variant mb-6 text-slate-300">Gain total clarity on your pipeline, conversion rates, and market opportunities. Our Business Intelligence System instantly analyzes your data to highlight exactly where your time will yield the highest return.</p>
+</div>
+<div class="order-1 lg:order-2 bg-gradient-to-br from-white to-surface-container rounded-3xl p-4 shadow-2xl border border-outline-variant">
+<img alt="AI Dashboard" class="rounded-2xl shadow-sm border border-outline-variant/50 w-full h-auto object-cover aspect-video" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAV2FsRwJetLr_0EU4VM5Le3v8fUScRY-GRY7_YiqsHqhnTAO2ETRBs1Qr5F03bD0nCqHHZveIlXBrE4-7xVvLrGMyGp-SWn5KqkKNIfCX2TIM4G18p3w2SJs_93iLLy5wOMS7zjK4CAEsefMkrjmak7k59DQgMnUPoWOhrgt-x8GqOGdfwM72HPYiVrgWPRSNLswvBi9sd0p1M6Vba3a7ayjAUsHmfJLHwkgGHx0ZtzQoelWUnQasx82XQjG4C7L0GVSRzPsE_"/>
+</div>
+</div>
+<!-- 02 -->
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+<div class="bg-gradient-to-br from-white to-surface-container rounded-3xl p-4 shadow-2xl border border-outline-variant">
+<img alt="Planning Interface" class="rounded-2xl shadow-sm border border-outline-variant/50 w-full h-auto object-cover aspect-video" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC4uYjTz4g64qgwgSQpptQ3vIoaD1yTcKbnXeG0zhfjJwM9Jjk8nrij7wpuBkcUOH1xeq1iz6Cz4eudnwpHtU2M_6aUoET-nMfRfKJ8RHgNX7iu8oEewz4lPeamsSL0BxzXFv3j9--xPE-YBu1e9bYXYJUJTIYJepZGAsxmg5Tzbuht5WNc4dNiAE7C3bN_6YJon08OZb8qNrsQ_49pWkOhQqmdrHozAo8GU9UQENAZuRCne72jYF0XviAAZC2sZTh-OoIS3Vdg"/>
+</div>
+<div>
+<span class="font-display-xl text-[64px] text-secondary/20 leading-none block mb-4">02</span>
+<h3 class="font-headline-md text-xl text-secondary mb-2 uppercase tracking-wide">Turn Strategy Into Action</h3>
+<h4 class="font-headline-lg text-headline-lg text-primary mb-4 text-white">AI Business Planning &amp; Execution System</h4>
+<p class="font-body-lg text-on-surface-variant mb-6 text-slate-300">Stop letting important tasks fall through the cracks. This system turns high-level goals into daily, automated action items, ensuring you're always moving the needle forward on what matters most.</p>
+</div>
+</div>
+<!-- 03 -->
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+<div class="order-2 lg:order-1">
+<span class="font-display-xl text-[64px] text-secondary/20 leading-none block mb-4">03</span>
+<h3 class="font-headline-md text-xl text-secondary mb-2 uppercase tracking-wide">Never Miss An Opportunity</h3>
+<h4 class="font-headline-lg text-headline-lg text-primary mb-4 text-white">AI Sales &amp; Marketing Advisor</h4>
+<p class="font-body-lg text-on-surface-variant mb-6 text-slate-300">Craft the perfect message at the perfect time. From customized email campaigns to objection-handling scripts, your AI Advisor helps you communicate with authority and close more deals.</p>
+</div>
+<div class="order-1 lg:order-2 bg-gradient-to-br from-white to-surface-container rounded-3xl p-4 shadow-2xl border border-outline-variant">
+<img alt="Sales CRM" class="rounded-2xl shadow-sm border border-outline-variant/50 w-full h-auto object-cover aspect-video" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXeX0U7ZGSfl_vd--YgDp5RQBIWHzF3xaPdm2t6XWpza7bHToLXzFI72YLVpdYMHyYITdbeR09TCA0Pa1g8m7IgfdW2rIj6uW0K4L2Kz8reeRm4WAaYx7ckpbj-LlARUuVb05HdYqoNRSuKn_VWQbFFh9fxQORwg06qOJ3IOFLNdsrSzBf3bpS3zXw87RDSeNlegX5Ov1zx7aQz6EEVNUywNA5SHsfal9g9EfiFP5PyvOr4jCsruBWm4f0oFJNk7i_ZQ_ENrJR"/>
+</div>
+</div>
+<!-- 04 -->
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+<div class="bg-gradient-to-br from-white to-surface-container rounded-3xl p-4 shadow-2xl border border-outline-variant">
+<img alt="Performance Analytics" class="rounded-2xl shadow-sm border border-outline-variant/50 w-full h-auto object-cover aspect-video" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDrfHU57kMLN8u11GgIhJJ2cjSzh-WfMLPS5wnuPG3EbZ7WEbLI4YQ5jiKuWwrTfovzDa-8UOv09fhsxXgxY6vPMOY-KDFcK4eWfV4y3DNNEMxm0ugIZc8leGLVyeoZECZ1wYwpx5xac91B5uVvm4GLNek63zzswiYKySaSLE3jUpLzUqC4odptzDiWqdga2hU0hNca4dp9P13u-Sq0UX2CaJ6Df8TkjydCT23nQaJ1xwJeN7ymehGW3ONGP9Or7Vwej74RPaH_"/>
+</div>
+<div>
+<span class="font-display-xl text-[64px] text-secondary/20 leading-none block mb-4">04</span>
+<h3 class="font-headline-md text-xl text-secondary mb-2 uppercase tracking-wide">Optimize Your Workflows</h3>
+<h4 class="font-headline-lg text-headline-lg text-primary mb-4 text-white">AI Performance Coach</h4>
+<p class="font-body-lg text-on-surface-variant mb-6 text-slate-300">Identify your bottlenecks and inefficient habits. The Performance Coach monitors your activity and suggests personalized optimizations to help you work smarter, not harder.</p>
+</div>
+</div>
+<!-- 05 -->
+<div class="grid lg:grid-cols-2 gap-12 items-center">
+<div class="order-2 lg:order-1">
+<span class="font-display-xl text-[64px] text-secondary/20 leading-none block mb-4">05</span>
+<h3 class="font-headline-md text-xl text-secondary mb-2 uppercase tracking-wide">Elevate Your Thinking</h3>
+<h4 class="font-headline-lg text-headline-lg text-primary mb-4 text-white">AI Strategic Thought Partner</h4>
+<p class="font-body-lg text-on-surface-variant mb-6 text-slate-300">Brainstorm solutions to complex loan scenarios, test out new market strategies, and get instant feedback from an AI model trained on the behaviors of top-producing originators.</p>
+</div>
+<div class="order-1 lg:order-2 bg-gradient-to-br from-white to-surface-container rounded-3xl p-4 shadow-2xl border border-outline-variant">
+<img alt="Strategy Session" class="rounded-2xl shadow-sm border border-outline-variant/50 w-full h-auto object-cover aspect-video" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfvSlM3D1tuIF0NOrfn0quJ7rVNtGkyty-dGba0q_MkIB9whD249FeY7MmVf6sfjNX05_Pf1UJoLDxaCHEgp6O-PN1oNPYpz3Z7ZObOp3kezcTAM_WCx-z05VioulZA9P49mTXrmNS6hAuu7hCkze7c0xWkwlzAW66IeMuz1SJpMVQH4tTu7GQxAmmRbwMGxylfGKZIou-QHb8fRrRLsUmThcjsvNZpIeYblgt9cBd7F2SUUgXa11wlZV7yQ-bkZfIW3S2d_4y"/>
+</div>
+</div>
+</div>
+<div class="mt-24 text-center">
+<button class="bg-primary text-on-primary px-10 py-5 rounded-xl font-headline-md text-body-lg hover:opacity-90 transition-all shadow-xl active:scale-95 inline-flex items-center gap-3">
+<span class="material-symbols-outlined">play_arrow</span> Become an AI-Empowered Originator
+             </button>
+</div>
+</div>
+</section>
+<!-- Audience Section -->
+<section class="bg-surface py-24 border-t border-surface-variant">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<div class="text-center mb-16">
+<h2 class="font-headline-lg text-headline-lg mb-4">Who The Loan Atlas Was Built For</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="group relative overflow-hidden rounded-2xl aspect-[16/10]">
+<img alt="Loan Officers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A confident female loan officer in a professional studio setting, smiling warmly. The background is a blurred, high-end office interior with soft natural light hitting her face. The image carries a premium corporate aesthetic with deep navy and charcoal tones, emphasizing trust and expertise." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHczIEMwWSP4WvmGsLanvMTVt5FfNwUDrCOcPfcgaJM8qeLZ57S1BzG4DbwiBMQR1TbXoOyS8ISqMBH2EU-CEai8TElfhEmfVQNLiGHdJlECYbcyAmtmNVQ9k1h1j9qpbxS4j97zv5wkSgdpF73nVC4ds-SVasQvcS6gSnJlsbyu92A3ugRVRF8wU5c_Vx7eV4kWQJexo_A_FCLRk4WPwHq4ZZLA5m9y960Rgd2ZbWpbZRREunO3fbvoTqgM9BSBf0wrKQaw-O"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent p-8 flex flex-col justify-end">
+<h3 class="text-white font-headline-md text-xl mb-2">Loan Officers</h3>
+<p class="text-slate-200 text-sm">Individual producers looking to scale production without increasing their hours.</p>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-2xl aspect-[16/10]">
+<img alt="Mortgage Brokers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A focused mortgage broker analyzing complex data charts on a tablet in a bright, modern glass-walled office. The lighting is crisp and cool, reflecting a forward-thinking tech-driven environment. Colors are predominantly white, light slate, and deep blue, conveying precision and reliability." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcIrI7F9n8MYVygJpYLWBDvuKCevcb2SwXE1xlQrrJ3LwwY2ElyqxDW1hd5l4jUIf4EsxtzZyI4rCF54EjvpNte5UKEZseCwWj0udNBNc9NYaI9naFy7CNf8NSMb9Py_n_8jumsC6SEFyhVdhiugwQMrZlAJwme7j1lkeJ5IhzkY0aqTJCXD1hxLi4u8Q9xl3JISVwzEeqmyrPOmxDeqXEVaskpHBEgoc8PqQJRU4FVir24qTErOWn-lfGxq4EKCWedTuav3WA"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent p-8 flex flex-col justify-end">
+<h3 class="text-white font-headline-md text-xl mb-2">Mortgage Brokers</h3>
+<p class="text-slate-200 text-sm">Independent professionals needing robust systems to compete with big banks.</p>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-2xl aspect-[16/10]">
+<img alt="Branch Managers" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A branch manager leading a small team meeting around a conference table. The atmosphere is collaborative and professional, with warm wood accents and soft overhead lighting. The color palette emphasizes corporate stability through navy and slate tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZfOq7BWJXrC2TMCEtKzpK87gEP8Tdq76dnrqKyl14ByFE6PA7DZfFHHqCdtbdRiPUhwTOKnygRbDznpfIuJ4ET9lf4-s6UYgvW-oAAnPpn_QX0wkXVjt4SQIXSLomZ23rOHiUfvGPxJ3_UicqVXzyKyS-_cJ7bm32PtGqwEyq6URZD5jZyqwHeHidtGgO4G5vuq6NXLfrzYtsHV51p5AW9alnkEWJ4Zw6LXubC-37s9gdgvNZKrLXjuVbECNzr5RS21526d3e"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent p-8 flex flex-col justify-end">
+<h3 class="text-white font-headline-md text-xl mb-2">Branch Managers</h3>
+<p class="text-slate-200 text-sm">Leaders wanting to provide their team with world-class tech and training.</p>
+</div>
+</div>
+<div class="group relative overflow-hidden rounded-2xl aspect-[16/10]">
+<img alt="Owners and Executives" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="An executive owner overlooking a modern skyline from a high-rise office. The scene is majestic and calm, utilizing high-contrast lighting to create a sense of power and vision. Deep navy and gold accents reflect the premium 'private banking' style of the brand." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-OsHEBn9_v9TBg-M81b2xYt3XW75PgphW3RwSkl7PsdP2aoqR7groZn3VsiaZ_fhe2fnN1PcXx_iov35EVD7pZ0SbveUHNDDMJQcRsFZw7s4MhpIQ4_jlGsG7gd2N2jSFqjxxgj5GA4aw2919HMtzRW74taj83jTXYUVwmr-c8rvbJg2hnKi19XodrDOAsUbUo-Utt3eqSaxiXhFr5jkEjFxqU4tIcbsYT2K0OrHfrATbRKNG26hnPhzqdxwjfUj3WqhJx2pP"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/20 to-transparent p-8 flex flex-col justify-end">
+<h3 class="text-white font-headline-md text-xl mb-2">Owners and Executives</h3>
+<p class="text-slate-200 text-sm">Decision-makers focused on institutional efficiency and bottom-line growth.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Human-Centric AI Section -->
+<section class="py-24 px-6 lg:px-12 max-w-7xl mx-auto">
+<div class="ai-insight-panel rounded-3xl p-12 lg:p-20 text-white overflow-hidden relative">
+<div class="absolute top-0 right-0 w-1/3 h-full opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[300px]" data-icon="hub">hub</span>
+</div>
+<div class="relative z-10 lg:max-w-2xl">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-1px bg-secondary"></div>
+<span class="font-label-md text-secondary tracking-[0.2em] uppercase">Human Expertise • Artificial Intelligence</span>
+</div>
+<h2 class="font-headline-lg text-headline-lg mb-8 leading-tight">Built by Top Producers. <br/> Now Powered by AI.</h2>
+<p class="font-body-lg text-on-primary-container mb-12">
+                        Technology without a framework is just noise. Our AI isn't generic—it's trained on the actual scripts, behaviors, and strategies used to originate over $29B in mortgage volume. We've taken the intuition of the world's best and turned it into an executable system for you.
+                    </p>
+<div class="flex items-center -space-x-4">
+<img alt="Mentor 1" class="w-16 h-16 rounded-full border-2 border-primary-container object-cover" data-alt="Portrait of a professional mentor" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzFHDseRESJ8e9g90WFIAlpEu2gFSUwBtstZKGGviVrgY2waR3Vy9xhtq71wZ04et3gtB7Y7XrFuOGWDjmhxSaFHic2fT2uuANd4BdRJKPe-g89Y7Xpm76tirShWxQUqhiud77DOovsYYcUOTxe3nOHpDa3ARax-051OMjd5Xo-ZGpunXZmi_n4J6EgeeYF7Kx2NZoEAhk9KPRLVOGYqzFz3C71ccNxiUCws65QQuLLS00j05ne4TLO_LH5kw3Fh9fSz6w03lw"/>
+<img alt="Mentor 2" class="w-16 h-16 rounded-full border-2 border-primary-container object-cover" data-alt="Portrait of a mortgage expert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHJsPqBuOsdc5Q2wJ-0dA7GVM4234xGsAY1UJyScJsZqkGZkKsI5kAf5YcbaLkvUHIoQdb678vPSECoXL5jyRGqMqSiotpfbdmNV1xNVkatHDpNhIyoBiY_gBuAX4G3AtyquATtgdtppVVmCsw3EcalycV1zQXWQDwijKP-F1m3oqPE-S-p7PfsACfCsaxVG3P52y3Mqzb0Def9mErs_tqXFOEjOXgCSSXsQaxSDD2ejJlqVmFMViAURH_2BiiydSURUB1pxk4"/>
+<img alt="Mentor 3" class="w-16 h-16 rounded-full border-2 border-primary-container object-cover" data-alt="Portrait of a top producer" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5fIUXvnZLsavInTS1-khRc_nZoh1lVTvOthI5_gD3HVFSzmBNp5HHvHF2y2pQH3jhZOC8TdBKGqrgpcguI8aD5PsvYXb1_zKWSLYrYUWb-rSC3EwGTbBMSO6as_4ruETu2_03JevImKokrs9NntFUjjIGGwZvBmvHr33N3rvI1LU5qHN-msdHouuWG0Jg1BLrwRzZsWXHtNwRPPAFc0tblICHwpXInSU1S0ctj3m03-iQAst7eC2V9js6upcWWrrlSELn9J-W"/>
+<div class="w-16 h-16 rounded-full bg-secondary border-2 border-primary-container flex items-center justify-center font-headline-md text-primary text-sm">+8</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="bg-surface-container-low py-24 border-y border-outline-variant overflow-hidden">
+<div class="max-w-7xl mx-auto px-6 lg:px-12">
+<h2 class="font-headline-lg text-headline-lg text-center mb-16">Real Originators. Real Systems. Real Results.</h2>
+<div class="grid md:grid-cols-3 gap-8">
+<!-- Testimonial 1 -->
+<div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm relative">
+<div class="flex text-secondary mb-6">
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+</div>
+<p class="font-body-md text-on-surface-variant italic mb-8">"The scripts alone paid for the membership in the first month. The AI coach has transformed how I handle Realtor objections."</p>
+<div class="flex items-center gap-4 border-t border-slate-100 pt-6">
+<img alt="Edgardo Valentine" class="w-12 h-12 rounded-full object-cover" data-alt="Headshot of Edgardo Valentine, a professional loan officer with a confident smile, wearing a tailored navy blazer in a high-key office environment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX6KeP3U3KGVdzVuWdnnkHqJQ8ECMKVF5gRwamghTqeO3UYwtBoH1VVDYw2gFZgMzvMGIMvcxqU-Hsb22b737r9q2qLZBnzMLcXjlKiH74hf094YobEPBlqOYnS0qJjVBhf_Tt1KmKGt9bCwYh4XCsItDH6EXcgwrVUYdC7Ru0iIndTRvR6pWPzWQSG1Nxc1EYQjcGtrsnXWUYgtpx71ZuIP1Y-CXJxne7-kxJpeWx2STS_n2SQ7Iw6ZxoiDt_8Py2dgqb_xZG"/>
+<div>
+<h4 class="font-headline-md text-sm">Edgardo Valentine</h4>
+<p class="text-caption text-outline">Top Producer, Florida</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 2 -->
+<div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm relative">
+<div class="flex text-secondary mb-6">
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+</div>
+<p class="font-body-md text-on-surface-variant italic mb-8">"Finally, a system that actually understands the nuances of the mortgage business. This isn't just theory, it's execution."</p>
+<div class="flex items-center gap-4 border-t border-slate-100 pt-6">
+<img alt="Judith" class="w-12 h-12 rounded-full object-cover" data-alt="Headshot of Judith, a senior mortgage professional with a friendly yet expert demeanor, set against a soft bokeh background of a modern office space." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAfN-NnIF1QNpcH0P_PjKn0uRTIOQS40xry1EEm-ghqk9y8Mgs-OOX1Y641fkZQSsFRMhl56C-fvXvDuAEGGPZr1dZ8nimJKJb3kDpaC2Mj60p-ueMp7IpRzc8HJhNXK5WtAVS_Q0712IyKXf-nFFKYwhtI2NcszdvYfVYacS72ulufXT9lha4IWAfEnAWZU0_w0LYDDjJ4ti_QNFUVylZarQihIaQun8RRPJW_iN67hQan9auiB6j7Hj5xEWOs5nXoEKQ8Mi9b"/>
+<div>
+<h4 class="font-headline-md text-sm">Judith</h4>
+<p class="text-caption text-outline">Branch Manager, Texas</p>
+</div>
+</div>
+</div>
+<!-- Testimonial 3 -->
+<div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm relative">
+<div class="flex text-secondary mb-6">
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+<span class="material-symbols-outlined" data-icon="star" data-weight="fill">star</span>
+</div>
+<p class="font-body-md text-on-surface-variant italic mb-8">"The Loan Atlas gives me the mental space to focus on high-level relationships while the AI handles the repetitive heavy lifting."</p>
+<div class="flex items-center gap-4 border-t border-slate-100 pt-6">
+<img alt="Maui Parra" class="w-12 h-12 rounded-full object-cover" data-alt="Headshot of Maui Parra, a forward-thinking mortgage broker with a clean-cut look, wearing professional attire in a modern, light-filled workspace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqZDrbxM-BiXHokiLGDBcKvzuBPSbZnXyv7cpTX-ISprl_Fif7uxMH2nkOLhW6nOvTBICMEVZxEcjdECGW8XdCpd6R4z2GwLhDvkdmeK7bdyLYlW9sIfsrO93nktDaE4Sr1HoUxMtN9Tf-Fbv7SkcfSWvMujMxBQz4JtMs787LoWh8ol5-sFbk8_90zHRX9P9kwSokh64izQNxfG6PrY16WahYkXgYXaDBiKdj8PMqPT_0eKZV_EU-bl5ZYR6jJ7GDBNikazxU"/>
+<div>
+<h4 class="font-headline-md text-sm">Maui Parra</h4>
+<p class="text-caption text-outline">Owner, California</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Plan CTA -->
+<section class="bg-surface py-24 px-6 lg:px-12">
+<div class="max-w-4xl mx-auto text-center">
+<h2 class="font-headline-lg text-headline-lg text-primary mb-6">One Membership. A Smarter Way to Run Your Mortgage Business.</h2>
+<div class="bg-white rounded-3xl border border-outline-variant shadow-xl overflow-hidden">
+<div class="p-10 lg:p-16">
+<div class="mb-8">
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-4">
+<span class="font-display-xl text-[48px] text-primary">$349<span class="text-body-lg text-on-surface-variant font-normal"> / month</span></span>
+<div class="hidden sm:block w-px h-12 bg-outline-variant"></div>
+<span class="font-display-xl text-[48px] text-primary">$3,490<span class="text-body-lg text-on-surface-variant font-normal"> / year</span></span>
+</div>
+<p class="font-body-lg text-on-surface-variant max-w-2xl mx-auto">
+            Loan Atlas members close $8.2M more in annual production than the industry average. In most cases, one additional closed loan covers your membership for the entire year.
+          </p>
+</div>
+<div class="border-t border-outline-variant pt-10 text-left">
+<h3 class="font-headline-md text-lg text-primary mb-6">Your membership includes:</h3>
+<div class="grid sm:grid-cols-2 gap-y-4 gap-x-8">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary">check_circle</span>
+<span class="font-body-md text-on-surface-variant">All 5 AI-powered business systems</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary">check_circle</span>
+<span class="font-body-md text-on-surface-variant">Live weekly and monthly coaching sessions</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary">check_circle</span>
+<span class="font-body-md text-on-surface-variant">200+ training modules</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary">check_circle</span>
+<span class="font-body-md text-on-surface-variant">Full library of scripts, templates, and playbooks</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary">check_circle</span>
+<span class="font-body-md text-on-surface-variant">Access to the entire Loan Atlas community</span>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary">check_circle</span>
+<span class="font-body-md text-on-surface-variant">New tools and content added every month</span>
+</div>
+</div>
+</div>
+<div class="mt-12">
+<button class="bg-primary text-on-primary px-10 py-5 rounded-xl font-headline-md text-body-lg hover:opacity-90 transition-all shadow-xl active:scale-95 w-full sm:w-auto">
+            Join The Loan Atlas Today
+          </button>
+</div>
+</div>
+</div>
+</div>
+</section><section class="py-24 px-6 lg:px-12 max-w-7xl mx-auto">
+<div class="grid lg:grid-cols-2 gap-12 items-center bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-2xl">
+<div class="p-12 lg:p-16">
+<h2 class="font-headline-lg text-headline-lg mb-6">Stop Struggling Alone. Get a Clear Plan in One Call.</h2>
+<p class="font-body-md text-on-surface-variant mb-10">We'll look under the hood of your business, identify the bottlenecks, and show you exactly where AI can save you 10+ hours a week.</p>
+<button class="bg-primary text-on-primary px-10 py-5 rounded-xl font-headline-md text-body-lg hover:opacity-90 transition-all shadow-xl active:scale-95">
+                        Book a Consultation
+                    </button>
+</div>
+<div class="h-full min-h-[400px]">
+</div></div></section></main></body></html>
