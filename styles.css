@@ -412,9 +412,19 @@ h1, h2, h3, h4, h5, h6 {
   flex-shrink: 0;
 }
 .brand__logo {
-  height: 40px;
+  height: 28px;
   width: auto;
   display: block;
+}
+@media (min-width: 540px) {
+  .brand__logo {
+    height: 36px;
+  }
+}
+@media (min-width: 880px) {
+  .brand__logo {
+    height: 40px;
+  }
 }
 .site-footer .brand__logo {
   height: 60px;
@@ -1336,22 +1346,26 @@ h1, h2, h3, h4, h5, h6 {
   margin-top: var(--space-xl);
   overflow: hidden;
   position: relative;
-  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
-          mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+  /* Force compositing layer — fixes Safari bug where mask-image + animation = invisible */
+  -webkit-transform: translateZ(0);
+          transform: translateZ(0);
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
 }
 .quote-marquee__track {
   display: flex;
   gap: var(--space-lg);
   width: max-content;
   padding-inline: var(--space-lg);
+  will-change: transform;
   animation: quote-scroll 60s linear infinite;
 }
 .quote-marquee:hover .quote-marquee__track {
   animation-play-state: paused;
 }
 @keyframes quote-scroll {
-  from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
 }
 @media (prefers-reduced-motion: reduce) {
   .quote-marquee__track { animation: none; }
