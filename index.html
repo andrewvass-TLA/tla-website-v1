@@ -32,9 +32,24 @@
       </nav>
       <div class="site-header__actions">
         <a class="site-header__login" href="#">Login</a>
+        <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav">
+          <span class="nav-toggle__line"></span>
+          <span class="nav-toggle__line"></span>
+          <span class="nav-toggle__line"></span>
+        </button>
         <a class="btn btn--primary btn--header" href="consultation.html"><span class="btn__short">Book Call</span><span
             class="btn__full">Book a Consultation</span></a>
       </div>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a class="mobile-nav__link" href="whats-inside.html">What's Inside</a>
+      <a class="mobile-nav__link" href="faculty.html">Faculty</a>
+      <a class="mobile-nav__link" href="pricing.html">Pricing</a>
+      <a class="mobile-nav__link" href="events.html">Events</a>
+      <a class="mobile-nav__link" href="#">Resources</a>
+      <a class="mobile-nav__link" href="sales-individual.html">Sales</a>
+      <a class="mobile-nav__link" href="#">Login</a>
+      <a class="btn btn--primary btn--header mobile-nav__cta" href="consultation.html">Book a Consultation</a>
     </div>
   </header>
 
@@ -51,7 +66,8 @@
               you close twice the loans in half the time.</p>
             <div class="hero__actions">
               <a class="btn btn--primary btn--lg" href="pricing.html">Install the System Top Producers Are Using</a>
-              <a class="hero__text-link" href="consultation.html">Schedule Your Free Coaching Session</a>
+              <span class="hero__text-cta">Or <a class="hero__text-link" href="consultation.html">Schedule Your Free
+                  Coaching Session</a> to build your growth plan.</span>
             </div>
           </div>
           <div class="hero__visual">
@@ -65,7 +81,7 @@
     <!-- Trust bar -->
     <section class="trust">
       <div class="container">
-        <p class="trust__label">Trusted by top mortgage professionals from</p>
+        <p class="trust__label">Trusted by over 1,000 top producing loan officers and teams across the country.</p>
       </div>
       <div class="trust__marquee" aria-hidden="false">
         <div class="trust__track">
@@ -197,10 +213,13 @@
       style="background: linear-gradient(180deg, #0a1628 0%, #131b2e 60%, #1e293b 100%); color: var(--on-primary); padding-bottom: calc(clamp(48px, 6vw, 96px) + 4rem);">
       <div class="container">
         <div class="center" style="max-width: 48rem; margin-inline: auto; margin-bottom: var(--space-xl);">
+          <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas"
+            style="height: 52px; margin-bottom: var(--space-lg); display: block; margin-inline: auto;" />
           <h2 class="t-display" style="color: #ffffff; font-weight: 800; margin-bottom: var(--space-md);">
-            Five <span
-              style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">AI-Powered
-              Systems</span> That Help You Close More Loans With Less Chaos</h2>
+            <span
+              style="display: block; font-size: clamp(2rem, 1.5rem + 2vw, 3rem); line-height: 1.05; background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.2em;">AI-Powered
+              Systems</span>That Help You Close More Loans With Less Chaos
+          </h2>
           <p class="t-body-lg" style="color: rgba(255,255,255,0.78);">Inside The Loan Atlas, these five systems work
             together to help
             you make better decisions, execute faster, and stay focused on what actually drives production.</p>
@@ -209,9 +228,8 @@
         <div class="systems">
           <article class="system">
             <div>
-              <span class="system__num">01</span>
-              <span class="system__eyebrow">Stop Flying Blind</span>
               <h3 class="system__title">AI Business Intelligence System</h3>
+              <span class="system__eyebrow">Stop Flying Blind</span>
               <p>See exactly what's driving your numbers — and what isn't. Which lead sources are producing? Which
                 referral partners are worth your time? Where are deals dying? This system replaces guesswork with real
                 answers so you stop wasting effort on things that aren't working.
@@ -225,9 +243,8 @@
 
           <article class="system system--reverse">
             <div>
-              <span class="system__num">02</span>
-              <span class="system__eyebrow">Stop Starting from Scratch Every Week</span>
               <h3 class="system__title">AI Business Planning &amp; Execution</h3>
+              <span class="system__eyebrow">Stop Starting from Scratch Every Week</span>
               <p>Know exactly what to do tomorrow, next week, and next month. Get a personalized business plan and a
                 clear weekly priority list based on your real pipeline and goals. Not a generic to-do list — a system
                 that tells you what moves the needle right now.</p>
@@ -240,49 +257,43 @@
 
           <article class="system">
             <div>
-              <span class="system__num">03</span>
-              <span class="system__eyebrow">Stop Guessing What to Say</span>
               <h3 class="system__title">AI Sales &amp; Marketing Advisor</h3>
+              <span class="system__eyebrow">Stop Guessing What to Say</span>
               <p>Get the right words for every conversation. Rate shoppers. Realtor meetings. Objections. Follow-up.
                 This system helps you stop improvising and start communicating with more clarity, confidence, and
                 precision.</p>
             </div>
             <div class="system__visual">
-              <div class="placeholder placeholder--light">
-                <span class="placeholder__label">Sales &amp; Marketing</span>
-              </div>
+              <img src="assets/sales-marketing-advisor.png" alt="AI Sales &amp; Marketing Advisor screenshot"
+                style="object-fit: cover;" />
             </div>
           </article>
 
           <article class="system system--reverse">
             <div>
-              <span class="system__num">04</span>
-              <span class="system__eyebrow">Stop Spinning Your Wheels</span>
               <h3 class="system__title">AI Performance Coach</h3>
+              <span class="system__eyebrow">Stop Spinning Your Wheels</span>
               <p>Find the exact gaps slowing your growth — and fix them faster. Instead of consuming more content and
                 hoping something sticks, you get a focused plan to improve the skills that matter most right now.
               </p>
             </div>
             <div class="system__visual">
-              <div class="placeholder placeholder--light">
-                <span class="placeholder__label">Performance Coach</span>
-              </div>
+              <img src="assets/performance-coach.png" alt="AI Performance Coach screenshot"
+                style="object-fit: cover;" />
             </div>
           </article>
 
           <article class="system">
             <div>
-              <span class="system__num">05</span>
-              <span class="system__eyebrow">Stop Making Big Decisions Alone</span>
               <h3 class="system__title">AI Strategic Thought Partner</h3>
+              <span class="system__eyebrow">Stop Making Big Decisions Alone</span>
               <p>Get real-time guidance on decisions, deal scenarios, and growth opportunities. Think more clearly. Move
                 faster. Make better decisions with less hesitation.
               </p>
             </div>
             <div class="system__visual">
-              <div class="placeholder placeholder--light">
-                <span class="placeholder__label">Strategic Thought Partner</span>
-              </div>
+              <img src="assets/strategic-thought-partner.png" alt="AI Strategic Thought Partner screenshot"
+                style="object-fit: cover;" />
             </div>
           </article>
         </div>
@@ -296,7 +307,7 @@
         <div class="inline-cta__inner">
           <div class="inline-cta__copy">
             <span class="eyebrow" style="margin-bottom: var(--space-sm);">
-              <span class="eyebrow__text">What's Costing You Deals?</span>
+              <span class="eyebrow__text">Do You Know What's Costing You Deals?</span>
             </span>
             <h2 class="inline-cta__heading" id="inline-cta-heading">
               Find out what's preventing you from <em>doubling your production.</em>
@@ -323,7 +334,7 @@
 
           <a class="gallery-card" href="whats-inside.html">
             <div class="gallery-card__media">
-              <img src="assets/on-demand-training.png" alt="On-Demand Training"
+              <img src="assets/performance-coach.png" alt="On-Demand Training"
                 style="width:100%;height:100%;object-fit:cover;display:block;" />
               <div class="gallery-card__media-fade" aria-hidden="true"></div>
             </div>
@@ -445,10 +456,10 @@
     </section>
 
     <!-- Faculty -->
-    <section id="faculty" class="section">
+    <section id="faculty" class="panel-dark faculty-panel" style="border-radius: 0; padding: 0; display: block;">
       <div class="container">
-        <div class="panel-dark faculty-panel">
-          <div class="faculty-panel__content">
+        <div class="faculty-inner">
+          <div class="faculty-panel__content" style="padding-top: clamp(40px, 6vw, 80px);">
             <span class="eyebrow"><span class="eyebrow__text">18 Experienced Coaches · $29 Billion Closed</span></span>
             <h2 class="t-headline-lg" style="color: var(--on-primary); margin-bottom: var(--space-md);">Learn from Top
               Producers Behind $29 Billion In Loan Volume</h2>
@@ -457,12 +468,7 @@
               hundreds of millions — in many cases, billions — in funded loans.
               They’re not just teaching theories. They’re coaching from experience.
             </p>
-            <div class="faculty" aria-hidden="true">
-              <span class="faculty__member"><span class="avatar-ph">JM</span></span>
-              <span class="faculty__member"><span class="avatar-ph">RT</span></span>
-              <span class="faculty__member"><span class="avatar-ph">SG</span></span>
-              <span class="faculty__member faculty__member--more">+8</span>
-            </div>
+            <a class="btn btn--gold btn--lg" href="faculty.html">Meet Your Mentors</a>
           </div>
           <div class="faculty-panel__photo">
             <img src="assets/tim-braheem-headshot.png" alt="Tim Braheem" class="faculty-panel__img" />
@@ -660,45 +666,69 @@
     </section>
 
     <!-- Final CTA -->
-    <section id="get-started" style="background: linear-gradient(160deg, #021c36 0%, #0a1628 50%, #131b2e 100%); position: relative; overflow: hidden; padding-block: clamp(80px, 10vw, 140px);" aria-labelledby="final-cta-heading">
+    <section id="get-started"
+      style="background: linear-gradient(160deg, #021c36 0%, #0a1628 50%, #131b2e 100%); position: relative; overflow: hidden; padding-block: clamp(80px, 10vw, 140px);"
+      aria-labelledby="final-cta-heading">
       <!-- Decorative glows -->
-      <div style="position: absolute; top: -120px; right: 8%; width: 560px; height: 560px; background: radial-gradient(closest-side, rgba(234,194,90,0.09), transparent); filter: blur(70px); pointer-events: none;" aria-hidden="true"></div>
-      <div style="position: absolute; bottom: -80px; left: 4%; width: 440px; height: 440px; background: radial-gradient(closest-side, rgba(178,200,233,0.07), transparent); filter: blur(70px); pointer-events: none;" aria-hidden="true"></div>
+      <div
+        style="position: absolute; top: -120px; right: 8%; width: 560px; height: 560px; background: radial-gradient(closest-side, rgba(234,194,90,0.09), transparent); filter: blur(70px); pointer-events: none;"
+        aria-hidden="true"></div>
+      <div
+        style="position: absolute; bottom: -80px; left: 4%; width: 440px; height: 440px; background: radial-gradient(closest-side, rgba(178,200,233,0.07), transparent); filter: blur(70px); pointer-events: none;"
+        aria-hidden="true"></div>
 
       <div class="container" style="position: relative; text-align: center;">
 
-        <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" style="height: 56px; width: auto; margin: 0 auto var(--space-lg); display: block;" />
+        <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas"
+          style="height: 56px; width: auto; margin: 0 auto var(--space-lg); display: block;" />
 
-        <h2 id="final-cta-heading" style="font-family: var(--font-display); font-size: clamp(2.25rem, 1.4rem + 3.5vw, 4rem); font-weight: 800; line-height: 1.07; letter-spacing: -0.03em; color: #ffffff; max-width: 46rem; margin: 0 auto var(--space-lg);">
+        <h2 id="final-cta-heading"
+          style="font-family: var(--font-display); font-size: clamp(2.25rem, 1.4rem + 3.5vw, 4rem); font-weight: 800; line-height: 1.07; letter-spacing: -0.03em; color: #ffffff; max-width: 60rem; margin: 0 auto var(--space-lg);">
           Stop Stressing About Your Next Loan.<br>
-          <span style="background: linear-gradient(135deg, #c9961c, #eac25a, #ffd56c); -webkit-background-clip: text; background-clip: text; color: transparent;">Take Control of Your Production, Your Income, and Your Life.</span>
+          <span
+            style="background: linear-gradient(135deg, #c9961c, #eac25a, #ffd56c); -webkit-background-clip: text; background-clip: text; color: transparent;">Take
+            Control of Your Production, Your Income, and Your Life.</span>
         </h2>
 
-        <p style="font-size: clamp(1rem, 0.9rem + 0.4vw, 1.1875rem); line-height: 1.7; color: rgba(255,255,255,0.65); max-width: 36rem; margin: 0 auto var(--space-xl);">
-          If you're tired of inconsistent months, if you're done improvising your way through a business that should be predictable by now — The Loan Atlas is the system that fixes that.
+        <p
+          style="font-size: clamp(1rem, 0.9rem + 0.4vw, 1.1875rem); line-height: 1.7; color: rgba(255,255,255,0.65); max-width: 48rem; margin: 0 auto var(--space-xl);">
+          If you're tired of inconsistent months, if you're done improvising your way through a business that should be
+          predictable by now — The Loan Atlas is the system that fixes that.
         </p>
 
-        <a class="btn btn--brass btn--lg" href="consultation.html" style="font-size: 1.0625rem; padding: 20px 40px; box-shadow: 0 8px 32px rgba(201,150,28,0.35);">
+        <a class="btn btn--brass btn--lg" href="consultation.html"
+          style="font-size: 1.0625rem; padding: 20px 40px; box-shadow: 0 8px 32px rgba(201,150,28,0.35);">
           Install the Systems and Start Executing
         </a>
 
         <div style="margin-top: var(--space-md);">
-          <a href="consultation.html" style="font-size: 0.9375rem; color: rgba(255,255,255,0.48); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; letter-spacing: -0.005em; transition: color 150ms ease;">
+          <a href="consultation.html"
+            style="font-size: 0.9375rem; color: rgba(255,255,255,0.48); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; letter-spacing: -0.005em; transition: color 150ms ease;">
             Or Schedule Your Free AI-Driven Business Coaching Session
           </a>
         </div>
 
         <!-- Testimonial -->
-        <div style="margin-top: clamp(56px, 7vw, 96px); padding-top: clamp(48px, 6vw, 72px); border-top: 1px solid rgba(255,255,255,0.1); max-width: 44rem; margin-inline: auto;">
-          <svg width="44" height="32" viewBox="0 0 44 32" fill="none" style="margin: 0 auto var(--space-md); display: block; color: var(--brass); opacity: 0.7;" aria-hidden="true">
-            <path d="M0 32V20C0 14.667 1.333 10.167 4 6.5 6.667 2.833 10.667.5 16 0l2.5 4C14.5 4.833 11.833 6.333 9.5 8.5 7.167 10.667 6 13.167 6 16H12V32H0ZM26 32V20c0-5.333 1.333-9.833 4-13.5C32.667 2.833 36.667.5 42 0l2.5 4c-3.667.833-6.333 2.333-8 4.5C34.833 10.667 34 13.167 34 16h6V32H26Z" fill="currentColor"/>
+        <div
+          style="margin-top: clamp(56px, 7vw, 96px); padding-top: clamp(48px, 6vw, 72px); border-top: 1px solid rgba(255,255,255,0.1); max-width: 56rem; margin-inline: auto;">
+          <svg width="44" height="32" viewBox="0 0 44 32" fill="none"
+            style="margin: 0 auto var(--space-md); display: block; color: var(--brass); opacity: 0.7;"
+            aria-hidden="true">
+            <path
+              d="M0 32V20C0 14.667 1.333 10.167 4 6.5 6.667 2.833 10.667.5 16 0l2.5 4C14.5 4.833 11.833 6.333 9.5 8.5 7.167 10.667 6 13.167 6 16H12V32H0ZM26 32V20c0-5.333 1.333-9.833 4-13.5C32.667 2.833 36.667.5 42 0l2.5 4c-3.667.833-6.333 2.333-8 4.5C34.833 10.667 34 13.167 34 16h6V32H26Z"
+              fill="currentColor" />
           </svg>
-          <blockquote style="font-family: var(--font-display); font-size: clamp(1.125rem, 1rem + 0.6vw, 1.4375rem); font-weight: 600; line-height: 1.5; color: rgba(255,255,255,0.92); font-style: italic; margin: 0 0 var(--space-lg);">
-            "I joined Loan Atlas just a few weeks ago...and after 32 years in this industry...I will tell you it's worth every single penny!"
+          <blockquote
+            style="font-family: var(--font-display); font-size: clamp(1.125rem, 1rem + 0.6vw, 1.4375rem); font-weight: 600; line-height: 1.5; color: rgba(255,255,255,0.92); font-style: italic; margin: 0 0 var(--space-lg);">
+            "I joined Loan Atlas just a few weeks ago...and after 32 years in this industry...I will tell you it's worth
+            every single penny!"
           </blockquote>
-          <cite style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; font-style: normal;">
+          <cite
+            style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; font-style: normal;">
             <span style="width: 28px; height: 1px; background: var(--brass); display: block; flex-shrink: 0;"></span>
-            <span style="font-family: var(--font-display); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass);">Sarajane Trier</span>
+            <span
+              style="font-family: var(--font-display); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass);">Sarajane
+              Trier</span>
             <span style="width: 28px; height: 1px; background: var(--brass); display: block; flex-shrink: 0;"></span>
           </cite>
         </div>
@@ -712,7 +742,7 @@
     <div class="site-footer__inner">
       <div class="site-footer__top">
         <a href="index.html" class="brand">
-          <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
+          <img src="assets/Loan Atlas logo-color.png" alt="The Loan Atlas" class="brand__logo" />
         </a>
         <nav class="site-footer__links" aria-label="Footer">
           <a class="site-footer__link" href="whats-inside.html">What's Inside</a>
@@ -733,6 +763,7 @@
     </div>
   </footer>
 
+  <script src="nav.js"></script>
 </body>
 
 </html>

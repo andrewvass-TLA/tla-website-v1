@@ -27,8 +27,23 @@
       </nav>
       <div class="site-header__actions">
         <a class="site-header__login" href="#">Login</a>
+        <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav">
+          <span class="nav-toggle__line"></span>
+          <span class="nav-toggle__line"></span>
+          <span class="nav-toggle__line"></span>
+        </button>
         <a class="btn btn--primary btn--header" href="consultation.html"><span class="btn__short">Book Call</span><span class="btn__full">Book a Consultation</span></a>
       </div>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a class="mobile-nav__link" href="whats-inside.html">What's Inside</a>
+      <a class="mobile-nav__link" href="faculty.html">Faculty</a>
+      <a class="mobile-nav__link" href="pricing.html">Pricing</a>
+      <a class="mobile-nav__link mobile-nav__link--active" href="events.html">Events</a>
+      <a class="mobile-nav__link" href="#">Resources</a>
+      <a class="mobile-nav__link" href="sales-individual.html">Sales</a>
+      <a class="mobile-nav__link" href="#">Login</a>
+      <a class="btn btn--primary btn--header mobile-nav__cta" href="consultation.html">Book a Consultation</a>
     </div>
   </header>
 
@@ -220,7 +235,7 @@
     <div class="site-footer__inner">
       <div class="site-footer__top">
         <a href="index.html" class="brand">
-          <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
+          <img src="assets/Loan Atlas logo-color.png" alt="The Loan Atlas" class="brand__logo" />
         </a>
         <nav class="site-footer__links" aria-label="Footer">
           <a class="site-footer__link" href="whats-inside.html">What's Inside</a>
@@ -241,5 +256,6 @@
     </div>
   </footer>
 
+  <script src="nav.js"></script>
 </body>
 </html>
