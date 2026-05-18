@@ -13,6 +13,7 @@
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="chrome.css" />
 </head>
 
 <body>
@@ -25,9 +26,21 @@
       <nav class="nav" aria-label="Primary">
         <a class="nav__link" href="whats-inside.html">What's Inside</a>
         <a class="nav__link" href="faculty.html">Faculty</a>
+        <a class="nav__link" href="sales-individual.html">Individual Sales</a>
+        <a class="nav__link" href="corporate.html">Corporate Sales</a>
         <a class="nav__link" href="pricing.html">Pricing</a>
         <a class="nav__link" href="events.html">Events</a>
-        <a class="nav__link" href="sales-individual.html">Sales</a>
+        <div class="nav__dropdown" data-open="false">
+          <button class="nav__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+            V2 Pages
+            <svg class="nav__dropdown-chevron" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu">
+          <a class="nav__dropdown-item" role="menuitem" href="index-v2.html">Homepage V2</a>
+          <a class="nav__dropdown-item" role="menuitem" href="pricing-v2.html">Pricing V2</a>
+          <a class="nav__dropdown-item" role="menuitem" href="whats-inside-v2.html">What's Inside V2</a>
+          </div>
+        </div>
       </nav>
       <div class="site-header__actions">
         <a class="site-header__login" href="#">Login</a>
@@ -36,16 +49,20 @@
           <span class="nav-toggle__line"></span>
           <span class="nav-toggle__line"></span>
         </button>
-        <a class="btn btn--primary btn--header" href="consultation.html"><span class="btn__short">Free Session</span><span
-            class="btn__full">Book Your Free Coaching Session</span></a>
+        <a class="btn btn--primary btn--header" href="consultation.html"><span class="btn__short">Free Session</span><span class="btn__full">Book Your Free Coaching Session</span></a>
       </div>
     </div>
     <div class="mobile-nav" id="mobile-nav">
       <a class="mobile-nav__link" href="whats-inside.html">What's Inside</a>
       <a class="mobile-nav__link" href="faculty.html">Faculty</a>
+      <a class="mobile-nav__link" href="sales-individual.html">Individual Sales</a>
+      <a class="mobile-nav__link" href="corporate.html">Corporate Sales</a>
       <a class="mobile-nav__link" href="pricing.html">Pricing</a>
       <a class="mobile-nav__link" href="events.html">Events</a>
-      <a class="mobile-nav__link" href="sales-individual.html">Sales</a>
+      <div class="mobile-nav__group-label">V2 Pages</div>
+      <a class="mobile-nav__link mobile-nav__sublink" href="index-v2.html">Homepage V2</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="pricing-v2.html">Pricing V2</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="whats-inside-v2.html">What's Inside V2</a>
       <a class="mobile-nav__link" href="#">Login</a>
       <a class="btn btn--primary btn--header mobile-nav__cta" href="consultation.html">Book Your Free Coaching Session</a>
     </div>
@@ -233,7 +250,7 @@
               </p>
             </div>
             <div class="system__visual">
-              <img src="assets/ai-business-intelligence-screenshot.png" alt="AI Business Intelligence System screenshot"
+              <img src="assets/ai-business-intelligence-2.png" alt="AI Business Intelligence System screenshot"
                 style="object-fit: cover;" />
             </div>
           </article>
@@ -247,8 +264,8 @@
                 that tells you what moves the needle right now.</p>
             </div>
             <div class="system__visual">
-              <img src="assets/ai-business-planning-screenshot.png"
-                alt="AI Business Planning &amp; Execution screenshot" style="object-fit: cover;" />
+              <img src="assets/ai-business-planning-2.png" alt="AI Business Planning &amp; Execution screenshot"
+                style="object-fit: cover;" />
             </div>
           </article>
 
@@ -743,6 +760,9 @@
         </a>
         <nav class="site-footer__links" aria-label="Footer">
           <a class="site-footer__link" href="whats-inside.html">What's Inside</a>
+          <a class="site-footer__link" href="faculty.html">Faculty</a>
+          <a class="site-footer__link" href="sales-individual.html">Individual Sales</a>
+          <a class="site-footer__link" href="corporate.html">Corporate Sales</a>
           <a class="site-footer__link" href="pricing.html">Pricing</a>
           <a class="site-footer__link" href="events.html">Events</a>
           <a class="site-footer__link" href="consultation.html">Book a Consultation</a>

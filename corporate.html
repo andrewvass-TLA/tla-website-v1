@@ -1,0 +1,1188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Enterprise Solutions — The Loan Atlas for Mortgage Leaders</title>
+  <meta name="description"
+    content="The Loan Atlas is the operating system mortgage leaders use to close the gap between top producers and the rest of their team — five AI systems installed across every originator." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="chrome.css" />
+  <style>
+    /* ── LP-specific styles ─────────────────────────────────────────────────── */
+
+    /* Minimal header — no nav links */
+    .lp-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      height: var(--header-h);
+      background: rgba(2, 28, 54, 0.95);
+      backdrop-filter: saturate(180%) blur(12px);
+      -webkit-backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow);
+    }
+    .lp-header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      gap: var(--space-sm);
+    }
+    .lp-header__actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .lp-header__ghost {
+      display: none;
+    }
+    @media (min-width: 540px) {
+      .lp-header__ghost {
+        display: inline-flex;
+      }
+    }
+
+    /* Dark hero */
+    .lp-hero {
+      background: linear-gradient(160deg, #021c36 0%, #0a1628 60%, #131b2e 100%);
+      padding-top: calc(var(--header-h) + clamp(56px, 8vw, 96px));
+      padding-bottom: clamp(56px, 8vw, 96px);
+      position: relative;
+      overflow: hidden;
+    }
+    .lp-hero::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: 8%;
+      width: 540px;
+      height: 540px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.11), transparent);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .lp-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: 4%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(closest-side, rgba(178, 200, 233, 0.08), transparent);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .lp-hero__content {
+      position: relative;
+      z-index: 1;
+      max-width: 56rem;
+    }
+    .lp-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 1.55rem + 3vw, 4rem);
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: var(--space-md);
+    }
+    .lp-hero__title em {
+      font-style: normal;
+      background: linear-gradient(135deg, #c9961c, #eac25a, #ffd56c);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .lp-hero__subtitle {
+      font-size: clamp(1rem, 0.9rem + 0.5vw, 1.1875rem);
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.68);
+      max-width: 40rem;
+      margin-bottom: var(--space-lg);
+    }
+    .lp-hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      align-items: center;
+    }
+
+    /* Stat / trust */
+    .lp-trust {
+      background: var(--surface-container-low);
+      border-block: 1px solid var(--outline-variant);
+      padding-block: clamp(40px, 5vw, 64px);
+    }
+    .lp-stat-block {
+      text-align: center;
+      margin-bottom: var(--space-lg);
+    }
+    .lp-stat-number {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 1.5rem + 2.8vw, 3.75rem);
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+      display: inline;
+      color: var(--primary-container);
+    }
+    .lp-stat-number em {
+      color: var(--brass);
+      font-style: normal;
+    }
+
+    /* Problem section */
+    .lp-problem {
+      background: #ffffff;
+      padding-block: clamp(64px, 8vw, 112px);
+    }
+    .lp-problem__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      align-items: start;
+    }
+    @media (min-width: 880px) {
+      .lp-problem__grid {
+        grid-template-columns: 1fr 1.15fr;
+        gap: clamp(var(--space-lg), 5vw, calc(var(--space-xl) + var(--space-sm)));
+      }
+    }
+    .lp-problem__lead {
+      position: relative;
+    }
+    @media (min-width: 880px) {
+      .lp-problem__lead {
+        position: sticky;
+        top: calc(var(--header-h) + var(--space-lg));
+      }
+    }
+    .lp-problem__headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.625rem, 1.25rem + 1.6vw, 2.5rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.18;
+      color: var(--on-surface);
+      margin: 0;
+    }
+    .lp-problem__headline-accent {
+      display: block;
+      margin-top: var(--space-sm);
+      font-weight: 800;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .lp-problem__body p {
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      color: var(--on-surface-variant);
+      margin: 0 0 var(--space-md);
+    }
+    .lp-problem__body p:last-child {
+      margin-bottom: 0;
+    }
+    .lp-problem__body strong {
+      color: var(--on-surface);
+      font-weight: 600;
+    }
+    .lp-problem__kicker {
+      margin-top: clamp(var(--space-lg), 5vw, var(--space-xl));
+      padding: clamp(var(--space-lg), 4vw, var(--space-xl));
+      background: linear-gradient(135deg, #021c36 0%, #0a1628 60%, #131b2e 100%);
+      border-radius: var(--radius-2xl);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .lp-problem__kicker::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -40px;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.18), transparent);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    .lp-problem__kicker-inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: clamp(var(--space-md), 3vw, var(--space-lg));
+      align-items: center;
+    }
+    @media (max-width: 640px) {
+      .lp-problem__kicker-inner {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+      }
+    }
+    .lp-problem__kicker-mark {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 1.8rem + 2.4vw, 3.75rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -0.03em;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      padding-right: clamp(var(--space-md), 3vw, var(--space-lg));
+      border-right: 1px solid rgba(234, 194, 90, 0.32);
+    }
+    @media (max-width: 640px) {
+      .lp-problem__kicker-mark {
+        padding-right: 0;
+        border-right: none;
+        padding-bottom: var(--space-sm);
+        border-bottom: 1px solid rgba(234, 194, 90, 0.32);
+      }
+    }
+    .lp-problem__kicker-text {
+      font-family: var(--font-display);
+      font-size: clamp(1.0625rem, 0.95rem + 0.7vw, 1.375rem);
+      font-weight: 600;
+      line-height: 1.45;
+      color: #ffffff;
+      margin: 0;
+    }
+    .lp-problem__kicker-text strong {
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      font-weight: 700;
+    }
+
+    /* 5 Systems grid — condensed cards */
+    .lp-systems {
+      background: linear-gradient(180deg, #0a1628 0%, #131b2e 65%, #1e293b 100%);
+      padding-block: clamp(56px, 7vw, 104px);
+    }
+    .lp-systems__intro {
+      max-width: 50rem;
+      margin-inline: auto;
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+    .lp-systems__lead {
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.7);
+      margin-top: var(--space-md);
+    }
+    /* Featured row: cards 1 & 2 (image + content) */
+    .lp-systems__featured {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+    @media (min-width: 880px) {
+      .lp-systems__featured {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .system-card--featured {
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.025) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-radius: var(--radius-3xl);
+      padding: 0;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
+      transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+    }
+    .system-card--featured:hover {
+      border-color: rgba(234, 194, 90, 0.36);
+      transform: translateY(-3px);
+      box-shadow: 0 32px 80px rgba(0, 0, 0, 0.4);
+    }
+    .system-card__media {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      background: linear-gradient(135deg, #0a1628 0%, #131b2e 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .system-card__media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+    }
+    .system-card__media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 55%, rgba(2, 28, 54, 0.55) 100%);
+      pointer-events: none;
+    }
+    .system-card__content {
+      padding: clamp(var(--space-lg), 3vw, calc(var(--space-lg) + var(--space-sm)));
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex: 1;
+    }
+    .system-card--featured .system-card__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.375rem, 1.1rem + 1vw, 1.75rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: #ffffff;
+      margin: 0;
+    }
+    .system-card--featured .system-card__sub {
+      font-family: var(--font-display);
+      font-size: 1.0625rem;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--brass-bright);
+      margin: 0;
+    }
+    .system-card--featured .system-card__body {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.72);
+      margin: 6px 0 0;
+    }
+
+    /* Compact row: cards 3, 4, 5 */
+    .lp-systems__compact {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+    @media (min-width: 720px) {
+      .lp-systems__compact {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .system-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-lg);
+      position: relative;
+      overflow: hidden;
+      transition: background 200ms ease, border-color 200ms ease, transform 200ms ease;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .system-card:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(234, 194, 90, 0.28);
+      transform: translateY(-2px);
+    }
+    .system-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 130px;
+      height: 130px;
+      border-bottom-left-radius: 50%;
+      background: linear-gradient(135deg, rgba(234, 194, 90, 0.09), transparent 70%);
+      pointer-events: none;
+    }
+    .system-card__title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      margin: 0;
+    }
+    .system-card__sub {
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--brass-bright);
+      margin: 0;
+    }
+    .system-card__body {
+      font-size: 0.9375rem;
+      line-height: 1.68;
+      color: rgba(255, 255, 255, 0.7);
+      margin: 6px 0 0;
+    }
+    .lp-systems__footnote {
+      margin-top: var(--space-xl);
+      text-align: center;
+      max-width: 46rem;
+      margin-inline: auto;
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.62);
+      padding-top: var(--space-lg);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    /* Comparison table — Before / After across team */
+    .lp-compare {
+      background: #ffffff;
+      padding-block: clamp(64px, 8vw, 104px);
+    }
+    .lp-compare__intro {
+      max-width: 46rem;
+      margin-inline: auto;
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+    .lp-compare__table {
+      max-width: 64rem;
+      margin-inline: auto;
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      background: var(--surface-container-lowest);
+    }
+    .lp-compare__head,
+    .lp-compare__row {
+      display: grid;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 760px) {
+      .lp-compare__head,
+      .lp-compare__row {
+        grid-template-columns: 1.1fr 1.6fr 1.6fr;
+      }
+    }
+    .lp-compare__head {
+      background: var(--primary);
+      color: #ffffff;
+    }
+    .lp-compare__head > div {
+      padding: 14px 20px;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+    .lp-compare__head .lp-compare__h-after {
+      color: var(--brass-bright);
+    }
+    .lp-compare__row {
+      border-top: 1px solid var(--outline-variant);
+    }
+    .lp-compare__row > div {
+      padding: 18px 20px;
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--on-surface);
+    }
+    @media (min-width: 760px) {
+      .lp-compare__row > div + div {
+        border-left: 1px solid var(--outline-variant);
+      }
+    }
+    .lp-compare__row > div + div {
+      border-top: 1px solid var(--outline-variant);
+    }
+    @media (min-width: 760px) {
+      .lp-compare__row > div + div {
+        border-top: none;
+      }
+    }
+    .lp-compare__label {
+      background: var(--surface-container-low);
+      font-family: var(--font-display) !important;
+      font-weight: 700 !important;
+      font-size: 0.9375rem !important;
+      color: var(--on-surface) !important;
+    }
+    .lp-compare__before {
+      color: var(--on-surface-variant) !important;
+    }
+    .lp-compare__after {
+      background: rgba(234, 194, 90, 0.04);
+    }
+    .lp-compare__after::before {
+      content: '';
+    }
+    .lp-compare__mobile-label {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: 6px;
+    }
+    @media (min-width: 760px) {
+      .lp-compare__mobile-label {
+        display: none;
+      }
+    }
+    .lp-compare__after .lp-compare__mobile-label {
+      color: var(--brass);
+    }
+    .lp-compare__before .lp-compare__mobile-label {
+      color: var(--on-surface-variant);
+    }
+
+    .lp-compare__callout {
+      margin-top: clamp(var(--space-lg), 5vw, var(--space-xl));
+      max-width: 56rem;
+      margin-inline: auto;
+      text-align: center;
+    }
+    .lp-compare__callout-lead {
+      font-family: var(--font-display);
+      font-size: clamp(1.375rem, 1.05rem + 1.4vw, 2rem);
+      font-weight: 700;
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm);
+    }
+    .lp-compare__callout-lead em {
+      font-style: normal;
+      font-weight: 800;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .lp-compare__callout-follow {
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 0.9rem + 0.5vw, 1.1875rem);
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+
+    /* Faculty */
+    .lp-faculty {
+      background: var(--surface-container-low);
+      border-block: 1px solid var(--outline-variant);
+      padding-block: clamp(56px, 7vw, 96px);
+    }
+    .lp-faculty__inner {
+      max-width: 50rem;
+      margin-inline: auto;
+      text-align: center;
+    }
+    .lp-faculty__lead {
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--on-surface-variant);
+      margin-top: var(--space-md);
+      margin-bottom: var(--space-lg);
+    }
+    .lp-faculty__quote {
+      max-width: 44rem;
+      margin-inline: auto;
+      padding: var(--space-lg);
+      background: var(--surface-container-lowest);
+      border: 1px solid var(--outline-variant);
+      border-left: 3px solid var(--brass);
+      border-radius: var(--radius-xl);
+      text-align: left;
+    }
+    .lp-faculty__quote blockquote {
+      margin: 0 0 12px;
+      font-family: var(--font-display);
+      font-size: clamp(0.9375rem, 0.85rem + 0.5vw, 1.125rem);
+      font-style: italic;
+      line-height: 1.65;
+      color: var(--on-surface);
+    }
+    .lp-faculty__quote cite {
+      font-style: normal;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brass);
+    }
+
+    /* Objection handling */
+    .lp-objection {
+      background: #ffffff;
+      padding-block: clamp(56px, 7vw, 96px);
+    }
+    .lp-objection__inner {
+      max-width: 48rem;
+      margin-inline: auto;
+    }
+    .lp-objection__headline {
+      font-family: var(--font-display);
+      font-size: clamp(1.5rem, 1.15rem + 1.4vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      color: var(--on-surface);
+      margin-bottom: var(--space-lg);
+    }
+    .lp-objection__body p {
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      color: var(--on-surface-variant);
+      margin: 0 0 var(--space-md);
+    }
+    .lp-objection__body p:last-child {
+      margin-bottom: 0;
+    }
+    .lp-objection__body strong {
+      color: var(--on-surface);
+      font-weight: 600;
+    }
+
+    /* Final CTA */
+    .lp-final-cta {
+      background: linear-gradient(160deg, #021c36 0%, #0a1628 50%, #131b2e 100%);
+      padding-block: clamp(80px, 10vw, 128px);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .lp-final-cta::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: 8%;
+      width: 560px;
+      height: 560px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.09), transparent);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .lp-final-cta::after {
+      content: '';
+      position: absolute;
+      bottom: -80px;
+      left: 4%;
+      width: 440px;
+      height: 440px;
+      background: radial-gradient(closest-side, rgba(178, 200, 233, 0.07), transparent);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .lp-final-cta__lead {
+      font-size: 1.0625rem;
+      line-height: 1.75;
+      color: rgba(255, 255, 255, 0.7);
+      max-width: 44rem;
+      margin: 0 auto var(--space-lg);
+    }
+    .lp-final-cta__secondary {
+      margin-top: var(--space-lg);
+      font-size: 0.9375rem;
+      color: rgba(255, 255, 255, 0.62);
+      max-width: 40rem;
+      margin-inline: auto;
+    }
+    .lp-final-cta__secondary a {
+      color: var(--brass-bright);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1px;
+    }
+
+    /* Minimal footer */
+    .lp-footer {
+      background: var(--surface-container-low);
+      border-top: 1px solid var(--outline-variant);
+      padding-block: var(--space-lg);
+    }
+    .lp-footer__inner {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      align-items: center;
+      text-align: center;
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+    @media (min-width: 720px) {
+      .lp-footer__inner {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Minimal Header — no site nav -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="brand" aria-label="The Loan Atlas — home">
+        <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a class="nav__link" href="whats-inside.html">What's Inside</a>
+        <a class="nav__link" href="faculty.html">Faculty</a>
+        <a class="nav__link" href="sales-individual.html">Individual Sales</a>
+        <a class="nav__link nav__link--active" href="corporate.html">Corporate Sales</a>
+        <a class="nav__link" href="pricing.html">Pricing</a>
+        <a class="nav__link" href="events.html">Events</a>
+        <div class="nav__dropdown" data-open="false">
+          <button class="nav__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+            V2 Pages
+            <svg class="nav__dropdown-chevron" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu">
+          <a class="nav__dropdown-item" role="menuitem" href="index-v2.html">Homepage V2</a>
+          <a class="nav__dropdown-item" role="menuitem" href="pricing-v2.html">Pricing V2</a>
+          <a class="nav__dropdown-item" role="menuitem" href="whats-inside-v2.html">What's Inside V2</a>
+          </div>
+        </div>
+      </nav>
+      <div class="site-header__actions">
+        <a class="site-header__login" href="#">Login</a>
+        <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav">
+          <span class="nav-toggle__line"></span>
+          <span class="nav-toggle__line"></span>
+          <span class="nav-toggle__line"></span>
+        </button>
+        <a class="btn btn--primary btn--header" href="consultation.html"><span class="btn__short">Free Session</span><span class="btn__full">Book Your Free Coaching Session</span></a>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a class="mobile-nav__link" href="whats-inside.html">What's Inside</a>
+      <a class="mobile-nav__link" href="faculty.html">Faculty</a>
+      <a class="mobile-nav__link" href="sales-individual.html">Individual Sales</a>
+      <a class="mobile-nav__link mobile-nav__link--active" href="corporate.html">Corporate Sales</a>
+      <a class="mobile-nav__link" href="pricing.html">Pricing</a>
+      <a class="mobile-nav__link" href="events.html">Events</a>
+      <div class="mobile-nav__group-label">V2 Pages</div>
+      <a class="mobile-nav__link mobile-nav__sublink" href="index-v2.html">Homepage V2</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="pricing-v2.html">Pricing V2</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="whats-inside-v2.html">What's Inside V2</a>
+      <a class="mobile-nav__link" href="#">Login</a>
+      <a class="btn btn--primary btn--header mobile-nav__cta" href="consultation.html">Book Your Free Coaching Session</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── 1. HERO ──────────────────────────────────────────────────────────── -->
+    <section class="lp-hero" aria-labelledby="lp-hero-heading">
+      <div class="container">
+        <div class="lp-hero__content">
+          <span class="eyebrow" style="margin-bottom: var(--space-md);">
+            <span class="eyebrow__text" style="color: var(--brass-bright);">For Mortgage Leaders &amp; Enterprise Teams</span>
+          </span>
+          <h1 id="lp-hero-heading" class="lp-hero__title">The Gap Between Your Top Producers and Everyone Else Is <em>Widening Every Month</em></h1>
+          <p class="lp-hero__subtitle">The Loan Atlas is the operating system mortgage leaders use to close that gap across their entire team.</p>
+          <div class="lp-hero__actions">
+            <a class="btn btn--gold btn--lg" href="consultation.html">Schedule an Enterprise Consultation</a>
+            <a class="btn btn--ghost-on-dark btn--lg" href="#masterplan">Get the AI-Empowered Mortgage Leader Masterplan</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 2. TRUSTED BY ─────────────────────────────────────────────────────── -->
+    <section class="lp-trust" aria-labelledby="trust-heading">
+      <div class="container">
+        <p id="trust-heading" class="t-label t-muted" style="text-align: center; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: var(--space-md);">Trusted by high-performing teams at</p>
+      </div>
+
+      <div class="trust__marquee" aria-label="Member companies">
+        <div class="trust__track">
+          <ul class="trust__group">
+            <li class="trust__logo"><img src="assets/american-pacific-logo.webp" alt="American Pacific Mortgage"></li>
+            <li class="trust__logo"><img src="assets/acm-logo.webp" alt="Atlantic Coast Mortgage"></li>
+            <li class="trust__logo"><img src="assets/cross-country-logo.webp" alt="CrossCountry Mortgage"></li>
+            <li class="trust__logo"><img src="assets/UWM-logo.png" alt="United Wholesale Mortgage"></li>
+            <li class="trust__logo"><img src="assets/fairway-logo.png" alt="Fairway Independent Mortgage"></li>
+            <li class="trust__logo"><img src="assets/CMG-logo.svg" alt="CMG Financial"></li>
+            <li class="trust__logo"><img src="assets/swbc-logo.png" alt="SWBC Mortgage"></li>
+            <li class="trust__logo"><img src="assets/better-logo.png" alt="Better"></li>
+            <li class="trust__logo"><img src="assets/lower-mortgage-logo.svg" alt="Lower"></li>
+            <li class="trust__logo"><img src="assets/rate-logo.png" alt="Rate"></li>
+            <li class="trust__logo"><img src="assets/loan-depot-logo" alt="loanDepot"></li>
+          </ul>
+          <ul class="trust__group" aria-hidden="true">
+            <li class="trust__logo"><img src="assets/american-pacific-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="assets/acm-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="assets/cross-country-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="assets/UWM-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="assets/fairway-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="assets/CMG-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="assets/swbc-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="assets/better-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="assets/lower-mortgage-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="assets/rate-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="assets/loan-depot-logo" alt=""></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 3. PROBLEM ────────────────────────────────────────────────────────── -->
+    <section class="lp-problem" aria-labelledby="problem-heading">
+      <div class="container">
+        <div class="lp-problem__grid">
+          <div class="lp-problem__lead">
+            <h2 id="problem-heading" class="lp-problem__headline">Your Best Originator and Your Worst Originator Work in the Same Market.<br><span class="lp-problem__headline-accent">Why Does One Close Four Times the Other?</span></h2>
+          </div>
+          <div class="lp-problem__body">
+            <p>Look at your roster. Some originators are putting up big numbers. Most aren't. They're all in the same market, with the same rates and the same support.</p>
+            <p>The difference is what your top producers do every day that the rest of your team doesn't. They follow a process for new client calls. They have set responses for the most common objections. They start every week with a clear plan. <strong>They're not winging it.</strong></p>
+            <p>The rest of your team is. They're working hard, but every conversation is improvised, every week starts from scratch, and every deal is its own one-off.</p>
+          </div>
+        </div>
+
+        <div class="lp-problem__kicker">
+          <div class="lp-problem__kicker-inner">
+            <span class="lp-problem__kicker-mark" aria-hidden="true">P&amp;L</span>
+            <p class="lp-problem__kicker-text">You're paying the same costs to house every originator. The ones using a system are worth it. The ones without one aren't pulling their weight — and <strong>that gap is showing up on your P&amp;L.</strong></p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 4. FIVE AI SYSTEMS ─────────────────────────────────────────────────── -->
+    <section class="lp-systems" id="systems" aria-labelledby="systems-heading">
+      <div class="container">
+        <div class="lp-systems__intro">
+          <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
+            <span class="eyebrow__text" style="color: var(--brass-bright);">Five AI-Powered Systems</span>
+          </span>
+          <h2 id="systems-heading" class="t-display"
+            style="color: #ffffff; font-weight: 800; margin-bottom: var(--space-md);">
+            One Way of Operating<br>
+            <span
+              style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Across Your Whole Team</span>
+          </h2>
+          <p class="lp-systems__lead">The Loan Atlas installs five AI systems across your team — built around what top producers actually do, not generic ChatGPT prompts dressed up for our industry.</p>
+        </div>
+
+        <div class="lp-systems__featured">
+
+          <article class="system-card system-card--featured">
+            <div class="system-card__media">
+              <img src="assets/ai-business-intelligence-screenshot.png" alt="AI Business Intelligence dashboard" />
+            </div>
+            <div class="system-card__content">
+              <h3 class="system-card__title">AI Business Intelligence System</h3>
+              <p class="system-card__sub">Stop Forecasting Blind</p>
+              <p class="system-card__body">Every LO — and every manager above them — finally sees the same numbers. Lead source quality, conversion rates, where deals are dying. Coaching gets sharper. Forecasting starts to mean something.</p>
+            </div>
+          </article>
+
+          <article class="system-card system-card--featured">
+            <div class="system-card__media">
+              <img src="assets/ai-business-planning-screenshot.png" alt="AI Business Planning interface" />
+            </div>
+            <div class="system-card__content">
+              <h3 class="system-card__title">AI Business Planning System</h3>
+              <p class="system-card__sub">Stop Starting Every Week From Scratch</p>
+              <p class="system-card__body">Every LO starts the week with a clear plan tied to their real pipeline and goals. A weekly priority system that turns goals into daily action across your roster.</p>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="lp-systems__compact">
+
+          <article class="system-card">
+            <h3 class="system-card__title">AI Sales &amp; Marketing Advisor</h3>
+            <p class="system-card__sub">Stop Letting Conversations Decide Who Wins</p>
+            <p class="system-card__body">Real-time help with the calls, emails, objections, and follow-ups that decide whether a deal closes. Every LO communicates with clarity and confidence — not just your top performers.</p>
+          </article>
+
+          <article class="system-card">
+            <h3 class="system-card__title">AI Performance Coach</h3>
+            <p class="system-card__sub">Stop Making Managers Triage Every Question</p>
+            <p class="system-card__body">Each LO gets pointed to the exact training that fixes whatever they're stuck on. Your managers stop spending their time on basic skill triage and get to focus on real coaching.</p>
+          </article>
+
+          <article class="system-card">
+            <h3 class="system-card__title">AI Strategic Thought Partner</h3>
+            <p class="system-card__sub">Stop Making Every LO Decide Alone</p>
+            <p class="system-card__body">On-demand input on deal positioning, partner strategy, and tough calls. Your LOs stop kicking every decision up the chain — and your leadership team gets its time back.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 5. INLINE CTA — MASTERPLAN ─────────────────────────────────────────── -->
+    <section class="inline-cta" id="masterplan" aria-labelledby="cta1-heading">
+      <div class="container" style="position: relative;">
+        <div class="inline-cta__inner">
+          <div class="inline-cta__copy">
+            <h2 class="inline-cta__heading" id="cta1-heading">
+              The <em>AI-Empowered Mortgage Leader</em> Masterplan
+            </h2>
+            <p style="font-size: 1rem; line-height: 1.7; color: rgba(255,255,255,0.72); margin-top: var(--space-sm); max-width: 36rem;">Learn how the best leaders in mortgage are thinking about the next two years.</p>
+          </div>
+          <div class="inline-cta__action">
+            <a class="btn btn--gold btn--lg" href="#masterplan">Get the Masterplan</a>
+            <a class="inline-cta__secondary-link" href="consultation.html">Talk to us first &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 6. WHAT ACTUALLY CHANGES — Before/After ────────────────────────────── -->
+    <section class="lp-compare" id="changes" aria-labelledby="changes-heading">
+      <div class="container">
+        <div class="lp-compare__intro">
+          <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
+            <span class="eyebrow__text">What Actually Changes</span>
+          </span>
+          <h2 id="changes-heading" class="t-display" style="color: var(--primary-container); font-weight: 800; margin-bottom: var(--space-sm);">What Changes When Your Team Operates with a System</h2>
+        </div>
+
+        <div class="lp-compare__table" role="table" aria-label="Before and after The Loan Atlas">
+          <div class="lp-compare__head" role="row">
+            <div role="columnheader">Across Your Team</div>
+            <div role="columnheader">Before The Loan Atlas</div>
+            <div role="columnheader lp-compare__h-after" class="lp-compare__h-after">After The Loan Atlas</div>
+          </div>
+
+          <div class="lp-compare__row" role="row">
+            <div class="lp-compare__label" role="cell">Productivity</div>
+            <div class="lp-compare__before" role="cell"><span class="lp-compare__mobile-label">Before</span>Reactive. Each LO improvises their own priorities.</div>
+            <div class="lp-compare__after" role="cell"><span class="lp-compare__mobile-label">After</span>Every originator runs the same weekly planning system tied to the metrics that drive production.</div>
+          </div>
+
+          <div class="lp-compare__row" role="row">
+            <div class="lp-compare__label" role="cell">Conversions</div>
+            <div class="lp-compare__before" role="cell"><span class="lp-compare__mobile-label">Before</span>Quality varies wildly between LOs. Top performers convert; the rest improvise.</div>
+            <div class="lp-compare__after" role="cell"><span class="lp-compare__mobile-label">After</span>Every originator works from the same consultation, objection, and follow-up frameworks — reinforced daily by AI tools.</div>
+          </div>
+
+          <div class="lp-compare__row" role="row">
+            <div class="lp-compare__label" role="cell">Loan Process</div>
+            <div class="lp-compare__before" role="cell"><span class="lp-compare__mobile-label">Before</span>Service depends on which originator picked up the phone.</div>
+            <div class="lp-compare__after" role="cell"><span class="lp-compare__mobile-label">After</span>One standardized process across every file, every client, every referral partner.</div>
+          </div>
+
+          <div class="lp-compare__row" role="row">
+            <div class="lp-compare__label" role="cell">AI Implementation</div>
+            <div class="lp-compare__before" role="cell"><span class="lp-compare__mobile-label">Before</span>A few originators using ChatGPT in random ways. The rest aren't using it at all.</div>
+            <div class="lp-compare__after" role="cell"><span class="lp-compare__mobile-label">After</span>The same purpose-built AI tools embedded across every originator's day, built on top-producer frameworks.</div>
+          </div>
+
+          <div class="lp-compare__row" role="row">
+            <div class="lp-compare__label" role="cell">Hiring &amp; Onboarding</div>
+            <div class="lp-compare__before" role="cell"><span class="lp-compare__mobile-label">Before</span>12+ months of figuring it out alone, often with high turnover before they get there.</div>
+            <div class="lp-compare__after" role="cell"><span class="lp-compare__mobile-label">After</span>A clear development path against eight defined disciplines. Ramp time compresses meaningfully.</div>
+          </div>
+
+          <div class="lp-compare__row" role="row">
+            <div class="lp-compare__label" role="cell">Internal Training</div>
+            <div class="lp-compare__before" role="cell"><span class="lp-compare__mobile-label">Before</span>Subjective. Personality-based. Different conversation with every LO.</div>
+            <div class="lp-compare__after" role="cell"><span class="lp-compare__mobile-label">After</span>Structural. Coaching against a shared framework with shared data.</div>
+          </div>
+
+          <div class="lp-compare__row" role="row">
+            <div class="lp-compare__label" role="cell">Production Forecasting</div>
+            <div class="lp-compare__before" role="cell"><span class="lp-compare__mobile-label">Before</span>A few stars carry the number; the rest swing month to month.</div>
+            <div class="lp-compare__after" role="cell"><span class="lp-compare__mobile-label">After</span>Production becomes more distributed and more predictable across the roster.</div>
+          </div>
+
+          <div class="lp-compare__row" role="row">
+            <div class="lp-compare__label" role="cell">Cost-Per-Loan</div>
+            <div class="lp-compare__before" role="cell"><span class="lp-compare__mobile-label">Before</span>Climbing. You're paying full cost to house every LO regardless of output.</div>
+            <div class="lp-compare__after" role="cell"><span class="lp-compare__mobile-label">After</span>Trending down as the floor of team performance rises.</div>
+          </div>
+        </div>
+
+        <div class="lp-compare__callout">
+          <p class="lp-compare__callout-lead">Loan Atlas members close an average of <em>$8.2M More in annual production</em> than the industry average.</p>
+          <p class="lp-compare__callout-follow">Now imagine that lift across your entire roster.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 7. FACULTY ─────────────────────────────────────────────────────────── -->
+    <section class="lp-faculty" id="faculty" aria-labelledby="faculty-heading">
+      <div class="container">
+        <div class="lp-faculty__inner">
+          <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
+            <span class="eyebrow__text">Originators First. Coaches Second.</span>
+          </span>
+          <h2 id="faculty-heading" class="t-headline-lg" style="margin-bottom: var(--space-md);">Your Team Will Learn From People Still Doing the Job.</h2>
+          <p class="lp-faculty__lead">19 active originators and division presidents who've closed more than <strong style="color: var(--on-surface);">$29 billion in loans</strong> between them. Not retired. Not theorists. Top 1% producers still in the business right now, teaching your team what's working in today's market.</p>
+
+          <figure class="lp-faculty__quote">
+            <blockquote>"I love the depth of knowledge. There are a lot of things that just skim the surface, but you get training from people who are at the top of their game and get real one-on-one time with them. That implementation piece is huge."</blockquote>
+            <figcaption><cite>Scott DiGregorio &middot; NEO Home Loans</cite></figcaption>
+          </figure>
+        </div>
+
+        <div class="gallery__grid" style="margin-top: clamp(var(--space-xl), 6vw, calc(var(--space-xl) + var(--space-md)));">
+
+          <a class="gallery-card" href="whats-inside.html">
+            <div class="gallery-card__media">
+              <img src="assets/performance-coach.png" alt="On-Demand Training"
+                style="width:100%;height:100%;object-fit:cover;display:block;" />
+              <div class="gallery-card__media-fade" aria-hidden="true"></div>
+            </div>
+            <div class="gallery-card__body">
+              <h3 class="gallery-card__title">On-Demand Training</h3>
+              <p class="gallery-card__summary">200+ training modules built around the 8 Disciplines of Origination Mastery.</p>
+              <span class="gallery-card__arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <a class="gallery-card" href="whats-inside.html">
+            <div class="gallery-card__media">
+              <img src="assets/weekly-coaching.png" alt="Weekly Live Coaching"
+                style="width:100%;height:100%;object-fit:cover;display:block;" />
+              <div class="gallery-card__media-fade" aria-hidden="true"></div>
+            </div>
+            <div class="gallery-card__body">
+              <h3 class="gallery-card__title">Weekly Live Coaching</h3>
+              <p class="gallery-card__summary">Office Hours, Masterclasses, AI Labs, and Talk to Tim sessions.</p>
+              <span class="gallery-card__arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <a class="gallery-card" href="whats-inside.html">
+            <div class="gallery-card__media">
+              <img src="assets/perfect-loan-process.png" alt="The Perfect Loan Process"
+                style="width:100%;height:100%;object-fit:cover;display:block;" />
+              <div class="gallery-card__media-fade" aria-hidden="true"></div>
+            </div>
+            <div class="gallery-card__body">
+              <h3 class="gallery-card__title">The Perfect Loan Process</h3>
+              <p class="gallery-card__summary">The 73-Step system responsible for thousands of referrals. Deliver a client experience that generates repeat and referral business every time.</p>
+              <span class="gallery-card__arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 8. OBJECTION HANDLING ──────────────────────────────────────────────── -->
+    <section class="lp-objection" aria-labelledby="objection-heading">
+      <div class="container">
+        <div class="lp-objection__inner">
+          <span class="eyebrow" style="margin-bottom: var(--space-md);">
+            <span class="eyebrow__text">Why This Is Different</span>
+          </span>
+          <h2 id="objection-heading" class="lp-objection__headline">You've Tried These Fixes Before. Here's Why This Is Different.</h2>
+          <div class="lp-objection__body">
+            <p>You've paid for coaching. You've built training. You've held retreats. You've bought platforms. Some of it stuck. Most of it didn't.</p>
+            <p>That's because <strong>each piece on its own doesn't change much.</strong> Coaching alone fades. AI alone is a toy. Training alone gets forgotten.</p>
+            <p>The Loan Atlas works because all four are in one place: the playbook, the AI tools, the live coaching, and a community of other originators using it. Your LOs get coached on actually using it — not just learning about it.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 9. FINAL CTA ───────────────────────────────────────────────────────── -->
+    <section class="lp-final-cta" id="get-started" aria-labelledby="final-cta-heading">
+      <div class="container" style="position: relative; z-index: 1;">
+
+        <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas"
+          style="height: 52px; width: auto; margin: 0 auto var(--space-lg); display: block;" />
+
+        <h2 id="final-cta-heading"
+          style="font-family: var(--font-display); font-size: clamp(2.25rem, 1.4rem + 3.5vw, 3.75rem); font-weight: 800; line-height: 1.07; letter-spacing: -0.03em; color: #ffffff; max-width: 44rem; margin: 0 auto var(--space-lg); text-align: center;">
+          Stop Paying<br>
+          <span
+            style="background: linear-gradient(135deg, #c9961c, #eac25a, #ffd56c); -webkit-background-clip: text; background-clip: text; color: transparent;">for the Gap</span>
+        </h2>
+
+        <p class="lp-final-cta__lead">Every quarter you wait, your top LOs keep pulling ahead and the rest of your team keeps falling behind. The leaders closing that gap aren't doing it one LO at a time. They're giving the whole team the same playbook to run from. Let's talk about what that would look like for you.</p>
+
+        <div
+          style="display: flex; flex-wrap: wrap; gap: var(--space-sm); justify-content: center; align-items: center;">
+          <a class="btn btn--gold btn--lg" href="consultation.html"
+            style="font-size: 1.0625rem; padding: 18px 44px; box-shadow: 0 8px 32px rgba(201, 150, 28, 0.38);">
+            Schedule an Enterprise Consultation
+          </a>
+        </div>
+
+        <p class="lp-final-cta__secondary">Or download <em><a href="#masterplan">The AI-Empowered Mortgage Leader Masterplan</a></em> — how the best leaders in mortgage are thinking about the next two years.</p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Minimal footer -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__top">
+        <a href="index.html" class="brand">
+          <img src="assets/Loan Atlas logo-color.png" alt="The Loan Atlas" class="brand__logo" />
+        </a>
+        <nav class="site-footer__links" aria-label="Footer">
+          <a class="site-footer__link" href="whats-inside.html">What's Inside</a>
+          <a class="site-footer__link" href="faculty.html">Faculty</a>
+          <a class="site-footer__link" href="sales-individual.html">Individual Sales</a>
+          <a class="site-footer__link" href="corporate.html">Corporate Sales</a>
+          <a class="site-footer__link" href="pricing.html">Pricing</a>
+          <a class="site-footer__link" href="events.html">Events</a>
+          <a class="site-footer__link" href="consultation.html">Book a Consultation</a>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        <p>© 2026 The Loan Atlas. Precision in lending.</p>
+        <nav class="site-footer__links">
+          <a class="site-footer__link" href="#">Privacy Policy</a>
+          <a class="site-footer__link" href="#">Terms of Service</a>
+          <a class="site-footer__link" href="#">Accessibility</a>
+          <a class="site-footer__link" href="#">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+</body>
+
+</html>

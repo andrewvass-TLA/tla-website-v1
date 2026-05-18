@@ -1,0 +1,18 @@
+{
+  "body": {
+    "fontFamily": "Inter, Arial, sans-serif",
+    "fontSize": "16px",
+    "color": "rgb(0, 0, 0)",
+    "background": "rgba(0, 0, 0, 0)",
+    "lineHeight": "normal"
+  },
+  "h1": {
+    "fontFamily": "InterTight, Arial, sans-serif",
+    "fontSize": "60px",
+    "fontWeight": "600",
+    "lineHeight": "72px",
+    "letterSpacing": "-1px",
+    "color": "rgb(9, 43, 46)",
+    "text": "The Community Platform That Delivers"
+  }
+}

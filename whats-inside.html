@@ -9,6 +9,210 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="chrome.css" />
+  <style>
+    .wi-hero {
+      position: relative;
+      background-color: #021c36;
+      background-image: url('assets/faculty-bg.png');
+      background-size: cover;
+      background-position: center top;
+      overflow: hidden;
+      padding-block: clamp(56px, 8vw, 104px);
+    }
+    .wi-hero__overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(4,10,22,0.93) 0%, rgba(2,28,54,0.86) 100%);
+    }
+    .wi-hero__inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-md);
+    }
+    .wi-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 1.4rem + 3.2vw, 3.75rem);
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      max-width: 22ch;
+      margin-inline: auto;
+    }
+    .wi-hero__title em {
+      font-style: italic;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .wi-hero__sub {
+      font-size: clamp(1rem, 0.875rem + 0.5vw, 1.25rem);
+      line-height: 1.65;
+      color: rgba(255,255,255,0.78);
+      max-width: 44rem;
+      margin-inline: auto;
+    }
+    .wi-hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      justify-content: center;
+      margin-top: var(--space-sm);
+    }
+
+    /* ── Featured tool sections (Financial Review + Business Planner) ── */
+    .featured-tool {
+      position: relative;
+      background: linear-gradient(135deg, #0a1628 0%, #131b2e 50%, #1e293b 100%);
+      padding-block: clamp(64px, 8vw, 112px);
+      color: #fff;
+      overflow: hidden;
+    }
+    .featured-tool::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(60% 50% at 80% 10%, rgba(234,194,90,0.08), transparent 70%);
+      pointer-events: none;
+    }
+    .featured-tool > .container { position: relative; }
+    .featured-tool__header {
+      max-width: 60rem;
+      margin: 0 auto var(--space-xl);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .featured-tool__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 1.6rem + 3.6vw, 4.5rem);
+      font-weight: 800;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin: 0;
+    }
+    .featured-tool__deck {
+      font-family: var(--font-display);
+      font-size: clamp(1.375rem, 1rem + 1.4vw, 1.875rem);
+      font-weight: 600;
+      color: #ffffff;
+      line-height: 1.25;
+      letter-spacing: -0.02em;
+      max-width: 36rem;
+      margin: 0;
+    }
+    .featured-tool__split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      margin-bottom: var(--space-xl);
+    }
+    @media (min-width: 860px) {
+      .featured-tool__split { grid-template-columns: 1fr 1fr; gap: var(--space-xl); align-items: start; }
+    }
+    .featured-tool__copy p {
+      color: rgba(255,255,255,0.72);
+      line-height: 1.7;
+      font-size: 1.0625rem;
+      margin: 0 0 var(--space-md);
+    }
+    .featured-tool__copy p:last-child { margin-bottom: 0; }
+    .featured-tool__list { margin: 0; }
+    .featured-tool__screenshot {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: var(--radius-3xl);
+      box-shadow: 0 32px 80px rgba(0,0,0,0.55);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    /* ── AI Business and Life Coaches (horizontal scroll) ──────────── */
+    .ai-coaches { padding-block: clamp(56px, 7vw, 96px); background: var(--surface); }
+    .ai-coaches__header {
+      max-width: 52rem;
+      margin: 0 auto var(--space-xl);
+      text-align: center;
+    }
+    .ai-coaches__scroll-wrap { position: relative; }
+    .ai-coaches__scroll {
+      display: flex;
+      gap: var(--space-md);
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-block: var(--space-md);
+      padding-inline: max(24px, calc((100vw - 1280px) / 2 + 24px));
+      scroll-padding-left: max(24px, calc((100vw - 1280px) / 2 + 24px));
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+    .ai-coaches__scroll::after {
+      content: '';
+      flex: 0 0 max(24px, calc((100vw - 1280px) / 2 + 24px));
+    }
+    .coach-card {
+      flex: 0 0 320px;
+      scroll-snap-align: start;
+      display: flex;
+      flex-direction: column;
+      background: var(--surface-container-lowest);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: box-shadow 200ms ease, transform 200ms ease;
+    }
+    .coach-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
+    .coach-card__img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      background: linear-gradient(135deg, #0a1628, #1e293b);
+      display: block;
+    }
+    .coach-card__body {
+      padding: var(--space-md);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      flex: 1;
+    }
+    .coach-card__eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brass);
+    }
+    .coach-card__title {
+      font-family: var(--font-display);
+      font-size: 1.1875rem;
+      font-weight: 700;
+      color: var(--on-surface);
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      margin: 0;
+    }
+    .coach-card__desc {
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+  </style>
 </head>
 <body>
 
@@ -20,9 +224,21 @@
       <nav class="nav" aria-label="Primary">
         <a class="nav__link nav__link--active" href="whats-inside.html">What's Inside</a>
         <a class="nav__link" href="faculty.html">Faculty</a>
+        <a class="nav__link" href="sales-individual.html">Individual Sales</a>
+        <a class="nav__link" href="corporate.html">Corporate Sales</a>
         <a class="nav__link" href="pricing.html">Pricing</a>
         <a class="nav__link" href="events.html">Events</a>
-        <a class="nav__link" href="sales-individual.html">Sales</a>
+        <div class="nav__dropdown" data-open="false">
+          <button class="nav__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+            V2 Pages
+            <svg class="nav__dropdown-chevron" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu">
+          <a class="nav__dropdown-item" role="menuitem" href="index-v2.html">Homepage V2</a>
+          <a class="nav__dropdown-item" role="menuitem" href="pricing-v2.html">Pricing V2</a>
+          <a class="nav__dropdown-item" role="menuitem" href="whats-inside-v2.html">What's Inside V2</a>
+          </div>
+        </div>
       </nav>
       <div class="site-header__actions">
         <a class="site-header__login" href="#">Login</a>
@@ -37,9 +253,14 @@
     <div class="mobile-nav" id="mobile-nav">
       <a class="mobile-nav__link mobile-nav__link--active" href="whats-inside.html">What's Inside</a>
       <a class="mobile-nav__link" href="faculty.html">Faculty</a>
+      <a class="mobile-nav__link" href="sales-individual.html">Individual Sales</a>
+      <a class="mobile-nav__link" href="corporate.html">Corporate Sales</a>
       <a class="mobile-nav__link" href="pricing.html">Pricing</a>
       <a class="mobile-nav__link" href="events.html">Events</a>
-      <a class="mobile-nav__link" href="sales-individual.html">Sales</a>
+      <div class="mobile-nav__group-label">V2 Pages</div>
+      <a class="mobile-nav__link mobile-nav__sublink" href="index-v2.html">Homepage V2</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="pricing-v2.html">Pricing V2</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="whats-inside-v2.html">What's Inside V2</a>
       <a class="mobile-nav__link" href="#">Login</a>
       <a class="btn btn--primary btn--header mobile-nav__cta" href="consultation.html">Book Your Free Coaching Session</a>
     </div>
@@ -50,37 +271,21 @@
     <!-- ============================================================
          HERO
          ============================================================ -->
-    <section class="hero">
+    <section class="wi-hero">
+      <div class="wi-hero__overlay" aria-hidden="true"></div>
       <div class="container">
-        <div class="hero__grid">
-          <div>
-            <span class="chip chip--brass" style="margin-bottom: var(--space-md);">What's Inside The Loan Atlas</span>
-            <h1 class="hero__title">Everything you need to stop flying blind and start running a <em>predictable</em> mortgage business.</h1>
-            <p class="hero__subtitle">Five AI coaches. 200+ training modules. Live coaching every week. Scripts and templates for every high-leverage conversation. Built on 25+ years of origination at the highest level.</p>
-            <div class="hero__actions">
-              <a class="btn btn--primary btn--lg" href="consultation.html">Schedule Your Free Coaching Session
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </a>
-              <a class="btn btn--ghost btn--lg" href="pricing.html">Join The Loan Atlas</a>
-            </div>
-          </div>
-          <div class="hero__visual">
-            <div class="hero__glow" aria-hidden="true"></div>
-            <div class="video-ph video-ph--framed" style="border-radius: var(--radius-3xl);">
-              <div class="video-ph__screen">
-                <div class="video-ph__inner">
-                  <button class="video-ph__btn" aria-label="Watch platform overview">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                  </button>
-                  <span class="video-ph__caption">Platform Overview</span>
-                </div>
-                <div class="video-ph__foot">
-                  <span class="video-ph__badge">Member Dashboard</span>
-                  <span class="video-ph__dur">4:20</span>
-                </div>
-                <div class="video-ph__progress"><div class="video-ph__progress-fill"></div></div>
-              </div>
-            </div>
+        <div class="wi-hero__inner">
+          <a href="whats-inside-v2.html" class="wi2-preview-pill">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+            Preview the new What's Inside (v2)
+          </a>
+          <h1 class="wi-hero__title">Everything you need to stop flying blind and start running a <em>predictable</em> mortgage business.</h1>
+          <p class="wi-hero__sub">Five AI coaches. 200+ training modules. Live coaching every week. Scripts and templates for every high-leverage conversation. Built on 25+ years of origination at the highest level.</p>
+          <div class="wi-hero__actions">
+            <a class="btn btn--gold btn--lg" href="consultation.html">Schedule Your Free Coaching Session
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </a>
+            <a class="btn btn--ghost-on-dark btn--lg" href="pricing.html">Join The Loan Atlas</a>
           </div>
         </div>
       </div>
@@ -113,237 +318,174 @@
     </div>
 
     <!-- ============================================================
-         AI TOOLS — dark navy section
+         AI FINANCIAL REVIEW — featured tool
          ============================================================ -->
-    <section class="wi-tools section">
+    <section class="featured-tool">
       <div class="container">
-
-        <!-- Section header -->
-        <div class="center" style="max-width: 52rem; margin-inline: auto; margin-bottom: var(--space-xl);">
-          <span class="eyebrow"><span class="eyebrow__text">AI-Powered Business Planner and Coaches</span></span>
-          <h2 class="t-headline-lg" style="color: var(--on-primary); margin-bottom: var(--space-md);">Stop spending half your day figuring out what to do and say to move the needle in your business.</h2>
-          <p class="t-body-lg" style="color: rgba(255,255,255,0.65);">These tools were built on 25+ years of origination at the highest level — every script, every framework, every system that separates the top 1% from everyone else, available for you right when you need it.</p>
+        <div class="featured-tool__header">
+          <span class="eyebrow"><span class="eyebrow__text">AI Tool · 01</span></span>
+          <h2 class="featured-tool__title">AI-Driven Financial Review</h2>
+          <p class="featured-tool__deck">Stop making business decisions based on feel.</p>
         </div>
 
-        <div class="tool-rows">
-
-          <!-- Tool 1: AI-Driven Financial Review -->
-          <div class="tool-row">
-            <div class="tool-row__copy">
-              <span class="tool-row__num">01 — AI-Driven Financial Review</span>
-              <h3 class="tool-row__title">Stop making business decisions based on feel.</h3>
-              <p class="tool-row__body">You know you should have a handle on your numbers. You don't, really. You know some months are good and some aren't — but if someone asked you which lead source is actually profitable, which partner is earning their place, or which hours of your week are producing the loans, you'd be guessing. Most originators are.</p>
-              <p class="tool-row__body" style="margin-top: calc(-1 * var(--space-xs));">Upload your closed loans and lead sources and the tool builds the model for you — which sources are producing, which aren't, where your time is going, where your revenue is actually coming from and where it's leaking.</p>
-              <ul class="checklist checklist--inverse" style="margin-bottom: var(--space-md);">
-                <li>
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  See exactly which lead sources are profitable and which are costing you more than they're producing
-                </li>
-                <li>
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Find out which referral partners are viably earning their place in your week
-                </li>
-                <li>
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Identify where your revenue is leaking before another month slips by
-                </li>
-                <li>
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Stop making business decisions based on feel — start making them based on your actual numbers
-                </li>
-              </ul>
-            </div>
-            <div class="tool-row__visual">
-              <div class="video-ph">
-                <div class="video-ph__inner">
-                  <button class="video-ph__btn" aria-label="Watch Financial Review demo">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                  </button>
-                  <span class="video-ph__caption">AI Financial Review Demo</span>
-                </div>
-                <div class="video-ph__foot">
-                  <span class="video-ph__badge">Tool Preview</span>
-                  <span class="video-ph__dur">3:42</span>
-                </div>
-                <div class="video-ph__progress"><div class="video-ph__progress-fill" style="width: 20%;"></div></div>
-              </div>
-            </div>
+        <div class="featured-tool__split">
+          <div class="featured-tool__copy">
+            <p>You know you should have a handle on your numbers. You don't, really. You know some months are good and some aren't — but if someone asked you which lead source is actually profitable, which partner is earning their place, or which hours of your week are producing the loans, you'd be guessing. Most originators are.</p>
+            <p>Upload your closed loans and lead sources and the tool builds the model for you — which sources are producing, which aren't, where your time is going, where your revenue is actually coming from and where it's leaking.</p>
           </div>
+          <ul class="checklist checklist--inverse featured-tool__list">
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              See exactly which lead sources are profitable and which are costing you more than they're producing
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Find out which referral partners are viably earning their place in your week
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Identify where your revenue is leaking before another month slips by
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Stop making business decisions based on feel — start making them based on your actual numbers
+            </li>
+          </ul>
+        </div>
 
-          <!-- Tool 2: AI Business & Life Planner -->
-          <div class="tool-row tool-row--reverse">
-            <div class="tool-row__copy">
-              <span class="tool-row__num">02 — AI Business &amp; Life Planner</span>
-              <h3 class="tool-row__title">No more Monday morning paralysis.</h3>
-              <p class="tool-row__body">Most loan officers know what they should be doing. They just never have a clear plan for the week in front of them. This tool fixes that. It takes your goals — real goals, not generic ones — and builds a specific execution plan that tells you exactly what to work on today, this week, this quarter.</p>
-              <ul class="checklist checklist--inverse" style="margin-bottom: var(--space-md);">
-                <li>
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Build your quarterly plan and see it broken into weekly priorities tied to actual production
-                </li>
-                <li>
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Find the exact bottleneck holding your numbers back right now and get a diagnosis specific to your business
-                </li>
-                <li>
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Convert what you're learning inside the platform into concrete actions for this week
-                </li>
-                <li>
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Design your calendar so your best hours go to the work that actually closes loans
-                </li>
-              </ul>
-            </div>
-            <div class="tool-row__visual">
-              <div class="video-ph">
-                <div class="video-ph__inner">
-                  <button class="video-ph__btn" aria-label="Watch Business Planner demo">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                  </button>
-                  <span class="video-ph__caption">Business Planner Demo</span>
-                </div>
-                <div class="video-ph__foot">
-                  <span class="video-ph__badge">Tool Preview</span>
-                  <span class="video-ph__dur">4:15</span>
-                </div>
-                <div class="video-ph__progress"><div class="video-ph__progress-fill" style="width: 0;"></div></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tool 3: Sales & Scripting Coach -->
-          <div class="tool-row">
-            <div class="tool-row__copy">
-              <span class="tool-row__num">03 — Sales &amp; Scripting Coach</span>
-              <h3 class="tool-row__title">Like having Tim Braheem available at 10pm on a Tuesday.</h3>
-              <p class="tool-row__body">You've been on a call where you knew what you wanted to say but the words didn't come out right. You've sent an email and immediately wondered if it landed wrong. You've handled an objection and felt the energy shift the wrong way. This tool is what you reach for in those moments.</p>
-              <p class="tool-row__body" style="margin-top: calc(-1 * var(--space-xs));">Built from every sales module, every scripting framework, and 60 episodes of coaching — when the tough conversation is tomorrow morning.</p>
-              <ul class="checklist checklist--inverse" style="margin-bottom: var(--space-md);">
-                <li>
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Paste a difficult client or Realtor message and get a response that keeps the relationship intact
-                </li>
-                <li>
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Prepare for a hard conversation before it happens — not improvise during it
-                </li>
-                <li>
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Handle objections with precision instead of hoping your instincts are good enough that day
-                </li>
-                <li>
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Upload a call recording or transcript and get specific coaching on what to do differently
-                </li>
-              </ul>
-              <div class="tool-row__quote">
-                <p>"I used the Sales Coach over the weekend. It was super helpful — I had the idea of what I wanted to say, but it gave me better language I was actually able to use with my client."</p>
-                <cite>Laura Hiebner — Loan Atlas Member</cite>
-              </div>
-            </div>
-            <div class="tool-row__visual">
-              <div class="video-ph">
-                <div class="video-ph__inner">
-                  <button class="video-ph__btn" aria-label="Watch Sales Coach demo">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                  </button>
-                  <span class="video-ph__caption">Sales Coach in Action</span>
-                </div>
-                <div class="video-ph__foot">
-                  <span class="video-ph__badge video-ph__badge--brass">Live Session</span>
-                  <span class="video-ph__dur">5:01</span>
-                </div>
-                <div class="video-ph__progress"><div class="video-ph__progress-fill" style="width: 55%;"></div></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tool 4: AI Content Coach -->
-          <div class="tool-row tool-row--reverse">
-            <div class="tool-row__copy">
-              <span class="tool-row__num">04 — AI Content Coach</span>
-              <h3 class="tool-row__title">Stop consuming content at random. Start learning what actually matters.</h3>
-              <p class="tool-row__body">The Loan Atlas has over 200 modules, masterclasses, workshops, Office Hours sessions, and podcast episodes. That's the good news. The bad news is that without direction, a library that size can overwhelm you back into doing nothing.</p>
-              <p class="tool-row__body" style="margin-top: calc(-1 * var(--space-xs));">Tell the Content Coach what's happening in your business right now and it finds the exact training that fixes it — so you're always learning the thing that matters most.</p>
-              <ul class="checklist checklist--inverse" style="margin-bottom: var(--space-md);">
-                <li>
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Describe where you're stuck and get pointed to the precise modules that address it
-                </li>
-                <li>
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Build a focused 30-day learning path tied to what you're actually trying to execute
-                </li>
-                <li>
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Stop consuming content at random — start applying the right things to close more loans
-                </li>
-              </ul>
-            </div>
-            <div class="tool-row__visual">
-              <div class="video-ph">
-                <div class="video-ph__inner">
-                  <button class="video-ph__btn" aria-label="Watch Content Coach demo">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                  </button>
-                  <span class="video-ph__caption">Content Coach Demo</span>
-                </div>
-                <div class="video-ph__foot">
-                  <span class="video-ph__badge">Tool Preview</span>
-                  <span class="video-ph__dur">2:57</span>
-                </div>
-                <div class="video-ph__progress"><div class="video-ph__progress-fill" style="width: 0;"></div></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Tool 5: Health, Mindset & Vitality Coach -->
-          <div class="tool-row">
-            <div class="tool-row__copy">
-              <span class="tool-row__num">05 — Health, Mindset &amp; Vitality Coach</span>
-              <h3 class="tool-row__title">Top producers treat this as a performance variable they can actually manage.</h3>
-              <p class="tool-row__body">You already know that when you walk into a conversation stressed, the conversation goes badly. When you're drained, your follow-up slips. When your head is full of the last difficult client, you can't be present for the next one. Most loan officers treat this as just how the business goes.</p>
-              <p class="tool-row__body" style="margin-top: calc(-1 * var(--space-xs));">This tool is built for daily support for the internal state that everything else runs on.</p>
-              <ul class="checklist checklist--inverse" style="margin-bottom: var(--space-md);">
-                <li>
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Reset before a high-stakes conversation so you show up the way you want to, not the way the day left you
-                </li>
-                <li>
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Work through the frustration, doubt, or overwhelm that's been sitting in the background
-                </li>
-                <li>
-                  <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Build the kind of consistency in your energy and habits that makes everything else more sustainable
-                </li>
-              </ul>
-              <div class="tool-row__quote">
-                <p>"It's almost like having therapy — the quality of guidance it provides."</p>
-                <cite>Tom Hammond — 28-year originator</cite>
-              </div>
-            </div>
-            <div class="tool-row__visual">
-              <div class="video-ph">
-                <div class="video-ph__inner">
-                  <button class="video-ph__btn" aria-label="Watch Mindset Coach demo">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                  </button>
-                  <span class="video-ph__caption">Mindset Coach Demo</span>
-                </div>
-                <div class="video-ph__foot">
-                  <span class="video-ph__badge">Tool Preview</span>
-                  <span class="video-ph__dur">3:28</span>
-                </div>
-                <div class="video-ph__progress"><div class="video-ph__progress-fill" style="width: 0;"></div></div>
-              </div>
-            </div>
-          </div>
-
-        </div><!-- /tool-rows -->
+        <img class="featured-tool__screenshot" src="assets/financial-review-tool-section.png" alt="AI-Driven Financial Review — tool screenshot" />
       </div>
     </section>
+
+    <!-- ============================================================
+         AI BUSINESS PLANNER — featured tool
+         ============================================================ -->
+    <section class="featured-tool">
+      <div class="container">
+        <div class="featured-tool__header">
+          <span class="eyebrow"><span class="eyebrow__text">AI Tool · 02</span></span>
+          <h2 class="featured-tool__title">AI Business &amp; Life Planner</h2>
+          <p class="featured-tool__deck">No more Monday morning paralysis.</p>
+        </div>
+
+        <div class="featured-tool__split">
+          <div class="featured-tool__copy">
+            <p>Most loan officers know what they should be doing. They just never have a clear plan for the week in front of them. This tool fixes that.</p>
+            <p>It takes your goals — real goals, not generic ones — and builds a specific execution plan that tells you exactly what to work on today, this week, this quarter. The bottlenecks get diagnosed. The calendar gets designed around the work that actually closes loans.</p>
+          </div>
+          <ul class="checklist checklist--inverse featured-tool__list">
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Build your quarterly plan and see it broken into weekly priorities tied to actual production
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Find the exact bottleneck holding your numbers back right now and get a diagnosis specific to your business
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Convert what you're learning inside the platform into concrete actions for this week
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Design your calendar so your best hours go to the work that actually closes loans
+            </li>
+          </ul>
+        </div>
+
+        <img class="featured-tool__screenshot" src="assets/business-planning-tool-section.png" alt="AI Business &amp; Life Planner — tool screenshot" />
+      </div>
+    </section>
+
+    <!-- ============================================================
+         AI BUSINESS AND LIFE COACHES — horizontal scroll
+         ============================================================ -->
+    <section class="ai-coaches">
+      <div class="container">
+        <div class="ai-coaches__header">
+          <span class="eyebrow"><span class="eyebrow__text">AI Business &amp; Life Coaches</span></span>
+          <h2 class="t-headline-lg" style="margin-top: var(--space-md); margin-bottom: var(--space-md);">Seven specialized AI coaches — available the moment you need them.</h2>
+          <p class="t-body-lg t-muted">Built on 25+ years of origination at the highest level. Every script, every framework, every system that separates the top 1% from everyone else — available whenever the work calls for it.</p>
+        </div>
+      </div>
+
+      <div class="ai-coaches__scroll-wrap">
+        <div class="ai-coaches__scroll" role="list">
+
+          <!-- Coach 1: Sales & Scripting -->
+          <article class="coach-card" role="listitem">
+            <img class="coach-card__img" src="assets/scripts-presentation-templates.png" alt="" />
+            <div class="coach-card__body">
+              <span class="coach-card__eyebrow">Coach 01</span>
+              <h3 class="coach-card__title">Sales &amp; Scripting Coach</h3>
+              <p class="coach-card__desc">Like having Tim Braheem available at 10pm on a Tuesday. Paste a difficult message, prep for a hard conversation, or upload a call recording and get specific coaching on what to do differently.</p>
+            </div>
+          </article>
+
+          <!-- Coach 2: Content -->
+          <article class="coach-card" role="listitem">
+            <img class="coach-card__img" src="assets/weekly-coaching.png" alt="" />
+            <div class="coach-card__body">
+              <span class="coach-card__eyebrow">Coach 02</span>
+              <h3 class="coach-card__title">Content Coach</h3>
+              <p class="coach-card__desc">Tell it what's happening in your business right now and it finds the exact training — across 200+ modules, masterclasses, and Office Hours sessions — that fixes it.</p>
+            </div>
+          </article>
+
+          <!-- Coach 3: Health, Mindset & Vitality -->
+          <article class="coach-card" role="listitem">
+            <img class="coach-card__img" src="assets/talk-to-tim.png" alt="" />
+            <div class="coach-card__body">
+              <span class="coach-card__eyebrow">Coach 03</span>
+              <h3 class="coach-card__title">Health, Mindset &amp; Vitality Coach</h3>
+              <p class="coach-card__desc">Daily support for the internal state everything else runs on. Reset before high-stakes conversations, work through doubt and overwhelm, and build the consistency that makes everything else sustainable.</p>
+            </div>
+          </article>
+
+          <!-- Coach 4: Strategic Thought Partner -->
+          <article class="coach-card" role="listitem">
+            <img class="coach-card__img" src="assets/strategic-thought-partner.png" alt="" />
+            <div class="coach-card__body">
+              <span class="coach-card__eyebrow">Coach 04</span>
+              <h3 class="coach-card__title">Strategic Thought Partner</h3>
+              <p class="coach-card__desc">A second brain for the decisions that don't fit on a checklist. Should you hire? Change companies? Restructure your team? Walk into a hard decision with someone to think it through with.</p>
+            </div>
+          </article>
+
+          <!-- Coach 5: Performance Coach -->
+          <article class="coach-card" role="listitem">
+            <img class="coach-card__img" src="assets/performance-coach.png" alt="" />
+            <div class="coach-card__body">
+              <span class="coach-card__eyebrow">Coach 05</span>
+              <h3 class="coach-card__title">Performance Coach</h3>
+              <p class="coach-card__desc">Daily and weekly accountability tuned to your actual goals — not a generic productivity framework. Reviews what you said you'd do, what you actually did, and what's getting in the way.</p>
+            </div>
+          </article>
+
+          <!-- Coach 6: Marketing & Brand Coach -->
+          <article class="coach-card" role="listitem">
+            <img class="coach-card__img" src="assets/sales-marketing-advisor.png" alt="" />
+            <div class="coach-card__body">
+              <span class="coach-card__eyebrow">Coach 06</span>
+              <h3 class="coach-card__title">Marketing &amp; Brand Coach</h3>
+              <p class="coach-card__desc">Content frameworks, audience-building strategy, and brand positioning built for mortgage originators — not repurposed from generic creator advice that has no idea what a referral partner is.</p>
+            </div>
+          </article>
+
+          <!-- Coach 7: Realtor & Partner Coach -->
+          <article class="coach-card" role="listitem">
+            <img class="coach-card__img" src="assets/mortgage-brokers.png" alt="" />
+            <div class="coach-card__body">
+              <span class="coach-card__eyebrow">Coach 07</span>
+              <h3 class="coach-card__title">Realtor &amp; Partner Coach</h3>
+              <p class="coach-card__desc">Strategy and scripting for the relationships that drive most of your business. Prep partner meetings, draft outreach, handle the awkward conversations, and build a referral base that compounds.</p>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
 
     <!-- ============================================================
          TRAINING FRAMEWORK
@@ -763,6 +905,9 @@
         </a>
         <nav class="site-footer__links" aria-label="Footer">
           <a class="site-footer__link" href="whats-inside.html">What's Inside</a>
+          <a class="site-footer__link" href="faculty.html">Faculty</a>
+          <a class="site-footer__link" href="sales-individual.html">Individual Sales</a>
+          <a class="site-footer__link" href="corporate.html">Corporate Sales</a>
           <a class="site-footer__link" href="pricing.html">Pricing</a>
           <a class="site-footer__link" href="events.html">Events</a>
           <a class="site-footer__link" href="consultation.html">Book a Consultation</a>

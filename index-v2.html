@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Loan Atlas — The Mortgage Coaching Platform That Delivers</title>
+  <meta name="description" content="Placeholder description for The Loan Atlas." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles-v2.css" />
+  <link rel="stylesheet" href="chrome.css" />
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="index.html" class="brand" aria-label="The Loan Atlas — home">
+        <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a class="nav__link" href="whats-inside.html">What's Inside</a>
+        <a class="nav__link" href="faculty.html">Faculty</a>
+        <a class="nav__link" href="sales-individual.html">Individual Sales</a>
+        <a class="nav__link" href="corporate.html">Corporate Sales</a>
+        <a class="nav__link" href="pricing.html">Pricing</a>
+        <a class="nav__link" href="events.html">Events</a>
+        <div class="nav__dropdown" data-open="false">
+          <button class="nav__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+            V2 Pages
+            <svg class="nav__dropdown-chevron" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu">
+          <a class="nav__dropdown-item" role="menuitem" href="index-v2.html">Homepage V2</a>
+          <a class="nav__dropdown-item" role="menuitem" href="pricing-v2.html">Pricing V2</a>
+          <a class="nav__dropdown-item" role="menuitem" href="whats-inside-v2.html">What's Inside V2</a>
+          </div>
+        </div>
+      </nav>
+      <div class="site-header__actions">
+        <a class="site-header__login" href="#">Login</a>
+        <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav">
+          <span class="nav-toggle__line"></span>
+          <span class="nav-toggle__line"></span>
+          <span class="nav-toggle__line"></span>
+        </button>
+        <a class="btn btn--primary btn--header" href="consultation.html"><span class="btn__short">Free Session</span><span class="btn__full">Book Your Free Coaching Session</span></a>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a class="mobile-nav__link" href="whats-inside.html">What's Inside</a>
+      <a class="mobile-nav__link" href="faculty.html">Faculty</a>
+      <a class="mobile-nav__link" href="sales-individual.html">Individual Sales</a>
+      <a class="mobile-nav__link" href="corporate.html">Corporate Sales</a>
+      <a class="mobile-nav__link" href="pricing.html">Pricing</a>
+      <a class="mobile-nav__link" href="events.html">Events</a>
+      <div class="mobile-nav__group-label">V2 Pages</div>
+      <a class="mobile-nav__link mobile-nav__sublink" href="index-v2.html">Homepage V2</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="pricing-v2.html">Pricing V2</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="whats-inside-v2.html">What's Inside V2</a>
+      <a class="mobile-nav__link" href="#">Login</a>
+      <a class="btn btn--primary btn--header mobile-nav__cta" href="consultation.html">Book Your Free Coaching Session</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Hero -->
+    <section class="hero" data-screenshot="hero">
+      <div class="hero__intro">
+        <h1 class="hero__title">The Mortgage Coaching Platform<br />That Delivers</h1>
+        <p class="hero__subtitle">Coaching. Courses. Community. <strong>$29B</strong> closed on Loan Atlas in 2025.</p>
+      </div>
+
+      <div class="hero__stage">
+        <div class="arches" aria-hidden="true">
+          <div class="arch" style="background-image: url('https://picsum.photos/seed/atlas-arch-1/520/720');"></div>
+          <div class="arch" style="background-image: url('https://picsum.photos/seed/atlas-arch-2/520/720');"></div>
+          <div class="arch" style="background-image: url('https://picsum.photos/seed/atlas-arch-3/520/720');"></div>
+          <div class="arch" style="background-image: url('https://picsum.photos/seed/atlas-arch-4/520/720');"></div>
+          <div class="arch" style="background-image: url('https://picsum.photos/seed/atlas-arch-5/520/720');"></div>
+        </div>
+        <form class="hero__form" onsubmit="return false;">
+          <input type="email" placeholder="Enter your email" aria-label="Email address" />
+          <button class="btn btn--brass" type="submit">Try Loan Atlas For Free</button>
+        </form>
+      </div>
+      <p class="hero__form-note">Start a free 14-day trial and we'll help you get results. No credit card required.</p>
+    </section>
+
+    <!-- Stat row -->
+    <section class="stats" data-screenshot="stats">
+      <div class="container">
+        <div class="stats__grid">
+          <div class="stat">
+            <span class="stat__value">$29B</span>
+            <span class="stat__label">Loan volume closed by members this year</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value">$497</span>
+            <span class="stat__label">Avg monthly membership price across plans</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value">92%</span>
+            <span class="stat__label">Member-led activity vs. industry average</span>
+          </div>
+          <div class="stat">
+            <span class="stat__value">2.3×</span>
+            <span class="stat__label">More closed loans for active members year over year</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hosts: intro + 7 scrollable phone-mockup cards -->
+    <section class="hosts" data-screenshot="hosts" aria-labelledby="hosts-heading">
+      <div class="container">
+        <div class="hosts__grid">
+          <div class="hosts__intro">
+            <h2 class="hosts__title" id="hosts-heading">Build a coaching business members love.</h2>
+            <p class="hosts__body">We call our customers operators — because you're not just buying training, you're running a system that grows your business.</p>
+            <p class="hosts__subhead">The Loan Atlas Difference:</p>
+            <ul class="hosts__checks" role="list">
+              <li>
+                <span class="hosts__check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 12 10 17 19 7"/></svg>
+                </span>
+                <span><strong>AI business systems</strong> built around your actual pipeline data.</span>
+              </li>
+              <li>
+                <span class="hosts__check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 12 10 17 19 7"/></svg>
+                </span>
+                <span><strong>Coaching Method™</strong> the proven framework behind $29B closed.</span>
+              </li>
+              <li>
+                <span class="hosts__check" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="5 12 10 17 19 7"/></svg>
+                </span>
+                <span><strong>Member engagement</strong> that compounds — not content that disappears.</span>
+              </li>
+            </ul>
+            <a class="btn btn--brass btn--lg" href="consultation.html">Try Loan Atlas for Free</a>
+          </div>
+
+          <div class="hosts__cards-col">
+            <div class="host-cards">
+              <a class="host-card" href="whats-inside.html">
+                <div class="host-card__phone">
+                  <span class="host-card__phone-notch" aria-hidden="true"></span>
+                  <img class="host-card__phone-screen" src="https://picsum.photos/seed/atlas-card-1/300/600" alt="" />
+                </div>
+                <div class="host-card__footer">
+                  <span class="host-card__name">Coaching</span>
+                  <svg class="host-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </div>
+              </a>
+
+              <a class="host-card" href="whats-inside.html">
+                <div class="host-card__phone">
+                  <span class="host-card__phone-notch" aria-hidden="true"></span>
+                  <img class="host-card__phone-screen" src="https://picsum.photos/seed/atlas-card-2/300/600" alt="" />
+                </div>
+                <div class="host-card__footer">
+                  <span class="host-card__name">Training</span>
+                  <svg class="host-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </div>
+              </a>
+
+              <a class="host-card" href="whats-inside.html">
+                <div class="host-card__phone">
+                  <span class="host-card__phone-notch" aria-hidden="true"></span>
+                  <img class="host-card__phone-screen" src="https://picsum.photos/seed/atlas-card-3/300/600" alt="" />
+                </div>
+                <div class="host-card__footer">
+                  <span class="host-card__name">Community</span>
+                  <svg class="host-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </div>
+              </a>
+
+              <a class="host-card" href="whats-inside.html">
+                <div class="host-card__phone">
+                  <span class="host-card__phone-notch" aria-hidden="true"></span>
+                  <img class="host-card__phone-screen" src="https://picsum.photos/seed/atlas-card-4/300/600" alt="" />
+                </div>
+                <div class="host-card__footer">
+                  <span class="host-card__name">AI Tools</span>
+                  <svg class="host-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </div>
+              </a>
+
+              <a class="host-card" href="whats-inside.html">
+                <div class="host-card__phone">
+                  <span class="host-card__phone-notch" aria-hidden="true"></span>
+                  <img class="host-card__phone-screen" src="https://picsum.photos/seed/atlas-card-5/300/600" alt="" />
+                </div>
+                <div class="host-card__footer">
+                  <span class="host-card__name">Resources</span>
+                  <svg class="host-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </div>
+              </a>
+
+              <a class="host-card" href="events.html">
+                <div class="host-card__phone">
+                  <span class="host-card__phone-notch" aria-hidden="true"></span>
+                  <img class="host-card__phone-screen" src="https://picsum.photos/seed/atlas-card-6/300/600" alt="" />
+                </div>
+                <div class="host-card__footer">
+                  <span class="host-card__name">Events</span>
+                  <svg class="host-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </div>
+              </a>
+
+              <a class="host-card" href="faculty.html">
+                <div class="host-card__phone">
+                  <span class="host-card__phone-notch" aria-hidden="true"></span>
+                  <img class="host-card__phone-screen" src="https://picsum.photos/seed/atlas-card-7/300/600" alt="" />
+                </div>
+                <div class="host-card__footer">
+                  <span class="host-card__name">Mentorship</span>
+                  <svg class="host-card__arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+                </div>
+              </a>
+            </div>
+
+            <div class="hosts__nav-row" aria-hidden="true">
+              <button class="hosts__nav-btn" type="button" data-dir="prev" aria-label="Scroll cards left">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+              </button>
+              <button class="hosts__nav-btn" type="button" data-dir="next" aria-label="Scroll cards right">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Find Your Loan Atlas Learning Path -->
+    <section class="section section--alt path-finder" data-screenshot="path-finder" aria-labelledby="path-finder-heading">
+      <div class="container">
+        <header class="section-intro">
+          <h2 class="section-intro__title" id="path-finder-heading">Find Your Loan Atlas Learning Path</h2>
+          <p class="section-intro__lead">Most loan officers work hard but don't have a system that creates consistent results. Find out where your business is leaking time, money, and opportunity.</p>
+        </header>
+
+        <div class="path-finder__container">
+          <div class="path-finder__grid">
+            <!-- Left: navy gradient panel — toggles between question and result -->
+            <div class="path-finder__panel">
+              <div class="path-finder__state" data-state="initial">
+                <p class="path-finder__question">Which of the following statements most strongly represents what you want to focus on right now?</p>
+              </div>
+
+              <div class="path-finder__state" data-state="result" hidden>
+                <article class="learning-path">
+                  <h3 class="learning-path__title">The Rain Maker</h3>
+                  <p class="learning-path__body">This learning path is all about creating leads that convert to business. There is no one right way to do this, but several options to develop relationships with referral partners or connect with consumers directly. This path will show you how to do both.</p>
+                </article>
+
+                <div class="path-finder__form">
+                  <p class="path-finder__form-eyebrow">Your Recommended Area of Focus:</p>
+                  <p class="path-finder__form-focus">Marketing Mastery</p>
+                  <p class="path-finder__form-cta">Get Your Free Learning Module and Execution Plan</p>
+                  <form class="path-form" onsubmit="return false;" novalidate>
+                    <div class="path-form__row">
+                      <input type="text" placeholder="First Name" aria-label="First name" />
+                      <input type="text" placeholder="Last Name" aria-label="Last name" />
+                    </div>
+                    <input type="email" placeholder="Email" aria-label="Email" />
+                    <input type="tel" placeholder="Phone" aria-label="Phone" />
+                    <button type="submit" class="btn btn--brass btn--lg">Send Me My Plan</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: radio choices + CTA -->
+            <div class="path-finder__choices">
+              <form class="path-choices-form" onsubmit="return false;">
+                <label class="path-choice">
+                  <input type="radio" name="path" value="leads" />
+                  <span>I need to generate more leads and strategies for doing it.</span>
+                </label>
+                <label class="path-choice">
+                  <input type="radio" name="path" value="organized" />
+                  <span>I need to become more organized, focused, and better manage my time.</span>
+                </label>
+                <label class="path-choice">
+                  <input type="radio" name="path" value="team" />
+                  <span>I'm ready to grow my team and become a better leader.</span>
+                </label>
+                <label class="path-choice">
+                  <input type="radio" name="path" value="service" />
+                  <span>I need to focus on my Systems of Customer Service and develop my Perfect Loan Process.</span>
+                </label>
+                <label class="path-choice">
+                  <input type="radio" name="path" value="convert" />
+                  <span>I need to convert more lead opportunities and improve my sales process.</span>
+                </label>
+                <label class="path-choice">
+                  <input type="radio" name="path" value="mindset" />
+                  <span>My mindset and self-doubt are holding me back &mdash; I'm ready to work on myself.</span>
+                </label>
+                <button type="button" class="btn btn--brass btn--lg path-finder__cta" id="show-path-cta">Show Me Where to Start</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature: What's selling right now -->
+    <section class="section" data-screenshot="feature-3">
+      <div class="container">
+        <div class="section-intro">
+          <span class="section-intro__eyebrow">What's selling right now</span>
+          <h2 class="section-intro__title">The <span style="color: var(--color-brass);">$497</span> membership.</h2>
+          <p class="section-intro__lead">This is what top operators are selling — and why members are paying for it month after month.</p>
+        </div>
+        <div class="feature feature--reverse">
+          <div class="feature__copy">
+            <ul class="feature__list">
+              <li>Weekly live coaching with proven top producers</li>
+              <li>AI-powered business intelligence for your pipeline</li>
+              <li>Private community of growth-minded originators</li>
+              <li>200+ on-demand training modules</li>
+              <li>Scripts, presentations, and templates library</li>
+            </ul>
+            <a class="btn btn--brass btn--lg" href="#">See plans</a>
+          </div>
+          <div class="feature__media">
+            <div class="media-frame media-frame--screen">
+              <div class="media-frame__placeholder">Membership preview</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature: Why Loan Atlas works -->
+    <section class="section section--alt" data-screenshot="feature-4">
+      <div class="container">
+        <div class="section-intro">
+          <span class="section-intro__eyebrow">Why Loan Atlas works</span>
+          <h2 class="section-intro__title">Most platforms sell more features. Here's what actually matters.</h2>
+        </div>
+        <div class="feature">
+          <div class="feature__copy">
+            <ul class="feature__list">
+              <li>Real coaches with billions in funded loans, not theorists</li>
+              <li>AI that operates on your actual pipeline data</li>
+              <li>Systems built around the 8 disciplines of origination mastery</li>
+              <li>A community that holds you accountable, not just a content library</li>
+              <li>Fast iteration loops between coaching, execution, and review</li>
+            </ul>
+          </div>
+          <div class="feature__media">
+            <div class="media-frame">
+              <div class="media-frame__placeholder">Feature illustration</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Feature: Native mobile apps -->
+    <section class="section" data-screenshot="feature-5">
+      <div class="container">
+        <div class="section-intro">
+          <span class="section-intro__eyebrow">It's the phones</span>
+          <h2 class="section-intro__title">Native mobile apps.</h2>
+          <p class="section-intro__lead">Real iOS and Android apps on your members' home screens. They open Loan Atlas the way they open Instagram — every day, on their own.</p>
+        </div>
+        <div class="feature feature--reverse">
+          <div class="feature__copy">
+            <ul class="feature__list">
+              <li>Push notifications that drive daily engagement</li>
+              <li>Offline access to training modules and scripts</li>
+              <li>Voice-to-text coaching submissions from the field</li>
+              <li>Native deep links into every system and tool</li>
+            </ul>
+            <a class="btn btn--primary btn--lg" href="#">See the apps</a>
+          </div>
+          <div class="feature__media">
+            <div class="media-frame media-frame--phone">
+              <div class="media-frame__placeholder">Mobile app preview</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Plans -->
+    <section class="section section--alt" data-screenshot="plans">
+      <div class="container">
+        <div class="section-intro">
+          <span class="section-intro__eyebrow">Plans for every stage</span>
+          <h2 class="section-intro__title">Pick the plan that fits your business today.</h2>
+          <p class="section-intro__lead">Upgrade as you grow. Cancel anytime.</p>
+        </div>
+        <div class="plans">
+          <article class="plan">
+            <span class="plan__name">Launch</span>
+            <div class="plan__price">
+              <span class="plan__price-amount">$99</span>
+              <span class="plan__price-period">/month</span>
+            </div>
+            <p class="plan__desc">For individual originators getting started with systems and coaching.</p>
+            <ul class="plan__features">
+              <li>On-demand training library</li>
+              <li>Weekly live coaching</li>
+              <li>Private community access</li>
+              <li>Scripts &amp; templates library</li>
+            </ul>
+            <a class="btn btn--ghost plan__cta" href="#">Start free trial</a>
+          </article>
+
+          <article class="plan plan--featured">
+            <span class="plan__badge">Most popular</span>
+            <span class="plan__name">Operator</span>
+            <div class="plan__price">
+              <span class="plan__price-amount">$497</span>
+              <span class="plan__price-period">/month</span>
+            </div>
+            <p class="plan__desc">For producers ready to install all five AI systems and scale predictably.</p>
+            <ul class="plan__features">
+              <li>Everything in Launch</li>
+              <li>All 5 AI-powered systems</li>
+              <li>Direct coach access via Talk to Tim</li>
+              <li>Quarterly business reviews</li>
+              <li>Done-for-you assets &amp; campaigns</li>
+            </ul>
+            <a class="btn btn--brass plan__cta" href="#">Start free trial</a>
+          </article>
+
+          <article class="plan">
+            <span class="plan__name">Pro</span>
+            <div class="plan__price">
+              <span class="plan__price-amount">Custom</span>
+            </div>
+            <p class="plan__desc">For teams and branches that need a branded rollout and onboarding.</p>
+            <ul class="plan__features">
+              <li>Everything in Operator</li>
+              <li>Branded onboarding for teams</li>
+              <li>Dedicated success manager</li>
+              <li>Custom reporting &amp; SSO</li>
+            </ul>
+            <a class="btn btn--ghost plan__cta" href="#">Talk to sales</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" data-screenshot="faq">
+      <div class="container">
+        <div class="section-intro">
+          <span class="section-intro__eyebrow">FAQ</span>
+          <h2 class="section-intro__title">Your questions, answered.</h2>
+        </div>
+        <div class="faq">
+          <details class="faq__item">
+            <summary>Do I need to be a top producer to get value out of Loan Atlas?</summary>
+            <p class="faq__answer">No. The systems are designed to work whether you closed 10 loans last year or 500. The coaching meets you where you are.</p>
+          </details>
+          <details class="faq__item">
+            <summary>How quickly can I expect to see results?</summary>
+            <p class="faq__answer">Members on the Operator plan typically see their first system-driven win within 30 days. Most teams report a measurable production lift within 90.</p>
+          </details>
+          <details class="faq__item">
+            <summary>Is there a free trial?</summary>
+            <p class="faq__answer">Yes. Every plan starts with a 14-day free trial. No credit card required to begin.</p>
+          </details>
+          <details class="faq__item">
+            <summary>Can I bring my whole team?</summary>
+            <p class="faq__answer">Absolutely. The Pro plan is built for teams and branches, with branded onboarding and a dedicated success manager.</p>
+          </details>
+          <details class="faq__item">
+            <summary>How is Loan Atlas different from other coaching programs?</summary>
+            <p class="faq__answer">Other programs sell content. Loan Atlas installs systems — software, AI, scripts, processes, and live coaching — that compound over time.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="section section--dark final-cta" data-screenshot="final-cta">
+      <div class="container">
+        <div class="final-cta__inner">
+          <h2 class="final-cta__title">
+            Start your <span class="final-cta__title-accent">free trial</span> today.
+          </h2>
+          <p class="final-cta__lead">Join thousands of mortgage operators who are running a system, not reacting to the market.</p>
+          <form class="final-cta__form" onsubmit="return false;">
+            <input type="email" placeholder="Enter your email" aria-label="Email address" />
+            <button class="btn btn--brass" type="submit">Get started</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__top">
+        <a href="index.html" class="brand">
+          <img src="assets/Loan Atlas logo-color.png" alt="The Loan Atlas" class="brand__logo" />
+        </a>
+        <nav class="site-footer__links" aria-label="Footer">
+          <a class="site-footer__link" href="whats-inside.html">What's Inside</a>
+          <a class="site-footer__link" href="faculty.html">Faculty</a>
+          <a class="site-footer__link" href="sales-individual.html">Individual Sales</a>
+          <a class="site-footer__link" href="corporate.html">Corporate Sales</a>
+          <a class="site-footer__link" href="pricing.html">Pricing</a>
+          <a class="site-footer__link" href="events.html">Events</a>
+          <a class="site-footer__link" href="consultation.html">Book a Consultation</a>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        <p>© 2026 The Loan Atlas. Precision in lending.</p>
+        <nav class="site-footer__links">
+          <a class="site-footer__link" href="#">Privacy Policy</a>
+          <a class="site-footer__link" href="#">Terms of Service</a>
+          <a class="site-footer__link" href="#">Accessibility</a>
+          <a class="site-footer__link" href="#">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="nav.js"></script>
+</body>
+
+</html>

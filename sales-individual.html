@@ -13,6 +13,7 @@
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="chrome.css" />
   <style>
     /* ── LP-specific styles ─────────────────────────────────────────────────── */
 
@@ -480,18 +481,53 @@
 <body>
 
   <!-- Minimal Header — no site nav -->
-  <header class="lp-header">
-    <div class="lp-header__inner">
+  <header class="site-header">
+    <div class="site-header__inner">
       <a href="index.html" class="brand" aria-label="The Loan Atlas — home">
         <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
       </a>
-      <div class="lp-header__actions">
-        <a class="btn btn--ghost-on-dark btn--header lp-header__ghost" href="consultation.html">Free Coaching Session</a>
-        <a class="btn btn--gold btn--header" href="pricing.html">
-          <span class="btn__short">Join Now</span>
-          <span class="btn__full">Join The Loan Atlas</span>
-        </a>
+      <nav class="nav" aria-label="Primary">
+        <a class="nav__link" href="whats-inside.html">What's Inside</a>
+        <a class="nav__link" href="faculty.html">Faculty</a>
+        <a class="nav__link nav__link--active" href="sales-individual.html">Individual Sales</a>
+        <a class="nav__link" href="corporate.html">Corporate Sales</a>
+        <a class="nav__link" href="pricing.html">Pricing</a>
+        <a class="nav__link" href="events.html">Events</a>
+        <div class="nav__dropdown" data-open="false">
+          <button class="nav__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
+            V2 Pages
+            <svg class="nav__dropdown-chevron" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu">
+          <a class="nav__dropdown-item" role="menuitem" href="index-v2.html">Homepage V2</a>
+          <a class="nav__dropdown-item" role="menuitem" href="pricing-v2.html">Pricing V2</a>
+          <a class="nav__dropdown-item" role="menuitem" href="whats-inside-v2.html">What's Inside V2</a>
+          </div>
+        </div>
+      </nav>
+      <div class="site-header__actions">
+        <a class="site-header__login" href="#">Login</a>
+        <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav">
+          <span class="nav-toggle__line"></span>
+          <span class="nav-toggle__line"></span>
+          <span class="nav-toggle__line"></span>
+        </button>
+        <a class="btn btn--primary btn--header" href="consultation.html"><span class="btn__short">Free Session</span><span class="btn__full">Book Your Free Coaching Session</span></a>
       </div>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a class="mobile-nav__link" href="whats-inside.html">What's Inside</a>
+      <a class="mobile-nav__link" href="faculty.html">Faculty</a>
+      <a class="mobile-nav__link mobile-nav__link--active" href="sales-individual.html">Individual Sales</a>
+      <a class="mobile-nav__link" href="corporate.html">Corporate Sales</a>
+      <a class="mobile-nav__link" href="pricing.html">Pricing</a>
+      <a class="mobile-nav__link" href="events.html">Events</a>
+      <div class="mobile-nav__group-label">V2 Pages</div>
+      <a class="mobile-nav__link mobile-nav__sublink" href="index-v2.html">Homepage V2</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="pricing-v2.html">Pricing V2</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="whats-inside-v2.html">What's Inside V2</a>
+      <a class="mobile-nav__link" href="#">Login</a>
+      <a class="btn btn--primary btn--header mobile-nav__cta" href="consultation.html">Book Your Free Coaching Session</a>
     </div>
   </header>
 
@@ -922,21 +958,35 @@
   </main>
 
   <!-- Minimal footer -->
-  <footer class="lp-footer">
-    <div class="lp-footer__inner">
-      <a href="index.html" class="brand" aria-label="The Loan Atlas — home">
-        <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" style="height: 32px; width: auto;" />
-      </a>
-      <p style="font-size: 0.75rem; color: var(--on-surface-variant);">&copy; 2026 The Loan Atlas. Precision in lending.</p>
-      <nav style="display: flex; gap: var(--space-md);" aria-label="Legal">
-        <a href="#"
-          style="font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--on-surface-variant); font-weight: 500;">Privacy Policy</a>
-        <a href="#"
-          style="font-size: 0.75rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--on-surface-variant); font-weight: 500;">Terms of Service</a>
-      </nav>
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__top">
+        <a href="index.html" class="brand">
+          <img src="assets/Loan Atlas logo-color.png" alt="The Loan Atlas" class="brand__logo" />
+        </a>
+        <nav class="site-footer__links" aria-label="Footer">
+          <a class="site-footer__link" href="whats-inside.html">What's Inside</a>
+          <a class="site-footer__link" href="faculty.html">Faculty</a>
+          <a class="site-footer__link" href="sales-individual.html">Individual Sales</a>
+          <a class="site-footer__link" href="corporate.html">Corporate Sales</a>
+          <a class="site-footer__link" href="pricing.html">Pricing</a>
+          <a class="site-footer__link" href="events.html">Events</a>
+          <a class="site-footer__link" href="consultation.html">Book a Consultation</a>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        <p>© 2026 The Loan Atlas. Precision in lending.</p>
+        <nav class="site-footer__links">
+          <a class="site-footer__link" href="#">Privacy Policy</a>
+          <a class="site-footer__link" href="#">Terms of Service</a>
+          <a class="site-footer__link" href="#">Accessibility</a>
+          <a class="site-footer__link" href="#">Contact</a>
+        </nav>
+      </div>
     </div>
   </footer>
 
+  <script src="nav.js"></script>
 </body>
 
 </html>

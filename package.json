@@ -1,0 +1,14 @@
+{
+  "name": "tla-website-v1",
+  "private": true,
+  "version": "0.0.0",
+  "description": "The Loan Atlas marketing site. Static HTML/CSS/JS. Playwright is used only for design-review screenshots of the v2 rebuild.",
+  "scripts": {
+    "serve": "python3 -m http.server 4321",
+    "shoot": "node scripts/screenshot.js",
+    "shoot:install": "playwright install chromium"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.0"
+  }
+}
