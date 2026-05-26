@@ -4,9 +4,9 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 
-const ROOT = path.resolve(__dirname, '..');
+const ROOT = path.resolve(__dirname, '..', 'public');
 const PORT = Number(process.env.PORT || 4321);
-const PAGE = process.argv[2] || 'index-v2.html';
+const PAGE = process.argv[2] || 'index.html';
 const SECTION = process.argv[3] || null;
 
 const VIEWPORTS = [
