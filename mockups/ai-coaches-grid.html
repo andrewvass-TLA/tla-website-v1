@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mockup — AI Coaches grid</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../inter-1/inter-1.css" />
+  <style>
+    /* =====================================================================
+       AI Coaches Grid — mockup styles
+       (will move into inter-1.css after approval)
+       ===================================================================== */
+
+    .aicg-section {
+      position: relative;
+      background: linear-gradient(180deg, var(--background) 0%, var(--surface-container-lowest) 100%);
+      color: var(--primary);
+      padding-block: clamp(64px, 8vw, 120px);
+      overflow: hidden;
+    }
+
+    /* Decorative background blobs */
+    .aicg-section::before,
+    .aicg-section::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .aicg-section::before {
+      top: 80px;
+      left: 40px;
+      width: 280px;
+      height: 280px;
+      background: rgba(201, 150, 28, 0.07);
+    }
+
+    .aicg-section::after {
+      bottom: 80px;
+      right: 40px;
+      width: 340px;
+      height: 340px;
+      background: rgba(2, 28, 54, 0.05);
+    }
+
+    .aicg {
+      position: relative;
+      z-index: 1;
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    /* --- Header --- */
+    .aicg__header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      max-width: 48rem;
+      margin: 0 auto var(--space-xl);
+    }
+
+    .aicg__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: var(--space-sm);
+    }
+
+    .aicg__eyebrow svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .aicg__title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+      line-height: 1.1;
+      color: var(--primary);
+      margin: 0 0 var(--space-md);
+      text-wrap: balance;
+    }
+
+    .aicg__rule {
+      width: 96px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--brass) 0%, var(--brass-bright) 100%);
+      border-radius: var(--radius-full);
+      margin-bottom: var(--space-md);
+    }
+
+    .aicg__lede {
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: var(--on-surface-variant);
+      max-width: 36rem;
+      margin: 0;
+      text-wrap: pretty;
+    }
+
+    /* --- Grid --- */
+    .aicg__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: clamp(24px, 3vw, 48px);
+      align-items: center;
+    }
+
+    .aicg__col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xl);
+    }
+
+    /* --- Coach card --- */
+    .aicg-coach {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+      transition: transform 250ms ease;
+    }
+
+    .aicg-coach:hover {
+      transform: translateY(-5px);
+    }
+
+    .aicg-coach__row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .aicg-coach__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+      border-radius: var(--radius-lg);
+      background: rgba(201, 150, 28, 0.10);
+      color: var(--brass);
+      transition: background-color 300ms ease, transform 400ms ease;
+    }
+
+    .aicg-coach:hover .aicg-coach__icon {
+      background: rgba(201, 150, 28, 0.18);
+    }
+
+    .aicg-coach__icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .aicg-coach__heading {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.1875rem;
+      line-height: 1.25;
+      color: var(--primary);
+      margin: 0;
+      transition: color 300ms ease;
+    }
+
+    .aicg-coach:hover .aicg-coach__heading {
+      color: var(--brass);
+    }
+
+    .aicg-coach__eyebrow {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.6875rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brass);
+      padding-left: calc(48px + var(--space-sm));
+      margin-top: -4px;
+    }
+
+    .aicg-coach__desc {
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--on-surface-variant);
+      padding-left: calc(48px + var(--space-sm));
+      margin: 0;
+      text-wrap: pretty;
+    }
+
+    /* Mirror the right column so titles still sit beside icons but copy reads from the inside edge */
+    .aicg__col--right .aicg-coach__row {
+      flex-direction: row;
+    }
+
+    /* --- Center image stage --- */
+    .aicg__center {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding-block: var(--space-md);
+    }
+
+    .aicg__stage {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+    }
+
+    .aicg__image-wrap {
+      position: relative;
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      background: var(--surface-container-low);
+      transition: transform 400ms ease;
+    }
+
+    .aicg__image-wrap:hover {
+      transform: scale(1.02);
+    }
+
+    .aicg__image {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    /* Brass-gradient outset frame behind the image */
+    .aicg__frame {
+      position: absolute;
+      inset: -12px;
+      border-radius: calc(var(--radius-2xl) + 6px);
+      background: linear-gradient(135deg, var(--brass) 0%, var(--brass-bright) 50%, #ffd56c 100%);
+      opacity: 0.85;
+      z-index: -1;
+      /* Punch out the center so the gradient reads as a frame, not a solid block */
+      -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      padding: 4px;
+    }
+
+    /* Floating soft accent shapes around the image */
+    .aicg__blob {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .aicg__blob--tr {
+      top: -28px;
+      right: -36px;
+      width: 80px;
+      height: 80px;
+      background: rgba(201, 150, 28, 0.12);
+    }
+
+    .aicg__blob--bl {
+      bottom: -32px;
+      left: -40px;
+      width: 100px;
+      height: 100px;
+      background: rgba(2, 28, 54, 0.08);
+    }
+
+    .aicg__dot {
+      position: absolute;
+      border-radius: 50%;
+      animation: aicg-float 3s ease-in-out infinite;
+    }
+
+    .aicg__dot--top {
+      top: -28px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 12px;
+      height: 12px;
+      background: var(--brass);
+    }
+
+    .aicg__dot--bottom {
+      bottom: -32px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 8px;
+      height: 8px;
+      background: var(--brass-bright);
+      animation-delay: 0.7s;
+    }
+
+    @keyframes aicg-float {
+      0%, 100% {
+        transform: translate(-50%, 0);
+        opacity: 0.55;
+      }
+      50% {
+        transform: translate(-50%, -10px);
+        opacity: 1;
+      }
+    }
+
+    /* --- Scroll reveal --- */
+    .aicg [data-reveal] {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity 700ms ease, transform 700ms ease;
+    }
+
+    .aicg [data-reveal].is-in {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* --- Responsive --- */
+    @media (max-width: 960px) {
+      .aicg__grid {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-lg);
+      }
+
+      .aicg__center {
+        grid-column: 1 / -1;
+        order: -1;
+        padding-block: var(--space-sm) var(--space-lg);
+      }
+
+      .aicg__stage {
+        max-width: 360px;
+      }
+
+      .aicg__col {
+        gap: var(--space-lg);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .aicg__grid {
+        grid-template-columns: 1fr;
+      }
+
+      .aicg__col {
+        gap: var(--space-lg);
+      }
+
+      .aicg__stage {
+        max-width: 100%;
+      }
+
+      .aicg-coach__eyebrow,
+      .aicg-coach__desc {
+        padding-left: calc(48px + var(--space-sm));
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .aicg__dot,
+      .aicg__image-wrap,
+      .aicg-coach,
+      .aicg-coach__icon,
+      .aicg-coach__heading,
+      .aicg [data-reveal] {
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <section class="aicg-section">
+    <div class="aicg">
+
+      <!-- Header -->
+      <div class="aicg__header" data-reveal>
+        <h2 class="aicg__title">Seven specialized AI coaches — available the moment you need them.</h2>
+        <div class="aicg__rule" aria-hidden="true"></div>
+        <p class="aicg__lede">Built on 25+ years of origination at the highest level. Every script, every framework, every system that separates the top 1% from everyone else — available whenever the work calls for it.</p>
+      </div>
+
+      <!-- Grid -->
+      <div class="aicg__grid">
+
+        <!-- LEFT COLUMN -->
+        <div class="aicg__col aicg__col--left">
+
+          <!-- Coach: Sales & Scripting -->
+          <article class="aicg-coach" data-reveal>
+            <div class="aicg-coach__row">
+              <div class="aicg-coach__icon" aria-hidden="true">
+                <!-- lucide: message-square-quote -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 12a2 2 0 0 0 2-2V8H8"/><path d="M14 12a2 2 0 0 0 2-2V8h-2"/></svg>
+              </div>
+              <h3 class="aicg-coach__heading">Sales &amp; Scripting Coach</h3>
+            </div>
+            <span class="aicg-coach__eyebrow">[OUTCOME EYEBROW]</span>
+            <p class="aicg-coach__desc">Like having Tim Braheem available at 10pm on a Tuesday. Paste a difficult message, prep for a hard conversation, or upload a call recording and get specific coaching on what to do differently.</p>
+          </article>
+
+          <!-- Coach: Content -->
+          <article class="aicg-coach" data-reveal>
+            <div class="aicg-coach__row">
+              <div class="aicg-coach__icon" aria-hidden="true">
+                <!-- lucide: book-open -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+              </div>
+              <h3 class="aicg-coach__heading">Content Coach</h3>
+            </div>
+            <span class="aicg-coach__eyebrow">[OUTCOME EYEBROW]</span>
+            <p class="aicg-coach__desc">Tell it what's happening in your business right now and it finds the exact training — across 200+ modules, masterclasses, and Office Hours sessions — that fixes it.</p>
+          </article>
+
+          <!-- Coach: Health, Mindset & Vitality -->
+          <article class="aicg-coach" data-reveal>
+            <div class="aicg-coach__row">
+              <div class="aicg-coach__icon" aria-hidden="true">
+                <!-- lucide: activity (heart-pulse) -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <h3 class="aicg-coach__heading">Health, Mindset &amp; Vitality Coach</h3>
+            </div>
+            <span class="aicg-coach__eyebrow">[OUTCOME EYEBROW]</span>
+            <p class="aicg-coach__desc">Daily support for the internal state everything else runs on. Reset before high-stakes conversations, work through doubt and overwhelm, and build the consistency that makes everything else sustainable.</p>
+          </article>
+
+        </div>
+
+        <!-- CENTER IMAGE -->
+        <div class="aicg__center" data-reveal>
+          <div class="aicg__stage">
+            <div class="aicg__frame" aria-hidden="true"></div>
+            <div class="aicg__blob aicg__blob--tr" aria-hidden="true"></div>
+            <div class="aicg__blob aicg__blob--bl" aria-hidden="true"></div>
+            <div class="aicg__dot aicg__dot--top" aria-hidden="true"></div>
+            <div class="aicg__dot aicg__dot--bottom" aria-hidden="true"></div>
+            <div class="aicg__image-wrap">
+              <img class="aicg__image" src="../assets/sales-coach-phone.png" alt="AI Sales &amp; Scripting Coach on mobile" />
+            </div>
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="aicg__col aicg__col--right">
+
+          <!-- Coach: Strategic Thought Partner -->
+          <article class="aicg-coach" data-reveal>
+            <div class="aicg-coach__row">
+              <div class="aicg-coach__icon" aria-hidden="true">
+                <!-- lucide: compass -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+              </div>
+              <h3 class="aicg-coach__heading">Strategic Thought Partner</h3>
+            </div>
+            <span class="aicg-coach__eyebrow">[OUTCOME EYEBROW]</span>
+            <p class="aicg-coach__desc">A second brain for the decisions that don't fit on a checklist. Should you hire? Change companies? Restructure your team? Walk into a hard decision with someone to think it through with.</p>
+          </article>
+
+          <!-- Coach: Performance -->
+          <article class="aicg-coach" data-reveal>
+            <div class="aicg-coach__row">
+              <div class="aicg-coach__icon" aria-hidden="true">
+                <!-- lucide: trending-up -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+              </div>
+              <h3 class="aicg-coach__heading">Performance Coach</h3>
+            </div>
+            <span class="aicg-coach__eyebrow">[OUTCOME EYEBROW]</span>
+            <p class="aicg-coach__desc">Daily and weekly accountability tuned to your actual goals — not a generic productivity framework. Reviews what you said you'd do, what you actually did, and what's getting in the way.</p>
+          </article>
+
+          <!-- Coach: Realtor & Partner -->
+          <article class="aicg-coach" data-reveal>
+            <div class="aicg-coach__row">
+              <div class="aicg-coach__icon" aria-hidden="true">
+                <!-- lucide: handshake -->
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m11 17 2 2a1 1 0 1 0 3-3"/><path d="m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4"/><path d="m21 3 1 11h-2"/><path d="M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3"/><path d="M3 4h8"/></svg>
+              </div>
+              <h3 class="aicg-coach__heading">Realtor &amp; Partner Coach</h3>
+            </div>
+            <span class="aicg-coach__eyebrow">[OUTCOME EYEBROW]</span>
+            <p class="aicg-coach__desc">Strategy and scripting for the relationships that drive most of your business. Prep partner meetings, draft outreach, handle the awkward conversations, and build a referral base that compounds.</p>
+          </article>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Reveal-on-scroll for [data-reveal] elements. Skipped under reduced motion.
+    (function () {
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const els = document.querySelectorAll('[data-reveal]');
+      if (reduce || !('IntersectionObserver' in window)) {
+        els.forEach((el) => el.classList.add('is-in'));
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-in');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      els.forEach((el) => io.observe(el));
+    })();
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,1135 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mockup — AI-Powered Systems carousel</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../styles.css" />
+  <style>
+    /* =====================================================================
+       AI Systems Carousel — mockup styles
+       (will move into styles.css after approval)
+       ===================================================================== */
+    .aisc-section {
+      background: linear-gradient(180deg, #0a1628 0%, #131b2e 60%, #1e293b 100%);
+      color: var(--on-primary);
+      padding-block: clamp(48px, 6vw, 96px);
+    }
+
+    .aisc-section__header {
+      max-width: 48rem;
+      margin-inline: auto;
+      text-align: center;
+      margin-bottom: var(--space-xl);
+    }
+
+    .aisc-section__logo {
+      height: 52px;
+      margin: 0 auto var(--space-lg);
+      display: block;
+    }
+
+    .aisc-section__title {
+      color: #ffffff;
+      font-weight: 800;
+      margin-bottom: var(--space-md);
+    }
+
+    .aisc-section__title-accent {
+      display: block;
+      font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+      line-height: 1.05;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 0.2em;
+    }
+
+    .aisc-section__lede {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .aisc {
+      max-width: 1080px;
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    /* --- Card --- */
+    .aisc__card {
+      position: relative;
+      background: var(--surface-container-lowest);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-3xl);
+      box-shadow: var(--shadow-xl);
+      padding: clamp(24px, 4vw, 56px);
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: clamp(24px, 3vw, 40px);
+      align-items: center;
+      min-height: 460px;
+      overflow: hidden;
+      transition: min-height 400ms ease;
+    }
+
+    /* Stacked layout: text on top, image stage below.
+       Toggled by JS when the active slide opts into [data-layout="stacked"]. */
+    .aisc__card.is-stacked {
+      grid-template-columns: minmax(0, 1fr);
+      align-items: start;
+      min-height: 620px;
+      padding-bottom: 0;
+    }
+
+    @media (max-width: 860px) {
+      .aisc__card {
+        grid-template-columns: minmax(0, 1fr);
+        min-height: 0;
+      }
+
+      .aisc__card.is-stacked {
+        min-height: 0;
+      }
+    }
+
+    /* --- Text panel --- */
+    .aisc__panel {
+      position: relative;
+      min-height: 220px;
+    }
+
+    .aisc__slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+      transition: opacity 350ms ease, transform 350ms ease;
+    }
+
+    .aisc__slide.is-active {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+
+    @media (max-width: 860px) {
+      .aisc__panel {
+        position: static;
+        min-height: 0;
+      }
+
+      .aisc__slide {
+        position: static;
+        display: none;
+      }
+
+      .aisc__slide.is-active {
+        display: flex;
+      }
+    }
+
+    .aisc__eyebrow {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brass);
+    }
+
+    .aisc__title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+      line-height: 1.15;
+      color: var(--primary);
+      margin: 0;
+    }
+
+    .aisc__desc {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+
+    /* --- Image stage --- */
+    .aisc__stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 11;
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      background: linear-gradient(135deg, #f2f4f6 0%, #e6e8ea 100%);
+      box-shadow: 0 18px 40px rgba(2, 28, 54, 0.18);
+    }
+
+    .aisc__img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transform: scale(1.02);
+      transition: opacity 450ms ease, transform 600ms ease;
+    }
+
+    .aisc__img.is-active {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Stacked card adjustments — text on top (left-aligned), stage drops below */
+    .aisc__card.is-stacked .aisc__panel {
+      min-height: 0;
+      width: 100%;
+      padding-top: 0;
+    }
+
+    .aisc__card.is-stacked .aisc__slide.is-active {
+      position: static;
+      width: 100%;
+    }
+
+    .aisc__card.is-stacked .aisc__stage {
+      grid-column: 1 / -1;
+      aspect-ratio: auto;
+      width: calc(100% + clamp(48px, 8vw, 112px));
+      margin-left: calc(-1 * clamp(24px, 4vw, 56px));
+      margin-top: 0;
+      height: 440px;
+      border-radius: 0;
+      background: transparent;
+      box-shadow: none;
+      overflow: hidden;
+    }
+
+    /* Chat-mode: same stacked geometry but the stage hugs the chat demo */
+    .aisc__card.is-chat {
+      min-height: 0;
+      padding-bottom: clamp(24px, 4vw, 56px);
+    }
+
+    .aisc__card.is-chat .aisc__stage {
+      height: auto;
+      min-height: 0;
+      width: 100%;
+      margin-left: 0;
+      margin-top: var(--space-md);
+      overflow: visible;
+      background: linear-gradient(135deg, #f2f4f6 0%, #e6e8ea 100%);
+      border-radius: var(--radius-2xl);
+      box-shadow: 0 18px 40px rgba(2, 28, 54, 0.18);
+      padding: clamp(24px, 3vw, 40px);
+    }
+
+    /* --- Compose stage: layered screenshots for the BI slide --- */
+    .aisc__compose {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 450ms ease;
+      pointer-events: none;
+    }
+
+    .aisc__compose.is-active {
+      opacity: 1;
+    }
+
+    .aisc__compose-img {
+      position: absolute;
+      display: block;
+      border-radius: 12px;
+      background: #ffffff;
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.6) inset,
+        0 18px 40px rgba(2, 28, 54, 0.28),
+        0 2px 6px rgba(2, 28, 54, 0.12);
+      border: 1px solid rgba(2, 28, 54, 0.06);
+      transform: translateY(20px) scale(0.96);
+      opacity: 0;
+      transition: opacity 500ms ease, transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .aisc__compose.is-active .aisc__compose-img {
+      transform: none;
+      opacity: 1;
+    }
+
+    .aisc__compose.is-active .aisc__compose-img--core,
+    .aisc__compose.is-active .aisc__compose-img--summary { transition-delay: 0ms; }
+    .aisc__compose.is-active .aisc__compose-img--conversion,
+    .aisc__compose.is-active .aisc__compose-img--action { transition-delay: 180ms; }
+    .aisc__compose.is-active .aisc__compose-img--income,
+    .aisc__compose.is-active .aisc__compose-img--wheel { transition-delay: 320ms; }
+
+    .aisc__compose-img--core {
+      left: 50%;
+      top: 8px;
+      width: min(94%, 1040px);
+      transform-origin: top center;
+      transform: translateX(-50%) translateY(20px) scale(0.96);
+      z-index: 1;
+    }
+
+    .aisc__compose.is-active .aisc__compose-img--core {
+      transform: translateX(-50%);
+    }
+
+    .aisc__compose-img--conversion {
+      right: 4%;
+      bottom: 60px;
+      width: min(38%, 400px);
+      z-index: 3;
+    }
+
+    .aisc__compose-img--income {
+      left: 4%;
+      bottom: 110px;
+      width: min(36%, 380px);
+      z-index: 2;
+    }
+
+    /* Step 2 — Business Planning compose */
+    .aisc__compose-img--summary {
+      left: 50%;
+      top: 8px;
+      width: min(94%, 1040px);
+      transform-origin: top center;
+      transform: translateX(-50%) translateY(20px) scale(0.96);
+      z-index: 1;
+    }
+
+    .aisc__compose.is-active .aisc__compose-img--summary {
+      transform: translateX(-50%);
+    }
+
+    .aisc__compose-img--wheel {
+      right: 4%;
+      bottom: 50px;
+      width: min(36%, 360px);
+      z-index: 3;
+    }
+
+    .aisc__compose-img--action {
+      left: 3%;
+      bottom: 130px;
+      width: min(64%, 680px);
+      z-index: 2;
+    }
+
+    @media (max-width: 860px) {
+      .aisc__card.is-stacked .aisc__stage {
+        width: 100%;
+        margin-left: 0;
+        height: 320px;
+      }
+
+      .aisc__compose-img--core {
+        top: 4px;
+        width: 98%;
+      }
+
+      .aisc__compose-img--conversion {
+        right: 2%;
+        bottom: 40px;
+        width: 48%;
+      }
+
+      .aisc__compose-img--income {
+        left: 2%;
+        bottom: 80px;
+        width: 46%;
+      }
+
+      .aisc__compose-img--summary {
+        top: 4px;
+        width: 98%;
+      }
+
+      .aisc__compose-img--wheel {
+        right: 2%;
+        bottom: 32px;
+        width: 50%;
+      }
+
+      .aisc__compose-img--action {
+        left: 2%;
+        bottom: 90px;
+        width: 76%;
+      }
+    }
+
+    /* --- Chat demo (slides 3/4/5) --- */
+    .aisc__chatdemo {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: clamp(16px, 2vw, 28px);
+      padding: clamp(16px, 3vw, 32px);
+      opacity: 0;
+      transform: translateY(8px);
+      pointer-events: none;
+      transition: opacity 450ms ease, transform 600ms ease;
+    }
+
+    .aisc__chatdemo.is-active {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+
+    /* In chat-mode stacked card, the ACTIVE demo flows naturally so its height
+       drives the stage; inactive demos stay absolute (don't stack) */
+    .aisc__card.is-chat .aisc__chatdemo.is-active {
+      position: static;
+      padding: 0;
+      gap: var(--space-md);
+      transform: none;
+    }
+
+    .aisc__chatdemo-heading {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(1.05rem, 1rem + 0.4vw, 1.35rem);
+      line-height: 1.2;
+      color: var(--primary);
+      text-align: center;
+    }
+
+    .aisc__card.is-chat .aisc__chatdemo-heading {
+      text-align: center;
+      font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);
+      font-weight: 700;
+      margin-bottom: var(--space-xs);
+    }
+
+    .aisc__chatdemo-input {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 12px 12px 16px;
+      background: linear-gradient(180deg, #0c2440 0%, #021c36 100%);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 9999px;
+      box-shadow: 0 14px 32px rgba(2, 28, 54, 0.28),
+        inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      color: #fff;
+      min-height: 56px;
+    }
+
+    .aisc__chatdemo-tools {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .aisc__chatdemo-plus {
+      width: 22px;
+      height: 22px;
+      color: rgba(255, 255, 255, 0.72);
+      flex-shrink: 0;
+    }
+
+    .aisc__chatdemo-tools-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    .aisc__chatdemo-tools-pill svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    .aisc__chatdemo-text {
+      flex: 1;
+      min-width: 0;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.35;
+      color: rgba(255, 255, 255, 0.92);
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .aisc__card.is-chat .aisc__chatdemo-text {
+      white-space: normal;
+      overflow: visible;
+      text-overflow: clip;
+      padding-block: 4px;
+    }
+
+    .aisc__card.is-chat .aisc__chatdemo-input {
+      align-items: flex-start;
+      border-radius: var(--radius-2xl);
+      padding: 14px 14px 14px 18px;
+      min-height: 64px;
+    }
+
+    .aisc__card.is-chat .aisc__chatdemo-tools,
+    .aisc__card.is-chat .aisc__chatdemo-actions {
+      padding-top: 2px;
+    }
+
+    .aisc__chatdemo-typed {
+      white-space: pre;
+    }
+
+    .aisc__chatdemo-caret {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      margin-left: 2px;
+      background: var(--brass-bright);
+      vertical-align: text-bottom;
+      animation: aiscCaretBlink 1s steps(2, end) infinite;
+    }
+
+    @keyframes aiscCaretBlink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    .aisc__chatdemo-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .aisc__chatdemo-mic {
+      width: 18px;
+      height: 18px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .aisc__chatdemo-send {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 9999px;
+      border: 0;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      color: #021c36;
+      cursor: default;
+      box-shadow: 0 4px 12px rgba(234, 194, 90, 0.35);
+    }
+
+    .aisc__chatdemo-send svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .aisc__chatdemo-caret { animation: none; opacity: 1; }
+    }
+
+    @media (max-width: 520px) {
+      .aisc__chatdemo-tools-pill { display: none; }
+      .aisc__chatdemo-input { min-height: 52px; padding-left: 12px; }
+      .aisc__chatdemo-text { font-size: 0.85rem; }
+    }
+
+    /* --- Step nav --- */
+    .aisc__steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .aisc__step {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px 8px 8px;
+      border-radius: 9999px;
+      border: 0;
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.78);
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.875rem;
+      cursor: pointer;
+      transition: background 250ms ease, color 250ms ease, transform 250ms ease, opacity 250ms ease;
+      backdrop-filter: blur(6px);
+      opacity: 0.85;
+    }
+
+    .aisc__step:hover {
+      background: rgba(255, 255, 255, 0.12);
+      color: #fff;
+      opacity: 1;
+    }
+
+    .aisc__step:focus-visible {
+      outline: 2px solid var(--brass-bright);
+      outline-offset: 3px;
+    }
+
+    .aisc__step.is-active {
+      background: #ffffff;
+      color: var(--primary);
+      opacity: 1;
+      transform: scale(1.04);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    }
+
+    .aisc__step-bubble {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.16);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      flex-shrink: 0;
+      transition: background 250ms ease, color 250ms ease;
+    }
+
+    .aisc__step.is-active .aisc__step-bubble {
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      color: #021c36;
+    }
+
+    .aisc__step.is-complete .aisc__step-bubble {
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      color: #021c36;
+    }
+
+    .aisc__step-check {
+      width: 13px;
+      height: 13px;
+    }
+
+    .aisc__step-label {
+      white-space: nowrap;
+    }
+
+    @media (max-width: 520px) {
+      .aisc__step-label {
+        display: none;
+      }
+
+      .aisc__step {
+        padding: 6px;
+      }
+    }
+
+    /* --- Progress sliver under active pill (optional polish) --- */
+    .aisc__step.is-active::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -10px;
+      width: 22px;
+      height: 2px;
+      transform: translateX(-50%);
+      background: linear-gradient(90deg, #c9961c, #eac25a);
+      border-radius: 9999px;
+      opacity: 0;
+      animation: aiscBar 5s linear forwards;
+    }
+
+    .aisc__step {
+      position: relative;
+    }
+
+    @keyframes aiscBar {
+      from {
+        opacity: 1;
+        transform: translateX(-50%) scaleX(0);
+        transform-origin: left;
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(-50%) scaleX(1);
+        transform-origin: left;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+
+      .aisc__slide,
+      .aisc__img,
+      .aisc__step,
+      .aisc__step::after {
+        transition: none !important;
+        animation: none !important;
+      }
+    }
+
+    /* --- Mockup-only frame so the page feels like a real homepage strip --- */
+    body {
+      background: #f7f9fb;
+    }
+
+    .mockup-banner {
+      max-width: var(--container-max);
+      margin: 24px auto;
+      padding: 12px 20px;
+      border-radius: 12px;
+      background: #021c36;
+      color: #eac25a;
+      font: 600 13px/1.4 var(--font-body);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="mockup-banner">Mockup preview — AI-Powered Systems carousel (does not modify the live site)</div>
+
+  <section class="aisc-section" aria-labelledby="aisc-heading">
+    <div class="container">
+      <header class="aisc-section__header">
+        <img class="aisc-section__logo" src="../assets/Loan%20Atlas%20logo-gold.png" alt="The Loan Atlas" />
+        <h2 id="aisc-heading" class="t-display aisc-section__title">
+          <span class="aisc-section__title-accent">AI-Powered Systems</span>
+          That Help You Close More Loans With Less Chaos
+        </h2>
+        <p class="t-body-lg aisc-section__lede">
+          Inside The Loan Atlas, these five systems work together to help you make better decisions, execute faster, and
+          stay focused on what actually drives production.
+        </p>
+      </header>
+
+      <div class="aisc" data-aisc data-interval="5000">
+        <div class="aisc__card is-stacked">
+          <div class="aisc__panel" aria-live="polite">
+
+            <article class="aisc__slide is-active" data-step="0" data-layout="stacked">
+              <span class="aisc__eyebrow">Stop Flying Blind</span>
+              <h3 class="aisc__title">AI Business Intelligence System</h3>
+              <p class="aisc__desc">See exactly what's driving your numbers — and what isn't. Which lead sources are
+                producing? Which referral partners are worth your time? Where are deals dying? This system replaces
+                guesswork with real answers so you stop wasting effort on things that aren't working.</p>
+            </article>
+
+            <article class="aisc__slide" data-step="1" data-layout="stacked">
+              <span class="aisc__eyebrow">Stop Starting from Scratch Every Week</span>
+              <h3 class="aisc__title">AI Business Planning &amp; Execution</h3>
+              <p class="aisc__desc">Know exactly what to do tomorrow, next week, and next month. Get a personalized
+                business plan and a clear weekly priority list based on your real pipeline and goals. Not a generic
+                to-do list — a system that tells you what moves the needle right now.</p>
+            </article>
+
+            <article class="aisc__slide" data-step="2" data-layout="chat">
+              <span class="aisc__eyebrow">Stop Guessing What to Say</span>
+              <h3 class="aisc__title">AI Sales &amp; Marketing Advisor</h3>
+              <p class="aisc__desc">Get the right words for every conversation. Rate shoppers. Realtor meetings.
+                Objections. Follow-up. This system helps you stop improvising and start communicating with more clarity,
+                confidence, and precision.</p>
+            </article>
+
+            <article class="aisc__slide" data-step="3" data-layout="chat">
+              <span class="aisc__eyebrow">Stop Spinning Your Wheels</span>
+              <h3 class="aisc__title">AI Performance Coach</h3>
+              <p class="aisc__desc">Find the exact gaps slowing your growth — and fix them faster. Instead of consuming
+                more content and hoping something sticks, you get a focused plan to improve the skills that matter most
+                right now.</p>
+            </article>
+
+            <article class="aisc__slide" data-step="4" data-layout="chat">
+              <span class="aisc__eyebrow">Stop Making Big Decisions Alone</span>
+              <h3 class="aisc__title">AI Strategic Thought Partner</h3>
+              <p class="aisc__desc">Get real-time guidance on decisions, deal scenarios, and growth opportunities. Think
+                more clearly. Move faster. Make better decisions with less hesitation.</p>
+            </article>
+
+          </div>
+
+          <div class="aisc__stage" aria-hidden="true">
+            <div class="aisc__compose is-active" data-step="0">
+              <img class="aisc__compose-img aisc__compose-img--core"
+                src="../assets/HOME-business-intelligence-core%20assumptions.png"
+                alt="Core assumptions dashboard" />
+              <img class="aisc__compose-img aisc__compose-img--income"
+                src="../assets/HOME-business-intelligence-monthly-income.png"
+                alt="Monthly income breakdown" />
+              <img class="aisc__compose-img aisc__compose-img--conversion"
+                src="../assets/HOME-business-intelligence-conversion-average.png"
+                alt="Conversion average summary" />
+            </div>
+            <div class="aisc__compose" data-step="1">
+              <img class="aisc__compose-img aisc__compose-img--summary"
+                src="../assets/HOME-business-planning-summary.png"
+                alt="Business plan summary dashboard" />
+              <img class="aisc__compose-img aisc__compose-img--action"
+                src="../assets/HOME-business-planning-action-item.png"
+                alt="Weekly action item" />
+              <img class="aisc__compose-img aisc__compose-img--wheel"
+                src="../assets/HOME-business-planning-wheel.png"
+                alt="Business planning wheel diagram" />
+            </div>
+            <div class="aisc__chatdemo" data-step="2"
+              data-messages="How do I respond to &quot;I want to wait for rates to drop&quot;?|Write a follow-up email to a realtor I met last week|What should I say to a rate shopper who's price-checking me?|Draft a script for tomorrow's open house">
+              <p class="aisc__chatdemo-heading">What's Your Sales Challenge Today?</p>
+              <div class="aisc__chatdemo-input">
+                <div class="aisc__chatdemo-tools">
+                  <svg class="aisc__chatdemo-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
+                </div>
+                <div class="aisc__chatdemo-text">
+                  <span class="aisc__chatdemo-typed"></span><span class="aisc__chatdemo-caret"></span>
+                </div>
+                <div class="aisc__chatdemo-actions">
+                  <svg class="aisc__chatdemo-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                    <line x1="12" y1="19" x2="12" y2="23" />
+                    <line x1="8" y1="23" x2="16" y2="23" />
+                  </svg>
+                  <button class="aisc__chatdemo-send" type="button" tabindex="-1" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <line x1="12" y1="19" x2="12" y2="5" />
+                      <polyline points="5 12 12 5 19 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="aisc__chatdemo" data-step="3"
+              data-messages="What's the biggest gap holding me back this quarter?|Why am I losing pre-approvals to the competition?|Help me build a 90-day improvement plan|How do I get more disciplined with my morning routine?">
+              <p class="aisc__chatdemo-heading">Where Are You Stuck Right Now?</p>
+              <div class="aisc__chatdemo-input">
+                <div class="aisc__chatdemo-tools">
+                  <svg class="aisc__chatdemo-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
+                </div>
+                <div class="aisc__chatdemo-text">
+                  <span class="aisc__chatdemo-typed"></span><span class="aisc__chatdemo-caret"></span>
+                </div>
+                <div class="aisc__chatdemo-actions">
+                  <svg class="aisc__chatdemo-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                    <line x1="12" y1="19" x2="12" y2="23" />
+                    <line x1="8" y1="23" x2="16" y2="23" />
+                  </svg>
+                  <button class="aisc__chatdemo-send" type="button" tabindex="-1" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <line x1="12" y1="19" x2="12" y2="5" />
+                      <polyline points="5 12 12 5 19 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="aisc__chatdemo" data-step="4"
+              data-messages="Should I hire an LOA or stay solo this year?|Walk me through whether this referral partner is worth the time|How should I handle this counter-offer scenario?|Help me decide: scale my team or stay lean?">
+              <p class="aisc__chatdemo-heading">What Decision Can I Help You Think Through?</p>
+              <div class="aisc__chatdemo-input">
+                <div class="aisc__chatdemo-tools">
+                  <svg class="aisc__chatdemo-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 5v14M5 12h14" />
+                  </svg>
+                </div>
+                <div class="aisc__chatdemo-text">
+                  <span class="aisc__chatdemo-typed"></span><span class="aisc__chatdemo-caret"></span>
+                </div>
+                <div class="aisc__chatdemo-actions">
+                  <svg class="aisc__chatdemo-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                    <line x1="12" y1="19" x2="12" y2="23" />
+                    <line x1="8" y1="23" x2="16" y2="23" />
+                  </svg>
+                  <button class="aisc__chatdemo-send" type="button" tabindex="-1" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                      stroke-linejoin="round">
+                      <line x1="12" y1="19" x2="12" y2="5" />
+                      <polyline points="5 12 12 5 19 12" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <nav class="aisc__steps" aria-label="AI systems">
+          <button type="button" class="aisc__step is-active" data-step="0" aria-current="step">
+            <span class="aisc__step-bubble" aria-hidden="true">1</span>
+            <span class="aisc__step-label">Intelligence</span>
+          </button>
+          <button type="button" class="aisc__step" data-step="1">
+            <span class="aisc__step-bubble" aria-hidden="true">2</span>
+            <span class="aisc__step-label">Planning</span>
+          </button>
+          <button type="button" class="aisc__step" data-step="2">
+            <span class="aisc__step-bubble" aria-hidden="true">3</span>
+            <span class="aisc__step-label">Sales &amp; Marketing</span>
+          </button>
+          <button type="button" class="aisc__step" data-step="3">
+            <span class="aisc__step-bubble" aria-hidden="true">4</span>
+            <span class="aisc__step-label">Performance</span>
+          </button>
+          <button type="button" class="aisc__step" data-step="4">
+            <span class="aisc__step-bubble" aria-hidden="true">5</span>
+            <span class="aisc__step-label">Strategy</span>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    (function () {
+      const root = document.querySelector('[data-aisc]');
+      if (!root) return;
+
+      const interval = parseInt(root.dataset.interval, 10) || 5000;
+      const card = root.querySelector('.aisc__card');
+      const slides = Array.from(root.querySelectorAll('.aisc__slide'));
+      const visuals = Array.from(root.querySelectorAll('.aisc__stage > [data-step]'));
+      const steps = Array.from(root.querySelectorAll('.aisc__step'));
+      const total = slides.length;
+
+      const checkSVG = '<svg class="aisc__step-check" viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="m229.66 77.66-128 128a8 8 0 0 1-11.32 0l-56-56a8 8 0 0 1 11.32-11.32L96 188.69 218.34 66.34a8 8 0 0 1 11.32 11.32Z"/></svg>';
+
+      let current = 0;
+      let timer = null;
+      let paused = false;
+      let visible = false;
+
+      function setStep(next) {
+        if (next === current) return;
+        current = ((next % total) + total) % total;
+
+        slides.forEach((el, i) => el.classList.toggle('is-active', i === current));
+        visuals.forEach((el) => {
+          const step = parseInt(el.dataset.step, 10);
+          el.classList.toggle('is-active', step === current);
+        });
+
+        const activeSlide = slides[current];
+        const layout = activeSlide ? activeSlide.dataset.layout : '';
+        if (card) {
+          card.classList.toggle('is-stacked', layout === 'stacked' || layout === 'chat');
+          card.classList.toggle('is-chat', layout === 'chat');
+        }
+
+        steps.forEach((el, i) => {
+          const isActive = i === current;
+          const isComplete = i < current;
+          el.classList.toggle('is-active', isActive);
+          el.classList.toggle('is-complete', isComplete);
+          if (isActive) {
+            el.setAttribute('aria-current', 'step');
+          } else {
+            el.removeAttribute('aria-current');
+          }
+          const bubble = el.querySelector('.aisc__step-bubble');
+          if (!bubble) return;
+          if (isComplete) {
+            bubble.innerHTML = checkSVG;
+          } else {
+            bubble.textContent = String(i + 1);
+          }
+        });
+
+        // Force-restart the progress bar animation by reflowing the active pill.
+        const activePill = steps[current];
+        if (activePill) {
+          activePill.style.animation = 'none';
+          // eslint-disable-next-line no-unused-expressions
+          activePill.offsetHeight;
+          activePill.style.animation = '';
+        }
+      }
+
+      function startTimer() {
+        stopTimer();
+        if (paused || !visible) return;
+        timer = window.setTimeout(() => setStep(current + 1), interval);
+      }
+
+      function stopTimer() {
+        if (timer) {
+          window.clearTimeout(timer);
+          timer = null;
+        }
+      }
+
+      // Restart timer whenever step changes via any source.
+      const observer = new MutationObserver(startTimer);
+      slides.forEach(s => observer.observe(s, { attributes: true, attributeFilter: ['class'] }));
+
+      steps.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const next = parseInt(btn.dataset.step, 10);
+          if (!Number.isNaN(next)) setStep(next);
+        });
+      });
+
+      root.addEventListener('mouseenter', () => { paused = true; stopTimer(); });
+      root.addEventListener('mouseleave', () => { paused = false; startTimer(); });
+      root.addEventListener('focusin', () => { paused = true; stopTimer(); });
+      root.addEventListener('focusout', () => { paused = false; startTimer(); });
+
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            visible = entry.isIntersecting;
+            if (visible) startTimer(); else stopTimer();
+            chatDemos.forEach(d => d.sync());
+          });
+        }, { threshold: 0.25 });
+        io.observe(root);
+      } else {
+        visible = true;
+        startTimer();
+      }
+
+      // --- Chat demo typewriters ---
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function createChatDemo(el) {
+        const step = parseInt(el.dataset.step, 10);
+        const messages = (el.dataset.messages || '').split('|').map(s => s.trim()).filter(Boolean);
+        const typedEl = el.querySelector('.aisc__chatdemo-typed');
+        let msgIdx = 0;
+        let charIdx = 0;
+        let mode = 'typing'; // 'typing' | 'pause' | 'erasing' | 'gap'
+        let timeoutId = null;
+        let running = false;
+
+        function clearTimer() {
+          if (timeoutId) { window.clearTimeout(timeoutId); timeoutId = null; }
+        }
+
+        function schedule(ms, fn) {
+          clearTimer();
+          if (!running) return;
+          timeoutId = window.setTimeout(() => { timeoutId = null; if (running) fn(); }, ms);
+        }
+
+        function tick() {
+          if (!messages.length) return;
+          const msg = messages[msgIdx];
+          if (mode === 'typing') {
+            charIdx++;
+            typedEl.textContent = msg.slice(0, charIdx);
+            if (charIdx >= msg.length) {
+              mode = 'pause';
+              schedule(1500, tick);
+            } else {
+              const jitter = 32 + Math.random() * 26;
+              schedule(jitter, tick);
+            }
+          } else if (mode === 'pause') {
+            mode = 'erasing';
+            schedule(14, tick);
+          } else if (mode === 'erasing') {
+            charIdx--;
+            typedEl.textContent = msg.slice(0, Math.max(0, charIdx));
+            if (charIdx <= 0) {
+              charIdx = 0;
+              mode = 'gap';
+              schedule(350, tick);
+            } else {
+              schedule(14, tick);
+            }
+          } else if (mode === 'gap') {
+            msgIdx = (msgIdx + 1) % messages.length;
+            mode = 'typing';
+            schedule(50, tick);
+          }
+        }
+
+        function start() {
+          if (running) return;
+          running = true;
+          // Restart from the beginning of the current message so user sees a fresh type-in.
+          charIdx = 0;
+          mode = 'typing';
+          typedEl.textContent = '';
+          if (reduceMotion) {
+            // Show first message statically and don't run timers.
+            typedEl.textContent = messages[msgIdx] || '';
+            return;
+          }
+          schedule(120, tick);
+        }
+
+        function stop() {
+          running = false;
+          clearTimer();
+          typedEl.textContent = '';
+        }
+
+        function sync() {
+          const isActive = el.classList.contains('is-active') && visible;
+          if (isActive) start(); else stop();
+        }
+
+        return { step, sync, start, stop };
+      }
+
+      const chatDemos = Array.from(root.querySelectorAll('.aisc__chatdemo')).map(createChatDemo);
+
+      // Re-sync chat demos whenever any visual's class flips (driven by the existing observer pattern).
+      const visualObserver = new MutationObserver(() => chatDemos.forEach(d => d.sync()));
+      visuals.forEach(v => visualObserver.observe(v, { attributes: true, attributeFilter: ['class'] }));
+
+      // Initial sync (matches the slide marked is-active on first paint).
+      chatDemos.forEach(d => d.sync());
+    })();
+  </script>
+</body>
+
+</html>

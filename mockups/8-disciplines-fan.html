@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mockup — 8 Disciplines fan-stack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../inter-1/inter-1.css" />
+  <link rel="stylesheet" href="../chrome.css" />
+  <style>
+    /* =====================================================================
+       8 Disciplines — Fan Stack mockup
+       (will move into inter-1.css after approval)
+       ===================================================================== */
+
+    .disc-section {
+      background: var(--surface-container-low);
+      padding-block: clamp(64px, 8vw, 112px);
+      overflow: hidden;
+    }
+
+    .disc-section__inner {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    /* --- Top split: copy on left, fan on right --- */
+    .disc-split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+      margin-bottom: var(--space-xl);
+    }
+    @media (min-width: 960px) {
+      .disc-split {
+        grid-template-columns: minmax(320px, 5fr) minmax(0, 7fr);
+        gap: clamp(32px, 4vw, 64px);
+      }
+    }
+
+    .disc-copy__eyebrow {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: var(--space-sm);
+    }
+    .disc-copy__title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      color: var(--primary);
+      margin: 0 0 var(--space-md);
+      text-wrap: balance;
+    }
+    .disc-copy__title em {
+      font-style: normal;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .disc-copy__lede {
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--on-surface-variant);
+      margin: 0 0 var(--space-lg);
+      max-width: 36rem;
+    }
+    .disc-copy__pager {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+    }
+    .disc-copy__count {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .disc-copy__count strong {
+      color: var(--primary);
+      font-weight: 800;
+    }
+    .disc-copy__arrows {
+      display: inline-flex;
+      gap: 8px;
+    }
+    .disc-arrow {
+      width: 44px;
+      height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--outline-variant);
+      background: var(--surface-container-lowest);
+      color: var(--primary);
+      cursor: pointer;
+      transition: background-color 200ms ease, color 200ms ease, transform 200ms ease, border-color 200ms ease;
+    }
+    .disc-arrow:hover {
+      background: var(--primary);
+      color: #fff;
+      border-color: var(--primary);
+      transform: translateY(-1px);
+    }
+    .disc-arrow:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+      transform: none;
+      background: var(--surface-container-lowest);
+      color: var(--primary);
+      border-color: var(--outline-variant);
+    }
+    .disc-arrow svg { width: 18px; height: 18px; }
+
+    /* --- Overlapping card carousel --- */
+    .disc-fan {
+      position: relative;
+      margin-right: calc(-1 * var(--gutter));
+    }
+    .disc-fan__viewport {
+      overflow-x: auto;
+      overflow-y: visible;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 32px 0 48px;
+      -webkit-mask-image: linear-gradient(90deg,
+        transparent 0,
+        #000 6%,
+        #000 90%,
+        transparent 100%);
+              mask-image: linear-gradient(90deg,
+        transparent 0,
+        #000 6%,
+        #000 90%,
+        transparent 100%);
+    }
+    .disc-fan__viewport::-webkit-scrollbar { display: none; }
+
+    .disc-fan__track {
+      display: flex;
+      align-items: stretch;
+      gap: 0;
+      padding-left: clamp(16px, 3vw, 32px);
+      padding-right: 60%;
+    }
+
+    /* Card — matches site card style (white surface, outline, soft shadow) */
+    .disc-card {
+      --i: 0;
+      flex: 0 0 auto;
+      width: clamp(240px, 24vw, 300px);
+      height: clamp(360px, 36vw, 440px);
+      margin-left: -90px;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+      position: relative;
+      z-index: calc(10 + var(--i));
+      background: var(--surface-container-lowest);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: transform 320ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                  box-shadow 320ms ease,
+                  border-color 200ms ease;
+      animation: disc-card-in 600ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+      animation-delay: calc(var(--i) * 80ms);
+    }
+    .disc-card:first-child { margin-left: 0; }
+
+    @keyframes disc-card-in {
+      0%   { opacity: 0; transform: translateX(120%); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+
+    .disc-card:hover,
+    .disc-card:focus-within {
+      z-index: 999;
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-xl);
+      border-color: rgba(201, 150, 28, 0.35);
+    }
+
+    /* Media — placeholder image area, anchored to top so it appears to "push up" as the body grows */
+    .disc-card__media {
+      position: relative;
+      flex: 1 1 auto;
+      min-height: 0;
+      overflow: hidden;
+      background:
+        radial-gradient(120% 80% at 100% 0%, rgba(234, 194, 90, 0.18), transparent 60%),
+        radial-gradient(120% 80% at 0% 100%, rgba(2, 28, 54, 0.16), transparent 60%),
+        linear-gradient(160deg, #0a1628 0%, #021c36 50%, #131b2e 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.45);
+    }
+    .disc-card__media-icon {
+      width: 56px;
+      height: 56px;
+      opacity: 0.85;
+      transition: transform 320ms cubic-bezier(0.2, 0.7, 0.2, 1);
+    }
+    .disc-card:hover .disc-card__media-icon,
+    .disc-card:focus-within .disc-card__media-icon {
+      transform: translateY(-8px) scale(0.92);
+    }
+    .disc-card__num {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.6875rem;
+      letter-spacing: 0.18em;
+      color: var(--brass-bright);
+      padding: 5px 9px;
+      border-radius: var(--radius-full);
+      background: rgba(2, 28, 54, 0.6);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+
+    /* Body — white footer with title; grows on hover to show description */
+    .disc-card__body {
+      flex: 0 0 auto;
+      padding: var(--space-md);
+      background: var(--surface-container-lowest);
+      border-top: 1px solid var(--outline-variant);
+    }
+    .disc-card__title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.25;
+      letter-spacing: -0.005em;
+      color: var(--on-surface);
+      text-wrap: balance;
+      margin: 0;
+    }
+    .disc-card__desc {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      line-height: 1.55;
+      color: var(--on-surface-variant);
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 380ms cubic-bezier(0.2, 0.7, 0.2, 1),
+                  opacity 240ms ease 60ms,
+                  margin-top 380ms cubic-bezier(0.2, 0.7, 0.2, 1);
+      text-wrap: pretty;
+    }
+    .disc-card:hover .disc-card__desc,
+    .disc-card:focus-within .disc-card__desc {
+      max-height: 220px;
+      opacity: 1;
+      margin-top: 10px;
+    }
+
+    /* --- Below: full-width video + closing line --- */
+    .disc-video {
+      margin-top: var(--space-xl);
+    }
+    .disc-video .video-ph__caption {
+      font-size: 1.0625rem;
+    }
+    .disc-closing {
+      margin: var(--space-xl) auto 0;
+      max-width: 56rem;
+      text-align: center;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(1.125rem, 0.9rem + 0.7vw, 1.375rem);
+      line-height: 1.45;
+      color: var(--primary);
+      text-wrap: balance;
+    }
+    .disc-closing em {
+      font-style: normal;
+      color: var(--brass);
+    }
+
+    /* --- Reduced motion --- */
+    @media (prefers-reduced-motion: reduce) {
+      .disc-card,
+      .disc-card__media,
+      .disc-card__desc {
+        animation: none !important;
+        transition: none !important;
+      }
+      .disc-card {
+        transform: none !important;
+      }
+    }
+
+    /* --- Mobile tweaks --- */
+    @media (max-width: 720px) {
+      .disc-card {
+        margin-left: -80px;
+        width: clamp(200px, 60vw, 260px);
+        height: clamp(300px, 70vw, 380px);
+      }
+      .disc-fan__track { padding-right: 30%; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="site-main" style="padding-top: var(--header-h);">
+
+    <section class="disc-section">
+      <div class="disc-section__inner">
+
+        <div class="disc-split">
+
+          <!-- LEFT: heading + body -->
+          <div class="disc-copy">
+            <span class="disc-copy__eyebrow">The Training Framework</span>
+            <h2 class="disc-copy__title">Built upon the <em>8 Disciplines</em> of Mortgage Origination Mastery.</h2>
+            <p class="disc-copy__lede">Nobody taught you how to run a mortgage business. They taught you how to originate loans. The 8 Disciplines cover what's actually required to do both — so you're building something that compounds instead of grinding through a job that resets every Monday.</p>
+
+            <div class="disc-copy__pager">
+              <span class="disc-copy__count"><strong id="disc-current">01</strong> &nbsp;/&nbsp; 08</span>
+              <div class="disc-copy__arrows">
+                <button class="disc-arrow" id="disc-prev" type="button" aria-label="Previous discipline">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                </button>
+                <button class="disc-arrow" id="disc-next" type="button" aria-label="Next discipline">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT: fan stack -->
+          <div class="disc-fan">
+            <div class="disc-fan__viewport" id="disc-viewport">
+              <div class="disc-fan__track">
+
+                <article class="disc-card" style="--i:0;" tabindex="0">
+                  <div class="disc-card__media">
+                    <span class="disc-card__num">01</span>
+                    <svg class="disc-card__media-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3h7v7H3zM14 3h7v7h-7zM14 14h7v7h-7zM3 14h7v7H3z"/></svg>
+                  </div>
+                  <div class="disc-card__body">
+                    <h3 class="disc-card__title">Essential Product Knowledge</h3>
+                    <p class="disc-card__desc">Stop competing on rate. Become the expert in the room — on products, economics, mortgage math, and client psychology — so your advice commands trust instead of comparison.</p>
+                  </div>
+                </article>
+
+                <article class="disc-card" style="--i:1;" tabindex="0">
+                  <div class="disc-card__media">
+                    <span class="disc-card__num">02</span>
+                    <svg class="disc-card__media-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3-9 4 18 3-9h4"/></svg>
+                  </div>
+                  <div class="disc-card__body">
+                    <h3 class="disc-card__title">A System for Selling</h3>
+                    <p class="disc-card__desc">A structured, repeatable sales framework built around the Pre-Purchase Consultation. Every conversation moves from rate-shopping to committed client — predictably, not by feel.</p>
+                  </div>
+                </article>
+
+                <article class="disc-card" style="--i:2;" tabindex="0">
+                  <div class="disc-card__media">
+                    <span class="disc-card__num">03</span>
+                    <svg class="disc-card__media-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-8-8 18-2-8-8-2z"/></svg>
+                  </div>
+                  <div class="disc-card__body">
+                    <h3 class="disc-card__title">Marketing Mastery</h3>
+                    <p class="disc-card__desc">Stop waiting for the phone to ring. Build a consistent message, a real referral strategy, and a presence that brings opportunities to you instead of making you chase them.</p>
+                  </div>
+                </article>
+
+                <article class="disc-card" style="--i:3;" tabindex="0">
+                  <div class="disc-card__media">
+                    <span class="disc-card__num">04</span>
+                    <svg class="disc-card__media-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                  </div>
+                  <div class="disc-card__body">
+                    <h3 class="disc-card__title">Team Building &amp; Leadership</h3>
+                    <p class="disc-card__desc">Stop trying to do everything yourself. Learn exactly when and who to hire, how to delegate without things falling apart, and how to build a team that doesn't need you to function.</p>
+                  </div>
+                </article>
+
+                <article class="disc-card" style="--i:4;" tabindex="0">
+                  <div class="disc-card__media">
+                    <span class="disc-card__num">05</span>
+                    <svg class="disc-card__media-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg>
+                  </div>
+                  <div class="disc-card__body">
+                    <h3 class="disc-card__title">Systems of Customer Service</h3>
+                    <p class="disc-card__desc">Home of the Perfect Loan Process. A repeatable, proactive client experience that reduces stress, prevents surprises, and turns every closing into the starting point for the next loan.</p>
+                  </div>
+                </article>
+
+                <article class="disc-card" style="--i:5;" tabindex="0">
+                  <div class="disc-card__media">
+                    <span class="disc-card__num">06</span>
+                    <svg class="disc-card__media-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8 5.8 21.3l2.4-7.4L2 9.4h7.6z"/></svg>
+                  </div>
+                  <div class="disc-card__body">
+                    <h3 class="disc-card__title">Legacy &amp; Freedom</h3>
+                    <p class="disc-card__desc">Design the life you actually want — not just a career you drift through. Vision, wealth beyond commissions, succession thinking, and building a business that serves the life you're trying to live.</p>
+                  </div>
+                </article>
+
+                <article class="disc-card" style="--i:6;" tabindex="0">
+                  <div class="disc-card__media">
+                    <span class="disc-card__num">07</span>
+                    <svg class="disc-card__media-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a5 5 0 0 0-5 5v3a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5z"/><path d="M5 12a7 7 0 0 0 14 0M12 19v3"/></svg>
+                  </div>
+                  <div class="disc-card__body">
+                    <h3 class="disc-card__title">Mindset, Health &amp; Personal Development</h3>
+                    <p class="disc-card__desc">The problems you think are external — leads, conversion, the market — are often internal. This discipline addresses what's actually underneath: fear, self-doubt, reactivity, and the energy everything else runs on.</p>
+                  </div>
+                </article>
+
+                <article class="disc-card" style="--i:7;" tabindex="0">
+                  <div class="disc-card__media">
+                    <span class="disc-card__num">08</span>
+                    <svg class="disc-card__media-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                  </div>
+                  <div class="disc-card__body">
+                    <h3 class="disc-card__title">Time &amp; Task Management</h3>
+                    <p class="disc-card__desc">Stop letting the day control you. Build planning systems that run from annual goals to daily priorities — so your best hours go to the work that actually moves your business forward.</p>
+                  </div>
+                </article>
+
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /disc-split -->
+
+        <!-- Full-width intro video -->
+        <div class="video-ph video-ph--wide disc-video">
+          <div class="video-ph__inner">
+            <button class="video-ph__btn" aria-label="Watch introduction to the 8 Disciplines">
+              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </button>
+            <span class="video-ph__caption">Introduction to the 8 Disciplines of Origination Mastery</span>
+          </div>
+          <div class="video-ph__foot">
+            <span class="video-ph__badge">Teaching Module</span>
+            <span class="video-ph__dur">12:30</span>
+          </div>
+          <div class="video-ph__progress"><div class="video-ph__progress-fill" style="width: 0;"></div></div>
+        </div>
+
+        <!-- Closing line full width -->
+        <p class="disc-closing">
+          Eight disciplines. One operating system for the business you actually want to run — built around the work that <em>actually closes loans</em>.
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    /* Pager: arrow buttons + scroll-position sync */
+    (function () {
+      const viewport = document.getElementById('disc-viewport');
+      const prev = document.getElementById('disc-prev');
+      const next = document.getElementById('disc-next');
+      const current = document.getElementById('disc-current');
+      if (!viewport) return;
+      const cards = Array.from(viewport.querySelectorAll('.disc-card'));
+
+      function activeIndex() {
+        const vpRect = viewport.getBoundingClientRect();
+        const center = vpRect.left + vpRect.width / 2;
+        let best = 0, bestDist = Infinity;
+        cards.forEach((c, i) => {
+          const r = c.getBoundingClientRect();
+          const cx = r.left + r.width / 2;
+          const d = Math.abs(cx - center);
+          if (d < bestDist) { bestDist = d; best = i; }
+        });
+        return best;
+      }
+
+      function scrollToIndex(i) {
+        i = Math.max(0, Math.min(cards.length - 1, i));
+        const card = cards[i];
+        const vpRect = viewport.getBoundingClientRect();
+        const cardRect = card.getBoundingClientRect();
+        const delta = (cardRect.left + cardRect.width / 2) - (vpRect.left + vpRect.width / 2);
+        viewport.scrollBy({ left: delta, behavior: 'smooth' });
+      }
+
+      function updatePager() {
+        const i = activeIndex();
+        current.textContent = String(i + 1).padStart(2, '0');
+        prev.disabled = i === 0;
+        next.disabled = i === cards.length - 1;
+      }
+
+      prev.addEventListener('click', () => scrollToIndex(activeIndex() - 1));
+      next.addEventListener('click', () => scrollToIndex(activeIndex() + 1));
+
+      let ticking = false;
+      viewport.addEventListener('scroll', () => {
+        if (!ticking) {
+          requestAnimationFrame(() => { updatePager(); ticking = false; });
+          ticking = true;
+        }
+      }, { passive: true });
+
+      updatePager();
+    })();
+  </script>
+
+</body>
+
+</html>

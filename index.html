@@ -12,8 +12,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="chrome.css" />
+  <link rel="stylesheet" href="inter-1.css" />
+  <link rel="stylesheet" href="../chrome.css" />
 </head>
 
 <body>
@@ -21,7 +21,7 @@
   <header class="site-header">
     <div class="site-header__inner">
       <a href="index.html" class="brand" aria-label="The Loan Atlas — home">
-        <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
+        <img src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
       </a>
       <nav class="nav" aria-label="Primary">
         <a class="nav__link" href="whats-inside.html">What's Inside</a>
@@ -32,13 +32,13 @@
         <a class="nav__link" href="events.html">Events</a>
         <div class="nav__dropdown" data-open="false">
           <button class="nav__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
-            V2 Pages
+            Other Designs
             <svg class="nav__dropdown-chevron" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="nav__dropdown-menu" role="menu">
-          <a class="nav__dropdown-item" role="menuitem" href="index-v2.html">Homepage V2</a>
-          <a class="nav__dropdown-item" role="menuitem" href="pricing-v2.html">Pricing V2</a>
-          <a class="nav__dropdown-item" role="menuitem" href="whats-inside-v2.html">What's Inside V2</a>
+          <a class="nav__dropdown-item" role="menuitem" href="../poppins-1/index.html">Poppins 1 — Homepage</a>
+          <a class="nav__dropdown-item" role="menuitem" href="../poppins-1/pricing.html">Poppins 1 — Pricing</a>
+          <a class="nav__dropdown-item" role="menuitem" href="../kajabi-1/whats-inside.html">Kajabi 1 — What's Inside</a>
           </div>
         </div>
       </nav>
@@ -59,10 +59,10 @@
       <a class="mobile-nav__link" href="corporate.html">Corporate Sales</a>
       <a class="mobile-nav__link" href="pricing.html">Pricing</a>
       <a class="mobile-nav__link" href="events.html">Events</a>
-      <div class="mobile-nav__group-label">V2 Pages</div>
-      <a class="mobile-nav__link mobile-nav__sublink" href="index-v2.html">Homepage V2</a>
-      <a class="mobile-nav__link mobile-nav__sublink" href="pricing-v2.html">Pricing V2</a>
-      <a class="mobile-nav__link mobile-nav__sublink" href="whats-inside-v2.html">What's Inside V2</a>
+      <div class="mobile-nav__group-label">Other Designs</div>
+      <a class="mobile-nav__link mobile-nav__sublink" href="../poppins-1/index.html">Poppins 1 — Homepage</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="../poppins-1/pricing.html">Poppins 1 — Pricing</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="../kajabi-1/whats-inside.html">Kajabi 1 — What's Inside</a>
       <a class="mobile-nav__link" href="#">Login</a>
       <a class="btn btn--primary btn--header mobile-nav__cta" href="consultation.html">Book Your Free Coaching Session</a>
     </div>
@@ -75,18 +75,18 @@
       <div class="container">
         <div class="hero__grid">
           <div>
-            <h1 class="hero__title">See Your Mortgage Business <em>Clearly </em> for the First Time</h1>
-            <p class="hero__subtitle">The Loan Atlas installs 5 AI-powered systems into your mortgage business to help
+            <h1 class="hero__title" data-hero-step="1">See Your Mortgage Business <em>Clearly </em> for the First Time</h1>
+            <p class="hero__subtitle" data-hero-step="2">The Loan Atlas installs 5 AI-powered systems into your mortgage business to help
               you close twice the loans in half the time.</p>
-            <div class="hero__actions">
+            <div class="hero__actions" data-hero-step="3">
               <a class="btn btn--primary btn--lg" href="pricing.html">Install the System Top Producers Are Using</a>
               <span class="hero__text-cta">Or <a class="hero__text-link" href="consultation.html">Schedule Your Free
                   Coaching Session</a> to build your growth plan.</span>
             </div>
           </div>
-          <div class="hero__visual">
+          <div class="hero__visual" data-hero-step="4">
             <div class="hero__glow" aria-hidden="true"></div>
-            <img class="hero__image" src="assets/hero%20image.png" alt="AI Dashboard Preview" />
+            <img class="hero__image" src="../assets/hero%20image.png" alt="AI Dashboard Preview" />
           </div>
         </div>
       </div>
@@ -95,35 +95,35 @@
     <!-- Trust bar -->
     <section class="trust">
       <div class="container">
-        <p class="trust__label">Trusted by over 1,000 top producing loan officers and teams across the country.</p>
+        <p class="trust__label" data-reveal="fade">Trusted by over <span data-countup="1000" data-countup-suffix="+">1,000</span> top producing loan officers and teams across the country.</p>
       </div>
       <div class="trust__marquee" aria-hidden="false">
         <div class="trust__track">
           <ul class="trust__group">
-            <li class="trust__logo"><img src="assets/UWM-logo.png" alt="UWM"></li>
-            <li class="trust__logo"><img src="assets/CMG-logo.svg" alt="CMG Financial"></li>
-            <li class="trust__logo"><img src="assets/cross-country-logo.webp" alt="CrossCountry Mortgage"></li>
-            <li class="trust__logo"><img src="assets/rate-logo.png" alt="Guaranteed Rate"></li>
-            <li class="trust__logo"><img src="assets/fairway-logo.png" alt="Fairway Independent Mortgage"></li>
-            <li class="trust__logo"><img src="assets/loan-depot-logo" alt="loanDepot"></li>
-            <li class="trust__logo"><img src="assets/better-logo.png" alt="Better"></li>
-            <li class="trust__logo"><img src="assets/american-pacific-logo.webp" alt="American Pacific Mortgage"></li>
-            <li class="trust__logo"><img src="assets/acm-logo.webp" alt="ACM"></li>
-            <li class="trust__logo"><img src="assets/lower-mortgage-logo.svg" alt="Lower"></li>
-            <li class="trust__logo"><img src="assets/swbc-logo.png" alt="SWBC Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/UWM-logo.png" alt="UWM"></li>
+            <li class="trust__logo"><img src="../assets/CMG-logo.svg" alt="CMG Financial"></li>
+            <li class="trust__logo"><img src="../assets/cross-country-logo.webp" alt="CrossCountry Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/rate-logo.png" alt="Guaranteed Rate"></li>
+            <li class="trust__logo"><img src="../assets/fairway-logo.png" alt="Fairway Independent Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/loan-depot-logo" alt="loanDepot"></li>
+            <li class="trust__logo"><img src="../assets/better-logo.png" alt="Better"></li>
+            <li class="trust__logo"><img src="../assets/american-pacific-logo.webp" alt="American Pacific Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/acm-logo.webp" alt="ACM"></li>
+            <li class="trust__logo"><img src="../assets/lower-mortgage-logo.svg" alt="Lower"></li>
+            <li class="trust__logo"><img src="../assets/swbc-logo.png" alt="SWBC Mortgage"></li>
           </ul>
           <ul class="trust__group" aria-hidden="true">
-            <li class="trust__logo"><img src="assets/UWM-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="assets/CMG-logo.svg" alt=""></li>
-            <li class="trust__logo"><img src="assets/cross-country-logo.webp" alt=""></li>
-            <li class="trust__logo"><img src="assets/rate-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="assets/fairway-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="assets/loan-depot-logo" alt=""></li>
-            <li class="trust__logo"><img src="assets/better-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="assets/american-pacific-logo.webp" alt=""></li>
-            <li class="trust__logo"><img src="assets/acm-logo.webp" alt=""></li>
-            <li class="trust__logo"><img src="assets/lower-mortgage-logo.svg" alt=""></li>
-            <li class="trust__logo"><img src="assets/swbc-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/UWM-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/CMG-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="../assets/cross-country-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="../assets/rate-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/fairway-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/loan-depot-logo" alt=""></li>
+            <li class="trust__logo"><img src="../assets/better-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/american-pacific-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="../assets/acm-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="../assets/lower-mortgage-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="../assets/swbc-logo.png" alt=""></li>
           </ul>
         </div>
       </div>
@@ -133,7 +133,7 @@
     <section class="section">
       <div class="container">
         <div class="grid-2" style="gap: var(--space-xl); align-items: start;">
-          <div class="grid" style="grid-template-columns: 1fr;">
+          <div class="grid" style="grid-template-columns: 1fr;" data-reveal="left">
             <h2 class="t-headline-lg" style="color: var(--primary-container); margin-bottom: var(--space-md);">There’s a
               Reason Your Production Feels Inconsistent — And It Has Nothing to Do With The Market</h2>
             <p class="t-body-lg t-muted" style="margin-bottom: var(--space-md);">You're putting in the hours — the
@@ -184,12 +184,12 @@
             </ul>
           </div>
 
-          <div class="problem-media">
-            <img src="assets/problem-section-image.png" alt="">
+          <div class="problem-media" data-reveal="right">
+            <img src="../assets/problem-section-image.png" alt="">
           </div>
         </div>
 
-        <div style="margin-top: var(--space-xl);" class="ai-panel">
+        <div style="margin-top: var(--space-xl);" class="ai-panel" data-reveal="up">
           <p class="t-headline-md center" style="line-height: 1.5;">
             <span class="text-brass" style="font-weight: 700;">The loan officers producing consistently are not working
               harder than you.</span><br />
@@ -197,24 +197,24 @@
           </p>
         </div>
 
-        <div class="compare" style="margin-top: var(--space-xl);">
-          <div class="compare__head">
+        <div class="compare" style="margin-top: var(--space-xl);" data-reveal-stagger="100">
+          <div class="compare__head" data-reveal="up">
             <h3>What You've Been Told</h3>
             <h3>What Actually Works</h3>
           </div>
-          <div class="compare__row">
+          <div class="compare__row" data-reveal="up">
             <div>Chase more leads</div>
             <div>Double down on what's already producing</div>
           </div>
-          <div class="compare__row">
+          <div class="compare__row" data-reveal="up">
             <div>Compete on rate</div>
             <div>Win on trust, speed, and communication</div>
           </div>
-          <div class="compare__row">
+          <div class="compare__row" data-reveal="up">
             <div>Work longer hours</div>
             <div>Spend your best hours on the right work</div>
           </div>
-          <div class="compare__row">
+          <div class="compare__row" data-reveal="up">
             <div>Hope consistency follows</div>
             <div>Build a system that makes consistency the default</div>
           </div>
@@ -222,103 +222,214 @@
       </div>
     </section>
 
-    <!-- 5 AI Systems -->
-    <section class="section"
-      style="background: linear-gradient(180deg, #0a1628 0%, #131b2e 60%, #1e293b 100%); color: var(--on-primary); padding-bottom: calc(clamp(48px, 6vw, 96px) + 4rem);">
+    <!-- AI-Powered Systems carousel -->
+    <section class="aisc-section" aria-labelledby="aisc-heading">
       <div class="container">
-        <div class="center" style="max-width: 48rem; margin-inline: auto; margin-bottom: var(--space-xl);">
-          <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas"
-            style="height: 52px; margin-bottom: var(--space-lg); display: block; margin-inline: auto;" />
-          <h2 class="t-display" style="color: #ffffff; font-weight: 800; margin-bottom: var(--space-md);">
-            <span
-              style="display: block; font-size: clamp(2rem, 1.5rem + 2vw, 3rem); line-height: 1.05; background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 0.2em;">AI-Powered
-              Systems</span>That Help You Close More Loans With Less Chaos
+        <header class="aisc-section__header" data-reveal="up">
+          <h2 id="aisc-heading" class="t-display aisc-section__title">
+            <span class="aisc-section__title-accent">AI-Powered Systems</span>
+            That Help You Close More Loans With Less Chaos
           </h2>
-          <p class="t-body-lg" style="color: rgba(255,255,255,0.78);">Inside The Loan Atlas, these five systems work
-            together to help
-            you make better decisions, execute faster, and stay focused on what actually drives production.</p>
+          <p class="t-body-lg aisc-section__lede">
+            Inside The Loan Atlas, these five systems work together to help you make better decisions, execute faster,
+            and stay focused on what actually drives production.
+          </p>
+        </header>
+
+        <div class="aisc" data-aisc data-interval="5000" data-reveal="fade">
+          <nav class="aisc__steps aisc__steps--top" aria-label="AI systems">
+            <button type="button" class="aisc__step is-active" data-step="0" aria-current="step">
+              <span class="aisc__step-bubble" aria-hidden="true">1</span>
+              <span class="aisc__step-label">Business Intelligence</span>
+            </button>
+            <button type="button" class="aisc__step" data-step="1">
+              <span class="aisc__step-bubble" aria-hidden="true">2</span>
+              <span class="aisc__step-label">Planning &amp; Execution</span>
+            </button>
+            <button type="button" class="aisc__step" data-step="2">
+              <span class="aisc__step-bubble" aria-hidden="true">3</span>
+              <span class="aisc__step-label">Sales &amp; Marketing</span>
+            </button>
+            <button type="button" class="aisc__step" data-step="3">
+              <span class="aisc__step-bubble" aria-hidden="true">4</span>
+              <span class="aisc__step-label">Performance Coach</span>
+            </button>
+            <button type="button" class="aisc__step" data-step="4">
+              <span class="aisc__step-bubble" aria-hidden="true">5</span>
+              <span class="aisc__step-label">Strategic Thought Partner</span>
+            </button>
+          </nav>
+
+          <div class="aisc__card is-stacked">
+            <div class="aisc__panel" aria-live="polite">
+
+              <article class="aisc__slide is-active" data-step="0" data-layout="stacked">
+                <span class="aisc__eyebrow">Stop Flying Blind</span>
+                <h3 class="aisc__title">AI Business Intelligence System</h3>
+                <p class="aisc__desc">See exactly what's driving your numbers — and what isn't. Which lead sources are
+                  producing? Which referral partners are worth your time? Where are deals dying? This system replaces
+                  guesswork with real answers so you stop wasting effort on things that aren't working.</p>
+              </article>
+
+              <article class="aisc__slide" data-step="1" data-layout="stacked">
+                <span class="aisc__eyebrow">Stop Starting from Scratch Every Week</span>
+                <h3 class="aisc__title">AI Business Planning &amp; Execution</h3>
+                <p class="aisc__desc">Know exactly what to do tomorrow, next week, and next month. Get a personalized
+                  business plan and a clear weekly priority list based on your real pipeline and goals. Not a generic
+                  to-do list — a system that tells you what moves the needle right now.</p>
+              </article>
+
+              <article class="aisc__slide" data-step="2" data-layout="chat">
+                <span class="aisc__eyebrow">Stop Guessing What to Say</span>
+                <h3 class="aisc__title">AI Sales &amp; Marketing Advisor</h3>
+                <p class="aisc__desc">Get the right words for every conversation. Rate shoppers. Realtor meetings.
+                  Objections. Follow-up. This system helps you stop improvising and start communicating with more
+                  clarity, confidence, and precision.</p>
+              </article>
+
+              <article class="aisc__slide" data-step="3" data-layout="chat">
+                <span class="aisc__eyebrow">Stop Spinning Your Wheels</span>
+                <h3 class="aisc__title">AI Performance Coach</h3>
+                <p class="aisc__desc">Find the exact gaps slowing your growth — and fix them faster. Instead of
+                  consuming more content and hoping something sticks, you get a focused plan to improve the skills that
+                  matter most right now.</p>
+              </article>
+
+              <article class="aisc__slide" data-step="4" data-layout="chat">
+                <span class="aisc__eyebrow">Stop Making Big Decisions Alone</span>
+                <h3 class="aisc__title">AI Strategic Thought Partner</h3>
+                <p class="aisc__desc">Get real-time guidance on decisions, deal scenarios, and growth opportunities.
+                  Think more clearly. Move faster. Make better decisions with less hesitation.</p>
+              </article>
+
+            </div>
+
+            <div class="aisc__stage" aria-hidden="true">
+              <div class="aisc__compose is-active" data-step="0">
+                <img class="aisc__compose-img aisc__compose-img--core"
+                  src="../assets/HOME-business-intelligence-core%20assumptions.png"
+                  alt="Core assumptions dashboard" />
+                <img class="aisc__compose-img aisc__compose-img--income"
+                  src="../assets/HOME-business-intelligence-monthly-income.png"
+                  alt="Monthly income breakdown" />
+                <img class="aisc__compose-img aisc__compose-img--conversion"
+                  src="../assets/HOME-business-intelligence-conversion-average.png"
+                  alt="Conversion average summary" />
+              </div>
+              <div class="aisc__compose" data-step="1">
+                <img class="aisc__compose-img aisc__compose-img--summary"
+                  src="../assets/HOME-business-planning-summary.png" alt="Business plan summary dashboard" />
+                <img class="aisc__compose-img aisc__compose-img--action"
+                  src="../assets/HOME-business-planning-action-item.png" alt="Weekly action item" />
+                <img class="aisc__compose-img aisc__compose-img--wheel"
+                  src="../assets/HOME-business-planning-wheel.png" alt="Business planning wheel diagram" />
+              </div>
+              <div class="aisc__chatdemo" data-step="2"
+                data-messages="How do I respond to &quot;I want to wait for rates to drop&quot;?|Write a follow-up email to a realtor I met last week|What should I say to a rate shopper who's price-checking me?|Draft a script for tomorrow's open house">
+                <p class="aisc__chatdemo-heading">What's Your Sales Challenge Today?</p>
+                <div class="aisc__chatdemo-input">
+                  <div class="aisc__chatdemo-tools">
+                    <svg class="aisc__chatdemo-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12 5v14M5 12h14" />
+                    </svg>
+                  </div>
+                  <div class="aisc__chatdemo-text">
+                    <span class="aisc__chatdemo-typed"></span><span class="aisc__chatdemo-caret"></span>
+                  </div>
+                  <div class="aisc__chatdemo-actions">
+                    <svg class="aisc__chatdemo-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                      <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                      <line x1="12" y1="19" x2="12" y2="23" />
+                      <line x1="8" y1="23" x2="16" y2="23" />
+                    </svg>
+                    <button class="aisc__chatdemo-send" type="button" tabindex="-1" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="19" x2="12" y2="5" />
+                        <polyline points="5 12 12 5 19 12" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="aisc__chatdemo" data-step="3"
+                data-messages="What's the biggest gap holding me back this quarter?|Why am I losing pre-approvals to the competition?|Help me build a 90-day improvement plan|How do I get more disciplined with my morning routine?">
+                <p class="aisc__chatdemo-heading">Where Are You Stuck Right Now?</p>
+                <div class="aisc__chatdemo-input">
+                  <div class="aisc__chatdemo-tools">
+                    <svg class="aisc__chatdemo-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12 5v14M5 12h14" />
+                    </svg>
+                  </div>
+                  <div class="aisc__chatdemo-text">
+                    <span class="aisc__chatdemo-typed"></span><span class="aisc__chatdemo-caret"></span>
+                  </div>
+                  <div class="aisc__chatdemo-actions">
+                    <svg class="aisc__chatdemo-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                      <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                      <line x1="12" y1="19" x2="12" y2="23" />
+                      <line x1="8" y1="23" x2="16" y2="23" />
+                    </svg>
+                    <button class="aisc__chatdemo-send" type="button" tabindex="-1" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="19" x2="12" y2="5" />
+                        <polyline points="5 12 12 5 19 12" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="aisc__chatdemo" data-step="4"
+                data-messages="Should I hire an LOA or stay solo this year?|Walk me through whether this referral partner is worth the time|How should I handle this counter-offer scenario?|Help me decide: scale my team or stay lean?">
+                <p class="aisc__chatdemo-heading">What Decision Can I Help You Think Through?</p>
+                <div class="aisc__chatdemo-input">
+                  <div class="aisc__chatdemo-tools">
+                    <svg class="aisc__chatdemo-plus" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12 5v14M5 12h14" />
+                    </svg>
+                  </div>
+                  <div class="aisc__chatdemo-text">
+                    <span class="aisc__chatdemo-typed"></span><span class="aisc__chatdemo-caret"></span>
+                  </div>
+                  <div class="aisc__chatdemo-actions">
+                    <svg class="aisc__chatdemo-mic" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                      <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                      <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                      <line x1="12" y1="19" x2="12" y2="23" />
+                      <line x1="8" y1="23" x2="16" y2="23" />
+                    </svg>
+                    <button class="aisc__chatdemo-send" type="button" tabindex="-1" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="19" x2="12" y2="5" />
+                        <polyline points="5 12 12 5 19 12" />
+                      </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
-
-        <div class="systems">
-          <article class="system">
-            <div>
-              <h3 class="system__title">AI Business Intelligence System</h3>
-              <span class="system__eyebrow">Stop Flying Blind</span>
-              <p>See exactly what's driving your numbers — and what isn't. Which lead sources are producing? Which
-                referral partners are worth your time? Where are deals dying? This system replaces guesswork with real
-                answers so you stop wasting effort on things that aren't working.
-              </p>
-            </div>
-            <div class="system__visual">
-              <img src="assets/ai-business-intelligence-2.png" alt="AI Business Intelligence System screenshot"
-                style="object-fit: cover;" />
-            </div>
-          </article>
-
-          <article class="system system--reverse">
-            <div>
-              <h3 class="system__title">AI Business Planning &amp; Execution</h3>
-              <span class="system__eyebrow">Stop Starting from Scratch Every Week</span>
-              <p>Know exactly what to do tomorrow, next week, and next month. Get a personalized business plan and a
-                clear weekly priority list based on your real pipeline and goals. Not a generic to-do list — a system
-                that tells you what moves the needle right now.</p>
-            </div>
-            <div class="system__visual">
-              <img src="assets/ai-business-planning-2.png" alt="AI Business Planning &amp; Execution screenshot"
-                style="object-fit: cover;" />
-            </div>
-          </article>
-
-          <article class="system">
-            <div>
-              <h3 class="system__title">AI Sales &amp; Marketing Advisor</h3>
-              <span class="system__eyebrow">Stop Guessing What to Say</span>
-              <p>Get the right words for every conversation. Rate shoppers. Realtor meetings. Objections. Follow-up.
-                This system helps you stop improvising and start communicating with more clarity, confidence, and
-                precision.</p>
-            </div>
-            <div class="system__visual">
-              <img src="assets/sales-marketing-advisor.png" alt="AI Sales &amp; Marketing Advisor screenshot"
-                style="object-fit: cover;" />
-            </div>
-          </article>
-
-          <article class="system system--reverse">
-            <div>
-              <h3 class="system__title">AI Performance Coach</h3>
-              <span class="system__eyebrow">Stop Spinning Your Wheels</span>
-              <p>Find the exact gaps slowing your growth — and fix them faster. Instead of consuming more content and
-                hoping something sticks, you get a focused plan to improve the skills that matter most right now.
-              </p>
-            </div>
-            <div class="system__visual">
-              <img src="assets/performance-coach.png" alt="AI Performance Coach screenshot"
-                style="object-fit: cover;" />
-            </div>
-          </article>
-
-          <article class="system">
-            <div>
-              <h3 class="system__title">AI Strategic Thought Partner</h3>
-              <span class="system__eyebrow">Stop Making Big Decisions Alone</span>
-              <p>Get real-time guidance on decisions, deal scenarios, and growth opportunities. Think more clearly. Move
-                faster. Make better decisions with less hesitation.
-              </p>
-            </div>
-            <div class="system__visual">
-              <img src="assets/strategic-thought-partner.png" alt="AI Strategic Thought Partner screenshot"
-                style="object-fit: cover;" />
-            </div>
-          </article>
-        </div>
-
       </div>
     </section>
 
     <!-- Inline CTA -->
     <section class="inline-cta" id="inline-cta" aria-labelledby="inline-cta-heading">
       <div class="container" style="position: relative;">
-        <div class="inline-cta__inner">
+        <div class="inline-cta__inner" data-reveal="scale">
           <div class="inline-cta__copy">
             <span class="eyebrow" style="margin-bottom: var(--space-sm);">
               <span class="eyebrow__text">Do You Know What's Costing You Deals?</span>
@@ -337,18 +448,18 @@
     <!-- Featured gallery / hover carousel -->
     <section class="gallery" id="gallery">
       <div class="container">
-        <header class="gallery__head">
+        <header class="gallery__head" data-reveal="up">
           <h2 class="t-display" style="color: var(--primary-container);">Everything You Need to Achieve Lasting Success
             in Your Mortgage Business</h2>
           <p class="t-body-lg t-muted">The Loan Atlas gives you complete access to the systems and support top producers
             use to scale consistently and confidently in any market.</p>
         </header>
 
-        <div class="gallery__grid">
+        <div class="gallery__grid" data-reveal-stagger="90">
 
           <a class="gallery-card" href="whats-inside.html">
             <div class="gallery-card__media">
-              <img src="assets/performance-coach.png" alt="On-Demand Training"
+              <img src="../assets/performance-coach.png" alt="On-Demand Training"
                 style="width:100%;height:100%;object-fit:cover;display:block;" />
               <div class="gallery-card__media-fade" aria-hidden="true"></div>
             </div>
@@ -368,7 +479,7 @@
 
           <a class="gallery-card" href="whats-inside.html">
             <div class="gallery-card__media">
-              <img src="assets/weekly-coaching.png" alt="Talk to Tim live coaching session"
+              <img src="../assets/weekly-coaching.png" alt="Talk to Tim live coaching session"
                 style="width:100%;height:100%;object-fit:cover;display:block;" />
               <div class="gallery-card__media-fade" aria-hidden="true"></div>
             </div>
@@ -387,7 +498,7 @@
 
           <a class="gallery-card" href="whats-inside.html">
             <div class="gallery-card__media">
-              <img src="assets/private-member-community.png" alt="Private Member Community"
+              <img src="../assets/private-member-community.png" alt="Private Member Community"
                 style="width:100%;height:100%;object-fit:cover;display:block;" />
               <div class="gallery-card__media-fade" aria-hidden="true"></div>
             </div>
@@ -407,7 +518,7 @@
 
           <a class="gallery-card" href="whats-inside.html">
             <div class="gallery-card__media">
-              <img src="assets/scripts-presentation-templates.png" alt="Scripts &amp; Presentation Templates"
+              <img src="../assets/scripts-presentation-templates.png" alt="Scripts &amp; Presentation Templates"
                 style="width:100%;height:100%;object-fit:cover;display:block;" />
               <div class="gallery-card__media-fade" aria-hidden="true"></div>
             </div>
@@ -427,7 +538,7 @@
 
           <a class="gallery-card" href="whats-inside.html">
             <div class="gallery-card__media">
-              <img src="assets/perfect-loan-process.png" alt="The Perfect Loan Process"
+              <img src="../assets/perfect-loan-process.png" alt="The Perfect Loan Process"
                 style="width:100%;height:100%;object-fit:cover;display:block;" />
               <div class="gallery-card__media-fade" aria-hidden="true"></div>
             </div>
@@ -447,7 +558,7 @@
 
           <a class="gallery-card" href="whats-inside.html">
             <div class="gallery-card__media">
-              <img src="assets/talk-to-tim.png" alt="Talk to Tim"
+              <img src="../assets/talk-to-tim.png" alt="Talk to Tim"
                 style="width:100%;height:100%;object-fit:cover;display:block;" />
               <div class="gallery-card__media-fade" aria-hidden="true"></div>
             </div>
@@ -473,8 +584,8 @@
     <section id="faculty" class="panel-dark faculty-panel" style="border-radius: 0; padding: 0; display: block;">
       <div class="container">
         <div class="faculty-inner">
-          <div class="faculty-panel__content" style="padding-top: clamp(40px, 6vw, 80px);">
-            <span class="eyebrow"><span class="eyebrow__text">18 Experienced Coaches · $29 Billion Closed</span></span>
+          <div class="faculty-panel__content" data-reveal="left" style="padding-top: clamp(40px, 6vw, 80px);">
+            <span class="eyebrow"><span class="eyebrow__text"><span data-countup="18" data-countup-commas="false">18</span> Experienced Coaches · $<span data-countup="29" data-countup-commas="false">29</span> Billion Closed</span></span>
             <h2 class="t-headline-lg" style="color: var(--on-primary); margin-bottom: var(--space-md);">Learn from Top
               Producers Behind $29 Billion In Loan Volume</h2>
             <p class="t-body-lg" style="color: rgba(255,255,255,0.78); margin-bottom: var(--space-lg);">Every member of
@@ -484,8 +595,8 @@
             </p>
             <a class="btn btn--gold btn--lg" href="faculty.html">Meet Your Mentors</a>
           </div>
-          <div class="faculty-panel__photo">
-            <img src="assets/tim-braheem-headshot.png" alt="Tim Braheem" class="faculty-panel__img" />
+          <div class="faculty-panel__photo" data-reveal="right">
+            <img src="../assets/tim-braheem-headshot.png" alt="Tim Braheem" class="faculty-panel__img" />
           </div>
         </div>
       </div>
@@ -495,15 +606,15 @@
     <section class="section" id="who-we-serve" aria-labelledby="who-we-serve-heading"
       style="padding-top: calc(clamp(48px, 6vw, 96px) + 4rem);">
       <div class="container">
-        <div class="center" style="max-width: 48rem; margin-inline: auto; margin-bottom: var(--space-xl);">
-          <h2 class="t-headline-lg" id="who-we-serve-heading" style="margin-bottom: var(--space-md);">There Comes a
-            Point Where Working Harder Stops Working</h2>
+        <div class="center" data-reveal="up" style="max-width: 48rem; margin-inline: auto; margin-bottom: var(--space-xl);">
+          <h2 class="section-heading center" id="who-we-serve-heading" style="margin-bottom: var(--space-md);">There
+            Comes a Point Where Working Harder Stops Working</h2>
           <p class="t-body-lg t-muted">Whether you're building your first pipeline or leading a high-producing team,
             your next level will not come from more hustle. It will come from better systems.</p>
         </div>
-        <div class="audience">
+        <div class="audience" data-reveal-stagger="100">
           <article class="audience-card">
-            <img class="audience-card__bg" src="assets/loan-officers.png" alt="" aria-hidden="true" />
+            <img class="audience-card__bg" src="../assets/loan-officers.png" alt="" aria-hidden="true" />
             <div class="audience-card__overlay"></div>
             <div class="audience-card__body">
               <h3 class="audience-card__title">Loan Officers</h3>
@@ -512,7 +623,7 @@
             </div>
           </article>
           <article class="audience-card">
-            <img class="audience-card__bg" src="assets/mortgage-brokers.png" alt="" aria-hidden="true" />
+            <img class="audience-card__bg" src="../assets/mortgage-brokers.png" alt="" aria-hidden="true" />
             <div class="audience-card__overlay"></div>
             <div class="audience-card__body">
               <h3 class="audience-card__title">Mortgage Brokers</h3>
@@ -521,7 +632,7 @@
             </div>
           </article>
           <article class="audience-card">
-            <img class="audience-card__bg" src="assets/branch-managers.png" alt="" aria-hidden="true" />
+            <img class="audience-card__bg" src="../assets/branch-managers.png" alt="" aria-hidden="true" />
             <div class="audience-card__overlay"></div>
             <div class="audience-card__body">
               <h3 class="audience-card__title">Branch Managers</h3>
@@ -531,7 +642,7 @@
             </div>
           </article>
           <article class="audience-card">
-            <img class="audience-card__bg" src="assets/owners-executives.png" alt="" aria-hidden="true" />
+            <img class="audience-card__bg" src="../assets/owners-executives.png" alt="" aria-hidden="true" />
             <div class="audience-card__overlay"></div>
             <div class="audience-card__body">
               <h3 class="audience-card__title">Owners &amp; Executives</h3>
@@ -548,14 +659,14 @@
     <section class="section bg-surface-low results"
       style="border-top: 1px solid var(--outline-variant); border-bottom: 1px solid var(--outline-variant);">
       <div class="container">
-        <header class="results__header">
+        <header class="results__header" data-reveal="up">
           <h2 class="t-headline-lg center results__title">Real Originators. Real Systems. <span class="text-brass">Real
               Results.</span></h2>
           <p class="t-body-lg t-muted center results__subtitle">The Loan Atlas is a living community of active
             originators learning and executing at a high level.</p>
         </header>
 
-        <div class="results__videos">
+        <div class="results__videos" data-reveal-stagger="120">
           <article class="video-card">
             <iframe class="video-card__media" src="https://www.youtube.com/embed/OpsSREztc6E?si=gQlzifiWbcRCrhxz"
               title="Watch Eric Bibel's story" frameborder="0"
@@ -681,7 +792,7 @@
 
     <!-- Final CTA -->
     <section id="get-started"
-      style="background: linear-gradient(160deg, #021c36 0%, #0a1628 50%, #131b2e 100%); position: relative; overflow: hidden; padding-block: clamp(80px, 10vw, 140px);"
+      style="background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%); position: relative; overflow: hidden; padding-block: clamp(80px, 10vw, 140px);"
       aria-labelledby="final-cta-heading">
       <!-- Decorative glows -->
       <div
@@ -693,10 +804,11 @@
 
       <div class="container" style="position: relative; text-align: center;">
 
-        <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas"
+        <img src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas"
+          data-reveal="fade"
           style="height: 56px; width: auto; margin: 0 auto var(--space-lg); display: block;" />
 
-        <h2 id="final-cta-heading"
+        <h2 id="final-cta-heading" data-reveal="up"
           style="font-family: var(--font-display); font-size: clamp(2.25rem, 1.4rem + 3.5vw, 4rem); font-weight: 800; line-height: 1.07; letter-spacing: -0.03em; color: #ffffff; max-width: 60rem; margin: 0 auto var(--space-lg);">
           Stop Stressing About Your Next Loan.<br>
           <span
@@ -704,13 +816,13 @@
             Control of Your Production, Your Income, and Your Life.</span>
         </h2>
 
-        <p
+        <p data-reveal="up"
           style="font-size: clamp(1rem, 0.9rem + 0.4vw, 1.1875rem); line-height: 1.7; color: rgba(255,255,255,0.65); max-width: 48rem; margin: 0 auto var(--space-xl);">
           If you're tired of inconsistent months, if you're done improvising your way through a business that should be
           predictable by now — The Loan Atlas is the system that fixes that.
         </p>
 
-        <a class="btn btn--brass btn--lg" href="consultation.html"
+        <a class="btn btn--brass btn--lg" href="consultation.html" data-reveal="scale"
           style="font-size: 1.0625rem; padding: 20px 40px; box-shadow: 0 8px 32px rgba(201,150,28,0.35);">
           Install the Systems and Start Executing
         </a>
@@ -723,7 +835,7 @@
         </div>
 
         <!-- Testimonial -->
-        <div
+        <div data-reveal="up"
           style="margin-top: clamp(56px, 7vw, 96px); padding-top: clamp(48px, 6vw, 72px); border-top: 1px solid rgba(255,255,255,0.1); max-width: 56rem; margin-inline: auto;">
           <svg width="44" height="32" viewBox="0 0 44 32" fill="none"
             style="margin: 0 auto var(--space-md); display: block; color: var(--brass); opacity: 0.7;"
@@ -756,7 +868,7 @@
     <div class="site-footer__inner">
       <div class="site-footer__top">
         <a href="index.html" class="brand">
-          <img src="assets/Loan Atlas logo-color.png" alt="The Loan Atlas" class="brand__logo" />
+          <img src="../assets/Loan Atlas logo-color.png" alt="The Loan Atlas" class="brand__logo" />
         </a>
         <nav class="site-footer__links" aria-label="Footer">
           <a class="site-footer__link" href="whats-inside.html">What's Inside</a>
@@ -780,7 +892,9 @@
     </div>
   </footer>
 
-  <script src="nav.js"></script>
+  <script src="../nav.js"></script>
+  <script src="animations.js" defer></script>
+  <script src="../scripts/ai-systems-carousel.js" defer></script>
 </body>
 
 </html>

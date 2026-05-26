@@ -1,0 +1,2243 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mockup - Business Assessment Results</title>
+  <style>
+    :root {
+      --ink: #f8fafc;
+      --muted: #9aa4b6;
+      --soft: #cbd5e1;
+      --nav: #162033;
+      --bg: #0c1422;
+      --surface: #172235;
+      --surface-2: #101827;
+      --surface-3: #1c273a;
+      --line: rgba(255, 255, 255, 0.08);
+      --line-strong: rgba(255, 255, 255, 0.16);
+      --gold: #ffd708;
+      --gold-2: #f4c430;
+      --blue: #38bdf8;
+      --green: #20c997;
+      --red: #ef4444;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
+      --radius: 8px;
+      --sidebar: 292px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--bg);
+      color-scheme: dark;
+    }
+
+    body {
+      min-height: 100%;
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      overflow-x: clip;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    button,
+    input,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    img,
+    svg {
+      display: block;
+      max-width: 100%;
+    }
+
+    .shell {
+      display: grid;
+      grid-template-columns: var(--sidebar) minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 0;
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      height: 100vh;
+      padding: 20px 14px 22px;
+      background: var(--nav);
+      border-right: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 60px;
+      margin-bottom: 18px;
+    }
+
+    .brand img {
+      width: 178px;
+      height: auto;
+    }
+
+    .collapse {
+      display: inline-grid;
+      width: 32px;
+      height: 32px;
+      margin-left: auto;
+      place-items: center;
+      color: var(--muted);
+      border: 1px solid var(--line-strong);
+      border-radius: 6px;
+      background: transparent;
+    }
+
+    .nav-kicker {
+      margin: 18px 0 12px;
+      color: #717b8d;
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .nav-group {
+      margin-top: 10px;
+      padding-left: 18px;
+      border-left: 1px solid rgba(255, 255, 255, 0.14);
+    }
+
+    .nav-item {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      width: 100%;
+      min-height: 42px;
+      padding: 0 14px;
+      color: var(--muted);
+      text-align: left;
+      border-radius: var(--radius);
+      background: transparent;
+      white-space: nowrap;
+    }
+
+    .nav-item svg {
+      flex: 0 0 auto;
+      width: 21px;
+      height: 21px;
+      color: currentColor;
+      stroke-width: 1.9;
+    }
+
+    .nav-item strong {
+      margin-left: auto;
+      color: currentColor;
+      font-size: 0.9rem;
+    }
+
+    .nav-item.is-active {
+      color: #ffffff;
+      background: #0e1728;
+    }
+
+    .nav-item.is-active::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      width: 5px;
+      height: 26px;
+      border-radius: 0 999px 999px 0;
+      background: var(--gold);
+    }
+
+    .sidebar-footer {
+      margin-top: auto;
+      display: grid;
+      gap: 14px;
+      color: #7d8799;
+      font-size: 0.92rem;
+    }
+
+    .version {
+      color: var(--gold);
+      font-weight: 800;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .avatar {
+      display: grid;
+      flex: 0 0 auto;
+      width: 50px;
+      height: 50px;
+      place-items: center;
+      color: #ffffff;
+      border-radius: 999px;
+      background: #e6e7eb;
+    }
+
+    .profile strong {
+      display: block;
+      color: #ffffff;
+      font-size: 0.95rem;
+    }
+
+    .profile span {
+      display: block;
+      min-width: 0;
+      overflow: hidden;
+      color: #8a94a6;
+      font-size: 0.82rem;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .main {
+      min-width: 0;
+      background: var(--bg);
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 98px;
+      padding: 18px 28px;
+      background: rgba(22, 32, 51, 0.96);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      backdrop-filter: blur(16px);
+    }
+
+    .title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      min-width: 0;
+    }
+
+    .title-icon {
+      display: grid;
+      flex: 0 0 auto;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      color: var(--soft);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin: 0;
+    }
+
+    h1 {
+      color: #ffffff;
+      font-size: 1.75rem;
+      line-height: 1.1;
+      font-weight: 850;
+    }
+
+    .subtitle {
+      margin-top: 5px;
+      color: #737d90;
+      font-size: 1rem;
+      line-height: 1.35;
+    }
+
+    .top-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .icon-btn {
+      display: inline-grid;
+      width: 42px;
+      height: 42px;
+      place-items: center;
+      color: var(--soft);
+      border-radius: 999px;
+      background: transparent;
+    }
+
+    .icon-btn.is-filled {
+      width: 54px;
+      height: 54px;
+      background: #384456;
+    }
+
+    .icon-btn svg,
+    .button svg,
+    .pill-button svg {
+      width: 20px;
+      height: 20px;
+      stroke-width: 2;
+    }
+
+    .workspace {
+      position: relative;
+      min-width: 0;
+      padding: 36px 30px 50px;
+      overflow: hidden;
+    }
+
+    .workspace::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 520px;
+      pointer-events: none;
+      background: radial-gradient(circle at 72% 0%, rgba(255, 215, 8, 0.06), transparent 34%);
+    }
+
+    .content {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 30px;
+      max-width: 2180px;
+      margin: 0 auto;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: #9da7b8;
+      font-size: 1rem;
+    }
+
+    .breadcrumb strong {
+      color: #ffffff;
+      font-weight: 800;
+    }
+
+    .mock-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .highlight-strip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      min-width: 0;
+      padding: 4px;
+      overflow-x: auto;
+      border: 1px solid #27344b;
+      border-radius: 8px;
+      background: #111a2c;
+    }
+
+    .highlight-strip button {
+      flex: 0 0 auto;
+      min-height: 34px;
+      padding: 0 14px;
+      color: #8f99aa;
+      border-radius: 6px;
+      background: transparent;
+      font-size: 0.9rem;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .highlight-strip button.is-active {
+      color: #07101e;
+      background: var(--gold);
+    }
+
+    .compact-stats {
+      display: flex;
+      gap: 10px;
+      color: #a6afbf;
+      white-space: nowrap;
+    }
+
+    .compact-stats span {
+      display: inline-flex;
+      align-items: center;
+      min-height: 36px;
+      padding: 0 12px;
+      border: 1px solid #263248;
+      border-radius: 999px;
+      background: #111a2c;
+      font-weight: 800;
+    }
+
+    .card,
+    .panel,
+    .table-card,
+    .improvement-card {
+      position: relative;
+      min-width: 0;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius);
+      background: var(--surface);
+    }
+
+    .completion-card {
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr) auto;
+      align-items: center;
+      gap: 24px;
+      min-height: 138px;
+      padding: 28px 30px;
+    }
+
+    .badge {
+      display: grid;
+      width: 80px;
+      height: 80px;
+      place-items: center;
+      color: #111827;
+      border-radius: 999px;
+      background: var(--gold);
+    }
+
+    .badge svg {
+      width: 38px;
+      height: 38px;
+      stroke-width: 1.8;
+    }
+
+    .completion-copy h2 {
+      color: #ffffff;
+      font-size: 1.7rem;
+      line-height: 1.2;
+    }
+
+    .completion-copy p {
+      margin-top: 7px;
+      color: #a5aebf;
+      font-size: 1rem;
+    }
+
+    .completion-date {
+      margin-top: 10px;
+      color: #7f8898;
+      font-size: 0.9rem;
+    }
+
+    .completion-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 46px;
+      min-width: 0;
+      padding: 0 22px;
+      color: #f5f7fb;
+      border: 1px solid #344158;
+      border-radius: 7px;
+      background: #111a2c;
+      font-weight: 850;
+      white-space: nowrap;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(255, 215, 8, 0.44);
+    }
+
+    .button.is-primary {
+      color: #07101e;
+      border-color: transparent;
+      background: var(--gold);
+    }
+
+    .section-title {
+      color: #ffffff;
+      font-size: 1.34rem;
+      line-height: 1.25;
+      font-weight: 850;
+    }
+
+    .chart-panel {
+      display: grid;
+      place-items: center;
+      min-height: 562px;
+      padding: 34px 20px;
+    }
+
+    .radar-wrap {
+      width: min(620px, 100%);
+      aspect-ratio: 1;
+    }
+
+    .radar-wrap text {
+      fill: #d8dde8;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .radar-grid {
+      fill: none;
+      stroke: #2f3a50;
+      stroke-width: 1;
+    }
+
+    .radar-axis {
+      stroke: #263147;
+      stroke-width: 1;
+    }
+
+    .radar-area {
+      fill: rgba(255, 215, 8, 0.12);
+      stroke: var(--gold);
+      stroke-width: 3;
+      stroke-linejoin: round;
+    }
+
+    .radar-point {
+      fill: var(--gold);
+      stroke: #ffffff;
+      stroke-width: 3;
+    }
+
+    .coach-card {
+      display: grid;
+      grid-template-columns: 5px minmax(0, 1fr);
+      overflow: hidden;
+      background: #303431;
+    }
+
+    .coach-card::before {
+      content: "";
+      background: var(--gold);
+    }
+
+    .coach-copy {
+      padding: 26px 30px;
+      color: #e5e7eb;
+      font-size: 1.03rem;
+      line-height: 1.65;
+    }
+
+    .results-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(320px, 0.75fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .table-card {
+      overflow: hidden;
+    }
+
+    .score-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .score-table th {
+      height: 52px;
+      padding: 0 26px;
+      color: #9ba4b5;
+      background: #141d2f;
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-align: left;
+      text-transform: uppercase;
+    }
+
+    .score-table td {
+      height: 72px;
+      padding: 0 26px;
+      color: #a8b1c2;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      font-size: 0.97rem;
+    }
+
+    .score-table td:first-child {
+      color: #ffffff;
+      font-weight: 800;
+    }
+
+    .score-table tr {
+      transition: background 160ms ease;
+    }
+
+    .score-table tr:hover,
+    .score-table tr.is-selected {
+      background: rgba(255, 215, 8, 0.045);
+    }
+
+    .progress-cell {
+      display: grid;
+      grid-template-columns: minmax(120px, 1fr) 54px;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .bar {
+      position: relative;
+      height: 7px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #0f1726;
+    }
+
+    .bar::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: var(--value);
+      border-radius: inherit;
+      background: var(--gold);
+      transition: width 220ms ease;
+    }
+
+    .pill-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 36px;
+      padding: 0 13px;
+      color: #39c6ff;
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      border-radius: 7px;
+      background: rgba(14, 116, 144, 0.22);
+      font-weight: 850;
+      white-space: nowrap;
+    }
+
+    .side-panel {
+      display: grid;
+      gap: 16px;
+      padding: 22px;
+    }
+
+    .category-detail {
+      display: grid;
+      gap: 18px;
+    }
+
+    .detail-heading {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .detail-heading h3 {
+      color: #ffffff;
+      font-size: 1.25rem;
+      line-height: 1.2;
+    }
+
+    .detail-heading p {
+      margin-top: 5px;
+      color: #95a0b2;
+    }
+
+    .score-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      min-width: 70px;
+      padding: 0 12px;
+      color: #07101e;
+      border-radius: 999px;
+      background: var(--gold);
+      font-weight: 900;
+    }
+
+    .focus-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .focus-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      color: #b9c2d2;
+      line-height: 1.45;
+    }
+
+    .focus-item::before {
+      content: "";
+      flex: 0 0 auto;
+      width: 8px;
+      height: 8px;
+      margin-top: 8px;
+      border-radius: 999px;
+      background: var(--gold);
+    }
+
+    .improvement-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .improvement-card {
+      display: grid;
+      justify-items: center;
+      min-height: 234px;
+      padding: 24px 26px;
+      color: inherit;
+      text-align: center;
+      background: var(--surface);
+      transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    .improvement-card:hover,
+    .improvement-card.is-selected {
+      transform: translateY(-2px);
+      border-color: rgba(255, 215, 8, 0.5);
+      box-shadow: 0 18px 54px rgba(0, 0, 0, 0.22);
+    }
+
+    .ring {
+      position: relative;
+      display: grid;
+      width: 92px;
+      height: 92px;
+      place-items: center;
+      border-radius: 999px;
+      background: conic-gradient(var(--gold) calc(var(--percent) * 1%), transparent 0),
+        conic-gradient(rgba(255, 255, 255, 0.08) 100%, transparent 0);
+    }
+
+    .ring::before {
+      content: "";
+      position: absolute;
+      inset: 12px;
+      border-radius: inherit;
+      background: var(--surface);
+    }
+
+    .ring span {
+      position: relative;
+      z-index: 1;
+      color: #ffffff;
+      font-weight: 900;
+    }
+
+    .improvement-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      margin-top: 12px;
+      color: #ffffff;
+      font-weight: 850;
+    }
+
+    .improvement-title svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .improvement-copy {
+      margin-top: 12px;
+      color: #a8b1c2;
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .action-card {
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius);
+      background: #141f32;
+    }
+
+    .action-card h3 {
+      color: #ffffff;
+      font-size: 1rem;
+      line-height: 1.3;
+    }
+
+    .action-card p {
+      margin-top: 10px;
+      color: #aab3c3;
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 50;
+      display: grid;
+      grid-template-rows: auto minmax(0, 1fr) auto;
+      width: min(520px, 100vw);
+      color: #101827;
+      background: #f8fafc;
+      box-shadow: -30px 0 80px rgba(0, 0, 0, 0.42);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateX(24px);
+      visibility: hidden;
+      transition: opacity 180ms ease, transform 220ms ease, visibility 0s linear 220ms;
+    }
+
+    .drawer.is-open {
+      opacity: 1;
+      pointer-events: auto;
+      transform: none;
+      visibility: visible;
+      transition-delay: 0s;
+    }
+
+    .drawer-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 24px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .drawer-kicker {
+      color: #9a7100;
+      font-size: 0.78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .drawer-title {
+      margin-top: 4px;
+      color: #0f172a;
+      font-size: 1.35rem;
+      line-height: 1.2;
+      font-weight: 900;
+    }
+
+    .drawer-close {
+      display: grid;
+      flex: 0 0 auto;
+      width: 36px;
+      height: 36px;
+      place-items: center;
+      color: #334155;
+      border-radius: 8px;
+      background: #e9eef6;
+      font-size: 1.3rem;
+    }
+
+    .drawer-body {
+      display: grid;
+      align-content: start;
+      gap: 16px;
+      padding: 22px 24px;
+      overflow-y: auto;
+    }
+
+    .plan-step {
+      display: grid;
+      grid-template-columns: 38px minmax(0, 1fr);
+      gap: 14px;
+      padding: 16px;
+      border: 1px solid #e1e7ef;
+      border-radius: 8px;
+      background: #ffffff;
+    }
+
+    .plan-step span {
+      display: grid;
+      width: 38px;
+      height: 38px;
+      place-items: center;
+      color: #0f172a;
+      border-radius: 999px;
+      background: var(--gold);
+      font-weight: 900;
+    }
+
+    .plan-step h3 {
+      color: #0f172a;
+      font-size: 1rem;
+    }
+
+    .plan-step p {
+      margin-top: 6px;
+      color: #526174;
+      font-size: 0.95rem;
+      line-height: 1.45;
+    }
+
+    .drawer-footer {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      padding: 20px 24px;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .drawer-footer .button {
+      color: #0f172a;
+      background: #e9eef6;
+    }
+
+    .drawer-footer .button.is-primary {
+      background: var(--gold);
+    }
+
+    .insight-dock {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 45;
+      width: min(420px, calc(100vw - 44px));
+      overflow: hidden;
+      border: 1px solid rgba(255, 215, 8, 0.34);
+      border-radius: 8px;
+      background: #f8fafc;
+      color: #101827;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.42);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(24px);
+      visibility: hidden;
+      transition: opacity 180ms ease, transform 220ms ease, visibility 0s linear 220ms;
+    }
+
+    body.has-focus .insight-dock {
+      opacity: 1;
+      pointer-events: auto;
+      transform: none;
+      visibility: visible;
+      transition-delay: 0s;
+    }
+
+    .dock-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 16px 18px 12px;
+      border-bottom: 1px solid #e1e5ec;
+    }
+
+    .dock-eyebrow {
+      color: #9c7504;
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .dock-title {
+      margin-top: 4px;
+      color: #111827;
+      font-size: 1.12rem;
+      line-height: 1.2;
+      font-weight: 900;
+    }
+
+    .dock-body {
+      padding: 16px 18px;
+    }
+
+    .dock-copy {
+      color: #475569;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+
+    .dock-meta {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .meta-box {
+      min-height: 70px;
+      padding: 12px;
+      border: 1px solid #e3e8f0;
+      border-radius: 8px;
+      background: #ffffff;
+    }
+
+    .meta-box span {
+      display: block;
+      color: #64748b;
+      font-size: 0.78rem;
+      font-weight: 800;
+    }
+
+    .meta-box strong {
+      display: block;
+      margin-top: 4px;
+      color: #111827;
+      font-size: 1.05rem;
+      font-weight: 900;
+    }
+
+    .dock-nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 0 18px 18px;
+    }
+
+    .dock-nav button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 0 14px;
+      color: #111827;
+      border-radius: 8px;
+      background: #e9eef6;
+      font-weight: 900;
+    }
+
+    .dock-nav button:last-child {
+      color: #07101e;
+      background: var(--gold);
+    }
+
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(4, 8, 15, 0.68);
+      backdrop-filter: blur(10px);
+    }
+
+    .modal-backdrop.is-open {
+      display: flex;
+    }
+
+    .modal {
+      width: min(520px, 100%);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      background: #101827;
+      box-shadow: var(--shadow);
+    }
+
+    .modal header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .modal h2 {
+      color: #ffffff;
+      font-size: 1.28rem;
+    }
+
+    .modal-body {
+      display: grid;
+      gap: 14px;
+      padding: 22px;
+    }
+
+    .field {
+      display: grid;
+      gap: 8px;
+    }
+
+    .field label {
+      color: #b9c3d4;
+      font-size: 0.9rem;
+      font-weight: 800;
+    }
+
+    .field input,
+    .field textarea {
+      width: 100%;
+      min-height: 46px;
+      padding: 10px 12px;
+      color: #ffffff;
+      border: 1px solid #2a364c;
+      border-radius: 8px;
+      background: #0b1320;
+      outline: none;
+    }
+
+    .field textarea {
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    .field input:focus,
+    .field textarea:focus {
+      border-color: var(--gold);
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      padding: 0 22px 22px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      z-index: 80;
+      min-width: min(420px, calc(100vw - 32px));
+      padding: 14px 18px;
+      color: #07101e;
+      border-radius: 8px;
+      background: var(--gold);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.34);
+      font-weight: 900;
+      text-align: center;
+      opacity: 0;
+      pointer-events: none;
+      transform: translate(-50%, 28px);
+      visibility: hidden;
+      transition: opacity 180ms ease, transform 220ms ease, visibility 0s linear 220ms;
+    }
+
+    .toast.is-visible {
+      opacity: 1;
+      transform: translate(-50%, 0);
+      visibility: visible;
+      transition-delay: 0s;
+    }
+
+    .focusable {
+      transition: opacity 220ms ease, transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+    }
+
+    body.has-focus .focusable {
+      opacity: 0.36;
+    }
+
+    body.has-focus .focusable.is-highlighted {
+      z-index: 6;
+      opacity: 1;
+      transform: translateY(-2px);
+      border-color: rgba(255, 215, 8, 0.86);
+      box-shadow: 0 0 0 2px rgba(255, 215, 8, 0.22), 0 24px 70px rgba(0, 0, 0, 0.38);
+    }
+
+    .pin {
+      position: absolute;
+      top: -13px;
+      right: 18px;
+      display: none;
+      min-width: 30px;
+      height: 30px;
+      place-items: center;
+      color: #07101e;
+      border: 2px solid #0b1320;
+      border-radius: 999px;
+      background: var(--gold);
+      font-size: 0.82rem;
+      font-weight: 900;
+    }
+
+    body.has-focus .is-highlighted .pin {
+      display: grid;
+    }
+
+    @media (max-width: 1500px) {
+      .results-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .improvement-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .action-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .shell {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .sidebar {
+        position: static;
+        height: auto;
+        padding: 14px;
+      }
+
+      .brand {
+        margin-bottom: 4px;
+      }
+
+      .nav-kicker,
+      .nav-group,
+      .sidebar-footer {
+        display: none;
+      }
+
+      .nav {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: max-content;
+        gap: 8px;
+        overflow-x: auto;
+        padding-bottom: 2px;
+      }
+
+      .topbar {
+        position: static;
+        padding: 22px;
+      }
+
+      .workspace {
+        padding: 22px 12px 36px;
+      }
+
+      .mock-controls {
+        align-items: stretch;
+        flex-direction: column;
+      }
+
+      .compact-stats {
+        overflow-x: auto;
+      }
+
+      .completion-card {
+        grid-template-columns: auto minmax(0, 1fr);
+      }
+
+      .completion-actions {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+      }
+
+      .score-table,
+      .score-table thead,
+      .score-table tbody,
+      .score-table th,
+      .score-table td,
+      .score-table tr {
+        display: block;
+      }
+
+      .score-table thead {
+        display: none;
+      }
+
+      .score-table tr {
+        padding: 18px;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+      }
+
+      .score-table tr:first-child {
+        border-top: 0;
+      }
+
+      .score-table td {
+        height: auto;
+        padding: 6px 0;
+        border-top: 0;
+      }
+
+      .score-table td::before {
+        content: attr(data-label);
+        display: block;
+        margin-bottom: 6px;
+        color: #788295;
+        font-size: 0.72rem;
+        font-weight: 900;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .progress-cell {
+        grid-template-columns: minmax(0, 1fr) 48px;
+      }
+    }
+
+    @media (max-width: 700px) {
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      .top-actions {
+        gap: 4px;
+      }
+
+      .icon-btn {
+        width: 38px;
+        height: 38px;
+      }
+
+      .icon-btn.is-filled {
+        width: 44px;
+        height: 44px;
+      }
+
+      .completion-card {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 22px;
+      }
+
+      .badge {
+        width: 66px;
+        height: 66px;
+      }
+
+      .completion-actions .button {
+        width: 100%;
+      }
+
+      .chart-panel {
+        min-height: 420px;
+        padding: 24px 12px;
+      }
+
+      .radar-wrap text {
+        font-size: 11px;
+      }
+
+      .coach-copy {
+        padding: 22px;
+      }
+
+      .improvement-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .dock-meta {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="shell">
+    <aside class="sidebar" aria-label="Primary navigation">
+      <div class="brand">
+        <img src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" />
+        <button class="collapse" type="button" aria-label="Collapse navigation">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor">
+            <path d="M8 7 4 12l4 5" />
+            <path d="m16 7 4 5-4 5" />
+            <path d="M12 4v16" />
+          </svg>
+        </button>
+      </div>
+
+      <div class="nav-kicker">Main</div>
+      <nav class="nav">
+        <button class="nav-item" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor">
+            <rect x="3" y="3" width="7" height="7" rx="1.5" />
+            <rect x="14" y="3" width="7" height="7" rx="1.5" />
+            <rect x="3" y="14" width="7" height="7" rx="1.5" />
+            <rect x="14" y="14" width="7" height="7" rx="1.5" />
+          </svg>
+          Dashboard
+        </button>
+        <button class="nav-item" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor">
+            <path d="M12 3a8 8 0 0 0-8 8c0 5 4 10 8 10s8-5 8-10a8 8 0 0 0-8-8Z" />
+            <path d="M12 3v18M4 11h16M6.4 5.9c2.5 2 8.7 2 11.2 0M6.4 16.1c2.5-2 8.7-2 11.2 0" />
+          </svg>
+          My Plan
+          <strong>⌃</strong>
+        </button>
+
+        <div class="nav-group">
+          <button class="nav-item is-active" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor">
+              <path d="M9 5h6" />
+              <path d="M9 3h6v4H9z" />
+              <rect x="5" y="5" width="14" height="16" rx="2" />
+              <path d="m9 13 2 2 4-5" />
+            </svg>
+            Business Assessment
+          </button>
+          <button class="nav-item" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="8" />
+              <circle cx="12" cy="12" r="4" />
+              <circle cx="12" cy="12" r="1" />
+            </svg>
+            Goals &amp; Actions
+          </button>
+        </div>
+
+        <button class="nav-item" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor">
+            <rect x="3" y="6" width="18" height="13" rx="2" />
+            <path d="M7 6V4h10v2" />
+            <path d="M16 13h5" />
+            <path d="M19 10v6" />
+          </svg>
+          Financial Planning
+          <strong>⌃</strong>
+        </button>
+
+        <div class="nav-group">
+          <button class="nav-item" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor">
+              <path d="M9 5h6" />
+              <path d="M9 3h6v4H9z" />
+              <rect x="5" y="5" width="14" height="16" rx="2" />
+              <path d="m9 13 2 2 4-5" />
+            </svg>
+            Financial Assessment
+          </button>
+          <button class="nav-item" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor">
+              <path d="M4 19V5" />
+              <path d="M4 19h16" />
+              <path d="m7 15 4-4 3 3 5-7" />
+            </svg>
+            Financial Modeling Tool
+          </button>
+          <button class="nav-item" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor">
+              <path d="M16 21v-2a4 4 0 0 0-8 0v2" />
+              <circle cx="12" cy="7" r="4" />
+              <path d="M22 21v-2a4 4 0 0 0-3-3.9" />
+              <path d="M16 3.1a4 4 0 0 1 0 7.8" />
+            </svg>
+            Client Tracker
+          </button>
+        </div>
+
+        <button class="nav-item" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor">
+            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+            <path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z" />
+            <path d="M8 7h8M8 11h8" />
+          </svg>
+          AI Coaches
+          <strong>⌃</strong>
+        </button>
+        <div class="nav-group">
+          <button class="nav-item" type="button">Goals &amp; Actions Writer</button>
+          <button class="nav-item" type="button">Sales &amp; Script Coach</button>
+          <button class="nav-item" type="button">Prompt Master</button>
+          <button class="nav-item" type="button">Content Coach</button>
+          <button class="nav-item" type="button">Health &amp; Vitality</button>
+        </div>
+      </nav>
+
+      <div class="sidebar-footer">
+        <button class="nav-item" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor">
+            <path d="M12 15.5A3.5 3.5 0 1 0 12 8a3.5 3.5 0 0 0 0 7.5Z" />
+            <path d="M19.4 15a1.8 1.8 0 0 0 .36 1.98l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06A1.8 1.8 0 0 0 15 19.4a1.8 1.8 0 0 0-1 .6 1.8 1.8 0 0 0-.5 1.3V21a2 2 0 1 1-4 0v-.1a1.8 1.8 0 0 0-.5-1.3 1.8 1.8 0 0 0-1-.6 1.8 1.8 0 0 0-1.98.36l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.8 1.8 0 0 0 4.6 15a1.8 1.8 0 0 0-.6-1 1.8 1.8 0 0 0-1.3-.5H2.6a2 2 0 1 1 0-4h.1A1.8 1.8 0 0 0 4 9a1.8 1.8 0 0 0 .6-1 1.8 1.8 0 0 0-.36-1.98l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.8 1.8 0 0 0 9 4.6a1.8 1.8 0 0 0 1-.6 1.8 1.8 0 0 0 .5-1.3V2.6a2 2 0 1 1 4 0v.1A1.8 1.8 0 0 0 15 4a1.8 1.8 0 0 0 1 .6 1.8 1.8 0 0 0 1.98-.36l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.8 1.8 0 0 0 19.4 9c.2.35.35.7.43 1.1" />
+          </svg>
+          Settings
+        </button>
+        <button class="nav-item" type="button">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor">
+            <path d="M4 14v3a3 3 0 0 0 3 3h1v-8H7a3 3 0 0 0-3 3Z" />
+            <path d="M20 14v3a3 3 0 0 1-3 3h-1v-8h1a3 3 0 0 1 3 3Z" />
+            <path d="M4 15v-3a8 8 0 1 1 16 0v3" />
+          </svg>
+          Support
+        </button>
+        <div>Copyright (c) 2026<br>The Loan Atlas, Inc.</div>
+        <div>Plugin Version: <span class="version">2.64.7</span></div>
+        <div class="profile">
+          <span class="avatar" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor">
+              <circle cx="12" cy="8" r="4" />
+              <path d="M4 22a8 8 0 0 1 16 0" />
+            </svg>
+          </span>
+          <div>
+            <strong>Andrew Vass</strong>
+            <span>ajvass1@gmail.com</span>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="title-wrap">
+          <span class="title-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <rect x="3" y="3" width="7" height="7" rx="1.5" />
+              <rect x="14" y="3" width="7" height="7" rx="1.5" />
+              <rect x="3" y="14" width="7" height="7" rx="1.5" />
+              <rect x="14" y="14" width="7" height="7" rx="1.5" />
+            </svg>
+          </span>
+          <div>
+            <h1>Assessment</h1>
+            <p class="subtitle">Understand your strengths and focus areas</p>
+          </div>
+        </div>
+
+        <div class="top-actions" aria-label="Assessment utilities">
+          <button class="icon-btn" type="button" aria-label="Notifications">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor">
+              <path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9" />
+              <path d="M13.7 21a2 2 0 0 1-3.4 0" />
+            </svg>
+          </button>
+          <button class="icon-btn is-filled" type="button" aria-label="Display settings">
+            <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor">
+              <circle cx="12" cy="12" r="4" />
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" />
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <div class="workspace">
+        <section class="content" aria-label="Business assessment results mockup">
+          <div class="breadcrumb">
+            <span>Manage My Plan</span>
+            <span>›</span>
+            <strong>View Assessments</strong>
+          </div>
+
+          <div class="mock-controls">
+            <div class="highlight-strip" role="group" aria-label="Highlight assessment areas">
+              <button type="button" data-highlight="summary">Summary</button>
+              <button type="button" data-highlight="radar">Radar</button>
+              <button type="button" data-highlight="coach">Coach Note</button>
+              <button type="button" data-highlight="scores">Scores</button>
+              <button type="button" data-highlight="improvements">Improvements</button>
+              <button type="button" data-highlight="actions">Actions</button>
+            </div>
+
+            <div class="compact-stats">
+              <span data-average-score>Average 60%</span>
+              <span data-low-score>Lowest: Time Management</span>
+              <span data-high-score>Highest: Marketing Mastery</span>
+            </div>
+          </div>
+
+          <section class="card completion-card focusable" data-focus="summary" aria-labelledby="completion-title">
+            <span class="pin">1</span>
+            <div class="badge" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="8" r="5" />
+                <path d="M8.5 12.5 7 22l5-3 5 3-1.5-9.5" />
+              </svg>
+            </div>
+            <div class="completion-copy">
+              <h2 id="completion-title">Assessment Completed</h2>
+              <p>Your results are in. Let's get you focused.</p>
+              <div class="completion-date">Completed: 5/13/2026</div>
+            </div>
+            <div class="completion-actions">
+              <button class="button is-primary" type="button" data-open-plan>Get My Action Plan ›</button>
+              <button class="button" type="button" data-open-retake>Retake Assessment</button>
+            </div>
+          </section>
+
+          <h2 class="section-title">Business and Life Assessment</h2>
+          <section class="panel chart-panel focusable" data-focus="radar" aria-labelledby="radar-title">
+            <span class="pin">2</span>
+            <h2 id="radar-title" style="position:absolute; width:1px; height:1px; overflow:hidden;">Business and Life Assessment Radar</h2>
+            <div class="radar-wrap">
+              <svg id="radarChart" viewBox="0 0 620 620" role="img" aria-label="Radar chart showing assessment category scores out of 25"></svg>
+            </div>
+          </section>
+
+          <h2 class="section-title">Coach's Assessment</h2>
+          <section class="card coach-card focusable" data-focus="coach" aria-label="Coach assessment">
+            <span class="pin">3</span>
+            <div class="coach-copy">
+              I can see you're facing challenges across multiple areas of your business. This is actually common for entrepreneurs who are wearing many hats. The good news is that by focusing on your weakest areas, Time Management and Legacy &amp; Freedom, you can create significant momentum that will positively impact other areas too. Your broad positioning and lead generation need immediate attention; this is often the foundation that everything else builds on. The goals and actions I've recommended are specifically designed to address these areas with proven strategies that have worked for other successful entrepreneurs.
+            </div>
+          </section>
+
+          <div class="results-layout">
+            <section class="table-card focusable" data-focus="scores" aria-labelledby="scores-title">
+              <span class="pin">4</span>
+              <h2 id="scores-title" style="position:absolute; width:1px; height:1px; overflow:hidden;">Score by category</h2>
+              <table class="score-table">
+                <thead>
+                  <tr>
+                    <th>Category</th>
+                    <th>Score</th>
+                    <th>Percentage</th>
+                    <th>Questions</th>
+                  </tr>
+                </thead>
+                <tbody data-score-rows></tbody>
+              </table>
+            </section>
+
+            <aside class="panel side-panel focusable" data-focus="actions" aria-labelledby="selected-category-title">
+              <span class="pin">6</span>
+              <div class="category-detail">
+                <div class="detail-heading">
+                  <div>
+                    <h2 class="section-title" id="selected-category-title">Time Management</h2>
+                    <p data-selected-tone>Lowest scoring category</p>
+                  </div>
+                  <strong class="score-chip" data-selected-score>10/25</strong>
+                </div>
+                <div class="bar" style="--value: 40%" data-selected-bar></div>
+                <div class="focus-list">
+                  <div class="focus-item" data-selected-insight-one>Prioritize tasks that directly create pipeline or client movement.</div>
+                  <div class="focus-item" data-selected-insight-two>Protect weekly planning blocks before responding to low-value interruptions.</div>
+                  <div class="focus-item" data-selected-insight-three>Pair this category with Legacy &amp; Freedom to turn activity into scalable assets.</div>
+                </div>
+                <button class="button is-primary" type="button" data-open-plan>Build action plan</button>
+              </div>
+            </aside>
+          </div>
+
+          <h2 class="section-title">Areas of Improvements</h2>
+          <section class="improvement-grid focusable" data-focus="improvements" aria-label="Areas of improvements" data-improvement-grid>
+            <span class="pin">5</span>
+          </section>
+
+          <section class="action-grid focusable" data-focus="actions" aria-label="Recommended action steps">
+            <span class="pin">6</span>
+            <article class="action-card">
+              <h3>Weekly pipeline reset</h3>
+              <p>Choose the top three revenue-producing tasks each Monday, then report progress before adding new work.</p>
+            </article>
+            <article class="action-card">
+              <h3>Lead generation block</h3>
+              <p>Reserve two 45-minute prospecting windows each week and track the contacts, responses, and booked conversations.</p>
+            </article>
+            <article class="action-card">
+              <h3>Freedom asset list</h3>
+              <p>Identify five repeated decisions or scripts that can become templates, checklists, or delegated systems.</p>
+            </article>
+          </section>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <aside class="insight-dock" aria-live="polite" aria-label="Selected assessment highlight">
+    <div class="dock-head">
+      <div>
+        <p class="dock-eyebrow">Assessment highlight</p>
+        <h2 class="dock-title" data-dock-title>Completed assessment</h2>
+      </div>
+      <button class="drawer-close" type="button" data-highlight-close aria-label="Close highlight">×</button>
+    </div>
+    <div class="dock-body">
+      <p class="dock-copy" data-dock-copy>Your assessment completion state anchors the page and gives users a clear path into their action plan.</p>
+      <div class="dock-meta">
+        <div class="meta-box">
+          <span data-dock-label-one>Status</span>
+          <strong data-dock-value-one>Completed</strong>
+        </div>
+        <div class="meta-box">
+          <span data-dock-label-two>Date</span>
+          <strong data-dock-value-two>5/13/2026</strong>
+        </div>
+      </div>
+    </div>
+    <div class="dock-nav">
+      <button type="button" data-tour-prev>Previous</button>
+      <button type="button" data-tour-next>Next highlight</button>
+    </div>
+  </aside>
+
+  <aside class="drawer" data-plan-drawer aria-label="Action plan preview">
+    <div class="drawer-head">
+      <div>
+        <p class="drawer-kicker">Action plan</p>
+        <h2 class="drawer-title">Priority plan from your assessment</h2>
+      </div>
+      <button class="drawer-close" type="button" data-close-plan aria-label="Close action plan">×</button>
+    </div>
+    <div class="drawer-body">
+      <article class="plan-step">
+        <span>1</span>
+        <div>
+          <h3>Start with Time Management</h3>
+          <p>Convert the lowest score into a weekly operating rhythm with protected focus blocks and a visible task shortlist.</p>
+        </div>
+      </article>
+      <article class="plan-step">
+        <span>2</span>
+        <div>
+          <h3>Stabilize Legacy &amp; Freedom</h3>
+          <p>Document repeatable activities so the business depends less on memory and more on usable systems.</p>
+        </div>
+      </article>
+      <article class="plan-step">
+        <span>3</span>
+        <div>
+          <h3>Use Marketing Mastery as leverage</h3>
+          <p>The strongest score can fuel the weaker categories by turning outreach, scripts, and messaging into repeatable campaigns.</p>
+        </div>
+      </article>
+    </div>
+    <div class="drawer-footer">
+      <button class="button" type="button" data-close-plan>Close</button>
+      <button class="button is-primary" type="button" data-save-plan>Save plan</button>
+    </div>
+  </aside>
+
+  <div class="modal-backdrop" data-modal hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <header>
+        <h2 id="modal-title">Update Category</h2>
+        <button class="drawer-close" type="button" data-modal-close aria-label="Close modal">×</button>
+      </header>
+      <div class="modal-body">
+        <div class="field">
+          <label for="categoryName">Category</label>
+          <input id="categoryName" data-category-name readonly />
+        </div>
+        <div class="field">
+          <label for="categoryScore">Score out of 25</label>
+          <input id="categoryScore" data-category-score type="number" min="0" max="25" step="1" />
+        </div>
+        <div class="field">
+          <label for="categoryNote">Coach note</label>
+          <textarea id="categoryNote" data-category-note></textarea>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button class="button" type="button" data-modal-close>Cancel</button>
+        <button class="button is-primary" type="button" data-modal-save>Update result</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="modal-backdrop" data-retake-modal hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="retake-title">
+      <header>
+        <h2 id="retake-title">Retake Assessment</h2>
+        <button class="drawer-close" type="button" data-close-retake aria-label="Close modal">×</button>
+      </header>
+      <div class="modal-body">
+        <p style="color:#b9c3d4; line-height:1.55;">This mockup can route users into a fresh assessment flow or show a confirmation step before replacing current results.</p>
+      </div>
+      <div class="modal-actions">
+        <button class="button" type="button" data-close-retake>Cancel</button>
+        <button class="button is-primary" type="button" data-confirm-retake>Start retake</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="toast" data-toast role="status" aria-live="polite">Mockup updated</div>
+
+  <script>
+    const categories = [
+      {
+        id: "essential",
+        name: "Essential Knowledge",
+        icon: "book",
+        score: 15,
+        note: "Low score reveals insufficient understanding of market trends and client needs.",
+        insights: [
+          "Review market trends and client objections before weekly planning.",
+          "Create a short checklist for the questions every client conversation should answer.",
+          "Pair knowledge gaps with a weekly learning target."
+        ]
+      },
+      {
+        id: "selling",
+        name: "A System for Selling",
+        icon: "tag",
+        score: 17,
+        note: "Low score indicates major gaps in prospecting and closing confidence.",
+        insights: [
+          "Use one repeatable sales process from first contact through follow-up.",
+          "Track the stage of each opportunity before adding more leads.",
+          "Practice a simple close and next-step script every week."
+        ]
+      },
+      {
+        id: "marketing",
+        name: "Marketing Mastery",
+        icon: "chart",
+        score: 18,
+        note: "Moderate score means focused practice in marketing mastery will build skills.",
+        insights: [
+          "Turn the strongest marketing channel into a weekly campaign.",
+          "Reuse high-performing messages across email, social, and partner outreach.",
+          "Measure booked conversations instead of only impressions."
+        ]
+      },
+      {
+        id: "team",
+        name: "Team & Leadership",
+        icon: "users",
+        score: 15,
+        note: "Low score indicates gaps in team leadership and culture building skills.",
+        insights: [
+          "Clarify ownership for recurring business activities.",
+          "Use a weekly rhythm to discuss wins, blockers, and next actions.",
+          "Document delegation standards before handing off work."
+        ]
+      },
+      {
+        id: "service",
+        name: "Customer Service",
+        icon: "headphones",
+        score: 15,
+        note: "Low score indicates weak client relationship management and follow-up systems.",
+        insights: [
+          "Create milestone messages for every client stage.",
+          "Use a simple follow-up dashboard to reduce missed touches.",
+          "Ask for feedback immediately after important client moments."
+        ]
+      },
+      {
+        id: "mindset",
+        name: "Mindset & Health",
+        icon: "heart",
+        score: 13,
+        note: "Low score reveals challenges with stress management and personal resilience.",
+        insights: [
+          "Protect recovery time with the same seriousness as client meetings.",
+          "Identify the recurring stress triggers that affect follow-through.",
+          "Use one daily reset habit before important sales or leadership work."
+        ]
+      },
+      {
+        id: "time",
+        name: "Time Management",
+        icon: "clock",
+        score: 10,
+        note: "Low score shows difficulty prioritizing tasks and avoiding distractions.",
+        insights: [
+          "Prioritize tasks that directly create pipeline or client movement.",
+          "Protect weekly planning blocks before responding to low-value interruptions.",
+          "Pair this category with Legacy & Freedom to turn activity into scalable assets."
+        ]
+      },
+      {
+        id: "legacy",
+        name: "Legacy & Freedom",
+        icon: "target",
+        score: 12,
+        note: "Low score shows lack of financial planning and investment knowledge.",
+        insights: [
+          "Identify which recurring tasks can become documented systems.",
+          "Use one weekly block to build assets that reduce owner dependency.",
+          "Connect financial goals to the business systems needed to sustain them."
+        ]
+      }
+    ];
+
+    const highlightData = {
+      summary: {
+        title: "Completion state",
+        copy: "The summary card confirms the assessment is complete and gives the user two clear paths: action planning or retaking the assessment.",
+        oneLabel: "Status",
+        oneValue: "Completed",
+        twoLabel: "Date",
+        twoValue: "5/13/2026"
+      },
+      radar: {
+        title: "Radar overview",
+        copy: "The radar chart shows the user's shape across all eight categories, making strengths and constraints visible at a glance.",
+        oneLabel: "Highest",
+        oneValue: "Marketing Mastery",
+        twoLabel: "Lowest",
+        twoValue: "Time Management"
+      },
+      coach: {
+        title: "Coach note",
+        copy: "The coach assessment turns scores into narrative guidance, focusing attention on the lowest areas without making the page feel punitive.",
+        oneLabel: "Tone",
+        oneValue: "Supportive",
+        twoLabel: "Focus",
+        twoValue: "Momentum"
+      },
+      scores: {
+        title: "Score table",
+        copy: "Rows expose the raw category scores, percentages, and update actions. Selecting a row updates the category detail card.",
+        oneLabel: "Categories",
+        oneValue: "8",
+        twoLabel: "Scale",
+        twoValue: "25 pts"
+      },
+      improvements: {
+        title: "Improvement cards",
+        copy: "Cards convert every category into a scan-friendly coaching tile with score rings and concise improvement prompts.",
+        oneLabel: "Cards",
+        oneValue: "8",
+        twoLabel: "Average",
+        twoValue: "60%"
+      },
+      actions: {
+        title: "Action plan",
+        copy: "The right-side category detail and action cards give users a path from assessment results to specific next steps.",
+        oneLabel: "Priority",
+        oneValue: "Time Management",
+        twoLabel: "Next",
+        twoValue: "Build plan"
+      }
+    };
+
+    const focusOrder = ["summary", "radar", "coach", "scores", "improvements", "actions"];
+    let selectedId = "time";
+    let editingId = null;
+    let activeFocus = null;
+
+    const qs = (selector, root = document) => root.querySelector(selector);
+    const qsa = (selector, root = document) => Array.from(root.querySelectorAll(selector));
+
+    function iconSvg(type) {
+      const icons = {
+        book: '<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" /><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5z" />',
+        tag: '<path d="M20.5 13.5 13 21l-10-10V3h8l9.5 9.5a1.4 1.4 0 0 1 0 2Z" /><circle cx="7.5" cy="7.5" r="1.5" />',
+        chart: '<path d="M4 19V5" /><path d="M4 19h16" /><path d="M8 16v-5M12 16V8M16 16v-8" />',
+        users: '<path d="M16 21v-2a4 4 0 0 0-8 0v2" /><circle cx="12" cy="7" r="4" /><path d="M22 21v-2a4 4 0 0 0-3-3.9" /><path d="M16 3.1a4 4 0 0 1 0 7.8" />',
+        headphones: '<path d="M4 14v3a3 3 0 0 0 3 3h1v-8H7a3 3 0 0 0-3 3Z" /><path d="M20 14v3a3 3 0 0 1-3 3h-1v-8h1a3 3 0 0 1 3 3Z" /><path d="M4 15v-3a8 8 0 1 1 16 0v3" />',
+        heart: '<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.6l-1-1a5.5 5.5 0 1 0-7.8 7.8l1 1L12 21l7.8-7.6 1-1a5.5 5.5 0 0 0 0-7.8Z" />',
+        clock: '<circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" />',
+        target: '<circle cx="12" cy="12" r="8" /><circle cx="12" cy="12" r="4" /><circle cx="12" cy="12" r="1" />'
+      };
+      return `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor">${icons[type] || icons.book}</svg>`;
+    }
+
+    function percent(category) {
+      return Math.round((category.score / 25) * 100);
+    }
+
+    function categoryById(id) {
+      return categories.find((category) => category.id === id) || categories[0];
+    }
+
+    function updateStats() {
+      const average = Math.round(categories.reduce((sum, category) => sum + percent(category), 0) / categories.length);
+      const sorted = [...categories].sort((a, b) => a.score - b.score);
+      qs("[data-average-score]").textContent = `Average ${average}%`;
+      qs("[data-low-score]").textContent = `Lowest: ${sorted[0].name}`;
+      qs("[data-high-score]").textContent = `Highest: ${sorted[sorted.length - 1].name}`;
+      highlightData.radar.oneValue = sorted[sorted.length - 1].name;
+      highlightData.radar.twoValue = sorted[0].name;
+      highlightData.improvements.twoValue = `${average}%`;
+      highlightData.actions.oneValue = sorted[0].name;
+    }
+
+    function renderRows() {
+      const tbody = qs("[data-score-rows]");
+      tbody.innerHTML = categories.map((category) => {
+        const pct = percent(category);
+        return `
+          <tr data-row="${category.id}" class="${category.id === selectedId ? "is-selected" : ""}">
+            <td data-label="Category">${category.name}</td>
+            <td data-label="Score">${category.score} out of 25</td>
+            <td data-label="Percentage">
+              <div class="progress-cell">
+                <span class="bar" style="--value: ${pct}%"></span>
+                <span>${pct}%</span>
+              </div>
+            </td>
+            <td data-label="Questions">
+              <button class="pill-button" type="button" data-update="${category.id}">
+                <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor">
+                  <path d="M3 12a9 9 0 1 0 3-6.7" />
+                  <path d="M3 4v6h6" />
+                </svg>
+                Update
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join("");
+
+      qsa("[data-row]").forEach((row) => {
+        row.addEventListener("click", () => selectCategory(row.dataset.row, true));
+      });
+      qsa("[data-update]").forEach((button) => {
+        button.addEventListener("click", (event) => {
+          event.stopPropagation();
+          openUpdate(button.dataset.update);
+        });
+      });
+    }
+
+    function renderImprovementCards() {
+      const grid = qs("[data-improvement-grid]");
+      grid.innerHTML = '<span class="pin">5</span>' + categories.map((category) => {
+        const pct = percent(category);
+        return `
+          <button class="improvement-card" type="button" data-card="${category.id}">
+            <span class="ring" style="--percent: ${pct}"><span>${category.score}/25</span></span>
+            <span class="improvement-title">${iconSvg(category.icon)} ${category.name}</span>
+            <span class="improvement-copy">${category.note}</span>
+          </button>
+        `;
+      }).join("");
+
+      qsa("[data-card]").forEach((card) => {
+        card.addEventListener("click", () => selectCategory(card.dataset.card, true));
+      });
+    }
+
+    function renderRadar() {
+      const svg = qs("#radarChart");
+      const size = 620;
+      const center = size / 2;
+      const radius = 190;
+      const labelRadius = 250;
+      const max = 25;
+      const count = categories.length;
+      const angleFor = (index) => (-Math.PI / 2) + (index * 2 * Math.PI / count);
+      const point = (index, valueRadius) => {
+        const angle = angleFor(index);
+        return [center + Math.cos(angle) * valueRadius, center + Math.sin(angle) * valueRadius];
+      };
+      const polygon = (r) => categories.map((_, index) => point(index, r).map((n) => n.toFixed(1)).join(",")).join(" ");
+      const dataPoints = categories.map((category, index) => point(index, radius * category.score / max).map((n) => n.toFixed(1)).join(",")).join(" ");
+
+      svg.innerHTML = `
+        <g>
+          ${[0.2, 0.4, 0.6, 0.8, 1].map((scale) => `<polygon class="radar-grid" points="${polygon(radius * scale)}"></polygon>`).join("")}
+          ${categories.map((_, index) => {
+            const [x, y] = point(index, radius);
+            return `<line class="radar-axis" x1="${center}" y1="${center}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"></line>`;
+          }).join("")}
+          ${[5, 10, 15, 20, 25].map((value) => `<text x="${center - 10}" y="${(center - radius * value / max + 5).toFixed(1)}">${value}</text>`).join("")}
+          <polygon class="radar-area" points="${dataPoints}"></polygon>
+          ${categories.map((category, index) => {
+            const [x, y] = point(index, radius * category.score / max);
+            return `<circle class="radar-point" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${category.id === selectedId ? 6 : 4}" data-radar-point="${category.id}"></circle>`;
+          }).join("")}
+          ${categories.map((category, index) => {
+            let [x, y] = point(index, labelRadius);
+            const side = x < center - 20 ? "left" : x > center + 20 ? "right" : "center";
+            const anchor = side === "left" ? "start" : side === "right" ? "end" : "middle";
+            x = side === "left" ? Math.max(18, x - 18) : side === "right" ? Math.min(size - 18, x + 18) : x;
+            const dy = y < center ? -4 : 14;
+            return `<text x="${x.toFixed(1)}" y="${(y + dy).toFixed(1)}" text-anchor="${anchor}">${category.name}</text>`;
+          }).join("")}
+        </g>
+      `;
+    }
+
+    function selectCategory(id, showHighlight = false) {
+      selectedId = id;
+      const category = categoryById(id);
+      qsa("[data-row]").forEach((row) => row.classList.toggle("is-selected", row.dataset.row === id));
+      qsa("[data-card]").forEach((card) => card.classList.toggle("is-selected", card.dataset.card === id));
+      qs("#selected-category-title").textContent = category.name;
+      qs("[data-selected-tone]").textContent = category.score <= 12 ? "Lowest scoring category" : "Assessment category";
+      qs("[data-selected-score]").textContent = `${category.score}/25`;
+      qs("[data-selected-bar]").style.setProperty("--value", `${percent(category)}%`);
+      qs("[data-selected-insight-one]").textContent = category.insights[0];
+      qs("[data-selected-insight-two]").textContent = category.insights[1];
+      qs("[data-selected-insight-three]").textContent = category.insights[2];
+      renderRadar();
+
+      highlightData.actions.oneValue = category.name;
+      highlightData.actions.twoValue = `${category.score}/25`;
+      if (showHighlight) setHighlight("actions", false);
+    }
+
+    function updateDock(key) {
+      const data = highlightData[key];
+      if (!data) return;
+      qs("[data-dock-title]").textContent = data.title;
+      qs("[data-dock-copy]").textContent = data.copy;
+      qs("[data-dock-label-one]").textContent = data.oneLabel;
+      qs("[data-dock-value-one]").textContent = data.oneValue;
+      qs("[data-dock-label-two]").textContent = data.twoLabel;
+      qs("[data-dock-value-two]").textContent = data.twoValue;
+    }
+
+    function setHighlight(key, shouldScroll = true) {
+      if (!highlightData[key]) return;
+      activeFocus = key;
+      document.body.classList.add("has-focus");
+      qsa("[data-focus]").forEach((node) => node.classList.toggle("is-highlighted", node.dataset.focus === key));
+      qsa("[data-highlight]").forEach((button) => button.classList.toggle("is-active", button.dataset.highlight === key));
+      updateDock(key);
+
+      const target = qs(`[data-focus="${key}"]`);
+      if (target && shouldScroll && window.matchMedia("(max-width: 980px)").matches) {
+        target.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    }
+
+    function clearHighlight() {
+      activeFocus = null;
+      document.body.classList.remove("has-focus");
+      qsa("[data-focus]").forEach((node) => node.classList.remove("is-highlighted"));
+      qsa("[data-highlight]").forEach((button) => button.classList.remove("is-active"));
+    }
+
+    function stepHighlight(direction) {
+      const current = activeFocus ? focusOrder.indexOf(activeFocus) : -1;
+      const next = (current + direction + focusOrder.length) % focusOrder.length;
+      setHighlight(focusOrder[next]);
+    }
+
+    function openUpdate(id) {
+      editingId = id;
+      const category = categoryById(id);
+      qs("[data-category-name]").value = category.name;
+      qs("[data-category-score]").value = category.score;
+      qs("[data-category-note]").value = category.note;
+      const modal = qs("[data-modal]");
+      modal.hidden = false;
+      modal.classList.add("is-open");
+      qs("[data-category-score]").focus();
+    }
+
+    function closeUpdate() {
+      const modal = qs("[data-modal]");
+      modal.classList.remove("is-open");
+      modal.hidden = true;
+    }
+
+    function saveUpdate() {
+      const category = categoryById(editingId);
+      const score = Math.max(0, Math.min(25, Number(qs("[data-category-score]").value || category.score)));
+      category.score = score;
+      category.note = qs("[data-category-note]").value.trim() || category.note;
+      updateStats();
+      renderRows();
+      renderImprovementCards();
+      selectCategory(category.id, true);
+      closeUpdate();
+      showToast(`${category.name} updated to ${category.score}/25`);
+    }
+
+    function openPlan() {
+      qs("[data-plan-drawer]").classList.add("is-open");
+      setHighlight("actions", false);
+    }
+
+    function closePlan() {
+      qs("[data-plan-drawer]").classList.remove("is-open");
+    }
+
+    function openRetake() {
+      const modal = qs("[data-retake-modal]");
+      modal.hidden = false;
+      modal.classList.add("is-open");
+    }
+
+    function closeRetake() {
+      const modal = qs("[data-retake-modal]");
+      modal.classList.remove("is-open");
+      modal.hidden = true;
+    }
+
+    function showToast(message) {
+      const toast = qs("[data-toast]");
+      toast.textContent = message;
+      toast.classList.add("is-visible");
+      window.clearTimeout(showToast.timer);
+      showToast.timer = window.setTimeout(() => toast.classList.remove("is-visible"), 2200);
+    }
+
+    qsa("[data-highlight]").forEach((button) => {
+      button.addEventListener("click", () => setHighlight(button.dataset.highlight));
+    });
+    qsa("[data-focus]").forEach((node) => {
+      node.addEventListener("click", () => setHighlight(node.dataset.focus));
+    });
+    qsa("[data-open-plan]").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        openPlan();
+      });
+    });
+    qsa("[data-close-plan]").forEach((button) => button.addEventListener("click", closePlan));
+    qs("[data-save-plan]").addEventListener("click", () => {
+      closePlan();
+      showToast("Action plan saved to this mockup");
+    });
+    qsa("[data-open-retake]").forEach((button) => {
+      button.addEventListener("click", (event) => {
+        event.stopPropagation();
+        openRetake();
+      });
+    });
+    qsa("[data-close-retake]").forEach((button) => button.addEventListener("click", closeRetake));
+    qs("[data-confirm-retake]").addEventListener("click", () => {
+      closeRetake();
+      showToast("Retake flow started in mockup");
+    });
+    qsa("[data-modal-close]").forEach((button) => button.addEventListener("click", closeUpdate));
+    qs("[data-modal-save]").addEventListener("click", saveUpdate);
+    qs("[data-highlight-close]").addEventListener("click", clearHighlight);
+    qs("[data-tour-prev]").addEventListener("click", () => stepHighlight(-1));
+    qs("[data-tour-next]").addEventListener("click", () => stepHighlight(1));
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeUpdate();
+        closeRetake();
+        closePlan();
+        clearHighlight();
+      }
+      if (event.key === "ArrowRight" && document.body.classList.contains("has-focus")) stepHighlight(1);
+      if (event.key === "ArrowLeft" && document.body.classList.contains("has-focus")) stepHighlight(-1);
+    });
+
+    updateStats();
+    renderRows();
+    renderImprovementCards();
+    selectCategory(selectedId, false);
+  </script>
+</body>
+
+</html>

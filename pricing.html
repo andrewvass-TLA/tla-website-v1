@@ -8,15 +8,15 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="chrome.css" />
+  <link rel="stylesheet" href="inter-1.css" />
+  <link rel="stylesheet" href="../chrome.css" />
 </head>
 <body>
 
   <header class="site-header">
     <div class="site-header__inner">
       <a href="index.html" class="brand" aria-label="The Loan Atlas — home">
-        <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
+        <img src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
       </a>
       <nav class="nav" aria-label="Primary">
         <a class="nav__link" href="whats-inside.html">What's Inside</a>
@@ -27,13 +27,13 @@
         <a class="nav__link" href="events.html">Events</a>
         <div class="nav__dropdown" data-open="false">
           <button class="nav__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
-            V2 Pages
+            Other Designs
             <svg class="nav__dropdown-chevron" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="nav__dropdown-menu" role="menu">
-          <a class="nav__dropdown-item" role="menuitem" href="index-v2.html">Homepage V2</a>
-          <a class="nav__dropdown-item" role="menuitem" href="pricing-v2.html">Pricing V2</a>
-          <a class="nav__dropdown-item" role="menuitem" href="whats-inside-v2.html">What's Inside V2</a>
+          <a class="nav__dropdown-item" role="menuitem" href="../poppins-1/index.html">Poppins 1 — Homepage</a>
+          <a class="nav__dropdown-item" role="menuitem" href="../poppins-1/pricing.html">Poppins 1 — Pricing</a>
+          <a class="nav__dropdown-item" role="menuitem" href="../kajabi-1/whats-inside.html">Kajabi 1 — What's Inside</a>
           </div>
         </div>
       </nav>
@@ -54,10 +54,10 @@
       <a class="mobile-nav__link" href="corporate.html">Corporate Sales</a>
       <a class="mobile-nav__link mobile-nav__link--active" href="pricing.html">Pricing</a>
       <a class="mobile-nav__link" href="events.html">Events</a>
-      <div class="mobile-nav__group-label">V2 Pages</div>
-      <a class="mobile-nav__link mobile-nav__sublink" href="index-v2.html">Homepage V2</a>
-      <a class="mobile-nav__link mobile-nav__sublink" href="pricing-v2.html">Pricing V2</a>
-      <a class="mobile-nav__link mobile-nav__sublink" href="whats-inside-v2.html">What's Inside V2</a>
+      <div class="mobile-nav__group-label">Other Designs</div>
+      <a class="mobile-nav__link mobile-nav__sublink" href="../poppins-1/index.html">Poppins 1 — Homepage</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="../poppins-1/pricing.html">Poppins 1 — Pricing</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="../kajabi-1/whats-inside.html">Kajabi 1 — What's Inside</a>
       <a class="mobile-nav__link" href="#">Login</a>
       <a class="btn btn--primary btn--header mobile-nav__cta" href="consultation.html">Book Your Free Coaching Session</a>
     </div>
@@ -70,7 +70,7 @@
          ============================================================ -->
     <section class="hero" style="text-align: center; padding-bottom: 0;">
       <div class="container">
-        <h1 class="hero__title" style="max-width: 44rem; margin-inline: auto; font-size: clamp(2rem, 1.1rem + 3.2vw, 3.25rem);">One Membership. Everything You Need to Create, Operate, and Scale a Profitable Mortgage Business.</h1>
+        <h1 class="hero__title" data-hero-step="1" style="max-width: 44rem; margin-inline: auto; font-size: clamp(2rem, 1.1rem + 3.2vw, 3.25rem);">One Membership. Everything You Need to Create, Operate, and Scale a Profitable Mortgage Business.</h1>
       </div>
     </section>
 
@@ -79,7 +79,7 @@
          ============================================================ -->
     <section class="section" style="padding-top: var(--space-xl);">
       <div class="container">
-        <div class="pricing-grid">
+        <div class="pricing-grid" data-reveal-stagger="140">
 
           <!-- Monthly -->
           <article class="plan">
@@ -174,8 +174,8 @@
         </div>
 
         <!-- ROI statement -->
-        <div style="margin-top: var(--space-xl); max-width: 52rem; margin-inline: auto; text-align: center; padding: var(--space-lg); background: var(--surface-container-low); border-radius: var(--radius-2xl); border: 1px solid var(--outline-variant);">
-          <p style="font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; color: var(--on-surface); margin: 0 0 var(--space-sm);">Loan Atlas members close an average of $8.2M more in annual production than the industry average.</p>
+        <div data-reveal="up" style="margin-top: var(--space-xl); max-width: 52rem; margin-inline: auto; text-align: center; padding: var(--space-lg); background: var(--surface-container-low); border-radius: var(--radius-2xl); border: 1px solid var(--outline-variant);">
+          <p style="font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; color: var(--on-surface); margin: 0 0 var(--space-sm);">Loan Atlas members close an average of $<span data-countup="8.2">8.2</span>M more in annual production than the industry average.</p>
           <p style="font-size: 0.9375rem; color: var(--on-surface-variant); margin: 0; line-height: 1.65;">You don't need $8.2M more to make this work — you need one additional closed loan. On most loan amounts, the commission on a single closing covers your membership for the year. Everything after that is net gain.</p>
         </div>
 
@@ -188,11 +188,11 @@
     <section class="section bg-surface-low">
       <div class="container">
 
-        <div style="text-align: center; max-width: 36rem; margin-inline: auto; margin-bottom: var(--space-xl);">
+        <div data-reveal="up" style="text-align: center; max-width: 36rem; margin-inline: auto; margin-bottom: var(--space-xl);">
           <span class="eyebrow"><span class="eyebrow__text">What Members Say</span></span>
         </div>
 
-        <div style="display: grid; gap: var(--space-md); grid-template-columns: 1fr;" class="testimonials-grid">
+        <div data-reveal-stagger="120" style="display: grid; gap: var(--space-md); grid-template-columns: 1fr;" class="testimonials-grid">
 
           <blockquote style="padding: var(--space-md) var(--space-lg); border-left: 2px solid var(--brass); background: var(--surface-container-lowest); border-radius: 0 var(--radius-xl) var(--radius-xl) 0; box-shadow: var(--shadow-sm);">
             <p style="font-style: italic; font-size: 1.0625rem; line-height: 1.65; color: var(--on-surface-variant); margin: 0 0 var(--space-xs);">"If you're considering joining The Loan Atlas, it's been the best investment I've ever made — and you will make it back within your first month's production."</p>
@@ -219,12 +219,12 @@
     <section class="section bg-white">
       <div class="container">
 
-        <div style="max-width: 52rem; margin-inline: auto; margin-bottom: var(--space-xl); text-align: center;">
+        <div data-reveal="up" style="max-width: 52rem; margin-inline: auto; margin-bottom: var(--space-xl); text-align: center;">
           <span class="eyebrow"><span class="eyebrow__text">Everything in Your Membership</span></span>
-          <h2 class="t-headline-lg" style="margin-top: var(--space-sm); margin-bottom: 0;">What's Included</h2>
+          <h2 class="section-heading" style="margin-top: var(--space-sm); margin-bottom: 0;">What's Included</h2>
         </div>
 
-        <div style="display: grid; gap: var(--space-md); grid-template-columns: 1fr;" class="included-grid">
+        <div data-reveal-stagger="80" style="display: grid; gap: var(--space-md); grid-template-columns: 1fr;" class="included-grid">
 
           <div style="display: flex; gap: var(--space-md); align-items: flex-start; padding: var(--space-md); background: var(--surface-container-lowest); border: 1px solid var(--outline-variant); border-radius: var(--radius-2xl);">
             <span style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(201,150,28,0.1); border-radius: var(--radius-xl); display: flex; align-items: center; justify-content: center; color: var(--brass);">
@@ -297,12 +297,12 @@
       <div class="container">
 
         <div style="max-width: 48rem; margin-inline: auto;">
-          <div style="margin-bottom: var(--space-xl);">
+          <div data-reveal="up" style="margin-bottom: var(--space-xl);">
             <span class="eyebrow"><span class="eyebrow__text">Common Questions</span></span>
-            <h2 class="t-headline-lg" style="margin-top: var(--space-sm); margin-bottom: 0;">Frequently Asked Questions</h2>
+            <h2 class="section-heading" style="margin-top: var(--space-sm); margin-bottom: 0;">Frequently Asked Questions</h2>
           </div>
 
-          <div class="faq">
+          <div class="faq" data-reveal-stagger="80">
 
             <details class="faq-item">
               <summary>What's the difference between monthly and annual?</summary>
@@ -335,7 +335,7 @@
          ============================================================ -->
     <section class="section">
       <div class="container">
-        <div class="panel-dark center">
+        <div class="panel-dark center" data-reveal="scale">
           <h2 class="t-headline-lg" style="color: var(--on-primary); margin-bottom: var(--space-sm);">Install The System Top Producers Are Using</h2>
           <p class="t-body-lg" style="color: rgba(255,255,255,0.72); margin-bottom: var(--space-xl); max-width: 36rem; margin-inline: auto;">Whichever you choose, you're in from day one — every tool, every coach, every framework, every resource.</p>
           <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm); justify-content: center; align-items: center;">
@@ -348,7 +348,7 @@
         </div>
 
         <!-- Coaching call fallback -->
-        <div style="margin-top: var(--space-xl); max-width: 38rem; margin-inline: auto; text-align: center;">
+        <div data-reveal="up" style="margin-top: var(--space-xl); max-width: 38rem; margin-inline: auto; text-align: center;">
           <p style="font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; color: var(--on-surface); margin: 0 0 var(--space-xs);">Want to See Inside First?</p>
           <p style="font-size: 0.9375rem; color: var(--on-surface-variant); margin: 0 0 var(--space-md); line-height: 1.65;">See how top originators are fast-tracking their success inside The Loan Atlas. Our team will help you identify what's really in the way, and show you what's working for members right now.</p>
           <a class="btn btn--primary btn--lg" href="consultation.html">
@@ -366,7 +366,7 @@
     <div class="site-footer__inner">
       <div class="site-footer__top">
         <a href="index.html" class="brand">
-          <img src="assets/Loan Atlas logo-color.png" alt="The Loan Atlas" class="brand__logo" />
+          <img src="../assets/Loan Atlas logo-color.png" alt="The Loan Atlas" class="brand__logo" />
         </a>
         <nav class="site-footer__links" aria-label="Footer">
           <a class="site-footer__link" href="whats-inside.html">What's Inside</a>
@@ -401,6 +401,7 @@
     }
   </style>
 
-  <script src="nav.js"></script>
+  <script src="../nav.js"></script>
+  <script src="animations.js" defer></script>
 </body>
 </html>

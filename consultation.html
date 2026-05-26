@@ -8,12 +8,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="chrome.css" />
+  <link rel="stylesheet" href="inter-1.css" />
+  <link rel="stylesheet" href="../chrome.css" />
   <style>
     /* ── Hero ── */
     .hero-v2 {
-      background: linear-gradient(135deg, #0a1628 0%, #131b2e 50%, #1e293b 100%);
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
       padding-block: clamp(80px, 8vw, 120px);
     }
     .hero-booking {
@@ -97,42 +97,6 @@
     }
 
     /* ── Stats bar ── */
-    .stats-bar {
-      background: var(--surface-container-low);
-      border-block: 1px solid var(--outline-variant);
-    }
-    .stats-bar__inner {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-    }
-    @media (max-width: 600px) {
-      .stats-bar__inner { grid-template-columns: repeat(2, 1fr); }
-      .stat-item:nth-child(3),
-      .stat-item:nth-child(4) { border-top: 1px solid var(--outline-variant); }
-      .stat-item:nth-child(2) { border-right: none; }
-      .stat-item:nth-child(3) { border-right: 1px solid var(--outline-variant); }
-    }
-    .stat-item {
-      padding: var(--space-lg) var(--space-md);
-      text-align: center;
-      border-right: 1px solid var(--outline-variant);
-    }
-    .stat-item:last-child { border-right: none; }
-    .stat-item__number {
-      font-family: var(--font-display);
-      font-size: clamp(2rem, 3vw, 2.75rem);
-      font-weight: 800;
-      line-height: 1;
-      color: var(--primary);
-      margin-bottom: 8px;
-    }
-    .stat-item__label {
-      font-family: var(--font-body);
-      font-size: 0.8125rem;
-      font-weight: 500;
-      color: var(--on-surface-variant);
-    }
-
     /* ── Why section ── */
     .why-grid {
       display: grid;
@@ -225,7 +189,7 @@
 
     /* ── Credibility ── */
     .credibility-section {
-      background: linear-gradient(135deg, #0a1628 0%, #131b2e 50%, #1e293b 100%);
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
       padding-block: clamp(48px, 6vw, 80px);
       text-align: center;
     }
@@ -248,7 +212,7 @@
 
     /* ── Dark testimonials ── */
     .dark-testimonials {
-      background: linear-gradient(135deg, #0a1628 0%, #131b2e 50%, #1e293b 100%);
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
       border-top: 1px solid rgba(255,255,255,0.06);
     }
     .dark-testimonials .quote-card {
@@ -274,7 +238,7 @@
     }
     .compare-v2__col { padding: var(--space-lg); }
     .compare-v2__col--theirs { background: var(--surface-container); }
-    .compare-v2__col--ours { background: var(--primary); }
+    .compare-v2__col--ours { background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%); }
     .compare-v2__label {
       font-family: var(--font-body);
       font-size: 0.6875rem;
@@ -316,7 +280,7 @@
   <header class="site-header">
     <div class="site-header__inner">
       <a href="index.html" class="brand" aria-label="The Loan Atlas — home">
-        <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
+        <img src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
       </a>
       <nav class="nav" aria-label="Primary">
         <a class="nav__link" href="whats-inside.html">What's Inside</a>
@@ -327,13 +291,13 @@
         <a class="nav__link" href="events.html">Events</a>
         <div class="nav__dropdown" data-open="false">
           <button class="nav__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
-            V2 Pages
+            Other Designs
             <svg class="nav__dropdown-chevron" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="nav__dropdown-menu" role="menu">
-          <a class="nav__dropdown-item" role="menuitem" href="index-v2.html">Homepage V2</a>
-          <a class="nav__dropdown-item" role="menuitem" href="pricing-v2.html">Pricing V2</a>
-          <a class="nav__dropdown-item" role="menuitem" href="whats-inside-v2.html">What's Inside V2</a>
+          <a class="nav__dropdown-item" role="menuitem" href="../poppins-1/index.html">Poppins 1 — Homepage</a>
+          <a class="nav__dropdown-item" role="menuitem" href="../poppins-1/pricing.html">Poppins 1 — Pricing</a>
+          <a class="nav__dropdown-item" role="menuitem" href="../kajabi-1/whats-inside.html">Kajabi 1 — What's Inside</a>
           </div>
         </div>
       </nav>
@@ -354,10 +318,10 @@
       <a class="mobile-nav__link" href="corporate.html">Corporate Sales</a>
       <a class="mobile-nav__link" href="pricing.html">Pricing</a>
       <a class="mobile-nav__link" href="events.html">Events</a>
-      <div class="mobile-nav__group-label">V2 Pages</div>
-      <a class="mobile-nav__link mobile-nav__sublink" href="index-v2.html">Homepage V2</a>
-      <a class="mobile-nav__link mobile-nav__sublink" href="pricing-v2.html">Pricing V2</a>
-      <a class="mobile-nav__link mobile-nav__sublink" href="whats-inside-v2.html">What's Inside V2</a>
+      <div class="mobile-nav__group-label">Other Designs</div>
+      <a class="mobile-nav__link mobile-nav__sublink" href="../poppins-1/index.html">Poppins 1 — Homepage</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="../poppins-1/pricing.html">Poppins 1 — Pricing</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="../kajabi-1/whats-inside.html">Kajabi 1 — What's Inside</a>
       <a class="mobile-nav__link" href="#">Login</a>
       <a class="btn btn--primary btn--header mobile-nav__cta" href="consultation.html">Book Your Free Coaching Session</a>
     </div>
@@ -372,12 +336,12 @@
 
           <!-- Left: prose -->
           <div>
-            <span class="eyebrow"><span class="eyebrow__text">Free Business Assessment</span></span>
-            <h1 class="t-display" style="color: white; margin-top: var(--space-sm); margin-bottom: var(--space-md);">
+            <span class="eyebrow" data-hero-step="1"><span class="eyebrow__text">Free Business Assessment</span></span>
+            <h1 class="t-display" data-hero-step="2" style="color: white; margin-top: var(--space-sm); margin-bottom: var(--space-md);">
               Step inside The Loan Atlas and build your <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">growth plan.</span>
             </h1>
-            <p class="t-body-lg" style="color: rgba(255,255,255,0.72); max-width: 36rem;">This free 1-hour business assessment will show you exactly where your next level of production is hiding — and how to get to it.</p>
-            <ul class="hero-v2__bullets">
+            <p class="t-body-lg" data-hero-step="3" style="color: rgba(255,255,255,0.72); max-width: 36rem;">This free 1-hour business assessment will show you exactly where your next level of production is hiding — and how to get to it.</p>
+            <ul class="hero-v2__bullets" data-hero-step="4">
               <li>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
                 A clear-eyed look at where your production stands right now
@@ -406,7 +370,7 @@
           </div>
 
           <!-- Right: booking widget -->
-          <div>
+          <div data-hero-step="5">
             <div class="booking-card">
               <div class="booking-card__header">
                 <h2 class="t-headline-md" style="margin-bottom: 4px;">Book Your Free Session</h2>
@@ -422,23 +386,23 @@
 
     <!-- ── Stats bar ── -->
     <div class="stats-bar">
-      <div class="container" style="padding-block: 0;">
-        <div class="stats-bar__inner">
-          <div class="stat-item">
-            <div class="stat-item__number">500+</div>
-            <div class="stat-item__label">Members Nationwide</div>
+      <div class="container">
+        <div class="stats-bar__grid" data-reveal-stagger="100">
+          <div class="stats-bar__item">
+            <span class="stats-bar__num" data-countup="500" data-countup-suffix="+" data-countup-commas="false">500+</span>
+            <span class="stats-bar__label">Members Nationwide</span>
           </div>
-          <div class="stat-item">
-            <div class="stat-item__number">4.6</div>
-            <div class="stat-item__label">Average Member Rating</div>
+          <div class="stats-bar__item">
+            <span class="stats-bar__num" data-countup="4.6">4.6</span>
+            <span class="stats-bar__label">Average Member Rating</span>
           </div>
-          <div class="stat-item">
-            <div class="stat-item__number">1,000+</div>
-            <div class="stat-item__label">Hours of Coaching Content</div>
+          <div class="stats-bar__item">
+            <span class="stats-bar__num" data-countup="1000" data-countup-suffix="+">1,000+</span>
+            <span class="stats-bar__label">Hours of Coaching Content</span>
           </div>
-          <div class="stat-item">
-            <div class="stat-item__number">15+</div>
-            <div class="stat-item__label">Years Industry Experience</div>
+          <div class="stats-bar__item">
+            <span class="stats-bar__num" data-countup="15" data-countup-suffix="+" data-countup-commas="false">15+</span>
+            <span class="stats-bar__label">Years Industry Experience</span>
           </div>
         </div>
       </div>
@@ -448,10 +412,10 @@
     <section class="section">
       <div class="container">
         <div class="why-grid">
-          <div>
-            <img src="assets/talk-to-tim.png" alt="One-on-one coaching session at The Loan Atlas" style="width:100%;border-radius:var(--radius-3xl);box-shadow:var(--shadow-xl);" />
+          <div data-reveal="left">
+            <img src="../assets/talk-to-tim.png" alt="One-on-one coaching session at The Loan Atlas" style="width:100%;border-radius:var(--radius-3xl);box-shadow:var(--shadow-xl);" />
           </div>
-          <div>
+          <div data-reveal="right">
             <span class="eyebrow"><span class="eyebrow__text">Clarity Over Pitches</span></span>
             <h2 class="t-headline-lg" style="margin-top: var(--space-sm); margin-bottom: var(--space-md);">Appointments built around your business, not ours</h2>
             <ul class="why-checklist">
@@ -481,12 +445,12 @@
     <!-- ── How your session works ── -->
     <section class="section" style="background: var(--surface-container-low); border-block: 1px solid var(--outline-variant);">
       <div class="container">
-        <header style="max-width: 40rem; margin-inline: auto; margin-bottom: var(--space-xl); text-align: center;">
+        <header data-reveal="up" style="max-width: 40rem; margin-inline: auto; margin-bottom: var(--space-xl); text-align: center;">
           <span class="eyebrow" style="justify-content: center;"><span class="eyebrow__text">The Process</span></span>
-          <h2 class="t-headline-lg" style="margin-top: var(--space-sm);">How your session works</h2>
+          <h2 class="section-heading" style="margin-top: var(--space-sm);">How your session works</h2>
         </header>
         <div class="process-grid">
-          <ol class="process-steps">
+          <ol class="process-steps" data-reveal-stagger="120">
             <li class="process-step">
               <span class="step-num">1</span>
               <div class="process-step__content">
@@ -516,8 +480,8 @@
               </div>
             </li>
           </ol>
-          <div class="process-grid__image">
-            <img src="assets/ai-business-planning-screenshot.png" alt="The Loan Atlas business planning tools" />
+          <div class="process-grid__image" data-reveal="right">
+            <img src="../assets/ai-business-planning-screenshot.png" alt="The Loan Atlas business planning tools" />
           </div>
         </div>
       </div>
@@ -525,16 +489,16 @@
 
     <!-- ── Credibility ── -->
     <section class="credibility-section">
-      <div class="container">
+      <div class="container" data-reveal="fade">
         <span class="eyebrow" style="justify-content: center;"><span class="eyebrow__text" style="color: var(--brass-bright);">Trusted Across the Industry</span></span>
-        <h2 class="t-headline-lg" style="color: white; margin-top: var(--space-sm); max-width: 36rem; margin-inline: auto;">Loan officers from leading companies rely on The Loan Atlas</h2>
+        <h2 class="section-heading center" style="color: white; margin-top: var(--space-sm); max-width: 36rem; margin-inline: auto;">Loan officers from leading companies rely on The Loan Atlas</h2>
         <div class="trust-logos">
-          <img src="assets/CMG-logo.svg" alt="CMG" />
-          <img src="assets/lower-mortgage-logo.svg" alt="Lower" />
-          <img src="assets/fairway-logo.png" alt="Fairway" />
-          <img src="assets/rate-logo.png" alt="Rate" />
-          <img src="assets/cross-country-logo.webp" alt="CrossCountry Mortgage" />
-          <img src="assets/UWM-logo.png" alt="UWM" />
+          <img src="../assets/CMG-logo.svg" alt="CMG" />
+          <img src="../assets/lower-mortgage-logo.svg" alt="Lower" />
+          <img src="../assets/fairway-logo.png" alt="Fairway" />
+          <img src="../assets/rate-logo.png" alt="Rate" />
+          <img src="../assets/cross-country-logo.webp" alt="CrossCountry Mortgage" />
+          <img src="../assets/UWM-logo.png" alt="UWM" />
         </div>
       </div>
     </section>
@@ -542,7 +506,7 @@
     <!-- ── Testimonials ── -->
     <section class="section dark-testimonials">
       <div class="container">
-        <div class="grid-2" style="max-width: 56rem; margin-inline: auto;">
+        <div class="grid-2" data-reveal-stagger="120" style="max-width: 56rem; margin-inline: auto;">
           <blockquote class="quote-card" style="flex: unset;">
             <span class="quote-card__mark">&ldquo;</span>
             <p class="quote-card__quote">The first night I had The Loan Atlas, I actually couldn't sleep. I learned so many things in a short amount of time that I wish I knew years ago.</p>
@@ -565,12 +529,12 @@
     <!-- ── What you'll walk away with ── -->
     <section class="section" style="border-top: 1px solid var(--outline-variant);">
       <div class="container">
-        <header class="center" style="max-width: 44rem; margin-inline: auto; margin-bottom: var(--space-xl);">
-          <h2 class="t-headline-lg" style="margin-bottom: var(--space-md);">What you'll leave this call with</h2>
+        <header class="center" data-reveal="up" style="max-width: 44rem; margin-inline: auto; margin-bottom: var(--space-xl);">
+          <h2 class="section-heading" style="margin-bottom: var(--space-md);">What you'll leave this call with</h2>
           <p class="t-body t-muted">Most originators are working harder than ever and still can't figure out why their production is uneven. It's rarely an effort problem. It's almost always a system problem — and you can't fix what you can't see.</p>
         </header>
 
-        <div class="grid-4">
+        <div class="grid-4" data-reveal-stagger="100">
           <article class="card card--hover" style="display: flex; flex-direction: column; gap: 14px; padding: var(--space-lg);">
             <span class="icon-tile">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
@@ -606,12 +570,12 @@
     <!-- ── Comparison ── -->
     <section class="section" style="background: var(--surface-container-low); border-block: 1px solid var(--outline-variant);">
       <div class="container">
-        <header style="max-width: 40rem; margin-inline: auto; margin-bottom: var(--space-xl); text-align: center;">
+        <header data-reveal="up" style="max-width: 40rem; margin-inline: auto; margin-bottom: var(--space-xl); text-align: center;">
           <span class="eyebrow" style="justify-content: center;"><span class="eyebrow__text">The Difference</span></span>
-          <h2 class="t-headline-lg" style="margin-top: var(--space-sm);">Not another industry sales call</h2>
+          <h2 class="section-heading" style="margin-top: var(--space-sm);">Not another industry sales call</h2>
         </header>
         <div style="max-width: 52rem; margin-inline: auto;">
-          <div class="compare-v2">
+          <div class="compare-v2" data-reveal="up">
             <div class="compare-v2__col compare-v2__col--theirs">
               <p class="compare-v2__label">A typical industry call</p>
               <h3 class="compare-v2__title">What you've been offered</h3>
@@ -673,10 +637,10 @@
     <section class="section" style="border-top: 1px solid var(--outline-variant);">
       <div class="container">
         <div class="who-grid">
-          <div>
+          <div data-reveal="left">
             <h2 class="t-headline-lg">If any of this sounds familiar, this call is for you.</h2>
           </div>
-          <ul class="checklist checklist--lg">
+          <ul class="checklist checklist--lg" data-reveal="right">
             <li>
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
               Your production is inconsistent and you can't pinpoint why
@@ -706,7 +670,7 @@
     <section class="consult-cta">
       <div class="consult-cta__glow" aria-hidden="true"></div>
       <div class="consult-cta__stripe" aria-hidden="true"></div>
-      <div class="container" style="position: relative; text-align: center;">
+      <div class="container" data-reveal="scale" style="position: relative; text-align: center;">
         <h2 class="consult-cta__heading">See your mortgage business clearly<br>for the first time.</h2>
         <a href="#book" class="btn btn--gold btn--lg" data-scroll-to-calendar>
           <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
@@ -719,10 +683,10 @@
     <!-- ── FAQ ── -->
     <section class="section">
       <div class="container">
-        <header class="center" style="max-width: 40rem; margin-inline: auto; margin-bottom: var(--space-xl);">
-          <h2 class="t-headline-lg">Common questions</h2>
+        <header class="center" data-reveal="up" style="max-width: 40rem; margin-inline: auto; margin-bottom: var(--space-xl);">
+          <h2 class="section-heading">Common questions</h2>
         </header>
-        <div class="faq" style="max-width: 44rem; margin-inline: auto;">
+        <div class="faq" data-reveal-stagger="80" style="max-width: 44rem; margin-inline: auto;">
           <details class="faq-item">
             <summary>Is this really free?</summary>
             <div class="faq-item__body">Yes. We offer these because when an originator sees firsthand how The Loan Atlas maps to their business, a meaningful percentage decide to join. The rest walk away with a plan they wouldn't have had otherwise, and we're good with that trade.</div>
@@ -745,7 +709,7 @@
     <div class="site-footer__inner">
       <div class="site-footer__top">
         <a href="index.html" class="brand">
-          <img src="assets/Loan Atlas logo-color.png" alt="The Loan Atlas" class="brand__logo" />
+          <img src="../assets/Loan Atlas logo-color.png" alt="The Loan Atlas" class="brand__logo" />
         </a>
         <nav class="site-footer__links" aria-label="Footer">
           <a class="site-footer__link" href="whats-inside.html">What's Inside</a>
@@ -778,6 +742,7 @@
     });
   </script>
   <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
-  <script src="nav.js"></script>
+  <script src="../nav.js"></script>
+  <script src="animations.js" defer></script>
 </body>
 </html>

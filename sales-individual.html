@@ -12,8 +12,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="chrome.css" />
+  <link rel="stylesheet" href="inter-1.css" />
+  <link rel="stylesheet" href="../chrome.css" />
   <style>
     /* ── LP-specific styles ─────────────────────────────────────────────────── */
 
@@ -55,69 +55,230 @@
       }
     }
 
-    /* Dark hero */
+    /* Light hero */
     .lp-hero {
-      background: linear-gradient(160deg, #021c36 0%, #0a1628 60%, #131b2e 100%);
-      padding-top: calc(var(--header-h) + clamp(56px, 8vw, 96px));
-      padding-bottom: clamp(56px, 8vw, 96px);
       position: relative;
+      background: #ffffff;
       overflow: hidden;
-    }
-    .lp-hero::before {
-      content: '';
-      position: absolute;
-      top: -80px;
-      right: 8%;
-      width: 540px;
-      height: 540px;
-      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.11), transparent);
-      filter: blur(70px);
-      pointer-events: none;
-    }
-    .lp-hero::after {
-      content: '';
-      position: absolute;
-      bottom: -80px;
-      left: 4%;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(closest-side, rgba(178, 200, 233, 0.08), transparent);
-      filter: blur(70px);
-      pointer-events: none;
+      padding-top: clamp(32px, 4vw, 64px);
+      padding-bottom: 0;
     }
     .lp-hero__content {
       position: relative;
-      z-index: 1;
-      max-width: 52rem;
+      z-index: 2;
+      text-align: center;
+      max-width: 56rem;
+      margin: 0 auto;
     }
     .lp-hero__title {
       font-family: var(--font-display);
-      font-size: clamp(2.5rem, 1.7rem + 3.2vw, 4.25rem);
-      line-height: 1.04;
-      letter-spacing: -0.03em;
+      font-size: clamp(2.25rem, 1.4rem + 3.2vw, 3.75rem);
       font-weight: 800;
-      color: #ffffff;
-      margin-bottom: var(--space-md);
+      color: var(--on-surface);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      margin: 0 auto;
+      max-width: 22ch;
     }
     .lp-hero__title em {
-      font-style: normal;
-      background: linear-gradient(135deg, #c9961c, #eac25a, #ffd56c);
+      font-style: italic;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
     .lp-hero__subtitle {
-      font-size: clamp(1rem, 0.9rem + 0.5vw, 1.1875rem);
-      line-height: 1.7;
-      color: rgba(255, 255, 255, 0.68);
+      font-size: clamp(1rem, 0.875rem + 0.4vw, 1.1875rem);
+      line-height: 1.6;
+      color: var(--on-surface-variant);
       max-width: 40rem;
-      margin-bottom: var(--space-lg);
+      margin: var(--space-md) auto 0;
     }
     .lp-hero__actions {
       display: flex;
       flex-wrap: wrap;
       gap: var(--space-sm);
+      justify-content: center;
+      margin-top: var(--space-lg);
+    }
+
+    /* Visual stage: dashboard + phone, both bleed to bottom of hero */
+    .lp-hero__stage {
+      position: relative;
+      max-width: 1440px;
+      margin: clamp(24px, 3vw, 40px) auto 0;
+      aspect-ratio: 2.85 / 1;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .lp-hero__glow {
+      position: absolute;
+      inset: 5% -8% -8% -8%;
+      background:
+        radial-gradient(50% 45% at 65% 40%, rgba(234,194,90,0.22), transparent 70%),
+        radial-gradient(45% 40% at 25% 70%, rgba(201,150,28,0.12), transparent 75%);
+      filter: blur(40px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .lp-hero__dash {
+      position: relative;
+      z-index: 1;
+      display: block;
+      width: 100%;
+      height: auto;
+      margin: 0;
+      border-radius: 18px 18px 0 0;
+      box-shadow:
+        0 -8px 24px -12px rgba(2, 28, 54, 0.18),
+        0 24px 48px -24px rgba(2, 28, 54, 0.28);
+    }
+
+    /* Phone mockup */
+    .lp-phone {
+      position: absolute;
+      right: clamp(8px, 3%, 48px);
+      bottom: 0;
+      z-index: 2;
+      width: clamp(150px, 22%, 280px);
+      background: #0a1628;
+      border-radius: 36px 36px 0 0;
+      padding: 10px 10px 0;
+      box-shadow:
+        0 -10px 30px -10px rgba(2, 28, 54, 0.35),
+        0 24px 50px -20px rgba(2, 28, 54, 0.45),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+    }
+    .lp-phone__notch {
+      position: absolute;
+      top: 14px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 38%;
+      height: 18px;
+      background: #0a1628;
+      border-radius: 0 0 14px 14px;
+      z-index: 3;
+    }
+    .lp-phone__screen {
+      position: relative;
+      background: #0d1726;
+      border-radius: 28px 28px 0 0;
+      padding: 32px 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 360px;
+      overflow: hidden;
+    }
+    .lp-phone__appbar {
+      display: flex;
       align-items: center;
+      gap: 10px;
+      padding: 4px 4px 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .lp-phone__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 100%);
+      box-shadow: 0 0 0 3px rgba(234, 194, 90, 0.18);
+      flex-shrink: 0;
+    }
+    .lp-phone__app {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+    .lp-phone__status {
+      margin: 2px 0 0;
+      font-family: var(--font-body);
+      font-size: 0.625rem;
+      color: rgba(255, 255, 255, 0.55);
+      line-height: 1;
+    }
+    .lp-phone__thread {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      flex: 1;
+    }
+    .lp-bubble {
+      max-width: 88%;
+      padding: 8px 10px;
+      border-radius: 14px;
+      font-family: var(--font-body);
+      font-size: 0.6875rem;
+      line-height: 1.4;
+    }
+    .lp-bubble--user {
+      align-self: flex-end;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      color: #0a1628;
+      font-weight: 500;
+      border-bottom-right-radius: 4px;
+    }
+    .lp-bubble--coach {
+      align-self: flex-start;
+      background: rgba(255, 255, 255, 0.06);
+      color: rgba(255, 255, 255, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom-left-radius: 4px;
+    }
+    .lp-bubble--typing {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 12px;
+    }
+    .lp-bubble--typing span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(234, 194, 90, 0.85);
+      animation: lp-typing 1.4s infinite ease-in-out;
+    }
+    .lp-bubble--typing span:nth-child(2) { animation-delay: 0.18s; }
+    .lp-bubble--typing span:nth-child(3) { animation-delay: 0.36s; }
+    @keyframes lp-typing {
+      0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
+      30% { opacity: 1; transform: translateY(-3px); }
+    }
+    .lp-phone__input {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 6px 8px 14px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      margin-top: auto;
+    }
+    .lp-phone__placeholder {
+      font-family: var(--font-body);
+      font-size: 0.6875rem;
+      color: rgba(255, 255, 255, 0.4);
+    }
+    .lp-phone__send {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      border: none;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      color: #0a1628;
+      font-size: 0.875rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      flex-shrink: 0;
     }
 
     /* Stat / trust */
@@ -210,7 +371,7 @@
 
     /* 5 Systems grid — condensed cards */
     .lp-systems {
-      background: linear-gradient(180deg, #0a1628 0%, #131b2e 65%, #1e293b 100%);
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
       padding-block: clamp(56px, 7vw, 104px);
     }
     .lp-systems__grid {
@@ -423,7 +584,7 @@
 
     /* Final CTA */
     .lp-final-cta {
-      background: linear-gradient(160deg, #021c36 0%, #0a1628 50%, #131b2e 100%);
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
       padding-block: clamp(80px, 10vw, 128px);
       position: relative;
       overflow: hidden;
@@ -484,7 +645,7 @@
   <header class="site-header">
     <div class="site-header__inner">
       <a href="index.html" class="brand" aria-label="The Loan Atlas — home">
-        <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
+        <img src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
       </a>
       <nav class="nav" aria-label="Primary">
         <a class="nav__link" href="whats-inside.html">What's Inside</a>
@@ -495,13 +656,13 @@
         <a class="nav__link" href="events.html">Events</a>
         <div class="nav__dropdown" data-open="false">
           <button class="nav__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
-            V2 Pages
+            Other Designs
             <svg class="nav__dropdown-chevron" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="nav__dropdown-menu" role="menu">
-          <a class="nav__dropdown-item" role="menuitem" href="index-v2.html">Homepage V2</a>
-          <a class="nav__dropdown-item" role="menuitem" href="pricing-v2.html">Pricing V2</a>
-          <a class="nav__dropdown-item" role="menuitem" href="whats-inside-v2.html">What's Inside V2</a>
+          <a class="nav__dropdown-item" role="menuitem" href="../poppins-1/index.html">Poppins 1 — Homepage</a>
+          <a class="nav__dropdown-item" role="menuitem" href="../poppins-1/pricing.html">Poppins 1 — Pricing</a>
+          <a class="nav__dropdown-item" role="menuitem" href="../kajabi-1/whats-inside.html">Kajabi 1 — What's Inside</a>
           </div>
         </div>
       </nav>
@@ -522,10 +683,10 @@
       <a class="mobile-nav__link" href="corporate.html">Corporate Sales</a>
       <a class="mobile-nav__link" href="pricing.html">Pricing</a>
       <a class="mobile-nav__link" href="events.html">Events</a>
-      <div class="mobile-nav__group-label">V2 Pages</div>
-      <a class="mobile-nav__link mobile-nav__sublink" href="index-v2.html">Homepage V2</a>
-      <a class="mobile-nav__link mobile-nav__sublink" href="pricing-v2.html">Pricing V2</a>
-      <a class="mobile-nav__link mobile-nav__sublink" href="whats-inside-v2.html">What's Inside V2</a>
+      <div class="mobile-nav__group-label">Other Designs</div>
+      <a class="mobile-nav__link mobile-nav__sublink" href="../poppins-1/index.html">Poppins 1 — Homepage</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="../poppins-1/pricing.html">Poppins 1 — Pricing</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="../kajabi-1/whats-inside.html">Kajabi 1 — What's Inside</a>
       <a class="mobile-nav__link" href="#">Login</a>
       <a class="btn btn--primary btn--header mobile-nav__cta" href="consultation.html">Book Your Free Coaching Session</a>
     </div>
@@ -537,14 +698,44 @@
     <section class="lp-hero" aria-labelledby="lp-hero-heading">
       <div class="container">
         <div class="lp-hero__content">
-          <span class="eyebrow" style="margin-bottom: var(--space-md);">
-            <span class="eyebrow__text" style="color: var(--brass-bright);">Built for Individual Originators</span>
+          <span class="eyebrow" data-hero-step="1" style="justify-content: center; margin-bottom: var(--space-md);">
+            <span class="eyebrow__text">Built for Individual Originators</span>
           </span>
-          <h1 id="lp-hero-heading" class="lp-hero__title">See Your Mortgage Business <em>Clearly</em> for the First Time</h1>
-          <p class="lp-hero__subtitle">The Loan Atlas installs 5 AI-powered systems into your mortgage business so you can close more loans, make better decisions, and finally feel in control again.</p>
-          <div class="lp-hero__actions">
+          <h1 id="lp-hero-heading" class="lp-hero__title" data-hero-step="2">See Your Mortgage Business <em>Clearly</em> for the First Time</h1>
+          <p class="lp-hero__subtitle" data-hero-step="3">The Loan Atlas installs 5 AI-powered systems into your mortgage business so you can close more loans, make better decisions, and finally feel in control again.</p>
+          <div class="lp-hero__actions" data-hero-step="4">
             <a class="btn btn--gold btn--lg" href="pricing.html">Start Your Transformation</a>
-            <a class="btn btn--ghost-on-dark btn--lg" href="consultation.html">Schedule Your Free Coaching Session</a>
+            <a class="btn btn--primary btn--lg" href="consultation.html">Schedule Your Free Coaching Session</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="lp-hero__stage" data-hero-step="5">
+        <div class="lp-hero__glow" aria-hidden="true"></div>
+
+        <img class="lp-hero__dash" src="../assets/dashboard.png" alt="The Loan Atlas member dashboard" loading="eager" />
+
+        <div class="lp-phone" role="img" aria-label="Sales & Scripting Coach chat preview">
+          <span class="lp-phone__notch" aria-hidden="true"></span>
+          <div class="lp-phone__screen">
+            <header class="lp-phone__appbar">
+              <span class="lp-phone__dot" aria-hidden="true"></span>
+              <div>
+                <p class="lp-phone__app">Sales &amp; Scripting Coach</p>
+                <p class="lp-phone__status">Online · Coach 01</p>
+              </div>
+            </header>
+            <div class="lp-phone__thread">
+              <div class="lp-bubble lp-bubble--user">A rate shopper just told me Rocket quoted them 0.25% lower. How do I respond without sounding defensive?</div>
+              <div class="lp-bubble lp-bubble--coach">Don't compete on rate — reframe to total cost and certainty. Try: "Rate is one number on a 30-year decision…"</div>
+              <div class="lp-bubble lp-bubble--coach lp-bubble--typing" aria-label="Coach is typing">
+                <span></span><span></span><span></span>
+              </div>
+            </div>
+            <div class="lp-phone__input">
+              <span class="lp-phone__placeholder">Ask your coach…</span>
+              <button type="button" class="lp-phone__send" aria-label="Send">↑</button>
+            </div>
           </div>
         </div>
       </div>
@@ -553,8 +744,8 @@
     <!-- ── 2. TRUSTED BY ─────────────────────────────────────────────────────── -->
     <section class="lp-trust" aria-labelledby="trust-heading">
       <div class="container">
-        <div class="lp-stat-block">
-          <p id="trust-heading" class="lp-stat-number">Loan Atlas members close an average of&nbsp;<em>$8.2 million more per year</em>&nbsp;than the rest of the industry.</p>
+        <div class="lp-stat-block" data-reveal="up">
+          <p id="trust-heading" class="lp-stat-number">Loan Atlas members close an average of&nbsp;<em>$<span data-countup="8.2">8.2</span> million more per year</em>&nbsp;than the rest of the industry.</p>
         </div>
         <p class="t-label t-muted" style="text-align: center; letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: var(--space-md);">Trusted by loan officers at</p>
       </div>
@@ -562,36 +753,36 @@
       <div class="trust__marquee" aria-label="Member companies">
         <div class="trust__track">
           <ul class="trust__group">
-            <li class="trust__logo"><img src="assets/american-pacific-logo.webp" alt="American Pacific Mortgage"></li>
-            <li class="trust__logo"><img src="assets/acm-logo.webp" alt="Atlantic Coast Mortgage"></li>
-            <li class="trust__logo"><img src="assets/cross-country-logo.webp" alt="CrossCountry Mortgage"></li>
-            <li class="trust__logo"><img src="assets/UWM-logo.png" alt="United Wholesale Mortgage"></li>
-            <li class="trust__logo"><img src="assets/fairway-logo.png" alt="Fairway Independent Mortgage"></li>
-            <li class="trust__logo"><img src="assets/CMG-logo.svg" alt="CMG Financial"></li>
-            <li class="trust__logo"><img src="assets/swbc-logo.png" alt="SWBC Mortgage"></li>
-            <li class="trust__logo"><img src="assets/better-logo.png" alt="Better"></li>
-            <li class="trust__logo"><img src="assets/lower-mortgage-logo.svg" alt="Lower"></li>
-            <li class="trust__logo"><img src="assets/rate-logo.png" alt="Rate"></li>
-            <li class="trust__logo"><img src="assets/loan-depot-logo" alt="loanDepot"></li>
+            <li class="trust__logo"><img src="../assets/american-pacific-logo.webp" alt="American Pacific Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/acm-logo.webp" alt="Atlantic Coast Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/cross-country-logo.webp" alt="CrossCountry Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/UWM-logo.png" alt="United Wholesale Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/fairway-logo.png" alt="Fairway Independent Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/CMG-logo.svg" alt="CMG Financial"></li>
+            <li class="trust__logo"><img src="../assets/swbc-logo.png" alt="SWBC Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/better-logo.png" alt="Better"></li>
+            <li class="trust__logo"><img src="../assets/lower-mortgage-logo.svg" alt="Lower"></li>
+            <li class="trust__logo"><img src="../assets/rate-logo.png" alt="Rate"></li>
+            <li class="trust__logo"><img src="../assets/loan-depot-logo" alt="loanDepot"></li>
           </ul>
           <ul class="trust__group" aria-hidden="true">
-            <li class="trust__logo"><img src="assets/american-pacific-logo.webp" alt=""></li>
-            <li class="trust__logo"><img src="assets/acm-logo.webp" alt=""></li>
-            <li class="trust__logo"><img src="assets/cross-country-logo.webp" alt=""></li>
-            <li class="trust__logo"><img src="assets/UWM-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="assets/fairway-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="assets/CMG-logo.svg" alt=""></li>
-            <li class="trust__logo"><img src="assets/swbc-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="assets/better-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="assets/lower-mortgage-logo.svg" alt=""></li>
-            <li class="trust__logo"><img src="assets/rate-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="assets/loan-depot-logo" alt=""></li>
+            <li class="trust__logo"><img src="../assets/american-pacific-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="../assets/acm-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="../assets/cross-country-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="../assets/UWM-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/fairway-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/CMG-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="../assets/swbc-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/better-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/lower-mortgage-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="../assets/rate-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/loan-depot-logo" alt=""></li>
           </ul>
         </div>
       </div>
 
       <div class="container">
-        <figure class="habib-quote">
+        <figure class="habib-quote" data-reveal="scale">
           <blockquote>"The wealth that's in The Loan Atlas is absolutely incredible. Imagine how valuable it is to have access to the smartest minds in our industry."</blockquote>
           <figcaption><cite>Barry Habib</cite></figcaption>
         </figure>
@@ -600,7 +791,7 @@
 
     <!-- ── 3. BRIDGE ─────────────────────────────────────────────────────────── -->
     <div class="lp-bridge">
-      <div class="lp-bridge__inner">
+      <div class="lp-bridge__inner" data-reveal="up">
         <p class="lp-bridge__headline">The loan officers producing consistently aren't working harder than you. They're working from a system.</p>
         <p class="lp-bridge__body">You're not getting younger. The market isn't getting easier. If you want a different future, you need a drastically different way of operating now.</p>
       </div>
@@ -609,7 +800,7 @@
     <!-- ── 4. FIVE AI SYSTEMS ─────────────────────────────────────────────────── -->
     <section class="lp-systems" id="systems" aria-labelledby="systems-heading">
       <div class="container">
-        <div class="center" style="max-width: 46rem; margin-inline: auto;">
+        <div class="center" data-reveal="up" style="max-width: 46rem; margin-inline: auto;">
           <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
             <span class="eyebrow__text" style="color: var(--brass-bright);">Five AI-Powered Systems</span>
           </span>
@@ -622,7 +813,7 @@
           <p class="t-body-lg" style="color: rgba(255, 255, 255, 0.68);">Inside The Loan Atlas, these systems work together to help you make better decisions, execute faster, and stay focused on what actually drives production.</p>
         </div>
 
-        <div class="lp-systems__grid">
+        <div class="lp-systems__grid" data-reveal-stagger="100">
 
           <article class="system-card">
             <span class="system-card__num">01</span>
@@ -666,7 +857,7 @@
     <!-- ── 5. INLINE CTA #1 ───────────────────────────────────────────────────── -->
     <section class="inline-cta" id="cta-1" aria-labelledby="cta1-heading">
       <div class="container" style="position: relative;">
-        <div class="inline-cta__inner">
+        <div class="inline-cta__inner" data-reveal="scale">
           <div class="inline-cta__copy">
             <h2 class="inline-cta__heading" id="cta1-heading">
               Become an <em>AI-Empowered Originator</em> —<br>Join The Loan Atlas
@@ -683,15 +874,15 @@
     <!-- ── 6. WHAT'S INCLUDED ─────────────────────────────────────────────────── -->
     <section class="lp-features" id="whats-included" aria-labelledby="features-heading">
       <div class="container">
-        <div style="max-width: 46rem; margin-bottom: var(--space-xl);">
+        <div data-reveal="up" style="max-width: 46rem; margin-bottom: var(--space-xl);">
           <span class="eyebrow" style="margin-bottom: var(--space-md);">
             <span class="eyebrow__text">What You Get</span>
           </span>
           <h2 id="features-heading" class="t-display"
-            style="color: var(--primary-container); font-weight: 800; margin-bottom: var(--space-sm);">Powered by 25 Years of Teachings From Billion-Dollar Mortgage Teams</h2>
+            style="color: var(--primary-container); font-weight: 800; margin-bottom: var(--space-sm);">Powered by <span data-countup="25" data-countup-commas="false">25</span> Years of Teachings From Billion-Dollar Mortgage Teams</h2>
         </div>
 
-        <div class="lp-features__grid">
+        <div class="lp-features__grid" data-reveal-stagger="80">
 
           <div class="tool">
             <div class="tool__corner tool__corner--blue" aria-hidden="true"></div>
@@ -745,14 +936,14 @@
     <!-- ── 7. 8 DISCIPLINES ───────────────────────────────────────────────────── -->
     <section class="lp-disciplines" id="disciplines" aria-labelledby="disciplines-heading">
       <div class="container">
-        <div class="center" style="max-width: 44rem; margin-inline: auto; margin-bottom: var(--space-xl);">
+        <div class="center" data-reveal="up" style="max-width: 44rem; margin-inline: auto; margin-bottom: var(--space-xl);">
           <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
             <span class="eyebrow__text">The Curriculum</span>
           </span>
-          <h2 id="disciplines-heading" class="t-headline-lg" style="text-align: center; margin-bottom: var(--space-sm);">Built on the 8 Disciplines of Mortgage Origination Mastery</h2>
+          <h2 id="disciplines-heading" class="section-heading" style="text-align: center; margin-bottom: var(--space-sm);">Built on the 8 Disciplines of Mortgage Origination Mastery</h2>
         </div>
 
-        <div class="disciplines-grid">
+        <div class="disciplines-grid" data-reveal-stagger="60">
           <div class="discipline-item">
             <span class="discipline-item__num">01</span>
             <span class="discipline-item__text">Essential Product Knowledge</span>
@@ -792,14 +983,14 @@
     <!-- ── 8. TESTIMONIALS ────────────────────────────────────────────────────── -->
     <section class="lp-testimonials" id="testimonials" aria-labelledby="testimonials-heading">
       <div class="container">
-        <div class="center" style="max-width: 44rem; margin-inline: auto; margin-bottom: var(--space-xl);">
+        <div class="center" data-reveal="up" style="max-width: 44rem; margin-inline: auto; margin-bottom: var(--space-xl);">
           <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
             <span class="eyebrow__text">Member Results</span>
           </span>
-          <h2 id="testimonials-heading" class="t-headline-lg" style="text-align: center;">What Operating From a System Looks Like</h2>
+          <h2 id="testimonials-heading" class="section-heading" style="text-align: center;">What Operating From a System Looks Like</h2>
         </div>
 
-        <div class="testimonials-grid">
+        <div class="testimonials-grid" data-reveal-stagger="100">
 
           <figure class="testimonial-card">
             <blockquote>If you're considering joining The Loan Atlas, it's been the best investment I've ever made — and you will make it back within your first month's production.</blockquote>
@@ -852,14 +1043,14 @@
     <!-- ── 9. PRICING ─────────────────────────────────────────────────────────── -->
     <section class="lp-pricing" id="pricing" aria-labelledby="pricing-heading">
       <div class="container">
-        <div class="center" style="max-width: 44rem; margin-inline: auto; margin-bottom: var(--space-xl);">
+        <div class="center" data-reveal="up" style="max-width: 44rem; margin-inline: auto; margin-bottom: var(--space-xl);">
           <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
             <span class="eyebrow__text">Membership</span>
           </span>
-          <h2 id="pricing-heading" class="t-headline-lg" style="text-align: center;">One Membership. The Whole Operating System.</h2>
+          <h2 id="pricing-heading" class="section-heading" style="text-align: center;">One Membership. The Whole Operating System.</h2>
         </div>
 
-        <div class="membership">
+        <div class="membership" data-reveal="scale">
 
           <div class="membership__price-row">
             <div>
@@ -931,17 +1122,17 @@
     <section class="lp-final-cta" id="get-started" aria-labelledby="final-cta-heading">
       <div class="container" style="position: relative; z-index: 1;">
 
-        <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas"
+        <img src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" data-reveal="fade"
           style="height: 52px; width: auto; margin: 0 auto var(--space-lg); display: block;" />
 
-        <h2 id="final-cta-heading"
+        <h2 id="final-cta-heading" data-reveal="up"
           style="font-family: var(--font-display); font-size: clamp(2.25rem, 1.4rem + 3.5vw, 3.75rem); font-weight: 800; line-height: 1.07; letter-spacing: -0.03em; color: #ffffff; max-width: 44rem; margin: 0 auto var(--space-lg); text-align: center;">
           Install The System<br>
           <span
             style="background: linear-gradient(135deg, #c9961c, #eac25a, #ffd56c); -webkit-background-clip: text; background-clip: text; color: transparent;">Top Producers Are Using</span>
         </h2>
 
-        <div
+        <div data-reveal="scale"
           style="display: flex; flex-wrap: wrap; gap: var(--space-sm); justify-content: center; align-items: center;">
           <a class="btn btn--gold btn--lg" href="pricing.html"
             style="font-size: 1.0625rem; padding: 18px 44px; box-shadow: 0 8px 32px rgba(201, 150, 28, 0.38);">
@@ -962,7 +1153,7 @@
     <div class="site-footer__inner">
       <div class="site-footer__top">
         <a href="index.html" class="brand">
-          <img src="assets/Loan Atlas logo-color.png" alt="The Loan Atlas" class="brand__logo" />
+          <img src="../assets/Loan Atlas logo-color.png" alt="The Loan Atlas" class="brand__logo" />
         </a>
         <nav class="site-footer__links" aria-label="Footer">
           <a class="site-footer__link" href="whats-inside.html">What's Inside</a>
@@ -986,7 +1177,8 @@
     </div>
   </footer>
 
-  <script src="nav.js"></script>
+  <script src="../nav.js"></script>
+  <script src="animations.js" defer></script>
 </body>
 
 </html>

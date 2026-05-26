@@ -12,8 +12,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="chrome.css" />
+  <link rel="stylesheet" href="inter-1.css" />
+  <link rel="stylesheet" href="../chrome.css" />
   <style>
     /* ── LP-specific styles ─────────────────────────────────────────────────── */
 
@@ -57,7 +57,7 @@
 
     /* Dark hero */
     .lp-hero {
-      background: linear-gradient(160deg, #021c36 0%, #0a1628 60%, #131b2e 100%);
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
       padding-top: calc(var(--header-h) + clamp(56px, 8vw, 96px));
       padding-bottom: clamp(56px, 8vw, 96px);
       position: relative;
@@ -274,7 +274,7 @@
 
     /* 5 Systems grid — condensed cards */
     .lp-systems {
-      background: linear-gradient(180deg, #0a1628 0%, #131b2e 65%, #1e293b 100%);
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
       padding-block: clamp(56px, 7vw, 104px);
     }
     .lp-systems__intro {
@@ -661,7 +661,7 @@
 
     /* Final CTA */
     .lp-final-cta {
-      background: linear-gradient(160deg, #021c36 0%, #0a1628 50%, #131b2e 100%);
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
       padding-block: clamp(80px, 10vw, 128px);
       position: relative;
       overflow: hidden;
@@ -742,7 +742,7 @@
   <header class="site-header">
     <div class="site-header__inner">
       <a href="index.html" class="brand" aria-label="The Loan Atlas — home">
-        <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
+        <img src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
       </a>
       <nav class="nav" aria-label="Primary">
         <a class="nav__link" href="whats-inside.html">What's Inside</a>
@@ -753,13 +753,13 @@
         <a class="nav__link" href="events.html">Events</a>
         <div class="nav__dropdown" data-open="false">
           <button class="nav__dropdown-toggle" type="button" aria-haspopup="true" aria-expanded="false">
-            V2 Pages
+            Other Designs
             <svg class="nav__dropdown-chevron" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="nav__dropdown-menu" role="menu">
-          <a class="nav__dropdown-item" role="menuitem" href="index-v2.html">Homepage V2</a>
-          <a class="nav__dropdown-item" role="menuitem" href="pricing-v2.html">Pricing V2</a>
-          <a class="nav__dropdown-item" role="menuitem" href="whats-inside-v2.html">What's Inside V2</a>
+          <a class="nav__dropdown-item" role="menuitem" href="../poppins-1/index.html">Poppins 1 — Homepage</a>
+          <a class="nav__dropdown-item" role="menuitem" href="../poppins-1/pricing.html">Poppins 1 — Pricing</a>
+          <a class="nav__dropdown-item" role="menuitem" href="../kajabi-1/whats-inside.html">Kajabi 1 — What's Inside</a>
           </div>
         </div>
       </nav>
@@ -780,10 +780,10 @@
       <a class="mobile-nav__link mobile-nav__link--active" href="corporate.html">Corporate Sales</a>
       <a class="mobile-nav__link" href="pricing.html">Pricing</a>
       <a class="mobile-nav__link" href="events.html">Events</a>
-      <div class="mobile-nav__group-label">V2 Pages</div>
-      <a class="mobile-nav__link mobile-nav__sublink" href="index-v2.html">Homepage V2</a>
-      <a class="mobile-nav__link mobile-nav__sublink" href="pricing-v2.html">Pricing V2</a>
-      <a class="mobile-nav__link mobile-nav__sublink" href="whats-inside-v2.html">What's Inside V2</a>
+      <div class="mobile-nav__group-label">Other Designs</div>
+      <a class="mobile-nav__link mobile-nav__sublink" href="../poppins-1/index.html">Poppins 1 — Homepage</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="../poppins-1/pricing.html">Poppins 1 — Pricing</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="../kajabi-1/whats-inside.html">Kajabi 1 — What's Inside</a>
       <a class="mobile-nav__link" href="#">Login</a>
       <a class="btn btn--primary btn--header mobile-nav__cta" href="consultation.html">Book Your Free Coaching Session</a>
     </div>
@@ -795,12 +795,12 @@
     <section class="lp-hero" aria-labelledby="lp-hero-heading">
       <div class="container">
         <div class="lp-hero__content">
-          <span class="eyebrow" style="margin-bottom: var(--space-md);">
+          <span class="eyebrow" data-hero-step="1" style="margin-bottom: var(--space-md);">
             <span class="eyebrow__text" style="color: var(--brass-bright);">For Mortgage Leaders &amp; Enterprise Teams</span>
           </span>
-          <h1 id="lp-hero-heading" class="lp-hero__title">The Gap Between Your Top Producers and Everyone Else Is <em>Widening Every Month</em></h1>
-          <p class="lp-hero__subtitle">The Loan Atlas is the operating system mortgage leaders use to close that gap across their entire team.</p>
-          <div class="lp-hero__actions">
+          <h1 id="lp-hero-heading" class="lp-hero__title" data-hero-step="2">The Gap Between Your Top Producers and Everyone Else Is <em>Widening Every Month</em></h1>
+          <p class="lp-hero__subtitle" data-hero-step="3">The Loan Atlas is the operating system mortgage leaders use to close that gap across their entire team.</p>
+          <div class="lp-hero__actions" data-hero-step="4">
             <a class="btn btn--gold btn--lg" href="consultation.html">Schedule an Enterprise Consultation</a>
             <a class="btn btn--ghost-on-dark btn--lg" href="#masterplan">Get the AI-Empowered Mortgage Leader Masterplan</a>
           </div>
@@ -817,30 +817,30 @@
       <div class="trust__marquee" aria-label="Member companies">
         <div class="trust__track">
           <ul class="trust__group">
-            <li class="trust__logo"><img src="assets/american-pacific-logo.webp" alt="American Pacific Mortgage"></li>
-            <li class="trust__logo"><img src="assets/acm-logo.webp" alt="Atlantic Coast Mortgage"></li>
-            <li class="trust__logo"><img src="assets/cross-country-logo.webp" alt="CrossCountry Mortgage"></li>
-            <li class="trust__logo"><img src="assets/UWM-logo.png" alt="United Wholesale Mortgage"></li>
-            <li class="trust__logo"><img src="assets/fairway-logo.png" alt="Fairway Independent Mortgage"></li>
-            <li class="trust__logo"><img src="assets/CMG-logo.svg" alt="CMG Financial"></li>
-            <li class="trust__logo"><img src="assets/swbc-logo.png" alt="SWBC Mortgage"></li>
-            <li class="trust__logo"><img src="assets/better-logo.png" alt="Better"></li>
-            <li class="trust__logo"><img src="assets/lower-mortgage-logo.svg" alt="Lower"></li>
-            <li class="trust__logo"><img src="assets/rate-logo.png" alt="Rate"></li>
-            <li class="trust__logo"><img src="assets/loan-depot-logo" alt="loanDepot"></li>
+            <li class="trust__logo"><img src="../assets/american-pacific-logo.webp" alt="American Pacific Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/acm-logo.webp" alt="Atlantic Coast Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/cross-country-logo.webp" alt="CrossCountry Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/UWM-logo.png" alt="United Wholesale Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/fairway-logo.png" alt="Fairway Independent Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/CMG-logo.svg" alt="CMG Financial"></li>
+            <li class="trust__logo"><img src="../assets/swbc-logo.png" alt="SWBC Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/better-logo.png" alt="Better"></li>
+            <li class="trust__logo"><img src="../assets/lower-mortgage-logo.svg" alt="Lower"></li>
+            <li class="trust__logo"><img src="../assets/rate-logo.png" alt="Rate"></li>
+            <li class="trust__logo"><img src="../assets/loan-depot-logo" alt="loanDepot"></li>
           </ul>
           <ul class="trust__group" aria-hidden="true">
-            <li class="trust__logo"><img src="assets/american-pacific-logo.webp" alt=""></li>
-            <li class="trust__logo"><img src="assets/acm-logo.webp" alt=""></li>
-            <li class="trust__logo"><img src="assets/cross-country-logo.webp" alt=""></li>
-            <li class="trust__logo"><img src="assets/UWM-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="assets/fairway-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="assets/CMG-logo.svg" alt=""></li>
-            <li class="trust__logo"><img src="assets/swbc-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="assets/better-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="assets/lower-mortgage-logo.svg" alt=""></li>
-            <li class="trust__logo"><img src="assets/rate-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="assets/loan-depot-logo" alt=""></li>
+            <li class="trust__logo"><img src="../assets/american-pacific-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="../assets/acm-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="../assets/cross-country-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="../assets/UWM-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/fairway-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/CMG-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="../assets/swbc-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/better-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/lower-mortgage-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="../assets/rate-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/loan-depot-logo" alt=""></li>
           </ul>
         </div>
       </div>
@@ -850,17 +850,17 @@
     <section class="lp-problem" aria-labelledby="problem-heading">
       <div class="container">
         <div class="lp-problem__grid">
-          <div class="lp-problem__lead">
+          <div class="lp-problem__lead" data-reveal="left">
             <h2 id="problem-heading" class="lp-problem__headline">Your Best Originator and Your Worst Originator Work in the Same Market.<br><span class="lp-problem__headline-accent">Why Does One Close Four Times the Other?</span></h2>
           </div>
-          <div class="lp-problem__body">
+          <div class="lp-problem__body" data-reveal="right">
             <p>Look at your roster. Some originators are putting up big numbers. Most aren't. They're all in the same market, with the same rates and the same support.</p>
             <p>The difference is what your top producers do every day that the rest of your team doesn't. They follow a process for new client calls. They have set responses for the most common objections. They start every week with a clear plan. <strong>They're not winging it.</strong></p>
             <p>The rest of your team is. They're working hard, but every conversation is improvised, every week starts from scratch, and every deal is its own one-off.</p>
           </div>
         </div>
 
-        <div class="lp-problem__kicker">
+        <div class="lp-problem__kicker" data-reveal="up">
           <div class="lp-problem__kicker-inner">
             <span class="lp-problem__kicker-mark" aria-hidden="true">P&amp;L</span>
             <p class="lp-problem__kicker-text">You're paying the same costs to house every originator. The ones using a system are worth it. The ones without one aren't pulling their weight — and <strong>that gap is showing up on your P&amp;L.</strong></p>
@@ -872,7 +872,7 @@
     <!-- ── 4. FIVE AI SYSTEMS ─────────────────────────────────────────────────── -->
     <section class="lp-systems" id="systems" aria-labelledby="systems-heading">
       <div class="container">
-        <div class="lp-systems__intro">
+        <div class="lp-systems__intro" data-reveal="up">
           <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
             <span class="eyebrow__text" style="color: var(--brass-bright);">Five AI-Powered Systems</span>
           </span>
@@ -885,11 +885,11 @@
           <p class="lp-systems__lead">The Loan Atlas installs five AI systems across your team — built around what top producers actually do, not generic ChatGPT prompts dressed up for our industry.</p>
         </div>
 
-        <div class="lp-systems__featured">
+        <div class="lp-systems__featured" data-reveal-stagger="120">
 
           <article class="system-card system-card--featured">
             <div class="system-card__media">
-              <img src="assets/ai-business-intelligence-screenshot.png" alt="AI Business Intelligence dashboard" />
+              <img src="../assets/ai-business-intelligence-screenshot.png" alt="AI Business Intelligence dashboard" />
             </div>
             <div class="system-card__content">
               <h3 class="system-card__title">AI Business Intelligence System</h3>
@@ -900,7 +900,7 @@
 
           <article class="system-card system-card--featured">
             <div class="system-card__media">
-              <img src="assets/ai-business-planning-screenshot.png" alt="AI Business Planning interface" />
+              <img src="../assets/ai-business-planning-screenshot.png" alt="AI Business Planning interface" />
             </div>
             <div class="system-card__content">
               <h3 class="system-card__title">AI Business Planning System</h3>
@@ -911,7 +911,7 @@
 
         </div>
 
-        <div class="lp-systems__compact">
+        <div class="lp-systems__compact" data-reveal-stagger="100">
 
           <article class="system-card">
             <h3 class="system-card__title">AI Sales &amp; Marketing Advisor</h3>
@@ -938,7 +938,7 @@
     <!-- ── 5. INLINE CTA — MASTERPLAN ─────────────────────────────────────────── -->
     <section class="inline-cta" id="masterplan" aria-labelledby="cta1-heading">
       <div class="container" style="position: relative;">
-        <div class="inline-cta__inner">
+        <div class="inline-cta__inner" data-reveal="scale">
           <div class="inline-cta__copy">
             <h2 class="inline-cta__heading" id="cta1-heading">
               The <em>AI-Empowered Mortgage Leader</em> Masterplan
@@ -956,14 +956,14 @@
     <!-- ── 6. WHAT ACTUALLY CHANGES — Before/After ────────────────────────────── -->
     <section class="lp-compare" id="changes" aria-labelledby="changes-heading">
       <div class="container">
-        <div class="lp-compare__intro">
+        <div class="lp-compare__intro" data-reveal="up">
           <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
             <span class="eyebrow__text">What Actually Changes</span>
           </span>
-          <h2 id="changes-heading" class="t-display" style="color: var(--primary-container); font-weight: 800; margin-bottom: var(--space-sm);">What Changes When Your Team Operates with a System</h2>
+          <h2 id="changes-heading" class="section-heading" style="color: var(--primary-container); margin-bottom: var(--space-sm);">What Changes When Your Team Operates with a System</h2>
         </div>
 
-        <div class="lp-compare__table" role="table" aria-label="Before and after The Loan Atlas">
+        <div class="lp-compare__table" data-reveal-stagger="60" role="table" aria-label="Before and after The Loan Atlas">
           <div class="lp-compare__head" role="row">
             <div role="columnheader">Across Your Team</div>
             <div role="columnheader">Before The Loan Atlas</div>
@@ -1019,8 +1019,8 @@
           </div>
         </div>
 
-        <div class="lp-compare__callout">
-          <p class="lp-compare__callout-lead">Loan Atlas members close an average of <em>$8.2M More in annual production</em> than the industry average.</p>
+        <div class="lp-compare__callout" data-reveal="up">
+          <p class="lp-compare__callout-lead">Loan Atlas members close an average of <em>$<span data-countup="8.2">8.2</span>M More in annual production</em> than the industry average.</p>
           <p class="lp-compare__callout-follow">Now imagine that lift across your entire roster.</p>
         </div>
       </div>
@@ -1029,12 +1029,12 @@
     <!-- ── 7. FACULTY ─────────────────────────────────────────────────────────── -->
     <section class="lp-faculty" id="faculty" aria-labelledby="faculty-heading">
       <div class="container">
-        <div class="lp-faculty__inner">
+        <div class="lp-faculty__inner" data-reveal="up">
           <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
             <span class="eyebrow__text">Originators First. Coaches Second.</span>
           </span>
-          <h2 id="faculty-heading" class="t-headline-lg" style="margin-bottom: var(--space-md);">Your Team Will Learn From People Still Doing the Job.</h2>
-          <p class="lp-faculty__lead">19 active originators and division presidents who've closed more than <strong style="color: var(--on-surface);">$29 billion in loans</strong> between them. Not retired. Not theorists. Top 1% producers still in the business right now, teaching your team what's working in today's market.</p>
+          <h2 id="faculty-heading" class="section-heading" style="margin-bottom: var(--space-md);">Your Team Will Learn From People Still Doing the Job.</h2>
+          <p class="lp-faculty__lead"><span data-countup="19" data-countup-commas="false">19</span> active originators and division presidents who've closed more than <strong style="color: var(--on-surface);">$<span data-countup="29" data-countup-commas="false">29</span> billion in loans</strong> between them. Not retired. Not theorists. Top 1% producers still in the business right now, teaching your team what's working in today's market.</p>
 
           <figure class="lp-faculty__quote">
             <blockquote>"I love the depth of knowledge. There are a lot of things that just skim the surface, but you get training from people who are at the top of their game and get real one-on-one time with them. That implementation piece is huge."</blockquote>
@@ -1042,11 +1042,11 @@
           </figure>
         </div>
 
-        <div class="gallery__grid" style="margin-top: clamp(var(--space-xl), 6vw, calc(var(--space-xl) + var(--space-md)));">
+        <div class="gallery__grid" data-reveal-stagger="100" style="margin-top: clamp(var(--space-xl), 6vw, calc(var(--space-xl) + var(--space-md)));">
 
           <a class="gallery-card" href="whats-inside.html">
             <div class="gallery-card__media">
-              <img src="assets/performance-coach.png" alt="On-Demand Training"
+              <img src="../assets/performance-coach.png" alt="On-Demand Training"
                 style="width:100%;height:100%;object-fit:cover;display:block;" />
               <div class="gallery-card__media-fade" aria-hidden="true"></div>
             </div>
@@ -1065,7 +1065,7 @@
 
           <a class="gallery-card" href="whats-inside.html">
             <div class="gallery-card__media">
-              <img src="assets/weekly-coaching.png" alt="Weekly Live Coaching"
+              <img src="../assets/weekly-coaching.png" alt="Weekly Live Coaching"
                 style="width:100%;height:100%;object-fit:cover;display:block;" />
               <div class="gallery-card__media-fade" aria-hidden="true"></div>
             </div>
@@ -1084,7 +1084,7 @@
 
           <a class="gallery-card" href="whats-inside.html">
             <div class="gallery-card__media">
-              <img src="assets/perfect-loan-process.png" alt="The Perfect Loan Process"
+              <img src="../assets/perfect-loan-process.png" alt="The Perfect Loan Process"
                 style="width:100%;height:100%;object-fit:cover;display:block;" />
               <div class="gallery-card__media-fade" aria-hidden="true"></div>
             </div>
@@ -1108,7 +1108,7 @@
     <!-- ── 8. OBJECTION HANDLING ──────────────────────────────────────────────── -->
     <section class="lp-objection" aria-labelledby="objection-heading">
       <div class="container">
-        <div class="lp-objection__inner">
+        <div class="lp-objection__inner" data-reveal="up">
           <span class="eyebrow" style="margin-bottom: var(--space-md);">
             <span class="eyebrow__text">Why This Is Different</span>
           </span>
@@ -1126,19 +1126,19 @@
     <section class="lp-final-cta" id="get-started" aria-labelledby="final-cta-heading">
       <div class="container" style="position: relative; z-index: 1;">
 
-        <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas"
+        <img src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" data-reveal="fade"
           style="height: 52px; width: auto; margin: 0 auto var(--space-lg); display: block;" />
 
-        <h2 id="final-cta-heading"
+        <h2 id="final-cta-heading" data-reveal="up"
           style="font-family: var(--font-display); font-size: clamp(2.25rem, 1.4rem + 3.5vw, 3.75rem); font-weight: 800; line-height: 1.07; letter-spacing: -0.03em; color: #ffffff; max-width: 44rem; margin: 0 auto var(--space-lg); text-align: center;">
           Stop Paying<br>
           <span
             style="background: linear-gradient(135deg, #c9961c, #eac25a, #ffd56c); -webkit-background-clip: text; background-clip: text; color: transparent;">for the Gap</span>
         </h2>
 
-        <p class="lp-final-cta__lead">Every quarter you wait, your top LOs keep pulling ahead and the rest of your team keeps falling behind. The leaders closing that gap aren't doing it one LO at a time. They're giving the whole team the same playbook to run from. Let's talk about what that would look like for you.</p>
+        <p class="lp-final-cta__lead" data-reveal="up">Every quarter you wait, your top LOs keep pulling ahead and the rest of your team keeps falling behind. The leaders closing that gap aren't doing it one LO at a time. They're giving the whole team the same playbook to run from. Let's talk about what that would look like for you.</p>
 
-        <div
+        <div data-reveal="scale"
           style="display: flex; flex-wrap: wrap; gap: var(--space-sm); justify-content: center; align-items: center;">
           <a class="btn btn--gold btn--lg" href="consultation.html"
             style="font-size: 1.0625rem; padding: 18px 44px; box-shadow: 0 8px 32px rgba(201, 150, 28, 0.38);">
@@ -1146,7 +1146,7 @@
           </a>
         </div>
 
-        <p class="lp-final-cta__secondary">Or download <em><a href="#masterplan">The AI-Empowered Mortgage Leader Masterplan</a></em> — how the best leaders in mortgage are thinking about the next two years.</p>
+        <p class="lp-final-cta__secondary" data-reveal="up">Or download <em><a href="#masterplan">The AI-Empowered Mortgage Leader Masterplan</a></em> — how the best leaders in mortgage are thinking about the next two years.</p>
 
       </div>
     </section>
@@ -1158,7 +1158,7 @@
     <div class="site-footer__inner">
       <div class="site-footer__top">
         <a href="index.html" class="brand">
-          <img src="assets/Loan Atlas logo-color.png" alt="The Loan Atlas" class="brand__logo" />
+          <img src="../assets/Loan Atlas logo-color.png" alt="The Loan Atlas" class="brand__logo" />
         </a>
         <nav class="site-footer__links" aria-label="Footer">
           <a class="site-footer__link" href="whats-inside.html">What's Inside</a>
@@ -1182,7 +1182,8 @@
     </div>
   </footer>
 
-  <script src="nav.js"></script>
+  <script src="../nav.js"></script>
+  <script src="animations.js" defer></script>
 </body>
 
 </html>
