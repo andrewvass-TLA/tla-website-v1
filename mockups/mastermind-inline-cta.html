@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mockup — Mastermind Summit inline CTA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Antonio:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../public/css/styles.css" />
+  <style>
+    /* ============================================================
+       Mastermind Summit — inline CTA band
+       ---
+       Centered event-promo treatment for The Mastermind Summit.
+       Dark Bellagio-at-night backdrop, massive headline with the
+       word "Summit" in event-red, brass-gold accents on the meta
+       row and "hosted by" line, two white pill CTAs.
+       ---
+       Background: swap the placeholder gradient for the real
+       Bellagio image when the asset is delivered, via the
+       --mastermind-cta-image custom property on .mm-cta.
+       ============================================================ */
+
+    .mm-cta {
+      --mastermind-red: #e23b3b;
+      --mm-cta-image: url('../public/assets/bellagio.png');
+      --mm-cta-image-opacity: 0.18;
+
+      position: relative;
+      overflow: hidden;
+      padding-block: clamp(28px, 3.5vw, 52px);
+      background: #000000;
+      color: #ffffff;
+    }
+    /* Translucent Bellagio image layer over the solid black backdrop */
+    .mm-cta::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--mm-cta-image) center / cover no-repeat;
+      opacity: var(--mm-cta-image-opacity);
+      pointer-events: none;
+    }
+
+    .mm-cta__inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      align-items: center;
+      gap: var(--space-lg);
+      text-align: left;
+    }
+    @media (min-width: 860px) {
+      .mm-cta__inner {
+        grid-template-columns: 1fr auto;
+        gap: var(--space-xl);
+      }
+    }
+
+    /* Meta row — date + location, left-aligned cluster */
+    .mm-cta__meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--space-md);
+      font-family: var(--font-body);
+      font-size: clamp(0.875rem, 0.8rem + 0.25vw, 1rem);
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.88);
+      margin-bottom: var(--space-sm);
+    }
+    .mm-cta__meta-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .mm-cta__meta-item svg {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      color: var(--brass-bright);
+    }
+
+    /* Headline */
+    .mm-cta__title {
+      font-family: 'Antonio', var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 1.1rem + 4vw, 4.25rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      color: #ffffff;
+      margin: 0;
+      text-transform: uppercase;
+    }
+    .mm-cta__title-accent {
+      color: var(--mastermind-red);
+    }
+
+    /* Sub copy */
+    .mm-cta__sub {
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.82);
+      max-width: 44rem;
+      margin: var(--space-sm) 0 0;
+    }
+
+    /* Action column — single pill on the right */
+    .mm-cta__actions {
+      display: flex;
+      justify-self: start;
+    }
+    @media (min-width: 860px) {
+      .mm-cta__actions { justify-self: end; }
+    }
+    .mm-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 40px;
+      border-radius: 999px;
+      background: #ffffff;
+      color: var(--primary);
+      font-family: var(--font-display);
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      box-shadow:
+        0 10px 28px rgba(0, 0, 0, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      transition: transform 120ms ease, box-shadow 200ms ease, background 200ms ease;
+    }
+    .mm-cta-btn:hover {
+      transform: translateY(-2px);
+      background: #fafafa;
+      box-shadow:
+        0 14px 36px rgba(0, 0, 0, 0.55),
+        inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    }
+    .mm-cta-btn:active { transform: translateY(0); }
+
+    /* ============================================================
+       Mockup scaffolding (not part of the component)
+       ============================================================ */
+    body { background: #f7f9fb; }
+    .mockup-wrap { padding-block: 40px; }
+    .mockup-label {
+      max-width: 1280px;
+      margin: 0 auto 16px;
+      padding-inline: var(--gutter);
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .mockup-label span { color: var(--brass); }
+  </style>
+</head>
+<body>
+
+  <div class="mockup-wrap">
+
+    <p class="mockup-label">Mastermind Inline CTA · <span>Event-promo band</span></p>
+
+    <!-- ─────────────────────────────────────────────────────────────
+         Mastermind Summit inline CTA.
+         Classes:
+           .mm-cta            (dark backdrop band; set --mm-cta-image: url(...) to slot in the Bellagio photo)
+           .mm-cta__meta      (date | location row)
+           .mm-cta__title     (massive headline; wrap the red word in .mm-cta__title-accent)
+           .mm-cta__sub       (descriptor line)
+           .mm-cta__hosted    (brass "hosted by" line)
+           .mm-cta__actions   (pill button row)
+           .mm-cta-btn        (white pill — uppercase, bold)
+         ───────────────────────────────────────────────────────────── -->
+    <section class="mm-cta" aria-labelledby="mm-cta-heading">
+      <div class="container mm-cta__inner">
+
+        <div class="mm-cta__copy">
+          <div class="mm-cta__meta">
+            <span class="mm-cta__meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              June 24–26, 2026
+            </span>
+            <span class="mm-cta__meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              Bellagio, Las Vegas
+            </span>
+          </div>
+
+          <h2 class="mm-cta__title" id="mm-cta-heading">
+            Mastermind <span class="mm-cta__title-accent">Summit</span> 2026
+          </h2>
+
+          <p class="mm-cta__sub">
+            Three days of real conversations and powerful connections with the leaders shaping the future of
+            mortgage origination.
+          </p>
+        </div>
+
+        <div class="mm-cta__actions">
+          <a class="mm-cta-btn" href="#">Get Your Ticket</a>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>

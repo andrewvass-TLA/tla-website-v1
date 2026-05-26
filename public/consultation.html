@@ -17,35 +17,24 @@
       padding-block: clamp(80px, 8vw, 120px);
     }
     .hero-booking {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--space-xl);
-      align-items: start;
-    }
-    @media (max-width: 900px) {
-      .hero-booking { grid-template-columns: 1fr; }
-    }
-    .hero-v2__bullets {
-      list-style: none;
-      padding: 0;
-      margin: var(--space-md) 0;
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: var(--space-xl);
     }
-    .hero-v2__bullets li {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-family: var(--font-body);
-      font-size: 1rem;
-      line-height: 1.5;
-      color: rgba(255,255,255,0.78);
+    .hero-v2__intro { text-align: center; max-width: 48rem; margin-inline: auto; }
+    .hero-v2__intro .t-display {
+      font-size: clamp(2.25rem, 1.4rem + 3.2vw, 3.75rem);
+      font-weight: 800;
     }
-    .hero-v2__bullets li svg { flex-shrink: 0; margin-top: 2px; color: var(--brass-bright); }
+    .hero-v2__intro .t-body-lg {
+      max-width: 40rem;
+      margin-inline: auto;
+      font-size: clamp(1rem, 0.875rem + 0.4vw, 1.1875rem);
+      line-height: 1.6;
+    }
     .hero-v2__trust {
       margin-top: var(--space-md);
-      display: flex;
+      display: inline-flex;
       align-items: center;
       gap: 8px;
       font-family: var(--font-body);
@@ -53,31 +42,6 @@
       color: rgba(255,255,255,0.5);
     }
     .hero-v2__trust svg { color: var(--brass-bright); flex-shrink: 0; }
-    .hero-v2__pullquote {
-      margin-top: var(--space-lg);
-      padding: var(--space-md);
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.09);
-      border-left: 3px solid var(--brass);
-      border-radius: 0 var(--radius-2xl) var(--radius-2xl) 0;
-    }
-    .hero-v2__pullquote p {
-      font-family: var(--font-body);
-      font-style: italic;
-      font-size: 0.9375rem;
-      line-height: 1.65;
-      color: rgba(255,255,255,0.78);
-      margin: 0 0 10px;
-    }
-    .hero-v2__pullquote cite {
-      font-family: var(--font-display);
-      font-style: normal;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--brass-bright);
-    }
     .booking-card {
       background: var(--surface-container-lowest);
       border-radius: var(--radius-3xl);
@@ -187,34 +151,19 @@
       box-shadow: var(--shadow-lg);
     }
 
-    /* ── Credibility ── */
-    .credibility-section {
+    /* ── Dark trust + testimonials section ── */
+    .dark-testimonials {
       background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      border-top: 1px solid rgba(255,255,255,0.06);
       padding-block: clamp(48px, 6vw, 80px);
-      text-align: center;
     }
-    .trust-logos {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: var(--space-xl);
-      margin-top: var(--space-xl);
-    }
-    .trust-logos img {
-      height: 26px;
-      width: auto;
+    .dark-testimonials .trust__marquee { margin-bottom: var(--space-xl); }
+    .dark-testimonials .trust__logo img {
       filter: brightness(0) invert(1);
       opacity: 0.6;
       transition: opacity 0.2s;
     }
-    .trust-logos img:hover { opacity: 1; }
-
-    /* ── Dark testimonials ── */
-    .dark-testimonials {
-      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
-      border-top: 1px solid rgba(255,255,255,0.06);
-    }
+    .dark-testimonials .trust__logo img:hover { opacity: 1; }
     .dark-testimonials .quote-card {
       background: rgba(255,255,255,0.04) !important;
       border: 1px solid rgba(255,255,255,0.08) !important;
@@ -225,54 +174,6 @@
     .dark-testimonials .quote-card__name { color: var(--brass-bright); }
     .dark-testimonials .quote-card__org { color: rgba(255,255,255,0.45); }
 
-    /* ── Comparison ── */
-    .compare-v2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      border-radius: var(--radius-3xl);
-      overflow: hidden;
-      box-shadow: var(--shadow-lg);
-    }
-    @media (max-width: 580px) {
-      .compare-v2 { grid-template-columns: 1fr; }
-    }
-    .compare-v2__col { padding: var(--space-lg); }
-    .compare-v2__col--theirs { background: var(--surface-container); }
-    .compare-v2__col--ours { background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%); }
-    .compare-v2__label {
-      font-family: var(--font-body);
-      font-size: 0.6875rem;
-      font-weight: 600;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin: 0 0 var(--space-sm);
-    }
-    .compare-v2__col--theirs .compare-v2__label { color: var(--on-surface-variant); }
-    .compare-v2__col--ours .compare-v2__label { color: var(--brass-bright); }
-    .compare-v2__title {
-      font-family: var(--font-display);
-      font-size: 1.125rem;
-      font-weight: 700;
-      margin: 0 0 var(--space-md);
-      padding-bottom: var(--space-md);
-      border-bottom: 1px solid;
-    }
-    .compare-v2__col--theirs .compare-v2__title { color: var(--on-surface); border-color: var(--outline-variant); }
-    .compare-v2__col--ours .compare-v2__title { color: white; border-color: rgba(255,255,255,0.14); }
-    .compare-v2__rows { display: flex; flex-direction: column; gap: var(--space-md); }
-    .compare-v2__row {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      font-family: var(--font-body);
-      font-size: 0.9375rem;
-      line-height: 1.5;
-    }
-    .compare-v2__col--theirs .compare-v2__row { color: var(--on-surface-variant); }
-    .compare-v2__col--ours .compare-v2__row { color: rgba(255,255,255,0.85); }
-    .compare-v2__row svg { flex-shrink: 0; margin-top: 2px; }
-    .compare-v2__col--theirs .compare-v2__row svg { color: var(--on-surface-variant); opacity: 0.4; }
-    .compare-v2__col--ours .compare-v2__row svg { color: var(--brass-bright); }
   </style>
 </head>
 <body>
@@ -283,12 +184,49 @@
         <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
       </a>
       <nav class="nav" aria-label="Primary">
-        <a class="nav__link" href="whats-inside.html">What's Inside</a>
-        <a class="nav__link" href="faculty.html">Faculty</a>
-        <a class="nav__link" href="sales-individual.html">Individual Sales</a>
-        <a class="nav__link" href="corporate.html">Corporate Sales</a>
-        <a class="nav__link" href="pricing.html">Pricing</a>
-        <a class="nav__link" href="events.html">Events</a>
+        <div class="nav__dropdown">
+          <button type="button" class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Platform
+            <svg class="nav__dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu">
+            <a class="nav__dropdown-item" href="whats-inside.html" role="menuitem">What's Inside</a>
+            <a class="nav__dropdown-item" href="faculty.html" role="menuitem">Faculty</a>
+            <a class="nav__dropdown-item" href="https://www.theloanatlas.com/evergreen-ai-tool-planner/" target="_blank" rel="noopener" role="menuitem">AI Business &amp; Life Planner</a>
+            <a class="nav__dropdown-item" href="#" role="menuitem">Platinum Marketing</a>
+          </div>
+        </div>
+        <div class="nav__dropdown">
+          <button type="button" class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Membership
+            <svg class="nav__dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu">
+            <a class="nav__dropdown-item" href="pricing.html" role="menuitem">Pricing</a>
+            <a class="nav__dropdown-item" href="corporate.html" role="menuitem">Corporate Sales</a>
+            <a class="nav__dropdown-item" href="sales-individual.html" role="menuitem">Individual Sales</a>
+          </div>
+        </div>
+        <div class="nav__dropdown">
+          <button type="button" class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Resources
+            <svg class="nav__dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu">
+            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/perfect-loan-process" target="_blank" rel="noopener" role="menuitem">Perfect Loan Process</a>
+            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/5-essential-scripts" target="_blank" rel="noopener" role="menuitem">Success Scripts</a>
+            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/refinance-masterplan" target="_blank" rel="noopener" role="menuitem">Refinance Masterplan</a>
+            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/ai-empowered-originator-masterplan" target="_blank" rel="noopener" role="menuitem">AI-Empowered Originator Masterplan</a>
+            <a class="nav__dropdown-item" href="https://www.theloanatlas.com/blog/" target="_blank" rel="noopener" role="menuitem">Blog</a>
+            <a class="nav__dropdown-item" href="https://www.theloanatlas.com/podcast-revamp/" target="_blank" rel="noopener" role="menuitem">The 360 Experience</a>
+          </div>
+        </div>
       </nav>
       <div class="site-header__actions">
         <a class="site-header__login" href="#">Login</a>
@@ -297,18 +235,28 @@
           <span class="nav-toggle__line"></span>
           <span class="nav-toggle__line"></span>
         </button>
-        <a class="btn btn--primary btn--header" href="consultation.html"><span class="btn__short">Free Session</span><span class="btn__full">Book Your Free Coaching Session</span></a>
+        <a class="btn btn--primary btn--header" href="pricing.html"><span class="btn__short">Join Atlas</span><span class="btn__full">Join The Loan Atlas</span></a>
       </div>
     </div>
     <div class="mobile-nav" id="mobile-nav">
-      <a class="mobile-nav__link" href="whats-inside.html">What's Inside</a>
-      <a class="mobile-nav__link" href="faculty.html">Faculty</a>
-      <a class="mobile-nav__link" href="sales-individual.html">Individual Sales</a>
-      <a class="mobile-nav__link" href="corporate.html">Corporate Sales</a>
-      <a class="mobile-nav__link" href="pricing.html">Pricing</a>
-      <a class="mobile-nav__link" href="events.html">Events</a>
+      <p class="mobile-nav__group-label">Platform</p>
+      <a class="mobile-nav__link mobile-nav__sublink" href="whats-inside.html">What's Inside</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="faculty.html">Faculty</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/evergreen-ai-tool-planner/" target="_blank" rel="noopener">AI Business &amp; Life Planner</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="#">Platinum Marketing</a>
+      <p class="mobile-nav__group-label">Membership</p>
+      <a class="mobile-nav__link mobile-nav__sublink" href="pricing.html">Pricing</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="corporate.html">Corporate Sales</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="sales-individual.html">Individual Sales</a>
+      <p class="mobile-nav__group-label">Resources</p>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/perfect-loan-process" target="_blank" rel="noopener">Perfect Loan Process</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/5-essential-scripts" target="_blank" rel="noopener">Success Scripts</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/refinance-masterplan" target="_blank" rel="noopener">Refinance Masterplan</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/ai-empowered-originator-masterplan" target="_blank" rel="noopener">AI-Empowered Originator Masterplan</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/blog/" target="_blank" rel="noopener">Blog</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/podcast-revamp/" target="_blank" rel="noopener">The 360 Experience</a>
       <a class="mobile-nav__link" href="#">Login</a>
-      <a class="btn btn--primary btn--header mobile-nav__cta" href="consultation.html">Book Your Free Coaching Session</a>
+      <a class="btn btn--primary btn--header mobile-nav__cta" href="pricing.html">Join The Loan Atlas</a>
     </div>
   </header>
 
@@ -319,42 +267,20 @@
       <div class="container">
         <div class="hero-booking">
 
-          <!-- Left: prose -->
-          <div>
-            <span class="eyebrow" data-hero-step="1"><span class="eyebrow__text">Free Business Assessment</span></span>
+          <!-- Intro -->
+          <div class="hero-v2__intro">
+            <span class="eyebrow" data-hero-step="1" style="justify-content: center;"><span class="eyebrow__text">Free Business Assessment</span></span>
             <h1 class="t-display" data-hero-step="2" style="color: white; margin-top: var(--space-sm); margin-bottom: var(--space-md);">
-              Step inside The Loan Atlas and build your <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">growth plan.</span>
+              See Where Your Next <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">10 Loans</span> Are Hiding
             </h1>
-            <p class="t-body-lg" data-hero-step="3" style="color: rgba(255,255,255,0.72); max-width: 36rem;">This free 1-hour business assessment will show you exactly where your next level of production is hiding — and how to get to it.</p>
-            <ul class="hero-v2__bullets" data-hero-step="4">
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                A clear-eyed look at where your production stands right now
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Hidden leverage and opportunities specific to your business
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                A prioritized growth plan built for your numbers and market
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Yours to keep whether you join The Loan Atlas or not
-              </li>
-            </ul>
-            <p class="hero-v2__trust">
+            <p class="t-body-lg" data-hero-step="3" style="color: rgba(255,255,255,0.72);">This free 1-hour business assessment will show you exactly where your next level of production is hiding — and how to get to it.</p>
+            <p class="hero-v2__trust" data-hero-step="4">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              No cost · No obligation · The plan is yours either way
+              No cost · No obligation
             </p>
-            <div class="hero-v2__pullquote">
-              <p>"It's been a long time wanting to join, and now that I'm in, I'm mad that I didn't join sooner."</p>
-              <cite>— Charlie Rutherford, Loan Atlas Member</cite>
-            </div>
           </div>
 
-          <!-- Right: booking widget -->
+          <!-- Booking widget -->
           <div data-hero-step="5">
             <div class="booking-card">
               <div class="booking-card__header">
@@ -393,35 +319,89 @@
       </div>
     </div>
 
-    <!-- ── Why these sessions produce results ── -->
-    <section class="section">
-      <div class="container">
-        <div class="why-grid">
-          <div data-reveal="left">
-            <img src="assets/talk-to-tim.png" alt="One-on-one coaching session at The Loan Atlas" style="width:100%;border-radius:var(--radius-3xl);box-shadow:var(--shadow-xl);" />
+    <!-- ── What you'll leave this call with ── -->
+    <section class="takeaways">
+      <div class="takeaways__intro" data-reveal="up">
+        <h2 class="takeaways__heading">What you'll leave this call with</h2>
+        <p class="takeaways__lede">Most originators are working harder than ever and still can't figure out why their production is uneven. It's rarely an effort problem. It's almost always a system problem — and you can't fix what you can't see.</p>
+      </div>
+
+      <div class="takeaways__features" data-reveal-stagger="100">
+        <div class="takeaways__grid">
+          <article class="takeaways__cell">
+            <h3 class="takeaways__cell-title">Business Assessment</h3>
+            <p class="takeaways__cell-copy">We'll look at your production honestly: what's working, what's inconsistent, where your time is going, where the bottlenecks are. Most originators have never had anyone look at their business this way.</p>
+          </article>
+          <article class="takeaways__cell">
+            <h3 class="takeaways__cell-title">Leverage &amp; Opportunity Analysis</h3>
+            <p class="takeaways__cell-copy">We'll find where you're leaving money on the table. A referral source you've been underusing. A database segment you've stopped working. A conversation you've been losing.</p>
+          </article>
+          <article class="takeaways__cell">
+            <h3 class="takeaways__cell-title">Growth Plan</h3>
+            <p class="takeaways__cell-copy">Priorities. Sequencing. What to do first, what to do next, what to stop doing entirely. Built around your production, your market, your situation.</p>
+          </article>
+          <article class="takeaways__cell">
+            <h3 class="takeaways__cell-title">Tour of The Loan Atlas</h3>
+            <p class="takeaways__cell-copy">Once we know where your leverage is, we'll show you exactly how the platform maps to it — which AI systems solve which problems, which frameworks close which gaps.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="takeaways__marquees" aria-hidden="true">
+        <div class="marquee">
+          <div class="marquee__track">
+            <span class="qpill">How do I generate consistent referrals?</span>
+            <span class="qpill">Why am I stuck at the same production level?</span>
+            <span class="qpill">How do I scale without burning out?</span>
+            <span class="qpill">What does a top-10% LO do differently?</span>
+            <span class="qpill">How do I build a personal brand?</span>
+            <span class="qpill">Should I hire an assistant or an LOA?</span>
           </div>
-          <div data-reveal="right">
-            <span class="eyebrow"><span class="eyebrow__text">Clarity Over Pitches</span></span>
-            <h2 class="t-headline-lg" style="margin-top: var(--space-sm); margin-bottom: var(--space-md);">Appointments built around your business, not ours</h2>
-            <ul class="why-checklist">
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                An honest look at your current production — what's working and what isn't
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                Specific leverage points most originators have never been shown
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                A growth plan sequenced for your situation — not a template
-              </li>
-              <li>
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                No commitment required — the plan is yours regardless
-              </li>
-            </ul>
-            <a href="#book" class="btn btn--primary" data-scroll-to-calendar>Book Your Free Session →</a>
+          <div class="marquee__track" aria-hidden="true">
+            <span class="qpill">How do I generate consistent referrals?</span>
+            <span class="qpill">Why am I stuck at the same production level?</span>
+            <span class="qpill">How do I scale without burning out?</span>
+            <span class="qpill">What does a top-10% LO do differently?</span>
+            <span class="qpill">How do I build a personal brand?</span>
+            <span class="qpill">Should I hire an assistant or an LOA?</span>
+          </div>
+        </div>
+
+        <div class="marquee marquee--reverse" style="--duration: 50s;">
+          <div class="marquee__track">
+            <span class="qpill">How do I price my services to win the deal?</span>
+            <span class="qpill">What CRM is actually worth using?</span>
+            <span class="qpill">How do I retain past clients for life?</span>
+            <span class="qpill">What's the right comp split for me?</span>
+            <span class="qpill">How do I structure my week?</span>
+            <span class="qpill">Why are my conversion rates dropping?</span>
+          </div>
+          <div class="marquee__track" aria-hidden="true">
+            <span class="qpill">How do I price my services to win the deal?</span>
+            <span class="qpill">What CRM is actually worth using?</span>
+            <span class="qpill">How do I retain past clients for life?</span>
+            <span class="qpill">What's the right comp split for me?</span>
+            <span class="qpill">How do I structure my week?</span>
+            <span class="qpill">Why are my conversion rates dropping?</span>
+          </div>
+        </div>
+
+        <div class="marquee" style="--duration: 42s;">
+          <div class="marquee__track">
+            <span class="qpill">How do I know if my marketing is working?</span>
+            <span class="qpill">How do I get past plateaus?</span>
+            <span class="qpill">Who is my ideal client?</span>
+            <span class="qpill">How do I track my real numbers?</span>
+            <span class="qpill">How do I lead a team?</span>
+            <span class="qpill">What systems should I build first?</span>
+          </div>
+          <div class="marquee__track" aria-hidden="true">
+            <span class="qpill">How do I know if my marketing is working?</span>
+            <span class="qpill">How do I get past plateaus?</span>
+            <span class="qpill">Who is my ideal client?</span>
+            <span class="qpill">How do I track my real numbers?</span>
+            <span class="qpill">How do I lead a team?</span>
+            <span class="qpill">What systems should I build first?</span>
           </div>
         </div>
       </div>
@@ -472,24 +452,41 @@
       </div>
     </section>
 
-    <!-- ── Credibility ── -->
-    <section class="credibility-section">
-      <div class="container" data-reveal="fade">
+    <!-- ── Trust marquee + testimonials ── -->
+    <section class="dark-testimonials">
+      <div class="container" data-reveal="fade" style="text-align: center; margin-bottom: var(--space-lg);">
         <span class="eyebrow" style="justify-content: center;"><span class="eyebrow__text" style="color: var(--brass-bright);">Trusted Across the Industry</span></span>
-        <h2 class="section-heading center" style="color: white; margin-top: var(--space-sm); max-width: 36rem; margin-inline: auto;">Loan officers from leading companies rely on The Loan Atlas</h2>
-        <div class="trust-logos">
-          <img src="assets/CMG-logo.svg" alt="CMG" />
-          <img src="assets/lower-mortgage-logo.svg" alt="Lower" />
-          <img src="assets/fairway-logo.png" alt="Fairway" />
-          <img src="assets/rate-logo.png" alt="Rate" />
-          <img src="assets/cross-country-logo.webp" alt="CrossCountry Mortgage" />
-          <img src="assets/UWM-logo.png" alt="UWM" />
+      </div>
+      <div class="trust__marquee" aria-hidden="false">
+        <div class="trust__track">
+          <ul class="trust__group">
+            <li class="trust__logo"><img src="assets/UWM-logo.png" alt="UWM"></li>
+            <li class="trust__logo"><img src="assets/CMG-logo.svg" alt="CMG Financial"></li>
+            <li class="trust__logo"><img src="assets/cross-country-logo.webp" alt="CrossCountry Mortgage"></li>
+            <li class="trust__logo"><img src="assets/rate-logo.png" alt="Guaranteed Rate"></li>
+            <li class="trust__logo"><img src="assets/fairway-logo.png" alt="Fairway Independent Mortgage"></li>
+            <li class="trust__logo"><img src="assets/loan-depot-logo" alt="loanDepot"></li>
+            <li class="trust__logo"><img src="assets/better-logo.png" alt="Better"></li>
+            <li class="trust__logo"><img src="assets/american-pacific-logo.webp" alt="American Pacific Mortgage"></li>
+            <li class="trust__logo"><img src="assets/acm-logo.webp" alt="ACM"></li>
+            <li class="trust__logo"><img src="assets/lower-mortgage-logo.svg" alt="Lower"></li>
+            <li class="trust__logo"><img src="assets/swbc-logo.png" alt="SWBC Mortgage"></li>
+          </ul>
+          <ul class="trust__group" aria-hidden="true">
+            <li class="trust__logo"><img src="assets/UWM-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="assets/CMG-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="assets/cross-country-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="assets/rate-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="assets/fairway-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="assets/loan-depot-logo" alt=""></li>
+            <li class="trust__logo"><img src="assets/better-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="assets/american-pacific-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="assets/acm-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="assets/lower-mortgage-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="assets/swbc-logo.png" alt=""></li>
+          </ul>
         </div>
       </div>
-    </section>
-
-    <!-- ── Testimonials ── -->
-    <section class="section dark-testimonials">
       <div class="container">
         <div class="grid-2" data-reveal-stagger="120" style="max-width: 56rem; margin-inline: auto;">
           <blockquote class="quote-card" style="flex: unset;">
@@ -507,47 +504,6 @@
               <p class="quote-card__org">Loan Atlas Member</p>
             </div>
           </blockquote>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── What you'll walk away with ── -->
-    <section class="section" style="border-top: 1px solid var(--outline-variant);">
-      <div class="container">
-        <header class="center" data-reveal="up" style="max-width: 44rem; margin-inline: auto; margin-bottom: var(--space-xl);">
-          <h2 class="section-heading" style="margin-bottom: var(--space-md);">What you'll leave this call with</h2>
-          <p class="t-body t-muted">Most originators are working harder than ever and still can't figure out why their production is uneven. It's rarely an effort problem. It's almost always a system problem — and you can't fix what you can't see.</p>
-        </header>
-
-        <div class="grid-4" data-reveal-stagger="100">
-          <article class="card card--hover" style="display: flex; flex-direction: column; gap: 14px; padding: var(--space-lg);">
-            <span class="icon-tile">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
-            </span>
-            <h3 class="t-headline-md" style="font-size: 1.125rem;">1. Business Assessment</h3>
-            <p class="t-body t-muted" style="font-size: 0.9375rem;">We'll look at your production honestly: what's working, what's inconsistent, where your time is going, where the bottlenecks are. Most originators have never had anyone look at their business this way.</p>
-          </article>
-          <article class="card card--hover" style="display: flex; flex-direction: column; gap: 14px; padding: var(--space-lg);">
-            <span class="icon-tile">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"></path><path d="M10 22h4"></path><path d="M15.09 14a4 4 0 0 0 1.91-3.4 5 5 0 0 0-10 0A4 4 0 0 0 8.91 14"></path></svg>
-            </span>
-            <h3 class="t-headline-md" style="font-size: 1.125rem;">2. Leverage &amp; Opportunity Analysis</h3>
-            <p class="t-body t-muted" style="font-size: 0.9375rem;">We'll find where you're leaving money on the table. A referral source you've been underusing. A database segment you've stopped working. A conversation you've been losing.</p>
-          </article>
-          <article class="card card--hover" style="display: flex; flex-direction: column; gap: 14px; padding: var(--space-lg);">
-            <span class="icon-tile">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
-            </span>
-            <h3 class="t-headline-md" style="font-size: 1.125rem;">3. Growth Plan</h3>
-            <p class="t-body t-muted" style="font-size: 0.9375rem;">Priorities. Sequencing. What to do first, what to do next, what to stop doing entirely. Built around your production, your market, your situation.</p>
-          </article>
-          <article class="card card--hover" style="display: flex; flex-direction: column; gap: 14px; padding: var(--space-lg);">
-            <span class="icon-tile">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
-            </span>
-            <h3 class="t-headline-md" style="font-size: 1.125rem;">4. Tour of The Loan Atlas</h3>
-            <p class="t-body t-muted" style="font-size: 0.9375rem;">Once we know where your leverage is, we'll show you exactly how the platform maps to it — which AI systems solve which problems, which frameworks close which gaps.</p>
-          </article>
         </div>
       </div>
     </section>
@@ -652,16 +608,39 @@
     </section>
 
     <!-- ── Final CTA ── -->
-    <section class="consult-cta">
-      <div class="consult-cta__glow" aria-hidden="true"></div>
-      <div class="consult-cta__stripe" aria-hidden="true"></div>
-      <div class="container" data-reveal="scale" style="position: relative; text-align: center;">
-        <h2 class="consult-cta__heading">See your mortgage business clearly<br>for the first time.</h2>
-        <a href="#book" class="btn btn--gold btn--lg" data-scroll-to-calendar>
-          <svg class="icon" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-          Build Your Growth Plan
-        </a>
-        <p style="margin-top: var(--space-sm); font-size: 0.875rem; color: rgba(255,255,255,0.45);">No cost · No obligation</p>
+    <section class="close-cta" aria-labelledby="final-cta-heading">
+      <div class="container close-cta__grid">
+        <div class="close-cta__copy" data-reveal="up">
+          <span class="close-cta__eyebrow">Start Your Transformation</span>
+          <h2 id="final-cta-heading" class="close-cta__title">
+            See Your Mortgage Business <em>Clearly</em>
+          </h2>
+          <p class="close-cta__sub">
+            One 45-minute call. No pitch, no pressure. You walk away with a clear read on what's actually
+            holding production back — and the next two moves to fix it. <strong>That's the whole offer.</strong>
+          </p>
+        </div>
+
+        <div class="close-cta__actions" data-reveal="up" role="group" aria-label="Get started">
+          <a class="close-cta-action close-cta-action--primary" href="#book" data-scroll-to-calendar>
+            <span>
+              <span class="close-cta-action__label">Build Your Growth Plan</span>
+              <span class="close-cta-action__hint">No cost · No obligation · Pick a time that works</span>
+            </span>
+            <span class="close-cta-action__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+            </span>
+          </a>
+          <a class="close-cta-action close-cta-action--secondary" href="whats-inside.html">
+            <span>
+              <span class="close-cta-action__label">See What's Inside First</span>
+              <span class="close-cta-action__hint">A full tour of the system, faculty, and member experience</span>
+            </span>
+            <span class="close-cta-action__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+            </span>
+          </a>
+        </div>
       </div>
     </section>
 

@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mockup — Standardized Closing CTA</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../public/css/styles.css" />
+  <style>
+    /* ============================================================
+       Standardized closing CTA
+       ---
+       Visual language carried over from the faculty page hero
+       (.fh-hero): navy gradient fading right-to-transparent over a
+       background image, brass radial glow, eyebrow + headline with
+       brass-gradient em + sub copy.
+       ---
+       Layout change vs. the hero: actions move from below the copy
+       to a dedicated right-hand column, and grow in size + presence.
+       Each CTA is a tall "card-button" with a primary line and a
+       supporting micro-caption.
+       ============================================================ */
+
+    .close-section {
+      position: relative;
+      overflow: hidden;
+      padding-block: clamp(72px, 9vw, 132px);
+      background:
+        /* gradient fades from solid navy on the LEFT to transparent on the
+           RIGHT — same pattern as .fh-hero, so the bg image bleeds through
+           behind the action column */
+        linear-gradient(to right,
+          rgba(2, 28, 54, 1) 0%,
+          rgba(2, 28, 54, 0.97) 28%,
+          rgba(2, 28, 54, 0.82) 50%,
+          rgba(2, 28, 54, 0.55) 72%,
+          rgba(2, 28, 54, 0.35) 100%),
+        url('../public/assets/faculty-bg.png') right center / cover no-repeat,
+        linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+    }
+
+    .close-section::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: 6%;
+      width: 560px;
+      height: 560px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.14), transparent);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+
+    .close-section::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: 4%;
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(closest-side, rgba(178, 200, 233, 0.08), transparent);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+
+    .close-section__grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(32px, 5vw, 64px);
+      align-items: center;
+    }
+
+    @media (min-width: 920px) {
+      .close-section__grid {
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: clamp(48px, 6vw, 96px);
+      }
+    }
+
+    /* ── Copy column ────────────────────────────────────────────── */
+    .close-section__copy {
+      max-width: 36rem;
+    }
+
+    .close-section__eyebrow {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      margin-bottom: var(--space-md);
+    }
+
+    .close-section__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 1.55rem + 2.8vw, 3.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: var(--space-md);
+    }
+
+    .close-section__title em {
+      font-style: normal;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .close-section__sub {
+      font-size: clamp(1rem, 0.95rem + 0.4vw, 1.1875rem);
+      line-height: 1.65;
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .close-section__sub strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    /* ── Action column (large, stacked CTAs on the right) ────────── */
+    .close-section__actions {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      width: 100%;
+    }
+
+    .close-section-action {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: var(--space-md);
+      padding: clamp(20px, 2.2vw, 28px) clamp(22px, 2.6vw, 32px);
+      border-radius: var(--radius-2xl);
+      font-family: var(--font-display);
+      text-align: left;
+      transition: transform 160ms ease, box-shadow 200ms ease, background 200ms ease, border-color 200ms ease;
+    }
+
+    .close-section-action:hover {
+      transform: translateY(-2px);
+    }
+
+    .close-section-action__label {
+      font-size: clamp(1.0625rem, 0.95rem + 0.4vw, 1.25rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .close-section-action__hint {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      line-height: 1.5;
+      margin-top: 6px;
+      opacity: 0.78;
+    }
+
+    .close-section-action__arrow {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      transition: transform 200ms ease, background 200ms ease;
+    }
+
+    .close-section-action__arrow svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .close-section-action:hover .close-section-action__arrow {
+      transform: translateX(4px);
+    }
+
+    /* Primary — brass gradient */
+    .close-section-action--primary {
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      color: var(--primary);
+      box-shadow:
+        0 14px 40px rgba(201, 150, 28, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.45);
+    }
+
+    .close-section-action--primary:hover {
+      background: linear-gradient(135deg, #b3841a 0%, #d6ae47 50%, #f6c95c 100%);
+      box-shadow:
+        0 18px 50px rgba(201, 150, 28, 0.45),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    }
+
+    .close-section-action--primary .close-section-action__arrow {
+      background: rgba(2, 28, 54, 0.12);
+      color: var(--primary);
+    }
+
+    /* Secondary — translucent on dark */
+    .close-section-action--secondary {
+      background: rgba(255, 255, 255, 0.05);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .close-section-action--secondary:hover {
+      background: rgba(255, 255, 255, 0.09);
+      border-color: rgba(234, 194, 90, 0.45);
+    }
+
+    .close-section-action--secondary .close-section-action__hint {
+      color: rgba(255, 255, 255, 0.62);
+    }
+
+    .close-section-action--secondary .close-section-action__arrow {
+      background: rgba(234, 194, 90, 0.18);
+      color: var(--brass-bright);
+    }
+
+    /* On narrow screens, copy stacks on top, actions stretch full width */
+    @media (max-width: 919px) {
+      .close-section__actions {
+        max-width: 32rem;
+      }
+    }
+
+    /* ============================================================
+       Mockup scaffolding (not part of the component)
+       ============================================================ */
+    body {
+      background: #f7f9fb;
+    }
+
+    .mockup-wrap {
+      padding-block: 40px;
+    }
+
+    .mockup-label {
+      max-width: 1280px;
+      margin: 0 auto 16px;
+      padding-inline: var(--gutter);
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+
+    .mockup-label span {
+      color: var(--brass);
+    }
+
+    .mockup-divider {
+      max-width: 1280px;
+      margin: 64px auto;
+      padding-inline: var(--gutter);
+      border-top: 1px dashed var(--outline-variant);
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="mockup-wrap">
+
+    <p class="mockup-label">Closing CTA · <span>Variant A — Membership-first</span></p>
+    <section class="close-section" aria-labelledby="close-section-heading-a">
+      <div class="container close-section__grid">
+        <div class="close-section__copy">
+          <span class="close-section__eyebrow">Start Your Transformation</span>
+          <h2 id="close-section-heading-a" class="close-section__title">
+            You Deserve to Be <em>Mentored by the Best</em>
+          </h2>
+          <p class="close-section__sub">
+            From your first call script to your next hire, <strong>The Loan Atlas faculty</strong> is here
+            to help you close more, serve better, and scale faster. Pick the path that fits where you are right now.
+          </p>
+        </div>
+
+        <div class="close-section__actions" role="group" aria-label="Get started">
+          <a class="close-section-action close-section-action--primary" href="../public/pricing.html">
+            <span>
+              <span class="close-section-action__label">Join The Loan Atlas</span>
+              <span class="close-section-action__hint">View plans and pricing</span>
+            </span>
+            <span class="close-section-action__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </span>
+          </a>
+
+          <a class="close-section-action close-section-action--secondary" href="../public/consultation.html">
+            <span>
+              <span class="close-section-action__label">Book Your Free Coaching Session</span>
+              <span class="close-section-action__hint">See where your next 10 loans are hiding</span>
+            </span>
+            <span class="close-section-action__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <div class="mockup-divider"></div>
+
+    <p class="mockup-label">Closing CTA · <span>Variant B — Consultation-first (for sales pages)</span></p>
+    <section class="close-section" aria-labelledby="close-section-heading-b">
+      <div class="container close-section__grid">
+        <div class="close-section__copy">
+          <span class="close-section__eyebrow">Start Your Transformation</span>
+          <h2 id="close-section-heading-b" class="close-section__title">
+            See Your Mortgage Business <em>Clearly</em>
+          </h2>
+          <p class="close-section__sub">
+            One 45-minute call. No pitch, no pressure. You walk away with a clear read on what's actually
+            holding production back — and the next two moves to fix it. <strong>That's the whole offer.</strong>
+          </p>
+        </div>
+
+        <div class="close-section__actions" role="group" aria-label="Get started">
+          <a class="close-section-action close-section-action--primary" href="../public/consultation.html">
+            <span>
+              <span class="close-section-action__label">Book Your Free Session</span>
+              <span class="close-section-action__hint">Real coaches. Real questions. Zero sales pressure.</span>
+            </span>
+            <span class="close-section-action__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </span>
+          </a>
+
+          <a class="close-section-action close-section-action--secondary" href="../public/pricing.html">
+            <span>
+              <span class="close-section-action__label">See Plans &amp; Pricing</span>
+              <span class="close-section-action__hint">Compare membership tiers and what each unlocks</span>
+            </span>
+            <span class="close-section-action__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+
+</html>

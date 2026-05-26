@@ -659,57 +659,6 @@
       font-weight: 600;
     }
 
-    /* Final CTA */
-    .lp-final-cta {
-      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
-      padding-block: clamp(80px, 10vw, 128px);
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-    }
-    .lp-final-cta::before {
-      content: '';
-      position: absolute;
-      top: -120px;
-      right: 8%;
-      width: 560px;
-      height: 560px;
-      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.09), transparent);
-      filter: blur(70px);
-      pointer-events: none;
-    }
-    .lp-final-cta::after {
-      content: '';
-      position: absolute;
-      bottom: -80px;
-      left: 4%;
-      width: 440px;
-      height: 440px;
-      background: radial-gradient(closest-side, rgba(178, 200, 233, 0.07), transparent);
-      filter: blur(70px);
-      pointer-events: none;
-    }
-    .lp-final-cta__lead {
-      font-size: 1.0625rem;
-      line-height: 1.75;
-      color: rgba(255, 255, 255, 0.7);
-      max-width: 44rem;
-      margin: 0 auto var(--space-lg);
-    }
-    .lp-final-cta__secondary {
-      margin-top: var(--space-lg);
-      font-size: 0.9375rem;
-      color: rgba(255, 255, 255, 0.62);
-      max-width: 40rem;
-      margin-inline: auto;
-    }
-    .lp-final-cta__secondary a {
-      color: var(--brass-bright);
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      text-decoration-thickness: 1px;
-    }
-
     /* Minimal footer */
     .lp-footer {
       background: var(--surface-container-low);
@@ -745,12 +694,49 @@
         <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
       </a>
       <nav class="nav" aria-label="Primary">
-        <a class="nav__link" href="whats-inside.html">What's Inside</a>
-        <a class="nav__link" href="faculty.html">Faculty</a>
-        <a class="nav__link" href="sales-individual.html">Individual Sales</a>
-        <a class="nav__link nav__link--active" href="corporate.html">Corporate Sales</a>
-        <a class="nav__link" href="pricing.html">Pricing</a>
-        <a class="nav__link" href="events.html">Events</a>
+        <div class="nav__dropdown">
+          <button type="button" class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Platform
+            <svg class="nav__dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu">
+            <a class="nav__dropdown-item" href="whats-inside.html" role="menuitem">What's Inside</a>
+            <a class="nav__dropdown-item" href="faculty.html" role="menuitem">Faculty</a>
+            <a class="nav__dropdown-item" href="https://www.theloanatlas.com/evergreen-ai-tool-planner/" target="_blank" rel="noopener" role="menuitem">AI Business &amp; Life Planner</a>
+            <a class="nav__dropdown-item" href="#" role="menuitem">Platinum Marketing</a>
+          </div>
+        </div>
+        <div class="nav__dropdown nav__dropdown--active">
+          <button type="button" class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Membership
+            <svg class="nav__dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu">
+            <a class="nav__dropdown-item" href="pricing.html" role="menuitem">Pricing</a>
+            <a class="nav__dropdown-item" href="corporate.html" role="menuitem">Corporate Sales</a>
+            <a class="nav__dropdown-item" href="sales-individual.html" role="menuitem">Individual Sales</a>
+          </div>
+        </div>
+        <div class="nav__dropdown">
+          <button type="button" class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Resources
+            <svg class="nav__dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu">
+            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/perfect-loan-process" target="_blank" rel="noopener" role="menuitem">Perfect Loan Process</a>
+            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/5-essential-scripts" target="_blank" rel="noopener" role="menuitem">Success Scripts</a>
+            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/refinance-masterplan" target="_blank" rel="noopener" role="menuitem">Refinance Masterplan</a>
+            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/ai-empowered-originator-masterplan" target="_blank" rel="noopener" role="menuitem">AI-Empowered Originator Masterplan</a>
+            <a class="nav__dropdown-item" href="https://www.theloanatlas.com/blog/" target="_blank" rel="noopener" role="menuitem">Blog</a>
+            <a class="nav__dropdown-item" href="https://www.theloanatlas.com/podcast-revamp/" target="_blank" rel="noopener" role="menuitem">The 360 Experience</a>
+          </div>
+        </div>
       </nav>
       <div class="site-header__actions">
         <a class="site-header__login" href="#">Login</a>
@@ -759,18 +745,28 @@
           <span class="nav-toggle__line"></span>
           <span class="nav-toggle__line"></span>
         </button>
-        <a class="btn btn--primary btn--header" href="consultation.html"><span class="btn__short">Free Session</span><span class="btn__full">Book Your Free Coaching Session</span></a>
+        <a class="btn btn--primary btn--header" href="pricing.html"><span class="btn__short">Join Atlas</span><span class="btn__full">Join The Loan Atlas</span></a>
       </div>
     </div>
     <div class="mobile-nav" id="mobile-nav">
-      <a class="mobile-nav__link" href="whats-inside.html">What's Inside</a>
-      <a class="mobile-nav__link" href="faculty.html">Faculty</a>
-      <a class="mobile-nav__link" href="sales-individual.html">Individual Sales</a>
-      <a class="mobile-nav__link mobile-nav__link--active" href="corporate.html">Corporate Sales</a>
-      <a class="mobile-nav__link" href="pricing.html">Pricing</a>
-      <a class="mobile-nav__link" href="events.html">Events</a>
+      <p class="mobile-nav__group-label">Platform</p>
+      <a class="mobile-nav__link mobile-nav__sublink" href="whats-inside.html">What's Inside</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="faculty.html">Faculty</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/evergreen-ai-tool-planner/" target="_blank" rel="noopener">AI Business &amp; Life Planner</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="#">Platinum Marketing</a>
+      <p class="mobile-nav__group-label">Membership</p>
+      <a class="mobile-nav__link mobile-nav__sublink" href="pricing.html">Pricing</a>
+      <a class="mobile-nav__link mobile-nav__sublink mobile-nav__link--active" href="corporate.html">Corporate Sales</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="sales-individual.html">Individual Sales</a>
+      <p class="mobile-nav__group-label">Resources</p>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/perfect-loan-process" target="_blank" rel="noopener">Perfect Loan Process</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/5-essential-scripts" target="_blank" rel="noopener">Success Scripts</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/refinance-masterplan" target="_blank" rel="noopener">Refinance Masterplan</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/ai-empowered-originator-masterplan" target="_blank" rel="noopener">AI-Empowered Originator Masterplan</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/blog/" target="_blank" rel="noopener">Blog</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/podcast-revamp/" target="_blank" rel="noopener">The 360 Experience</a>
       <a class="mobile-nav__link" href="#">Login</a>
-      <a class="btn btn--primary btn--header mobile-nav__cta" href="consultation.html">Book Your Free Coaching Session</a>
+      <a class="btn btn--primary btn--header mobile-nav__cta" href="pricing.html">Join The Loan Atlas</a>
     </div>
   </header>
 
@@ -1108,31 +1104,40 @@
     </section>
 
     <!-- ── 9. FINAL CTA ───────────────────────────────────────────────────────── -->
-    <section class="lp-final-cta" id="get-started" aria-labelledby="final-cta-heading">
-      <div class="container" style="position: relative; z-index: 1;">
-
-        <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" data-reveal="fade"
-          style="height: 52px; width: auto; margin: 0 auto var(--space-lg); display: block;" />
-
-        <h2 id="final-cta-heading" data-reveal="up"
-          style="font-family: var(--font-display); font-size: clamp(2.25rem, 1.4rem + 3.5vw, 3.75rem); font-weight: 800; line-height: 1.07; letter-spacing: -0.03em; color: #ffffff; max-width: 44rem; margin: 0 auto var(--space-lg); text-align: center;">
-          Stop Paying<br>
-          <span
-            style="background: linear-gradient(135deg, #c9961c, #eac25a, #ffd56c); -webkit-background-clip: text; background-clip: text; color: transparent;">for the Gap</span>
-        </h2>
-
-        <p class="lp-final-cta__lead" data-reveal="up">Every quarter you wait, your top LOs keep pulling ahead and the rest of your team keeps falling behind. The leaders closing that gap aren't doing it one LO at a time. They're giving the whole team the same playbook to run from. Let's talk about what that would look like for you.</p>
-
-        <div data-reveal="scale"
-          style="display: flex; flex-wrap: wrap; gap: var(--space-sm); justify-content: center; align-items: center;">
-          <a class="btn btn--gold btn--lg" href="consultation.html"
-            style="font-size: 1.0625rem; padding: 18px 44px; box-shadow: 0 8px 32px rgba(201, 150, 28, 0.38);">
-            Schedule an Enterprise Consultation
-          </a>
+    <section class="close-cta" id="get-started" aria-labelledby="final-cta-heading">
+      <div class="container close-cta__grid">
+        <div class="close-cta__copy" data-reveal="up">
+          <span class="close-cta__eyebrow">Start Your Transformation</span>
+          <h2 id="final-cta-heading" class="close-cta__title">
+            Stop Paying <em>for the Gap</em>
+          </h2>
+          <p class="close-cta__sub">
+            Every quarter you wait, your top LOs keep pulling ahead and the rest of your team keeps falling
+            behind. <strong>The leaders closing that gap are giving the whole team the same playbook to run from.</strong>
+            Let's talk about what that would look like for you.
+          </p>
         </div>
 
-        <p class="lp-final-cta__secondary" data-reveal="up">Or download <em><a href="#masterplan">The AI-Empowered Mortgage Leader Masterplan</a></em> — how the best leaders in mortgage are thinking about the next two years.</p>
-
+        <div class="close-cta__actions" data-reveal="up" role="group" aria-label="Get started">
+          <a class="close-cta-action close-cta-action--primary" href="consultation.html">
+            <span>
+              <span class="close-cta-action__label">Schedule an Enterprise Consultation</span>
+              <span class="close-cta-action__hint">Map your team's playbook with our leadership coaches</span>
+            </span>
+            <span class="close-cta-action__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+            </span>
+          </a>
+          <a class="close-cta-action close-cta-action--secondary" href="#masterplan">
+            <span>
+              <span class="close-cta-action__label">Download the Masterplan</span>
+              <span class="close-cta-action__hint">How the best leaders in mortgage are thinking about the next two years</span>
+            </span>
+            <span class="close-cta-action__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+            </span>
+          </a>
+        </div>
       </div>
     </section>
 

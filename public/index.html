@@ -10,10 +10,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Antonio:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/chrome.css" />
+  <link rel="stylesheet" href="css/styles.css?v=3" />
+  <link rel="stylesheet" href="css/chrome.css?v=3" />
 </head>
 
 <body>
@@ -24,12 +24,49 @@
         <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
       </a>
       <nav class="nav" aria-label="Primary">
-        <a class="nav__link" href="whats-inside.html">What's Inside</a>
-        <a class="nav__link" href="faculty.html">Faculty</a>
-        <a class="nav__link" href="sales-individual.html">Individual Sales</a>
-        <a class="nav__link" href="corporate.html">Corporate Sales</a>
-        <a class="nav__link" href="pricing.html">Pricing</a>
-        <a class="nav__link" href="events.html">Events</a>
+        <div class="nav__dropdown">
+          <button type="button" class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Platform
+            <svg class="nav__dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu">
+            <a class="nav__dropdown-item" href="whats-inside.html" role="menuitem">What's Inside</a>
+            <a class="nav__dropdown-item" href="faculty.html" role="menuitem">Faculty</a>
+            <a class="nav__dropdown-item" href="https://www.theloanatlas.com/evergreen-ai-tool-planner/" target="_blank" rel="noopener" role="menuitem">AI Business &amp; Life Planner</a>
+            <a class="nav__dropdown-item" href="#" role="menuitem">Platinum Marketing</a>
+          </div>
+        </div>
+        <div class="nav__dropdown">
+          <button type="button" class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Membership
+            <svg class="nav__dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu">
+            <a class="nav__dropdown-item" href="pricing.html" role="menuitem">Pricing</a>
+            <a class="nav__dropdown-item" href="corporate.html" role="menuitem">Corporate Sales</a>
+            <a class="nav__dropdown-item" href="sales-individual.html" role="menuitem">Individual Sales</a>
+          </div>
+        </div>
+        <div class="nav__dropdown">
+          <button type="button" class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Resources
+            <svg class="nav__dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu">
+            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/perfect-loan-process" target="_blank" rel="noopener" role="menuitem">Perfect Loan Process</a>
+            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/5-essential-scripts" target="_blank" rel="noopener" role="menuitem">Success Scripts</a>
+            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/refinance-masterplan" target="_blank" rel="noopener" role="menuitem">Refinance Masterplan</a>
+            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/ai-empowered-originator-masterplan" target="_blank" rel="noopener" role="menuitem">AI-Empowered Originator Masterplan</a>
+            <a class="nav__dropdown-item" href="https://www.theloanatlas.com/blog/" target="_blank" rel="noopener" role="menuitem">Blog</a>
+            <a class="nav__dropdown-item" href="https://www.theloanatlas.com/podcast-revamp/" target="_blank" rel="noopener" role="menuitem">The 360 Experience</a>
+          </div>
+        </div>
       </nav>
       <div class="site-header__actions">
         <a class="site-header__login" href="#">Login</a>
@@ -38,49 +75,68 @@
           <span class="nav-toggle__line"></span>
           <span class="nav-toggle__line"></span>
         </button>
-        <a class="btn btn--primary btn--header" href="consultation.html"><span class="btn__short">Free Session</span><span class="btn__full">Book Your Free Coaching Session</span></a>
+        <a class="btn btn--primary btn--header" href="pricing.html"><span class="btn__short">Join
+            Atlas</span><span class="btn__full">Join The Loan Atlas</span></a>
       </div>
     </div>
     <div class="mobile-nav" id="mobile-nav">
-      <a class="mobile-nav__link" href="whats-inside.html">What's Inside</a>
-      <a class="mobile-nav__link" href="faculty.html">Faculty</a>
-      <a class="mobile-nav__link" href="sales-individual.html">Individual Sales</a>
-      <a class="mobile-nav__link" href="corporate.html">Corporate Sales</a>
-      <a class="mobile-nav__link" href="pricing.html">Pricing</a>
-      <a class="mobile-nav__link" href="events.html">Events</a>
+      <p class="mobile-nav__group-label">Platform</p>
+      <a class="mobile-nav__link mobile-nav__sublink" href="whats-inside.html">What's Inside</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="faculty.html">Faculty</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/evergreen-ai-tool-planner/" target="_blank" rel="noopener">AI Business &amp; Life Planner</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="#">Platinum Marketing</a>
+      <p class="mobile-nav__group-label">Membership</p>
+      <a class="mobile-nav__link mobile-nav__sublink" href="pricing.html">Pricing</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="corporate.html">Corporate Sales</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="sales-individual.html">Individual Sales</a>
+      <p class="mobile-nav__group-label">Resources</p>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/perfect-loan-process" target="_blank" rel="noopener">Perfect Loan Process</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/5-essential-scripts" target="_blank" rel="noopener">Success Scripts</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/refinance-masterplan" target="_blank" rel="noopener">Refinance Masterplan</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/ai-empowered-originator-masterplan" target="_blank" rel="noopener">AI-Empowered Originator Masterplan</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/blog/" target="_blank" rel="noopener">Blog</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/podcast-revamp/" target="_blank" rel="noopener">The 360 Experience</a>
       <a class="mobile-nav__link" href="#">Login</a>
-      <a class="btn btn--primary btn--header mobile-nav__cta" href="consultation.html">Book Your Free Coaching Session</a>
+      <a class="btn btn--primary btn--header mobile-nav__cta" href="pricing.html">Join The Loan Atlas</a>
     </div>
   </header>
 
   <main class="site-main">
 
     <!-- Hero -->
-    <section class="hero">
+    <section class="lp-intro" aria-labelledby="hero-heading">
       <div class="container">
-        <div class="hero__grid">
-          <div>
-            <h1 class="hero__title" data-hero-step="1">See Your Mortgage Business <em>Clearly </em> for the First Time</h1>
-            <p class="hero__subtitle" data-hero-step="2">The Loan Atlas installs 5 AI-powered systems into your mortgage business to help
-              you close twice the loans in half the time.</p>
-            <div class="hero__actions" data-hero-step="3">
-              <a class="btn btn--primary btn--lg" href="pricing.html">Install the System Top Producers Are Using</a>
-              <span class="hero__text-cta">Or <a class="hero__text-link" href="consultation.html">Schedule Your Free
-                  Coaching Session</a> to build your growth plan.</span>
-            </div>
+        <div class="lp-intro__content">
+          <h1 id="hero-heading" class="lp-intro__title" data-hero-step="1">See Your Mortgage Business <em>Clearly</em>
+            for the First Time</h1>
+          <p class="lp-intro__subtitle" data-hero-step="2">The Loan Atlas installs 5 AI-powered systems into your
+            mortgage business to help you close twice the loans in half the time.</p>
+          <div class="lp-intro__actions" data-hero-step="3">
+            <a class="btn btn--gold btn--lg" href="pricing.html">Install the System Top Producers Are Using</a>
           </div>
-          <div class="hero__visual" data-hero-step="4">
-            <div class="hero__glow" aria-hidden="true"></div>
-            <img class="hero__image" src="assets/hero%20image.png" alt="AI Dashboard Preview" />
-          </div>
+          <p class="hero__text-cta" data-hero-step="4" style="margin-top: var(--space-md);">
+            Or <a class="hero__text-link" href="consultation.html">Schedule Your Free Coaching Session</a> to build your
+            growth plan.
+          </p>
         </div>
+      </div>
+
+      <div class="lp-intro__stage" data-hero-step="5">
+        <div class="lp-intro__glow" aria-hidden="true"></div>
+
+        <img class="lp-intro__dash" src="assets/dashboard.png" alt="The Loan Atlas member dashboard" loading="eager" />
+
+        <img class="lp-phone-img" src="assets/sales-coach-phone.png"
+          alt="AI Sales &amp; Scripting Coach on mobile" />
+
       </div>
     </section>
 
     <!-- Trust bar -->
     <section class="trust">
       <div class="container">
-        <p class="trust__label" data-reveal="fade">Trusted by over <span data-countup="1000" data-countup-suffix="+">1,000</span> top producing loan officers and teams across the country.</p>
+        <p class="trust__label" data-reveal="fade">Trusted by over <span data-countup="1000"
+            data-countup-suffix="+">1,000</span> top producing loan officers and teams across the country.</p>
       </div>
       <div class="trust__marquee" aria-hidden="false">
         <div class="trust__track">
@@ -114,13 +170,59 @@
       </div>
     </section>
 
+    <!-- Mastermind Summit inline CTA -->
+    <section class="mm-section" id="mastermind-cta" aria-labelledby="mm-section-heading">
+      <div class="container mm-section__inner" data-reveal="up">
+        <div class="mm-section__copy">
+          <div class="mm-section__meta">
+            <span class="mm-section__meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+                <line x1="16" y1="2" x2="16" y2="6" />
+                <line x1="8" y1="2" x2="8" y2="6" />
+                <line x1="3" y1="10" x2="21" y2="10" />
+              </svg>
+              June 24–26, 2026
+            </span>
+            <span class="mm-section__meta-item">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
+              </svg>
+              Bellagio, Las Vegas
+            </span>
+          </div>
+
+          <h2 class="mm-section__title" id="mm-section-heading">
+            Mastermind <span class="mm-section__title-accent">Summit</span> 2026
+          </h2>
+
+          <p class="mm-section__sub">
+            Three days of real conversations and powerful connections with the leaders shaping the future of
+            mortgage origination.
+          </p>
+        </div>
+
+        <div class="mm-section__actions">
+          <a class="mm-section-btn" href="https://www.theloanatlas.com/mastermind2026/" target="_blank" rel="noopener">Get Your Ticket</a>
+        </div>
+      </div>
+    </section>
+
     <!-- Problem vs reality -->
     <section class="section">
       <div class="container">
         <div class="grid-2" style="gap: var(--space-xl); align-items: start;">
           <div class="grid" style="grid-template-columns: 1fr;" data-reveal="left">
-            <h2 class="t-headline-lg" style="color: var(--primary-container); margin-bottom: var(--space-md);">There’s a
-              Reason Your Production Feels Inconsistent — And It Has Nothing to Do With The Market</h2>
+            <h2
+              style="font-family: var(--font-display); font-size: clamp(1.625rem, 1.25rem + 1.6vw, 2.5rem); font-weight: 700; line-height: 1.18; letter-spacing: -0.02em; color: var(--on-surface); margin: 0 0 var(--space-md);">
+              There’s a Reason Your Production Feels Inconsistent<br>
+              <span
+                style="display: block; margin-top: var(--space-sm); font-weight: 800; background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">And
+                It Has Nothing to Do With The Market</span>
+            </h2>
             <p class="t-body-lg t-muted" style="margin-bottom: var(--space-md);">You're putting in the hours — the
               calls, the follow-ups, the favors — but your pipeline still feels like it's one bad month away from
               falling apart.</p>
@@ -174,35 +276,90 @@
           </div>
         </div>
 
-        <div style="margin-top: var(--space-xl);" class="ai-panel" data-reveal="up">
-          <p class="t-headline-md center" style="line-height: 1.5;">
-            <span class="text-brass" style="font-weight: 700;">The loan officers producing consistently are not working
-              harder than you.</span><br />
-            If you want a different future, you need a drastically different way of operating now.
-          </p>
+        <div class="compare-v2" style="margin-top: var(--space-xl);" data-reveal="up">
+          <div class="compare-v2__col compare-v2__col--theirs">
+            <p class="compare-v2__label">Conventional advice</p>
+            <h3 class="compare-v2__title">What You've Been Told</h3>
+            <div class="compare-v2__rows">
+              <div class="compare-v2__row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+                Chase more leads
+              </div>
+              <div class="compare-v2__row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+                Compete on rate
+              </div>
+              <div class="compare-v2__row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+                Work longer hours
+              </div>
+              <div class="compare-v2__row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+                Hope consistency follows
+              </div>
+            </div>
+          </div>
+          <div class="compare-v2__col compare-v2__col--ours">
+            <p class="compare-v2__label">What top producers do</p>
+            <h3 class="compare-v2__title">What Actually Works</h3>
+            <div class="compare-v2__rows">
+              <div class="compare-v2__row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Double down on what's already producing
+              </div>
+              <div class="compare-v2__row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Win on trust, speed, and communication
+              </div>
+              <div class="compare-v2__row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Spend your best hours on the right work
+              </div>
+              <div class="compare-v2__row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+                Build a system that makes consistency the default
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="compare" style="margin-top: var(--space-xl);" data-reveal-stagger="100">
-          <div class="compare__head" data-reveal="up">
-            <h3>What You've Been Told</h3>
-            <h3>What Actually Works</h3>
-          </div>
-          <div class="compare__row" data-reveal="up">
-            <div>Chase more leads</div>
-            <div>Double down on what's already producing</div>
-          </div>
-          <div class="compare__row" data-reveal="up">
-            <div>Compete on rate</div>
-            <div>Win on trust, speed, and communication</div>
-          </div>
-          <div class="compare__row" data-reveal="up">
-            <div>Work longer hours</div>
-            <div>Spend your best hours on the right work</div>
-          </div>
-          <div class="compare__row" data-reveal="up">
-            <div>Hope consistency follows</div>
-            <div>Build a system that makes consistency the default</div>
-          </div>
+        <div class="center" data-reveal="up"
+          style="margin-top: clamp(48px, 6vw, 80px); max-width: 56rem; margin-inline: auto;">
+          <p class="text-brass"
+            style="font-family: var(--font-display); font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.125rem); font-weight: 800; line-height: 1.25; letter-spacing: -0.015em; margin: 0 0 var(--space-md);">
+            The loan officers producing consistently are not working harder than you.
+          </p>
+          <p class="t-headline-md" style="line-height: 1.5; margin: 0;">
+            If you want a different future, you need a drastically different way of operating now.
+          </p>
         </div>
       </div>
     </section>
@@ -292,22 +449,19 @@
             <div class="aisc__stage" aria-hidden="true">
               <div class="aisc__compose is-active" data-step="0">
                 <img class="aisc__compose-img aisc__compose-img--core"
-                  src="assets/HOME-business-intelligence-core%20assumptions.png"
-                  alt="Core assumptions dashboard" />
+                  src="assets/HOME-business-intelligence-core%20assumptions.png" alt="Core assumptions dashboard" />
                 <img class="aisc__compose-img aisc__compose-img--income"
-                  src="assets/HOME-business-intelligence-monthly-income.png"
-                  alt="Monthly income breakdown" />
+                  src="assets/HOME-business-intelligence-monthly-income.png" alt="Monthly income breakdown" />
                 <img class="aisc__compose-img aisc__compose-img--conversion"
-                  src="assets/HOME-business-intelligence-conversion-average.png"
-                  alt="Conversion average summary" />
+                  src="assets/HOME-business-intelligence-conversion-average.png" alt="Conversion average summary" />
               </div>
               <div class="aisc__compose" data-step="1">
                 <img class="aisc__compose-img aisc__compose-img--summary"
                   src="assets/HOME-business-planning-summary.png" alt="Business plan summary dashboard" />
                 <img class="aisc__compose-img aisc__compose-img--action"
                   src="assets/HOME-business-planning-action-item.png" alt="Weekly action item" />
-                <img class="aisc__compose-img aisc__compose-img--wheel"
-                  src="assets/HOME-business-planning-wheel.png" alt="Business planning wheel diagram" />
+                <img class="aisc__compose-img aisc__compose-img--wheel" src="assets/HOME-business-planning-wheel.png"
+                  alt="Business planning wheel diagram" />
               </div>
               <div class="aisc__chatdemo" data-step="2"
                 data-messages="How do I respond to &quot;I want to wait for rates to drop&quot;?|Write a follow-up email to a realtor I met last week|What should I say to a rate shopper who's price-checking me?|Draft a script for tomorrow's open house">
@@ -407,25 +561,6 @@
             </div>
           </div>
 
-        </div>
-      </div>
-    </section>
-
-    <!-- Inline CTA -->
-    <section class="inline-cta" id="inline-cta" aria-labelledby="inline-cta-heading">
-      <div class="container" style="position: relative;">
-        <div class="inline-cta__inner" data-reveal="scale">
-          <div class="inline-cta__copy">
-            <span class="eyebrow" style="margin-bottom: var(--space-sm);">
-              <span class="eyebrow__text">Do You Know What's Costing You Deals?</span>
-            </span>
-            <h2 class="inline-cta__heading" id="inline-cta-heading">
-              Find out what's preventing you from <em>doubling your production this year.</em>
-            </h2>
-          </div>
-          <div class="inline-cta__action">
-            <a class="btn btn--gold btn--lg" href="consultation.html">Take this 2-Minute Business Assessment</a>
-          </div>
         </div>
       </div>
     </section>
@@ -570,7 +705,9 @@
       <div class="container">
         <div class="faculty-inner">
           <div class="faculty-panel__content" data-reveal="left" style="padding-top: clamp(40px, 6vw, 80px);">
-            <span class="eyebrow"><span class="eyebrow__text"><span data-countup="18" data-countup-commas="false">18</span> Experienced Coaches · $<span data-countup="29" data-countup-commas="false">29</span> Billion Closed</span></span>
+            <span class="eyebrow"><span class="eyebrow__text"><span data-countup="18"
+                  data-countup-commas="false">18</span> Experienced Coaches · $<span data-countup="29"
+                  data-countup-commas="false">29</span> Billion Closed</span></span>
             <h2 class="t-headline-lg" style="color: var(--on-primary); margin-bottom: var(--space-md);">Learn from Top
               Producers Behind $29 Billion In Loan Volume</h2>
             <p class="t-body-lg" style="color: rgba(255,255,255,0.78); margin-bottom: var(--space-lg);">Every member of
@@ -591,7 +728,8 @@
     <section class="section" id="who-we-serve" aria-labelledby="who-we-serve-heading"
       style="padding-top: calc(clamp(48px, 6vw, 96px) + 4rem);">
       <div class="container">
-        <div class="center" data-reveal="up" style="max-width: 48rem; margin-inline: auto; margin-bottom: var(--space-xl);">
+        <div class="center" data-reveal="up"
+          style="max-width: 48rem; margin-inline: auto; margin-bottom: var(--space-xl);">
           <h2 class="section-heading center" id="who-we-serve-heading" style="margin-bottom: var(--space-md);">There
             Comes a Point Where Working Harder Stops Working</h2>
           <p class="t-body-lg t-muted">Whether you're building your first pipeline or leading a high-producing team,
@@ -775,75 +913,81 @@
       </div>
     </section>
 
-    <!-- Final CTA -->
-    <section id="get-started"
-      style="background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%); position: relative; overflow: hidden; padding-block: clamp(80px, 10vw, 140px);"
-      aria-labelledby="final-cta-heading">
-      <!-- Decorative glows -->
-      <div
-        style="position: absolute; top: -120px; right: 8%; width: 560px; height: 560px; background: radial-gradient(closest-side, rgba(234,194,90,0.09), transparent); filter: blur(70px); pointer-events: none;"
-        aria-hidden="true"></div>
-      <div
-        style="position: absolute; bottom: -80px; left: 4%; width: 440px; height: 440px; background: radial-gradient(closest-side, rgba(178,200,233,0.07), transparent); filter: blur(70px); pointer-events: none;"
-        aria-hidden="true"></div>
-
+    <!-- Featured testimonial (lifted from the prior Final CTA section to preserve content) -->
+    <section
+      style="background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%); position: relative; overflow: hidden; padding-block: clamp(64px, 8vw, 112px);"
+      aria-label="Featured testimonial">
       <div class="container" style="position: relative; text-align: center;">
-
-        <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas"
-          data-reveal="fade"
-          style="height: 56px; width: auto; margin: 0 auto var(--space-lg); display: block;" />
-
-        <h2 id="final-cta-heading" data-reveal="up"
-          style="font-family: var(--font-display); font-size: clamp(2.25rem, 1.4rem + 3.5vw, 4rem); font-weight: 800; line-height: 1.07; letter-spacing: -0.03em; color: #ffffff; max-width: 60rem; margin: 0 auto var(--space-lg);">
-          Stop Stressing About Your Next Loan.<br>
-          <span
-            style="background: linear-gradient(135deg, #c9961c, #eac25a, #ffd56c); -webkit-background-clip: text; background-clip: text; color: transparent;">Take
-            Control of Your Production, Your Income, and Your Life.</span>
-        </h2>
-
-        <p data-reveal="up"
-          style="font-size: clamp(1rem, 0.9rem + 0.4vw, 1.1875rem); line-height: 1.7; color: rgba(255,255,255,0.65); max-width: 48rem; margin: 0 auto var(--space-xl);">
-          If you're tired of inconsistent months, if you're done improvising your way through a business that should be
-          predictable by now — The Loan Atlas is the system that fixes that.
-        </p>
-
-        <a class="btn btn--brass btn--lg" href="consultation.html" data-reveal="scale"
-          style="font-size: 1.0625rem; padding: 20px 40px; box-shadow: 0 8px 32px rgba(201,150,28,0.35);">
-          Install the Systems and Start Executing
-        </a>
-
-        <div style="margin-top: var(--space-md);">
-          <a href="consultation.html"
-            style="font-size: 0.9375rem; color: rgba(255,255,255,0.48); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; letter-spacing: -0.005em; transition: color 150ms ease;">
-            Or Schedule Your Free AI-Driven Business Coaching Session
-          </a>
-        </div>
-
-        <!-- Testimonial -->
-        <div data-reveal="up"
-          style="margin-top: clamp(56px, 7vw, 96px); padding-top: clamp(48px, 6vw, 72px); border-top: 1px solid rgba(255,255,255,0.1); max-width: 56rem; margin-inline: auto;">
-          <svg width="44" height="32" viewBox="0 0 44 32" fill="none"
-            style="margin: 0 auto var(--space-md); display: block; color: var(--brass); opacity: 0.7;"
-            aria-hidden="true">
-            <path
-              d="M0 32V20C0 14.667 1.333 10.167 4 6.5 6.667 2.833 10.667.5 16 0l2.5 4C14.5 4.833 11.833 6.333 9.5 8.5 7.167 10.667 6 13.167 6 16H12V32H0ZM26 32V20c0-5.333 1.333-9.833 4-13.5C32.667 2.833 36.667.5 42 0l2.5 4c-3.667.833-6.333 2.333-8 4.5C34.833 10.667 34 13.167 34 16h6V32H26Z"
-              fill="currentColor" />
-          </svg>
+        <div data-reveal="up" style="max-width: 56rem; margin-inline: auto;">
+          <div
+            style="width: 144px; height: 144px; margin: 0 auto var(--space-md); padding: 3px; border-radius: 50%; background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);">
+            <img src="assets/barry-habib.jpg" alt="Barry Habib"
+              style="width: 100%; height: 100%; border-radius: 50%; object-fit: cover; display: block; background: #021c36;" />
+          </div>
           <blockquote
             style="font-family: var(--font-display); font-size: clamp(1.125rem, 1rem + 0.6vw, 1.4375rem); font-weight: 600; line-height: 1.5; color: rgba(255,255,255,0.92); font-style: italic; margin: 0 0 var(--space-lg);">
-            "I joined Loan Atlas just a few weeks ago...and after 32 years in this industry...I will tell you it's worth
-            every single penny!"
+            "The wealth that's in The Loan Atlas is absolutely incredible. Imagine how valuable it is to have access to
+            the smartest minds in our industry."
           </blockquote>
           <cite
             style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; font-style: normal;">
             <span style="width: 28px; height: 1px; background: var(--brass); display: block; flex-shrink: 0;"></span>
             <span
-              style="font-family: var(--font-display); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass);">Sarajane
-              Trier</span>
+              style="font-family: var(--font-display); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass);">Barry
+              Habib</span>
             <span style="width: 28px; height: 1px; background: var(--brass); display: block; flex-shrink: 0;"></span>
           </cite>
+          <div
+            style="margin-top: 8px; font-family: var(--font-body); font-size: 0.875rem; font-weight: 500; color: rgba(255,255,255,0.7);">
+            Founder &amp; CEO, MBS Highway
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="close-section close-section--homepage" id="get-started" aria-labelledby="final-cta-heading">
+      <div class="container close-section__grid">
+        <div class="close-section__copy" data-reveal="up">
+          <span class="close-section__eyebrow">Start Your Transformation</span>
+          <h2 id="final-cta-heading" class="close-section__title">
+            Take Control of Your Production, <em>Your Income, and Your Life.</em>
+          </h2>
+          <p class="close-section__sub">
+            If you're tired of inconsistent months, if you're done improvising your way through a business that should
+            be
+            predictable by now — <strong>The Loan Atlas is the system that fixes that.</strong>
+          </p>
         </div>
 
+        <div class="close-section__actions" data-reveal="up" role="group" aria-label="Get started">
+          <a class="close-section-action close-section-action--primary" href="pricing.html">
+            <span>
+              <span class="close-section-action__label">Join The Loan Atlas</span>
+              <span class="close-section-action__hint">See plans, pricing, and what's inside membership</span>
+            </span>
+            <span class="close-section-action__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </span>
+          </a>
+          <a class="close-section-action close-section-action--secondary" href="consultation.html">
+            <span>
+              <span class="close-section-action__label">Book a Free Coaching Session</span>
+              <span class="close-section-action__hint">45 minutes with our team — build your growth plan</span>
+            </span>
+            <span class="close-section-action__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
+                stroke-linejoin="round">
+                <line x1="5" y1="12" x2="19" y2="12" />
+                <polyline points="13 6 19 12 13 18" />
+              </svg>
+            </span>
+          </a>
+        </div>
       </div>
     </section>
 
@@ -877,9 +1021,9 @@
     </div>
   </footer>
 
-  <script src="js/nav.js"></script>
-  <script src="js/animations.js" defer></script>
-  <script src="js/ai-systems-carousel.js" defer></script>
+  <script src="js/nav.js?v=3"></script>
+  <script src="js/animations.js?v=3" defer></script>
+  <script src="js/ai-systems-carousel.js?v=3" defer></script>
 </body>
 
 </html>

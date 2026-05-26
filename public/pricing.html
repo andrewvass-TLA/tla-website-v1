@@ -10,6 +10,227 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/chrome.css" />
+  <style>
+    /* ── Pricing page ─────────────────────────────────────────────── */
+
+    /* Dark hero — matches corporate.html / whats-inside.html / faculty.html */
+    .pr-hero {
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      padding-top: calc(var(--header-h) + clamp(56px, 8vw, 96px));
+      padding-bottom: clamp(72px, 9vw, 120px);
+      position: relative;
+      overflow: hidden;
+    }
+    .pr-hero::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: 8%;
+      width: 540px;
+      height: 540px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.11), transparent);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .pr-hero::after {
+      content: '';
+      position: absolute;
+      bottom: -120px;
+      left: 4%;
+      width: 440px;
+      height: 440px;
+      background: radial-gradient(closest-side, rgba(178, 200, 233, 0.08), transparent);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .pr-hero__content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 52rem;
+      margin: 0 auto;
+    }
+    .pr-hero .eyebrow {
+      justify-content: center;
+    }
+    .pr-hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 1.5rem + 3vw, 3.75rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      font-weight: 800;
+      color: #ffffff;
+      margin: 0 auto var(--space-md);
+      max-width: 26ch;
+    }
+    .pr-hero__title em {
+      font-style: normal;
+      background: linear-gradient(135deg, #c9961c, #eac25a, #ffd56c);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .pr-hero__subtitle {
+      font-size: clamp(1rem, 0.9rem + 0.4vw, 1.1875rem);
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.68);
+      max-width: 40rem;
+      margin: 0 auto;
+    }
+
+    /* Pull pricing cards up to overlap the dark hero */
+    .pr-cards-section {
+      padding-top: 0;
+      margin-top: calc(-1 * clamp(40px, 6vw, 80px));
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Annual "Save $1,200" pill */
+    .pr-save {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: var(--space-xs);
+      background: rgba(234, 194, 90, 0.18);
+      color: var(--brass-bright);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(234, 194, 90, 0.3);
+    }
+    .plan__price--custom {
+      font-size: 1.75rem;
+      letter-spacing: -0.01em;
+    }
+
+    /* ROI panel under pricing cards */
+    .pr-roi {
+      margin-top: var(--space-xl);
+      max-width: 52rem;
+      margin-inline: auto;
+      text-align: center;
+      padding: var(--space-lg);
+      background: var(--surface-container-low);
+      border-radius: var(--radius-2xl);
+      border: 1px solid var(--outline-variant);
+    }
+    .pr-roi__stat {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--on-surface);
+      margin: 0 0 var(--space-sm);
+    }
+    .pr-roi__note {
+      font-size: 0.9375rem;
+      color: var(--on-surface-variant);
+      margin: 0;
+      line-height: 1.65;
+    }
+
+    /* Section heading block (centered) */
+    .pr-section-head {
+      text-align: center;
+      max-width: 52rem;
+      margin-inline: auto;
+      margin-bottom: var(--space-xl);
+    }
+    .pr-section-head .eyebrow {
+      justify-content: center;
+    }
+    .pr-section-head h2 {
+      margin-top: var(--space-sm);
+      margin-bottom: 0;
+    }
+
+    /* Testimonials grid */
+    .pr-testimonials {
+      display: grid;
+      gap: var(--space-md);
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 720px) {
+      .pr-testimonials { grid-template-columns: repeat(3, 1fr); }
+    }
+    .pr-testimonial {
+      padding: var(--space-md) var(--space-lg);
+      border-left: 2px solid var(--brass);
+      background: var(--surface-container-lowest);
+      border-radius: 0 var(--radius-xl) var(--radius-xl) 0;
+      box-shadow: var(--shadow-sm);
+      margin: 0;
+    }
+    .pr-testimonial__quote {
+      font-style: italic;
+      font-size: 1.0625rem;
+      line-height: 1.65;
+      color: var(--on-surface-variant);
+      margin: 0 0 var(--space-xs);
+    }
+    .pr-testimonial__cite {
+      font-style: normal;
+      font-family: var(--font-display);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--brass);
+    }
+
+    /* What's Included grid */
+    .pr-included {
+      display: grid;
+      gap: var(--space-md);
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 720px) {
+      .pr-included { grid-template-columns: 1fr 1fr; }
+    }
+    .pr-feature {
+      display: flex;
+      gap: var(--space-md);
+      align-items: flex-start;
+      padding: var(--space-md);
+      background: var(--surface-container-lowest);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-2xl);
+      transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+    }
+    .pr-feature:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow);
+      border-color: rgba(2, 28, 54, 0.18);
+    }
+    .pr-feature__icon {
+      flex-shrink: 0;
+      width: 44px;
+      height: 44px;
+      background: rgba(201, 150, 28, 0.1);
+      border-radius: var(--radius-xl);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brass);
+    }
+    .pr-feature__icon svg { width: 20px; height: 20px; }
+    .pr-feature__title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--on-surface);
+      margin: 0 0 6px;
+    }
+    .pr-feature__desc {
+      font-size: 0.9375rem;
+      color: var(--on-surface-variant);
+      margin: 0;
+      line-height: 1.6;
+    }
+
+  </style>
 </head>
 <body>
 
@@ -19,12 +240,49 @@
         <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
       </a>
       <nav class="nav" aria-label="Primary">
-        <a class="nav__link" href="whats-inside.html">What's Inside</a>
-        <a class="nav__link" href="faculty.html">Faculty</a>
-        <a class="nav__link" href="sales-individual.html">Individual Sales</a>
-        <a class="nav__link" href="corporate.html">Corporate Sales</a>
-        <a class="nav__link nav__link--active" href="pricing.html">Pricing</a>
-        <a class="nav__link" href="events.html">Events</a>
+        <div class="nav__dropdown">
+          <button type="button" class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Platform
+            <svg class="nav__dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu">
+            <a class="nav__dropdown-item" href="whats-inside.html" role="menuitem">What's Inside</a>
+            <a class="nav__dropdown-item" href="faculty.html" role="menuitem">Faculty</a>
+            <a class="nav__dropdown-item" href="https://www.theloanatlas.com/evergreen-ai-tool-planner/" target="_blank" rel="noopener" role="menuitem">AI Business &amp; Life Planner</a>
+            <a class="nav__dropdown-item" href="#" role="menuitem">Platinum Marketing</a>
+          </div>
+        </div>
+        <div class="nav__dropdown nav__dropdown--active">
+          <button type="button" class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Membership
+            <svg class="nav__dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu">
+            <a class="nav__dropdown-item" href="pricing.html" role="menuitem">Pricing</a>
+            <a class="nav__dropdown-item" href="corporate.html" role="menuitem">Corporate Sales</a>
+            <a class="nav__dropdown-item" href="sales-individual.html" role="menuitem">Individual Sales</a>
+          </div>
+        </div>
+        <div class="nav__dropdown">
+          <button type="button" class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Resources
+            <svg class="nav__dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu">
+            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/perfect-loan-process" target="_blank" rel="noopener" role="menuitem">Perfect Loan Process</a>
+            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/5-essential-scripts" target="_blank" rel="noopener" role="menuitem">Success Scripts</a>
+            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/refinance-masterplan" target="_blank" rel="noopener" role="menuitem">Refinance Masterplan</a>
+            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/ai-empowered-originator-masterplan" target="_blank" rel="noopener" role="menuitem">AI-Empowered Originator Masterplan</a>
+            <a class="nav__dropdown-item" href="https://www.theloanatlas.com/blog/" target="_blank" rel="noopener" role="menuitem">Blog</a>
+            <a class="nav__dropdown-item" href="https://www.theloanatlas.com/podcast-revamp/" target="_blank" rel="noopener" role="menuitem">The 360 Experience</a>
+          </div>
+        </div>
       </nav>
       <div class="site-header__actions">
         <a class="site-header__login" href="#">Login</a>
@@ -33,18 +291,28 @@
           <span class="nav-toggle__line"></span>
           <span class="nav-toggle__line"></span>
         </button>
-        <a class="btn btn--primary btn--header" href="consultation.html"><span class="btn__short">Free Session</span><span class="btn__full">Book Your Free Coaching Session</span></a>
+        <a class="btn btn--primary btn--header" href="pricing.html"><span class="btn__short">Join Atlas</span><span class="btn__full">Join The Loan Atlas</span></a>
       </div>
     </div>
     <div class="mobile-nav" id="mobile-nav">
-      <a class="mobile-nav__link" href="whats-inside.html">What's Inside</a>
-      <a class="mobile-nav__link" href="faculty.html">Faculty</a>
-      <a class="mobile-nav__link" href="sales-individual.html">Individual Sales</a>
-      <a class="mobile-nav__link" href="corporate.html">Corporate Sales</a>
-      <a class="mobile-nav__link mobile-nav__link--active" href="pricing.html">Pricing</a>
-      <a class="mobile-nav__link" href="events.html">Events</a>
+      <p class="mobile-nav__group-label">Platform</p>
+      <a class="mobile-nav__link mobile-nav__sublink" href="whats-inside.html">What's Inside</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="faculty.html">Faculty</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/evergreen-ai-tool-planner/" target="_blank" rel="noopener">AI Business &amp; Life Planner</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="#">Platinum Marketing</a>
+      <p class="mobile-nav__group-label">Membership</p>
+      <a class="mobile-nav__link mobile-nav__sublink mobile-nav__link--active" href="pricing.html">Pricing</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="corporate.html">Corporate Sales</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="sales-individual.html">Individual Sales</a>
+      <p class="mobile-nav__group-label">Resources</p>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/perfect-loan-process" target="_blank" rel="noopener">Perfect Loan Process</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/5-essential-scripts" target="_blank" rel="noopener">Success Scripts</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/refinance-masterplan" target="_blank" rel="noopener">Refinance Masterplan</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/ai-empowered-originator-masterplan" target="_blank" rel="noopener">AI-Empowered Originator Masterplan</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/blog/" target="_blank" rel="noopener">Blog</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/podcast-revamp/" target="_blank" rel="noopener">The 360 Experience</a>
       <a class="mobile-nav__link" href="#">Login</a>
-      <a class="btn btn--primary btn--header mobile-nav__cta" href="consultation.html">Book Your Free Coaching Session</a>
+      <a class="btn btn--primary btn--header mobile-nav__cta" href="pricing.html">Join The Loan Atlas</a>
     </div>
   </header>
 
@@ -53,16 +321,26 @@
     <!-- ============================================================
          HERO
          ============================================================ -->
-    <section class="hero" style="text-align: center; padding-bottom: 0;">
+    <section class="pr-hero" aria-labelledby="pr-hero-heading">
       <div class="container">
-        <h1 class="hero__title" data-hero-step="1" style="max-width: 44rem; margin-inline: auto; font-size: clamp(2rem, 1.1rem + 3.2vw, 3.25rem);">One Membership. Everything You Need to Create, Operate, and Scale a Profitable Mortgage Business.</h1>
+        <div class="pr-hero__content">
+          <span class="eyebrow" data-hero-step="1">
+            <span class="eyebrow__text" style="color: var(--brass-bright);">Membership Pricing</span>
+          </span>
+          <h1 id="pr-hero-heading" class="pr-hero__title" data-hero-step="2">
+            One Membership. <em>Everything You Need</em> to Create, Operate, and Scale a Profitable Mortgage Business.
+          </h1>
+          <p class="pr-hero__subtitle" data-hero-step="3">
+            Every AI system, all live coaching, the full curriculum, and the community — installed in your business from day one.
+          </p>
+        </div>
       </div>
     </section>
 
     <!-- ============================================================
          PRICING CARDS
          ============================================================ -->
-    <section class="section" style="padding-top: var(--space-xl);">
+    <section class="section pr-cards-section">
       <div class="container">
         <div class="pricing-grid" data-reveal-stagger="140">
 
@@ -111,8 +389,8 @@
             </div>
             <div>
               <div class="plan__price">$2,988<span class="plan__per">/year</span></div>
-              <div style="display: inline-flex; align-items: center; gap: 6px; margin-top: var(--space-xs);">
-                <span style="background: rgba(234,194,90,0.18); color: var(--brass-bright); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.04em; padding: 4px 12px; border-radius: var(--radius-full); border: 1px solid rgba(234,194,90,0.3);">Save $1,200</span>
+              <div>
+                <span class="pr-save">Save $1,200</span>
               </div>
             </div>
             <a class="btn btn--brass btn--block" href="#">Go Annual &amp; Save</a>
@@ -138,7 +416,7 @@
               <div class="plan__name">Enterprise</div>
               <p class="plan__desc">For teams, branches, and organizations</p>
             </div>
-            <div class="plan__price" style="font-size: 1.75rem; letter-spacing: -0.01em;">Custom Pricing</div>
+            <div class="plan__price plan__price--custom">Custom Pricing</div>
             <a class="btn btn--ghost btn--block" href="consultation.html">Get Your Custom Quote</a>
             <ul class="checklist">
               <li>
@@ -159,9 +437,9 @@
         </div>
 
         <!-- ROI statement -->
-        <div data-reveal="up" style="margin-top: var(--space-xl); max-width: 52rem; margin-inline: auto; text-align: center; padding: var(--space-lg); background: var(--surface-container-low); border-radius: var(--radius-2xl); border: 1px solid var(--outline-variant);">
-          <p style="font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; color: var(--on-surface); margin: 0 0 var(--space-sm);">Loan Atlas members close an average of $<span data-countup="8.2">8.2</span>M more in annual production than the industry average.</p>
-          <p style="font-size: 0.9375rem; color: var(--on-surface-variant); margin: 0; line-height: 1.65;">You don't need $8.2M more to make this work — you need one additional closed loan. On most loan amounts, the commission on a single closing covers your membership for the year. Everything after that is net gain.</p>
+        <div class="pr-roi" data-reveal="up">
+          <p class="pr-roi__stat">Loan Atlas members close an average of $<span data-countup="8.2">8.2</span>M more in annual production than the industry average.</p>
+          <p class="pr-roi__note">You don't need $8.2M more to make this work — you need one additional closed loan. On most loan amounts, the commission on a single closing covers your membership for the year. Everything after that is net gain.</p>
         </div>
 
       </div>
@@ -173,25 +451,25 @@
     <section class="section bg-surface-low">
       <div class="container">
 
-        <div data-reveal="up" style="text-align: center; max-width: 36rem; margin-inline: auto; margin-bottom: var(--space-xl);">
+        <div class="pr-section-head" data-reveal="up">
           <span class="eyebrow"><span class="eyebrow__text">What Members Say</span></span>
         </div>
 
-        <div data-reveal-stagger="120" style="display: grid; gap: var(--space-md); grid-template-columns: 1fr;" class="testimonials-grid">
+        <div class="pr-testimonials" data-reveal-stagger="120">
 
-          <blockquote style="padding: var(--space-md) var(--space-lg); border-left: 2px solid var(--brass); background: var(--surface-container-lowest); border-radius: 0 var(--radius-xl) var(--radius-xl) 0; box-shadow: var(--shadow-sm);">
-            <p style="font-style: italic; font-size: 1.0625rem; line-height: 1.65; color: var(--on-surface-variant); margin: 0 0 var(--space-xs);">"If you're considering joining The Loan Atlas, it's been the best investment I've ever made — and you will make it back within your first month's production."</p>
-            <cite style="font-style: normal; font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass);">Gian Ceretto</cite>
+          <blockquote class="pr-testimonial">
+            <p class="pr-testimonial__quote">"If you're considering joining The Loan Atlas, it's been the best investment I've ever made — and you will make it back within your first month's production."</p>
+            <cite class="pr-testimonial__cite">Gian Ceretto</cite>
           </blockquote>
 
-          <blockquote style="padding: var(--space-md) var(--space-lg); border-left: 2px solid var(--brass); background: var(--surface-container-lowest); border-radius: 0 var(--radius-xl) var(--radius-xl) 0; box-shadow: var(--shadow-sm);">
-            <p style="font-style: italic; font-size: 1.0625rem; line-height: 1.65; color: var(--on-surface-variant); margin: 0 0 var(--space-xs);">"After 32 years in this industry, I will tell you it's worth every single penny."</p>
-            <cite style="font-style: normal; font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass);">Sarajane Trier</cite>
+          <blockquote class="pr-testimonial">
+            <p class="pr-testimonial__quote">"After 32 years in this industry, I will tell you it's worth every single penny."</p>
+            <cite class="pr-testimonial__cite">Sarajane Trier</cite>
           </blockquote>
 
-          <blockquote style="padding: var(--space-md) var(--space-lg); border-left: 2px solid var(--brass); background: var(--surface-container-lowest); border-radius: 0 var(--radius-xl) var(--radius-xl) 0; box-shadow: var(--shadow-sm);">
-            <p style="font-style: italic; font-size: 1.0625rem; line-height: 1.65; color: var(--on-surface-variant); margin: 0 0 var(--space-xs);">"Being able to sit in on Office Hours and live group coaching is worth the price of membership itself."</p>
-            <cite style="font-style: normal; font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass);">Gabe Garza — The Mortgage Brokers</cite>
+          <blockquote class="pr-testimonial">
+            <p class="pr-testimonial__quote">"Being able to sit in on Office Hours and live group coaching is worth the price of membership itself."</p>
+            <cite class="pr-testimonial__cite">Gabe Garza — The Mortgage Brokers</cite>
           </blockquote>
 
         </div>
@@ -204,70 +482,70 @@
     <section class="section bg-white">
       <div class="container">
 
-        <div data-reveal="up" style="max-width: 52rem; margin-inline: auto; margin-bottom: var(--space-xl); text-align: center;">
+        <div class="pr-section-head" data-reveal="up">
           <span class="eyebrow"><span class="eyebrow__text">Everything in Your Membership</span></span>
-          <h2 class="section-heading" style="margin-top: var(--space-sm); margin-bottom: 0;">What's Included</h2>
+          <h2 class="section-heading">What's Included</h2>
         </div>
 
-        <div data-reveal-stagger="80" style="display: grid; gap: var(--space-md); grid-template-columns: 1fr;" class="included-grid">
+        <div class="pr-included" data-reveal-stagger="80">
 
-          <div style="display: flex; gap: var(--space-md); align-items: flex-start; padding: var(--space-md); background: var(--surface-container-lowest); border: 1px solid var(--outline-variant); border-radius: var(--radius-2xl);">
-            <span style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(201,150,28,0.1); border-radius: var(--radius-xl); display: flex; align-items: center; justify-content: center; color: var(--brass);">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+          <div class="pr-feature">
+            <span class="pr-feature__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
             </span>
             <div>
-              <p style="font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--on-surface); margin: 0 0 6px;">All 5 AI-powered business systems</p>
-              <p style="font-size: 0.9375rem; color: var(--on-surface-variant); margin: 0; line-height: 1.6;">Business Intelligence, Business Planning, Sales &amp; Marketing Advisor, Performance Coach, Strategic Thought Partner.</p>
+              <p class="pr-feature__title">All 5 AI-powered business systems</p>
+              <p class="pr-feature__desc">Business Intelligence, Business Planning, Sales &amp; Marketing Advisor, Performance Coach, Strategic Thought Partner.</p>
             </div>
           </div>
 
-          <div style="display: flex; gap: var(--space-md); align-items: flex-start; padding: var(--space-md); background: var(--surface-container-lowest); border: 1px solid var(--outline-variant); border-radius: var(--radius-2xl);">
-            <span style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(201,150,28,0.1); border-radius: var(--radius-xl); display: flex; align-items: center; justify-content: center; color: var(--brass);">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+          <div class="pr-feature">
+            <span class="pr-feature__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
             </span>
             <div>
-              <p style="font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--on-surface); margin: 0 0 6px;">Live coaching every week and every month</p>
-              <p style="font-size: 0.9375rem; color: var(--on-surface-variant); margin: 0; line-height: 1.6;">Weekly Office Hours, Monthly Masterclasses, Talk to Tim, and ongoing AI Labs &amp; Workshops.</p>
+              <p class="pr-feature__title">Live coaching every week and every month</p>
+              <p class="pr-feature__desc">Weekly Office Hours, Monthly Masterclasses, Talk to Tim, and ongoing AI Labs &amp; Workshops.</p>
             </div>
           </div>
 
-          <div style="display: flex; gap: var(--space-md); align-items: flex-start; padding: var(--space-md); background: var(--surface-container-lowest); border: 1px solid var(--outline-variant); border-radius: var(--radius-2xl);">
-            <span style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(201,150,28,0.1); border-radius: var(--radius-xl); display: flex; align-items: center; justify-content: center; color: var(--brass);">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+          <div class="pr-feature">
+            <span class="pr-feature__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
             </span>
             <div>
-              <p style="font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--on-surface); margin: 0 0 6px;">200+ training modules</p>
-              <p style="font-size: 0.9375rem; color: var(--on-surface-variant); margin: 0; line-height: 1.6;">The full 8 Disciplines of Mortgage Origination Mastery, masterclasses, workshops, and podcast content.</p>
+              <p class="pr-feature__title">200+ training modules</p>
+              <p class="pr-feature__desc">The full 8 Disciplines of Mortgage Origination Mastery, masterclasses, workshops, and podcast content.</p>
             </div>
           </div>
 
-          <div style="display: flex; gap: var(--space-md); align-items: flex-start; padding: var(--space-md); background: var(--surface-container-lowest); border: 1px solid var(--outline-variant); border-radius: var(--radius-2xl);">
-            <span style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(201,150,28,0.1); border-radius: var(--radius-xl); display: flex; align-items: center; justify-content: center; color: var(--brass);">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+          <div class="pr-feature">
+            <span class="pr-feature__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
             </span>
             <div>
-              <p style="font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--on-surface); margin: 0 0 6px;">Scripts, presentations, and templates</p>
-              <p style="font-size: 0.9375rem; color: var(--on-surface-variant); margin: 0; line-height: 1.6;">Discovery calls, rate-shopper responses, objection handling, referral partner meetings, PPC presentations.</p>
+              <p class="pr-feature__title">Scripts, presentations, and templates</p>
+              <p class="pr-feature__desc">Discovery calls, rate-shopper responses, objection handling, referral partner meetings, PPC presentations.</p>
             </div>
           </div>
 
-          <div style="display: flex; gap: var(--space-md); align-items: flex-start; padding: var(--space-md); background: var(--surface-container-lowest); border: 1px solid var(--outline-variant); border-radius: var(--radius-2xl);">
-            <span style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(201,150,28,0.1); border-radius: var(--radius-xl); display: flex; align-items: center; justify-content: center; color: var(--brass);">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <div class="pr-feature">
+            <span class="pr-feature__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
             </span>
             <div>
-              <p style="font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--on-surface); margin: 0 0 6px;">The Loan Atlas community</p>
-              <p style="font-size: 0.9375rem; color: var(--on-surface-variant); margin: 0; line-height: 1.6;">Active originators across the country, plus faculty inside the conversation.</p>
+              <p class="pr-feature__title">The Loan Atlas community</p>
+              <p class="pr-feature__desc">Active originators across the country, plus faculty inside the conversation.</p>
             </div>
           </div>
 
-          <div style="display: flex; gap: var(--space-md); align-items: flex-start; padding: var(--space-md); background: var(--surface-container-lowest); border: 1px solid var(--outline-variant); border-radius: var(--radius-2xl);">
-            <span style="flex-shrink: 0; width: 40px; height: 40px; background: rgba(201,150,28,0.1); border-radius: var(--radius-xl); display: flex; align-items: center; justify-content: center; color: var(--brass);">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+          <div class="pr-feature">
+            <span class="pr-feature__icon">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
             </span>
             <div>
-              <p style="font-family: var(--font-display); font-weight: 700; font-size: 1rem; color: var(--on-surface); margin: 0 0 6px;">New tools and content added every month</p>
-              <p style="font-size: 0.9375rem; color: var(--on-surface-variant); margin: 0; line-height: 1.6;">At no additional cost.</p>
+              <p class="pr-feature__title">New tools and content added every month</p>
+              <p class="pr-feature__desc">At no additional cost.</p>
             </div>
           </div>
 
@@ -282,9 +560,9 @@
       <div class="container">
 
         <div style="max-width: 48rem; margin-inline: auto;">
-          <div data-reveal="up" style="margin-bottom: var(--space-xl);">
+          <div class="pr-section-head" data-reveal="up">
             <span class="eyebrow"><span class="eyebrow__text">Common Questions</span></span>
-            <h2 class="section-heading" style="margin-top: var(--space-sm); margin-bottom: 0;">Frequently Asked Questions</h2>
+            <h2 class="section-heading">Frequently Asked Questions</h2>
           </div>
 
           <div class="faq" data-reveal-stagger="80">
@@ -306,7 +584,7 @@
 
             <details class="faq-item">
               <summary>Do you offer team or enterprise pricing?</summary>
-              <div class="faq-item__body">Yes — for branches, divisions, and full organizations. <a href="consultation.html" style="color: var(--brass); font-weight: 600;">Explore Enterprise Pricing →</a></div>
+              <div class="faq-item__body">Yes — for branches, divisions, and full organizations. <a href="consultation.html" class="text-brass" style="font-weight: 600;">Explore Enterprise Pricing →</a></div>
             </details>
 
           </div>
@@ -318,30 +596,39 @@
     <!-- ============================================================
          FINAL CTA
          ============================================================ -->
-    <section class="section">
-      <div class="container">
-        <div class="panel-dark center" data-reveal="scale">
-          <h2 class="t-headline-lg" style="color: var(--on-primary); margin-bottom: var(--space-sm);">Install The System Top Producers Are Using</h2>
-          <p class="t-body-lg" style="color: rgba(255,255,255,0.72); margin-bottom: var(--space-xl); max-width: 36rem; margin-inline: auto;">Whichever you choose, you're in from day one — every tool, every coach, every framework, every resource.</p>
-          <div style="display: flex; flex-wrap: wrap; gap: var(--space-sm); justify-content: center; align-items: center;">
-            <a class="btn btn--brass btn--lg" href="#">
-              Start Annual — $2,988/year
-              <span style="font-size: 0.8125rem; font-weight: 400; opacity: 0.85;">(Save $1,200)</span>
-            </a>
-            <a class="btn btn--ghost-on-dark btn--lg" href="#">Start Monthly — $349/month</a>
-          </div>
+    <section class="close-cta" aria-labelledby="final-cta-heading">
+      <div class="container close-cta__grid">
+        <div class="close-cta__copy" data-reveal="up">
+          <span class="close-cta__eyebrow">Start Your Transformation</span>
+          <h2 id="final-cta-heading" class="close-cta__title">
+            Install the System <em>Top Producers Are Using</em>
+          </h2>
+          <p class="close-cta__sub">
+            Whichever path you pick, you're in from day one — every tool, every coach, every framework,
+            every resource. <strong>The annual plan saves you $1,200.</strong>
+          </p>
         </div>
 
-        <!-- Coaching call fallback -->
-        <div data-reveal="up" style="margin-top: var(--space-xl); max-width: 38rem; margin-inline: auto; text-align: center;">
-          <p style="font-family: var(--font-display); font-size: 1.125rem; font-weight: 700; color: var(--on-surface); margin: 0 0 var(--space-xs);">Want to See Inside First?</p>
-          <p style="font-size: 0.9375rem; color: var(--on-surface-variant); margin: 0 0 var(--space-md); line-height: 1.65;">See how top originators are fast-tracking their success inside The Loan Atlas. Our team will help you identify what's really in the way, and show you what's working for members right now.</p>
-          <a class="btn btn--primary btn--lg" href="consultation.html">
-            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"></polygon><rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect></svg>
-            Schedule Your Free Coaching Call
+        <div class="close-cta__actions" data-reveal="up" role="group" aria-label="Get started">
+          <a class="close-cta-action close-cta-action--primary" href="#">
+            <span>
+              <span class="close-cta-action__label">Start Annual — $2,988/year</span>
+              <span class="close-cta-action__hint">Save $1,200 vs monthly · Full access from day one</span>
+            </span>
+            <span class="close-cta-action__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+            </span>
+          </a>
+          <a class="close-cta-action close-cta-action--secondary" href="#">
+            <span>
+              <span class="close-cta-action__label">Join Monthly — $349/month</span>
+              <span class="close-cta-action__hint">Same full access · Cancel anytime</span>
+            </span>
+            <span class="close-cta-action__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+            </span>
           </a>
         </div>
-
       </div>
     </section>
 
@@ -374,17 +661,6 @@
       </div>
     </div>
   </footer>
-
-  <style>
-    @media (min-width: 720px) {
-      .testimonials-grid {
-        grid-template-columns: 1fr 1fr 1fr !important;
-      }
-      .included-grid {
-        grid-template-columns: 1fr 1fr !important;
-      }
-    }
-  </style>
 
   <script src="js/nav.js"></script>
   <script src="js/animations.js" defer></script>

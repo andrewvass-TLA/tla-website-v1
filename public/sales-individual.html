@@ -55,232 +55,6 @@
       }
     }
 
-    /* Light hero */
-    .lp-hero {
-      position: relative;
-      background: #ffffff;
-      overflow: hidden;
-      padding-top: clamp(32px, 4vw, 64px);
-      padding-bottom: 0;
-    }
-    .lp-hero__content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      max-width: 56rem;
-      margin: 0 auto;
-    }
-    .lp-hero__title {
-      font-family: var(--font-display);
-      font-size: clamp(2.25rem, 1.4rem + 3.2vw, 3.75rem);
-      font-weight: 800;
-      color: var(--on-surface);
-      line-height: 1.05;
-      letter-spacing: -0.025em;
-      margin: 0 auto;
-      max-width: 22ch;
-    }
-    .lp-hero__title em {
-      font-style: italic;
-      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .lp-hero__subtitle {
-      font-size: clamp(1rem, 0.875rem + 0.4vw, 1.1875rem);
-      line-height: 1.6;
-      color: var(--on-surface-variant);
-      max-width: 40rem;
-      margin: var(--space-md) auto 0;
-    }
-    .lp-hero__actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: var(--space-sm);
-      justify-content: center;
-      margin-top: var(--space-lg);
-    }
-
-    /* Visual stage: dashboard + phone, both bleed to bottom of hero */
-    .lp-hero__stage {
-      position: relative;
-      max-width: 1440px;
-      margin: clamp(24px, 3vw, 40px) auto 0;
-      aspect-ratio: 2.85 / 1;
-      overflow: hidden;
-      isolation: isolate;
-    }
-    .lp-hero__glow {
-      position: absolute;
-      inset: 5% -8% -8% -8%;
-      background:
-        radial-gradient(50% 45% at 65% 40%, rgba(234,194,90,0.22), transparent 70%),
-        radial-gradient(45% 40% at 25% 70%, rgba(201,150,28,0.12), transparent 75%);
-      filter: blur(40px);
-      pointer-events: none;
-      z-index: 0;
-    }
-    .lp-hero__dash {
-      position: relative;
-      z-index: 1;
-      display: block;
-      width: 100%;
-      height: auto;
-      margin: 0;
-      border-radius: 18px 18px 0 0;
-      box-shadow:
-        0 -8px 24px -12px rgba(2, 28, 54, 0.18),
-        0 24px 48px -24px rgba(2, 28, 54, 0.28);
-    }
-
-    /* Phone mockup */
-    .lp-phone {
-      position: absolute;
-      right: clamp(8px, 3%, 48px);
-      bottom: 0;
-      z-index: 2;
-      width: clamp(150px, 22%, 280px);
-      background: #0a1628;
-      border-radius: 36px 36px 0 0;
-      padding: 10px 10px 0;
-      box-shadow:
-        0 -10px 30px -10px rgba(2, 28, 54, 0.35),
-        0 24px 50px -20px rgba(2, 28, 54, 0.45),
-        inset 0 0 0 1px rgba(255, 255, 255, 0.06);
-    }
-    .lp-phone__notch {
-      position: absolute;
-      top: 14px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 38%;
-      height: 18px;
-      background: #0a1628;
-      border-radius: 0 0 14px 14px;
-      z-index: 3;
-    }
-    .lp-phone__screen {
-      position: relative;
-      background: #0d1726;
-      border-radius: 28px 28px 0 0;
-      padding: 32px 14px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      min-height: 360px;
-      overflow: hidden;
-    }
-    .lp-phone__appbar {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 4px 4px 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    }
-    .lp-phone__dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: linear-gradient(135deg, #c9961c 0%, #eac25a 100%);
-      box-shadow: 0 0 0 3px rgba(234, 194, 90, 0.18);
-      flex-shrink: 0;
-    }
-    .lp-phone__app {
-      margin: 0;
-      font-family: var(--font-display);
-      font-size: 0.8125rem;
-      font-weight: 700;
-      color: #ffffff;
-      line-height: 1.2;
-    }
-    .lp-phone__status {
-      margin: 2px 0 0;
-      font-family: var(--font-body);
-      font-size: 0.625rem;
-      color: rgba(255, 255, 255, 0.55);
-      line-height: 1;
-    }
-    .lp-phone__thread {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      flex: 1;
-    }
-    .lp-bubble {
-      max-width: 88%;
-      padding: 8px 10px;
-      border-radius: 14px;
-      font-family: var(--font-body);
-      font-size: 0.6875rem;
-      line-height: 1.4;
-    }
-    .lp-bubble--user {
-      align-self: flex-end;
-      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
-      color: #0a1628;
-      font-weight: 500;
-      border-bottom-right-radius: 4px;
-    }
-    .lp-bubble--coach {
-      align-self: flex-start;
-      background: rgba(255, 255, 255, 0.06);
-      color: rgba(255, 255, 255, 0.92);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-bottom-left-radius: 4px;
-    }
-    .lp-bubble--typing {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 10px 12px;
-    }
-    .lp-bubble--typing span {
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      background: rgba(234, 194, 90, 0.85);
-      animation: lp-typing 1.4s infinite ease-in-out;
-    }
-    .lp-bubble--typing span:nth-child(2) { animation-delay: 0.18s; }
-    .lp-bubble--typing span:nth-child(3) { animation-delay: 0.36s; }
-    @keyframes lp-typing {
-      0%, 60%, 100% { opacity: 0.3; transform: translateY(0); }
-      30% { opacity: 1; transform: translateY(-3px); }
-    }
-    .lp-phone__input {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      padding: 8px 6px 8px 14px;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 999px;
-      margin-top: auto;
-    }
-    .lp-phone__placeholder {
-      font-family: var(--font-body);
-      font-size: 0.6875rem;
-      color: rgba(255, 255, 255, 0.4);
-    }
-    .lp-phone__send {
-      width: 26px;
-      height: 26px;
-      border-radius: 50%;
-      border: none;
-      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
-      color: #0a1628;
-      font-size: 0.875rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      line-height: 1;
-      flex-shrink: 0;
-    }
-
     /* Stat / trust */
     .lp-trust {
       background: var(--surface-container-low);
@@ -582,37 +356,6 @@
       padding-block: clamp(56px, 7vw, 96px);
     }
 
-    /* Final CTA */
-    .lp-final-cta {
-      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
-      padding-block: clamp(80px, 10vw, 128px);
-      position: relative;
-      overflow: hidden;
-      text-align: center;
-    }
-    .lp-final-cta::before {
-      content: '';
-      position: absolute;
-      top: -120px;
-      right: 8%;
-      width: 560px;
-      height: 560px;
-      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.09), transparent);
-      filter: blur(70px);
-      pointer-events: none;
-    }
-    .lp-final-cta::after {
-      content: '';
-      position: absolute;
-      bottom: -80px;
-      left: 4%;
-      width: 440px;
-      height: 440px;
-      background: radial-gradient(closest-side, rgba(178, 200, 233, 0.07), transparent);
-      filter: blur(70px);
-      pointer-events: none;
-    }
-
     /* Minimal footer */
     .lp-footer {
       background: var(--surface-container-low);
@@ -648,12 +391,49 @@
         <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
       </a>
       <nav class="nav" aria-label="Primary">
-        <a class="nav__link" href="whats-inside.html">What's Inside</a>
-        <a class="nav__link" href="faculty.html">Faculty</a>
-        <a class="nav__link nav__link--active" href="sales-individual.html">Individual Sales</a>
-        <a class="nav__link" href="corporate.html">Corporate Sales</a>
-        <a class="nav__link" href="pricing.html">Pricing</a>
-        <a class="nav__link" href="events.html">Events</a>
+        <div class="nav__dropdown">
+          <button type="button" class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Platform
+            <svg class="nav__dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu">
+            <a class="nav__dropdown-item" href="whats-inside.html" role="menuitem">What's Inside</a>
+            <a class="nav__dropdown-item" href="faculty.html" role="menuitem">Faculty</a>
+            <a class="nav__dropdown-item" href="https://www.theloanatlas.com/evergreen-ai-tool-planner/" target="_blank" rel="noopener" role="menuitem">AI Business &amp; Life Planner</a>
+            <a class="nav__dropdown-item" href="#" role="menuitem">Platinum Marketing</a>
+          </div>
+        </div>
+        <div class="nav__dropdown nav__dropdown--active">
+          <button type="button" class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Membership
+            <svg class="nav__dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu">
+            <a class="nav__dropdown-item" href="pricing.html" role="menuitem">Pricing</a>
+            <a class="nav__dropdown-item" href="corporate.html" role="menuitem">Corporate Sales</a>
+            <a class="nav__dropdown-item" href="sales-individual.html" role="menuitem">Individual Sales</a>
+          </div>
+        </div>
+        <div class="nav__dropdown">
+          <button type="button" class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Resources
+            <svg class="nav__dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu">
+            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/perfect-loan-process" target="_blank" rel="noopener" role="menuitem">Perfect Loan Process</a>
+            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/5-essential-scripts" target="_blank" rel="noopener" role="menuitem">Success Scripts</a>
+            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/refinance-masterplan" target="_blank" rel="noopener" role="menuitem">Refinance Masterplan</a>
+            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/ai-empowered-originator-masterplan" target="_blank" rel="noopener" role="menuitem">AI-Empowered Originator Masterplan</a>
+            <a class="nav__dropdown-item" href="https://www.theloanatlas.com/blog/" target="_blank" rel="noopener" role="menuitem">Blog</a>
+            <a class="nav__dropdown-item" href="https://www.theloanatlas.com/podcast-revamp/" target="_blank" rel="noopener" role="menuitem">The 360 Experience</a>
+          </div>
+        </div>
       </nav>
       <div class="site-header__actions">
         <a class="site-header__login" href="#">Login</a>
@@ -662,18 +442,28 @@
           <span class="nav-toggle__line"></span>
           <span class="nav-toggle__line"></span>
         </button>
-        <a class="btn btn--primary btn--header" href="consultation.html"><span class="btn__short">Free Session</span><span class="btn__full">Book Your Free Coaching Session</span></a>
+        <a class="btn btn--primary btn--header" href="pricing.html"><span class="btn__short">Join Atlas</span><span class="btn__full">Join The Loan Atlas</span></a>
       </div>
     </div>
     <div class="mobile-nav" id="mobile-nav">
-      <a class="mobile-nav__link" href="whats-inside.html">What's Inside</a>
-      <a class="mobile-nav__link" href="faculty.html">Faculty</a>
-      <a class="mobile-nav__link mobile-nav__link--active" href="sales-individual.html">Individual Sales</a>
-      <a class="mobile-nav__link" href="corporate.html">Corporate Sales</a>
-      <a class="mobile-nav__link" href="pricing.html">Pricing</a>
-      <a class="mobile-nav__link" href="events.html">Events</a>
+      <p class="mobile-nav__group-label">Platform</p>
+      <a class="mobile-nav__link mobile-nav__sublink" href="whats-inside.html">What's Inside</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="faculty.html">Faculty</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/evergreen-ai-tool-planner/" target="_blank" rel="noopener">AI Business &amp; Life Planner</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="#">Platinum Marketing</a>
+      <p class="mobile-nav__group-label">Membership</p>
+      <a class="mobile-nav__link mobile-nav__sublink" href="pricing.html">Pricing</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="corporate.html">Corporate Sales</a>
+      <a class="mobile-nav__link mobile-nav__sublink mobile-nav__link--active" href="sales-individual.html">Individual Sales</a>
+      <p class="mobile-nav__group-label">Resources</p>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/perfect-loan-process" target="_blank" rel="noopener">Perfect Loan Process</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/5-essential-scripts" target="_blank" rel="noopener">Success Scripts</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/refinance-masterplan" target="_blank" rel="noopener">Refinance Masterplan</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/ai-empowered-originator-masterplan" target="_blank" rel="noopener">AI-Empowered Originator Masterplan</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/blog/" target="_blank" rel="noopener">Blog</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/podcast-revamp/" target="_blank" rel="noopener">The 360 Experience</a>
       <a class="mobile-nav__link" href="#">Login</a>
-      <a class="btn btn--primary btn--header mobile-nav__cta" href="consultation.html">Book Your Free Coaching Session</a>
+      <a class="btn btn--primary btn--header mobile-nav__cta" href="pricing.html">Join The Loan Atlas</a>
     </div>
   </header>
 
@@ -700,29 +490,8 @@
 
         <img class="lp-hero__dash" src="assets/dashboard.png" alt="The Loan Atlas member dashboard" loading="eager" />
 
-        <div class="lp-phone" role="img" aria-label="Sales & Scripting Coach chat preview">
-          <span class="lp-phone__notch" aria-hidden="true"></span>
-          <div class="lp-phone__screen">
-            <header class="lp-phone__appbar">
-              <span class="lp-phone__dot" aria-hidden="true"></span>
-              <div>
-                <p class="lp-phone__app">Sales &amp; Scripting Coach</p>
-                <p class="lp-phone__status">Online · Coach 01</p>
-              </div>
-            </header>
-            <div class="lp-phone__thread">
-              <div class="lp-bubble lp-bubble--user">A rate shopper just told me Rocket quoted them 0.25% lower. How do I respond without sounding defensive?</div>
-              <div class="lp-bubble lp-bubble--coach">Don't compete on rate — reframe to total cost and certainty. Try: "Rate is one number on a 30-year decision…"</div>
-              <div class="lp-bubble lp-bubble--coach lp-bubble--typing" aria-label="Coach is typing">
-                <span></span><span></span><span></span>
-              </div>
-            </div>
-            <div class="lp-phone__input">
-              <span class="lp-phone__placeholder">Ask your coach…</span>
-              <button type="button" class="lp-phone__send" aria-label="Send">↑</button>
-            </div>
-          </div>
-        </div>
+        <img class="lp-phone-img" src="assets/sales-coach-phone.png"
+          alt="AI Sales &amp; Scripting Coach on mobile" />
       </div>
     </section>
 
@@ -1104,30 +873,39 @@
     </section>
 
     <!-- ── 10. FINAL CTA ──────────────────────────────────────────────────────── -->
-    <section class="lp-final-cta" id="get-started" aria-labelledby="final-cta-heading">
-      <div class="container" style="position: relative; z-index: 1;">
-
-        <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" data-reveal="fade"
-          style="height: 52px; width: auto; margin: 0 auto var(--space-lg); display: block;" />
-
-        <h2 id="final-cta-heading" data-reveal="up"
-          style="font-family: var(--font-display); font-size: clamp(2.25rem, 1.4rem + 3.5vw, 3.75rem); font-weight: 800; line-height: 1.07; letter-spacing: -0.03em; color: #ffffff; max-width: 44rem; margin: 0 auto var(--space-lg); text-align: center;">
-          Install The System<br>
-          <span
-            style="background: linear-gradient(135deg, #c9961c, #eac25a, #ffd56c); -webkit-background-clip: text; background-clip: text; color: transparent;">Top Producers Are Using</span>
-        </h2>
-
-        <div data-reveal="scale"
-          style="display: flex; flex-wrap: wrap; gap: var(--space-sm); justify-content: center; align-items: center;">
-          <a class="btn btn--gold btn--lg" href="pricing.html"
-            style="font-size: 1.0625rem; padding: 18px 44px; box-shadow: 0 8px 32px rgba(201, 150, 28, 0.38);">
-            Start Your Transformation
-          </a>
-          <a class="btn btn--ghost-on-dark btn--lg" href="consultation.html">
-            Schedule Your Free Coaching Session
-          </a>
+    <section class="close-cta" id="get-started" aria-labelledby="final-cta-heading">
+      <div class="container close-cta__grid">
+        <div class="close-cta__copy" data-reveal="up">
+          <span class="close-cta__eyebrow">Start Your Transformation</span>
+          <h2 id="final-cta-heading" class="close-cta__title">
+            Install the System <em>Top Producers Are Using</em>
+          </h2>
+          <p class="close-cta__sub">
+            The originators pulling away from the pack aren't working harder — they're running a system that
+            compounds every month. <strong>Pick the path that fits where you are right now.</strong>
+          </p>
         </div>
 
+        <div class="close-cta__actions" data-reveal="up" role="group" aria-label="Get started">
+          <a class="close-cta-action close-cta-action--primary" href="pricing.html">
+            <span>
+              <span class="close-cta-action__label">Join The Loan Atlas</span>
+              <span class="close-cta-action__hint">See plans, pricing, and what's inside membership</span>
+            </span>
+            <span class="close-cta-action__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+            </span>
+          </a>
+          <a class="close-cta-action close-cta-action--secondary" href="consultation.html">
+            <span>
+              <span class="close-cta-action__label">Book a Free Coaching Session</span>
+              <span class="close-cta-action__hint">45 minutes with our team — build your growth plan</span>
+            </span>
+            <span class="close-cta-action__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+            </span>
+          </a>
+        </div>
       </div>
     </section>
 

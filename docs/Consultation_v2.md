@@ -26,13 +26,13 @@ Individual loan officers who are interested but not yet decided. They've likely 
 
 ### **LEFT COLUMN — Copy**
 
-**EYEBROW:** See Where Your Next 10 Loans Are Hiding
+**EYEBROW:** Build Your Growth Plan
 
-**HEADLINE:** Step Inside The Loan Atlas and Build Your Growth Plan
+**HEADLINE:** See Where Your Next 10 Loans Are Hiding
 
 **BODY:** This free 1-hour business assessment will show you exactly where your next level of production is hiding, and how to get to it.
 
-**TRUST LINE:** No cost · No obligation · The plan is yours either way
+**TRUST LINE:** No cost · No obligation
 
 *"It's been a long time wanting to join, and now that I'm in, I'm mad that I didn't join sooner." — Charlie Rutherford*
 
@@ -48,40 +48,12 @@ Individual loan officers who are interested but not yet decided. They've likely 
 
 **MICROCOPY BELOW CALENDAR:** No session times that work? Email us and we'll find one.
 
----
-
-### **BOOKING POPUP — After Slot Selection**
-
-*(Triggered once user selects a day and time on the calendar above. Confirms their selection at the top of the popup, then collects the following:)*
-
-**POPUP HEADLINE:** You're Booked for \[Day, Date\] at \[Time\]
-
-**POPUP SUBHEAD:** A few quick details so we can prep for your session.
-
-**FORM FIELDS:**
-
-* First Name  
-* Last Name  
-* Email  
-* Phone  
-* Company / Brokerage  
-* Years in the business *(dropdown: Less than 2 · 2–5 · 6–10 · 11–20 · 20+)*  
-* Approximate last 12 months of production *(dropdown: Under $10M · $10M–$25M · $25M–$50M · $50M–$100M · $100M+)*  
-* What's the biggest friction in your business right now? *(short text — optional)*
-
-*You're scheduling a one-hour coaching call with Nancy Leahy. By clicking submit, you are committing to show up on time and being open to receiving coaching.*
-
-**SUBMIT BUTTON:** ▶ Schedule
-
-**MICROCOPY UNDER FORM:** We'll send a calendar invite and confirmation email right away. We'll never share your information.
 
 ---
 
 ## **What You Walk Away With**
 
 **HEADLINE:** What You'll Leave This Call With
-
-**BODY:** Most originators are working harder than ever and still can't figure out why their production is uneven. It's rarely an effort problem. It's almost always a system problem — and you can't fix what you can't see.
 
 **1\. Business Assessment** We'll look at your production honestly: what's working, what's inconsistent, where your time is going, where the bottlenecks are. Most originators have never had anyone look at their business this way.
 

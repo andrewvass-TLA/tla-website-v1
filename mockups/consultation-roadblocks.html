@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mockup — Roadblocks section (Consultation)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../public/css/styles.css" />
+  <style>
+    /* ============================================================
+       Roadblocks section — mockup
+       Mirrors a 3-row marquee of "questions LOs ask" + 4-up feature grid,
+       restyled to The Loan Atlas tokens (midnight slate + brass).
+       ============================================================ */
+
+    .roadblocks {
+      position: relative;
+      background: #ffffff;
+      padding-block: clamp(64px, 6vw, 120px);
+      overflow: hidden;
+      color: var(--on-surface);
+    }
+
+    .roadblocks__intro {
+      max-width: 60rem;
+      margin: 0 auto;
+      padding-inline: var(--gutter);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+    }
+    .roadblocks__eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brass);
+    }
+    .roadblocks__heading {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2.25rem, 1.5rem + 2.8vw, 3.5rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      max-width: 22ch;
+      color: var(--primary);
+    }
+    .roadblocks__lede {
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+      line-height: 1.6;
+      max-width: 42rem;
+      color: var(--on-surface-variant);
+    }
+
+    /* ── Marquee rows ── */
+    .roadblocks__marquees {
+      position: relative;
+      width: 100%;
+      margin-top: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      mask-image: linear-gradient(
+        to right,
+        transparent 0,
+        #000 96px,
+        #000 calc(100% - 96px),
+        transparent 100%
+      );
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0,
+        #000 96px,
+        #000 calc(100% - 96px),
+        transparent 100%
+      );
+    }
+
+    .marquee {
+      display: flex;
+      width: 100%;
+      overflow: hidden;
+      gap: 12px;
+    }
+    .marquee__track {
+      display: flex;
+      flex-shrink: 0;
+      gap: 12px;
+      min-width: 100%;
+      animation: marquee-x var(--duration, 45s) linear infinite;
+    }
+    .marquee--reverse .marquee__track {
+      animation-direction: reverse;
+    }
+    .marquee:hover .marquee__track {
+      animation-play-state: paused;
+    }
+
+    @keyframes marquee-x {
+      from { transform: translateX(0); }
+      to   { transform: translateX(calc(-100% - 12px)); }
+    }
+
+    .qpill {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      padding: 10px 18px;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      line-height: 1.2;
+      color: var(--primary);
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: 2px;
+      white-space: nowrap;
+    }
+
+    /* ── Features grid ── */
+    .roadblocks__features {
+      margin-top: clamp(48px, 5vw, 80px);
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+    .roadblocks__grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px dashed rgba(2, 28, 54, 0.28);
+    }
+    .roadblocks__grid > * + * {
+      border-left: 1px dashed rgba(2, 28, 54, 0.28);
+    }
+    .roadblocks__cell {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: clamp(28px, 3vw, 44px) clamp(20px, 2vw, 28px);
+    }
+    .roadblocks__cell-title {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(1.375rem, 1.1rem + 0.6vw, 1.75rem);
+      letter-spacing: -0.01em;
+      color: var(--primary);
+      line-height: 1.2;
+    }
+    .roadblocks__cell-copy {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--on-surface-variant);
+    }
+
+    @media (max-width: 960px) {
+      .roadblocks__grid { grid-template-columns: repeat(2, 1fr); }
+      .roadblocks__grid > *:nth-child(n+3) { border-top: 1px dashed rgba(2, 28, 54, 0.28); }
+      .roadblocks__grid > *:nth-child(2n+1) { border-left: 0; }
+    }
+    @media (max-width: 560px) {
+      .roadblocks__grid { grid-template-columns: 1fr; }
+      .roadblocks__grid > * { border-left: 0; }
+      .roadblocks__grid > * + * { border-top: 1px dashed rgba(2, 28, 54, 0.28); }
+    }
+
+    /* mockup-only page chrome */
+    .mockup-frame {
+      padding: 40px 0;
+      background: #e9ebee;
+    }
+    .mockup-label {
+      max-width: var(--container-max);
+      margin: 0 auto 16px;
+      padding-inline: var(--gutter);
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #6b7280;
+    }
+  </style>
+</head>
+<body>
+  <div class="mockup-frame">
+    <div class="mockup-label">Mockup · Consultation page · "Roadblocks" section</div>
+
+    <section class="roadblocks">
+      <div class="roadblocks__intro">
+        <span class="roadblocks__eyebrow">Why a consultation</span>
+        <h2 class="roadblocks__heading">Removing the roadblocks to your next level</h2>
+        <p class="roadblocks__lede">
+          Every loan officer hits a ceiling — and gets buried in conflicting advice on how to break through it.
+          We filter out the noise, focus on what actually moves production, and give you the clarity to grow on purpose.
+        </p>
+
+        <div class="roadblocks__marquees" aria-hidden="true">
+          <!-- Row 1 -->
+          <div class="marquee">
+            <div class="marquee__track">
+              <span class="qpill">How do I generate consistent referrals?</span>
+              <span class="qpill">Why am I stuck at the same production level?</span>
+              <span class="qpill">How do I scale without burning out?</span>
+              <span class="qpill">What does a top-10% LO do differently?</span>
+              <span class="qpill">How do I build a personal brand?</span>
+              <span class="qpill">Should I hire an assistant or an LOA?</span>
+            </div>
+            <div class="marquee__track" aria-hidden="true">
+              <span class="qpill">How do I generate consistent referrals?</span>
+              <span class="qpill">Why am I stuck at the same production level?</span>
+              <span class="qpill">How do I scale without burning out?</span>
+              <span class="qpill">What does a top-10% LO do differently?</span>
+              <span class="qpill">How do I build a personal brand?</span>
+              <span class="qpill">Should I hire an assistant or an LOA?</span>
+            </div>
+          </div>
+
+          <!-- Row 2 — reverse -->
+          <div class="marquee marquee--reverse" style="--duration: 50s;">
+            <div class="marquee__track">
+              <span class="qpill">How do I price my services to win the deal?</span>
+              <span class="qpill">What CRM is actually worth using?</span>
+              <span class="qpill">How do I retain past clients for life?</span>
+              <span class="qpill">What's the right comp split for me?</span>
+              <span class="qpill">How do I structure my week?</span>
+              <span class="qpill">Why are my conversion rates dropping?</span>
+            </div>
+            <div class="marquee__track" aria-hidden="true">
+              <span class="qpill">How do I price my services to win the deal?</span>
+              <span class="qpill">What CRM is actually worth using?</span>
+              <span class="qpill">How do I retain past clients for life?</span>
+              <span class="qpill">What's the right comp split for me?</span>
+              <span class="qpill">How do I structure my week?</span>
+              <span class="qpill">Why are my conversion rates dropping?</span>
+            </div>
+          </div>
+
+          <!-- Row 3 -->
+          <div class="marquee" style="--duration: 42s;">
+            <div class="marquee__track">
+              <span class="qpill">How do I know if my marketing is working?</span>
+              <span class="qpill">How do I get past plateaus?</span>
+              <span class="qpill">Who is my ideal client?</span>
+              <span class="qpill">How do I track my real numbers?</span>
+              <span class="qpill">How do I lead a team?</span>
+              <span class="qpill">What systems should I build first?</span>
+            </div>
+            <div class="marquee__track" aria-hidden="true">
+              <span class="qpill">How do I know if my marketing is working?</span>
+              <span class="qpill">How do I get past plateaus?</span>
+              <span class="qpill">Who is my ideal client?</span>
+              <span class="qpill">How do I track my real numbers?</span>
+              <span class="qpill">How do I lead a team?</span>
+              <span class="qpill">What systems should I build first?</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="roadblocks__features">
+        <div class="roadblocks__grid">
+          <article class="roadblocks__cell">
+            <h3 class="roadblocks__cell-title">We make it simple</h3>
+            <p class="roadblocks__cell-copy">
+              No jargon, no overcomplication — just clear next steps you can run this week to grow your pipeline with confidence.
+            </p>
+          </article>
+
+          <article class="roadblocks__cell">
+            <h3 class="roadblocks__cell-title">We focus on real results</h3>
+            <p class="roadblocks__cell-copy">
+              Every plan is built to do one thing: get you to your next production level — faster, with fewer wasted moves.
+            </p>
+          </article>
+
+          <article class="roadblocks__cell">
+            <h3 class="roadblocks__cell-title">We know what works</h3>
+            <p class="roadblocks__cell-copy">
+              Built by top-producing originators and refined across thousands of LOs. Proven plays, not theory.
+            </p>
+          </article>
+
+          <article class="roadblocks__cell">
+            <h3 class="roadblocks__cell-title">With you all the way</h3>
+            <p class="roadblocks__cell-copy">
+              From the first call to scaling a team, you get ongoing coaching, community, and accountability — not a one-time plan.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

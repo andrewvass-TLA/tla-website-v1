@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mockup — Inline CTA band ("Do You Know What's Costing You Deals?")</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../public/css/styles.css" />
+  <style>
+    /* Mockup scaffolding only. Component styles all live in styles.css
+       (.inline-cta, .inline-cta__inner, .inline-cta__copy,
+        .inline-cta__heading, .inline-cta__action, .inline-cta__secondary-link). */
+    body { background: #f7f9fb; }
+    .mockup-wrap { padding-block: 40px; }
+    .mockup-label {
+      max-width: 1280px;
+      margin: 0 auto 16px;
+      padding-inline: var(--gutter);
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .mockup-label span { color: var(--brass); }
+  </style>
+</head>
+<body>
+
+  <div class="mockup-wrap">
+
+    <p class="mockup-label">Inline CTA band · <span>Live homepage version</span></p>
+
+    <!-- ─────────────────────────────────────────────────────────────
+         Inline CTA band — preserved snapshot of the homepage section.
+         Classes used (defined in public/css/styles.css):
+           .inline-cta            (section container — dark navy w/ brass left stripe)
+           .inline-cta__inner     (flex row: copy left, action right)
+           .inline-cta__copy
+           .inline-cta__heading   (em → brass gradient)
+           .inline-cta__action    (flex-end, column)
+           .inline-cta__secondary-link  (optional underline below the button)
+         Mobile (≤640px): inner flex stacks; button goes full-width.
+         ───────────────────────────────────────────────────────────── -->
+    <section class="inline-cta" aria-labelledby="inline-cta-heading">
+      <div class="container" style="position: relative;">
+        <div class="inline-cta__inner">
+          <div class="inline-cta__copy">
+            <span class="eyebrow" style="margin-bottom: var(--space-sm);">
+              <span class="eyebrow__text">Do You Know What's Costing You Deals?</span>
+            </span>
+            <h2 class="inline-cta__heading" id="inline-cta-heading">
+              Find out what's preventing you from <em>doubling your production this year.</em>
+            </h2>
+          </div>
+          <div class="inline-cta__action">
+            <a class="btn btn--gold btn--lg" href="../public/consultation.html">Take this 2-Minute Business Assessment</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>
