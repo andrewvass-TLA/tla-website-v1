@@ -56,14 +56,14 @@
     }
 
     /* Dark hero */
-    .lp-hero {
+    .lp-intro {
       background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
       padding-top: calc(var(--header-h) + clamp(56px, 8vw, 96px));
       padding-bottom: clamp(56px, 8vw, 96px);
       position: relative;
       overflow: hidden;
     }
-    .lp-hero::before {
+    .lp-intro::before {
       content: '';
       position: absolute;
       top: -80px;
@@ -74,7 +74,7 @@
       filter: blur(70px);
       pointer-events: none;
     }
-    .lp-hero::after {
+    .lp-intro::after {
       content: '';
       position: absolute;
       bottom: -80px;
@@ -85,12 +85,12 @@
       filter: blur(70px);
       pointer-events: none;
     }
-    .lp-hero__content {
+    .lp-intro__content {
       position: relative;
       z-index: 1;
       max-width: 56rem;
     }
-    .lp-hero__title {
+    .lp-intro__title {
       font-family: var(--font-display);
       font-size: clamp(2.25rem, 1.55rem + 3vw, 4rem);
       line-height: 1.06;
@@ -99,21 +99,21 @@
       color: #ffffff;
       margin-bottom: var(--space-md);
     }
-    .lp-hero__title em {
+    .lp-intro__title em {
       font-style: normal;
       background: linear-gradient(135deg, #c9961c, #eac25a, #ffd56c);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
-    .lp-hero__subtitle {
+    .lp-intro__subtitle {
       font-size: clamp(1rem, 0.9rem + 0.5vw, 1.1875rem);
       line-height: 1.7;
       color: rgba(255, 255, 255, 0.68);
       max-width: 40rem;
       margin-bottom: var(--space-lg);
     }
-    .lp-hero__actions {
+    .lp-intro__actions {
       display: flex;
       flex-wrap: wrap;
       gap: var(--space-sm);
@@ -773,15 +773,15 @@
   <main>
 
     <!-- ── 1. HERO ──────────────────────────────────────────────────────────── -->
-    <section class="lp-hero" aria-labelledby="lp-hero-heading">
+    <section class="lp-intro" aria-labelledby="lp-intro-heading">
       <div class="container">
-        <div class="lp-hero__content">
+        <div class="lp-intro__content">
           <span class="eyebrow" data-hero-step="1" style="margin-bottom: var(--space-md);">
             <span class="eyebrow__text" style="color: var(--brass-bright);">For Mortgage Leaders &amp; Enterprise Teams</span>
           </span>
-          <h1 id="lp-hero-heading" class="lp-hero__title" data-hero-step="2">The Gap Between Your Top Producers and Everyone Else Is <em>Widening Every Month</em></h1>
-          <p class="lp-hero__subtitle" data-hero-step="3">The Loan Atlas is the operating system mortgage leaders use to close that gap across their entire team.</p>
-          <div class="lp-hero__actions" data-hero-step="4">
+          <h1 id="lp-intro-heading" class="lp-intro__title" data-hero-step="2">The Gap Between Your Top Producers and Everyone Else Is <em>Widening Every Month</em></h1>
+          <p class="lp-intro__subtitle" data-hero-step="3">The Loan Atlas is the operating system mortgage leaders use to close that gap across their entire team.</p>
+          <div class="lp-intro__actions" data-hero-step="4">
             <a class="btn btn--gold btn--lg" href="consultation.html">Schedule an Enterprise Consultation</a>
             <a class="btn btn--ghost-on-dark btn--lg" href="#masterplan">Get the AI-Empowered Mortgage Leader Masterplan</a>
           </div>
@@ -1104,36 +1104,36 @@
     </section>
 
     <!-- ── 9. FINAL CTA ───────────────────────────────────────────────────────── -->
-    <section class="close-cta" id="get-started" aria-labelledby="final-cta-heading">
-      <div class="container close-cta__grid">
-        <div class="close-cta__copy" data-reveal="up">
-          <span class="close-cta__eyebrow">Start Your Transformation</span>
-          <h2 id="final-cta-heading" class="close-cta__title">
+    <section class="close-section" id="get-started" aria-labelledby="final-cta-heading">
+      <div class="container close-section__grid">
+        <div class="close-section__copy" data-reveal="up">
+          <span class="close-section__eyebrow">Start Your Transformation</span>
+          <h2 id="final-cta-heading" class="close-section__title">
             Stop Paying <em>for the Gap</em>
           </h2>
-          <p class="close-cta__sub">
+          <p class="close-section__sub">
             Every quarter you wait, your top LOs keep pulling ahead and the rest of your team keeps falling
             behind. <strong>The leaders closing that gap are giving the whole team the same playbook to run from.</strong>
             Let's talk about what that would look like for you.
           </p>
         </div>
 
-        <div class="close-cta__actions" data-reveal="up" role="group" aria-label="Get started">
-          <a class="close-cta-action close-cta-action--primary" href="consultation.html">
+        <div class="close-section__actions" data-reveal="up" role="group" aria-label="Get started">
+          <a class="close-section-action close-section-action--primary" href="consultation.html">
             <span>
-              <span class="close-cta-action__label">Schedule an Enterprise Consultation</span>
-              <span class="close-cta-action__hint">Map your team's playbook with our leadership coaches</span>
+              <span class="close-section-action__label">Schedule an Enterprise Consultation</span>
+              <span class="close-section-action__hint">Map your team's playbook with our leadership coaches</span>
             </span>
-            <span class="close-cta-action__arrow" aria-hidden="true">
+            <span class="close-section-action__arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
             </span>
           </a>
-          <a class="close-cta-action close-cta-action--secondary" href="#masterplan">
+          <a class="close-section-action close-section-action--secondary" href="#masterplan">
             <span>
-              <span class="close-cta-action__label">Download the Masterplan</span>
-              <span class="close-cta-action__hint">How the best leaders in mortgage are thinking about the next two years</span>
+              <span class="close-section-action__label">Download the Masterplan</span>
+              <span class="close-section-action__hint">How the best leaders in mortgage are thinking about the next two years</span>
             </span>
-            <span class="close-cta-action__arrow" aria-hidden="true">
+            <span class="close-section-action__arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
             </span>
           </a>
