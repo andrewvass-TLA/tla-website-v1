@@ -16,13 +16,11 @@ name: Deploy child theme to WP Engine (SFTP)
 #   WPE_SFTP_PORT       2222
 
 on:
-  # NOTE: auto-deploy on push is temporarily disabled for the FIRST controlled
-  # run. After a manual run works end-to-end, re-enable this block.
-  # push:
-  #   branches: [main]
-  #   paths:
-  #     - 'wp-theme/responsiveChild-theme/**'
-  #     - '.github/workflows/deploy.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'wp-theme/responsiveChild-theme/**'
+      - '.github/workflows/deploy.yml'
   workflow_dispatch: {} # manual run from the Actions tab
 
 jobs:
