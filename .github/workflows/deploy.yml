@@ -17,11 +17,13 @@ name: Deploy child theme to WP Engine (SFTP)
 # so wp-content/... with NO leading slash. Confirm in your SFTP client.
 
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'wp-theme/responsiveChild-theme/**'
-      - '.github/workflows/deploy.yml'
+  # NOTE: auto-deploy on push is temporarily disabled for the FIRST controlled
+  # run. After verifying a manual run works end-to-end, re-enable this block.
+  # push:
+  #   branches: [main]
+  #   paths:
+  #     - 'wp-theme/responsiveChild-theme/**'
+  #     - '.github/workflows/deploy.yml'
   workflow_dispatch: {} # manual run from the Actions tab
 
 env:
