@@ -429,6 +429,1438 @@
         transition: none !important;
       }
     }
+
+    /* =====================================================================
+       8 Disciplines — Training framework section
+       ===================================================================== */
+    .disc-section {
+      background: var(--surface-container-low);
+      padding-block: clamp(64px, 8vw, 112px);
+      overflow: hidden;
+    }
+    .disc-section__inner {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+    .disc-split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+      margin-bottom: var(--space-xl);
+    }
+    @media (min-width: 960px) {
+      .disc-split {
+        grid-template-columns: minmax(320px, 5fr) minmax(0, 7fr);
+        gap: clamp(32px, 4vw, 64px);
+      }
+    }
+    .disc-copy__eyebrow {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: var(--space-sm);
+    }
+    .disc-copy__title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      color: var(--primary);
+      margin: 0 0 var(--space-md);
+      text-wrap: balance;
+    }
+    .disc-copy__title em {
+      font-style: normal;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .disc-copy__lede {
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--on-surface-variant);
+      margin: 0 0 var(--space-lg);
+      max-width: 36rem;
+    }
+    .disc-marquee {
+      position: relative;
+      height: clamp(480px, 56vw, 660px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+      -webkit-mask-image: linear-gradient(180deg,
+        transparent 0,
+        #000 14%,
+        #000 86%,
+        transparent 100%);
+              mask-image: linear-gradient(180deg,
+        transparent 0,
+        #000 14%,
+        #000 86%,
+        transparent 100%);
+    }
+    .disc-marquee__col {
+      position: relative;
+      overflow: hidden;
+    }
+    .disc-marquee__track {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      animation: disc-scroll-up 80s linear infinite;
+      will-change: transform;
+    }
+    .disc-marquee__col--down .disc-marquee__track {
+      animation-name: disc-scroll-down;
+    }
+    @keyframes disc-scroll-up {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-50%); }
+    }
+    @keyframes disc-scroll-down {
+      from { transform: translateY(-50%); }
+      to   { transform: translateY(0); }
+    }
+    .disc-thumb {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--outline-variant);
+      box-shadow: var(--shadow);
+      background: var(--surface-container-lowest);
+      flex: 0 0 auto;
+    }
+    .disc-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .disc-clusters .discipline-cluster__label {
+      font-size: 0.9375rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+    }
+    .disc-clusters .discipline-cluster__label::before {
+      width: 44px;
+      height: 2px;
+    }
+    .disc-clusters .discipline-card__num {
+      color: rgba(201, 150, 28, 0.55);
+      font-size: 2.75rem;
+    }
+    .disc-clusters .quote-card {
+      flex: none;
+      width: 100%;
+      max-width: none;
+      margin: var(--space-lg) 0 0;
+    }
+    /* Block-level inline testimonial — used in section bodies */
+    .quote-card--block {
+      flex: none;
+      width: 100%;
+      max-width: none;
+      margin: var(--space-xl) 0 0;
+    }
+    .quote-card--on-dark .quote-card__quote { color: rgba(255, 255, 255, 0.7); }
+    .quote-card--on-dark .quote-card__name { color: #ffffff; }
+
+    /* Community section — 2x2 grid of vertical YouTube Shorts */
+    .wi-shorts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-sm);
+    }
+    .wi-short {
+      position: relative;
+      aspect-ratio: 9 / 16;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);
+    }
+    .wi-short iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+    @media (max-width: 520px) {
+      .wi-shorts { gap: var(--space-xs); }
+    }
+    .disc-video {
+      margin-top: var(--space-xl);
+      cursor: default;
+    }
+    .disc-video::before { display: none; }
+    .disc-video iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .disc-marquee__track {
+        animation: none !important;
+      }
+    }
+    @media (max-width: 720px) {
+      .disc-marquee {
+        height: clamp(420px, 90vw, 520px);
+      }
+    }
+
+    /* Coaching-card video placeholders: real imagery behind the overlay UI */
+    .coaching-card__media .video-ph > img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Coaching-cards as full-card links (gallery-card pattern) */
+    a.coaching-card {
+      text-decoration: none;
+      color: inherit;
+      isolation: isolate;
+    }
+    a.coaching-card:hover .coaching-card__arrow,
+    a.coaching-card:focus-visible .coaching-card__arrow {
+      color: var(--brass);
+      border-color: rgba(201, 150, 28, 0.4);
+    }
+    .coaching-card__arrow {
+      margin-top: auto;
+      align-self: flex-start;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid var(--outline-variant);
+      background: var(--surface-container-lowest);
+      color: var(--primary-container);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 200ms ease, border-color 200ms ease;
+    }
+    .coaching-card__arrow svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* =====================================================================
+       AI-Driven Financial Review — click-and-reveal showcase
+       ===================================================================== */
+    .frs-section {
+      background: var(--surface);
+      padding-block: clamp(64px, 8vw, 112px);
+      overflow: hidden;
+    }
+    .frs-section + .frs-section { padding-top: 0; }
+    .frs-section__inner {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    /* TOP BLOCK — copy + composite hero */
+    .frs-hero__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+    @media (min-width: 960px) {
+      .frs-hero__grid {
+        grid-template-columns: minmax(320px, 5fr) minmax(0, 7fr);
+        gap: clamp(40px, 5vw, 80px);
+      }
+    }
+    .frs-hero__copy .eyebrow { margin-bottom: var(--space-md); }
+    .frs-hero__title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2.25rem, 1.6rem + 2.6vw, 3.25rem);
+      line-height: 1.05;
+      letter-spacing: -0.025em;
+      color: var(--primary);
+      margin: 0 0 var(--space-md);
+      text-wrap: balance;
+    }
+    .frs-hero__title em {
+      font-style: normal;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .frs-hero__subhead {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(1.25rem, 1rem + 1vw, 1.625rem);
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      color: var(--primary);
+      margin: 0 0 var(--space-md);
+    }
+    .frs-hero__subhead em {
+      font-style: normal;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .frs-hero__lede {
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--on-surface-variant);
+      margin: 0;
+      max-width: 36rem;
+    }
+
+    .frs-hero__metrics {
+      position: relative;
+      width: 100%;
+      min-height: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      container-type: inline-size;
+      isolation: isolate;
+    }
+    @media (min-width: 1180px) { .frs-hero__metrics { min-height: 620px; } }
+
+    .frs-hero__metrics::before {
+      content: '';
+      position: absolute;
+      inset: 9% 2% 8% 8%;
+      border: 1px solid rgba(2, 28, 54, 0.08);
+      border-radius: 22px;
+      background:
+        linear-gradient(90deg, rgba(2, 28, 54, 0.045) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(2, 28, 54, 0.045) 1px, transparent 1px);
+      background-size: 34px 34px;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent);
+      opacity: 0.8;
+      z-index: -2;
+    }
+
+    .frs-hero__metrics::after {
+      content: '';
+      position: absolute;
+      inset: 16% 10% 16% 14%;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 32px 80px rgba(2, 28, 54, 0.12);
+      z-index: -1;
+      transform: rotate(-2deg);
+    }
+
+    .frs-metric-stack {
+      width: min(100%, 650px);
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .frs-metric-card {
+      --metric-accent: #fcd34d;
+      --metric-accent-2: #fbbf24;
+      --metric-bg: #0e1422;
+      --metric-card: #172033;
+      --metric-card-2: #232d42;
+      --metric-muted: #94a3b8;
+      --metric-text: #ffffff;
+      --metric-delay: 0ms;
+
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(150px, 0.72fr);
+      gap: clamp(16px, 4cqi, 28px);
+      min-height: 172px;
+      padding: clamp(18px, 4cqi, 30px);
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent 36%),
+        linear-gradient(180deg, #121a2a 0%, var(--metric-bg) 100%);
+      color: var(--metric-text);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow:
+        0 24px 52px rgba(2, 28, 54, 0.22),
+        0 8px 18px rgba(2, 28, 54, 0.12);
+      overflow: hidden;
+      opacity: 0;
+      animation: frsMetricEnter 760ms cubic-bezier(.2, .8, .2, 1) forwards;
+      animation-delay: var(--metric-delay);
+    }
+
+    .frs-metric-card + .frs-metric-card { margin-top: -22px; }
+    .frs-metric-card--income {
+      z-index: 3;
+      width: 88%;
+      transform: translateX(3%) rotate(-1.2deg);
+    }
+    .frs-metric-card--loans {
+      z-index: 2;
+      width: 78%;
+      margin-left: auto;
+      transform: translateX(-1%) rotate(1.4deg);
+    }
+    .frs-metric-card--rate {
+      z-index: 1;
+      width: 90%;
+      transform: translateX(8%) rotate(-0.4deg);
+    }
+
+    .frs-metric-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 18%, rgba(255,255,255,0.12) 42%, transparent 62%);
+      transform: translateX(-120%);
+      animation: frsMetricSheen 5.2s ease-in-out infinite;
+      animation-delay: calc(var(--metric-delay) + 1000ms);
+      pointer-events: none;
+    }
+
+    .frs-metric-card::after {
+      content: '';
+      position: absolute;
+      inset: auto clamp(18px, 4cqi, 30px) 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(252, 211, 77, 0.52), transparent);
+    }
+
+    .frs-metric-card__main,
+    .frs-metric-card__visual {
+      position: relative;
+      z-index: 1;
+    }
+
+    .frs-metric-card__topline {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      color: var(--metric-muted);
+      font-family: var(--font-body);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .frs-metric-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(252, 211, 77, 0.12);
+      color: var(--metric-accent);
+      box-shadow: inset 0 0 0 1px rgba(252, 211, 77, 0.2);
+      flex-shrink: 0;
+    }
+    .frs-metric-icon svg { width: 16px; height: 16px; }
+
+    .frs-metric-card__label {
+      font-family: var(--font-display);
+      font-size: clamp(1.05rem, 3cqi, 1.45rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin: 0 0 8px;
+      color: #ffffff;
+    }
+
+    .frs-metric-card__value {
+      font-family: var(--font-display);
+      font-size: clamp(2.35rem, 8cqi, 4.25rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin: 0;
+      color: var(--metric-accent);
+      text-shadow: 0 0 24px rgba(252, 211, 77, 0.22);
+      white-space: nowrap;
+    }
+    .frs-metric-card--rate .frs-metric-card__value {
+      font-size: clamp(2rem, 6.5cqi, 3.6rem);
+    }
+
+    .frs-metric-card__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      margin-top: 14px;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      color: var(--metric-muted);
+    }
+    .frs-metric-card__meta strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .frs-metric-track {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      margin-top: 18px;
+    }
+    .frs-metric-track__fill {
+      width: var(--metric-progress);
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--metric-accent), var(--metric-accent-2));
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: frsMetricFill 1100ms cubic-bezier(.2, .8, .2, 1) forwards;
+      animation-delay: calc(var(--metric-delay) + 520ms);
+    }
+
+    .frs-metric-spark {
+      width: 100%;
+      min-height: 110px;
+      align-self: center;
+    }
+    .frs-metric-spark__area {
+      fill: rgba(252, 211, 77, 0.09);
+      opacity: 0;
+      animation: frsSparkArea 900ms ease forwards;
+      animation-delay: calc(var(--metric-delay) + 820ms);
+    }
+    .frs-metric-spark__line {
+      fill: none;
+      stroke: var(--metric-accent);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 420;
+      stroke-dashoffset: 420;
+      filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.34));
+      animation: frsSparkDraw 1200ms cubic-bezier(.2, .8, .2, 1) forwards;
+      animation-delay: calc(var(--metric-delay) + 520ms);
+    }
+    .frs-metric-spark__dot {
+      fill: var(--metric-accent);
+      opacity: 0;
+      transform-origin: center;
+      animation: frsDotPulse 1.8s ease-in-out infinite;
+      animation-delay: calc(var(--metric-delay) + 1500ms);
+    }
+
+    .frs-loan-visual {
+      align-self: center;
+      display: grid;
+      gap: 12px;
+    }
+    .frs-loan-tiles {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .frs-loan-tile {
+      aspect-ratio: 1;
+      border-radius: 10px;
+      background: var(--metric-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.32);
+      opacity: 0;
+      transform: translateY(12px) scale(0.92);
+      animation: frsLoanTileIn 520ms cubic-bezier(.2, .8, .2, 1) forwards;
+      animation-delay: calc(var(--metric-delay) + (var(--tile-index) * 120ms) + 480ms);
+    }
+    .frs-loan-tile svg { width: 20px; height: 20px; }
+    .frs-loan-tile--closed {
+      background: rgba(252, 211, 77, 0.13);
+      border-color: rgba(252, 211, 77, 0.45);
+      color: var(--metric-accent);
+      box-shadow: 0 0 0 1px rgba(252, 211, 77, 0.08), 0 12px 24px rgba(252, 211, 77, 0.08);
+    }
+    .frs-loan-caption {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      color: var(--metric-muted);
+    }
+    .frs-loan-caption strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .frs-rate-visual {
+      align-self: center;
+      display: grid;
+      place-items: center;
+    }
+    .frs-rate-ring {
+      position: relative;
+      width: clamp(116px, 28cqi, 168px);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+    }
+    .frs-rate-ring svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+    .frs-rate-ring__base {
+      fill: none;
+      stroke: rgba(255,255,255,0.1);
+      stroke-width: 12;
+    }
+    .frs-rate-ring__value {
+      fill: none;
+      stroke: var(--metric-accent);
+      stroke-width: 12;
+      stroke-linecap: round;
+      stroke-dasharray: 276;
+      stroke-dashoffset: 276;
+      filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.35));
+      animation: frsRateRing 1200ms cubic-bezier(.2, .8, .2, 1) forwards;
+      animation-delay: calc(var(--metric-delay) + 520ms);
+    }
+    .frs-rate-ring__center {
+      width: 62%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--metric-card);
+      color: var(--metric-accent);
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.2rem, 4cqi, 1.85rem);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+    }
+    .frs-rate-ring__badge {
+      position: absolute;
+      right: -6px;
+      bottom: 15%;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: #22c55e;
+      color: #061018;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 800;
+      box-shadow: 0 10px 22px rgba(34, 197, 94, 0.24);
+      opacity: 0;
+      transform: translateY(8px);
+      animation: frsBadgeIn 520ms ease forwards, frsBadgePulse 2.2s ease-in-out infinite;
+      animation-delay: calc(var(--metric-delay) + 1300ms), calc(var(--metric-delay) + 1900ms);
+    }
+
+    @keyframes frsMetricEnter {
+      from { opacity: 0; transform: translateY(28px) scale(0.98); }
+      to { opacity: 1; }
+    }
+    @keyframes frsMetricSheen {
+      0%, 48% { transform: translateX(-120%); }
+      68%, 100% { transform: translateX(120%); }
+    }
+    @keyframes frsMetricFill {
+      to { transform: scaleX(1); }
+    }
+    @keyframes frsSparkDraw {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes frsSparkArea {
+      to { opacity: 1; }
+    }
+    @keyframes frsDotPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.55; transform: scale(1.45); }
+    }
+    @keyframes frsLoanTileIn {
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes frsRateRing {
+      to { stroke-dashoffset: 38; }
+    }
+    @keyframes frsBadgeIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes frsBadgePulse {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(0) scale(1.06); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .frs-metric-card,
+      .frs-metric-card::before,
+      .frs-metric-track__fill,
+      .frs-metric-spark__area,
+      .frs-metric-spark__line,
+      .frs-metric-spark__dot,
+      .frs-loan-tile,
+      .frs-rate-ring__value,
+      .frs-rate-ring__badge {
+        animation: none;
+        opacity: 1;
+        transform: none;
+        stroke-dashoffset: 38;
+      }
+      .frs-metric-track__fill { transform: scaleX(1); }
+      .frs-metric-spark__line { stroke-dashoffset: 0; }
+    }
+
+    @media (max-width: 720px) {
+      .frs-hero__metrics {
+        min-height: 0;
+        padding-top: var(--space-xs);
+      }
+      .frs-hero__metrics::before,
+      .frs-hero__metrics::after { display: none; }
+      .frs-metric-stack {
+        width: 100%;
+        gap: var(--space-sm);
+      }
+      .frs-metric-card,
+      .frs-metric-card--income,
+      .frs-metric-card--loans,
+      .frs-metric-card--rate {
+        width: 100%;
+        margin: 0;
+        transform: none;
+      }
+      .frs-metric-card {
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+      .frs-metric-spark { min-height: 92px; }
+    }
+
+    /* Business Planner screenshot — bare hero metrics (no gridded backdrop / tilted card) */
+    .frs-hero__metrics--bare::before,
+    .frs-hero__metrics--bare::after { content: none; }
+    .bp-screenshot {
+      display: block;
+      width: 100%;
+      max-width: 640px;
+      height: auto;
+      border-radius: 14px;
+      box-shadow:
+        0 24px 52px rgba(2, 28, 54, 0.22),
+        0 8px 18px rgba(2, 28, 54, 0.12);
+    }
+
+    /* BOTTOM BLOCK — accordion + dynamic stage */
+    .frs-reveal__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+      align-items: start;
+    }
+    @media (min-width: 960px) {
+      .frs-reveal__grid {
+        grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+        gap: clamp(40px, 5vw, 72px);
+      }
+    }
+    .frs-accordion {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .frs-item {
+      background: var(--surface-container-lowest);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: border-color 200ms ease, box-shadow 200ms ease;
+    }
+    .frs-item.is-open {
+      border-color: var(--brass);
+      box-shadow: 0 8px 24px rgba(2, 28, 54, 0.08);
+    }
+    .frs-item__header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-md) var(--space-lg);
+      background: transparent;
+      border: 0;
+      cursor: pointer;
+      text-align: left;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1.0625rem;
+      color: var(--primary);
+      letter-spacing: -0.01em;
+    }
+    .frs-item__header:focus-visible {
+      outline: 2px solid var(--brass);
+      outline-offset: -2px;
+    }
+    .frs-item__chevron {
+      width: 12px;
+      height: 12px;
+      border-right: 2px solid var(--on-surface-variant);
+      border-bottom: 2px solid var(--on-surface-variant);
+      transform: rotate(45deg);
+      transition: transform 220ms ease, border-color 220ms ease;
+      flex-shrink: 0;
+      margin-right: 4px;
+    }
+    .frs-item.is-open .frs-item__chevron {
+      transform: rotate(-135deg);
+      border-color: var(--brass);
+    }
+    .frs-item__panel {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: max-height 320ms ease, opacity 220ms ease, padding 320ms ease;
+      padding: 0 var(--space-lg);
+    }
+    .frs-item.is-open .frs-item__panel {
+      max-height: 2000px;
+      opacity: 1;
+      padding: 0 var(--space-lg) var(--space-lg);
+    }
+    .frs-item__sub {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--brass);
+      margin: 0 0 var(--space-xs);
+      letter-spacing: -0.01em;
+    }
+    .frs-item__body {
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      line-height: 1.65;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+    .frs-item__inline {
+      display: none;
+      margin-top: var(--space-md);
+      container-type: inline-size;
+    }
+    @media (max-width: 959px) {
+      .frs-item__inline { display: block; }
+    }
+
+    .frs-stage {
+      position: sticky;
+      top: calc(var(--header-h) + var(--space-md));
+      container-type: inline-size;
+    }
+    @media (max-width: 959px) { .frs-stage { display: none; } }
+    .frs-stage__panel {
+      display: none;
+      position: relative;
+    }
+    .frs-stage__panel.is-active { display: block; }
+
+    /* TOOL — Financial Planning Assessment wizard */
+    .frs-tool {
+      --tool-bg: #0e1422;
+      --tool-bar: #0a1018;
+      --tool-card: #1a2233;
+      --tool-card-2: #232b3d;
+      --tool-card-3: #2a3344;
+      --tool-border: rgba(255, 255, 255, 0.07);
+      --tool-accent: #FCD34D;
+      --tool-accent-2: #FBBF24;
+      --tool-text: #ffffff;
+      --tool-muted: #94a3b8;
+      --tool-muted-2: #cbd5e1;
+      --tool-positive: #22c55e;
+
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--tool-bg);
+      color: var(--tool-text);
+      width: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow:
+        0 24px 48px rgba(2, 28, 54, 0.18),
+        0 6px 12px rgba(2, 28, 54, 0.10),
+        0 0 0 1px rgba(255, 255, 255, 0.05);
+      font-size: clamp(11px, 2.4cqi, 15px);
+      line-height: 1.4;
+      letter-spacing: 0;
+      box-sizing: border-box;
+    }
+    .frs-stage .frs-tool { font-size: clamp(11px, 2.6cqi, 15px); }
+    @media (max-width: 959px) {
+      .frs-item__inline .frs-tool { font-size: clamp(11px, 3.4cqi, 14px); }
+    }
+
+    .frs-tool *, .frs-tool *::before, .frs-tool *::after { box-sizing: border-box; }
+    .frs-tool p { margin: 0; }
+
+    .frs-tool__topbar {
+      display: flex;
+      align-items: center;
+      gap: 0.85em;
+      padding: 0.9em 1.4em;
+      background: var(--tool-bar);
+      border-bottom: 1px solid var(--tool-border);
+    }
+    .frs-tool__topbar-icon {
+      width: 1.9em;
+      height: 1.9em;
+      border-radius: 0.3em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--tool-muted-2);
+      flex-shrink: 0;
+    }
+    .frs-tool__topbar-icon svg { width: 1.4em; height: 1.4em; }
+    .frs-tool__topbar-title {
+      font-size: 1.05em;
+      font-weight: 700;
+      line-height: 1.15;
+    }
+    .frs-tool__topbar-subtitle {
+      font-size: 0.72em;
+      color: var(--tool-muted);
+      margin-top: 0.15em;
+    }
+    .frs-tool__topbar-spacer { flex: 1; }
+    .frs-tool__topbar-icon-btn {
+      width: 1.5em;
+      height: 1.5em;
+      color: var(--tool-muted);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .frs-tool__topbar-icon-btn svg { width: 1em; height: 1em; }
+    .frs-tool__topbar-avatar {
+      width: 1.6em;
+      height: 1.6em;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #FBBF24, #c9961c);
+      color: #0e1422;
+      font-weight: 700;
+      font-size: 0.7em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .frs-tool__content {
+      padding: 1.2em 1.6em 1.4em;
+    }
+
+    .frs-tool__breadcrumb {
+      font-size: 0.75em;
+      color: var(--tool-muted);
+      margin-bottom: 0.9em;
+    }
+    .frs-tool__breadcrumb-sep { margin: 0 0.4em; opacity: 0.6; }
+    .frs-tool__breadcrumb-active { color: var(--tool-accent); font-weight: 600; }
+
+    .frs-tool__progress {
+      background: var(--tool-card);
+      border-radius: 0.5em;
+      padding: 0.9em 1.1em;
+      margin-bottom: 0.9em;
+    }
+    .frs-tool__progress-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.78em;
+      font-weight: 600;
+      margin-bottom: 0.55em;
+    }
+    .frs-tool__progress-pct { color: var(--tool-accent); }
+    .frs-tool__progress-bar {
+      height: 0.45em;
+      background: rgba(255, 255, 255, 0.09);
+      border-radius: 0.3em;
+      overflow: hidden;
+    }
+    .frs-tool__progress-fill {
+      height: 100%;
+      background: var(--tool-accent);
+      border-radius: 0.3em;
+    }
+
+    .frs-tool__panel {
+      background: var(--tool-card);
+      border-radius: 0.5em;
+      padding: 1.2em 1.3em 1.2em;
+    }
+    .frs-tool__panel-title {
+      font-size: 0.95em;
+      font-weight: 700;
+      margin: 0 0 1em;
+      letter-spacing: -0.01em;
+    }
+    .frs-tool__panel-title--large {
+      font-size: 1.1em;
+      margin-bottom: 1.1em;
+    }
+
+    .frs-field { margin-bottom: 0.7em; }
+    .frs-field__label {
+      font-size: 0.65em;
+      color: var(--tool-muted);
+      margin-bottom: 0.35em;
+      line-height: 1.3;
+    }
+    .frs-field__input {
+      background: var(--tool-card-2);
+      border: 1px solid transparent;
+      border-radius: 0.4em;
+      padding: 0.6em 0.85em;
+      font-size: 0.82em;
+      font-weight: 500;
+      color: var(--tool-text);
+      display: flex;
+      align-items: center;
+      gap: 0.35em;
+      min-height: 2.1em;
+    }
+    .frs-field__suffix {
+      color: var(--tool-muted);
+      margin-left: auto;
+      font-size: 0.9em;
+    }
+    .frs-field__prefix { color: var(--tool-muted); }
+    .frs-field--highlight .frs-field__input {
+      border: 1px dashed var(--tool-accent);
+      color: var(--tool-accent);
+      font-weight: 700;
+      background: var(--tool-card-2);
+    }
+
+    .frs-tool__footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.7em;
+      margin-top: 1em;
+    }
+    .frs-tool__btn {
+      padding: 0.55em 1em;
+      border-radius: 0.4em;
+      font-size: 0.78em;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35em;
+      cursor: pointer;
+      border: 0;
+    }
+    .frs-tool__btn--back {
+      background: var(--tool-card-2);
+      color: var(--tool-text);
+    }
+    .frs-tool__btn--next {
+      background: var(--tool-accent);
+      color: #0e1422;
+    }
+    .frs-tool__btn--save {
+      background: var(--tool-accent);
+      color: #0e1422;
+    }
+
+    .frs-panel-assumptions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6em 1em;
+    }
+
+    .frs-panel-breakeven__inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1em;
+      margin-bottom: 0.9em;
+    }
+    .frs-panel-breakeven__results {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.8em;
+    }
+
+    .frs-source {
+      padding: 0.9em 0 0.6em;
+      border-top: 1px solid var(--tool-border);
+    }
+    .frs-source:first-of-type { border-top: 0; padding-top: 0.3em; }
+    .frs-source__header {
+      display: flex;
+      align-items: center;
+      gap: 0.45em;
+      font-size: 0.88em;
+      font-weight: 700;
+      margin-bottom: 0.65em;
+    }
+    .frs-source__icon {
+      width: 1.1em;
+      height: 1.1em;
+      color: var(--tool-muted-2);
+    }
+    .frs-source__icon svg { width: 100%; height: 100%; }
+    .frs-source__grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.9fr;
+      gap: 0.6em 0.8em;
+    }
+    .frs-source__total {
+      grid-column: 1 / -1;
+    }
+    .frs-source-totals {
+      margin-top: 0.9em;
+      padding: 1em 1.2em;
+      border: 1px solid var(--tool-accent);
+      border-radius: 0.5em;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8em;
+      text-align: center;
+    }
+    .frs-source-totals__label {
+      font-size: 0.75em;
+      color: var(--tool-muted-2);
+      margin-bottom: 0.3em;
+    }
+    .frs-source-totals__value {
+      font-size: 1.5em;
+      font-weight: 700;
+      color: var(--tool-accent);
+      letter-spacing: -0.01em;
+    }
+
+    /* TOOL — Financial Modeling Tool dashboard */
+    .frs-tool--modeling .frs-tool__content { padding: 1em 1.4em 1.2em; }
+    .frs-tool--modeling .frs-tool__topbar-subtitle::before {
+      content: '';
+      display: inline-block;
+      width: 0.55em;
+      height: 0.55em;
+      border-radius: 50%;
+      background: var(--tool-accent);
+      margin-right: 0.35em;
+      vertical-align: middle;
+    }
+
+    .frs-modeling__toolbar {
+      display: flex;
+      align-items: center;
+      gap: 0.6em;
+      margin-bottom: 0.9em;
+    }
+    .frs-modeling__tabs {
+      display: inline-flex;
+      background: var(--tool-card);
+      border-radius: 0.4em;
+      padding: 0.2em;
+    }
+    .frs-modeling__tab {
+      padding: 0.4em 0.9em;
+      font-size: 0.74em;
+      font-weight: 600;
+      border-radius: 0.3em;
+      color: var(--tool-muted-2);
+    }
+    .frs-modeling__tab--active {
+      background: var(--tool-card-3);
+      color: var(--tool-text);
+    }
+    .frs-modeling__toolbar-spacer { flex: 1; }
+    .frs-modeling__btn {
+      padding: 0.45em 0.85em;
+      border-radius: 0.4em;
+      font-size: 0.72em;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3em;
+    }
+    .frs-modeling__btn--ghost {
+      background: transparent;
+      color: var(--tool-text);
+      border: 1px solid var(--tool-border);
+    }
+    .frs-modeling__btn--primary {
+      background: var(--tool-accent);
+      color: #0e1422;
+    }
+
+    .frs-modeling__stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.6em;
+      margin-bottom: 0.9em;
+    }
+    .frs-stat {
+      background: var(--tool-card);
+      border-radius: 0.5em;
+      padding: 0.8em 0.95em;
+      position: relative;
+    }
+    .frs-stat__label {
+      font-size: 0.62em;
+      color: var(--tool-muted);
+      margin-bottom: 0.4em;
+      letter-spacing: 0.02em;
+    }
+    .frs-stat__value {
+      font-size: 1.3em;
+      font-weight: 700;
+      letter-spacing: -0.015em;
+    }
+    .frs-stat__progress {
+      height: 0.25em;
+      background: rgba(255,255,255,0.08);
+      border-radius: 0.15em;
+      margin-top: 0.5em;
+      overflow: hidden;
+    }
+    .frs-stat__progress-fill {
+      height: 100%;
+      background: var(--tool-accent);
+    }
+    .frs-stat__target {
+      position: absolute;
+      bottom: 0.5em;
+      right: 0.9em;
+      font-size: 0.55em;
+      color: var(--tool-muted);
+    }
+
+    .frs-modeling__body {
+      display: grid;
+      grid-template-columns: 1.7fr 1fr;
+      gap: 0.8em;
+    }
+    .frs-activities {
+      background: var(--tool-card);
+      border-radius: 0.5em;
+      padding: 0.85em 0.95em;
+    }
+    .frs-activities__title {
+      font-size: 0.78em;
+      font-weight: 700;
+      margin-bottom: 0.55em;
+    }
+    .frs-activity {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      padding: 0.4em 0;
+      border-top: 1px solid var(--tool-border);
+    }
+    .frs-activity:first-of-type { border-top: 0; }
+    .frs-activity__avatar {
+      width: 1.5em;
+      height: 1.5em;
+      border-radius: 0.3em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7em;
+      font-weight: 700;
+      color: #0e1422;
+      flex-shrink: 0;
+    }
+    .frs-activity__avatar--a { background: #34d399; }
+    .frs-activity__avatar--b { background: #60a5fa; }
+    .frs-activity__avatar--c { background: #f472b6; }
+    .frs-activity__avatar--d { background: #fbbf24; }
+    .frs-activity__avatar--e { background: #a78bfa; }
+    .frs-activity__avatar--f { background: #fb7185; }
+    .frs-activity__name {
+      font-size: 0.7em;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    .frs-activity__date {
+      font-size: 0.55em;
+      color: var(--tool-muted);
+      margin-top: 0.1em;
+    }
+    .frs-activity__spacer { flex: 1; }
+    .frs-activity__badge {
+      font-size: 0.55em;
+      font-weight: 700;
+      padding: 0.25em 0.55em;
+      border-radius: 0.25em;
+      letter-spacing: 0.04em;
+    }
+    .frs-activity__badge--approved { background: rgba(52, 211, 153, 0.15); color: #34d399; }
+    .frs-activity__badge--lead { background: rgba(252, 211, 77, 0.15); color: var(--tool-accent); }
+    .frs-activity__badge--applied { background: rgba(252, 211, 77, 0.18); color: var(--tool-accent); }
+    .frs-activity__badge--closed { background: rgba(148, 163, 184, 0.15); color: var(--tool-muted-2); }
+
+    .frs-modeling__sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7em;
+    }
+    .frs-conv {
+      background: var(--tool-card);
+      border-radius: 0.5em;
+      padding: 0.85em 0.95em;
+    }
+    .frs-conv__title {
+      font-size: 0.72em;
+      font-weight: 700;
+      margin-bottom: 0.4em;
+    }
+    .frs-conv__big {
+      font-size: 1.05em;
+      font-weight: 700;
+      color: var(--tool-accent);
+      letter-spacing: -0.01em;
+    }
+    .frs-conv__big strong { font-weight: 700; }
+    .frs-conv__sub {
+      font-size: 0.6em;
+      color: var(--tool-muted);
+      margin-top: 0.25em;
+    }
+    .frs-distribution__row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.45em 0;
+      border-top: 1px solid var(--tool-border);
+      font-size: 0.72em;
+    }
+    .frs-distribution__row:first-of-type { border-top: 0; }
+    .frs-distribution__label { color: var(--tool-muted-2); }
+    .frs-distribution__value { font-weight: 700; }
+
+    /* Callouts */
+    .frs-callout {
+      position: absolute;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      pointer-events: none;
+    }
+    .frs-callout__pill {
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      color: #0e1422;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.8rem;
+      letter-spacing: -0.005em;
+      padding: 8px 14px;
+      border-radius: 999px;
+      box-shadow:
+        0 6px 16px rgba(2, 28, 54, 0.35),
+        0 0 0 2px rgba(252, 211, 77, 0.25);
+      white-space: nowrap;
+    }
+    .frs-callout__line {
+      width: 38px;
+      height: 2px;
+      background: var(--brass);
+      box-shadow: 0 0 8px rgba(252, 211, 77, 0.6);
+      position: relative;
+    }
+    .frs-callout__line::after {
+      content: '';
+      position: absolute;
+      right: -2px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-left: 7px solid var(--brass);
+      border-top: 5px solid transparent;
+      border-bottom: 5px solid transparent;
+    }
+    .frs-callout--reverse {
+      flex-direction: row-reverse;
+    }
+    .frs-callout--reverse .frs-callout__line::after {
+      right: auto;
+      left: -2px;
+      border-left: 0;
+      border-right: 7px solid var(--brass);
+    }
+    @media (max-width: 1120px) {
+      .frs-callout__pill { font-size: 0.7rem; padding: 6px 10px; }
+      .frs-callout__line { width: 24px; }
+    }
+    @media (max-width: 959px) {
+      .frs-callout { display: none; }
+    }
+
+    .frs-callout--hourly {
+      top: 73%;
+      right: -8px;
+      transform: translateX(60%);
+    }
+    .frs-callout--breakeven {
+      bottom: 19%;
+      right: -8px;
+      transform: translateX(60%);
+    }
+    .frs-callout--sources {
+      bottom: 11%;
+      left: 50%;
+      transform: translate(-50%, 60%);
+      flex-direction: column;
+      gap: 4px;
+    }
+    .frs-callout--sources .frs-callout__line {
+      width: 2px;
+      height: 22px;
+    }
+    .frs-callout--sources .frs-callout__line::after {
+      right: 50%;
+      top: -2px;
+      transform: translateX(50%);
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-bottom: 7px solid var(--brass);
+      border-top: 0;
+    }
+    .frs-callout--live {
+      top: 38%;
+      right: -8px;
+      transform: translateX(60%);
+    }
   </style>
 </head>
 <body>
@@ -564,82 +1996,506 @@
     </div>
 
     <!-- ============================================================
-         AI FINANCIAL REVIEW — featured tool
+         AI FINANCIAL REVIEW — click-and-reveal showcase
          ============================================================ -->
-    <section class="featured-tool">
-      <div class="container">
-        <div class="featured-tool__header" data-reveal="up">
-          <span class="eyebrow"><span class="eyebrow__text">AI Tool · 01</span></span>
-          <h2 class="featured-tool__title">AI-Driven Financial Review</h2>
-          <p class="featured-tool__deck">Stop making business decisions based on feel.</p>
-        </div>
+    <section class="frs-section">
+      <div class="frs-section__inner">
+        <div class="frs-hero__grid">
 
-        <div class="featured-tool__split" data-reveal-stagger="120">
-          <div class="featured-tool__copy">
-            <p>You know you should have a handle on your numbers. You don't, really. You know some months are good and some aren't — but if someone asked you which lead source is actually profitable, which partner is earning their place, or which hours of your week are producing the loans, you'd be guessing. Most originators are.</p>
-            <p>Upload your closed loans and lead sources and the tool builds the model for you — which sources are producing, which aren't, where your time is going, where your revenue is actually coming from and where it's leaking.</p>
+          <div class="frs-hero__copy">
+            <h2 class="frs-hero__title">AI-Driven Financial Review Tool</h2>
+            <p class="frs-hero__subhead">Build your year <em>by the numbers</em>.</p>
+            <p class="frs-hero__lede">Most loan originators set an income goal and hope. The AI-Driven Financial Review replaces hope with math. Tell it what you want to earn, how many hours you want to work, and how many weeks you want off. It builds the entire financial picture of your business — what your time is worth, how many loans you need, and exactly where every one of them has to come from.</p>
           </div>
-          <ul class="checklist featured-tool__list">
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              See exactly which lead sources are profitable and which are costing you more than they're producing
-            </li>
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Find out which referral partners are viably earning their place in your week
-            </li>
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Identify where your revenue is leaking before another month slips by
-            </li>
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Stop making business decisions based on feel — start making them based on your actual numbers
-            </li>
-          </ul>
-        </div>
 
-        <img data-reveal="up" class="featured-tool__screenshot" src="assets/financial-review-tool-section.png" alt="AI-Driven Financial Review — tool screenshot" />
+          <div class="frs-hero__metrics" aria-hidden="true">
+            <div class="frs-metric-stack">
+
+              <article class="frs-metric-card frs-metric-card--income" style="--metric-progress: 82%; --metric-delay: 0ms;">
+                <div class="frs-metric-card__main">
+                  <div class="frs-metric-card__topline">
+                    <span class="frs-metric-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 15 4-4 3 3 5-7"/></svg>
+                    </span>
+                    Live production
+                  </div>
+                  <p class="frs-metric-card__label">Total Monthly Income</p>
+                  <p class="frs-metric-card__value"><span data-frs-count="16750" data-frs-prefix="$">$16,750</span></p>
+                  <div class="frs-metric-card__meta">
+                    <span><strong>82%</strong> of monthly target</span>
+                    <span>Target: <strong>$20,333</strong></span>
+                  </div>
+                  <div class="frs-metric-track">
+                    <div class="frs-metric-track__fill"></div>
+                  </div>
+                </div>
+                <div class="frs-metric-card__visual">
+                  <svg class="frs-metric-spark" viewBox="0 0 260 120" role="img" aria-label="">
+                    <path class="frs-metric-spark__area" d="M10 94 C34 86 42 74 64 78 C92 84 104 38 132 48 C154 56 166 34 190 39 C218 45 226 24 250 16 L250 112 L10 112 Z"></path>
+                    <path class="frs-metric-spark__line" d="M10 94 C34 86 42 74 64 78 C92 84 104 38 132 48 C154 56 166 34 190 39 C218 45 226 24 250 16"></path>
+                    <circle class="frs-metric-spark__dot" cx="250" cy="16" r="7"></circle>
+                  </svg>
+                </div>
+              </article>
+
+              <article class="frs-metric-card frs-metric-card--loans" style="--metric-progress: 100%; --metric-delay: 170ms;">
+                <div class="frs-metric-card__main">
+                  <div class="frs-metric-card__topline">
+                    <span class="frs-metric-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-7h6v7"/></svg>
+                    </span>
+                    Closed business
+                  </div>
+                  <p class="frs-metric-card__label">Loans Closed This Month</p>
+                  <p class="frs-metric-card__value"><span data-frs-count="2">2</span></p>
+                  <div class="frs-metric-card__meta">
+                    <span><strong>2x</strong> monthly pace</span>
+                    <span>Target: <strong>1</strong></span>
+                  </div>
+                  <div class="frs-metric-track">
+                    <div class="frs-metric-track__fill"></div>
+                  </div>
+                </div>
+                <div class="frs-metric-card__visual frs-loan-visual">
+                  <div class="frs-loan-tiles">
+                    <span class="frs-loan-tile frs-loan-tile--closed" style="--tile-index: 0;">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                    </span>
+                    <span class="frs-loan-tile frs-loan-tile--closed" style="--tile-index: 1;">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                    </span>
+                    <span class="frs-loan-tile" style="--tile-index: 2;">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+                    </span>
+                    <span class="frs-loan-tile" style="--tile-index: 3;">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+                    </span>
+                  </div>
+                  <div class="frs-loan-caption">
+                    <span><strong>2</strong> closed</span>
+                    <span>4 tracked</span>
+                  </div>
+                </div>
+              </article>
+
+              <article class="frs-metric-card frs-metric-card--rate" style="--metric-progress: 100%; --metric-delay: 340ms;">
+                <div class="frs-metric-card__main">
+                  <div class="frs-metric-card__topline">
+                    <span class="frs-metric-icon">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                    </span>
+                    Time value
+                  </div>
+                  <p class="frs-metric-card__label">Hourly Rate of Pay</p>
+                  <p class="frs-metric-card__value"><span data-frs-count="3045" data-frs-prefix="$" data-frs-suffix="/hr">$3,045/hr</span></p>
+                  <div class="frs-metric-card__meta">
+                    <span><strong>3.6x</strong> over target</span>
+                    <span>Target: <strong>$850/hr</strong></span>
+                  </div>
+                  <div class="frs-metric-track">
+                    <div class="frs-metric-track__fill"></div>
+                  </div>
+                </div>
+                <div class="frs-metric-card__visual frs-rate-visual">
+                  <div class="frs-rate-ring">
+                    <svg viewBox="0 0 100 100">
+                      <circle class="frs-rate-ring__base" cx="50" cy="50" r="44"></circle>
+                      <circle class="frs-rate-ring__value" cx="50" cy="50" r="44"></circle>
+                    </svg>
+                    <span class="frs-rate-ring__center">3.6x</span>
+                    <span class="frs-rate-ring__badge">Ahead</span>
+                  </div>
+                </div>
+              </article>
+
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
-    <!-- ============================================================
-         AI BUSINESS PLANNER — featured tool
-         ============================================================ -->
-    <section class="featured-tool">
-      <div class="container">
-        <div class="featured-tool__header" data-reveal="up">
-          <span class="eyebrow"><span class="eyebrow__text">AI Tool · 02</span></span>
-          <h2 class="featured-tool__title">AI Business &amp; Life Planner</h2>
-          <p class="featured-tool__deck">No more Monday morning paralysis.</p>
-        </div>
+    <section class="frs-section">
+      <div class="frs-section__inner">
+        <div class="frs-reveal__grid">
 
-        <div class="featured-tool__split" data-reveal-stagger="120">
-          <div class="featured-tool__copy">
-            <p>Most loan officers know what they should be doing. They just never have a clear plan for the week in front of them. This tool fixes that.</p>
-            <p>It takes your goals — real goals, not generic ones — and builds a specific execution plan that tells you exactly what to work on today, this week, this quarter. The bottlenecks get diagnosed. The calendar gets designed around the work that actually closes loans.</p>
+          <ol class="frs-accordion">
+
+            <li class="frs-item is-open" data-frs-item="1">
+              <button class="frs-item__header" type="button" aria-expanded="true" aria-controls="frs-panel-1">
+                <span class="frs-item__title">Hourly Rate of Pay Calculator</span>
+                <span class="frs-item__chevron" aria-hidden="true"></span>
+              </button>
+              <div id="frs-panel-1" class="frs-item__panel" role="region">
+                <p class="frs-item__sub">Know what every hour of your time is worth.</p>
+                <p class="frs-item__body">The planner takes your income goal, your working hours, and your vacation weeks and shows you your true hourly rate of pay. The moment you see that number, you stop spending hours on tasks you should be paying someone else to do.</p>
+                <div class="frs-item__inline" data-tool="assumptions"></div>
+              </div>
+            </li>
+
+            <li class="frs-item" data-frs-item="2">
+              <button class="frs-item__header" type="button" aria-expanded="false" aria-controls="frs-panel-2">
+                <span class="frs-item__title">Break-Even Loan Calculator</span>
+                <span class="frs-item__chevron" aria-hidden="true"></span>
+              </button>
+              <div id="frs-panel-2" class="frs-item__panel" role="region">
+                <p class="frs-item__sub">The most important number in your business.</p>
+                <p class="frs-item__body">Enter your expenses and tax bracket. The planner shows you the exact number of loans you have to close every month just to break even. Most originators have never run this number. Once you do, every decision gets easier.</p>
+                <div class="frs-item__inline" data-tool="breakeven"></div>
+              </div>
+            </li>
+
+            <li class="frs-item" data-frs-item="3">
+              <button class="frs-item__header" type="button" aria-expanded="false" aria-controls="frs-panel-3">
+                <span class="frs-item__title">Lead Source Mapping</span>
+                <span class="frs-item__chevron" aria-hidden="true"></span>
+              </button>
+              <div id="frs-panel-3" class="frs-item__panel" role="region">
+                <p class="frs-item__sub">Every loan, mapped to its source.</p>
+                <p class="frs-item__body">The planner reverse-engineers your year — past database, referral partners, consumer direct marketing. It tells you how many leads you need from each source, and the conversion rate you have to hit on each, to land your income goal.</p>
+                <div class="frs-item__inline" data-tool="sources"></div>
+              </div>
+            </li>
+
+            <li class="frs-item" data-frs-item="4">
+              <button class="frs-item__header" type="button" aria-expanded="false" aria-controls="frs-panel-4">
+                <span class="frs-item__title">Live Performance Tracking</span>
+                <span class="frs-item__chevron" aria-hidden="true"></span>
+              </button>
+              <div id="frs-panel-4" class="frs-item__panel" role="region">
+                <p class="frs-item__sub">Always know if you're on pace.</p>
+                <p class="frs-item__body">Every lead, every loan, every closed deal feeds your numbers in real time. Your batting average. Your income. Your hourly rate. Updating live — so you can adjust before the year gets away from you, not after.</p>
+                <div class="frs-item__inline" data-tool="modeling"></div>
+              </div>
+            </li>
+
+          </ol>
+
+          <div class="frs-stage" aria-live="polite">
+
+            <div class="frs-stage__panel is-active" data-frs-panel="1" data-tool="assumptions">
+              <span class="frs-callout frs-callout--hourly">
+                <span class="frs-callout__line"></span>
+                <span class="frs-callout__pill">Your true hourly rate</span>
+              </span>
+            </div>
+
+            <div class="frs-stage__panel" data-frs-panel="2" data-tool="breakeven">
+              <span class="frs-callout frs-callout--breakeven">
+                <span class="frs-callout__line"></span>
+                <span class="frs-callout__pill">Loans to break even</span>
+              </span>
+            </div>
+
+            <div class="frs-stage__panel" data-frs-panel="3" data-tool="sources">
+              <span class="frs-callout frs-callout--sources">
+                <span class="frs-callout__pill">Your year, mapped to its sources</span>
+                <span class="frs-callout__line"></span>
+              </span>
+            </div>
+
+            <div class="frs-stage__panel" data-frs-panel="4" data-tool="modeling">
+              <span class="frs-callout frs-callout--live">
+                <span class="frs-callout__line"></span>
+                <span class="frs-callout__pill">Your batting average — live</span>
+              </span>
+            </div>
+
           </div>
-          <ul class="checklist featured-tool__list">
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Build your quarterly plan and see it broken into weekly priorities tied to actual production
-            </li>
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Find the exact bottleneck holding your numbers back right now and get a diagnosis specific to your business
-            </li>
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Convert what you're learning inside the platform into concrete actions for this week
-            </li>
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Design your calendar so your best hours go to the work that actually closes loans
-            </li>
-          </ul>
         </div>
+      </div>
+    </section>
 
-        <img data-reveal="up" class="featured-tool__screenshot" src="assets/business-planning-tool-section.png" alt="AI Business &amp; Life Planner — tool screenshot" />
+    <!-- Tool templates for AI Financial Review showcase -->
+    <template id="tpl-tool-assumptions">
+      <div class="frs-tool">
+        <div class="frs-tool__topbar">
+          <span class="frs-tool__topbar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M9 3v2h6V3"/><path d="M9 11h6M9 15h4"/></svg>
+          </span>
+          <div>
+            <p class="frs-tool__topbar-title">Financial Planning Assessment</p>
+            <p class="frs-tool__topbar-subtitle">Build your financial roadmap</p>
+          </div>
+        </div>
+        <div class="frs-tool__content">
+          <p class="frs-tool__breadcrumb">Financial Planning <span class="frs-tool__breadcrumb-sep">›</span><span class="frs-tool__breadcrumb-active">Assessment</span></p>
+          <div class="frs-tool__progress">
+            <div class="frs-tool__progress-row">
+              <span>Step 2 of 6: Assumptions</span>
+              <span class="frs-tool__progress-pct">33%</span>
+            </div>
+            <div class="frs-tool__progress-bar"><div class="frs-tool__progress-fill" style="width:33%"></div></div>
+          </div>
+          <div class="frs-tool__panel">
+            <h3 class="frs-tool__panel-title">Core Assumptions</h3>
+            <div class="frs-panel-assumptions">
+              <div class="frs-field"><p class="frs-field__label">my average gross income per loan</p><div class="frs-field__input"><span class="frs-field__prefix">$</span>4000</div></div>
+              <div class="frs-field"><p class="frs-field__label">my desired annual income</p><div class="frs-field__input"><span class="frs-field__prefix">$</span>400000</div></div>
+              <div class="frs-field"><p class="frs-field__label">Hours I desire to work per week</p><div class="frs-field__input">45</div></div>
+              <div class="frs-field"><p class="frs-field__label">weeks I desire to take for vacation annually</p><div class="frs-field__input">3</div></div>
+              <div class="frs-field frs-field--highlight"><p class="frs-field__label">number of weeks I will work annually</p><div class="frs-field__input">49</div></div>
+              <div class="frs-field frs-field--highlight"><p class="frs-field__label">my desired hourly rate of pay</p><div class="frs-field__input">$181</div></div>
+            </div>
+          </div>
+          <div class="frs-tool__footer">
+            <button class="frs-tool__btn frs-tool__btn--back">‹ Back</button>
+            <button class="frs-tool__btn frs-tool__btn--next">Next ›</button>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="tpl-tool-breakeven">
+      <div class="frs-tool">
+        <div class="frs-tool__topbar">
+          <span class="frs-tool__topbar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M9 3v2h6V3"/><path d="M9 11h6M9 15h4"/></svg>
+          </span>
+          <div>
+            <p class="frs-tool__topbar-title">Financial Planning Assessment</p>
+            <p class="frs-tool__topbar-subtitle">Build your financial roadmap</p>
+          </div>
+        </div>
+        <div class="frs-tool__content">
+          <p class="frs-tool__breadcrumb">Financial Planning <span class="frs-tool__breadcrumb-sep">›</span><span class="frs-tool__breadcrumb-active">Assessment</span></p>
+          <div class="frs-tool__progress">
+            <div class="frs-tool__progress-row">
+              <span>Step 3 of 6: Step #1: Break-Even</span>
+              <span class="frs-tool__progress-pct">50%</span>
+            </div>
+            <div class="frs-tool__progress-bar"><div class="frs-tool__progress-fill" style="width:50%"></div></div>
+          </div>
+          <div class="frs-tool__panel">
+            <h3 class="frs-tool__panel-title frs-tool__panel-title--large">Step #1: How many loans do I need to cover my expenses?</h3>
+            <div class="frs-panel-breakeven__inputs">
+              <div class="frs-field"><p class="frs-field__label">Current Monthly Expenses (Personal &amp; Business)</p><div class="frs-field__input"><span class="frs-field__prefix">$</span>15000</div></div>
+              <div class="frs-field"><p class="frs-field__label">Current Tax Bracket (Federal &amp; State Combined)</p><div class="frs-field__input">32<span class="frs-field__suffix">%</span></div></div>
+            </div>
+            <div class="frs-panel-breakeven__results">
+              <div class="frs-field frs-field--highlight"><p class="frs-field__label">Gross Before-Tax Income Needed (Monthly)</p><div class="frs-field__input">$22,059</div></div>
+              <div class="frs-field frs-field--highlight"><p class="frs-field__label">Annual Income Needed To Break Even</p><div class="frs-field__input">$264,706</div></div>
+              <div class="frs-field frs-field--highlight"><p class="frs-field__label">Loans Needed per Month to Break-Even</p><div class="frs-field__input">5.51</div></div>
+            </div>
+          </div>
+          <div class="frs-tool__footer">
+            <button class="frs-tool__btn frs-tool__btn--back">‹ Back</button>
+            <button class="frs-tool__btn frs-tool__btn--next">Next ›</button>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="tpl-tool-sources">
+      <div class="frs-tool">
+        <div class="frs-tool__topbar">
+          <span class="frs-tool__topbar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M9 3v2h6V3"/><path d="M9 11h6M9 15h4"/></svg>
+          </span>
+          <div>
+            <p class="frs-tool__topbar-title">Financial Planning Assessment</p>
+            <p class="frs-tool__topbar-subtitle">Build your financial roadmap</p>
+          </div>
+        </div>
+        <div class="frs-tool__content">
+          <p class="frs-tool__breadcrumb">Financial Planning <span class="frs-tool__breadcrumb-sep">›</span><span class="frs-tool__breadcrumb-active">Assessment</span></p>
+          <div class="frs-tool__progress">
+            <div class="frs-tool__progress-row">
+              <span>Step 4 of 6: Step #2: Business Sources</span>
+              <span class="frs-tool__progress-pct">67%</span>
+            </div>
+            <div class="frs-tool__progress-bar"><div class="frs-tool__progress-fill" style="width:67%"></div></div>
+          </div>
+          <div class="frs-tool__panel">
+            <h3 class="frs-tool__panel-title frs-tool__panel-title--large">Step #2: Where is this business going to come from?</h3>
+
+            <div class="frs-source">
+              <div class="frs-source__header">
+                <span class="frs-source__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 19c0-3 3-5 6-5s6 2 6 5"/><path d="M14 19c0-2.2 2-3.5 4-3.5s3 1.3 3 3"/></svg></span>
+                (1) Client Database
+              </div>
+              <div class="frs-source__grid">
+                <div class="frs-field"><p class="frs-field__label">current number of people in my database</p><div class="frs-field__input">789</div></div>
+                <div class="frs-field"><p class="frs-field__label">closing ratio on past clients</p><div class="frs-field__input">10<span class="frs-field__suffix">%</span></div></div>
+                <div class="frs-field frs-source__total frs-field--highlight"><p class="frs-field__label">Annual Loans from Database</p><div class="frs-field__input">34.94</div></div>
+              </div>
+            </div>
+
+            <div class="frs-source">
+              <div class="frs-source__header">
+                <span class="frs-source__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+                (2) Strategic Partners
+              </div>
+              <div class="frs-source__grid">
+                <div class="frs-field"><p class="frs-field__label">number of active referral partners</p><div class="frs-field__input">12</div></div>
+                <div class="frs-field"><p class="frs-field__label">avg loans referred per partner</p><div class="frs-field__input">2.25</div></div>
+                <div class="frs-field frs-source__total frs-field--highlight"><p class="frs-field__label">Annual Loans from Partners</p><div class="frs-field__input">13.50</div></div>
+              </div>
+            </div>
+
+            <div class="frs-source">
+              <div class="frs-source__header">
+                <span class="frs-source__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span>
+                (3) Consumer Direct
+              </div>
+              <div class="frs-source__grid">
+                <div class="frs-field"><p class="frs-field__label">annual leads from marketing</p><div class="frs-field__input">300</div></div>
+                <div class="frs-field"><p class="frs-field__label">closing ratio on marketing leads</p><div class="frs-field__input">10<span class="frs-field__suffix">%</span></div></div>
+                <div class="frs-field frs-source__total frs-field--highlight"><p class="frs-field__label">Annual Loans from CD</p><div class="frs-field__input">30.00</div></div>
+              </div>
+            </div>
+
+            <div class="frs-source-totals">
+              <div>
+                <p class="frs-source-totals__label">Total Annual Loans:</p>
+                <p class="frs-source-totals__value">78.44</p>
+              </div>
+              <div>
+                <p class="frs-source-totals__label">Total Monthly Loans:</p>
+                <p class="frs-source-totals__value">6.54</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="tpl-tool-modeling">
+      <div class="frs-tool frs-tool--modeling">
+        <div class="frs-tool__topbar">
+          <span class="frs-tool__topbar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/><path d="M8 14l2 2 5-5"/></svg>
+          </span>
+          <div>
+            <p class="frs-tool__topbar-title">Financial Modeling Tool</p>
+            <p class="frs-tool__topbar-subtitle">At-a-glance</p>
+          </div>
+          <span class="frs-tool__topbar-spacer"></span>
+          <span class="frs-tool__topbar-icon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></span>
+          <span class="frs-tool__topbar-avatar">A</span>
+        </div>
+        <div class="frs-tool__content">
+          <div class="frs-modeling__toolbar">
+            <div class="frs-modeling__tabs">
+              <span class="frs-modeling__tab frs-modeling__tab--active">Monthly</span>
+              <span class="frs-modeling__tab">Yearly</span>
+            </div>
+            <span class="frs-modeling__toolbar-spacer"></span>
+            <span class="frs-modeling__btn frs-modeling__btn--ghost">+ New Lead</span>
+            <span class="frs-modeling__btn frs-modeling__btn--primary">+ New Closed Loan</span>
+          </div>
+          <div class="frs-modeling__stats">
+            <div class="frs-stat">
+              <p class="frs-stat__label">Total Monthly Income</p>
+              <p class="frs-stat__value">$16,750</p>
+              <div class="frs-stat__progress"><div class="frs-stat__progress-fill" style="width:82%"></div></div>
+              <span class="frs-stat__target">Target: $20,333</span>
+            </div>
+            <div class="frs-stat">
+              <p class="frs-stat__label">Loans This Month</p>
+              <p class="frs-stat__value">2</p>
+              <div class="frs-stat__progress"><div class="frs-stat__progress-fill" style="width:100%"></div></div>
+              <span class="frs-stat__target">Target: 1</span>
+            </div>
+            <div class="frs-stat">
+              <p class="frs-stat__label">Hourly Rate This Month</p>
+              <p class="frs-stat__value">$3,045/hr</p>
+              <div class="frs-stat__progress"><div class="frs-stat__progress-fill" style="width:100%"></div></div>
+              <span class="frs-stat__target">Target: $850/hr</span>
+            </div>
+          </div>
+          <div class="frs-modeling__body">
+            <div class="frs-activities">
+              <p class="frs-activities__title">Recent Activities</p>
+              <div class="frs-activity">
+                <span class="frs-activity__avatar frs-activity__avatar--a">M</span>
+                <div>
+                  <p class="frs-activity__name">Mikayla Nielsen Approved</p>
+                  <p class="frs-activity__date">April · Thursday, 2026</p>
+                </div>
+                <span class="frs-activity__spacer"></span>
+                <span class="frs-activity__badge frs-activity__badge--approved">APPROVED</span>
+              </div>
+              <div class="frs-activity">
+                <span class="frs-activity__avatar frs-activity__avatar--d">T</span>
+                <div>
+                  <p class="frs-activity__name">New lead: Tyler Browning</p>
+                  <p class="frs-activity__date">April · Thursday, 2026</p>
+                </div>
+                <span class="frs-activity__spacer"></span>
+                <span class="frs-activity__badge frs-activity__badge--lead">LEAD</span>
+              </div>
+              <div class="frs-activity">
+                <span class="frs-activity__avatar frs-activity__avatar--b">J</span>
+                <div>
+                  <p class="frs-activity__name">New lead: Jason Trawick</p>
+                  <p class="frs-activity__date">April · Thursday, 2026</p>
+                </div>
+                <span class="frs-activity__spacer"></span>
+                <span class="frs-activity__badge frs-activity__badge--lead">LEAD</span>
+              </div>
+              <div class="frs-activity">
+                <span class="frs-activity__avatar frs-activity__avatar--c">A</span>
+                <div>
+                  <p class="frs-activity__name">Alicia Dane Applied</p>
+                  <p class="frs-activity__date">April · Thursday, 2026</p>
+                </div>
+                <span class="frs-activity__spacer"></span>
+                <span class="frs-activity__badge frs-activity__badge--applied">APPLIED</span>
+              </div>
+              <div class="frs-activity">
+                <span class="frs-activity__avatar frs-activity__avatar--e">J</span>
+                <div>
+                  <p class="frs-activity__name">New closed loan for Jordan Pace</p>
+                  <p class="frs-activity__date">April · Thursday, 2026</p>
+                </div>
+                <span class="frs-activity__spacer"></span>
+                <span class="frs-activity__badge frs-activity__badge--closed">CLOSED</span>
+              </div>
+              <div class="frs-activity">
+                <span class="frs-activity__avatar frs-activity__avatar--f">S</span>
+                <div>
+                  <p class="frs-activity__name">New closed loan for Shane Pippin</p>
+                  <p class="frs-activity__date">April · Thursday, 2026</p>
+                </div>
+                <span class="frs-activity__spacer"></span>
+                <span class="frs-activity__badge frs-activity__badge--closed">CLOSED</span>
+              </div>
+            </div>
+            <div class="frs-modeling__sidebar">
+              <div class="frs-conv">
+                <p class="frs-conv__title">Conversion Average</p>
+                <p class="frs-conv__big"><strong>4 Closed</strong> / 11 Leads</p>
+                <p class="frs-conv__sub">Up from last month by one prior data</p>
+              </div>
+              <div class="frs-conv">
+                <p class="frs-conv__title">Loan Generation Distribution (Live)</p>
+                <div class="frs-distribution__row"><span class="frs-distribution__label">Closed Loans</span><span class="frs-distribution__value">4</span></div>
+                <div class="frs-distribution__row"><span class="frs-distribution__label">Loans In Progress</span><span class="frs-distribution__value">2</span></div>
+                <div class="frs-distribution__row"><span class="frs-distribution__label">Warm Leads</span><span class="frs-distribution__value">3</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <!-- ============================================================
+         AI BUSINESS & LIFE PLANNER — hero-format showcase
+         ============================================================ -->
+    <section class="frs-section">
+      <div class="frs-section__inner">
+        <div class="frs-hero__grid">
+
+          <div class="frs-hero__copy">
+            <h2 class="frs-hero__title">AI Business &amp; Life Planner Tool</h2>
+            <p class="frs-hero__subhead">No more <em>Monday morning paralysis</em>.</p>
+            <p class="frs-hero__lede">Most loan officers know what they should be doing. They just never have a clear plan for the week in front of them. This tool fixes that. It takes your goals &mdash; real goals, not generic ones &mdash; and builds a specific execution plan that tells you exactly what to work on today, this week, this quarter. The bottlenecks get diagnosed. The calendar gets designed around the work that actually closes loans.</p>
+          </div>
+
+          <div class="frs-hero__metrics frs-hero__metrics--bare" aria-hidden="true">
+            <img class="bp-screenshot" src="assets/ai-business-planning-2.png" alt="AI Business &amp; Life Planner screenshot" />
+          </div>
+        </div>
       </div>
     </section>
 
@@ -668,7 +2524,7 @@
                 </div>
                 <h3 class="aicg-coach__heading">Sales &amp; Scripting Coach</h3>
               </div>
-              <span class="aicg-coach__eyebrow">[OUTCOME EYEBROW]</span>
+              <span class="aicg-coach__eyebrow">Close the hard conversations</span>
               <p class="aicg-coach__desc">Like having Tim Braheem available at 10pm on a Tuesday. Paste a difficult message, prep for a hard conversation, or upload a call recording and get specific coaching on what to do differently.</p>
             </article>
 
@@ -680,7 +2536,7 @@
                 </div>
                 <h3 class="aicg-coach__heading">Content Coach</h3>
               </div>
-              <span class="aicg-coach__eyebrow">[OUTCOME EYEBROW]</span>
+              <span class="aicg-coach__eyebrow">Find the fix, fast</span>
               <p class="aicg-coach__desc">Tell it what's happening in your business right now and it finds the exact training — across 200+ modules, masterclasses, and Office Hours sessions — that fixes it.</p>
             </article>
 
@@ -692,7 +2548,7 @@
                 </div>
                 <h3 class="aicg-coach__heading">Health, Mindset &amp; Vitality Coach</h3>
               </div>
-              <span class="aicg-coach__eyebrow">[OUTCOME EYEBROW]</span>
+              <span class="aicg-coach__eyebrow">Perform under pressure</span>
               <p class="aicg-coach__desc">Daily support for the internal state everything else runs on. Reset before high-stakes conversations, work through doubt and overwhelm, and build the consistency that makes everything else sustainable.</p>
             </article>
 
@@ -723,7 +2579,7 @@
                 </div>
                 <h3 class="aicg-coach__heading">Strategic Thought Partner</h3>
               </div>
-              <span class="aicg-coach__eyebrow">[OUTCOME EYEBROW]</span>
+              <span class="aicg-coach__eyebrow">Decide with conviction</span>
               <p class="aicg-coach__desc">A second brain for the decisions that don't fit on a checklist. Should you hire? Change companies? Restructure your team? Walk into a hard decision with someone to think it through with.</p>
             </article>
 
@@ -735,7 +2591,7 @@
                 </div>
                 <h3 class="aicg-coach__heading">Performance Coach</h3>
               </div>
-              <span class="aicg-coach__eyebrow">[OUTCOME EYEBROW]</span>
+              <span class="aicg-coach__eyebrow">Hit the goals you set</span>
               <p class="aicg-coach__desc">Daily and weekly accountability tuned to your actual goals — not a generic productivity framework. Reviews what you said you'd do, what you actually did, and what's getting in the way.</p>
             </article>
 
@@ -747,7 +2603,7 @@
                 </div>
                 <h3 class="aicg-coach__heading">Realtor &amp; Partner Coach</h3>
               </div>
-              <span class="aicg-coach__eyebrow">[OUTCOME EYEBROW]</span>
+              <span class="aicg-coach__eyebrow">Turn partners into pipeline</span>
               <p class="aicg-coach__desc">Strategy and scripting for the relationships that drive most of your business. Prep partner meetings, draft outreach, handle the awkward conversations, and build a referral base that compounds.</p>
             </article>
 
@@ -761,98 +2617,155 @@
     <!-- ============================================================
          TRAINING FRAMEWORK
          ============================================================ -->
-    <section class="section bg-surface-low">
-      <div class="container">
+    <section class="disc-section">
+      <div class="disc-section__inner">
 
-        <div data-reveal="up" style="margin-bottom: var(--space-xl);">
-          <span class="eyebrow"><span class="eyebrow__text">The Training Framework</span></span>
-          <h2 class="section-heading" style="margin-bottom: var(--space-md);">Built Upon The 8 Disciplines of Mortgage Origination Mastery</h2>
-          <p class="t-body-lg t-muted">Nobody taught you how to run a mortgage business. They taught you how to originate loans. The 8 Disciplines cover what's actually required to do both — so you're building something that compounds instead of grinding through a job that resets every Monday.</p>
+        <div class="disc-split">
+
+          <!-- LEFT: heading + body -->
+          <div class="disc-copy" data-reveal="up">
+            <span class="disc-copy__eyebrow">The Training Framework</span>
+            <h2 class="disc-copy__title">Built upon the <em>8 Disciplines</em> of Mortgage Origination Mastery.</h2>
+            <p class="disc-copy__lede">Nobody taught you how to run a mortgage business. They taught you how to originate loans. The 8 Disciplines cover what's actually required to do both — so you're building something that compounds instead of grinding through a job that resets every Monday.</p>
+          </div>
+
+          <!-- RIGHT: vertical marquee of module thumbnails -->
+          <div class="disc-marquee" aria-hidden="true">
+            <div class="disc-marquee__col disc-marquee__col--up">
+              <div class="disc-marquee__track">
+                <div class="disc-thumb"><img src="assets/connect-with-target-agents-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/Minimizing-Taxes-Maximizing-Investments-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/fixed-adjustable-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/handling-a-negative-review-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/peak-performance-rituals-module-thumbnail.jpg" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/experiencing-your-genius-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/reverse%20mortgages-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/turning-clients-into-advocates-module-thumbnail.jpg" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/ultimate-business-planning-tool-module-thumbnail.jpg" alt="" /></div>
+                <!-- duplicate set for seamless loop -->
+                <div class="disc-thumb"><img src="assets/connect-with-target-agents-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/Minimizing-Taxes-Maximizing-Investments-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/fixed-adjustable-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/handling-a-negative-review-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/peak-performance-rituals-module-thumbnail.jpg" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/experiencing-your-genius-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/reverse%20mortgages-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/turning-clients-into-advocates-module-thumbnail.jpg" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/ultimate-business-planning-tool-module-thumbnail.jpg" alt="" /></div>
+              </div>
+            </div>
+
+            <div class="disc-marquee__col disc-marquee__col--down">
+              <div class="disc-marquee__track">
+                <div class="disc-thumb"><img src="assets/female-empowerment-module-thumbnail.jpg" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/email-optimization-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/gratitude-calls-module-thumbnail.jpg" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/handling-objections-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/employee-reviews-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/the-process-for-creating-content-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/presenting-new-lead-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/take-care-of-your-epople-module-thumbnail.png" alt="" /></div>
+                <!-- duplicate set for seamless loop -->
+                <div class="disc-thumb"><img src="assets/female-empowerment-module-thumbnail.jpg" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/email-optimization-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/gratitude-calls-module-thumbnail.jpg" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/handling-objections-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/employee-reviews-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/the-process-for-creating-content-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/presenting-new-lead-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="assets/take-care-of-your-epople-module-thumbnail.png" alt="" /></div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /disc-split -->
+
+        <!-- Discipline clusters -->
+        <div class="disc-clusters">
+
+          <!-- Cluster 1: Business disciplines -->
+          <div class="discipline-cluster">
+            <span class="discipline-cluster__label">Business Disciplines</span>
+            <div class="discipline-cluster__grid discipline-cluster__grid--5col">
+
+              <div class="discipline-card">
+                <span class="discipline-card__num">01</span>
+                <h3 class="discipline-card__title">Essential Product Knowledge</h3>
+                <p class="discipline-card__desc">Stop competing on rate. Become the expert in the room — on products, economics, mortgage math, and client psychology — so your advice commands trust instead of comparison.</p>
+              </div>
+
+              <div class="discipline-card">
+                <span class="discipline-card__num">02</span>
+                <h3 class="discipline-card__title">A System for Selling</h3>
+                <p class="discipline-card__desc">A structured, repeatable sales framework built around the Pre-Purchase Consultation. Every conversation moves from rate-shopping to committed client — predictably, not by feel.</p>
+              </div>
+
+              <div class="discipline-card">
+                <span class="discipline-card__num">03</span>
+                <h3 class="discipline-card__title">Marketing Mastery</h3>
+                <p class="discipline-card__desc">Stop waiting for the phone to ring. Build a consistent message, a real referral strategy, and a presence that brings opportunities to you instead of making you chase them.</p>
+              </div>
+
+              <div class="discipline-card">
+                <span class="discipline-card__num">04</span>
+                <h3 class="discipline-card__title">Team Building &amp; Leadership</h3>
+                <p class="discipline-card__desc">Stop trying to do everything yourself. Learn exactly when and who to hire, how to delegate without things falling apart, and how to build a team that doesn't need you to function.</p>
+              </div>
+
+              <div class="discipline-card">
+                <span class="discipline-card__num">05</span>
+                <h3 class="discipline-card__title">Systems of Customer Service</h3>
+                <p class="discipline-card__desc">Home of the Perfect Loan Process. A repeatable, proactive client experience that reduces stress, prevents surprises, and turns every closing into the starting point for the next loan.</p>
+              </div>
+
+            </div>
+
+            <!-- Inline testimonial quote (homepage quote-card style) -->
+            <figure class="quote-card">
+              <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
+              <blockquote class="quote-card__quote">If you did nothing else but go through the System for Selling module &mdash; it&rsquo;ll change your career and your life.</blockquote>
+              <figcaption class="quote-card__attr">
+                <div class="quote-card__name">Jim Juergens</div>
+                <div class="quote-card__org">NEO Home Loans</div>
+              </figcaption>
+            </figure>
+          </div>
+
+          <!-- Cluster 2: Personal disciplines -->
+          <div class="discipline-cluster">
+            <span class="discipline-cluster__label">Personal Disciplines</span>
+            <div class="discipline-cluster__grid discipline-cluster__grid--3col">
+
+              <div class="discipline-card">
+                <span class="discipline-card__num">06</span>
+                <h3 class="discipline-card__title">Legacy &amp; Freedom</h3>
+                <p class="discipline-card__desc">Design the life you actually want — not just a career you drift through. Vision, wealth beyond commissions, succession thinking, and building a business that serves the life you're trying to live.</p>
+              </div>
+
+              <div class="discipline-card">
+                <span class="discipline-card__num">07</span>
+                <h3 class="discipline-card__title">Mindset, Health &amp; Personal Development</h3>
+                <p class="discipline-card__desc">The problems you think are external — leads, conversion, the market — are often internal. This discipline addresses what's actually underneath: fear, self-doubt, emotional reactivity, and the energy that everything else runs on.</p>
+              </div>
+
+              <div class="discipline-card">
+                <span class="discipline-card__num">08</span>
+                <h3 class="discipline-card__title">Time &amp; Task Management</h3>
+                <p class="discipline-card__desc">Stop letting the day control you. Build planning systems that run from annual goals to daily priorities — so your best hours go to the work that actually moves your business forward.</p>
+              </div>
+
+            </div>
+          </div>
+
         </div>
 
-        <!-- Wide intro video -->
-        <div class="video-ph video-ph--wide" style="margin-bottom: var(--space-xl);">
-          <div class="video-ph__inner">
-            <button class="video-ph__btn" aria-label="Watch introduction to the 8 Disciplines">
-              <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            </button>
-            <span class="video-ph__caption">Introduction to the 8 Disciplines of Origination Mastery</span>
-          </div>
-          <div class="video-ph__foot">
-            <span class="video-ph__badge">Teaching Module</span>
-            <span class="video-ph__dur">12:30</span>
-          </div>
-          <div class="video-ph__progress"><div class="video-ph__progress-fill" style="width: 0;"></div></div>
-        </div>
-
-        <!-- Cluster 1: Building the business -->
-        <div class="discipline-cluster">
-          <span class="discipline-cluster__label">Building the Business</span>
-          <div class="discipline-cluster__grid discipline-cluster__grid--5col">
-
-            <div class="discipline-card">
-              <span class="discipline-card__num">01</span>
-              <h3 class="discipline-card__title">Essential Product Knowledge</h3>
-              <p class="discipline-card__desc">Stop competing on rate. Become the expert in the room — on products, economics, mortgage math, and client psychology — so your advice commands trust instead of comparison.</p>
-            </div>
-
-            <div class="discipline-card">
-              <span class="discipline-card__num">02</span>
-              <h3 class="discipline-card__title">A System for Selling</h3>
-              <p class="discipline-card__desc">A structured, repeatable sales framework built around the Pre-Purchase Consultation. Every conversation moves from rate-shopping to committed client — predictably, not by feel.</p>
-            </div>
-
-            <div class="discipline-card">
-              <span class="discipline-card__num">03</span>
-              <h3 class="discipline-card__title">Marketing Mastery</h3>
-              <p class="discipline-card__desc">Stop waiting for the phone to ring. Build a consistent message, a real referral strategy, and a presence that brings opportunities to you instead of making you chase them.</p>
-            </div>
-
-            <div class="discipline-card">
-              <span class="discipline-card__num">04</span>
-              <h3 class="discipline-card__title">Team Building &amp; Leadership</h3>
-              <p class="discipline-card__desc">Stop trying to do everything yourself. Learn exactly when and who to hire, how to delegate without things falling apart, and how to build a team that doesn't need you to function.</p>
-            </div>
-
-            <div class="discipline-card">
-              <span class="discipline-card__num">05</span>
-              <h3 class="discipline-card__title">Systems of Customer Service</h3>
-              <p class="discipline-card__desc">Home of the Perfect Loan Process. A repeatable, proactive client experience that reduces stress, prevents surprises, and turns every closing into the starting point for the next loan.</p>
-            </div>
-
-          </div>
-
-          <!-- Inline testimonial quote -->
-          <blockquote style="margin-top: var(--space-lg); padding: var(--space-md) var(--space-lg); border-left: 2px solid var(--brass); background: var(--surface-container-lowest); border-radius: 0 var(--radius-xl) var(--radius-xl) 0; box-shadow: var(--shadow-sm);">
-            <p style="font-style: italic; font-size: 1.0625rem; line-height: 1.65; color: var(--on-surface-variant); margin: 0 0 var(--space-xs);">"If you did nothing else but go through the System for Selling module — it'll change your career and your life."</p>
-            <cite style="font-style: normal; font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass);">Jim Juergens — Loan Atlas Member</cite>
-          </blockquote>
-        </div>
-
-        <!-- Cluster 2: Running the person -->
-        <div class="discipline-cluster">
-          <span class="discipline-cluster__label">Running the Person Behind the Business</span>
-          <div class="discipline-cluster__grid discipline-cluster__grid--3col">
-
-            <div class="discipline-card">
-              <span class="discipline-card__num">06</span>
-              <h3 class="discipline-card__title">Legacy &amp; Freedom</h3>
-              <p class="discipline-card__desc">Design the life you actually want — not just a career you drift through. Vision, wealth beyond commissions, succession thinking, and building a business that serves the life you're trying to live.</p>
-            </div>
-
-            <div class="discipline-card">
-              <span class="discipline-card__num">07</span>
-              <h3 class="discipline-card__title">Mindset, Health &amp; Personal Development</h3>
-              <p class="discipline-card__desc">The problems you think are external — leads, conversion, the market — are often internal. This discipline addresses what's actually underneath: fear, self-doubt, emotional reactivity, and the energy that everything else runs on.</p>
-            </div>
-
-            <div class="discipline-card">
-              <span class="discipline-card__num">08</span>
-              <h3 class="discipline-card__title">Time &amp; Task Management</h3>
-              <p class="discipline-card__desc">Stop letting the day control you. Build planning systems that run from annual goals to daily priorities — so your best hours go to the work that actually moves your business forward.</p>
-            </div>
-
-          </div>
+        <!-- Full-width intro video -->
+        <div class="video-ph video-ph--wide disc-video">
+          <iframe
+            src="https://player.vimeo.com/video/885102725?title=0&byline=0&portrait=0"
+            title="Introduction to the 8 Disciplines of Origination Mastery"
+            allow="autoplay; fullscreen; picture-in-picture"
+            allowfullscreen></iframe>
         </div>
 
       </div>
@@ -873,104 +2786,84 @@
         <div class="coaching-grid" data-reveal-stagger="120">
 
           <!-- Masterclasses -->
-          <div class="coaching-card">
+          <a class="coaching-card" href="events.html">
             <div class="coaching-card__media">
               <div class="video-ph" style="aspect-ratio: auto; width: 100%; height: 100%; border-radius: 0; box-shadow: none; border: none;">
-                <div class="video-ph__inner">
-                  <button class="video-ph__btn" aria-label="Watch Masterclass preview">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                  </button>
-                  <span class="video-ph__caption">Masterclass Preview</span>
-                </div>
-                <div class="video-ph__foot">
-                  <span class="video-ph__badge">On Demand</span>
-                  <span class="video-ph__dur">68 min</span>
-                </div>
+                <img src="assets/what%27s-inside-masterclass.jpg" alt="" />
               </div>
             </div>
             <div class="coaching-card__body">
               <span class="coaching-card__type">Masterclasses</span>
               <h3 class="coaching-card__title">60–90 minute deep dives on the systems that move your business.</h3>
               <p class="coaching-card__desc">Led by Atlas faculty. The System for Selling, Strike Rate Strategy, Realtor attraction, AI productivity, market economics — with slides, worksheets, and live Q&amp;A. This is where you get the framework.</p>
+              <span class="coaching-card__arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </span>
             </div>
-          </div>
+          </a>
 
           <!-- Office Hours -->
-          <div class="coaching-card">
+          <a class="coaching-card" href="events.html">
             <div class="coaching-card__media">
-              <div class="video-ph" style="aspect-ratio: auto; width: 100%; height: 100%; border-radius: 0; box-shadow: none; border: none; background: linear-gradient(135deg, #0f1e35 0%, #0a1828 60%, #142035 100%);">
-                <div class="video-ph__inner">
-                  <button class="video-ph__btn" aria-label="Watch Office Hours preview">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                  </button>
-                  <span class="video-ph__caption">Office Hours — This Thursday</span>
-                </div>
-                <div class="video-ph__foot">
-                  <span class="video-ph__badge video-ph__badge--live">Live Weekly</span>
-                  <span class="video-ph__dur">60 min</span>
-                </div>
+              <div class="video-ph" style="aspect-ratio: auto; width: 100%; height: 100%; border-radius: 0; box-shadow: none; border: none;">
+                <img src="assets/what%27s-inside-office-hours.jpg" alt="" />
               </div>
             </div>
             <div class="coaching-card__body">
               <span class="coaching-card__type">Office Hours</span>
               <h3 class="coaching-card__title">Bring a real problem. Get coached on it live.</h3>
               <p class="coaching-card__desc">A pricing scenario you can't figure out, a Realtor relationship going sideways, a deal about to fall apart, a week that's gotten away from you. This is where learning becomes action — week after week, not once in a blue moon.</p>
+              <span class="coaching-card__arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </span>
             </div>
-          </div>
+          </a>
 
           <!-- Talk to Tim -->
-          <div class="coaching-card">
+          <a class="coaching-card" href="events.html">
             <div class="coaching-card__media">
-              <div class="video-ph" style="aspect-ratio: auto; width: 100%; height: 100%; border-radius: 0; box-shadow: none; border: none; background: linear-gradient(135deg, #0a1220 0%, #050d1a 60%, #0e1928 100%);">
-                <div class="video-ph__inner" style="background: radial-gradient(circle at 30% 40%, rgba(201,150,28,0.15), transparent 50%), radial-gradient(circle at 70% 60%, rgba(178,200,233,0.08), transparent 50%); position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: var(--space-sm);">
-                  <button class="video-ph__btn" aria-label="Watch Talk to Tim preview">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                  </button>
-                  <span class="video-ph__caption">Talk to Tim LIVE</span>
-                </div>
-                <div class="video-ph__foot">
-                  <span class="video-ph__badge video-ph__badge--live">Live Monthly</span>
-                  <span class="video-ph__dur">90 min</span>
-                </div>
+              <div class="video-ph" style="aspect-ratio: auto; width: 100%; height: 100%; border-radius: 0; box-shadow: none; border: none;">
+                <img src="assets/what%27s-inside-talk-to-tim.jpg" alt="" />
               </div>
             </div>
             <div class="coaching-card__body">
               <span class="coaching-card__type">Talk to Tim LIVE</span>
               <h3 class="coaching-card__title">Monthly sessions directly with Tim Braheem.</h3>
               <p class="coaching-card__desc">These go deeper than tactics — into the mindset, the identity, the fear, and the emotional patterns that are actually driving your results. If you've ever wondered why you keep producing at the same level despite knowing what to do, this is the session.</p>
+              <span class="coaching-card__arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </span>
             </div>
-          </div>
+          </a>
 
           <!-- AI Labs & Workshops -->
-          <div class="coaching-card">
+          <a class="coaching-card" href="events.html">
             <div class="coaching-card__media">
               <div class="video-ph" style="aspect-ratio: auto; width: 100%; height: 100%; border-radius: 0; box-shadow: none; border: none;">
-                <div class="video-ph__inner">
-                  <button class="video-ph__btn" aria-label="Watch AI Labs preview">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                  </button>
-                  <span class="video-ph__caption">AI Lab &amp; Workshop Preview</span>
-                </div>
-                <div class="video-ph__foot">
-                  <span class="video-ph__badge video-ph__badge--brass">Multi-Session</span>
-                  <span class="video-ph__dur">Series</span>
-                </div>
+                <img src="assets/what%27s-inside-ai-labs.jpg" alt="" />
               </div>
             </div>
             <div class="coaching-card__body">
               <span class="coaching-card__type">AI Labs &amp; Workshops</span>
               <h3 class="coaching-card__title">Hands-on implementation. Leave with something installed, not just understood.</h3>
               <p class="coaching-card__desc">Planning Intensives, PPC Workshops, AI Bootcamps, Realtor Attraction Challenges. Multi-session structures with worksheets, scripts, and accountability built in.</p>
+              <span class="coaching-card__arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </span>
             </div>
-          </div>
+          </a>
 
         </div><!-- /coaching-grid -->
 
         <!-- Testimonial -->
-        <blockquote style="margin-top: var(--space-xl); padding: var(--space-md) var(--space-lg); border-left: 2px solid var(--brass); background: var(--surface-container-low); border-radius: 0 var(--radius-xl) var(--radius-xl) 0;">
-          <p style="font-style: italic; font-size: 1.0625rem; line-height: 1.65; color: var(--on-surface-variant); margin: 0 0 var(--space-xs);">"Being able to sit in on Office Hours and live group coaching is worth the price of membership itself."</p>
-          <cite style="font-style: normal; font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass);">Gabe Garza — The Mortgage Brokers</cite>
-        </blockquote>
+        <figure class="quote-card quote-card--block">
+          <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
+          <blockquote class="quote-card__quote">Being able to sit in on Office Hours and live group coaching is worth the price of membership itself.</blockquote>
+          <figcaption class="quote-card__attr">
+            <div class="quote-card__name">Gabe Garza</div>
+            <div class="quote-card__org">The Mortgage Brokers</div>
+          </figcaption>
+        </figure>
 
       </div>
     </section>
@@ -1072,10 +2965,13 @@
         </div><!-- /templates-grid -->
 
         <!-- Testimonial -->
-        <blockquote style="margin-top: var(--space-xl); padding: var(--space-md) var(--space-lg); border-left: 2px solid var(--brass); background: var(--surface-container-lowest); border-radius: 0 var(--radius-xl) var(--radius-xl) 0; box-shadow: var(--shadow-sm);">
-          <p style="font-style: italic; font-size: 1.0625rem; line-height: 1.65; color: var(--on-surface-variant); margin: 0 0 var(--space-xs);">"I took one of Tim's scripts and executed it with a borrower. We never even talked about interest rates — and I got a commitment that they wanted to work with us."</p>
-          <cite style="font-style: normal; font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass);">Loan Atlas Member</cite>
-        </blockquote>
+        <figure class="quote-card quote-card--block">
+          <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
+          <blockquote class="quote-card__quote">I took one of Tim&rsquo;s scripts and executed it with a borrower. We never even talked about interest rates &mdash; and I got a commitment that they wanted to work with us.</blockquote>
+          <figcaption class="quote-card__attr">
+            <div class="quote-card__name">Loan Atlas Member</div>
+          </figcaption>
+        </figure>
 
       </div>
     </section>
@@ -1093,52 +2989,54 @@
             <p class="t-body-lg" style="color: rgba(255,255,255,0.68); margin-bottom: var(--space-lg);">Most coaching platforms give you content, calls, and tools — and then leave you to figure it out alone. Inside The Loan Atlas community, you're alongside top producers, mid-career operators, newer loan officers, and team leaders all working through the same frameworks in real time.</p>
             <p class="t-body-lg" style="color: rgba(255,255,255,0.68); margin-bottom: var(--space-lg);">Tactical questions get real answers from people who've been in that exact situation. Implementation wins get shared. Difficult weeks get honest conversation instead of polished performance. You stop making every decision in isolation — and you start moving faster because the people around you are moving too.</p>
 
-            <div style="padding: var(--space-md) var(--space-lg); border-left: 2px solid var(--brass); background: rgba(255,255,255,0.04); border-radius: 0 var(--radius-xl) var(--radius-xl) 0;">
-              <p style="font-style: italic; font-size: 1.0625rem; line-height: 1.65; color: rgba(255,255,255,0.65); margin: 0 0 var(--space-xs);">"It's so easy to feel alone in this business. This community of top-tier professionals experiencing the same successes and failures has gone so far in helping me grow my business."</p>
-              <cite style="font-style: normal; font-family: var(--font-display); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass);">Scott DiGregorio — NEO Home Loans</cite>
-            </div>
+            <figure class="quote-card quote-card--block quote-card--on-dark">
+              <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
+              <blockquote class="quote-card__quote">It&rsquo;s so easy to feel alone in this business. This community of top-tier professionals experiencing the same successes and failures has gone so far in helping me grow my business.</blockquote>
+              <figcaption class="quote-card__attr">
+                <div class="quote-card__name">Scott DiGregorio</div>
+                <div class="quote-card__org">NEO Home Loans</div>
+              </figcaption>
+            </figure>
           </div>
 
           <div data-reveal="right">
-            <!-- Community video placeholder -->
-            <div class="video-ph" style="margin-bottom: var(--space-md);">
-              <div class="video-ph__inner">
-                <button class="video-ph__btn" aria-label="Watch community preview">
-                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                </button>
-                <span class="video-ph__caption">Community — Member Discussion</span>
+            <!-- Community member shorts — 2x2 grid of vertical YouTube Shorts -->
+            <div class="wi-shorts">
+              <div class="wi-short">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/zYkmIPAMqEg?rel=0&modestbranding=1"
+                  title="Loan Atlas community member short"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen></iframe>
               </div>
-              <div class="video-ph__foot">
-                <span class="video-ph__badge video-ph__badge--live">Live Feed</span>
-                <span class="video-ph__dur">Active Now</span>
+              <div class="wi-short">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/F_k9DEPencs?rel=0&modestbranding=1"
+                  title="Loan Atlas community member short"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen></iframe>
               </div>
-            </div>
-
-            <!-- Small 2-up video pair below -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-sm);">
-              <div class="video-ph" style="aspect-ratio: 4/3;">
-                <div class="video-ph__inner">
-                  <button class="video-ph__btn" style="width: 48px; height: 48px;" aria-label="Watch member win">
-                    <svg viewBox="0 0 24 24" fill="currentColor" style="width: 18px; height: 18px; margin-left: 2px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                  </button>
-                  <span class="video-ph__caption" style="font-size: 0.625rem;">Member Win</span>
-                </div>
-                <div class="video-ph__foot">
-                  <span class="video-ph__badge" style="font-size: 0.5625rem; padding: 3px 7px;">Story</span>
-                  <span class="video-ph__dur">1:22</span>
-                </div>
+              <div class="wi-short">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/R_QfiRUNdpA?rel=0&modestbranding=1"
+                  title="Loan Atlas community member short"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen></iframe>
               </div>
-              <div class="video-ph" style="aspect-ratio: 4/3;">
-                <div class="video-ph__inner">
-                  <button class="video-ph__btn" style="width: 48px; height: 48px;" aria-label="Watch coaching Q&A">
-                    <svg viewBox="0 0 24 24" fill="currentColor" style="width: 18px; height: 18px; margin-left: 2px;"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                  </button>
-                  <span class="video-ph__caption" style="font-size: 0.625rem;">Coaching Q&amp;A Clip</span>
-                </div>
-                <div class="video-ph__foot">
-                  <span class="video-ph__badge" style="font-size: 0.5625rem; padding: 3px 7px;">Clip</span>
-                  <span class="video-ph__dur">2:44</span>
-                </div>
+              <div class="wi-short">
+                <iframe
+                  src="https://www.youtube-nocookie.com/embed/SpskLjnp-lc?rel=0&modestbranding=1"
+                  title="Loan Atlas community member short"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen></iframe>
               </div>
             </div>
           </div>
@@ -1150,7 +3048,7 @@
     <!-- ============================================================
          FINAL CTA
          ============================================================ -->
-    <section class="close-section" aria-labelledby="final-cta-heading">
+    <section class="close-section close-section--homepage" aria-labelledby="final-cta-heading">
       <div class="container close-section__grid">
         <div class="close-section__copy" data-reveal="up">
           <span class="close-section__eyebrow">Start Your Transformation</span>
@@ -1225,6 +3123,74 @@
     window.matchMedia('(min-width: 960px)').addEventListener('change', e => {
       if (grid) grid.style.gridTemplateColumns = e.matches ? '1fr 1fr' : '1fr';
     });
+  </script>
+
+  <script>
+    /* AI Financial Review showcase — render tool templates, count-up hero metrics, accordion + stage swap */
+    (function () {
+      document.querySelectorAll('[data-tool]').forEach(function (slot) {
+        var key = slot.getAttribute('data-tool');
+        var tpl = document.getElementById('tpl-tool-' + key);
+        if (!tpl) return;
+        slot.appendChild(tpl.content.cloneNode(true));
+      });
+
+      document.querySelectorAll('[data-frs-count]').forEach(function (el) {
+        var target = Number(el.getAttribute('data-frs-count'));
+        var prefix = el.getAttribute('data-frs-prefix') || '';
+        var suffix = el.getAttribute('data-frs-suffix') || '';
+        var decimals = Number(el.getAttribute('data-frs-decimals') || 0);
+        var duration = 1200;
+        var startTime = null;
+
+        function format(value) {
+          var rounded = decimals ? value.toFixed(decimals) : Math.round(value).toLocaleString('en-US');
+          el.textContent = prefix + rounded + suffix;
+        }
+
+        format(0);
+
+        requestAnimationFrame(function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var progress = Math.min((timestamp - startTime) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          format(target * eased);
+          if (progress < 1) requestAnimationFrame(step);
+        });
+      });
+
+      var items = Array.prototype.slice.call(document.querySelectorAll('.frs-item'));
+      var stagePanels = Array.prototype.slice.call(document.querySelectorAll('.frs-stage__panel'));
+
+      function openItem(target) {
+        var targetIndex = target.getAttribute('data-frs-item');
+        items.forEach(function (item) {
+          var isTarget = item === target;
+          item.classList.toggle('is-open', isTarget);
+          item.querySelector('.frs-item__header').setAttribute('aria-expanded', isTarget ? 'true' : 'false');
+        });
+        stagePanels.forEach(function (panel) {
+          panel.classList.toggle('is-active', panel.getAttribute('data-frs-panel') === targetIndex);
+        });
+      }
+
+      items.forEach(function (item, idx) {
+        var header = item.querySelector('.frs-item__header');
+        header.addEventListener('click', function () {
+          if (item.classList.contains('is-open')) return;
+          openItem(item);
+        });
+        header.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            items[(idx + 1) % items.length].querySelector('.frs-item__header').focus();
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            items[(idx - 1 + items.length) % items.length].querySelector('.frs-item__header').focus();
+          }
+        });
+      });
+    })();
   </script>
 
   <script src="js/nav.js"></script>

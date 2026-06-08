@@ -24,7 +24,7 @@
           rgba(2, 28, 54, 0.35) 75%,
           rgba(2, 28, 54, 0)    100%
         ),
-        url('assets/faculty-bg.png') right center / cover no-repeat,
+        url('assets/faculty-header.png') right center / cover no-repeat,
         /* fallback navy gradient if the image fails to load */
         linear-gradient(160deg, #021c36 0%, #0a1628 60%, #131b2e 100%);
       padding-top: calc(var(--header-h) + clamp(56px, 8vw, 96px));
@@ -429,6 +429,16 @@
       color: var(--on-surface-variant);
       border: 1px dashed var(--outline-variant);
     }
+    .faculty-modal__video--filled {
+      background: #000;
+      border: 0;
+    }
+    .faculty-modal__video iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+      display: block;
+    }
     .faculty-modal__video-content {
       display: flex;
       flex-direction: column;
@@ -474,50 +484,73 @@
       .fac-quotes__grid { grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); }
     }
 
-    /* Access cards */
+    /* Access section */
     .access-section {
       background: var(--surface-container-low);
       padding-block: clamp(48px, 6vw, 96px);
     }
-    .access-lead {
-      font-size: 1.125rem;
-      line-height: 1.6;
-      color: var(--primary-container);
-      font-weight: 600;
-      max-width: 48rem;
-      margin-inline: auto;
-      text-align: center;
-    }
-    .access-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-md);
-      margin-top: var(--space-xl);
-    }
-    @media (min-width: 640px) { .access-grid { grid-template-columns: repeat(2, 1fr); } }
-
-    .access-card {
-      background: var(--surface-container-lowest);
-      border: 1px solid var(--outline-variant);
-      border-radius: var(--radius-2xl);
-      padding: var(--space-lg);
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-sm);
-      box-shadow: var(--shadow-sm);
-      transition: box-shadow 200ms ease, transform 200ms ease;
-    }
-    .access-card:hover { box-shadow: var(--shadow); transform: translateY(-2px); }
-    .access-card__title {
+    .access-intro { text-align: center; margin-bottom: var(--space-xl); }
+    .access-intro__title {
       font-family: var(--font-display);
-      font-size: 1.125rem;
-      font-weight: 700;
+      font-size: clamp(2rem, 1.4rem + 2.2vw, 3rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.025em;
       color: var(--on-surface);
+      max-width: 22ch;
+      margin: 0 auto var(--space-md);
     }
-    .access-card__desc {
-      font-size: 0.9375rem;
+    .access-intro__title em {
+      font-style: normal;
+      background: linear-gradient(135deg, #c9961c, #eac25a, #ffd56c);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .access-intro__lead {
+      font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+      line-height: 1.65;
       color: var(--on-surface-variant);
-      line-height: 1.6;
+      max-width: 44rem;
+      margin-inline: auto;
+    }
+
+    /* Live coaching marquee */
+    .access-marquee {
+      position: relative;
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+    }
+    .access-marquee__track {
+      display: flex;
+      width: max-content;
+      gap: var(--space-md);
+      animation: access-marquee-scroll 40s linear infinite;
+    }
+    .access-marquee:hover .access-marquee__track { animation-play-state: paused; }
+    .access-marquee__item {
+      flex-shrink: 0;
+      width: clamp(280px, 32vw, 460px);
+      aspect-ratio: 16 / 10;
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      box-shadow: 0 12px 32px rgba(2, 28, 54, 0.10);
+    }
+    .access-marquee__item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    @keyframes access-marquee-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(calc(-50% - var(--space-md) / 2)); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .access-marquee__track { animation: none; }
     }
 
     /* Checkmark SVG shortcut */
@@ -774,61 +807,33 @@
     </section>
 
 
-    <!-- ── Section 4: How You Access the Faculty ─────────────────────── -->
+    <!-- ── Section 4: Live Coaching Every Week ───────────────────────── -->
     <section class="access-section">
       <div class="container">
-        <p class="access-lead" data-reveal="up">
-          Learning from elite originators is one thing. Having them available to answer any question you have
-          and guide your next move? That's a game changer.
-        </p>
-        <div class="access-grid" data-reveal-stagger="100">
-
-          <div class="access-card">
-            <span class="icon-tile icon-tile--brass">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/>
-              </svg>
-            </span>
-            <h3 class="access-card__title">Live Masterclasses</h3>
-            <p class="access-card__desc">In-depth strategy sessions followed by implementation workshops. Learn directly from faculty, then put it into practice with their guidance.</p>
-          </div>
-
-          <div class="access-card">
-            <span class="icon-tile">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
-              </svg>
-            </span>
-            <h3 class="access-card__title">Office Hours</h3>
-            <p class="access-card__desc">Weekly calls with faculty specialists to answer your toughest questions. Bring real situations and get real answers from people who've been in your seat.</p>
-          </div>
-
-          <div class="access-card">
-            <span class="icon-tile icon-tile--brass">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/>
-              </svg>
-            </span>
-            <h3 class="access-card__title">AI Labs &amp; Specialized Workshops</h3>
-            <p class="access-card__desc">Multi-part intensives to master specific disciplines or systems. Built around implementation, not just information.</p>
-          </div>
-
-          <div class="access-card">
-            <span class="icon-tile">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
-              </svg>
-            </span>
-            <h3 class="access-card__title">Talk to Tim</h3>
-            <p class="access-card__desc">Monthly coaching with Tim Braheem for real-time business breakthroughs. Members bring real situations — Tim works through them live.</p>
-          </div>
-
+        <div class="access-intro" data-reveal="up">
+          <h2 class="access-intro__title"><em>Live Coaching</em> Every Week</h2>
+          <p class="access-intro__lead">
+            Learning from elite originators is one thing. Having them available to answer any question you have
+            and guide your next move? That's a game changer.
+          </p>
+        </div>
+      </div>
+      <div class="access-marquee" data-reveal="up" aria-hidden="true">
+        <div class="access-marquee__track">
+          <div class="access-marquee__item"><img src="assets/what%27s-inside-masterclass.jpg" alt="" loading="lazy" /></div>
+          <div class="access-marquee__item"><img src="assets/what%27s-inside-office-hours.jpg" alt="" loading="lazy" /></div>
+          <div class="access-marquee__item"><img src="assets/what%27s-inside-talk-to-tim.jpg" alt="" loading="lazy" /></div>
+          <div class="access-marquee__item"><img src="assets/what%27s-inside-ai-labs.jpg" alt="" loading="lazy" /></div>
+          <div class="access-marquee__item"><img src="assets/what%27s-inside-masterclass.jpg" alt="" loading="lazy" /></div>
+          <div class="access-marquee__item"><img src="assets/what%27s-inside-office-hours.jpg" alt="" loading="lazy" /></div>
+          <div class="access-marquee__item"><img src="assets/what%27s-inside-talk-to-tim.jpg" alt="" loading="lazy" /></div>
+          <div class="access-marquee__item"><img src="assets/what%27s-inside-ai-labs.jpg" alt="" loading="lazy" /></div>
         </div>
       </div>
     </section>
 
     <!-- ── Section 5: Final CTA ──────────────────────────────────────── -->
-    <section class="close-section" aria-labelledby="final-cta-heading">
+    <section class="close-section close-section--faculty" aria-labelledby="final-cta-heading">
       <div class="container close-section__grid">
         <div class="close-section__copy" data-reveal="up">
           <span class="close-section__eyebrow">Start Your Transformation</span>
@@ -905,10 +910,10 @@
           <img id="facultyModalImg" src="" alt="" />
         </div>
         <div class="faculty-modal__identity">
-          <span class="faculty-modal__title" id="facultyModalTitle"></span>
           <h2 class="faculty-modal__name" id="facultyModalName"></h2>
-          <div class="faculty-modal__production">
-            <div class="faculty-modal__production-label">2025 Production</div>
+          <span class="faculty-modal__title" id="facultyModalTitle"></span>
+          <div class="faculty-modal__production" id="facultyModalProductionSection">
+            <div class="faculty-modal__production-label" id="facultyModalProductionLabel">2025 Production</div>
             <div class="faculty-modal__production-value" id="facultyModalProduction"></div>
           </div>
         </div>
@@ -916,17 +921,10 @@
       <div class="faculty-modal__right">
         <p class="faculty-modal__bio" id="facultyModalBio"></p>
         <div class="faculty-modal__specialty">
-          <div class="faculty-modal__section-label">Specialty</div>
+          <div class="faculty-modal__section-label" id="facultyModalSpecialtyLabel">Specialty</div>
           <p class="faculty-modal__specialty-text" id="facultyModalSpecialty"></p>
         </div>
-        <div class="faculty-modal__video">
-          <div class="faculty-modal__video-content">
-            <span class="faculty-modal__video-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7L8 5z"/></svg>
-            </span>
-            <span class="faculty-modal__video-caption">Video coming soon</span>
-          </div>
-        </div>
+        <div class="faculty-modal__video" id="facultyModalVideo"></div>
       </div>
     </div>
   </dialog>
@@ -935,15 +933,15 @@
   <script src="js/animations.js" defer></script>
   <script>
     (function () {
-      const PLACEHOLDER_2025 = '$XX.XM funded · XXX families · XXX units';
-
       const facultyData = {
         'tim-braheem': {
           name: 'Tim Braheem',
           title: 'Founder & Chief Content Officer',
           image: 'assets/tim-braheem-headshot.png',
           initials: 'TB',
-          production2025: PLACEHOLDER_2025,
+          youtubeId: '2k1XrsEIKJ0',
+          productionLabel: '',
+          production2025: 'Tim has originated over $1.4 billion in personal production during his career as a loan originator.',
           bio: "Tim is the founder of The Loan Atlas and the foundation it's built on. He's a producer who built coaching because he couldn't find coaching that worked — and now teaches the operating system he wishes he'd had in the seat, every week, alongside the rest of the faculty. 25+ years as a mortgage originator with $1.4B in personal loan volume. Founded First Rate Financial in 1995 and co-founded Loantoolbox.com in 2001, which reached 10,800 paying members by 2006 and was named to the Inc. 500. Host of <em>The 360 Experience</em> podcast.",
           specialty: 'Architect of the Perfect Loan Process, the scripting frameworks, and the personal development work that runs underneath everything The Loan Atlas teaches. Leads Talk to Tim — the monthly coaching session where members bring real situations and Tim works through them live.'
         },
@@ -952,7 +950,9 @@
           title: 'Head of Faculty',
           image: 'assets/craig-strent-headshot.png',
           initials: 'CS',
-          production2025: PLACEHOLDER_2025,
+          youtubeId: 'OX74AstCAKQ',
+          productionLabel: '',
+          production2025: 'Craig has originated over $2 billion in personal production during his career as a loan originator.',
           bio: 'Craig is one of the few originators in the country who built a top 1% mortgage business almost entirely outside the Realtor referral channel. 25 years in the mortgage industry with $2B+ in loan volume — primarily through non-Realtor referral sources. Top 1% of mortgage bankers nationwide for 15+ years; named among America’s Most Influential Mortgage Executives. CMPS and CDLP certified; featured on NBC Nightly News, CNBC, and Fox Morning News.',
           specialty: 'Non-Realtor referral building and trusted advisor positioning — advisory-style client relationships and financial planner partnerships at a level very few originators have replicated.'
         },
@@ -961,7 +961,8 @@
           title: 'Head of Faculty',
           image: 'assets/josh-mettle-headshot.png',
           initials: 'JM',
-          production2025: PLACEHOLDER_2025,
+          youtubeId: 'NVz6KMeSf9k',
+          production2025: '$190.8M · 358 families served',
           bio: "Josh is one of the most successful originator-leaders in the country — a top 1% producer who has scaled into division leadership while continuing to publish, podcast, and build a public-facing brand that produces real loan volume. 25+ years in the mortgage industry with $1.17B in personal production. Top 1% of mortgage originators in 2020 per <em>Mortgage Executive Magazine</em>. Currently leads a $250M production team; co-owns a nine-figure real estate portfolio.",
           specialty: 'Marketing that compounds — content, audience-building, consumer-direct strategy. Also drives the faculty’s work on health, energy, and financial freedom.'
         },
@@ -970,7 +971,8 @@
           title: 'EVP & Chief Lending Officer, Intercoastal Mortgage',
           image: 'assets/josh-burruss-headshot.png',
           initials: 'JB',
-          production2025: PLACEHOLDER_2025,
+          youtubeId: 'cnr66dFho4k',
+          production2025: '$82.5M volume · 125 families served',
           bio: 'Josh has personally originated $830M in loan volume and now leads sales at one of the most respected lenders on the East Coast. His career has spanned high-volume personal production, sales leadership, and building lending relationships with national homebuilders.',
           specialty: 'Sales leadership and the builder business — winning and retaining builder relationships, building high-performing sales teams, and the loan-program fluency that keeps originators competitive in any market.'
         },
@@ -979,7 +981,9 @@
           title: 'Executive Coach, Performance Experts',
           image: 'assets/julie-weix-headshot.png',
           initials: 'JW',
-          production2025: PLACEHOLDER_2025,
+          youtubeId: 'Cu04tdoY1HM',
+          productionHide: true,
+          production2025: '',
           bio: "Julie coaches more than 60 of the nation's top-producing originators one-on-one. Her work focuses on the patterns underneath production — how the highest performers protect their time, manage their energy, and lead themselves before they lead anyone else.",
           specialty: 'The mindset and the calendar — personal leadership, time and task management, and the inner work that separates originators who hit one strong year from originators who compound year over year.'
         },
@@ -988,7 +992,8 @@
           title: 'Branch Manager, Fairway Independent Mortgage; Founder, Osby Labs',
           image: 'assets/tyler-osby-headshot.png',
           initials: 'TO',
-          production2025: PLACEHOLDER_2025,
+          youtubeId: 'wiDWdTX1n3Y',
+          production2025: '$60.9M volume · 210 families served',
           bio: 'Tyler has personally helped more than 1,962 families across $422M in lifetime production, all while building a parallel reputation as one of the most systems-minded originators in the country. Through Osby Labs, he develops the technology stacks and automated workflows that top originators actually use.',
           specialty: 'Systems, technology, and scripting — turning the day-to-day execution of calls, follow-ups, and workflows into something that runs without an originator having to remember every step.'
         },
@@ -997,7 +1002,9 @@
           title: 'Divisional President, Clear Modern Mortgage',
           image: 'assets/brent-hicks-headshot.png',
           initials: 'BH',
-          production2025: PLACEHOLDER_2025,
+          youtubeId: 'W1u-X5dArWc',
+          productionLabel: '',
+          production2025: 'Brent has originated over $1.5 billion in personal production during his career as a loan originator.',
           bio: "Brent has personally originated more than $1.5B in loan volume, earned top-50-nationwide rankings, and now leads a division as one of the country's most respected mortgage executives. His path moved from elite individual production into building and recruiting teams that perform at the same level.",
           specialty: 'Leadership, team building, and recruiting — done at the highest level, first as an elite producer, then as a leader scaling teams that perform at the same level he did.'
         },
@@ -1006,7 +1013,8 @@
           title: 'Branch Manager, Thrive Lending Group',
           image: 'assets/marc-bui-headshot.png',
           initials: 'MB',
-          production2025: PLACEHOLDER_2025,
+          youtubeId: 'CsdqQu0XHaA',
+          production2025: '$45.9M volume · 70 families served',
           bio: "Marc has personally originated $750M while building a 75,000+ Instagram audience that generates real loan volume. He's one of the few originators who has cracked social media as a primary lead source instead of a vanity channel.",
           specialty: 'Social media marketing, with deep authority on Instagram specifically — the difference between content that builds an audience and content that builds a pipeline, and how to do the latter while running a real origination business.'
         },
@@ -1015,7 +1023,8 @@
           title: 'President, Heritage Reverse Mortgage',
           image: 'assets/trevor-carlson-headshot.png',
           initials: 'TC',
-          production2025: PLACEHOLDER_2025,
+          youtubeId: 'F48bmBMJDiI',
+          production2025: '$21M volume · 69 families served',
           bio: 'Trevor has helped more than 1,700 families across $400M+ in lifetime production, with deep expertise in the reverse mortgage market most originators never touch. He runs his business through a tightly engineered consumer-direct system.',
           specialty: 'Reverse mortgage, plus consumer-direct marketing and operational systems — adding reverse as a complementary product line to a traditional mortgage business, and running a high-volume direct-to-consumer model with discipline.'
         },
@@ -1024,7 +1033,8 @@
           title: 'Division President, NEO Home Loans',
           image: 'assets/mark-robertson-headshot.png',
           initials: 'MR',
-          production2025: PLACEHOLDER_2025,
+          youtubeId: 'AjnjsvWgMCg',
+          production2025: '$65.9M volume · 76 families served',
           bio: 'Mark has originated more than $931M in lifetime production and has been ranked in the top 1% of originators by <em>Scotsman Guide</em>. He now leads a division at NEO while continuing to operate one of the strongest Realtor referral businesses in the country.',
           specialty: 'Realtor business development and the strategy that holds it together — operating a top 1% referral-based business, and building or rebuilding teams around the same model.'
         },
@@ -1033,7 +1043,8 @@
           title: 'Branch Manager, CL Team at Apex Home Loans',
           image: 'assets/caleb-legrand-headshot.png',
           initials: 'CL',
-          production2025: PLACEHOLDER_2025,
+          youtubeId: 'SBjOcwAn2UM',
+          production2025: '$69.7M volume · 200 families served',
           bio: 'Caleb has helped more than 5,017 families across $1.12B+ in lifetime production while building one of the most respected branch teams in the industry. His work is grounded in the day-to-day systems that make consistency possible.',
           specialty: 'The Perfect Loan Process, the System for Selling, and the builder business — installing the execution systems that take a top originator from solo producer to a team that runs without chaos.'
         },
@@ -1042,7 +1053,8 @@
           title: 'Branch Manager, Success Mortgage Partners',
           image: 'assets/holly-walther-headshot.png',
           initials: 'HW',
-          production2025: PLACEHOLDER_2025,
+          youtubeId: 'TBqZZdETO8M',
+          production2025: '$46.4M volume · 124 families served',
           bio: 'Holly has originated $1B in lifetime production and helped more than 5,000 families, all while raising a family and building a business that doesn’t run her life. Her authority comes from doing both at a level very few originators in the industry have managed.',
           specialty: "Work, life, and family balance — backed by real workflow systems. Holly is also one of the faculty's strongest voices on women empowerment in the industry, centered on building a high-producing business that doesn't consume the rest of an originator's life."
         },
@@ -1051,7 +1063,8 @@
           title: 'VP & Area Manager, Cornerstone Home Lending; Host, Think & Grow Podcast',
           image: 'assets/kelly-marsh-headshot.png',
           initials: 'KM',
-          production2025: PLACEHOLDER_2025,
+          youtubeId: 'eQdjTopvrek',
+          production2025: '$36.9M volume · 54 families served',
           bio: 'Kelly has originated more than $1B in lifetime production and now leads at Cornerstone while hosting the <em>Think & Grow</em> podcast. Her business has always been built on a database that produces year after year.',
           specialty: 'Database nurturing and management, plus mindset and personal development — turning past clients and sphere of influence into a compounding production engine, and the leadership required to sustain it.'
         },
@@ -1060,7 +1073,8 @@
           title: 'President, Jay Dacey Mortgage Team',
           image: 'assets/jay-dacey-headshot.png',
           initials: 'JD',
-          production2025: PLACEHOLDER_2025,
+          youtubeId: 'wpbW4SN-pzk',
+          production2025: '$73.9M volume · 199 families served',
           bio: 'Jay has originated more than $500M in lifetime production and runs one of the most respected mortgage teams in the Twin Cities market. His business runs on database depth and a tightly engineered loan process.',
           specialty: 'Database management and the Perfect Loan Process, with deep specialization in first-time homebuyers and divorce-situation lending — serving clients in moments of major life transition.'
         },
@@ -1069,7 +1083,8 @@
           title: 'Vice President, NJ Lenders Corp',
           image: 'assets/steve-grossman-headshot.png',
           initials: 'SG',
-          production2025: PLACEHOLDER_2025,
+          youtubeId: 'RoCT9M3r9Hs',
+          production2025: '$52.9M volume · 95 families served',
           bio: 'Steve has originated more than $3B in residential loans, helped over 7,800 families, and has been ranked in the top 1% of originators every single year since 2001. Two decades of consistency at that level is a credential almost nobody in the industry holds.',
           specialty: 'Strategy and vision — the long view. Figuring out where a mortgage business is going and how to position for the next ten years, not the next ninety days.'
         },
@@ -1078,7 +1093,8 @@
           title: 'Producing Branch Manager, NEO Home Loans',
           image: 'assets/katrinka-condie-headshot.png',
           initials: 'KC',
-          production2025: PLACEHOLDER_2025,
+          youtubeId: '9VZcS5N_B30',
+          production2025: '$56.9M volume · 102 families served',
           bio: 'Katrinka has originated more than $309M in lifetime production and helped over 755 families, while ranking in the top 1% of originators nationwide since her second year in the business. She is one of the most respected client-relationship operators in the industry.',
           specialty: "Building real relationships and lasting client connection — the work the rest of the industry has tried to automate away. Katrinka is also one of the faculty's strongest voices on women empowerment in mortgage."
         },
@@ -1087,7 +1103,8 @@
           title: 'Branch Manager — Loan Originator, American Pacific Mortgage',
           image: 'assets/michael-belfor-headshot.png',
           initials: 'MB',
-          production2025: PLACEHOLDER_2025,
+          youtubeId: 'RPRE-ZKSNh0',
+          production2025: '$46.6M volume · 89 families served',
           bio: "Michael has been originating since 2010 and ranked among the top 1% of mortgage originators nationwide for over a decade by <em>Scotsman Guide</em> and <em>Mortgage Executive Magazine</em>. He opened American Pacific Mortgage's first retail branch and its flagship Bay Area office, holds the Certified Mortgage Advisor (CMA) designation, and is the author of three books — <em>The Fed Made Simple</em>, <em>Crypto Bro</em>, and <em>Anchor</em>.",
           specialty: 'Advanced loan structuring and market literacy at a level very few originators operate at — building scalable production systems, applying AI-powered efficiency across the origination workflow, and creating content that turns market knowledge into authority.'
         },
@@ -1096,7 +1113,8 @@
           title: 'Vice President — Loan Originator, Sun American Mortgage',
           image: 'assets/becky-staples-headshot.png',
           initials: 'BS',
-          production2025: PLACEHOLDER_2025,
+          youtubeId: 'LN317MG-V4s',
+          production2025: '$84.3M volume · 201 families served',
           bio: 'Becky has spent nearly 20 years in the industry, funded $1B+ in career loan volume, and helped more than 3,600 families. She is ranked as a top-100 U.S. loan officer by volume.',
           specialty: 'The fundamentals — done at the highest level. Production systems and process control, developing new loan officers from the ground up, and delivering the kind of high-touch client experience that produces a billion dollars in volume one client at a time.'
         }
@@ -1108,8 +1126,24 @@
       const modalName = document.getElementById('facultyModalName');
       const modalTitle = document.getElementById('facultyModalTitle');
       const modalProduction = document.getElementById('facultyModalProduction');
+      const modalProductionSection = document.getElementById('facultyModalProductionSection');
+      const modalProductionLabel = document.getElementById('facultyModalProductionLabel');
       const modalBio = document.getElementById('facultyModalBio');
       const modalSpecialty = document.getElementById('facultyModalSpecialty');
+      const modalSpecialtyLabel = document.getElementById('facultyModalSpecialtyLabel');
+      const modalVideo = document.getElementById('facultyModalVideo');
+
+      const VIDEO_PLACEHOLDER_HTML = `
+        <div class="faculty-modal__video-content">
+          <span class="faculty-modal__video-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7L8 5z"/></svg>
+          </span>
+          <span class="faculty-modal__video-caption">Video coming soon</span>
+        </div>`;
+
+      function escapeAttr(value) {
+        return String(value).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
 
       let lastFocused = null;
 
@@ -1123,9 +1157,34 @@
         modalPhoto.setAttribute('data-initials', data.initials || '');
         modalName.textContent = data.name;
         modalTitle.textContent = data.title;
-        modalProduction.textContent = data.production2025;
+
+        const firstName = data.name.split(' ')[0];
+        modalSpecialtyLabel.textContent = `${firstName}'s Specialty`;
+
+        if (data.productionHide) {
+          modalProductionSection.hidden = true;
+        } else {
+          modalProductionSection.hidden = false;
+          const label = data.productionLabel === undefined ? '2025 Production' : data.productionLabel;
+          if (label) {
+            modalProductionLabel.textContent = label;
+            modalProductionLabel.hidden = false;
+          } else {
+            modalProductionLabel.hidden = true;
+          }
+          modalProduction.textContent = data.production2025;
+        }
+
         modalBio.innerHTML = data.bio;
         modalSpecialty.innerHTML = data.specialty;
+
+        if (data.youtubeId) {
+          modalVideo.classList.add('faculty-modal__video--filled');
+          modalVideo.innerHTML = `<iframe src="https://www.youtube-nocookie.com/embed/${encodeURIComponent(data.youtubeId)}" title="${escapeAttr(data.name)} — Faculty introduction" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`;
+        } else {
+          modalVideo.classList.remove('faculty-modal__video--filled');
+          modalVideo.innerHTML = VIDEO_PLACEHOLDER_HTML;
+        }
 
         if (typeof modal.showModal === 'function') {
           modal.showModal();
@@ -1142,6 +1201,8 @@
           modal.removeAttribute('open');
         }
         document.body.classList.remove('faculty-modal-open');
+        modalVideo.innerHTML = '';
+        modalVideo.classList.remove('faculty-modal__video--filled');
         if (lastFocused && typeof lastFocused.focus === 'function') {
           lastFocused.focus();
         }
@@ -1158,6 +1219,8 @@
       });
       modal.addEventListener('close', () => {
         document.body.classList.remove('faculty-modal-open');
+        modalVideo.innerHTML = '';
+        modalVideo.classList.remove('faculty-modal__video--filled');
       });
     })();
   </script>

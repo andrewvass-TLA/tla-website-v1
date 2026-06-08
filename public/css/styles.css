@@ -2845,6 +2845,74 @@ h6 {
   padding-block: 4px;
 }
 
+/* --- Who-should-book card (consultation-corporate) ---------------------- */
+/* Contained card echoing the .compare-v2 look: dark brass-accented header
+   panel over light, bordered qualifying rows with brass checkmarks. */
+.who-card {
+  max-width: 52rem;
+  margin-inline: auto;
+  border-radius: var(--radius-3xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--outline-variant);
+}
+
+.who-card__header {
+  background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+  padding: var(--space-lg);
+}
+
+.who-card__eyebrow {
+  display: block;
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brass-bright);
+  margin-bottom: var(--space-sm);
+}
+
+.who-card__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 1.1rem + 1vw, 1.875rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin: 0;
+}
+
+.who-card__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  background: var(--surface-container-lowest);
+}
+
+.who-card__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: var(--space-md) var(--space-lg);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  color: var(--on-surface);
+}
+
+.who-card__item+.who-card__item {
+  border-top: 1px solid var(--outline-variant);
+}
+
+.who-card__check {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  color: var(--brass);
+}
+
 /* --- Booking popup dialog ------------------------------------------------ */
 .booking-popup {
   border: none;
@@ -5471,6 +5539,120 @@ body.is-loaded [data-hero-step="5"] {
   }
 }
 
+/* --- Takeaways: dark/enterprise variant --------------------------------- */
+/* Scoped to the .takeaways--dark modifier (consultation-corporate.html only).
+   Flips the flat-white "What you'll leave with" section to a dark, glassy
+   card treatment matching the corporate "Five AI Systems" .system-card look.
+   Base .takeaways* rules are untouched so the individual/mastermind pages
+   stay light. */
+.takeaways--dark {
+  background: linear-gradient(180deg, #021c36 0%, #06223f 55%, #021c36 100%);
+  color: #fff;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.takeaways--dark .takeaways__heading {
+  color: #ffffff;
+}
+
+.takeaways--dark .takeaways__heading-accent {
+  background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.takeaways--dark .takeaways__lede {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* Drop the dashed grid separators in favor of real, gapped cards.
+   Three cards on this page, so override the base 4-col grid to 3-col. */
+.takeaways--dark .takeaways__grid {
+  border-top: 0;
+  gap: var(--space-md);
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.takeaways--dark .takeaways__grid>*+* {
+  border-left: 0;
+}
+
+.takeaways--dark .takeaways__cell {
+  position: relative;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.025) 100%);
+  border: 1px solid rgba(255, 255, 255, 0.11);
+  border-radius: var(--radius-3xl);
+  overflow: hidden;
+  transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+}
+
+.takeaways--dark .takeaways__cell:hover {
+  border-color: rgba(234, 194, 90, 0.36);
+  transform: translateY(-3px);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.32);
+}
+
+.takeaways--dark .takeaways__cell-num {
+  position: absolute;
+  top: clamp(12px, 1.4vw, 18px);
+  right: clamp(14px, 1.6vw, 22px);
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 2.25rem;
+  line-height: 1;
+  color: rgba(234, 194, 90, 0.16);
+  pointer-events: none;
+}
+
+.takeaways--dark .takeaways__cell-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-lg);
+  color: var(--primary);
+  background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+  box-shadow: 0 6px 18px rgba(201, 150, 28, 0.28);
+}
+
+.takeaways--dark .takeaways__cell-title {
+  color: #ffffff;
+}
+
+.takeaways--dark .takeaways__cell-copy {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Question pills legible on the dark band */
+.takeaways--dark .qpill {
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@media (max-width: 960px) {
+  .takeaways--dark .takeaways__grid>*:nth-child(n+3) {
+    border-top: 0;
+  }
+
+  .takeaways--dark .takeaways__grid>*:nth-child(2n+1) {
+    border-left: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .takeaways--dark .takeaways__grid>* {
+    border-left: 0;
+  }
+
+  .takeaways--dark .takeaways__grid>*+* {
+    border-top: 0;
+  }
+}
+
 /* --- Mastermind Summit inline CTA --------------------------------------- */
 /* Dark event-promo band: black backdrop with a translucent Bellagio photo
    layer, Antonio uppercase headline (red accent on "Summit"), and a single
@@ -5901,6 +6083,9 @@ body.is-loaded [data-hero-step="5"] {
    (../assets/...), keeping the declaration alongside the component. */
 .close-section--homepage {
   --close-section-image: url('../assets/homepage-closing-cta.png');
+}
+.close-section--faculty {
+  --close-section-image: url('../assets/faculty-closing-cta.png');
 }
 
 .close-section {

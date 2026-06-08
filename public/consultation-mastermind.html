@@ -190,6 +190,450 @@
     .featured-testimonials .quote-card__quote { color: rgba(255,255,255,0.86); font-style: italic; }
     .featured-testimonials .quote-card__name { color: var(--brass-bright); }
     .featured-testimonials .quote-card__org { color: rgba(255,255,255,0.55); }
+
+    /* ── Proof panel — stat + Habib testimonial ─────────────────────────────── */
+    .lp-proof-card {
+      max-width: 64rem;
+      margin-inline: auto;
+      background: linear-gradient(135deg, #0a1628 0%, #021c36 55%, #0a223d 100%);
+      border-radius: var(--radius-3xl);
+      border: 1px solid rgba(234, 194, 90, 0.28);
+      box-shadow:
+        0 30px 70px rgba(2, 28, 54, 0.35),
+        inset 0 0 0 1px rgba(234, 194, 90, 0.08);
+      padding: clamp(32px, 4vw, 56px) clamp(24px, 4vw, 56px);
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      gap: clamp(32px, 4vw, 56px);
+      grid-template-columns: 1fr;
+      align-items: center;
+      text-align: center;
+    }
+    .lp-proof-card::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.18), transparent);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    @media (min-width: 760px) {
+      .lp-proof-card {
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr);
+        text-align: left;
+      }
+    }
+    .lp-proof-card__stat-col { position: relative; z-index: 1; }
+    .lp-proof-card__label {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      margin-bottom: var(--space-sm);
+    }
+    .lp-proof-card__stat {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 4px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin: 0 0 var(--space-sm);
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    @media (min-width: 760px) {
+      .lp-proof-card__stat { justify-content: flex-start; }
+    }
+    .lp-proof-card__currency {
+      font-size: clamp(2rem, 1rem + 3vw, 3rem);
+      padding-top: clamp(8px, 1.5vw, 16px);
+      font-weight: 700;
+    }
+    .lp-proof-card__number { font-size: clamp(4.5rem, 2rem + 8vw, 7.5rem); }
+    .lp-proof-card__unit {
+      font-size: clamp(2.5rem, 1rem + 4vw, 4rem);
+      padding-top: clamp(4px, 1vw, 8px);
+      font-weight: 700;
+    }
+    .lp-proof-card__plus {
+      display: inline-block;
+      font-size: clamp(1.25rem, 0.75rem + 1.5vw, 1.875rem);
+      vertical-align: top;
+      padding-top: clamp(8px, 1.5vw, 18px);
+      margin-left: 4px;
+    }
+    .lp-proof-card__caption {
+      font-size: clamp(1.0625rem, 0.95rem + 0.5vw, 1.375rem);
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+      margin: 0;
+      line-height: 1.4;
+      max-width: 26ch;
+      margin-inline: auto;
+    }
+    @media (min-width: 760px) {
+      .lp-proof-card__caption { margin-inline: 0; }
+    }
+    .lp-proof-card__test-col {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      padding-left: 0;
+      border-left: none;
+    }
+    @media (min-width: 760px) {
+      .lp-proof-card__test-col {
+        padding-left: clamp(28px, 3vw, 48px);
+        border-left: 1px solid rgba(234, 194, 90, 0.2);
+      }
+    }
+    .lp-proof-card__test-head {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    @media (min-width: 760px) {
+      .lp-proof-card__test-head { justify-content: flex-start; }
+    }
+    .lp-proof-card__photo {
+      width: 56px;
+      height: 56px;
+      flex-shrink: 0;
+      padding: 2px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+    }
+    .lp-proof-card__photo img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      background: #021c36;
+    }
+    .lp-proof-card__attr-name {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+    .lp-proof-card__attr-role {
+      display: block;
+      margin-top: 2px;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--brass-bright);
+    }
+    .lp-proof-card__quote {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 0.9rem + 0.5vw, 1.1875rem);
+      font-style: italic;
+      font-weight: 500;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    /* ── Testimonials — image-rich cards ────────────────────────────────────── */
+    .lp-testimonials {
+      background: var(--surface-container-low);
+      border-block: 1px solid var(--outline-variant);
+      padding-block: clamp(56px, 7vw, 96px);
+    }
+    .mm-tcards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(40px, 4vw, 32px);
+      margin-top: calc(var(--space-xl) + 28px);
+    }
+    @media (min-width: 760px) {
+      .mm-tcards { grid-template-columns: repeat(3, 1fr); }
+    }
+    .mm-tcard {
+      position: relative;
+      margin: 0;
+      background: #ffffff;
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-3xl);
+      box-shadow: var(--shadow-lg);
+      padding: 0 var(--space-lg) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .mm-tcard__photo {
+      width: 96px;
+      height: 96px;
+      margin-top: -48px;
+      margin-bottom: var(--space-md);
+      flex-shrink: 0;
+      padding: 3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      box-shadow: 0 10px 28px rgba(2, 28, 54, 0.22);
+    }
+    .mm-tcard__photo img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      background: #f2f4f6;
+    }
+    .mm-tcard__body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+    }
+    .mm-tcard__stars {
+      font-size: 1rem;
+      letter-spacing: 0.18em;
+      color: var(--brass);
+      margin-bottom: var(--space-sm);
+    }
+    .mm-tcard__quote {
+      margin: 0 0 var(--space-md);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.0625rem;
+      line-height: 1.55;
+      color: var(--on-surface);
+      flex: 1;
+    }
+    .mm-tcard__attr {
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--outline-variant);
+      width: 100%;
+    }
+    .mm-tcard__name {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--primary-container);
+    }
+    .mm-tcard__org {
+      display: block;
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+      margin-top: 3px;
+    }
+
+    /* ── Pricing section — the Mastermind offer card ────────────────────────── */
+    .mm-pricing {
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      padding-block: clamp(56px, 7vw, 104px);
+      position: relative;
+      overflow: hidden;
+    }
+    .mm-pricing::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 6%;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.1), transparent);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .mm-plan {
+      position: relative;
+      z-index: 1;
+      max-width: 40rem;
+      margin-inline: auto;
+      margin-top: var(--space-xl);
+      background: linear-gradient(135deg, #0a1628 0%, #021c36 55%, #0a223d 100%);
+      border-radius: var(--radius-3xl);
+      border: 1px solid rgba(234, 194, 90, 0.55);
+      box-shadow:
+        0 40px 90px rgba(2, 28, 54, 0.45),
+        0 0 60px rgba(234, 194, 90, 0.18),
+        inset 0 0 0 1px rgba(234, 194, 90, 0.22);
+      padding: clamp(32px, 4vw, 56px) clamp(24px, 4vw, 48px);
+      text-align: center;
+    }
+    .mm-plan__lockup {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: clamp(12px, 2.5vw, 26px);
+      margin-bottom: var(--space-md);
+    }
+    .mm-plan__lockup-atlas {
+      height: clamp(56px, 8vw, 84px);
+      width: auto;
+      display: block;
+    }
+    .mm-plan__lockup-x {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(1.125rem, 0.9rem + 0.8vw, 1.5rem);
+      color: rgba(234, 194, 90, 0.7);
+      line-height: 1;
+    }
+    .mm-plan__lockup-mm {
+      height: clamp(48px, 7vw, 70px);
+      width: auto;
+      display: block;
+      filter: brightness(0) invert(1);
+    }
+    .mm-plan__sponsored {
+      font-family: var(--font-body);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      margin: 0 0 var(--space-xs);
+    }
+    .mm-plan__hero-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 1.3rem + 3.2vw, 3.25rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      margin: 0 0 var(--space-lg);
+      color: #ffffff;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+      filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.45));
+    }
+    .mm-plan__hero-plat {
+      background: linear-gradient(180deg, #c2262b 0%, #9e1e22 60%, #7a171a 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .mm-plan__price-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm) var(--space-md);
+      margin-bottom: var(--space-sm);
+    }
+    .mm-plan__price {
+      font-family: var(--font-display);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+      color: #ffffff;
+    }
+    .mm-plan__price--first {
+      font-size: clamp(3.5rem, 2rem + 7vw, 5.5rem);
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .mm-plan__price small {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      margin-top: 8px;
+    }
+    .mm-plan__then {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 1.2rem + 3vw, 3rem);
+      letter-spacing: -0.02em;
+      color: #ffffff;
+    }
+    .mm-plan__then small {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+      margin-top: 6px;
+    }
+    .mm-plan__arrow {
+      color: var(--brass-bright);
+      display: inline-flex;
+    }
+    .mm-plan__arrow svg { width: 26px; height: 26px; }
+    @media (max-width: 520px) {
+      .mm-plan__arrow { transform: rotate(90deg); }
+    }
+    .mm-plan__save {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.125rem, 0.9rem + 0.9vw, 1.5rem);
+      color: #ffffff;
+      margin: 0 0 var(--space-lg);
+    }
+    .mm-plan__save em {
+      font-style: normal;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .mm-plan__list {
+      list-style: none;
+      margin: 0 0 var(--space-lg);
+      padding: var(--space-lg) 0;
+      border-block: 1px solid rgba(234, 194, 90, 0.18);
+      display: grid;
+      gap: 12px;
+      text-align: left;
+    }
+    .mm-plan__list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .mm-plan__list .icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      color: var(--brass-bright);
+    }
+    .mm-plan__cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .mm-plan__fine {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.5);
+      margin: var(--space-md) 0 0;
+      line-height: 1.5;
+    }
   </style>
 </head>
 <body>
@@ -480,188 +924,159 @@
       </div>
     </section>
 
-    <!-- ── Featured testimonials ── -->
-    <section class="featured-testimonials">
+    <!-- ── 12. MASTERMIND PRICING ───────────────────────────────────────────── -->
+    <section class="mm-pricing" id="pricing" aria-labelledby="pricing-heading">
       <div class="container">
-        <header class="featured-testimonials__header" data-reveal="up">
-          <span class="eyebrow" style="justify-content: center;"><span class="eyebrow__text">From Our Members</span></span>
-          <h2 class="section-heading">What Originators Say After Joining</h2>
-        </header>
-        <div class="featured-testimonials__grid" data-reveal-stagger="120">
-          <blockquote class="quote-card">
-            <span class="quote-card__mark">&ldquo;</span>
-            <p class="quote-card__quote">The first night I had The Loan Atlas, I actually couldn't sleep. I learned so many things in a short amount of time that I wish I knew years ago.</p>
-            <div class="quote-card__attr">
-              <cite class="quote-card__name">Loan Atlas Member</cite>
-            </div>
-          </blockquote>
-          <blockquote class="quote-card">
-            <span class="quote-card__mark">&ldquo;</span>
-            <p class="quote-card__quote">I wish I would have known about this 5 years ago. I've been looking for this level of support my entire Loan Officer career of 15 years. I have needed this so desperately.</p>
-            <div class="quote-card__attr">
-              <cite class="quote-card__name">Jill Coss</cite>
-              <p class="quote-card__org">Loan Atlas Member</p>
-            </div>
-          </blockquote>
+        <div class="center" data-reveal="up" style="max-width: 46rem; margin-inline: auto;">
+          <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
+            <span class="eyebrow__text" style="color: var(--brass-bright);">Your Mastermind Offer</span>
+          </span>
+          <h2 id="pricing-heading" class="t-display" style="color: #ffffff; font-weight: 800; margin-bottom: var(--space-sm);">One Membership. <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">A Price Only You Get.</span></h2>
+          <p class="t-body-lg" style="color: rgba(255, 255, 255, 0.68);">Full access to everything above — the AI systems, live coaching, the curriculum, the community — at the exclusive Mastermind Summit rate.</p>
         </div>
-      </div>
-    </section>
 
-    <!-- ── Comparison ── -->
-    <section class="section" style="background: var(--surface-container-low); border-block: 1px solid var(--outline-variant);">
-      <div class="container">
-        <header data-reveal="up" style="max-width: 40rem; margin-inline: auto; margin-bottom: var(--space-xl); text-align: center;">
-          <span class="eyebrow" style="justify-content: center;"><span class="eyebrow__text">The Difference</span></span>
-          <h2 class="section-heading" style="margin-top: var(--space-sm);">Not another industry sales call</h2>
-        </header>
-        <div style="max-width: 52rem; margin-inline: auto;">
-          <div class="compare-v2" data-reveal="up">
-            <div class="compare-v2__col compare-v2__col--theirs">
-              <p class="compare-v2__label">A typical industry call</p>
-              <h3 class="compare-v2__title">What you've been offered</h3>
-              <div class="compare-v2__rows">
-                <div class="compare-v2__row">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                  A generic product pitch, regardless of your situation
-                </div>
-                <div class="compare-v2__row">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                  Vague promises about "transforming your business"
-                </div>
-                <div class="compare-v2__row">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                  No real insight into your numbers or your gaps
-                </div>
-                <div class="compare-v2__row">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                  Pressure to decide before you understand what you're buying
-                </div>
-                <div class="compare-v2__row">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-                  Walk away with nothing if you don't buy
-                </div>
-              </div>
+        <article class="mm-plan" data-reveal="scale">
+          <div class="mm-plan__lockup" aria-label="The Loan Atlas — official Mastermind Summit 2026 offer">
+            <img class="mm-plan__lockup-atlas" src="assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" />
+            <span class="mm-plan__lockup-x" aria-hidden="true">×</span>
+            <img class="mm-plan__lockup-mm" src="assets/mastermind-logo.webp" alt="Mastermind Summit 2026" />
+          </div>
+          <h3 class="mm-plan__hero-title"><span class="mm-plan__hero-plat">Platinum</span> Super Bonus</h3>
+
+          <div class="mm-plan__price-row">
+            <div>
+              <div class="mm-plan__price mm-plan__price--first">$49<small>First Month</small></div>
             </div>
-            <div class="compare-v2__col compare-v2__col--ours">
-              <p class="compare-v2__label">Your Atlas Session</p>
-              <h3 class="compare-v2__title">What you'll actually get</h3>
-              <div class="compare-v2__rows">
-                <div class="compare-v2__row">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  A real look at your business — your numbers, your patterns, your gaps
-                </div>
-                <div class="compare-v2__row">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Specific leverage points identified for your market and production
-                </div>
-                <div class="compare-v2__row">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  A sequenced growth plan built for your situation — not a template
-                </div>
-                <div class="compare-v2__row">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  Zero pressure to decide anything during or after the call
-                </div>
-                <div class="compare-v2__row">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                  The plan is yours to keep, whether you join or not
-                </div>
-              </div>
+            <span class="mm-plan__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+            </span>
+            <div>
+              <div class="mm-plan__then">$249<span style="font-size: 0.4em;">/mo</span><small>Months 2&ndash;12 · Locked In</small></div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ── Who should book ── -->
-    <section class="section" style="border-top: 1px solid var(--outline-variant);">
-      <div class="container">
-        <div class="who-grid">
-          <div data-reveal="left">
-            <h2 class="t-headline-lg">If any of this sounds familiar, this call is for you.</h2>
-          </div>
-          <ul class="checklist checklist--lg" data-reveal="right">
+          <p class="mm-plan__save"><em>$2,600 in total savings</em> vs. the regular $449/mo</p>
+
+          <ul class="mm-plan__list">
             <li>
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Your production is inconsistent and you can't pinpoint why
+              5 AI-powered systems to help you close twice the loans in half the time
             </li>
             <li>
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              You have a database you've been neglecting and you know it's costing you
+              Live weekly and monthly coaching sessions
             </li>
             <li>
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              You're strong at originating loans but weak at running the business
+              200+ training modules
             </li>
             <li>
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              You've tried programs before and ended up with more content, not more results
+              Full library of scripts, templates, and playbooks
             </li>
             <li>
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              You know you're leaving opportunity on the table but can't see where
+              Platinum Marketing upgrade included
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              New tools and content added every month
             </li>
           </ul>
-        </div>
+
+          <div class="mm-plan__cta">
+            <!-- TODO: Replace MASTERMIND_PLACEHOLDER with the real Mastermind checkout URL -->
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/MASTERMIND_PLACEHOLDER"
+              style="font-size: 1.0625rem; padding: 18px 44px; box-shadow: 0 8px 28px rgba(201, 150, 28, 0.32);">
+              Claim Your $49 First Month
+            </a>
+            <a href="consultation.html" style="font-size: 0.9375rem; color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;">
+              Have questions? Book a free coaching session
+            </a>
+          </div>
+          <p class="mm-plan__fine">12-month commitment. Offer exclusively for Mastermind Summit 2026 attendees. Available to new members only.</p>
+        </article>
       </div>
     </section>
 
-    <!-- ── FAQ ── -->
-    <section class="section">
+    <!-- ── 11. TESTIMONIALS + PROOF ─────────────────────────────────────────── -->
+    <section class="lp-testimonials" id="testimonials" aria-labelledby="testimonials-heading">
       <div class="container">
-        <header class="center" data-reveal="up" style="max-width: 40rem; margin-inline: auto; margin-bottom: var(--space-xl);">
-          <h2 class="section-heading">Common questions</h2>
-        </header>
-        <div class="faq" data-reveal-stagger="80" style="max-width: 44rem; margin-inline: auto;">
-          <details class="faq-item">
-            <summary>Is this really free?</summary>
-            <div class="faq-item__body">Yes. We offer these because when an originator sees firsthand how The Loan Atlas maps to their business, a meaningful percentage decide to join. The rest walk away with a plan they wouldn't have had otherwise, and we're good with that trade.</div>
-          </details>
-          <details class="faq-item">
-            <summary>What if I'm not ready to join right now?</summary>
-            <div class="faq-item__body">Book it anyway. The plan you'll leave with is valuable whether you join tomorrow, next quarter, or never. And you'll know exactly what The Loan Atlas is the next time the question comes up — which beats guessing from the outside.</div>
-          </details>
-          <details class="faq-item">
-            <summary>How do I prepare?</summary>
-            <div class="faq-item__body">Just show up. Bring a rough sense of your last 12 months, your database size, and what's been frustrating you. No homework, no forms to fill out in advance.</div>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── Final CTA ── -->
-    <section class="close-section close-section--homepage" aria-labelledby="final-cta-heading">
-      <div class="container close-section__grid">
-        <div class="close-section__copy" data-reveal="up">
-          <span class="close-section__eyebrow">Start Your Transformation</span>
-          <h2 id="final-cta-heading" class="close-section__title">
-            See Your Mortgage Business <em>Clearly</em>
-          </h2>
-          <p class="close-section__sub">
-            One 45-minute call. No pitch, no pressure. You walk away with a clear read on what's actually
-            holding production back — and the next two moves to fix it. <strong>That's the whole offer.</strong>
-          </p>
+        <div class="center" data-reveal="up" style="max-width: 44rem; margin-inline: auto; margin-bottom: var(--space-xl);">
+          <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
+            <span class="eyebrow__text">Member Results</span>
+          </span>
+          <h2 id="testimonials-heading" class="section-heading" style="text-align: center;">What Operating From a System Looks Like</h2>
         </div>
 
-        <div class="close-section__actions" data-reveal="up" role="group" aria-label="Get started">
-          <a class="close-section-action close-section-action--primary" href="#book" data-scroll-to-calendar>
-            <span>
-              <span class="close-section-action__label">Build Your Growth Plan</span>
-              <span class="close-section-action__hint">No cost · No obligation · Pick a time that works</span>
-            </span>
-            <span class="close-section-action__arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
-            </span>
-          </a>
-          <a class="close-section-action close-section-action--secondary" href="whats-inside.html">
-            <span>
-              <span class="close-section-action__label">See What's Inside First</span>
-              <span class="close-section-action__hint">A full tour of the system, faculty, and member experience</span>
-            </span>
-            <span class="close-section-action__arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
-            </span>
-          </a>
+        <div class="mm-tcards" data-reveal-stagger="120">
+
+          <figure class="mm-tcard">
+            <div class="mm-tcard__photo">
+              <img src="assets/gian-ceretto.png" alt="Gian Ceretto" loading="lazy">
+            </div>
+            <div class="mm-tcard__body">
+              <span class="mm-tcard__stars" aria-label="5 out of 5 stars">★★★★★</span>
+              <blockquote class="mm-tcard__quote">If you're considering joining The Loan Atlas, it's been the best investment I've ever made — and you will make it back within your first month's production.</blockquote>
+              <figcaption class="mm-tcard__attr">
+                <span class="mm-tcard__name">Gian Ceretto</span>
+                <span class="mm-tcard__org">Prosperity Home Mortgage</span>
+              </figcaption>
+            </div>
+          </figure>
+
+          <figure class="mm-tcard">
+            <div class="mm-tcard__photo">
+              <img src="assets/sue botelho.jpeg" alt="Sue Botelho" loading="lazy">
+            </div>
+            <div class="mm-tcard__body">
+              <span class="mm-tcard__stars" aria-label="5 out of 5 stars">★★★★★</span>
+              <blockquote class="mm-tcard__quote">I'm a former Loan Toolbox member — the technology Tim had 20 years ago that got me where I am today. The Loan Atlas is Loan Toolbox 2.0. It's worth its weight in gold.</blockquote>
+              <figcaption class="mm-tcard__attr">
+                <span class="mm-tcard__name">Sue Botelho</span>
+                <span class="mm-tcard__org">Waterstone Mortgage</span>
+              </figcaption>
+            </div>
+          </figure>
+
+          <figure class="mm-tcard">
+            <div class="mm-tcard__photo">
+              <img src="assets/edgardo-balentine.jpeg" alt="Edgardo Valentine" loading="lazy">
+            </div>
+            <div class="mm-tcard__body">
+              <span class="mm-tcard__stars" aria-label="5 out of 5 stars">★★★★★</span>
+              <blockquote class="mm-tcard__quote">The Loan Atlas makes it so I never have to guess. Anything you could need in your business, you'll find there.</blockquote>
+              <figcaption class="mm-tcard__attr">
+                <span class="mm-tcard__name">Edgardo Valentine</span>
+                <span class="mm-tcard__org">NEO Home Loans</span>
+              </figcaption>
+            </div>
+          </figure>
+
+        </div>
+
+        <!-- Proof stat + Habib quote -->
+        <div class="lp-proof-card" data-reveal="up" style="margin-top: clamp(32px, 4vw, 56px);">
+          <div class="lp-proof-card__stat-col">
+            <span class="lp-proof-card__label">Loan Atlas Members Close</span>
+            <p id="proof-heading" class="lp-proof-card__stat" aria-label="$8.2 million plus more per year">
+              <span class="lp-proof-card__currency">$</span><span class="lp-proof-card__number" data-countup="8.2">8.2</span><span class="lp-proof-card__unit">M</span><span class="lp-proof-card__plus" aria-hidden="true">+</span>
+            </p>
+            <p class="lp-proof-card__caption">More in annual production than the industry average.</p>
+          </div>
+
+          <figure class="lp-proof-card__test-col">
+            <blockquote class="lp-proof-card__quote">"The wealth that's in The Loan Atlas is absolutely incredible. Imagine how valuable it is to have access to the smartest minds in our industry."</blockquote>
+            <figcaption class="lp-proof-card__test-head" style="margin-top: var(--space-md); margin-bottom: 0;">
+              <div class="lp-proof-card__photo">
+                <img src="assets/barry-habib.jpg" alt="Barry Habib">
+              </div>
+              <div>
+                <cite class="lp-proof-card__attr-name" style="font-style: normal;">Barry Habib</cite>
+                <span class="lp-proof-card__attr-role">Founder &amp; CEO, MBS Highway</span>
+              </div>
+            </figcaption>
+          </figure>
         </div>
       </div>
     </section>
