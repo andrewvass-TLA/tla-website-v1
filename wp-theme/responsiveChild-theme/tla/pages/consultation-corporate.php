@@ -1,0 +1,625 @@
+<?php
+/**
+ * Body partial for /consultation-corporate/ (TLA Full HTML template).
+ * Generated from public/consultation-corporate.html by scripts/convert-pages.sh — do not hand-edit;
+ * edit the source HTML (or the shared header/footer partials) and re-run.
+ */
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+
+$tla_title       = 'Schedule an Enterprise Consultation — The Loan Atlas';
+$tla_description = 'A free strategy session for mortgage leaders and teams — see exactly where production is leaking across your roster and how to make your top producers\\' playbook the standard for everyone.';
+$tla_active      = '';
+?>
+  <style>
+    /* ── Hero ── */
+    .hero-v2 {
+      position: relative;
+      overflow: hidden;
+      /* Full-bleed background image with navy gradient overlay (matches faculty/what's-inside) */
+      background:
+        linear-gradient(to right,
+          rgba(2, 28, 54, 0.98) 0%,
+          rgba(2, 28, 54, 0.94) 38%,
+          rgba(2, 28, 54, 0.7)  62%,
+          rgba(2, 28, 54, 0.45) 100%),
+        url('<?php echo TLA_BASE; ?>/assets/dashboard.png') right center / cover no-repeat,
+        /* fallback navy gradient if the image fails to load */
+        linear-gradient(160deg, #021c36 0%, #0a1628 60%, #131b2e 100%);
+      padding-block: clamp(80px, 8vw, 120px);
+    }
+    /* soft brass glow accent, top-right */
+    .hero-v2::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: 8%;
+      width: 540px;
+      height: 540px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.11), transparent);
+      filter: blur(70px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .hero-booking {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .hero-booking {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+      /* drop the overlay to a flat navy stack on small screens for legibility */
+      .hero-v2 {
+        background:
+          linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      }
+    }
+    .hero-v2__intro {
+      max-width: 38rem;
+    }
+    .hero-v2__intro .t-display {
+      color: #fff;
+      font-size: clamp(2.25rem, 1.4rem + 3.2vw, 3.75rem);
+      font-weight: 800;
+      margin-top: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    .hero-v2__accent {
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-v2__intro .t-body-lg {
+      color: rgba(255,255,255,0.72);
+      max-width: 36rem;
+      font-size: clamp(1rem, 0.875rem + 0.4vw, 1.1875rem);
+      line-height: 1.6;
+    }
+    .hero-v2__trust {
+      margin-top: var(--space-md);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      color: rgba(255,255,255,0.5);
+    }
+    .hero-v2__trust svg { color: var(--brass-bright); flex-shrink: 0; }
+    /* keep the calendar card from stretching too wide in its grid column */
+    .hero-booking .booking-card { margin-inline: 0; }
+
+    /* ── Booking card ── */
+    .booking-card {
+      background: var(--surface-container-lowest);
+      border-radius: var(--radius-3xl);
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      max-width: 56rem;
+      margin-inline: auto;
+    }
+    .booking-card__header {
+      padding: var(--space-md) var(--space-md) var(--space-sm);
+      border-bottom: 1px solid var(--outline-variant);
+    }
+    .booking-card__iframe {
+      display: block;
+      width: 100%;
+      min-height: 620px;
+      border: none;
+      overflow: hidden;
+    }
+
+    /* ── Process steps ── */
+    .process-section {
+      background: var(--surface-container-low);
+      border-block: 1px solid var(--outline-variant);
+    }
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+    @media (max-width: 760px) {
+      .process-grid { grid-template-columns: 1fr; }
+    }
+    .process-steps {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+    .process-step {
+      display: flex;
+      gap: var(--space-md);
+      align-items: flex-start;
+    }
+    .process-step__num {
+      flex-shrink: 0;
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-full);
+      display: grid;
+      place-items: center;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.125rem;
+      color: var(--primary);
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      box-shadow: 0 6px 18px rgba(201, 150, 28, 0.28);
+    }
+    .process-step__content h3 {
+      font-family: var(--font-display);
+      font-size: 1.125rem;
+      font-weight: 600;
+      color: var(--on-surface);
+      margin: 0 0 6px;
+      letter-spacing: -0.01em;
+    }
+    .process-step__content p {
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      line-height: 1.6;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+    .process-grid__image img {
+      width: 100%;
+      display: block;
+    }
+
+    /* ── Featured testimonials (dark) ── */
+    .featured-testimonials {
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      padding-block: clamp(64px, 8vw, 104px);
+    }
+    .featured-testimonials::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      left: 6%;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.12), transparent);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .featured-testimonials__header {
+      position: relative;
+      text-align: center;
+      max-width: 40rem;
+      margin: 0 auto var(--space-xl);
+    }
+    .featured-testimonials__header .section-heading {
+      color: #fff;
+      margin-top: var(--space-sm);
+    }
+    .featured-testimonials__grid {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-lg);
+      max-width: 64rem;
+      margin-inline: auto;
+    }
+    @media (max-width: 760px) {
+      .featured-testimonials__grid { grid-template-columns: 1fr; }
+    }
+    .featured-testimonials .quote-card {
+      flex: unset;
+      padding: var(--space-md);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-left: 3px solid var(--brass);
+      border-radius: var(--radius-xl);
+    }
+    .featured-testimonials .quote-card__mark { color: var(--brass-bright); opacity: 0.45; }
+    .featured-testimonials .quote-card__quote { color: rgba(255,255,255,0.86); font-style: italic; }
+    .featured-testimonials .quote-card__name { color: var(--brass-bright); }
+    .featured-testimonials .quote-card__org { color: rgba(255,255,255,0.55); }
+
+    /* ── FAQ: two-column (sticky aside + accordion) ── */
+    .faq-split {
+      display: grid;
+      grid-template-columns: minmax(0, 22rem) minmax(0, 1fr);
+      gap: clamp(var(--space-lg), 5vw, var(--space-xl));
+      align-items: start;
+    }
+    .faq-split__aside {
+      position: sticky;
+      top: calc(var(--header-h) + var(--space-lg));
+    }
+    .faq-split__list { flex: 1; }
+    @media (max-width: 860px) {
+      .faq-split {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+      .faq-split__aside {
+        position: static;
+        top: auto;
+      }
+    }
+  </style>
+
+
+<?php include get_stylesheet_directory() . '/tla/partials/header.php'; ?>
+
+  <main class="site-main">
+
+    <!-- ── Hero ── -->
+    <section class="hero-v2" id="book">
+      <div class="container">
+        <div class="hero-booking">
+
+          <!-- Intro -->
+          <div class="hero-v2__intro">
+            <span class="eyebrow" data-hero-step="1"><span class="eyebrow__text">Enterprise Strategy Session</span></span>
+            <h1 class="t-display" data-hero-step="2">
+              Close the Gap Between Your <span class="hero-v2__accent">Top Producers</span> and Everyone Else
+            </h1>
+            <p class="t-body-lg" data-hero-step="3">A free strategy session for mortgage leaders. We'll show you exactly where production is leaking across your roster — and how to make your best originators' playbook the standard for the whole team.</p>
+            <p class="hero-v2__trust" data-hero-step="4">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              No cost · No obligation
+            </p>
+          </div>
+
+          <!-- Booking widget -->
+          <div data-hero-step="5">
+            <div class="booking-card">
+              <div class="booking-card__header">
+                <h2 class="t-headline-md" style="margin-bottom: 4px;">Book Your Enterprise Strategy Session</h2>
+                <p class="t-body t-muted" style="margin: 0;">For leaders &amp; teams · Video call · No cost, no obligation</p>
+              </div>
+              <iframe src="https://api.leadconnectorhq.com/widget/booking/sNSShvRjEhTdDcR9MTmx" class="booking-card__iframe" scrolling="no" id="BOsyPdKSxuiFky6PDbge_1773848314598"></iframe>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Trust bar ── -->
+    <section class="trust">
+      <div class="container">
+        <p class="trust__label" data-reveal="fade">Trusted by top producing teams and enterprises across the country.</p>
+      </div>
+      <div class="trust__marquee" aria-hidden="false">
+        <div class="trust__track">
+          <ul class="trust__group">
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/UWM-logo.png" alt="UWM"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/CMG-logo.svg" alt="CMG Financial"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/cross-country-logo.webp" alt="CrossCountry Mortgage"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/rate-logo.png" alt="Guaranteed Rate"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/fairway-logo.png" alt="Fairway Independent Mortgage"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/loan-depot-logo.png" alt="loanDepot"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/better-logo.png" alt="Better"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/american-pacific-logo.webp" alt="American Pacific Mortgage"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/acm-logo.webp" alt="ACM"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/lower-mortgage-logo.svg" alt="Lower"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/swbc-logo.png" alt="SWBC Mortgage"></li>
+          </ul>
+          <ul class="trust__group" aria-hidden="true">
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/UWM-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/CMG-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/cross-country-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/rate-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/fairway-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/loan-depot-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/better-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/american-pacific-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/acm-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/lower-mortgage-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/swbc-logo.png" alt=""></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── What to expect ── -->
+    <section class="section process-section">
+      <div class="container">
+        <header data-reveal="up" style="max-width: 40rem; margin-inline: auto; margin-bottom: var(--space-xl); text-align: center;">
+          <h2 class="section-heading">What To Expect</h2>
+        </header>
+        <div class="process-grid">
+          <ol class="process-steps" data-reveal-stagger="120">
+            <li class="process-step">
+              <span class="process-step__num">1</span>
+              <div class="process-step__content">
+                <h3>Book a time</h3>
+                <p>Pick a slot that works for your leadership team. Select a day and time from the calendar above — bring whoever owns production and growth.</p>
+              </div>
+            </li>
+            <li class="process-step">
+              <span class="process-step__num">2</span>
+              <div class="process-step__content">
+                <h3>Share your team's picture</h3>
+                <p>Walk us through your roster, your current tooling, and how production breaks down across your originators. No prep work required — just show up.</p>
+              </div>
+            </li>
+            <li class="process-step">
+              <span class="process-step__num">3</span>
+              <div class="process-step__content">
+                <h3>See where production is leaking</h3>
+                <p>We map the gap between your top producers and the rest of the team — the inconsistencies, the broken handoffs, and the systems your best LOs use that no one else has.</p>
+              </div>
+            </li>
+            <li class="process-step">
+              <span class="process-step__num">4</span>
+              <div class="process-step__content">
+                <h3>Walk away with a rollout plan</h3>
+                <p>A prioritized plan for standardizing your top performers' playbook across the whole roster. Keep it whether you bring The Loan Atlas to your team or not.</p>
+              </div>
+            </li>
+          </ol>
+          <div class="process-grid__image" data-reveal="right">
+            <img src="<?php echo TLA_BASE; ?>/assets/ai-business-intelligence-2.png" alt="The Loan Atlas AI business intelligence" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── What you'll leave this call with ── -->
+    <section class="takeaways takeaways--dark">
+      <div class="takeaways__intro" data-reveal="up">
+        <span class="eyebrow" style="justify-content: center;"><span class="eyebrow__text">What You Walk Away With</span></span>
+        <h2 class="takeaways__heading">What you'll leave <span class="takeaways__heading-accent">this call</span> with</h2>
+        <p class="takeaways__lede">Your best originator and your worst originator work in the same market. The gap between them is rarely a talent problem — it's a system problem. This call is a straightforward conversation about that gap and how The Loan Atlas helps teams close it.</p>
+      </div>
+
+      <div class="takeaways__features" data-reveal-stagger="100">
+        <div class="takeaways__grid">
+          <article class="takeaways__cell">
+            <span class="takeaways__cell-num" aria-hidden="true">01</span>
+            <span class="takeaways__cell-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg>
+            </span>
+            <h3 class="takeaways__cell-title">A Clear View of the Gap</h3>
+            <p class="takeaways__cell-copy">We'll talk through why production varies so much across a team — the systems top producers rely on that the rest of the roster doesn't — so you can see where the real opportunity sits.</p>
+          </article>
+          <article class="takeaways__cell">
+            <span class="takeaways__cell-num" aria-hidden="true">02</span>
+            <span class="takeaways__cell-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+            </span>
+            <h3 class="takeaways__cell-title">How It Works for Teams</h3>
+            <p class="takeaways__cell-copy">A clear picture of how The Loan Atlas rolls out across a roster — how teams get onto one shared system and what bringing it to your originators actually looks like.</p>
+          </article>
+          <article class="takeaways__cell">
+            <span class="takeaways__cell-num" aria-hidden="true">03</span>
+            <span class="takeaways__cell-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </span>
+            <h3 class="takeaways__cell-title">A Tour of The Loan Atlas</h3>
+            <p class="takeaways__cell-copy">A walkthrough of the platform built for teams — the AI systems, coaching, and frameworks your originators get access to, so you can judge the fit for yourself.</p>
+          </article>
+        </div>
+      </div>
+
+      <div class="takeaways__marquees" aria-hidden="true">
+        <div class="marquee">
+          <div class="marquee__track">
+            <span class="qpill">Why does my top LO close 4x my average?</span>
+            <span class="qpill">How do I standardize across the roster?</span>
+            <span class="qpill">How do I ramp new hires faster?</span>
+            <span class="qpill">What does my best originator do differently?</span>
+            <span class="qpill">How do I forecast production accurately?</span>
+            <span class="qpill">How do I lift the middle of my team?</span>
+          </div>
+          <div class="marquee__track" aria-hidden="true">
+            <span class="qpill">Why does my top LO close 4x my average?</span>
+            <span class="qpill">How do I standardize across the roster?</span>
+            <span class="qpill">How do I ramp new hires faster?</span>
+            <span class="qpill">What does my best originator do differently?</span>
+            <span class="qpill">How do I forecast production accurately?</span>
+            <span class="qpill">How do I lift the middle of my team?</span>
+          </div>
+        </div>
+
+        <div class="marquee marquee--reverse" style="--duration: 50s;">
+          <div class="marquee__track">
+            <span class="qpill">What's my real cost-per-loan?</span>
+            <span class="qpill">What tech stack should the team run on?</span>
+            <span class="qpill">How do I cut onboarding time?</span>
+            <span class="qpill">How do I retain my top producers?</span>
+            <span class="qpill">How do I roll out AI across the team?</span>
+            <span class="qpill">Why are conversions uneven across LOs?</span>
+          </div>
+          <div class="marquee__track" aria-hidden="true">
+            <span class="qpill">What's my real cost-per-loan?</span>
+            <span class="qpill">What tech stack should the team run on?</span>
+            <span class="qpill">How do I cut onboarding time?</span>
+            <span class="qpill">How do I retain my top producers?</span>
+            <span class="qpill">How do I roll out AI across the team?</span>
+            <span class="qpill">Why are conversions uneven across LOs?</span>
+          </div>
+        </div>
+
+        <div class="marquee" style="--duration: 42s;">
+          <div class="marquee__track">
+            <span class="qpill">How do I know which managers are coaching?</span>
+            <span class="qpill">How do I get the whole team past plateaus?</span>
+            <span class="qpill">How do I scale without adding headcount?</span>
+            <span class="qpill">How do I track production across the roster?</span>
+            <span class="qpill">How do I make training actually stick?</span>
+            <span class="qpill">What systems should we standardize first?</span>
+          </div>
+          <div class="marquee__track" aria-hidden="true">
+            <span class="qpill">How do I know which managers are coaching?</span>
+            <span class="qpill">How do I get the whole team past plateaus?</span>
+            <span class="qpill">How do I scale without adding headcount?</span>
+            <span class="qpill">How do I track production across the roster?</span>
+            <span class="qpill">How do I make training actually stick?</span>
+            <span class="qpill">What systems should we standardize first?</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Featured testimonials ── -->
+    <section class="featured-testimonials">
+      <div class="container">
+        <header class="featured-testimonials__header" data-reveal="up">
+          <span class="eyebrow" style="justify-content: center;"><span class="eyebrow__text">From Leaders &amp; Teams</span></span>
+          <h2 class="section-heading">What Leaders Say After Rolling It Out</h2>
+        </header>
+        <div class="featured-testimonials__grid" data-reveal-stagger="120">
+          <blockquote class="quote-card">
+            <span class="quote-card__mark">&ldquo;</span>
+            <p class="quote-card__quote">I love the depth of knowledge. There are a lot of things that just skim the surface, but you get training from people who are at the top of their game and get real one-on-one time with them. That implementation piece is huge.</p>
+            <div class="quote-card__attr">
+              <cite class="quote-card__name">Scott DiGregorio</cite>
+              <p class="quote-card__org">NEO Home Loans</p>
+            </div>
+          </blockquote>
+          <blockquote class="quote-card">
+            <span class="quote-card__mark">&ldquo;</span>
+            <p class="quote-card__quote">Our top producers were running on systems no one else had. Getting the whole team on one playbook is the difference — the middle of our roster finally has something to follow instead of figuring it out alone.</p>
+            <div class="quote-card__attr">
+              <cite class="quote-card__name">Mortgage Team Leader</cite>
+              <p class="quote-card__org">The Loan Atlas for Teams</p>
+            </div>
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Who should book ── -->
+    <section class="section" style="border-top: 1px solid var(--outline-variant);">
+      <div class="container">
+        <div class="who-card" data-reveal="up">
+          <div class="who-card__header">
+            <span class="who-card__eyebrow">Is this call for you?</span>
+            <h2 class="who-card__title">If you lead a team and any of this sounds familiar, this call is for you.</h2>
+          </div>
+          <ul class="who-card__list" data-reveal-stagger="80">
+            <li class="who-card__item">
+              <svg class="who-card__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              The gap between your top and bottom producers keeps widening
+            </li>
+            <li class="who-card__item">
+              <svg class="who-card__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Your best LOs' playbook lives in their heads, not in a system the team can run
+            </li>
+            <li class="who-card__item">
+              <svg class="who-card__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              New hires take too long to ramp and onboarding eats your managers' time
+            </li>
+            <li class="who-card__item">
+              <svg class="who-card__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              You've bought coaching, AI tools, or training before and it never stuck across the team
+            </li>
+            <li class="who-card__item">
+              <svg class="who-card__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              You can't forecast production confidently or see your real cost-per-loan
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── FAQ ── -->
+    <section class="section faq-section">
+      <div class="container">
+        <div class="faq-split">
+          <header class="faq-split__aside" data-reveal="left">
+            <h2 class="section-heading faq-split__title">Common Questions</h2>
+          </header>
+
+          <div class="faq faq-split__list" data-reveal-stagger="80">
+            <details class="faq-item">
+              <summary>What does the consultation actually cover?</summary>
+              <div class="faq-item__body">We'll spend the session looking at your team's production honestly — where the gaps are, where the inconsistency is coming from, and which systems would close them. You'll leave with a clear picture of what's holding your organization back and a specific understanding of how The Loan Atlas maps to it.</div>
+            </details>
+            <details class="faq-item">
+              <summary>Is this a sales call?</summary>
+              <div class="faq-item__body">No. The goal of the session is to give you a complete, accurate view of what's happening across your team and whether The Loan Atlas is the right fit for it. If it isn't, we'll tell you. If it is, you'll know exactly why — and exactly how deployment would work.</div>
+            </details>
+            <details class="faq-item">
+              <summary>Our team has originators at very different experience levels. Does one system work for all of them?</summary>
+              <div class="faq-item__body">Yes. The Loan Atlas is built to lift the floor and raise the ceiling at the same time. A producer doing $20M gets different value from the platform than one doing $100M — but both get a system they can actually execute, not content built for a hypothetical average.</div>
+            </details>
+            <details class="faq-item">
+              <summary>We already invest in coaching and training. Does this replace that?</summary>
+              <div class="faq-item__body">Not necessarily. The Loan Atlas is the operational layer most organizations are missing — the system underneath the coaching. For teams that already invest in development, it usually strengthens what's already in place rather than replacing it.</div>
+            </details>
+            <details class="faq-item">
+              <summary>Is the AI actually built for the mortgage industry, or is it general AI with a mortgage label on it?</summary>
+              <div class="faq-item__body">It's built on the systems and frameworks that active top producers actually use — not generic prompts. The AI tools are trained on mortgage-specific scenarios: rate conversations, objection handling, referral partner communication, production planning. There's no general-purpose layer underneath it.</div>
+            </details>
+            <details class="faq-item">
+              <summary>How is this priced?</summary>
+              <div class="faq-item__body">Pricing for organizational deployment is handled in the consultation. It depends on team size and structure, and we'd rather scope it accurately than give you a number that doesn't fit your situation.</div>
+            </details>
+            <details class="faq-item">
+              <summary>How long is the session, and who should be on the call?</summary>
+              <div class="faq-item__body">The session runs approximately 60 minutes over video. Most organizational buyers bring the decision-maker plus one other person who owns training or production performance. The more context you can bring, the more specific the session gets.</div>
+            </details>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── Final CTA ── -->
+    <section class="close-section close-section--homepage" aria-labelledby="final-cta-heading">
+      <div class="container close-section__grid">
+        <div class="close-section__copy" data-reveal="up">
+          <span class="close-section__eyebrow">Stop Paying for the Gap</span>
+          <h2 id="final-cta-heading" class="close-section__title">
+            See Your Whole Team <em>Clearly</em>
+          </h2>
+          <p class="close-section__sub">
+            One call with your leadership. No pitch, no pressure. You walk away with a clear read on what's
+            actually holding your roster back — and a plan to make your top producers' playbook the standard.
+            <strong>That's the whole offer.</strong>
+          </p>
+        </div>
+
+        <div class="close-section__actions" data-reveal="up" role="group" aria-label="Get started">
+          <a class="close-section-action close-section-action--primary" href="#book" data-scroll-to-calendar>
+            <span>
+              <span class="close-section-action__label">Schedule an Enterprise Consultation</span>
+              <span class="close-section-action__hint">No cost · No obligation · Pick a time that works</span>
+            </span>
+            <span class="close-section-action__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+            </span>
+          </a>
+          <a class="close-section-action close-section-action--secondary" href="/businesses/">
+            <span>
+              <span class="close-section-action__label">See the Enterprise Overview</span>
+              <span class="close-section-action__hint">How The Loan Atlas works across a full team and roster</span>
+            </span>
+            <span class="close-section-action__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+<?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>
+
+  <script>
+    document.querySelectorAll('[data-scroll-to-calendar]').forEach(el => {
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        document.getElementById('book').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+  <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>

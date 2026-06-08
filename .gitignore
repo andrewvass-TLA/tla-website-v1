@@ -11,3 +11,4 @@ node_modules/
 
 # Dev-only output
 screenshots/
+wp-theme/_preview-*.html

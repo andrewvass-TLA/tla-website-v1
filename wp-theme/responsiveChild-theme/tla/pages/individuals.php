@@ -1,0 +1,965 @@
+<?php
+/**
+ * Body partial for /individuals/ (TLA Full HTML template).
+ * Generated from public/sales-individual.html by scripts/convert-pages.sh — do not hand-edit;
+ * edit the source HTML (or the shared header/footer partials) and re-run.
+ */
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+
+$tla_title       = 'Join The Loan Atlas — See Your Mortgage Business Clearly for the First Time';
+$tla_description = 'The Loan Atlas installs 5 AI-powered systems into your mortgage business so you can close more loans, make better decisions, and finally feel in control again.';
+$tla_active      = 'individuals';
+?>
+  <style>
+    /* ── LP-specific styles ─────────────────────────────────────────────────── */
+
+    /* Minimal header — no nav links */
+    .lp-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      height: var(--header-h);
+      background: rgba(2, 28, 54, 0.95);
+      backdrop-filter: saturate(180%) blur(12px);
+      -webkit-backdrop-filter: saturate(180%) blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: var(--shadow);
+    }
+    .lp-header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+      gap: var(--space-sm);
+    }
+    .lp-header__actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .lp-header__ghost {
+      display: none;
+    }
+    @media (min-width: 540px) {
+      .lp-header__ghost {
+        display: inline-flex;
+      }
+    }
+
+    /* Trust strip — slim band of logos */
+    .lp-trust-strip {
+      background: var(--surface-container-low);
+      border-block: 1px solid var(--outline-variant);
+      padding-block: clamp(28px, 3.5vw, 52px);
+    }
+    .lp-trust-strip__eyebrow {
+      text-align: center;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin: 0 0 var(--space-md);
+    }
+
+    /* Proof panel — stat + Habib testimonial side by side (sits under inline CTA) */
+    .lp-proof-section {
+      background: var(--surface);
+      padding-block: clamp(56px, 7vw, 96px);
+    }
+    .lp-proof-card {
+      max-width: 64rem;
+      margin-inline: auto;
+      background: linear-gradient(135deg, #0a1628 0%, #021c36 55%, #0a223d 100%);
+      border-radius: var(--radius-3xl);
+      border: 1px solid rgba(234, 194, 90, 0.28);
+      box-shadow:
+        0 30px 70px rgba(2, 28, 54, 0.35),
+        inset 0 0 0 1px rgba(234, 194, 90, 0.08);
+      padding: clamp(32px, 4vw, 56px) clamp(24px, 4vw, 56px);
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      gap: clamp(32px, 4vw, 56px);
+      grid-template-columns: 1fr;
+      align-items: center;
+      text-align: center;
+    }
+    .lp-proof-card::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.18), transparent);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    @media (min-width: 760px) {
+      .lp-proof-card {
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr);
+        text-align: left;
+      }
+    }
+
+    /* Left column — pricing-page-style hero stat */
+    .lp-proof-card__stat-col {
+      position: relative;
+      z-index: 1;
+    }
+    .lp-proof-card__label {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      margin-bottom: var(--space-sm);
+    }
+    .lp-proof-card__stat {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 4px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin: 0 0 var(--space-sm);
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    @media (min-width: 760px) {
+      .lp-proof-card__stat { justify-content: flex-start; }
+    }
+    .lp-proof-card__currency {
+      font-size: clamp(2rem, 1rem + 3vw, 3rem);
+      padding-top: clamp(8px, 1.5vw, 16px);
+      font-weight: 700;
+    }
+    .lp-proof-card__number {
+      font-size: clamp(4.5rem, 2rem + 8vw, 7.5rem);
+    }
+    .lp-proof-card__unit {
+      font-size: clamp(2.5rem, 1rem + 4vw, 4rem);
+      padding-top: clamp(4px, 1vw, 8px);
+      font-weight: 700;
+    }
+    .lp-proof-card__plus {
+      display: inline-block;
+      font-size: clamp(1.25rem, 0.75rem + 1.5vw, 1.875rem);
+      vertical-align: top;
+      padding-top: clamp(8px, 1.5vw, 18px);
+      margin-left: 4px;
+    }
+    .lp-proof-card__caption {
+      font-size: 0.9375rem;
+      color: rgba(255, 255, 255, 0.7);
+      margin: 0;
+      line-height: 1.5;
+      max-width: 26ch;
+      margin-inline: auto;
+    }
+    @media (min-width: 760px) {
+      .lp-proof-card__caption { margin-inline: 0; }
+    }
+
+    /* Right column — Habib testimonial */
+    .lp-proof-card__test-col {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      padding-left: 0;
+      border-left: none;
+    }
+    @media (min-width: 760px) {
+      .lp-proof-card__test-col {
+        padding-left: clamp(28px, 3vw, 48px);
+        border-left: 1px solid rgba(234, 194, 90, 0.2);
+      }
+    }
+    .lp-proof-card__test-head {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    @media (min-width: 760px) {
+      .lp-proof-card__test-head { justify-content: flex-start; }
+    }
+    .lp-proof-card__photo {
+      width: 56px;
+      height: 56px;
+      flex-shrink: 0;
+      padding: 2px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+    }
+    .lp-proof-card__photo img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      background: #021c36;
+    }
+    .lp-proof-card__attr-name {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+    .lp-proof-card__attr-role {
+      display: block;
+      margin-top: 2px;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--brass-bright);
+    }
+    .lp-proof-card__quote {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 0.9rem + 0.5vw, 1.1875rem);
+      font-style: italic;
+      font-weight: 500;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    /* Bridge */
+    .lp-bridge {
+      background: #ffffff;
+      padding-block: clamp(40px, 5vw, 72px);
+      border-bottom: 1px solid var(--outline-variant);
+    }
+    .lp-bridge__inner {
+      max-width: 56rem;
+      margin-inline: auto;
+      text-align: center;
+    }
+
+    /* 5 Systems grid — condensed cards */
+    .lp-systems {
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      padding-block: clamp(56px, 7vw, 104px);
+    }
+    .lp-systems__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+    @media (min-width: 720px) {
+      .lp-systems__grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .lp-systems__grid .system-card:last-child {
+        grid-column: 1 / -1;
+        max-width: calc(50% - var(--space-md) / 2);
+        justify-self: center;
+      }
+    }
+    .system-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-lg);
+      position: relative;
+      overflow: hidden;
+      transition: background 200ms ease, border-color 200ms ease, transform 200ms ease;
+    }
+    .system-card:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(234, 194, 90, 0.28);
+      transform: translateY(-2px);
+    }
+    .system-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 130px;
+      height: 130px;
+      border-bottom-left-radius: 50%;
+      background: linear-gradient(135deg, rgba(234, 194, 90, 0.09), transparent 70%);
+      pointer-events: none;
+    }
+    .system-card__num {
+      font-family: var(--font-display);
+      font-size: 2.75rem;
+      font-weight: 700;
+      line-height: 1;
+      color: rgba(234, 194, 90, 0.16);
+      display: block;
+      margin-bottom: var(--space-sm);
+    }
+    .system-card__tagline {
+      font-family: var(--font-body);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .system-card__title {
+      font-family: var(--font-display);
+      font-size: 1.1875rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: var(--space-sm);
+      line-height: 1.3;
+    }
+    .system-card p {
+      font-size: 0.9375rem;
+      line-height: 1.68;
+      color: rgba(255, 255, 255, 0.7);
+      margin: 0;
+    }
+
+    /* What's Included features */
+    .lp-features {
+      background: #ffffff;
+      padding-block: clamp(56px, 7vw, 96px);
+    }
+    .lp-features__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+    @media (min-width: 720px) {
+      .lp-features__grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* 8 Disciplines */
+    .lp-disciplines {
+      background: var(--surface-container-low);
+      border-block: 1px solid var(--outline-variant);
+      padding-block: clamp(56px, 7vw, 96px);
+    }
+    .disciplines-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: var(--space-lg);
+      max-width: 54rem;
+      margin-inline: auto;
+    }
+    @media (min-width: 600px) {
+      .disciplines-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    .discipline-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 18px;
+      background: var(--surface-container-lowest);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-lg);
+    }
+    .discipline-item__num {
+      font-family: var(--font-display);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      color: var(--brass);
+      flex-shrink: 0;
+      min-width: 20px;
+    }
+    .discipline-item__text {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: var(--on-surface);
+      line-height: 1.4;
+    }
+
+    /* Testimonials */
+    .lp-testimonials {
+      background: #ffffff;
+      padding-block: clamp(56px, 7vw, 96px);
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+    @media (min-width: 720px) {
+      .testimonials-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+    @media (min-width: 1040px) {
+      .testimonials-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    .testimonial-card {
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .testimonial-card blockquote {
+      margin: 0;
+      font-style: italic;
+      font-size: 0.9375rem;
+      line-height: 1.68;
+      color: var(--on-surface);
+      flex: 1;
+    }
+    .testimonial-card blockquote::before {
+      content: '\201C';
+      font-family: var(--font-display);
+      font-size: 2rem;
+      line-height: 0.8;
+      color: var(--brass);
+      display: block;
+      margin-bottom: 10px;
+    }
+    .testimonial-card figcaption {
+      padding-top: var(--space-sm);
+      border-top: 1px solid var(--outline-variant);
+    }
+    .testimonial-card__name {
+      font-family: var(--font-display);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--primary-container);
+    }
+    .testimonial-card__org {
+      font-size: 0.75rem;
+      color: var(--on-surface-variant);
+      margin-top: 3px;
+    }
+
+    /* Pricing */
+    .lp-pricing {
+      background: var(--surface-container-low);
+      border-block: 1px solid var(--outline-variant);
+      padding-block: clamp(56px, 7vw, 96px);
+    }
+
+    /* Minimal footer */
+    .lp-footer {
+      background: var(--surface-container-low);
+      border-top: 1px solid var(--outline-variant);
+      padding-block: var(--space-lg);
+    }
+    .lp-footer__inner {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      align-items: center;
+      text-align: center;
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+    @media (min-width: 720px) {
+      .lp-footer__inner {
+        flex-direction: row;
+        justify-content: space-between;
+        text-align: left;
+      }
+    }
+  </style>
+
+
+  <!-- Minimal Header — no site nav -->
+<?php include get_stylesheet_directory() . '/tla/partials/header.php'; ?>
+
+  <main>
+
+    <!-- ── 1. HERO ──────────────────────────────────────────────────────────── -->
+    <section class="lp-intro" aria-labelledby="lp-intro-heading">
+      <div class="container">
+        <div class="lp-intro__content">
+          <span class="eyebrow" data-hero-step="1" style="justify-content: center; margin-bottom: var(--space-md);">
+            <span class="eyebrow__text">Built for Individual Originators</span>
+          </span>
+          <h1 id="lp-intro-heading" class="lp-intro__title" data-hero-step="2">See Your Mortgage Business <em>Clearly</em> for the First Time</h1>
+          <p class="lp-intro__subtitle" data-hero-step="3">The Loan Atlas installs 5 AI-powered systems into your mortgage business so you can close more loans, make better decisions, and finally feel in control again.</p>
+          <div class="lp-intro__actions" data-hero-step="4">
+            <a class="btn btn--gold btn--lg" href="/pricing/">Start Your Transformation</a>
+            <a class="btn btn--primary btn--lg" href="/book-a-demo/">Schedule Your Free Coaching Session</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="lp-intro__stage" data-hero-step="5">
+        <div class="lp-intro__glow" aria-hidden="true"></div>
+
+        <img class="lp-intro__dash" src="<?php echo TLA_BASE; ?>/assets/dashboard.png" alt="The Loan Atlas member dashboard" loading="eager" />
+
+        <img class="lp-phone-img" src="<?php echo TLA_BASE; ?>/assets/sales-coach-phone.png"
+          alt="AI Sales &amp; Scripting Coach on mobile" />
+      </div>
+    </section>
+
+    <!-- ── 2a. TRUSTED BY (logo strip) ───────────────────────────────────────── -->
+    <section class="lp-trust-strip" aria-label="Trusted by loan officers at these companies">
+      <div class="container">
+        <p class="lp-trust-strip__eyebrow">Trusted by loan officers at</p>
+      </div>
+      <div class="trust__marquee">
+        <div class="trust__track">
+          <ul class="trust__group">
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/american-pacific-logo.webp" alt="American Pacific Mortgage"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/acm-logo.webp" alt="Atlantic Coast Mortgage"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/cross-country-logo.webp" alt="CrossCountry Mortgage"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/UWM-logo.png" alt="United Wholesale Mortgage"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/fairway-logo.png" alt="Fairway Independent Mortgage"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/CMG-logo.svg" alt="CMG Financial"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/swbc-logo.png" alt="SWBC Mortgage"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/better-logo.png" alt="Better"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/lower-mortgage-logo.svg" alt="Lower"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/rate-logo.png" alt="Rate"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/loan-depot-logo.png" alt="loanDepot"></li>
+          </ul>
+          <ul class="trust__group" aria-hidden="true">
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/american-pacific-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/acm-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/cross-country-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/UWM-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/fairway-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/CMG-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/swbc-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/better-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/lower-mortgage-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/rate-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/loan-depot-logo.png" alt=""></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 3. BRIDGE ─────────────────────────────────────────────────────────── -->
+    <div class="lp-bridge">
+      <div class="lp-bridge__inner" data-reveal="up">
+        <p class="text-brass" style="font-family: var(--font-display); font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.125rem); font-weight: 800; line-height: 1.25; letter-spacing: -0.015em; margin: 0 0 var(--space-md);">
+          The loan officers producing consistently are not working harder than you.
+        </p>
+        <p class="t-headline-md" style="line-height: 1.5; margin: 0;">
+          If you want a different future, you need a drastically different way of operating now.
+        </p>
+      </div>
+    </div>
+
+    <!-- ── 4. FIVE AI SYSTEMS ─────────────────────────────────────────────────── -->
+    <section class="lp-systems" id="systems" aria-labelledby="systems-heading">
+      <div class="container">
+        <div class="center" data-reveal="up" style="max-width: 46rem; margin-inline: auto;">
+          <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
+            <span class="eyebrow__text" style="color: var(--brass-bright);">Five AI-Powered Systems</span>
+          </span>
+          <h2 id="systems-heading" class="t-display"
+            style="color: #ffffff; font-weight: 800; margin-bottom: var(--space-md);">
+            Help You Close More Loans<br>
+            <span
+              style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">With Less Chaos</span>
+          </h2>
+          <p class="t-body-lg" style="color: rgba(255, 255, 255, 0.68);">Inside The Loan Atlas, these systems work together to help you make better decisions, execute faster, and stay focused on what actually drives production.</p>
+        </div>
+
+        <div class="lp-systems__grid" data-reveal-stagger="100">
+
+          <article class="system-card">
+            <span class="system-card__num">01</span>
+            <span class="system-card__tagline">Stop Flying Blind</span>
+            <h3 class="system-card__title">AI Business Intelligence System</h3>
+            <p>See exactly what's driving your numbers. Which lead sources are producing, which referral partners are worth your time, where deals are dying. Guesswork becomes answers.</p>
+          </article>
+
+          <article class="system-card">
+            <span class="system-card__num">02</span>
+            <span class="system-card__tagline">Stop Starting Every Week From Scratch</span>
+            <h3 class="system-card__title">AI Business Planning Tool</h3>
+            <p>A personalized plan and weekly priority list based on your real pipeline and goals. Not a generic to-do list — a system that tells you what moves the needle right now.</p>
+          </article>
+
+          <article class="system-card">
+            <span class="system-card__num">03</span>
+            <span class="system-card__tagline">Stop Guessing What to Say</span>
+            <h3 class="system-card__title">AI Sales &amp; Marketing Advisor</h3>
+            <p>The right words for every conversation. Rate shoppers, Realtor meetings, objections, follow-up. Stop improvising; start communicating with clarity and precision.</p>
+          </article>
+
+          <article class="system-card">
+            <span class="system-card__num">04</span>
+            <span class="system-card__tagline">Stop Spinning Your Wheels</span>
+            <h3 class="system-card__title">AI Performance Coach</h3>
+            <p>Find the exact gaps slowing your growth and fix them faster. Instead of consuming more content and hoping something sticks, you get a focused plan to improve what matters most right now.</p>
+          </article>
+
+          <article class="system-card">
+            <span class="system-card__num">05</span>
+            <span class="system-card__tagline">Stop Making Big Decisions Alone</span>
+            <h3 class="system-card__title">AI Strategic Thought Partner</h3>
+            <p>Real-time guidance on decisions, deal scenarios, and growth opportunities. Think more clearly. Move faster. Make better calls with less hesitation.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 5. INLINE CTA #1 ───────────────────────────────────────────────────── -->
+    <section class="inline-cta" id="cta-1" aria-labelledby="cta1-heading">
+      <div class="container" style="position: relative;">
+        <div class="inline-cta__inner" data-reveal="scale">
+          <div class="inline-cta__copy">
+            <h2 class="inline-cta__heading" id="cta1-heading">
+              Become an <em>AI-Empowered Originator</em> —<br>Join The Loan Atlas
+            </h2>
+          </div>
+          <div class="inline-cta__action">
+            <a class="btn btn--gold btn--lg" href="/pricing/">Join The Loan Atlas</a>
+            <a class="inline-cta__secondary-link" href="/book-a-demo/">Build Your Growth Plan first &rarr;</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 5b. PROOF (stat + Habib testimonial) ──────────────────────────────── -->
+    <section class="lp-proof-section" aria-labelledby="proof-heading">
+      <div class="container">
+        <div class="lp-proof-card" data-reveal="up">
+          <div class="lp-proof-card__stat-col">
+            <span class="lp-proof-card__label">Loan Atlas Members Close</span>
+            <p id="proof-heading" class="lp-proof-card__stat" aria-label="$8.2 million plus more per year">
+              <span class="lp-proof-card__currency">$</span><span class="lp-proof-card__number" data-countup="8.2">8.2</span><span class="lp-proof-card__unit">M</span><span class="lp-proof-card__plus" aria-hidden="true">+</span>
+            </p>
+            <p class="lp-proof-card__caption">More in annual production than the industry average.</p>
+          </div>
+
+          <figure class="lp-proof-card__test-col">
+            <blockquote class="lp-proof-card__quote">"The wealth that's in The Loan Atlas is absolutely incredible. Imagine how valuable it is to have access to the smartest minds in our industry."</blockquote>
+            <figcaption class="lp-proof-card__test-head" style="margin-top: var(--space-md); margin-bottom: 0;">
+              <div class="lp-proof-card__photo">
+                <img src="<?php echo TLA_BASE; ?>/assets/barry-habib.jpg" alt="Barry Habib">
+              </div>
+              <div>
+                <cite class="lp-proof-card__attr-name" style="font-style: normal;">Barry Habib</cite>
+                <span class="lp-proof-card__attr-role">Founder &amp; CEO, MBS Highway</span>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 6. WHAT'S INCLUDED ─────────────────────────────────────────────────── -->
+    <section class="lp-features" id="whats-included" aria-labelledby="features-heading">
+      <div class="container">
+        <div data-reveal="up" style="max-width: 46rem; margin-bottom: var(--space-xl);">
+          <span class="eyebrow" style="margin-bottom: var(--space-md);">
+            <span class="eyebrow__text">What You Get</span>
+          </span>
+          <h2 id="features-heading" class="t-display"
+            style="color: var(--primary-container); font-weight: 800; margin-bottom: var(--space-sm);">Powered by <span data-countup="25" data-countup-commas="false">25</span> Years of Teachings From Billion-Dollar Mortgage Teams</h2>
+        </div>
+
+        <div class="lp-features__grid" data-reveal-stagger="80">
+
+          <div class="tool">
+            <div class="tool__corner tool__corner--blue" aria-hidden="true"></div>
+            <div class="icon-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <h3 class="tool__title">Live Coaching from Active Top Producers</h3>
+            <p class="tool__desc">A live coaching call every week you can bring your real problems to. Get mentored by 19 business owners, branch managers, and top 1% originators with $29B+ in collective production.</p>
+          </div>
+
+          <div class="tool">
+            <div class="tool__corner tool__corner--brass" aria-hidden="true"></div>
+            <div class="icon-tile icon-tile--brass" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 9 8 9"></polyline>
+              </svg>
+            </div>
+            <h3 class="tool__title">Scripts, Presentations &amp; Templates</h3>
+            <p class="tool__desc">Word-for-word scripts for the conversations that decide whether a deal closes. Plus client-facing presentations and templates for every step of your loan process, pre-built and ready to use tomorrow.</p>
+          </div>
+
+          <div class="tool">
+            <div class="tool__corner" aria-hidden="true"></div>
+            <div class="icon-tile" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M2 12h20"></path>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+            </div>
+            <h3 class="tool__title">A Community of Originators</h3>
+            <p class="tool__desc">Top producers, mid-career operators, newer LOs, and team leaders working through the same frameworks in real time. Get real-time solutions to the problems that originators are facing today.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 7. 8 DISCIPLINES ───────────────────────────────────────────────────── -->
+    <section class="lp-disciplines" id="disciplines" aria-labelledby="disciplines-heading">
+      <div class="container">
+        <div class="center" data-reveal="up" style="max-width: 44rem; margin-inline: auto; margin-bottom: var(--space-xl);">
+          <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
+            <span class="eyebrow__text">The Curriculum</span>
+          </span>
+          <h2 id="disciplines-heading" class="section-heading" style="text-align: center; margin-bottom: var(--space-sm);">Built on the 8 Disciplines of Mortgage Origination Mastery</h2>
+        </div>
+
+        <div class="disciplines-grid" data-reveal-stagger="60">
+          <div class="discipline-item">
+            <span class="discipline-item__num">01</span>
+            <span class="discipline-item__text">Essential Product Knowledge</span>
+          </div>
+          <div class="discipline-item">
+            <span class="discipline-item__num">02</span>
+            <span class="discipline-item__text">A System for Selling</span>
+          </div>
+          <div class="discipline-item">
+            <span class="discipline-item__num">03</span>
+            <span class="discipline-item__text">Marketing Mastery</span>
+          </div>
+          <div class="discipline-item">
+            <span class="discipline-item__num">04</span>
+            <span class="discipline-item__text">Team Building &amp; Leadership Excellence</span>
+          </div>
+          <div class="discipline-item">
+            <span class="discipline-item__num">05</span>
+            <span class="discipline-item__text">Systems of Customer Service</span>
+          </div>
+          <div class="discipline-item">
+            <span class="discipline-item__num">06</span>
+            <span class="discipline-item__text">Legacy &amp; Freedom</span>
+          </div>
+          <div class="discipline-item">
+            <span class="discipline-item__num">07</span>
+            <span class="discipline-item__text">Mindset, Health &amp; Personal Development</span>
+          </div>
+          <div class="discipline-item">
+            <span class="discipline-item__num">08</span>
+            <span class="discipline-item__text">Time &amp; Task Management</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 8. TESTIMONIALS ────────────────────────────────────────────────────── -->
+    <section class="lp-testimonials" id="testimonials" aria-labelledby="testimonials-heading">
+      <div class="container">
+        <div class="center" data-reveal="up" style="max-width: 44rem; margin-inline: auto; margin-bottom: var(--space-xl);">
+          <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
+            <span class="eyebrow__text">Member Results</span>
+          </span>
+          <h2 id="testimonials-heading" class="section-heading" style="text-align: center;">What Operating From a System Looks Like</h2>
+        </div>
+
+        <div class="testimonials-grid" data-reveal-stagger="100">
+
+          <figure class="testimonial-card">
+            <blockquote>If you're considering joining The Loan Atlas, it's been the best investment I've ever made — and you will make it back within your first month's production.</blockquote>
+            <figcaption>
+              <div class="testimonial-card__name">Gian Ceretto</div>
+            </figcaption>
+          </figure>
+
+          <figure class="testimonial-card">
+            <blockquote>The Loan Atlas makes it so I never have to guess. Anything you could need in your business, you'll find there.</blockquote>
+            <figcaption>
+              <div class="testimonial-card__name">Edgardo Valentine</div>
+              <div class="testimonial-card__org">NEO Home Loans</div>
+            </figcaption>
+          </figure>
+
+          <figure class="testimonial-card">
+            <blockquote>After 32 years in this industry, I will tell you it's worth every single penny.</blockquote>
+            <figcaption>
+              <div class="testimonial-card__name">Sarajane Trier</div>
+            </figcaption>
+          </figure>
+
+          <figure class="testimonial-card">
+            <blockquote>I am a former Loan Toolbox member, a technology that Tim had 20 years ago, and it got me to where I am today. The Loan Atlas is Loan Toolbox 2.0. It's worth its weight in gold.</blockquote>
+            <figcaption>
+              <div class="testimonial-card__name">Sue Botelho</div>
+              <div class="testimonial-card__org">Waterstone Mortgage</div>
+            </figcaption>
+          </figure>
+
+          <figure class="testimonial-card">
+            <blockquote>I wish I would have known about this 5 years ago. I've been looking for this level of support my entire 15-year Loan Officer career. I have needed this so desperately.</blockquote>
+            <figcaption>
+              <div class="testimonial-card__name">Jill Coss</div>
+            </figcaption>
+          </figure>
+
+          <figure class="testimonial-card">
+            <blockquote>It's been a long time wanting to join, and now that I'm in, I'm pissed that I didn't join sooner.</blockquote>
+            <figcaption>
+              <div class="testimonial-card__name">Charlie Rutherford</div>
+            </figcaption>
+          </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 9. PRICING ─────────────────────────────────────────────────────────── -->
+    <section class="lp-pricing" id="pricing" aria-labelledby="pricing-heading">
+      <div class="container">
+        <div class="center" data-reveal="up" style="max-width: 44rem; margin-inline: auto; margin-bottom: var(--space-xl);">
+          <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
+            <span class="eyebrow__text">Membership</span>
+          </span>
+          <h2 id="pricing-heading" class="section-heading" style="text-align: center;">One Membership. The Whole Operating System.</h2>
+        </div>
+
+        <div class="membership" data-reveal="scale">
+
+          <div class="membership__price-row">
+            <div>
+              <span class="membership__price">$349<small> / month</small></span>
+            </div>
+            <div class="membership__divider" aria-hidden="true"></div>
+            <div>
+              <span class="membership__price">$2,988<small> / year</small></span>
+              <p style="font-size: 0.875rem; color: var(--success); font-weight: 600; margin-top: 6px; text-align: center;">Save $1,200 annually</p>
+            </div>
+          </div>
+
+          <ul class="checklist" style="margin-top: var(--space-lg); padding-top: var(--space-lg); border-top: 1px solid var(--outline-variant);">
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              5 AI-powered systems to help you close twice the loans in half the time
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Live weekly and monthly coaching sessions
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              200+ training modules
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Full library of scripts, templates, and playbooks
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Access to the entire Loan Atlas community
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              New tools and content added every month
+            </li>
+          </ul>
+
+          <div style="margin-top: var(--space-lg);">
+            <div class="ai-panel" style="margin-bottom: var(--space-lg); text-align: center;">
+              <p style="font-family: var(--font-display); font-weight: 600; font-size: 1.0625rem; color: rgba(255,255,255,0.92); margin: 0; line-height: 1.55;">
+                In most cases, <span style="color: var(--brass-bright);">one additional closed loan</span> covers your membership for the entire year.
+              </p>
+            </div>
+            <div style="display: flex; flex-direction: column; align-items: center; gap: var(--space-sm);">
+              <a class="btn btn--gold btn--lg" href="/pricing/"
+                style="font-size: 1.0625rem; padding: 18px 44px; box-shadow: 0 8px 28px rgba(201, 150, 28, 0.32);">
+                Start Your Transformation
+              </a>
+              <a href="/book-a-demo/"
+                style="font-size: 0.9375rem; color: var(--on-surface-variant); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; transition: color 150ms ease;">
+                Schedule Your Free Coaching Session first
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 10. FINAL CTA ──────────────────────────────────────────────────────── -->
+    <section class="close-section close-section--homepage" id="get-started" aria-labelledby="final-cta-heading">
+      <div class="container close-section__grid">
+        <div class="close-section__copy" data-reveal="up">
+          <span class="close-section__eyebrow">Start Your Transformation</span>
+          <h2 id="final-cta-heading" class="close-section__title">
+            Install the System <em>Top Producers Are Using</em>
+          </h2>
+          <p class="close-section__sub">
+            The originators pulling away from the pack aren't working harder — they're running a system that
+            compounds every month. <strong>Pick the path that fits where you are right now.</strong>
+          </p>
+        </div>
+
+        <div class="close-section__actions" data-reveal="up" role="group" aria-label="Get started">
+          <a class="close-section-action close-section-action--primary" href="/pricing/">
+            <span>
+              <span class="close-section-action__label">Join The Loan Atlas</span>
+              <span class="close-section-action__hint">See plans, pricing, and what's inside membership</span>
+            </span>
+            <span class="close-section-action__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+            </span>
+          </a>
+          <a class="close-section-action close-section-action--secondary" href="/book-a-demo/">
+            <span>
+              <span class="close-section-action__label">Book a Free Coaching Session</span>
+              <span class="close-section-action__hint">45 minutes with our team — build your growth plan</span>
+            </span>
+            <span class="close-section-action__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Minimal footer -->
+<?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>
+
