@@ -5,16 +5,16 @@ name: Deploy child theme to WP Engine (SFTP)
 #
 # SAFETY: only writes INTO the child-theme folder. Never touches
 # wp-content/uploads, plugins, other themes, or the database. Commerce, blog,
-# and partner funnels are unaffected.
+# and partner funnels are unaffected. This action uploads/overwrites only — it
+# does NOT delete remote files absent locally, so orphaned old-slug partials and
+# hand-uploaded *-test.php stay on the server until cleaned up by hand (harmless).
 #
 # Required GitHub repo secrets (Settings -> Secrets and variables -> Actions):
-#   WPE_SFTP_HOST      <install>.sftp.wpengine.com   (from WP Engine portal -> SFTP)
-#   WPE_SFTP_USER      your WP Engine SFTP username   (looks like install-username)
-#   WPE_SFTP_PASSWORD  the SFTP user's password
-#   WPE_SFTP_PORT      2222                            (WP Engine uses 2222, not 22)
-#
-# SERVER_DIR is relative to the SFTP user's home (the install root on WP Engine),
-# so wp-content/... with NO leading slash. Confirm in your SFTP client.
+#   WPE_SFTP_HOST        <install>.sftp.wpengine.com   (WP Engine portal -> SFTP)
+#   WPE_SFTP_USER        your WP Engine SFTP username   (install-username form)
+#   WPE_SFTP_PORT        2222                            (WP Engine uses 2222)
+#   WPE_SSH_PRIVATE_KEY  the PRIVATE key (full text) whose PUBLIC half is added
+#                        to the WP Engine SSH/SFTP user
 
 on:
   # NOTE: auto-deploy on push is temporarily disabled for the FIRST controlled
@@ -26,10 +26,6 @@ on:
   #     - '.github/workflows/deploy.yml'
   workflow_dispatch: {} # manual run from the Actions tab
 
-env:
-  LOCAL_DIR: wp-theme/responsiveChild-theme/
-  SERVER_DIR: wp-content/themes/responsiveChild-theme/
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -37,30 +33,20 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Deploy over SFTP (WP Engine, password auth)
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: Deploy over SFTP (WP Engine, SSH key auth)
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.5
         with:
-          protocol: sftp
           server: ${{ secrets.WPE_SFTP_HOST }}
           port: ${{ secrets.WPE_SFTP_PORT }}
           username: ${{ secrets.WPE_SFTP_USER }}
-          password: ${{ secrets.WPE_SFTP_PASSWORD }}
+          ssh_private_key: ${{ secrets.WPE_SSH_PRIVATE_KEY }}
 
-          local-dir: ${{ env.LOCAL_DIR }}
-          server-dir: ${{ env.SERVER_DIR }}
+          # Trailing /* uploads the folder CONTENTS into remote_path.
+          local_path: './wp-theme/responsiveChild-theme/*'
+          # ABSOLUTE remote path on WP Engine. If this errors with a path / "no
+          # such file" error, the install root differs — try:
+          #   /sites/<install-name>/wp-content/themes/responsiveChild-theme/
+          remote_path: '/wp-content/themes/responsiveChild-theme/'
 
-          # Mirror local -> remote. With clean-slate OFF, the action only adds or
-          # overwrites files present locally; it does NOT delete remote files
-          # that are absent locally. That means orphaned old-slug partials
-          # (pricing.php, businesses.php, etc.) and any *-test.php you uploaded
-          # by hand will REMAIN on the server until removed manually. They are
-          # harmless (no published page points to them) but can be cleaned up
-          # via SFTP whenever you like.
-          dangerous-clean-slate: false
-
-          # Don't ship repo/editor cruft. (Keep screenshot.png — excluding a
-          # present-locally file can trigger its remote deletion.)
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.DS_Store
+          sftp_only: true        # use SFTP, not SCP
+          delete_remote_files: false   # never delete remote files absent locally
