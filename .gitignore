@@ -12,3 +12,6 @@ node_modules/
 # Dev-only output
 screenshots/
 wp-theme/_preview-*.html
+
+# Throwaway WordPress test-page partials (regenerated via scripts/make-test-pages.sh)
+wp-theme/responsiveChild-theme/tla/pages/*-test.php

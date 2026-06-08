@@ -7,7 +7,7 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 $tla_title       = 'Schedule an Enterprise Consultation — The Loan Atlas';
-$tla_description = 'A free strategy session for mortgage leaders and teams — see exactly where production is leaking across your roster and how to make your top producers\\' playbook the standard for everyone.';
+$tla_description = 'A free strategy session for mortgage leaders and teams — see exactly where production is leaking across your roster and how to make your top producers\' playbook the standard for everyone.';
 $tla_active      = '';
 ?>
   <style>

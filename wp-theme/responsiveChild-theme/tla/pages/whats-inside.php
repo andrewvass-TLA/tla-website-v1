@@ -6,7 +6,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-$tla_title       = 'What\\'s Inside — The Loan Atlas';
+$tla_title       = 'What\'s Inside — The Loan Atlas';
 $tla_description = 'Everything you need to stop flying blind and start running a predictable mortgage business. Five AI coaches, 200+ training modules, live coaching every week.';
 $tla_active      = 'whats-inside';
 ?>

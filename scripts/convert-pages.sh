@@ -91,10 +91,12 @@ convert() {
 }
 
 # Emit a PHP single-quoted string literal for $1.
+# In a PHP single-quoted string only \ and ' need escaping, each as a SINGLE
+# backslash: \\ and \'. (bash ${//} substitution doubles backslashes, so use
+# sed, which escapes to exactly one backslash.) Escape backslash, then quote.
 php_str() {
-  local s="$1"
-  s="${s//\\/\\\\}"   # backslash
-  s="${s//\'/\\\'}"   # single quote
+  local s
+  s=$(printf '%s' "$1" | sed -e 's/\\/\\\\/g' -e "s/'/\\\\'/g")
   printf "'%s'" "$s"
 }
 
