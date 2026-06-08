@@ -47,15 +47,19 @@ jobs:
           # try the absolute form: /wp-content/themes/responsiveChild-theme
           REMOTE_DIR: wp-content/themes/responsiveChild-theme
         run: |
-          # set -e so any lftp error fails the job. sftp:auto-confirm yes accepts
-          # the host key on first connect. mirror -R = reverse (local->remote),
-          # NO --delete = never remove remote files. Exclude VCS/editor cruft.
+          # sftp:auto-confirm yes accepts the host key on first connect.
+          # sftp:disable-perms true stops lftp from chmod-ing after upload —
+          # WP Engine manages permissions and DENIES chmod over SFTP, which
+          # otherwise makes the job fail even though files transfer fine.
+          # mirror -R = reverse (local->remote); --no-perms = don't set modes;
+          # NO --delete = never remove remote files.
           lftp -c "
             set sftp:auto-confirm yes;
+            set sftp:disable-perms true;
             set net:max-retries 2;
             set net:timeout 15;
             open -u '$USER','$PASS' -p $PORT sftp://$HOST;
-            mirror -R --verbose \
+            mirror -R --verbose --no-perms \
               --exclude-glob .git* \
               --exclude-glob .DS_Store \
               '$LOCAL_DIR/' '$REMOTE_DIR/';
