@@ -27,17 +27,20 @@ The site lives **inside WordPress** as a child-theme page template, and ships by
 server. WordPress keeps serving the shop, blog, podcast, and partner funnels
 untouched.
 
-See **[DEPLOY.md](DEPLOY.md)** for the full setup (GitHub secrets, server path,
-creating WordPress pages) and the source-file → URL slug map.
+**Everyday editing & deploying:** see **[WORKFLOW.md](WORKFLOW.md)** — the
+repeatable edit → build → push loop, the caching gotcha, and the slug map.
+
+**Architecture & one-time setup:** see **[DEPLOY.md](DEPLOY.md)**.
 
 ```bash
+# edit public/<page>.html, then:
+bash scripts/convert-pages.sh
 git add -A && git commit -m "Update pages" && git push origin main
-# → Actions tab runs "Deploy child theme to WordPress (SFTP)"
+# → Actions tab auto-deploys to WP Engine (~30s); then clear WP Engine + Cloudflare caches
 ```
 
 Pages are edited under `public/` during local dev, then converted into theme
-partials under `wp-theme/responsiveChild-theme/tla/pages/`. DEPLOY.md explains the
-relationship.
+partials under `wp-theme/responsiveChild-theme/tla/pages/` by `convert-pages.sh`.
 
 ## Design system
 
