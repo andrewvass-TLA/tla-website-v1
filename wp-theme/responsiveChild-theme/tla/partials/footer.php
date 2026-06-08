@@ -16,11 +16,11 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
         <nav class="site-footer__links" aria-label="Footer">
           <a class="site-footer__link" href="/whats-inside/">What's Inside</a>
           <a class="site-footer__link" href="/faculty/">Faculty</a>
-          <a class="site-footer__link" href="/individuals/">Individual Sales</a>
-          <a class="site-footer__link" href="/businesses/">Corporate Sales</a>
-          <a class="site-footer__link" href="/pricing/">Pricing</a>
+          <a class="site-footer__link" href="/membership/">Individual Sales</a>
+          <a class="site-footer__link" href="/enterprise/">Corporate Sales</a>
+          <a class="site-footer__link" href="/join/">Pricing</a>
           <a class="site-footer__link" href="/events/">Events</a>
-          <a class="site-footer__link" href="/book-a-demo/">Book a Consultation</a>
+          <a class="site-footer__link" href="/consultation/">Book a Consultation</a>
         </nav>
       </div>
       <div class="site-footer__bottom">

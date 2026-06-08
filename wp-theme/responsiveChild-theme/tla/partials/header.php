@@ -40,7 +40,7 @@ $tla_is = function ( $key ) use ( $tla_active ) {
             <a class="nav__dropdown-item" href="#" role="menuitem">Platinum Marketing</a>
           </div>
         </div>
-        <div class="nav__dropdown<?php echo in_array( $tla_active, array( 'pricing', 'businesses', 'individuals' ), true ) ? ' nav__dropdown--active' : ''; ?>">
+        <div class="nav__dropdown<?php echo in_array( $tla_active, array( 'join', 'enterprise', 'membership' ), true ) ? ' nav__dropdown--active' : ''; ?>">
           <button type="button" class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false">
             Membership
             <svg class="nav__dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -48,9 +48,9 @@ $tla_is = function ( $key ) use ( $tla_active ) {
             </svg>
           </button>
           <div class="nav__dropdown-menu" role="menu">
-            <a class="nav__dropdown-item" href="/pricing/" role="menuitem">Pricing</a>
-            <a class="nav__dropdown-item" href="/businesses/" role="menuitem">Corporate Sales</a>
-            <a class="nav__dropdown-item" href="/individuals/" role="menuitem">Individual Sales</a>
+            <a class="nav__dropdown-item" href="/join/" role="menuitem">Pricing</a>
+            <a class="nav__dropdown-item" href="/enterprise/" role="menuitem">Corporate Sales</a>
+            <a class="nav__dropdown-item" href="/membership/" role="menuitem">Individual Sales</a>
           </div>
         </div>
         <div class="nav__dropdown">
@@ -77,7 +77,7 @@ $tla_is = function ( $key ) use ( $tla_active ) {
           <span class="nav-toggle__line"></span>
           <span class="nav-toggle__line"></span>
         </button>
-        <a class="btn btn--primary btn--header" href="/pricing/"><span class="btn__short">Join Atlas</span><span class="btn__full">Join The Loan Atlas</span></a>
+        <a class="btn btn--primary btn--header" href="/join/"><span class="btn__short">Join Atlas</span><span class="btn__full">Join The Loan Atlas</span></a>
       </div>
     </div>
     <div class="mobile-nav" id="mobile-nav">
@@ -87,9 +87,9 @@ $tla_is = function ( $key ) use ( $tla_active ) {
       <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/evergreen-ai-tool-planner/" target="_blank" rel="noopener">AI Business &amp; Life Planner</a>
       <a class="mobile-nav__link mobile-nav__sublink" href="#">Platinum Marketing</a>
       <p class="mobile-nav__group-label">Membership</p>
-      <a class="mobile-nav__link mobile-nav__sublink<?php echo $tla_is( 'pricing' ); ?>" href="/pricing/">Pricing</a>
-      <a class="mobile-nav__link mobile-nav__sublink<?php echo $tla_is( 'businesses' ); ?>" href="/businesses/">Corporate Sales</a>
-      <a class="mobile-nav__link mobile-nav__sublink<?php echo $tla_is( 'individuals' ); ?>" href="/individuals/">Individual Sales</a>
+      <a class="mobile-nav__link mobile-nav__sublink<?php echo $tla_is( 'join' ); ?>" href="/join/">Pricing</a>
+      <a class="mobile-nav__link mobile-nav__sublink<?php echo $tla_is( 'enterprise' ); ?>" href="/enterprise/">Corporate Sales</a>
+      <a class="mobile-nav__link mobile-nav__sublink<?php echo $tla_is( 'membership' ); ?>" href="/membership/">Individual Sales</a>
       <p class="mobile-nav__group-label">Resources</p>
       <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/perfect-loan-process" target="_blank" rel="noopener">Perfect Loan Process</a>
       <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/5-essential-scripts" target="_blank" rel="noopener">Success Scripts</a>
@@ -98,6 +98,6 @@ $tla_is = function ( $key ) use ( $tla_active ) {
       <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/blog/" target="_blank" rel="noopener">Blog</a>
       <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/podcast-revamp/" target="_blank" rel="noopener">The 360 Experience</a>
       <a class="mobile-nav__link" href="#">Login</a>
-      <a class="btn btn--primary btn--header mobile-nav__cta" href="/pricing/">Join The Loan Atlas</a>
+      <a class="btn btn--primary btn--header mobile-nav__cta" href="/join/">Join The Loan Atlas</a>
     </div>
   </header>

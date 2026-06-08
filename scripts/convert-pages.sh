@@ -112,29 +112,29 @@ rewrite() {
 
   # Internal *.html links -> WP slugs
   perl -0pi -e 's/href="index\.html"/href="\/"/g'                         "$f"
-  perl -0pi -e 's/href="sales-individual\.html"/href="\/individuals\/"/g' "$f"
-  perl -0pi -e 's/href="corporate\.html"/href="\/businesses\/"/g'         "$f"
-  perl -0pi -e 's/href="consultation\.html"/href="\/book-a-demo\/"/g'     "$f"
-  perl -0pi -e 's/href="consultation-corporate\.html"/href="\/consultation-corporate\/"/g' "$f"
-  perl -0pi -e 's/href="consultation-mastermind\.html"/href="\/consultation-mastermind\/"/g' "$f"
-  perl -0pi -e 's/href="pricing\.html"/href="\/pricing\/"/g'              "$f"
+  perl -0pi -e 's/href="sales-individual\.html"/href="\/membership\/"/g'  "$f"
+  perl -0pi -e 's/href="corporate\.html"/href="\/enterprise\/"/g'         "$f"
+  perl -0pi -e 's/href="consultation\.html"/href="\/consultation\/"/g'    "$f"
+  perl -0pi -e 's/href="consultation-corporate\.html"/href="\/enterprise-consultation\/"/g' "$f"
+  perl -0pi -e 's/href="consultation-mastermind\.html"/href="\/consultation-mastermind-2026\/"/g' "$f"
+  perl -0pi -e 's/href="pricing\.html"/href="\/join\/"/g'                 "$f"
   perl -0pi -e 's/href="faculty\.html"/href="\/faculty\/"/g'             "$f"
   perl -0pi -e 's/href="whats-inside\.html"/href="\/whats-inside\/"/g'    "$f"
   perl -0pi -e 's/href="events\.html"/href="\/events\/"/g'                "$f"
-  perl -0pi -e 's/href="mastermind\.html"/href="\/mastermind\/"/g'        "$f"
+  perl -0pi -e 's/href="mastermind\.html"/href="\/mastermind-2026\/"/g'   "$f"
 }
 
 # slug map (source | slug | active)
-convert index                   home                     ""
-convert pricing                 pricing                  pricing
-convert faculty                 faculty                  faculty
-convert corporate               businesses               businesses
-convert whats-inside            whats-inside             whats-inside
-convert sales-individual        individuals              individuals
-convert consultation            book-a-demo              ""
-convert events                  events                   ""
-convert mastermind              mastermind               ""
-convert consultation-corporate  consultation-corporate   ""
-convert consultation-mastermind consultation-mastermind  ""
+convert index                   home                          ""
+convert pricing                 join                          join
+convert faculty                 faculty                       faculty
+convert corporate               enterprise                    enterprise
+convert whats-inside            whats-inside                  whats-inside
+convert sales-individual        membership                    membership
+convert consultation            consultation                  ""
+convert events                  events                        ""
+convert mastermind              mastermind-2026               ""
+convert consultation-corporate  enterprise-consultation       ""
+convert consultation-mastermind consultation-mastermind-2026  ""
 
 echo "Done."

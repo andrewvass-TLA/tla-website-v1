@@ -24,10 +24,10 @@ $tla_active      = '';
           <p class="lp-intro__subtitle" data-hero-step="2">The Loan Atlas installs 5 AI-powered systems into your
             mortgage business to help you close twice the loans in half the time.</p>
           <div class="lp-intro__actions" data-hero-step="3">
-            <a class="btn btn--gold btn--lg" href="/pricing/">Install the System Top Producers Are Using</a>
+            <a class="btn btn--gold btn--lg" href="/join/">Install the System Top Producers Are Using</a>
           </div>
           <p class="hero__text-cta" data-hero-step="4" style="margin-top: var(--space-md);">
-            Or <a class="hero__text-link" href="/book-a-demo/">Schedule Your Free Coaching Session</a> to build your
+            Or <a class="hero__text-link" href="/consultation/">Schedule Your Free Coaching Session</a> to build your
             growth plan.
           </p>
         </div>
@@ -873,7 +873,7 @@ $tla_active      = '';
         </div>
 
         <div class="close-section__actions" data-reveal="up" role="group" aria-label="Get started">
-          <a class="close-section-action close-section-action--primary" href="/pricing/">
+          <a class="close-section-action close-section-action--primary" href="/join/">
             <span>
               <span class="close-section-action__label">Join The Loan Atlas</span>
               <span class="close-section-action__hint">See plans, pricing, and what's inside membership</span>
@@ -886,7 +886,7 @@ $tla_active      = '';
               </svg>
             </span>
           </a>
-          <a class="close-section-action close-section-action--secondary" href="/book-a-demo/">
+          <a class="close-section-action close-section-action--secondary" href="/consultation/">
             <span>
               <span class="close-section-action__label">Book a Free Coaching Session</span>
               <span class="close-section-action__hint">45 minutes with our team — build your growth plan</span>

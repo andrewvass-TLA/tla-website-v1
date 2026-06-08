@@ -1,6 +1,6 @@
 <?php
 /**
- * Body partial for /consultation-mastermind/ (TLA Full HTML template).
+ * Body partial for /consultation-mastermind-2026/ (TLA Full HTML template).
  * Generated from public/consultation-mastermind.html by scripts/convert-pages.sh — do not hand-edit;
  * edit the source HTML (or the shared header/footer partials) and re-run.
  */
@@ -909,7 +909,7 @@ $tla_active      = '';
               style="font-size: 1.0625rem; padding: 18px 44px; box-shadow: 0 8px 28px rgba(201, 150, 28, 0.32);">
               Claim Your $49 First Month
             </a>
-            <a href="/book-a-demo/" style="font-size: 0.9375rem; color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;">
+            <a href="/consultation/" style="font-size: 0.9375rem; color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;">
               Have questions? Book a free coaching session
             </a>
           </div>

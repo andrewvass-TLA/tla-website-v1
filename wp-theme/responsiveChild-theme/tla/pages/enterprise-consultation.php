@@ -1,6 +1,6 @@
 <?php
 /**
- * Body partial for /consultation-corporate/ (TLA Full HTML template).
+ * Body partial for /enterprise-consultation/ (TLA Full HTML template).
  * Generated from public/consultation-corporate.html by scripts/convert-pages.sh — do not hand-edit;
  * edit the source HTML (or the shared header/footer partials) and re-run.
  */
@@ -597,7 +597,7 @@ $tla_active      = '';
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
             </span>
           </a>
-          <a class="close-section-action close-section-action--secondary" href="/businesses/">
+          <a class="close-section-action close-section-action--secondary" href="/enterprise/">
             <span>
               <span class="close-section-action__label">See the Enterprise Overview</span>
               <span class="close-section-action__hint">How The Loan Atlas works across a full team and roster</span>

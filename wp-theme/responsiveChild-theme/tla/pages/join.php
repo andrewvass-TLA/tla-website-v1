@@ -1,6 +1,6 @@
 <?php
 /**
- * Body partial for /pricing/ (TLA Full HTML template).
+ * Body partial for /join/ (TLA Full HTML template).
  * Generated from public/pricing.html by scripts/convert-pages.sh — do not hand-edit;
  * edit the source HTML (or the shared header/footer partials) and re-run.
  */
@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 $tla_title       = 'Pricing — The Loan Atlas';
 $tla_description = 'One membership. Every AI system, all live coaching, and the full curriculum — for individual loan officers ready to scale.';
-$tla_active      = 'pricing';
+$tla_active      = 'join';
 ?>
   <style>
     /* ── Pricing page ─────────────────────────────────────────────── */
@@ -525,7 +525,7 @@ $tla_active      = 'pricing';
               <p class="plan__desc">For teams, branches, and organizations</p>
             </div>
             <div class="plan__price plan__price--custom">Custom Pricing</div>
-            <a class="btn btn--ghost btn--block" href="/book-a-demo/">Get Your Custom Quote</a>
+            <a class="btn btn--ghost btn--block" href="/consultation/">Get Your Custom Quote</a>
             <ul class="checklist">
               <li>
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -712,7 +712,7 @@ $tla_active      = 'pricing';
 
             <details class="faq-item">
               <summary>Do you offer team or enterprise pricing?</summary>
-              <div class="faq-item__body">Yes — for branches, divisions, and full organizations. <a href="/book-a-demo/" class="text-brass" style="font-weight: 600;">Explore Enterprise Pricing →</a></div>
+              <div class="faq-item__body">Yes — for branches, divisions, and full organizations. <a href="/consultation/" class="text-brass" style="font-weight: 600;">Explore Enterprise Pricing →</a></div>
             </details>
 
           </div>

@@ -1,6 +1,6 @@
 <?php
 /**
- * Body partial for /book-a-demo/ (TLA Full HTML template).
+ * Body partial for /consultation/ (TLA Full HTML template).
  * Generated from public/consultation.html by scripts/convert-pages.sh — do not hand-edit;
  * edit the source HTML (or the shared header/footer partials) and re-run.
  */

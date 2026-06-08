@@ -1,6 +1,6 @@
 <?php
 /**
- * Body partial for /businesses/ (TLA Full HTML template).
+ * Body partial for /enterprise/ (TLA Full HTML template).
  * Generated from public/corporate.html by scripts/convert-pages.sh — do not hand-edit;
  * edit the source HTML (or the shared header/footer partials) and re-run.
  */
@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 $tla_title       = 'Enterprise Solutions — The Loan Atlas for Mortgage Leaders';
 $tla_description = 'The Loan Atlas is the operating system mortgage leaders use to close the gap between top producers and the rest of their team — five AI systems installed across every originator.';
-$tla_active      = 'businesses';
+$tla_active      = 'enterprise';
 ?>
   <style>
     /* ── LP-specific styles ─────────────────────────────────────────────────── */
@@ -696,7 +696,7 @@ $tla_active      = 'businesses';
           <h1 id="lp-intro-heading" class="lp-intro__title" data-hero-step="2">The Gap Between Your Top Producers and Everyone Else Is <em>Widening Every Month</em></h1>
           <p class="lp-intro__subtitle" data-hero-step="3">The Loan Atlas is the operating system mortgage leaders use to close that gap across their entire team.</p>
           <div class="lp-intro__actions" data-hero-step="4">
-            <a class="btn btn--gold btn--lg" href="/consultation-corporate/">Schedule an Enterprise Consultation</a>
+            <a class="btn btn--gold btn--lg" href="/enterprise-consultation/">Schedule an Enterprise Consultation</a>
             <a class="btn btn--ghost-on-dark btn--lg" href="https://go.theloanatlas.com/the-ai-empowered-mortgage-leader-masterplan" target="_blank" rel="noopener">Get the AI-Empowered Mortgage Leader Masterplan</a>
           </div>
         </div>
@@ -842,7 +842,7 @@ $tla_active      = 'businesses';
           </div>
           <div class="inline-cta__action">
             <a class="btn btn--gold btn--lg" href="https://go.theloanatlas.com/the-ai-empowered-mortgage-leader-masterplan" target="_blank" rel="noopener">Get the Masterplan</a>
-            <a class="inline-cta__secondary-link" href="/consultation-corporate/">Talk to us first &rarr;</a>
+            <a class="inline-cta__secondary-link" href="/enterprise-consultation/">Talk to us first &rarr;</a>
           </div>
         </div>
       </div>
@@ -1033,7 +1033,7 @@ $tla_active      = 'businesses';
         </div>
 
         <div class="close-section__actions" data-reveal="up" role="group" aria-label="Get started">
-          <a class="close-section-action close-section-action--primary" href="/consultation-corporate/">
+          <a class="close-section-action close-section-action--primary" href="/enterprise-consultation/">
             <span>
               <span class="close-section-action__label">Schedule an Enterprise Consultation</span>
               <span class="close-section-action__hint">Map your team's playbook with our leadership coaches</span>

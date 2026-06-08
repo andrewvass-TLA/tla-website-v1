@@ -1879,10 +1879,10 @@ $tla_active      = 'whats-inside';
           <h1 class="wi-hero__title" data-hero-step="2">Everything you need to stop flying blind and start running a <em>predictable</em> mortgage business.</h1>
           <p class="wi-hero__sub" data-hero-step="3">Five AI coaches. 200+ training modules. Live coaching every week. Scripts and templates for every high-leverage conversation.</p>
           <div class="wi-hero__actions" data-hero-step="4">
-            <a class="btn btn--gold btn--lg" href="/pricing/">Start Your Transformation
+            <a class="btn btn--gold btn--lg" href="/join/">Start Your Transformation
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
-            <a class="btn btn--ghost-on-dark btn--lg" href="/book-a-demo/">Book Your Free Coaching Call</a>
+            <a class="btn btn--ghost-on-dark btn--lg" href="/consultation/">Book Your Free Coaching Call</a>
           </div>
         </div>
       </div>
@@ -2981,7 +2981,7 @@ $tla_active      = 'whats-inside';
         </div>
 
         <div class="close-section__actions" data-reveal="up" role="group" aria-label="Get started">
-          <a class="close-section-action close-section-action--primary" href="/pricing/">
+          <a class="close-section-action close-section-action--primary" href="/join/">
             <span>
               <span class="close-section-action__label">Join The Loan Atlas</span>
               <span class="close-section-action__hint">See plans, pricing, and what's inside membership</span>
@@ -2990,7 +2990,7 @@ $tla_active      = 'whats-inside';
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
             </span>
           </a>
-          <a class="close-section-action close-section-action--secondary" href="/book-a-demo/">
+          <a class="close-section-action close-section-action--secondary" href="/consultation/">
             <span>
               <span class="close-section-action__label">Book a Free Coaching Session</span>
               <span class="close-section-action__hint">45 minutes with our team — build your growth plan</span>
