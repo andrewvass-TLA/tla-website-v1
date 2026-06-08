@@ -37,6 +37,7 @@ if ( ! file_exists( $tla_partial ) ) {
 // Include once: capture the body markup, and let the partial set head vars.
 $tla_title       = '';
 $tla_description = '';
+$tla_image       = ''; // optional per-page social card; falls back to the shared default
 ob_start();
 include $tla_partial;
 $tla_body = ob_get_clean();
@@ -47,10 +48,39 @@ $tla_body = ob_get_clean();
 <head>
   <meta charset="<?php bloginfo( 'charset' ); ?>" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title><?php echo esc_html( $tla_title ? $tla_title : wp_get_document_title() ); ?></title>
+<?php
+  // Resolve social-card fields with sensible site-wide fallbacks.
+  $tla_og_title = $tla_title ? $tla_title : wp_get_document_title();
+  $tla_og_image = ! empty( $tla_image )
+    ? $tla_image
+    : TLA_BASE . '/assets/tla-og-card.png'; // shared default card (1200x630)
+  $tla_og_url   = get_permalink( get_queried_object_id() );
+  if ( ! $tla_og_url ) { $tla_og_url = home_url( '/' ); } // fallback (e.g. 404)
+?>
+  <title><?php echo esc_html( $tla_og_title ); ?></title>
 <?php if ( $tla_description ) : ?>
   <meta name="description" content="<?php echo esc_attr( $tla_description ); ?>" />
 <?php endif; ?>
+
+  <!-- Open Graph / Facebook / LinkedIn / iMessage / Slack -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="<?php echo esc_url( $tla_og_url ); ?>" />
+  <meta property="og:title" content="<?php echo esc_attr( $tla_og_title ); ?>" />
+<?php if ( $tla_description ) : ?>
+  <meta property="og:description" content="<?php echo esc_attr( $tla_description ); ?>" />
+<?php endif; ?>
+  <meta property="og:image" content="<?php echo esc_url( $tla_og_image ); ?>" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="The Loan Atlas" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="<?php echo esc_attr( $tla_og_title ); ?>" />
+<?php if ( $tla_description ) : ?>
+  <meta name="twitter:description" content="<?php echo esc_attr( $tla_description ); ?>" />
+<?php endif; ?>
+  <meta name="twitter:image" content="<?php echo esc_url( $tla_og_image ); ?>" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

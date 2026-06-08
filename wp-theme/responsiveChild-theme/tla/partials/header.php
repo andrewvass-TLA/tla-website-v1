@@ -37,7 +37,6 @@ $tla_is = function ( $key ) use ( $tla_active ) {
             <a class="nav__dropdown-item" href="/whats-inside/" role="menuitem">What's Inside</a>
             <a class="nav__dropdown-item" href="/faculty/" role="menuitem">Faculty</a>
             <a class="nav__dropdown-item" href="https://www.theloanatlas.com/evergreen-ai-tool-planner/" target="_blank" rel="noopener" role="menuitem">AI Business &amp; Life Planner</a>
-            <a class="nav__dropdown-item" href="#" role="menuitem">Platinum Marketing</a>
           </div>
         </div>
         <div class="nav__dropdown<?php echo in_array( $tla_active, array( 'join', 'enterprise', 'membership' ), true ) ? ' nav__dropdown--active' : ''; ?>">
@@ -85,7 +84,6 @@ $tla_is = function ( $key ) use ( $tla_active ) {
       <a class="mobile-nav__link mobile-nav__sublink<?php echo $tla_is( 'whats-inside' ); ?>" href="/whats-inside/">What's Inside</a>
       <a class="mobile-nav__link mobile-nav__sublink<?php echo $tla_is( 'faculty' ); ?>" href="/faculty/">Faculty</a>
       <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/evergreen-ai-tool-planner/" target="_blank" rel="noopener">AI Business &amp; Life Planner</a>
-      <a class="mobile-nav__link mobile-nav__sublink" href="#">Platinum Marketing</a>
       <p class="mobile-nav__group-label">Membership</p>
       <a class="mobile-nav__link mobile-nav__sublink<?php echo $tla_is( 'join' ); ?>" href="/join/">Pricing</a>
       <a class="mobile-nav__link mobile-nav__sublink<?php echo $tla_is( 'enterprise' ); ?>" href="/enterprise/">Corporate Sales</a>

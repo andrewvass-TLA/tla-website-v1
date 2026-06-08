@@ -6,7 +6,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-$tla_title       = 'The Loan Atlas — Human-Centric AI for Mortgage Originators';
+$tla_title       = 'The Loan Atlas | AI-Powered Systems That Help You Close More Loans With Less Chaos';
 $tla_description = 'The Loan Atlas installs five AI-powered systems into your mortgage business so you close more loans in less time, with less chaos.';
 $tla_active      = '';
 ?>
