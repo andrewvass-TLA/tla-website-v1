@@ -1,24 +1,23 @@
 name: Deploy child theme to WP Engine (SFTP)
 
-# Pushes wp-theme/responsiveChild-theme/ to the live WordPress child theme over
-# SFTP on every push to main. Targets WP Engine PRODUCTION.
+# Mirrors wp-theme/responsiveChild-theme/ to the live WordPress child theme over
+# SFTP on push to main. Targets WP Engine PRODUCTION, password auth via lftp.
 #
 # SAFETY: only writes INTO the child-theme folder. Never touches
-# wp-content/uploads, plugins, other themes, or the database. Commerce, blog,
-# and partner funnels are unaffected. This action uploads/overwrites only — it
-# does NOT delete remote files absent locally, so orphaned old-slug partials and
-# hand-uploaded *-test.php stay on the server until cleaned up by hand (harmless).
+# wp-content/uploads, plugins, other themes, or the database. Uses `mirror -R`
+# WITHOUT --delete, so it uploads/overwrites only and never removes remote files
+# absent locally (orphaned old-slug partials and hand-uploaded *-test.php stay
+# put — harmless).
 #
 # Required GitHub repo secrets (Settings -> Secrets and variables -> Actions):
-#   WPE_SFTP_HOST        <install>.sftp.wpengine.com   (WP Engine portal -> SFTP)
-#   WPE_SFTP_USER        your WP Engine SFTP username   (install-username form)
-#   WPE_SFTP_PORT        2222                            (WP Engine uses 2222)
-#   WPE_SSH_PRIVATE_KEY  the PRIVATE key (full text) whose PUBLIC half is added
-#                        to the WP Engine SSH/SFTP user
+#   WPE_SFTP_HOST       theloanatlas.sftp.wpengine.com
+#   WPE_SFTP_USER       theloanatlas-andrew
+#   WPE_SFTP_PASSWORD   the SFTP user's password
+#   WPE_SFTP_PORT       2222
 
 on:
   # NOTE: auto-deploy on push is temporarily disabled for the FIRST controlled
-  # run. After verifying a manual run works end-to-end, re-enable this block.
+  # run. After a manual run works end-to-end, re-enable this block.
   # push:
   #   branches: [main]
   #   paths:
@@ -31,22 +30,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
-      - name: Deploy over SFTP (WP Engine, SSH key auth)
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.5
-        with:
-          server: ${{ secrets.WPE_SFTP_HOST }}
-          port: ${{ secrets.WPE_SFTP_PORT }}
-          username: ${{ secrets.WPE_SFTP_USER }}
-          ssh_private_key: ${{ secrets.WPE_SSH_PRIVATE_KEY }}
+      - name: Install lftp
+        run: sudo apt-get update && sudo apt-get install -y lftp
 
-          # Trailing /* uploads the folder CONTENTS into remote_path.
-          local_path: './wp-theme/responsiveChild-theme/*'
-          # ABSOLUTE remote path on WP Engine. If this errors with a path / "no
-          # such file" error, the install root differs — try:
-          #   /sites/<install-name>/wp-content/themes/responsiveChild-theme/
-          remote_path: '/wp-content/themes/responsiveChild-theme/'
-
-          sftp_only: true        # use SFTP, not SCP
-          delete_remote_files: false   # never delete remote files absent locally
+      - name: Deploy over SFTP (WP Engine, password auth via lftp)
+        env:
+          HOST: ${{ secrets.WPE_SFTP_HOST }}
+          PORT: ${{ secrets.WPE_SFTP_PORT }}
+          USER: ${{ secrets.WPE_SFTP_USER }}
+          PASS: ${{ secrets.WPE_SFTP_PASSWORD }}
+          LOCAL_DIR: wp-theme/responsiveChild-theme
+          # Relative to the SFTP user's home (WP Engine chroots to the install
+          # root, where wp-content/ is directly visible). If a path error occurs,
+          # try the absolute form: /wp-content/themes/responsiveChild-theme
+          REMOTE_DIR: wp-content/themes/responsiveChild-theme
+        run: |
+          # set -e so any lftp error fails the job. sftp:auto-confirm yes accepts
+          # the host key on first connect. mirror -R = reverse (local->remote),
+          # NO --delete = never remove remote files. Exclude VCS/editor cruft.
+          lftp -c "
+            set sftp:auto-confirm yes;
+            set net:max-retries 2;
+            set net:timeout 15;
+            open -u '$USER','$PASS' -p $PORT sftp://$HOST;
+            mirror -R --verbose \
+              --exclude-glob .git* \
+              --exclude-glob .DS_Store \
+              '$LOCAL_DIR/' '$REMOTE_DIR/';
+          "
