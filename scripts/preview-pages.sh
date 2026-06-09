@@ -10,16 +10,31 @@ TLA="$THEME/tla"
 OUTDIR="wp-theme"
 BASE="responsiveChild-theme/tla"   # relative to OUTDIR
 
-# Pre-render the shared partials to static HTML (strip PHP header guard + echo TLA_BASE).
+# Render a shared partial to static HTML for a given $tla_active value, so the
+# preview shows the SAME active-nav highlight WordPress would. We evaluate the
+# two PHP nav patterns header.php uses before stripping any remaining PHP:
+#   <?php echo $tla_active === 'KEY' ? ' nav__link--active' : ''; ?>
+#   <?php echo $tla_is( 'KEY' ); ?>   (=> ' mobile-nav__link--active' when active)
+# Anything else PHP is stripped, and TLA_BASE -> $BASE.
 render_partial() {
-  # $1 = partial path; prints HTML with TLA_BASE -> $BASE and PHP stripped.
-  perl -0pe 's/<\?php.*?\?>//gs' "$1" | sed "s#<?php echo TLA_BASE; ?>#$BASE#g"
+  # $1 = partial path; $2 = active key (may be empty).
+  # Resolve TLA_BASE FIRST, then evaluate the nav-active ternaries, then strip any
+  # remaining PHP. (TLA_BASE must be substituted before the catch-all strip below,
+  # or `<?php echo TLA_BASE; ?>/assets/...` collapses to an absolute `/assets/...`.)
+  TLA_ACTIVE="$2" BASE_URL="$BASE" perl -0pe '
+    my $a = $ENV{TLA_ACTIVE};
+    my $b = $ENV{BASE_URL};
+    s/<\?php\s*echo\s*TLA_BASE;\s*\?>/$b/g;
+    s/<\?php\s*echo\s*\$tla_active\s*===\s*'"'"'([^'"'"']*)'"'"'\s*\?\s*'"'"'([^'"'"']*)'"'"'\s*:\s*'"'"'([^'"'"']*)'"'"';\s*\?>/$1 eq $a ? $2 : $3/ge;
+    s/<\?php\s*echo\s*\$tla_is\(\s*'"'"'([^'"'"']*)'"'"'\s*\)\s*;\s*\?>/$1 eq $a ? " mobile-nav__link--active" : ""/ge;
+    s/<\?php.*?\?>//gs;
+  ' "$1"
 }
 
-HDR=$(mktemp); FTR=$(mktemp)
-render_partial "$TLA/partials/header.php" > "$HDR"
-render_partial "$TLA/partials/footer.php" > "$FTR"
-trap 'rm -f "$HDR" "$FTR"' EXIT
+# Footer has no active state — render once.
+FTR=$(mktemp)
+render_partial "$TLA/partials/footer.php" "" > "$FTR"
+trap 'rm -f "$FTR"' EXIT
 
 for partial in "$TLA"/pages/*.php; do
   slug=$(basename "$partial" .php)
@@ -27,6 +42,11 @@ for partial in "$TLA"/pages/*.php; do
   out="$OUTDIR/_preview-$slug.html"
 
   title=$(perl -0ne "if(/\\\$tla_title\\s*=\\s*'((?:[^'\\\\]|\\\\.)*)'/s){print \$1; exit}" "$partial")
+  active=$(perl -0ne "if(/\\\$tla_active\\s*=\\s*'((?:[^'\\\\]|\\\\.)*)'/s){print \$1; exit}" "$partial")
+
+  # Render the shared header with THIS page's active key so the highlight matches prod.
+  HDR=$(mktemp)
+  render_partial "$TLA/partials/header.php" "$active" > "$HDR"
 
   {
     echo '<!DOCTYPE html><html lang="en"><head>'
@@ -50,5 +70,6 @@ for partial in "$TLA"/pages/*.php; do
     echo "<script src=\"$BASE/js/animations.js\" defer></script>"
     echo '</body></html>'
   } > "$out"
+  rm -f "$HDR"
   echo "built $out"
 done

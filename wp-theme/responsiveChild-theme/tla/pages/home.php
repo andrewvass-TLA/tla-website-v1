@@ -630,7 +630,7 @@ $tla_active      = '';
             <a class="btn btn--gold btn--lg" href="/faculty/">Meet Your Mentors</a>
           </div>
           <div class="faculty-panel__photo" data-reveal="right">
-            <img src="<?php echo TLA_BASE; ?>/assets/tim-braheem-headshot.png" alt="Tim Braheem" class="faculty-panel__img" />
+            <img src="<?php echo TLA_BASE; ?>/assets/faculty-composite-tjc.png" alt="Tim Braheem, Josh Mettle, and Craig Strent" class="faculty-panel__img" />
           </div>
         </div>
       </div>

@@ -17,8 +17,18 @@
 set -euo pipefail
 
 SRC="public"
-OUT="wp-theme/responsiveChild-theme/tla/pages"
+TLA="wp-theme/responsiveChild-theme/tla"
+OUT="$TLA/pages"
 mkdir -p "$OUT"
+
+# Sync shared static assets from public/ into the theme. These (css/js/assets)
+# are the files the deploy Action SFTPs to WP Engine, so public/ must be the
+# single edit point and the theme copies are generated. Direction is always
+# public/ -> tla/, never the reverse.
+echo "Syncing css / js / assets from public/ into the theme…"
+rsync -a --delete "$SRC/css/"    "$TLA/css/"
+rsync -a --delete "$SRC/js/"     "$TLA/js/"
+rsync -a --delete "$SRC/assets/" "$TLA/assets/"
 
 # source-basename | slug | active-key | title | description
 # (title/description pulled from the file; active-key drives nav highlight)
@@ -31,13 +41,11 @@ convert() {
   title=$(grep -oE '<title>[^<]*</title>' "$file" | head -1 | sed -E 's/<[^>]*>//g')
   desc=$(perl -0ne 'if(/<meta\s+name="description"\s+content="([^"]*)"/s){ $v=$1; $v=~s/\s+/ /g; print $v; exit }' "$file")
 
-  # Line numbers for slicing.
-  local body_open hdr_start hdr_end ftr_start ftr_end navjs
+  # Body boundaries. The body runs from after <body> to before </body>; the
+  # shared header/footer are marked in the source by <!-- TLA_HEADER --> /
+  # <!-- TLA_FOOTER --> sentinels, which we swap for PHP includes below.
+  local body_open body_close
   body_open=$(grep -nE '<body' "$file" | head -1 | cut -d: -f1)
-  hdr_start=$(grep -nE '<header class="site-header">' "$file" | head -1 | cut -d: -f1)
-  hdr_end=$(awk 'NR>='"$hdr_start"' && /<\/header>/{print NR; exit}' "$file")
-  ftr_start=$(grep -nE '<footer class="site-footer">' "$file" | head -1 | cut -d: -f1)
-  ftr_end=$(awk 'NR>='"$ftr_start"' && /<\/footer>/{print NR; exit}' "$file")
   body_close=$(grep -nE '</body>' "$file" | tail -1 | cut -d: -f1)
 
   local tmp; tmp=$(mktemp)
@@ -67,21 +75,16 @@ convert() {
     echo "" >> "$tmp"
   fi
 
-  # 3. Body: after <body> .. before header  => then header include
-  awk 'NR>'"$body_open"' && NR<'"$hdr_start"'' "$file" >> "$tmp"
-  echo "<?php include get_stylesheet_directory() . '/tla/partials/header.php'; ?>" >> "$tmp"
-
-  # 4. Body between header end and footer start (the unique page content)
-  awk 'NR>'"$hdr_end"' && NR<'"$ftr_start"'' "$file" >> "$tmp"
-
-  # 5. footer include, then everything from after the footer up to </body>,
-  #    EXCEPT the two universal scripts (nav.js, animations.js) that the
-  #    template already adds. Page-specific scripts (carousel, inline blocks,
-  #    form embeds) and post-footer markup (e.g. faculty modal) are preserved
-  #    wherever they sit.
-  echo "<?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>" >> "$tmp"
-  awk 'NR>'"$ftr_end"' && NR<'"$body_close"'' "$file" \
-    | grep -vE '<script[^>]*src="js/(nav|animations)\.js' >> "$tmp"
+  # 3. Body: everything between <body> and </body>, with the header/footer
+  #    sentinels swapped for the shared PHP includes. Drops the two universal
+  #    scripts (nav.js, animations.js) the template already adds; page-specific
+  #    scripts (carousel, inline blocks, form embeds) and post-footer markup
+  #    (e.g. the faculty modal) are preserved wherever they sit.
+  awk 'NR>'"$body_open"' && NR<'"$body_close"'' "$file" \
+    | grep -vE '<script[^>]*src="js/(nav|animations)\.js' \
+    | perl -0pe "s{<!-- TLA_HEADER -->}{<?php include get_stylesheet_directory() . '/tla/partials/header.php'; ?>}g;
+                 s{<!-- TLA_FOOTER -->}{<?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>}g" \
+    >> "$tmp"
 
   # 6. Path + link rewrites on the assembled file.
   rewrite "$tmp"

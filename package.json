@@ -5,6 +5,9 @@
   "description": "The Loan Atlas marketing site. Static HTML/CSS/JS. Playwright is used only for design-review screenshots of the v2 rebuild.",
   "scripts": {
     "serve": "cd public && python3 -m http.server 4321",
+    "build": "bash scripts/convert-pages.sh",
+    "preview": "bash scripts/preview-pages.sh",
+    "ship": "bash scripts/ship.sh",
     "shoot": "node scripts/screenshot.js",
     "shoot:install": "playwright install chromium"
   },
