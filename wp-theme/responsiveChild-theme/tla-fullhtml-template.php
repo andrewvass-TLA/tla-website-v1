@@ -87,8 +87,15 @@ $tla_body = ob_get_clean();
   <link
     href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Antonio:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
-  <link rel="stylesheet" href="<?php echo esc_url( TLA_BASE ); ?>/css/styles.css?v=3" />
-  <link rel="stylesheet" href="<?php echo esc_url( TLA_BASE ); ?>/css/chrome.css?v=3" />
+<?php
+  // Cache-bust on the CSS file's actual mtime so updated styles always reach the
+  // browser (Cloudflare/WP Engine/browser caches) without a manual version bump.
+  $tla_css_dir = get_stylesheet_directory() . '/tla/css';
+  $tla_styles_v = @filemtime( "$tla_css_dir/styles.css" ) ?: 3;
+  $tla_chrome_v = @filemtime( "$tla_css_dir/chrome.css" ) ?: 3;
+?>
+  <link rel="stylesheet" href="<?php echo esc_url( TLA_BASE ); ?>/css/styles.css?v=<?php echo $tla_styles_v; ?>" />
+  <link rel="stylesheet" href="<?php echo esc_url( TLA_BASE ); ?>/css/chrome.css?v=<?php echo $tla_chrome_v; ?>" />
 <?php wp_head(); // lets SEO / analytics plugins inject into <head> ?>
 </head>
 
