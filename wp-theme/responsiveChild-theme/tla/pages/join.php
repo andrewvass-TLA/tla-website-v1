@@ -181,7 +181,7 @@ $tla_active      = 'join';
       white-space: nowrap;
     }
 
-    /* Annual "Save $1,200" pill */
+    /* Annual "Save $698" pill */
     .pr-save {
       display: inline-flex;
       align-items: center;
@@ -493,12 +493,12 @@ $tla_active      = 'join';
             <span class="plan__badge">Most Popular</span>
             <div>
               <div class="plan__name">Annual</div>
-              <p class="plan__desc">12-month commitment · Over two months completely free</p>
+              <p class="plan__desc">12-month commitment · Two months completely free</p>
             </div>
             <div>
-              <div class="plan__price">$2,988<span class="plan__per">/year</span></div>
+              <div class="plan__price">$3,490<span class="plan__per">/year</span></div>
               <div>
-                <span class="pr-save">Save $1,200</span>
+                <span class="pr-save">Save $698</span>
               </div>
             </div>
             <a class="btn btn--brass btn--block" href="https://members.theloanatlas.com/checkouts/premium-membership/">Go Annual &amp; Save</a>
@@ -509,7 +509,7 @@ $tla_active      = 'join';
               </li>
               <li>
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                <strong>$1,200 in savings</strong>
+                <strong>$698 in savings</strong>
               </li>
               <li>
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -697,7 +697,7 @@ $tla_active      = 'join';
 
             <details class="faq-item">
               <summary>What's the difference between monthly and annual?</summary>
-              <div class="faq-item__body">Both plans are 12-month memberships with identical access — same AI systems, same coaching, same library, same community. The only difference is how you pay. Annual is paid upfront and saves you $1,200 (the equivalent of two months free). Monthly spreads the same annual commitment across 12 payments of $349.</div>
+              <div class="faq-item__body">Both plans are 12-month memberships with identical access — same AI systems, same coaching, same library, same community. The only difference is how you pay. Annual is paid upfront and saves you $698 (the equivalent of two months free). Monthly spreads the same annual commitment across 12 payments of $349.</div>
             </details>
 
             <details class="faq-item">
@@ -733,15 +733,15 @@ $tla_active      = 'join';
           </h2>
           <p class="close-section__sub">
             Whichever path you pick, you're in from day one — every tool, every coach, every framework,
-            every resource. <strong>The annual plan saves you $1,200.</strong>
+            every resource. <strong>The annual plan saves you $698.</strong>
           </p>
         </div>
 
         <div class="close-section__actions" data-reveal="up" role="group" aria-label="Get started">
           <a class="close-section-action close-section-action--primary" href="https://members.theloanatlas.com/checkouts/premium-membership/">
             <span>
-              <span class="close-section-action__label">Start Annual — $2,988/year</span>
-              <span class="close-section-action__hint">Save $1,200 vs monthly · Full access from day one</span>
+              <span class="close-section-action__label">Start Annual — $3,490/year</span>
+              <span class="close-section-action__hint">Save $698 vs monthly · Full access from day one</span>
             </span>
             <span class="close-section-action__arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
