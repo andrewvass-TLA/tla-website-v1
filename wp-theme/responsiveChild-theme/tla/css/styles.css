@@ -1197,6 +1197,31 @@ h6 {
 }
 
 /* --- Sections: dark panel ------------------------------------------------ */
+/* Brass hairline seam — applied to the LOWER section of two back-to-back dark
+   sections so the boundary reads as a new section, not one continuous block.
+   The line sits on the section's top edge and fades to transparent at the sides. */
+.section-seam-top {
+  position: relative;
+}
+
+.section-seam-top::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1280px, 100%);
+  height: 1px;
+  background: linear-gradient(to right,
+      transparent 0%,
+      rgba(201, 150, 28, 0) 8%,
+      rgba(234, 194, 90, 0.55) 50%,
+      rgba(201, 150, 28, 0) 92%,
+      transparent 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
 .panel-dark {
   background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
   color: var(--on-primary);
@@ -2634,6 +2659,9 @@ h6 {
 /* --- Hover carousel (gallery) -------------------------------------------- */
 .gallery {
   padding-block: clamp(64px, 8vw, 128px);
+  /* Tinted tier: separates the dark Faculty panel above from the white
+     Who-We-Serve section below so the light sections don't merge. */
+  background: var(--surface-container-low);
 }
 
 .gallery__head {
@@ -4494,7 +4522,11 @@ h6 {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  margin-bottom: 0.2em;
+  /* Tight line-height (1.05) clips the gradient at the line-box edges, cutting
+     off descenders (e.g. the "g" in Closing). Bottom padding extends the bg
+     paint area; reduced margin keeps the spacing unchanged. */
+  padding-bottom: 0.12em;
+  margin-bottom: 0.08em;
 }
 
 .aisc-section__lede {
@@ -6135,6 +6167,18 @@ body.is-loaded [data-hero-step="5"] {
   pointer-events: none;
 }
 
+/* Brass hairline seam for .close-section. The generic .section-seam-top::after
+   can't be used here — .close-section::after is already its decorative glow — so
+   the seam rides on ::before via box-shadow stacking instead. This top brass line
+   separates the Final CTA from the dark Featured-testimonial section above it. */
+.close-section.section-seam-top {
+  border-top: 1px solid transparent;
+  border-image: linear-gradient(to right,
+      transparent 0%,
+      rgba(234, 194, 90, 0.55) 50%,
+      transparent 100%) 1;
+}
+
 .close-section__grid {
   position: relative;
   z-index: 1;
@@ -6301,5 +6345,394 @@ body.is-loaded [data-hero-step="5"] {
 @media (max-width: 919px) {
   .close-section__actions {
     max-width: 32rem;
+  }
+}
+
+/* ==========================================================================
+   PATTERN LIBRARY (patterns.html)  —  prefix .pl-, scoped under .patterns
+   Reusable reference patterns modeled on the Practice Better feature page,
+   rendered in the TLA brand. Everything here is namespaced so it can never
+   affect live pages. Mock product UI is drawn in pure CSS (no images).
+   ========================================================================== */
+
+/* --- Hero compliance / credential strip (static; .trust is a marquee) ----- */
+.patterns .pl-trust {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: clamp(20px, 3vw, 36px);
+  margin-block: var(--space-lg);
+}
+
+.patterns .pl-trust__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.patterns .pl-trust__icon {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brass);
+}
+
+.patterns .pl-trust__icon svg {
+  width: 26px;
+  height: 26px;
+}
+
+.patterns .pl-trust__label {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--on-surface);
+}
+
+.patterns .pl-trust__label span {
+  display: block;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  color: var(--on-surface-variant);
+}
+
+.patterns .pl-trust__divider {
+  width: 1px;
+  height: 28px;
+  background: var(--outline-variant);
+}
+
+.patterns .pl-stars {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.patterns .pl-stars__row {
+  display: inline-flex;
+  gap: 2px;
+  color: var(--brass);
+}
+
+.patterns .pl-stars__row svg {
+  width: 16px;
+  height: 16px;
+}
+
+.patterns .pl-stars__label {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--on-surface-variant);
+}
+
+/* --- Device frame: soft tinted rounded panel behind every mock UI --------- */
+.patterns .pl-frame {
+  position: relative;
+  border-radius: var(--radius-3xl);
+  padding: clamp(20px, 3vw, 40px);
+  background:
+    radial-gradient(120% 120% at 80% 10%, rgba(234, 194, 90, 0.16), transparent 55%),
+    radial-gradient(120% 120% at 10% 90%, rgba(178, 200, 233, 0.18), transparent 60%),
+    var(--surface-container-low);
+  overflow: hidden;
+}
+
+.patterns .pl-frame--lg {
+  padding: clamp(24px, 4vw, 56px);
+}
+
+/* --- Mock UI window (faux product screenshot) ----------------------------- */
+.patterns .pl-ui {
+  background: var(--surface-container-lowest);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 24px 64px rgba(2, 28, 54, 0.22);
+  overflow: hidden;
+  font-family: var(--font-body);
+  color: var(--on-surface);
+}
+
+.patterns .pl-ui__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding: 12px 16px;
+  background: var(--primary);
+  color: var(--on-primary);
+}
+
+.patterns .pl-ui__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+
+.patterns .pl-ui__save {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+  color: #1a1407;
+}
+
+.patterns .pl-ui__tabs {
+  display: flex;
+  gap: 18px;
+  padding: 10px 16px 0;
+  border-bottom: 1px solid var(--outline-variant);
+}
+
+.patterns .pl-ui__tab {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding-bottom: 10px;
+  color: var(--on-surface-variant);
+  border-bottom: 2px solid transparent;
+}
+
+.patterns .pl-ui__tab.is-active {
+  color: var(--primary);
+  border-bottom-color: var(--brass);
+}
+
+.patterns .pl-ui__body {
+  padding: 18px 16px;
+}
+
+/* faux form fields */
+.patterns .pl-field {
+  margin-bottom: 14px;
+}
+
+.patterns .pl-field__label {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--on-surface-variant);
+  margin-bottom: 6px;
+}
+
+.patterns .pl-field__input {
+  height: 1px;
+  background: var(--outline-variant);
+}
+
+.patterns .pl-field__input--filled {
+  height: 8px;
+  width: 60%;
+  border-radius: var(--radius);
+  background: var(--surface-container);
+}
+
+.patterns .pl-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 18px;
+}
+
+/* faux stat tiles (dashboard) */
+.patterns .pl-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.patterns .pl-stat {
+  background: var(--primary);
+  color: var(--on-primary);
+  border-radius: var(--radius-lg);
+  padding: 12px 14px;
+}
+
+.patterns .pl-stat__label {
+  font-size: 0.625rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.patterns .pl-stat__num {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.75rem;
+  line-height: 1.1;
+  color: var(--brass-bright);
+}
+
+/* faux progress table */
+.patterns .pl-rows {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.patterns .pl-prow {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  align-items: center;
+  gap: 12px;
+}
+
+.patterns .pl-prow__name {
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.patterns .pl-prow__track {
+  height: 6px;
+  border-radius: var(--radius-full);
+  background: var(--surface-container);
+  overflow: hidden;
+}
+
+.patterns .pl-prow__fill {
+  display: block;
+  height: 100%;
+  border-radius: var(--radius-full);
+  background: linear-gradient(90deg, var(--brass) 0%, var(--brass-bright) 100%);
+}
+
+/* faux stacked note-template cards */
+.patterns .pl-notes {
+  position: relative;
+  min-height: 240px;
+}
+
+.patterns .pl-note {
+  position: absolute;
+  width: 64%;
+  background: var(--surface-container-lowest);
+  border: 1px solid var(--outline-variant);
+  border-top: 3px solid var(--brass);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow);
+  padding: 14px;
+}
+
+.patterns .pl-note__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: 10px;
+}
+
+.patterns .pl-note__line {
+  height: 6px;
+  border-radius: var(--radius);
+  background: var(--surface-container);
+  margin-bottom: 7px;
+}
+
+.patterns .pl-note--a {
+  left: 0;
+  top: 0;
+  transform: rotate(-3deg);
+  z-index: 1;
+}
+
+.patterns .pl-note--b {
+  right: 0;
+  top: 28px;
+  z-index: 2;
+}
+
+/* faux modal overlay (demo block) */
+.patterns .pl-ui--demo {
+  position: relative;
+}
+
+.patterns .pl-modal {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(2, 28, 54, 0.32);
+}
+
+.patterns .pl-modal__card {
+  width: min(78%, 380px);
+  background: var(--surface-container-lowest);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+  padding: 28px 26px;
+  text-align: center;
+}
+
+.patterns .pl-modal__dot {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  margin: 0 auto 14px;
+  background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+}
+
+.patterns .pl-modal__title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.0625rem;
+  margin-bottom: 8px;
+}
+
+.patterns .pl-modal__text {
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--on-surface-variant);
+}
+
+/* --- Light-section feature row (alternating; NOT the dark .system row) ---- */
+.patterns .pl-row {
+  display: grid;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+.patterns .pl-points {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+.patterns .pl-point {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: var(--space-md);
+  align-items: start;
+}
+
+.patterns .pl-point__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  color: var(--on-surface);
+  margin-bottom: 4px;
+}
+
+.patterns .pl-point__desc {
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: var(--on-surface-variant);
+}
+
+@media (min-width: 900px) {
+  .patterns .pl-row {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+  }
+
+  .patterns .pl-row--reverse .pl-row__visual {
+    order: -1;
   }
 }

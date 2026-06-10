@@ -7,7 +7,7 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 $tla_title       = 'What\'s Inside — The Loan Atlas';
-$tla_description = 'Everything you need to stop flying blind and start running a predictable mortgage business. Five AI coaches, 200+ training modules, live coaching every week.';
+$tla_description = 'Everything you need to stop flying blind and start running a predictable mortgage business. Five AI-powered systems, 200+ training modules, live coaching every week.';
 $tla_active      = 'whats-inside';
 ?>
   <style>
@@ -1877,7 +1877,7 @@ $tla_active      = 'whats-inside';
       <div class="container">
         <div class="wi-hero__copy">
           <h1 class="wi-hero__title" data-hero-step="2">Everything you need to stop flying blind and start running a <em>predictable</em> mortgage business.</h1>
-          <p class="wi-hero__sub" data-hero-step="3">Five AI coaches. 200+ training modules. Live coaching every week. Scripts and templates for every high-leverage conversation.</p>
+          <p class="wi-hero__sub" data-hero-step="3">Five AI-powered systems. 200+ training modules. Live coaching every week. Scripts and templates for every high-leverage conversation.</p>
           <div class="wi-hero__actions" data-hero-step="4">
             <a class="btn btn--gold btn--lg" href="/join/">Start Your Transformation
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
@@ -1896,7 +1896,7 @@ $tla_active      = 'whats-inside';
         <div class="stats-bar__grid" data-reveal-stagger="100">
           <div class="stats-bar__item">
             <span class="stats-bar__num" data-countup="5" data-countup-commas="false">5</span>
-            <span class="stats-bar__label">AI Coaches</span>
+            <span class="stats-bar__label">AI-Powered Systems</span>
           </div>
           <div class="stats-bar__item">
             <span class="stats-bar__num" data-countup="200" data-countup-suffix="+" data-countup-commas="false">200+</span>

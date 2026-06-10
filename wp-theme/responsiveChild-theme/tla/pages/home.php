@@ -19,10 +19,11 @@ $tla_active      = '';
     <section class="lp-intro" aria-labelledby="hero-heading">
       <div class="container">
         <div class="lp-intro__content">
-          <h1 id="hero-heading" class="lp-intro__title" data-hero-step="1">See Your Mortgage Business <em>Clearly</em>
-            for the First Time</h1>
+          <h1 id="hero-heading" class="lp-intro__title" data-hero-step="1"><em>AI-Powered Systems</em> That Help You
+            Close More Loans With Less Chaos</h1>
           <p class="lp-intro__subtitle" data-hero-step="2">The Loan Atlas installs 5 AI-powered systems into your
-            mortgage business to help you close twice the loans in half the time.</p>
+            mortgage business to help you make better decisions, execute faster, and stay focused on what actually
+            drives production.</p>
           <div class="lp-intro__actions" data-hero-step="3">
             <a class="btn btn--gold btn--lg" href="/join/">Install the System Top Producers Are Using</a>
           </div>
@@ -82,7 +83,8 @@ $tla_active      = '';
       </div>
     </section>
 
-    <!-- Mastermind Summit inline CTA -->
+    <!-- Mastermind Summit inline CTA — HIDDEN. To restore: delete this comment line and the matching "END Mastermind" line below to re-enable the section. -->
+    <!-- BEGIN Mastermind disabled
     <section class="mm-section" id="mastermind-cta" aria-labelledby="mm-section-heading">
       <div class="container mm-section__inner" data-reveal="up">
         <div class="mm-section__copy">
@@ -122,6 +124,7 @@ $tla_active      = '';
         </div>
       </div>
     </section>
+    END Mastermind disabled -->
 
     <!-- Problem vs reality -->
     <section class="section">
@@ -281,12 +284,11 @@ $tla_active      = '';
       <div class="container">
         <header class="aisc-section__header" data-reveal="up">
           <h2 id="aisc-heading" class="t-display aisc-section__title">
-            <span class="aisc-section__title-accent">AI-Powered Systems</span>
-            That Help You Close More Loans With Less Chaos
+            Stop Flying Blind. <span class="aisc-section__title-accent">Start Closing Loans.</span>
           </h2>
           <p class="t-body-lg aisc-section__lede">
-            Inside The Loan Atlas, these five systems work together to help you make better decisions, execute faster,
-            and stay focused on what actually drives production.
+            Inside The Loan Atlas, these five systems work together to help you close more loans, make better decisions,
+            and finally feel in control of your production.
           </p>
         </header>
 
@@ -477,6 +479,30 @@ $tla_active      = '';
       </div>
     </section>
 
+    <!-- Faculty -->
+    <section id="faculty" class="panel-dark faculty-panel section-seam-top" style="border-radius: 0; padding: 0; display: block;">
+      <div class="container">
+        <div class="faculty-inner">
+          <div class="faculty-panel__content" data-reveal="left" style="padding-top: clamp(40px, 6vw, 80px);">
+            <span class="eyebrow"><span class="eyebrow__text"><span data-countup="18"
+                  data-countup-commas="false">18</span> Experienced Coaches · $<span data-countup="29"
+                  data-countup-commas="false">29</span> Billion Closed</span></span>
+            <h2 class="t-headline-lg" style="color: var(--on-primary); margin-bottom: var(--space-md);">Systems Built by
+              Top Producers Behind $29 Billion in Loan Volume</h2>
+            <p class="t-body-lg" style="color: rgba(255,255,255,0.78); margin-bottom: var(--space-lg);">Every member of
+              The Loan Atlas faculty is a proven originator, leader, or strategist with decades of experience and
+              hundreds of millions — in many cases, billions — in funded loans.
+              They’re not just teaching theories. They’re coaching from experience.
+            </p>
+            <a class="btn btn--gold btn--lg" href="/faculty/">Meet Your Mentors</a>
+          </div>
+          <div class="faculty-panel__photo" data-reveal="right">
+            <img src="<?php echo TLA_BASE; ?>/assets/faculty-composite-tjc.png" alt="Tim Braheem, Josh Mettle, and Craig Strent" class="faculty-panel__img" />
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Featured gallery / hover carousel -->
     <section class="gallery" id="gallery">
       <div class="container">
@@ -612,30 +638,6 @@ $tla_active      = '';
       </div>
     </section>
 
-    <!-- Faculty -->
-    <section id="faculty" class="panel-dark faculty-panel" style="border-radius: 0; padding: 0; display: block;">
-      <div class="container">
-        <div class="faculty-inner">
-          <div class="faculty-panel__content" data-reveal="left" style="padding-top: clamp(40px, 6vw, 80px);">
-            <span class="eyebrow"><span class="eyebrow__text"><span data-countup="18"
-                  data-countup-commas="false">18</span> Experienced Coaches · $<span data-countup="29"
-                  data-countup-commas="false">29</span> Billion Closed</span></span>
-            <h2 class="t-headline-lg" style="color: var(--on-primary); margin-bottom: var(--space-md);">Learn from Top
-              Producers Behind $29 Billion In Loan Volume</h2>
-            <p class="t-body-lg" style="color: rgba(255,255,255,0.78); margin-bottom: var(--space-lg);">Every member of
-              The Loan Atlas faculty is a proven originator, leader, or strategist with decades of experience and
-              hundreds of millions — in many cases, billions — in funded loans.
-              They’re not just teaching theories. They’re coaching from experience.
-            </p>
-            <a class="btn btn--gold btn--lg" href="/faculty/">Meet Your Mentors</a>
-          </div>
-          <div class="faculty-panel__photo" data-reveal="right">
-            <img src="<?php echo TLA_BASE; ?>/assets/faculty-composite-tjc.png" alt="Tim Braheem, Josh Mettle, and Craig Strent" class="faculty-panel__img" />
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Who We Serve -->
     <section class="section" id="who-we-serve" aria-labelledby="who-we-serve-heading"
       style="padding-top: calc(clamp(48px, 6vw, 96px) + 4rem);">
@@ -691,8 +693,7 @@ $tla_active      = '';
     </section>
 
     <!-- Testimonials -->
-    <section class="section bg-surface-low results"
-      style="border-top: 1px solid var(--outline-variant); border-bottom: 1px solid var(--outline-variant);">
+    <section class="section bg-surface-low results">
       <div class="container">
         <header class="results__header" data-reveal="up">
           <h2 class="t-headline-lg center results__title">Real Originators. Real Systems. <span class="text-brass">Real
@@ -858,7 +859,7 @@ $tla_active      = '';
     </section>
 
     <!-- Final CTA -->
-    <section class="close-section close-section--homepage" id="get-started" aria-labelledby="final-cta-heading">
+    <section class="close-section close-section--homepage section-seam-top" id="get-started" aria-labelledby="final-cta-heading">
       <div class="container close-section__grid">
         <div class="close-section__copy" data-reveal="up">
           <span class="close-section__eyebrow">Start Your Transformation</span>

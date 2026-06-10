@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pattern Library — The Loan Atlas (internal reference)</title>
+  <meta name="description"
+    content="Internal pattern-library reference page. Demonstrates hero, trust strip, alternating feature rows, device frames, and CSS mock UI in the TLA brand." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Antonio:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=3" />
+</head>
+
+<body>
+
+  <main class="patterns">
+
+    <!-- ================= HERO ================= -->
+    <section class="section">
+      <div class="container">
+        <div class="grid-2" style="align-items: center;">
+
+          <!-- Copy column -->
+          <div>
+            <span class="eyebrow"><span class="eyebrow__text">Features · Templates</span></span>
+            <h1 class="t-display" style="font-weight: 800; letter-spacing: -0.025em; line-height: 1.05;">
+              Build once. <em
+                style="font-style: normal; background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Reuse
+                everywhere.</em>
+            </h1>
+            <p class="t-body-lg t-muted" style="margin-top: var(--space-md); max-width: 34rem;">
+              Standardize your scripts, presentations, and client follow-ups across every originator on your team — and
+              save hours every week with professionally built templates for your business.
+            </p>
+
+            <!-- Compliance / credential strip -->
+            <div class="pl-trust">
+              <div class="pl-trust__item">
+                <span class="pl-trust__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                  </svg>
+                </span>
+                <span class="pl-trust__label">Bank-Grade<span>Security</span></span>
+              </div>
+              <div class="pl-trust__item">
+                <span class="pl-trust__icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <rect x="3" y="11" width="18" height="11" rx="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                </span>
+                <span class="pl-trust__label">SOC 2<span>Compliant</span></span>
+              </div>
+              <span class="pl-trust__divider" aria-hidden="true"></span>
+              <div class="pl-stars">
+                <span class="pl-stars__row" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9 16 14 18 22 12 17 6 22 8 14 2 9 9 9 12 2"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9 16 14 18 22 12 17 6 22 8 14 2 9 9 9 12 2"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9 16 14 18 22 12 17 6 22 8 14 2 9 9 9 12 2"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9 16 14 18 22 12 17 6 22 8 14 2 9 9 9 12 2"/></svg>
+                  <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15 9 22 9 16 14 18 22 12 17 6 22 8 14 2 9 9 9 12 2"/></svg>
+                </span>
+                <span class="pl-stars__label">4.9 / 5 · 1,000+ originators</span>
+              </div>
+            </div>
+
+            <div class="row">
+              <a class="btn btn--primary btn--lg" href="#">Start free trial</a>
+              <a class="btn btn--ghost btn--lg" href="#">
+                Watch a demo
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <line x1="5" y1="12" x2="19" y2="12" />
+                  <polyline points="12 5 19 12 12 19" />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Visual column: form-builder mock -->
+          <div class="pl-row__visual">
+            <div class="pl-frame">
+              <div class="pl-ui">
+                <div class="pl-ui__bar">
+                  <span class="pl-ui__title">Edit Template</span>
+                  <span class="pl-ui__save">Save</span>
+                </div>
+                <div class="pl-ui__tabs">
+                  <span class="pl-ui__tab is-active">Builder</span>
+                  <span class="pl-ui__tab">Preview</span>
+                  <span class="pl-ui__tab">Settings</span>
+                </div>
+                <div class="pl-ui__body">
+                  <div class="pl-form-grid">
+                    <div class="pl-field">
+                      <span class="pl-field__label">First Name</span>
+                      <span class="pl-field__input"></span>
+                    </div>
+                    <div class="pl-field">
+                      <span class="pl-field__label">Last Name</span>
+                      <span class="pl-field__input"></span>
+                    </div>
+                    <div class="pl-field">
+                      <span class="pl-field__label">Loan Type</span>
+                      <span class="pl-field__input"></span>
+                    </div>
+                    <div class="pl-field">
+                      <span class="pl-field__label">Loan Amount</span>
+                      <span class="pl-field__input"></span>
+                    </div>
+                  </div>
+                  <div class="pl-field">
+                    <span class="pl-field__label">Borrower Goals</span>
+                    <span class="pl-field__input--filled"></span>
+                  </div>
+                  <div class="pl-field" style="margin-bottom: 0;">
+                    <span class="pl-field__label">Timeline</span>
+                    <span class="pl-field__input"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CENTERED INTRO ================= -->
+    <section class="section bg-surface-low">
+      <div class="container center">
+        <h2 class="t-display" style="font-weight: 800; max-width: 18ch; margin-inline: auto;">Templates for your entire
+          team</h2>
+        <p class="t-body-lg t-muted" style="margin-top: var(--space-md); max-width: 44rem; margin-inline: auto;">
+          Built for new originators, mid-career operators, team leaders, and branch managers. Every role, one
+          library — so the whole team runs the same proven playbook.
+        </p>
+        <div class="row" style="justify-content: center; margin-top: var(--space-lg);">
+          <a class="btn btn--primary btn--lg" href="#">Explore all templates</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FEATURE ROW A (image left) ================= -->
+    <section class="section">
+      <div class="container">
+        <div class="pl-row pl-row--reverse">
+          <!-- Visual -->
+          <div class="pl-row__visual">
+            <div class="pl-frame">
+              <div class="pl-ui">
+                <div class="pl-ui__bar">
+                  <span class="pl-ui__title">Pipeline Overview</span>
+                </div>
+                <div class="pl-ui__body">
+                  <div class="pl-stats">
+                    <div class="pl-stat">
+                      <span class="pl-stat__label">Active Loans</span>
+                      <span class="pl-stat__num">90</span>
+                    </div>
+                    <div class="pl-stat">
+                      <span class="pl-stat__label">Closed (MTD)</span>
+                      <span class="pl-stat__num">65</span>
+                    </div>
+                    <div class="pl-stat">
+                      <span class="pl-stat__label">Avg Days to Close</span>
+                      <span class="pl-stat__num">32</span>
+                    </div>
+                    <div class="pl-stat">
+                      <span class="pl-stat__label">On-Track Rate</span>
+                      <span class="pl-stat__num">72%</span>
+                    </div>
+                  </div>
+                  <div class="pl-rows">
+                    <div class="pl-prow"><span class="pl-prow__name">Mary S.</span><span class="pl-prow__track"><span
+                          class="pl-prow__fill" style="width: 88%;"></span></span></div>
+                    <div class="pl-prow"><span class="pl-prow__name">Aaron N.</span><span class="pl-prow__track"><span
+                          class="pl-prow__fill" style="width: 54%;"></span></span></div>
+                    <div class="pl-prow"><span class="pl-prow__name">Heath A.</span><span class="pl-prow__track"><span
+                          class="pl-prow__fill" style="width: 67%;"></span></span></div>
+                    <div class="pl-prow"><span class="pl-prow__name">Regan R.</span><span class="pl-prow__track"><span
+                          class="pl-prow__fill" style="width: 41%;"></span></span></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Copy -->
+          <div>
+            <span class="eyebrow"><span class="eyebrow__text">Scale</span></span>
+            <h2 class="t-headline-lg">Scalable delivery across your team</h2>
+            <p class="t-body-lg t-muted" style="margin-top: var(--space-md);">
+              Give every originator a ready-built process to run — and every borrower a consistent, professional
+              experience.
+            </p>
+            <div class="pl-points">
+              <div class="pl-point">
+                <span class="icon-tile" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                    <circle cx="9" cy="7" r="4" />
+                    <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                    <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="pl-point__title">Team-wide rollout</h3>
+                  <p class="pl-point__desc">Push a vetted loan process to every originator so the whole branch delivers
+                    the same structured experience.</p>
+                </div>
+              </div>
+              <div class="pl-point">
+                <span class="icon-tile icon-tile--brass" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polyline points="13 17 18 12 13 7" />
+                    <polyline points="6 17 11 12 6 7" />
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="pl-point__title">Originators move independently</h3>
+                  <p class="pl-point__desc">Self-paced playbooks let each LO work at their own speed without extra
+                    coordination from leadership.</p>
+                </div>
+              </div>
+              <div class="pl-point">
+                <span class="icon-tile" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polyline points="23 4 23 10 17 10" />
+                    <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10" />
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="pl-point__title">Always-on continuity</h3>
+                  <p class="pl-point__desc">Time-gated follow-ups run automatically — one less process your team has to
+                    remember to manage.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FEATURE ROW B (image right) ================= -->
+    <section class="section bg-surface-low">
+      <div class="container">
+        <div class="pl-row">
+          <!-- Copy -->
+          <div>
+            <span class="eyebrow"><span class="eyebrow__text">Documentation</span></span>
+            <h2 class="t-headline-lg">Client-facing presentation templates</h2>
+            <p class="t-body-lg t-muted" style="margin-top: var(--space-md);">
+              Give every originator the structure they need while keeping your brand and message consistent across every
+              borrower conversation.
+            </p>
+            <div class="pl-points">
+              <div class="pl-point">
+                <span class="icon-tile" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7" />
+                    <rect x="14" y="3" width="7" height="7" />
+                    <rect x="14" y="14" width="7" height="7" />
+                    <rect x="3" y="14" width="7" height="7" />
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="pl-point__title">Choose your format</h3>
+                  <p class="pl-point__desc">Refi reviews, buyer education, or partner presentations — each LO picks the
+                    layout that fits the conversation.</p>
+                </div>
+              </div>
+              <div class="pl-point">
+                <span class="icon-tile icon-tile--brass" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="pl-point__title">Speed up the build</h3>
+                  <p class="pl-point__desc">Originators spend less time formatting and more time with clients when the
+                    template handles the structure.</p>
+                </div>
+              </div>
+              <div class="pl-point">
+                <span class="icon-tile" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                    <polyline points="9 12 11 14 15 10" />
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="pl-point__title">Stay on-brand</h3>
+                  <p class="pl-point__desc">Every asset includes the required disclosures and messaging — no matter
+                    which originator sends it.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Visual: stacked note/template cards -->
+          <div class="pl-row__visual">
+            <div class="pl-frame">
+              <div class="pl-notes">
+                <div class="pl-note pl-note--a">
+                  <div class="pl-note__title">Refinance Review</div>
+                  <div class="pl-note__line" style="width: 90%;"></div>
+                  <div class="pl-note__line" style="width: 70%;"></div>
+                  <div class="pl-note__line" style="width: 80%;"></div>
+                  <div class="pl-note__line" style="width: 55%;"></div>
+                </div>
+                <div class="pl-note pl-note--b">
+                  <div class="pl-note__title">Buyer Consultation</div>
+                  <div class="pl-note__line" style="width: 85%;"></div>
+                  <div class="pl-note__line" style="width: 65%;"></div>
+                  <div class="pl-note__line" style="width: 78%;"></div>
+                  <div class="pl-note__line" style="width: 50%;"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= FEATURE ROW C (image left) ================= -->
+    <section class="section">
+      <div class="container">
+        <div class="pl-row pl-row--reverse">
+          <!-- Visual: conditional-flow / intake mock -->
+          <div class="pl-row__visual">
+            <div class="pl-frame">
+              <div class="pl-ui">
+                <div class="pl-ui__bar">
+                  <span class="pl-ui__title">Conditional Flow</span>
+                  <span class="pl-ui__save">Done</span>
+                </div>
+                <div class="pl-ui__body">
+                  <div class="pl-field">
+                    <span class="pl-field__label">Trigger question</span>
+                    <span class="pl-field__input--filled" style="width: 80%;"></span>
+                  </div>
+                  <div class="pl-field">
+                    <span class="pl-field__label">When answer is</span>
+                    <span class="pl-field__input--filled" style="width: 40%; background: var(--secondary-container);"></span>
+                  </div>
+                  <div class="pl-field">
+                    <span class="pl-field__label">Then show</span>
+                    <span class="pl-field__input"></span>
+                  </div>
+                  <div class="pl-field" style="margin-bottom: 0;">
+                    <span class="pl-field__input"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Copy -->
+          <div>
+            <span class="eyebrow"><span class="eyebrow__text">Intake</span></span>
+            <h2 class="t-headline-lg">Standardized intake, every time</h2>
+            <p class="t-body-lg t-muted" style="margin-top: var(--space-md);">
+              Every new borrower starts with the same complete intake process — regardless of which originator they
+              reach first.
+            </p>
+            <div class="pl-points">
+              <div class="pl-point">
+                <span class="icon-tile" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7" />
+                    <rect x="14" y="3" width="7" height="7" />
+                    <rect x="14" y="14" width="7" height="7" />
+                    <rect x="3" y="14" width="7" height="7" />
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="pl-point__title">Design once, deploy everywhere</h3>
+                  <p class="pl-point__desc">Create a master intake template, then add loan-type-specific sections for
+                    purchase, refi, or VA.</p>
+                </div>
+              </div>
+              <div class="pl-point">
+                <span class="icon-tile icon-tile--brass" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M6 3v12" />
+                    <circle cx="18" cy="6" r="3" />
+                    <circle cx="6" cy="18" r="3" />
+                    <path d="M18 9a9 9 0 0 1-9 9" />
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="pl-point__title">Consistency with flexibility</h3>
+                  <p class="pl-point__desc">Use conditional logic to show or hide sections based on loan program or
+                    borrower type.</p>
+                </div>
+              </div>
+              <div class="pl-point">
+                <span class="icon-tile" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                    <polyline points="14 2 14 8 20 8" />
+                    <line x1="16" y1="13" x2="8" y2="13" />
+                    <line x1="16" y1="17" x2="8" y2="17" />
+                  </svg>
+                </span>
+                <div>
+                  <h3 class="pl-point__title">Capture complete history</h3>
+                  <p class="pl-point__desc">Include sections for finances, goals, and timeline so the whole team has
+                    full context from day one.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= DEMO / INTERACTIVE BLOCK ================= -->
+    <section class="section bg-surface-low">
+      <div class="container center">
+        <h2 class="t-display" style="font-weight: 800; max-width: 16ch; margin-inline: auto;">See the library in action
+        </h2>
+        <p class="t-body-lg t-muted" style="margin-top: var(--space-md); max-width: 40rem; margin-inline: auto;">
+          Preview and add ready-made scripts, presentations, and process templates built for originators like you.
+        </p>
+        <div class="row" style="justify-content: center; margin-top: var(--space-lg); margin-bottom: var(--space-xl);">
+          <a class="btn btn--primary btn--lg" href="#">Take the interactive tour</a>
+        </div>
+
+        <div class="pl-frame pl-frame--lg" style="max-width: 960px; margin-inline: auto;">
+          <div class="pl-ui pl-ui--demo">
+            <div class="pl-ui__bar">
+              <span class="pl-ui__title">Template Library</span>
+              <span class="pl-ui__save">+ Add</span>
+            </div>
+            <div class="pl-ui__body" style="min-height: 280px;">
+              <div class="pl-rows">
+                <div class="pl-prow" style="grid-template-columns: 140px 1fr 60px;">
+                  <span class="pl-prow__name">10-Day Onboarding</span>
+                  <span class="pl-prow__track"><span class="pl-prow__fill" style="width: 100%;"></span></span>
+                  <span class="pl-field__input--filled" style="width: 100%; height: 18px;"></span>
+                </div>
+                <div class="pl-prow" style="grid-template-columns: 140px 1fr 60px;">
+                  <span class="pl-prow__name">2026 Goal Setting</span>
+                  <span class="pl-prow__track"><span class="pl-prow__fill" style="width: 100%;"></span></span>
+                  <span class="pl-field__input--filled" style="width: 100%; height: 18px;"></span>
+                </div>
+                <div class="pl-prow" style="grid-template-columns: 140px 1fr 60px;">
+                  <span class="pl-prow__name">Refi Outreach</span>
+                  <span class="pl-prow__track"><span class="pl-prow__fill" style="width: 100%;"></span></span>
+                  <span class="pl-field__input--filled" style="width: 100%; height: 18px;"></span>
+                </div>
+              </div>
+            </div>
+            <!-- Modal overlay -->
+            <div class="pl-modal">
+              <div class="pl-modal__card">
+                <div class="pl-modal__dot" aria-hidden="true"></div>
+                <div class="pl-modal__title">Stop building from scratch every time.</div>
+                <p class="pl-modal__text">Explore the Template Library — preview and add ready-made scripts, forms, and
+                  process templates built for originators like you.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+</body>
+
+</html>

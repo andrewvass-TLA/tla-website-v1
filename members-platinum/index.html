@@ -1,0 +1,720 @@
+<!--
+  ============================================================================
+  THE LOAN ATLAS — Platinum Activation Page (members.theloanatlas.com)
+  ============================================================================
+  HOW TO DEPLOY:
+    1. Upload the 3 images (see ASSET URLS below) to the WordPress Media Library
+       on members.theloanatlas.com. Copy each resulting full URL.
+    2. Replace every  __MEDIA_URL_*__  placeholder in this file with the real URL.
+    3. Replace  __ACTIVATE_URL__  with the real activation flow URL.
+    4. Replace  __COACHING_URL__  with the free coaching session booking URL.
+    5. In WP admin: create the page > add a single "Custom HTML" block >
+       paste EVERYTHING below the marked line (do not paste this comment).
+    6. Preview the page (not just the editor). Round-trip re-save to confirm
+       the block is not flagged as invalid.
+
+  NOTES:
+    - JS-free by design (survives multisite / security-plugin sanitization).
+    - Every selector is scoped under .tla-plat so it cannot collide with the theme.
+    - Dark sections break out of the theme container via margin: calc(50% - 50vw).
+      If the theme already gives this page a full-width/canvas template, the
+      breakout is harmless (it just spans the same width).
+    - Fonts load via @import with a system fallback; if the @import is stripped,
+      the page still reads cleanly in the fallback stack.
+    - <title> / meta description / OG tags: set these in the SEO plugin fields
+      on the page, NOT here — they are ignored inside a content block.
+  ============================================================================
+  PASTE FROM THE NEXT LINE DOWN ↓↓↓
+-->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+.tla-plat {
+  /* ---- Design tokens (mirrors .claude/DESIGN.md) ---- */
+  --tp-primary: #021c36;
+  --tp-bg: #f7f9fb;
+  --tp-surface: #ffffff;
+  --tp-surface-low: #f2f4f6;
+  --tp-surface-container: #eceef0;
+  --tp-on-surface: #191c1e;
+  --tp-on-surface-variant: #45464d;
+  --tp-outline-variant: #c6c6cd;
+  --tp-brass: #c9961c;
+  --tp-brass-bright: #eac25a;
+  --tp-brass-gradient: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+  --tp-dark-panel: linear-gradient(135deg, #0a1628 0%, #131b2e 50%, #1e293b 100%);
+  --tp-dark-cta: linear-gradient(160deg, #021c36 0%, #0a1628 50%, #131b2e 100%);
+
+  --tp-radius: 0.25rem;
+  --tp-radius-lg: 0.5rem;
+  --tp-radius-xl: 0.75rem;
+  --tp-radius-2xl: 1rem;
+  --tp-radius-3xl: 1.5rem;
+
+  --tp-space-xs: 8px;
+  --tp-space-sm: 16px;
+  --tp-space-md: 24px;
+  --tp-space-lg: 40px;
+  --tp-space-xl: 64px;
+  --tp-container: 1180px;
+
+  --tp-shadow: 0 4px 14px rgba(2,28,54,0.08);
+  --tp-shadow-lg: 0 12px 32px rgba(2,28,54,0.10);
+  --tp-shadow-xl: 0 24px 60px rgba(2,28,54,0.14);
+
+  --tp-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --tp-display: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  /* ---- Base ---- */
+  font-family: var(--tp-sans);
+  color: var(--tp-on-surface);
+  background: var(--tp-bg);
+  line-height: 1.5;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+/* Reset scoped to our subtree only — predictable box model regardless of theme */
+.tla-plat *,
+.tla-plat *::before,
+.tla-plat *::after { box-sizing: border-box; }
+
+.tla-plat p,
+.tla-plat ul,
+.tla-plat li,
+.tla-plat h1,
+.tla-plat h2,
+.tla-plat h3,
+.tla-plat figure { margin: 0; padding: 0; }
+
+.tla-plat img { max-width: 100%; height: auto; display: block; }
+.tla-plat a { color: inherit; }
+
+/* ---- Layout primitives ---- */
+.tla-plat .tp-section {
+  padding-block: clamp(48px, 6vw, 96px);
+}
+.tla-plat .tp-container {
+  max-width: var(--tp-container);
+  margin-inline: auto;
+  padding-inline: var(--tp-space-md);
+}
+/* Full-bleed break-out of the theme's content container */
+.tla-plat .tp-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+.tla-plat .tp-dark {
+  background: var(--tp-dark-panel);
+  color: #fff;
+}
+.tla-plat .tp-dark .tp-eyebrow { color: var(--tp-brass-bright); }
+.tla-plat .tp-dark p { color: rgba(255,255,255,0.78); }
+
+/* ---- Type ---- */
+.tla-plat .tp-display {
+  font-family: var(--tp-display);
+  font-weight: 800;
+  font-size: clamp(2.25rem, 1.6rem + 2.6vw, 3.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+.tla-plat .tp-h2 {
+  font-family: var(--tp-display);
+  font-weight: 700;
+  font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.5rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+.tla-plat .tp-h3 {
+  font-family: var(--tp-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+.tla-plat .tp-lead {
+  font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.1875rem);
+  line-height: 1.55;
+  color: var(--tp-on-surface-variant);
+}
+.tla-plat .tp-dark .tp-lead { color: rgba(255,255,255,0.80); }
+.tla-plat .tp-body { font-size: 1rem; line-height: 1.55; color: var(--tp-on-surface-variant); }
+.tla-plat .tp-eyebrow {
+  font-family: var(--tp-sans);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tp-brass);
+}
+.tla-plat .tp-em {
+  background: var(--tp-brass-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-style: normal;
+}
+
+/* ---- Buttons ---- */
+.tla-plat .tp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--tp-space-xs);
+  font-family: var(--tp-display);
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: 1;
+  padding: 16px 28px;
+  border-radius: var(--tp-radius-lg);
+  text-decoration: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+.tla-plat .tp-btn--gold {
+  background: var(--tp-brass-gradient);
+  color: #1a1407;
+  box-shadow: 0 8px 24px rgba(201,150,28,0.28);
+}
+.tla-plat .tp-btn--gold:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(201,150,28,0.36); }
+.tla-plat .tp-btn--primary {
+  background: var(--tp-primary);
+  color: #fff;
+}
+.tla-plat .tp-btn--primary:hover { transform: translateY(-2px); box-shadow: var(--tp-shadow-lg); }
+.tla-plat .tp-btn--ghost-dark {
+  background: transparent;
+  color: #fff;
+  border-color: rgba(255,255,255,0.32);
+}
+.tla-plat .tp-btn--ghost-dark:hover { border-color: rgba(255,255,255,0.7); }
+.tla-plat .tp-btn--lg { padding: 18px 36px; font-size: 1.0625rem; border-radius: var(--tp-radius-xl); }
+
+.tla-plat .tp-actions { display: flex; flex-wrap: wrap; gap: var(--tp-space-sm); }
+
+/* ---- HERO ---- */
+.tla-plat .tp-hero {
+  background: var(--tp-dark-cta);
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+.tla-plat .tp-hero::before,
+.tla-plat .tp-hero::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+}
+.tla-plat .tp-hero::before {
+  width: 420px; height: 420px;
+  background: rgba(234,194,90,0.10);
+  top: -120px; right: -80px;
+}
+.tla-plat .tp-hero::after {
+  width: 480px; height: 480px;
+  background: rgba(178,200,233,0.08);
+  bottom: -160px; left: -120px;
+}
+.tla-plat .tp-hero .tp-container { position: relative; z-index: 1; }
+.tla-plat .tp-hero-inner { max-width: 760px; }
+.tla-plat .tp-hero .tp-display { color: #fff; margin-top: var(--tp-space-sm); }
+.tla-plat .tp-hero .tp-lead { margin-top: var(--tp-space-md); color: rgba(255,255,255,0.80); }
+.tla-plat .tp-hero .tp-actions { margin-top: var(--tp-space-lg); }
+
+/* Activation badge — the "free 6 months" hook */
+.tla-plat .tp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(234,194,90,0.12);
+  border: 1px solid rgba(234,194,90,0.45);
+  color: var(--tp-brass-bright);
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+.tla-plat .tp-badge .tp-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--tp-brass-bright);
+  box-shadow: 0 0 0 4px rgba(234,194,90,0.22);
+}
+.tla-plat .tp-hero-note {
+  margin-top: var(--tp-space-md);
+  font-size: 0.875rem;
+  color: rgba(255,255,255,0.6);
+}
+
+/* ---- Section heading block ---- */
+.tla-plat .tp-head { max-width: 720px; }
+.tla-plat .tp-head .tp-h2 { margin-top: 12px; }
+.tla-plat .tp-head .tp-lead { margin-top: var(--tp-space-md); }
+.tla-plat .tp-center { margin-inline: auto; text-align: center; }
+
+/* ---- Problem list ---- */
+.tla-plat .tp-problem-list {
+  list-style: none;
+  margin-top: var(--tp-space-lg);
+  display: grid;
+  gap: 12px;
+  max-width: 640px;
+}
+.tla-plat .tp-problem-list li {
+  position: relative;
+  padding-left: 32px;
+  font-size: 1.0625rem;
+  color: var(--tp-on-surface);
+}
+.tla-plat .tp-problem-list li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 9px;
+  width: 14px; height: 14px;
+  border-radius: 3px;
+  background: var(--tp-brass-gradient);
+}
+
+/* ---- Build-with cards grid ---- */
+.tla-plat .tp-grid {
+  display: grid;
+  gap: var(--tp-space-md);
+  margin-top: var(--tp-space-xl);
+  grid-template-columns: repeat(3, 1fr);
+}
+.tla-plat .tp-card {
+  background: var(--tp-surface);
+  border: 1px solid var(--tp-outline-variant);
+  border-radius: var(--tp-radius-2xl);
+  padding: var(--tp-space-lg) var(--tp-space-md);
+  box-shadow: var(--tp-shadow);
+}
+.tla-plat .tp-card .tp-icon {
+  width: 44px; height: 44px;
+  border-radius: var(--tp-radius-lg);
+  background: rgba(201,150,28,0.12);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--tp-brass);
+  margin-bottom: var(--tp-space-md);
+}
+.tla-plat .tp-card .tp-icon svg { width: 22px; height: 22px; }
+.tla-plat .tp-card .tp-h3 { margin-bottom: 8px; }
+.tla-plat .tp-card p { font-size: 0.9375rem; }
+
+.tla-plat .tp-bridge {
+  margin-top: var(--tp-space-xl);
+  text-align: center;
+  font-family: var(--tp-display);
+  font-weight: 600;
+  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
+  color: var(--tp-on-surface);
+  max-width: 680px;
+  margin-inline: auto;
+}
+
+/* ---- Steps (How it works) ---- */
+.tla-plat .tp-steps {
+  margin-top: var(--tp-space-xl);
+  display: grid;
+  gap: var(--tp-space-md);
+}
+.tla-plat .tp-step {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: var(--tp-space-md);
+  align-items: start;
+  padding: var(--tp-space-md) 0;
+  border-top: 1px solid rgba(255,255,255,0.12);
+}
+.tla-plat .tp-step:first-child { border-top: none; }
+.tla-plat .tp-step-num {
+  width: 48px; height: 48px;
+  border-radius: 50%;
+  border: 1px solid rgba(234,194,90,0.5);
+  color: var(--tp-brass-bright);
+  font-family: var(--tp-display);
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.125rem;
+}
+.tla-plat .tp-step .tp-h3 { color: #fff; margin-bottom: 6px; }
+
+/* ---- Compare table ---- */
+.tla-plat .tp-compare {
+  margin-top: var(--tp-space-xl);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--tp-outline-variant);
+  border-radius: var(--tp-radius-3xl);
+  overflow: hidden;
+  border: 1px solid var(--tp-outline-variant);
+}
+.tla-plat .tp-compare-head {
+  padding: var(--tp-space-md);
+  font-family: var(--tp-display);
+  font-weight: 600;
+  font-size: 0.9375rem;
+}
+.tla-plat .tp-compare-head.is-without { background: #fbeeee; color: #93000a; }
+.tla-plat .tp-compare-head.is-with { background: #eef4ff; color: var(--tp-primary); }
+.tla-plat .tp-compare-cell {
+  background: var(--tp-surface);
+  padding: var(--tp-space-md);
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+.tla-plat .tp-compare-cell.is-without { color: var(--tp-on-surface-variant); }
+.tla-plat .tp-compare-cell.is-with { color: var(--tp-primary); font-weight: 500; }
+.tla-plat .tp-compare-close {
+  margin-top: var(--tp-space-lg);
+  text-align: center;
+  font-size: 1.0625rem;
+  color: var(--tp-on-surface-variant);
+  max-width: 680px;
+  margin-inline: auto;
+}
+
+/* ---- Gallery (example assets) ---- */
+.tla-plat .tp-gallery {
+  margin-top: var(--tp-space-xl);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--tp-space-md);
+}
+.tla-plat .tp-gallery figure {
+  border-radius: var(--tp-radius-2xl);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.1);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.5);
+  background: #0a1628;
+}
+
+/* ---- Why different ---- */
+.tla-plat .tp-why {
+  max-width: 760px;
+  margin-inline: auto;
+  text-align: center;
+}
+.tla-plat .tp-why .tp-punch {
+  margin-top: var(--tp-space-lg);
+  font-family: var(--tp-display);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.75rem);
+  line-height: 1.25;
+  color: #fff;
+}
+.tla-plat .tp-why .tp-punch .tp-em { font-weight: 700; }
+
+/* ---- Final CTA ---- */
+.tla-plat .tp-final {
+  background: var(--tp-dark-cta);
+  color: #fff;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.tla-plat .tp-final::before {
+  content: "";
+  position: absolute;
+  width: 420px; height: 420px; border-radius: 50%;
+  background: rgba(234,194,90,0.10); filter: blur(70px);
+  top: -140px; right: -60px; pointer-events: none;
+}
+.tla-plat .tp-final .tp-container { position: relative; z-index: 1; max-width: 760px; }
+.tla-plat .tp-final .tp-display { color: #fff; }
+.tla-plat .tp-final .tp-lead { margin-top: var(--tp-space-md); color: rgba(255,255,255,0.72); }
+.tla-plat .tp-final .tp-actions { margin-top: var(--tp-space-lg); justify-content: center; }
+.tla-plat .tp-final-note { margin-top: var(--tp-space-md); font-size: 0.875rem; color: rgba(255,255,255,0.55); }
+
+/* ---- FAQ ---- */
+.tla-plat .tp-faq { margin-top: var(--tp-space-xl); max-width: 760px; margin-inline: auto; }
+.tla-plat .tp-faq details {
+  border: 1px solid var(--tp-outline-variant);
+  border-radius: var(--tp-radius-xl);
+  background: var(--tp-surface);
+  margin-bottom: 12px;
+  overflow: hidden;
+}
+.tla-plat .tp-faq summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 18px var(--tp-space-md);
+  font-family: var(--tp-display);
+  font-weight: 600;
+  font-size: 1.0625rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--tp-space-md);
+}
+.tla-plat .tp-faq summary::-webkit-details-marker { display: none; }
+.tla-plat .tp-faq summary::after {
+  content: "+";
+  color: var(--tp-brass);
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 1;
+  flex: none;
+}
+.tla-plat .tp-faq details[open] summary::after { content: "\2013"; }
+.tla-plat .tp-faq .tp-faq-body {
+  padding: 0 var(--tp-space-md) var(--tp-space-md);
+  color: var(--tp-on-surface-variant);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+
+/* ============== RESPONSIVE ============== */
+@media (max-width: 900px) {
+  .tla-plat .tp-grid { grid-template-columns: repeat(2, 1fr); }
+  .tla-plat .tp-gallery { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .tla-plat .tp-grid { grid-template-columns: 1fr; }
+  .tla-plat .tp-compare { grid-template-columns: 1fr; }
+  .tla-plat .tp-compare-head.is-without,
+  .tla-plat .tp-compare-cell.is-without { order: 0; }
+  .tla-plat .tp-actions { flex-direction: column; align-items: stretch; }
+  .tla-plat .tp-btn { width: 100%; }
+}
+</style>
+
+<div class="tla-plat">
+
+  <!-- ============ HERO / ACTIVATION ============ -->
+  <section class="tp-hero tp-bleed tp-section">
+    <div class="tp-container">
+      <div class="tp-hero-inner">
+        <span class="tp-badge"><span class="tp-dot"></span> Your free 6-month Platinum upgrade is ready</span>
+        <p class="tp-eyebrow" style="margin-top:20px;">Platinum by The Loan Atlas</p>
+        <h1 class="tp-display">The mortgage marketing you keep meaning to send — <span class="tp-em">finally built, polished, and ready to go.</span></h1>
+        <p class="tp-lead">Platinum is the marketing engine inside The Loan Atlas that helps you turn campaign ideas into usable mortgage marketing assets — faster, cleaner, and with less friction. As a member, your next 6 months are on us.</p>
+        <div class="tp-actions">
+          <a class="tp-btn tp-btn--gold tp-btn--lg" href="__ACTIVATE_URL__">Activate my free 6 months</a>
+          <a class="tp-btn tp-btn--ghost-dark tp-btn--lg" href="__COACHING_URL__">Schedule a free coaching session</a>
+        </div>
+        <p class="tp-hero-note">No charge for 6 months. Nothing changes on your account until you choose to continue.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROBLEM ============ -->
+  <section class="tp-section">
+    <div class="tp-container">
+      <div class="tp-head">
+        <p class="tp-eyebrow">The real bottleneck</p>
+        <h2 class="tp-h2">Marketing is usually the first thing to fall off your desk.</h2>
+        <p class="tp-lead">You already know the marketing you should be doing.</p>
+      </div>
+      <ul class="tp-problem-list">
+        <li>The refinance flyer when rates move</li>
+        <li>The weekly market update</li>
+        <li>The Realtor presentation</li>
+        <li>The past-client email</li>
+        <li>The buyer education campaign</li>
+      </ul>
+      <p class="tp-lead" style="margin-top:40px;max-width:640px;">The problem is not knowing what to send. The problem is getting it built, finished, and out the door while you are originating loans, managing clients, supporting partners, and keeping files moving.</p>
+    </div>
+  </section>
+
+  <!-- ============ WHAT YOU CAN BUILD ============ -->
+  <section class="tp-section" style="background:var(--tp-surface-low);">
+    <div class="tp-container">
+      <div class="tp-head tp-center">
+        <p class="tp-eyebrow">What you can build with Platinum</p>
+        <h2 class="tp-h2">The complete system to help you execute on marketing that actually converts.</h2>
+        <p class="tp-lead">Platinum gives you a mortgage-specific marketing workflow that helps you build the strategy, write the copy, create the asset, save the content, and move the campaign out the door.</p>
+      </div>
+
+      <div class="tp-grid">
+        <div class="tp-card">
+          <div class="tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/></svg></div>
+          <h3 class="tp-h3">Refinance flyers</h3>
+          <p>Turn market movement into borrower-friendly flyers that explain the opportunity clearly and professionally.</p>
+        </div>
+        <div class="tp-card">
+          <div class="tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
+          <h3 class="tp-h3">Market update emails</h3>
+          <p>Create timely updates that help you stay visible, credible, and valuable to clients and referral partners.</p>
+        </div>
+        <div class="tp-card">
+          <div class="tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="13" rx="2"/><path d="M8 21h8M12 16v5"/></svg></div>
+          <h3 class="tp-h3">Realtor presentations</h3>
+          <p>Build polished education assets for Realtor partners, open houses, buyer seminars, and referral conversations.</p>
+        </div>
+        <div class="tp-card">
+          <div class="tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div>
+          <h3 class="tp-h3">Buyer education campaigns</h3>
+          <p>Create clear, helpful content for first-time buyers, move-up buyers, VA buyers, and other key audiences.</p>
+        </div>
+        <div class="tp-card">
+          <div class="tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg></div>
+          <h3 class="tp-h3">Social graphics</h3>
+          <p>Generate mortgage-specific visuals without wasting an hour searching Canva or stock photos.</p>
+        </div>
+        <div class="tp-card">
+          <div class="tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2v4M3 10h18"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 14h.01M12 14h.01M16 14h.01"/></svg></div>
+          <h3 class="tp-h3">Past-client campaigns</h3>
+          <p>Re-engage your database with timely messages when rates, equity, or market conditions create a reason to reach out.</p>
+        </div>
+      </div>
+
+      <p class="tp-bridge">The goal is not to give you more marketing to think about. The goal is to help the right marketing finally get done.</p>
+    </div>
+  </section>
+
+  <!-- ============ HOW IT WORKS (dark) ============ -->
+  <section class="tp-dark tp-bleed tp-section">
+    <div class="tp-container">
+      <div class="tp-head">
+        <p class="tp-eyebrow">How it works</p>
+        <h2 class="tp-h2">From idea to deployable campaign in one platform.</h2>
+        <p class="tp-lead">Most loan officers who try to build marketing on their own end up scattered across tools. Every handoff creates friction, and friction is where campaigns die. Platinum brings the workflow together.</p>
+      </div>
+
+      <div class="tp-steps">
+        <div class="tp-step">
+          <div class="tp-step-num">1</div>
+          <div>
+            <h3 class="tp-h3">Choose the campaign goal</h3>
+            <p>A refinance push. A market update. A Realtor presentation. A first-time buyer campaign. A VA loan education piece. A past-client reactivation sequence. Platinum helps turn the goal into a usable campaign structure.</p>
+          </div>
+        </div>
+        <div class="tp-step">
+          <div class="tp-step-num">2</div>
+          <div>
+            <h3 class="tp-h3">Build the message</h3>
+            <p>The Marketing Assistant helps shape the audience, angle, copy, headline, and call to action — so you are not just creating content, you are creating content with a reason behind it.</p>
+          </div>
+        </div>
+        <div class="tp-step">
+          <div class="tp-step-num">3</div>
+          <div>
+            <h3 class="tp-h3">Add market context</h3>
+            <p>Use source-backed research and current market context to make your marketing more timely, credible, and useful — so it helps the borrower or partner understand what is happening and why it matters.</p>
+          </div>
+        </div>
+        <div class="tp-step">
+          <div class="tp-step-num">4</div>
+          <div>
+            <h3 class="tp-h3">Create the asset</h3>
+            <p>Build flyers, presentations, visuals, and campaign materials designed around real mortgage conversations. The asset does not sit in someone else's queue — you build it, adjust it, and get it ready while the opportunity is still timely.</p>
+          </div>
+        </div>
+        <div class="tp-step">
+          <div class="tp-step-num">5</div>
+          <div>
+            <h3 class="tp-h3">Save, reuse, and campaign it</h3>
+            <p>Every asset becomes part of your Content Library — saved, organized, and ready to use again. Then Campaign Manager helps you move the work from "good idea" to live campaign: sequence the touches, schedule the sends, track what is going out. Marketing only counts when it ships.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Example assets gallery — uncomment once images are uploaded to Media -->
+      <!--
+      <div class="tp-gallery">
+        <figure><img src="__MEDIA_URL_EXAMPLE_1__" alt="Platinum marketing example — refinance flyer" loading="lazy"></figure>
+        <figure><img src="__MEDIA_URL_EXAMPLE_2__" alt="Platinum marketing example — market update" loading="lazy"></figure>
+        <figure><img src="__MEDIA_URL_EXAMPLE_3__" alt="Platinum marketing example — social graphic" loading="lazy"></figure>
+      </div>
+      -->
+    </div>
+  </section>
+
+  <!-- ============ WITH / WITHOUT ============ -->
+  <section class="tp-section">
+    <div class="tp-container">
+      <div class="tp-head">
+        <p class="tp-eyebrow">The difference</p>
+        <h2 class="tp-h2">What changes when your marketing has a system?</h2>
+      </div>
+      <div class="tp-compare">
+        <div class="tp-compare-head is-without">Without Platinum</div>
+        <div class="tp-compare-head is-with">With Platinum</div>
+
+        <div class="tp-compare-cell is-without">You know what you should send, but it stays on your list.</div>
+        <div class="tp-compare-cell is-with">You start with a campaign goal and build the asset faster.</div>
+
+        <div class="tp-compare-cell is-without">A refinance flyer can take days or weeks because you are waiting on someone else.</div>
+        <div class="tp-compare-cell is-with">A refinance flyer can be built, edited, and ready to use the same day.</div>
+
+        <div class="tp-compare-cell is-without">You bounce between AI tools, Canva, Google, folders, and email platforms.</div>
+        <div class="tp-compare-cell is-with">Strategy, copy, visuals, assets, storage, and campaign management live in one workflow.</div>
+
+        <div class="tp-compare-cell is-without">Your market update goes out whenever you finally get time.</div>
+        <div class="tp-compare-cell is-with">Your market update becomes a repeatable weekly touchpoint.</div>
+
+        <div class="tp-compare-cell is-without">Every campaign starts from a blank page.</div>
+        <div class="tp-compare-cell is-with">Every campaign starts from a structure you can personalize.</div>
+
+        <div class="tp-compare-cell is-without">Your marketing depends on motivation and spare time.</div>
+        <div class="tp-compare-cell is-with">Your marketing runs through a system.</div>
+      </div>
+      <p class="tp-compare-close">Platinum does not ask you to become a full-time marketer. Instead, it gives you a full-time marketing assistant.</p>
+    </div>
+  </section>
+
+  <!-- ============ WHY DIFFERENT (dark) ============ -->
+  <section class="tp-dark tp-bleed tp-section">
+    <div class="tp-container">
+      <div class="tp-why">
+        <p class="tp-eyebrow">Why Platinum is different</p>
+        <h2 class="tp-h2" style="margin-top:12px;">Most AI tools hand you a blank chat box and expect you to know what to ask for.</h2>
+        <p class="tp-lead" style="margin-top:24px;">Platinum gives you a mortgage-specific workflow. It helps you think through the audience, the problem, the message, the asset, the call to action, and the campaign. Because mortgage marketing is about creating the right message at the right time for the right audience — and getting it out before the opportunity passes.</p>
+        <p class="tp-punch">Generic AI can help you write. <span class="tp-em">Platinum helps you execute.</span></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  <section class="tp-section">
+    <div class="tp-container">
+      <div class="tp-head tp-center">
+        <p class="tp-eyebrow">Activation details</p>
+        <h2 class="tp-h2">A few quick answers before you activate.</h2>
+      </div>
+      <div class="tp-faq">
+        <details>
+          <summary>What does the free 6-month upgrade include?</summary>
+          <div class="tp-faq-body">Full access to Platinum inside The Loan Atlas — the Marketing Assistant, market-context research, asset creation, your Content Library, and Campaign Manager — for six months at no additional charge.</div>
+        </details>
+        <details>
+          <summary>Will I be charged when the 6 months end?</summary>
+          <div class="tp-faq-body">Nothing changes on your account automatically. Before your free period ends, you'll have the option to continue with Platinum or stay on your current plan. <em>(Confirm exact terms with your team before publishing.)</em></div>
+        </details>
+        <details>
+          <summary>How do I activate it?</summary>
+          <div class="tp-faq-body">Click "Activate my free 6 months" above. It takes less than a minute, and Platinum unlocks on your existing account — no separate login.</div>
+        </details>
+        <details>
+          <summary>Do I need any marketing experience to use it?</summary>
+          <div class="tp-faq-body">No. Platinum is a guided, mortgage-specific workflow — it walks you from a campaign goal to a finished, deployable asset. If you've ever meant to send a flyer or market update and never finished it, this is built for you.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="tp-final tp-bleed tp-section">
+    <div class="tp-container">
+      <p class="tp-eyebrow" style="color:var(--tp-brass-bright);">Your upgrade is waiting</p>
+      <h2 class="tp-display" style="margin-top:14px;">Stop wishing your marketing was <span class="tp-em">getting done.</span></h2>
+      <p class="tp-lead">So the next time rates move, a Realtor asks for something, or your past clients need to hear from you, you are not starting from scratch — you are operating from a system. Activate your free 6 months of Platinum today.</p>
+      <div class="tp-actions">
+        <a class="tp-btn tp-btn--gold tp-btn--lg" href="__ACTIVATE_URL__">Activate my free 6 months</a>
+        <a class="tp-btn tp-btn--ghost-dark tp-btn--lg" href="__COACHING_URL__">Schedule your free coaching session</a>
+      </div>
+      <p class="tp-final-note">Included with your membership · No charge for 6 months</p>
+    </div>
+  </section>
+
+</div>
+<!-- ↑↑↑ PASTE UP TO HERE -->
