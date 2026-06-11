@@ -282,7 +282,7 @@ $tla_active      = '';
                 <h2 class="t-headline-md" style="margin-bottom: 4px;">Book Your Enterprise Strategy Session</h2>
                 <p class="t-body t-muted" style="margin: 0;">For leaders &amp; teams · Video call · No cost, no obligation</p>
               </div>
-              <iframe src="https://api.leadconnectorhq.com/widget/booking/sNSShvRjEhTdDcR9MTmx" class="booking-card__iframe" scrolling="no" id="BOsyPdKSxuiFky6PDbge_1773848314598"></iframe>
+              <iframe src="https://api.leadconnectorhq.com/widget/booking/MSh7IifVjcJQI2lD6pLV" class="booking-card__iframe" scrolling="no" id="BOsyPdKSxuiFky6PDbge_1777319432247" data-embed-id="BOsyPdKSxuiFky6PDbge_1777319432247" title="Schedule Booking"></iframe>
             </div>
           </div>
 
