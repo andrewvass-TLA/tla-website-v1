@@ -13,18 +13,54 @@ $tla_active      = '';
   <style>
     /* ── Hero ── */
     .hero-v2 {
-      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      position: relative;
+      overflow: hidden;
+      /* Full-bleed background image with navy gradient overlay (matches faculty/what's-inside) */
+      background:
+        linear-gradient(to right,
+          rgba(2, 28, 54, 0.98) 0%,
+          rgba(2, 28, 54, 0.94) 38%,
+          rgba(2, 28, 54, 0.7)  62%,
+          rgba(2, 28, 54, 0.45) 100%),
+        url('<?php echo TLA_BASE; ?>/assets/consultation-header.png') right center / cover no-repeat,
+        /* fallback navy gradient if the image fails to load */
+        linear-gradient(160deg, #021c36 0%, #0a1628 60%, #131b2e 100%);
       padding-block: clamp(80px, 8vw, 120px);
     }
+    /* soft brass glow accent, top-right */
+    .hero-v2::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      right: 8%;
+      width: 540px;
+      height: 540px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.11), transparent);
+      filter: blur(70px);
+      pointer-events: none;
+      z-index: 0;
+    }
     .hero-booking {
-      display: flex;
-      flex-direction: column;
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
       gap: var(--space-xl);
+      align-items: center;
+    }
+    @media (max-width: 900px) {
+      .hero-booking {
+        grid-template-columns: 1fr;
+        gap: var(--space-lg);
+      }
+      /* drop the overlay to a flat navy stack on small screens for legibility */
+      .hero-v2 {
+        background:
+          linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      }
     }
     .hero-v2__intro {
-      text-align: center;
-      max-width: 48rem;
-      margin-inline: auto;
+      max-width: 38rem;
     }
     .hero-v2__intro .t-display {
       color: #fff;
@@ -41,8 +77,7 @@ $tla_active      = '';
     }
     .hero-v2__intro .t-body-lg {
       color: rgba(255,255,255,0.72);
-      max-width: 40rem;
-      margin-inline: auto;
+      max-width: 36rem;
       font-size: clamp(1rem, 0.875rem + 0.4vw, 1.1875rem);
       line-height: 1.6;
     }
@@ -56,6 +91,8 @@ $tla_active      = '';
       color: rgba(255,255,255,0.5);
     }
     .hero-v2__trust svg { color: var(--brass-bright); flex-shrink: 0; }
+    /* keep the calendar card from stretching too wide in its grid column */
+    .hero-booking .booking-card { margin-inline: 0; }
 
     /* ── Booking card ── */
     .booking-card {
@@ -443,11 +480,23 @@ $tla_active      = '';
 
     /* ── Pricing section — the Mastermind offer card ────────────────────────── */
     .mm-pricing {
-      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      background-image: url('<?php echo TLA_BASE; ?>/assets/bellagio.png');
+      background-size: cover;
+      background-position: center;
       padding-block: clamp(56px, 7vw, 104px);
       position: relative;
       overflow: hidden;
     }
+    /* Navy gradient overlay over the bellagio photo (matches the join page) */
+    .mm-pricing::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(6, 14, 28, 0.92) 0%, rgba(2, 28, 54, 0.88) 50%, rgba(6, 14, 28, 0.94) 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .mm-pricing > .container { position: relative; z-index: 1; }
     .mm-pricing::before {
       content: '';
       position: absolute;
@@ -458,6 +507,7 @@ $tla_active      = '';
       background: radial-gradient(closest-side, rgba(234, 194, 90, 0.1), transparent);
       filter: blur(70px);
       pointer-events: none;
+      z-index: 1;
     }
     .mm-plan {
       position: relative;
@@ -634,6 +684,23 @@ $tla_active      = '';
       margin: var(--space-md) 0 0;
       line-height: 1.5;
     }
+
+    /* This page has 4 takeaway cards (the shared dark grid is fixed at 3-col for
+       the 3-card enterprise page). Lay all four out in a single row on desktop,
+       collapsing to 2-up then 1-up on smaller screens. */
+    .takeaways--dark .takeaways__grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @media (max-width: 960px) {
+      .takeaways--dark .takeaways__grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    @media (max-width: 560px) {
+      .takeaways--dark .takeaways__grid {
+        grid-template-columns: 1fr;
+      }
+    }
   </style>
 
 
@@ -648,7 +715,7 @@ $tla_active      = '';
 
           <!-- Intro -->
           <div class="hero-v2__intro">
-            <span class="eyebrow" data-hero-step="1" style="justify-content: center;"><span class="eyebrow__text">Free Business Assessment</span></span>
+            <span class="eyebrow" data-hero-step="1"><span class="eyebrow__text">Free Business Assessment</span></span>
             <h1 class="t-display" data-hero-step="2">
               See Where Your Next <span class="hero-v2__accent">10 Loans</span> Are Hiding
             </h1>
@@ -756,27 +823,43 @@ $tla_active      = '';
     </section>
 
     <!-- ── What you'll leave this call with ── -->
-    <section class="takeaways">
+    <section class="takeaways takeaways--dark">
       <div class="takeaways__intro" data-reveal="up">
-        <h2 class="takeaways__heading">What you'll leave this call with</h2>
+        <h2 class="takeaways__heading">What you'll leave <span class="takeaways__heading-accent">this call</span> with</h2>
         <p class="takeaways__lede">Most originators are working harder than ever and still can't figure out why their production is uneven. It's rarely an effort problem. It's almost always a system problem — and you can't fix what you can't see.</p>
       </div>
 
       <div class="takeaways__features" data-reveal-stagger="100">
         <div class="takeaways__grid">
           <article class="takeaways__cell">
+            <span class="takeaways__cell-num" aria-hidden="true">01</span>
+            <span class="takeaways__cell-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="18" r="3"></circle><circle cx="6" cy="6" r="3"></circle><path d="M6 21V9a9 9 0 0 0 9 9"></path></svg>
+            </span>
             <h3 class="takeaways__cell-title">Business Assessment</h3>
             <p class="takeaways__cell-copy">We'll look at your production honestly: what's working, what's inconsistent, where your time is going, where the bottlenecks are. Most originators have never had anyone look at their business this way.</p>
           </article>
           <article class="takeaways__cell">
+            <span class="takeaways__cell-num" aria-hidden="true">02</span>
+            <span class="takeaways__cell-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+            </span>
             <h3 class="takeaways__cell-title">Leverage &amp; Opportunity Analysis</h3>
             <p class="takeaways__cell-copy">We'll find where you're leaving money on the table. A referral source you've been underusing. A database segment you've stopped working. A conversation you've been losing.</p>
           </article>
           <article class="takeaways__cell">
+            <span class="takeaways__cell-num" aria-hidden="true">03</span>
+            <span class="takeaways__cell-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><polyline points="16 7 21 12 16 17"></polyline></svg>
+            </span>
             <h3 class="takeaways__cell-title">Growth Plan</h3>
             <p class="takeaways__cell-copy">Priorities. Sequencing. What to do first, what to do next, what to stop doing entirely. Built around your production, your market, your situation.</p>
           </article>
           <article class="takeaways__cell">
+            <span class="takeaways__cell-num" aria-hidden="true">04</span>
+            <span class="takeaways__cell-icon">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"></path><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+            </span>
             <h3 class="takeaways__cell-title">Tour of The Loan Atlas</h3>
             <p class="takeaways__cell-copy">Once we know where your leverage is, we'll show you exactly how the platform maps to it — which AI systems solve which problems, which frameworks close which gaps.</p>
           </article>
@@ -850,7 +933,7 @@ $tla_active      = '';
           <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
             <span class="eyebrow__text" style="color: var(--brass-bright);">Your Mastermind Offer</span>
           </span>
-          <h2 id="pricing-heading" class="t-display" style="color: #ffffff; font-weight: 800; margin-bottom: var(--space-sm);">One Membership. <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">A Price Only You Get.</span></h2>
+          <h2 id="pricing-heading" class="t-display" style="color: #ffffff; font-weight: 800; margin-bottom: var(--space-sm);">Everything You Need to Scale at a Price <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Exclusive for Mastermind</span></h2>
           <p class="t-body-lg" style="color: rgba(255, 255, 255, 0.68);">Full access to everything above — the AI systems, live coaching, the curriculum, the community — at the exclusive Mastermind Summit rate.</p>
         </div>
 
@@ -874,7 +957,7 @@ $tla_active      = '';
             </div>
           </div>
 
-          <p class="mm-plan__save"><em>$2,600 in total savings</em> vs. the regular $449/mo</p>
+          <p class="mm-plan__save"><em>$2,600 in annual savings</em> — only for Mastermind attendees</p>
 
           <ul class="mm-plan__list">
             <li>
@@ -895,7 +978,7 @@ $tla_active      = '';
             </li>
             <li>
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Platinum Marketing upgrade included
+              6 months free of Platinum Marketing
             </li>
             <li>
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -904,13 +987,9 @@ $tla_active      = '';
           </ul>
 
           <div class="mm-plan__cta">
-            <!-- TODO: Replace MASTERMIND_PLACEHOLDER with the real Mastermind checkout URL -->
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/MASTERMIND_PLACEHOLDER"
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/"
               style="font-size: 1.0625rem; padding: 18px 44px; box-shadow: 0 8px 28px rgba(201, 150, 28, 0.32);">
               Claim Your $49 First Month
-            </a>
-            <a href="/consultation/" style="font-size: 0.9375rem; color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;">
-              Have questions? Book a free coaching session
             </a>
           </div>
           <p class="mm-plan__fine">12-month commitment. Offer exclusively for Mastermind Summit 2026 attendees. Available to new members only.</p>
@@ -922,9 +1001,6 @@ $tla_active      = '';
     <section class="lp-testimonials" id="testimonials" aria-labelledby="testimonials-heading">
       <div class="container">
         <div class="center" data-reveal="up" style="max-width: 44rem; margin-inline: auto; margin-bottom: var(--space-xl);">
-          <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
-            <span class="eyebrow__text">Member Results</span>
-          </span>
           <h2 id="testimonials-heading" class="section-heading" style="text-align: center;">What Operating From a System Looks Like</h2>
         </div>
 

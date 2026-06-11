@@ -22,7 +22,7 @@ $tla_active      = '';
           rgba(2, 28, 54, 0.94) 38%,
           rgba(2, 28, 54, 0.7)  62%,
           rgba(2, 28, 54, 0.45) 100%),
-        url('<?php echo TLA_BASE; ?>/assets/dashboard.png') right center / cover no-repeat,
+        url('<?php echo TLA_BASE; ?>/assets/consultation-header.png') right center / cover no-repeat,
         /* fallback navy gradient if the image fails to load */
         linear-gradient(160deg, #021c36 0%, #0a1628 60%, #131b2e 100%);
       padding-block: clamp(80px, 8vw, 120px);
@@ -117,7 +117,7 @@ $tla_active      = '';
 
     /* ── Process steps ── */
     .process-section {
-      background: var(--surface-container-low);
+      background: var(--surface-container-lowest);
       border-block: 1px solid var(--outline-variant);
     }
     .process-grid {
@@ -176,57 +176,30 @@ $tla_active      = '';
       display: block;
     }
 
-    /* ── Featured testimonials (dark) ── */
-    .featured-testimonials {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
-      padding-block: clamp(64px, 8vw, 104px);
-    }
-    .featured-testimonials::before {
-      content: '';
-      position: absolute;
-      top: -120px;
-      left: 6%;
-      width: 480px;
-      height: 480px;
-      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.12), transparent);
-      filter: blur(70px);
-      pointer-events: none;
-    }
-    .featured-testimonials__header {
-      position: relative;
-      text-align: center;
-      max-width: 40rem;
-      margin: 0 auto var(--space-xl);
-    }
-    .featured-testimonials__header .section-heading {
-      color: #fff;
-      margin-top: var(--space-sm);
-    }
-    .featured-testimonials__grid {
-      position: relative;
+    /* ── "Is this call for you" — two-column: who-card + stacked testimonials ── */
+    .who-split {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: clamp(var(--space-lg), 4vw, var(--space-xl));
+      align-items: start;
+    }
+    @media (max-width: 900px) {
+      .who-split { grid-template-columns: 1fr; }
+    }
+    /* the who-card is auto-centered + width-capped by default; let it fill its column */
+    .who-split .who-card {
+      max-width: none;
+      margin-inline: 0;
+    }
+    /* testimonials column — homepage quote-card style, stacked vertically */
+    .who-testimonials {
+      display: flex;
+      flex-direction: column;
       gap: var(--space-lg);
-      max-width: 64rem;
-      margin-inline: auto;
     }
-    @media (max-width: 760px) {
-      .featured-testimonials__grid { grid-template-columns: 1fr; }
-    }
-    .featured-testimonials .quote-card {
+    .who-testimonials .quote-card {
       flex: unset;
-      padding: var(--space-md);
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-left: 3px solid var(--brass);
-      border-radius: var(--radius-xl);
     }
-    .featured-testimonials .quote-card__mark { color: var(--brass-bright); opacity: 0.45; }
-    .featured-testimonials .quote-card__quote { color: rgba(255,255,255,0.86); font-style: italic; }
-    .featured-testimonials .quote-card__name { color: var(--brass-bright); }
-    .featured-testimonials .quote-card__org { color: rgba(255,255,255,0.55); }
 
     /* ── FAQ: two-column (sticky aside + accordion) ── */
     .faq-split {
@@ -374,7 +347,6 @@ $tla_active      = '';
     <!-- ── What you'll leave this call with ── -->
     <section class="takeaways takeaways--dark">
       <div class="takeaways__intro" data-reveal="up">
-        <span class="eyebrow" style="justify-content: center;"><span class="eyebrow__text">What You Walk Away With</span></span>
         <h2 class="takeaways__heading">What you'll leave <span class="takeaways__heading-accent">this call</span> with</h2>
         <p class="takeaways__lede">Your best originator and your worst originator work in the same market. The gap between them is rarely a talent problem — it's a system problem. This call is a straightforward conversation about that gap and how The Loan Atlas helps teams close it.</p>
       </div>
@@ -468,64 +440,61 @@ $tla_active      = '';
       </div>
     </section>
 
-    <!-- ── Featured testimonials ── -->
-    <section class="featured-testimonials">
+    <!-- ── Who should book + testimonials (two-column) ── -->
+    <section class="section" style="background: var(--surface-container-lowest); border-top: 1px solid var(--outline-variant);">
       <div class="container">
-        <header class="featured-testimonials__header" data-reveal="up">
-          <span class="eyebrow" style="justify-content: center;"><span class="eyebrow__text">From Leaders &amp; Teams</span></span>
-          <h2 class="section-heading">What Leaders Say After Rolling It Out</h2>
-        </header>
-        <div class="featured-testimonials__grid" data-reveal-stagger="120">
-          <blockquote class="quote-card">
-            <span class="quote-card__mark">&ldquo;</span>
-            <p class="quote-card__quote">I love the depth of knowledge. There are a lot of things that just skim the surface, but you get training from people who are at the top of their game and get real one-on-one time with them. That implementation piece is huge.</p>
-            <div class="quote-card__attr">
-              <cite class="quote-card__name">Scott DiGregorio</cite>
-              <p class="quote-card__org">NEO Home Loans</p>
-            </div>
-          </blockquote>
-          <blockquote class="quote-card">
-            <span class="quote-card__mark">&ldquo;</span>
-            <p class="quote-card__quote">Our top producers were running on systems no one else had. Getting the whole team on one playbook is the difference — the middle of our roster finally has something to follow instead of figuring it out alone.</p>
-            <div class="quote-card__attr">
-              <cite class="quote-card__name">Mortgage Team Leader</cite>
-              <p class="quote-card__org">The Loan Atlas for Teams</p>
-            </div>
-          </blockquote>
-        </div>
-      </div>
-    </section>
+        <div class="who-split">
 
-    <!-- ── Who should book ── -->
-    <section class="section" style="border-top: 1px solid var(--outline-variant);">
-      <div class="container">
-        <div class="who-card" data-reveal="up">
-          <div class="who-card__header">
-            <span class="who-card__eyebrow">Is this call for you?</span>
-            <h2 class="who-card__title">If you lead a team and any of this sounds familiar, this call is for you.</h2>
+          <!-- Left: who-card checklist -->
+          <div class="who-card" data-reveal="up">
+            <div class="who-card__header">
+              <span class="who-card__eyebrow">Is this call for you?</span>
+              <h2 class="who-card__title">If you lead a team and any of this sounds familiar, this call is for you.</h2>
+            </div>
+            <ul class="who-card__list" data-reveal-stagger="80">
+              <li class="who-card__item">
+                <svg class="who-card__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                The gap between your top and bottom producers keeps widening
+              </li>
+              <li class="who-card__item">
+                <svg class="who-card__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Your best LOs' playbook lives in their heads, not in a system the team can run
+              </li>
+              <li class="who-card__item">
+                <svg class="who-card__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                New hires take too long to ramp and onboarding eats your managers' time
+              </li>
+              <li class="who-card__item">
+                <svg class="who-card__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                You've bought coaching, AI tools, or training before and it never stuck across the team
+              </li>
+              <li class="who-card__item">
+                <svg class="who-card__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                You can't forecast production confidently or see your real cost-per-loan
+              </li>
+            </ul>
           </div>
-          <ul class="who-card__list" data-reveal-stagger="80">
-            <li class="who-card__item">
-              <svg class="who-card__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              The gap between your top and bottom producers keeps widening
-            </li>
-            <li class="who-card__item">
-              <svg class="who-card__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Your best LOs' playbook lives in their heads, not in a system the team can run
-            </li>
-            <li class="who-card__item">
-              <svg class="who-card__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              New hires take too long to ramp and onboarding eats your managers' time
-            </li>
-            <li class="who-card__item">
-              <svg class="who-card__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              You've bought coaching, AI tools, or training before and it never stuck across the team
-            </li>
-            <li class="who-card__item">
-              <svg class="who-card__check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              You can't forecast production confidently or see your real cost-per-loan
-            </li>
-          </ul>
+
+          <!-- Right: testimonials stacked vertically (homepage quote-card style) -->
+          <div class="who-testimonials" data-reveal-stagger="120">
+            <figure class="quote-card">
+              <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
+              <blockquote class="quote-card__quote">I love the depth of knowledge. There are a lot of things that just skim the surface, but you get training from people who are at the top of their game and get real one-on-one time with them. That implementation piece is huge.</blockquote>
+              <figcaption class="quote-card__attr">
+                <div class="quote-card__name">Scott DiGregorio</div>
+                <div class="quote-card__org">NEO Home Loans</div>
+              </figcaption>
+            </figure>
+            <figure class="quote-card">
+              <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
+              <blockquote class="quote-card__quote">Our top producers were running on systems no one else had. Getting the whole team on one playbook is the difference — the middle of our roster finally has something to follow instead of figuring it out alone.</blockquote>
+              <figcaption class="quote-card__attr">
+                <div class="quote-card__name">Mortgage Team Leader</div>
+                <div class="quote-card__org">The Loan Atlas for Teams</div>
+              </figcaption>
+            </figure>
+          </div>
+
         </div>
       </div>
     </section>
@@ -578,12 +547,11 @@ $tla_active      = '';
         <div class="close-section__copy" data-reveal="up">
           <span class="close-section__eyebrow">Stop Paying for the Gap</span>
           <h2 id="final-cta-heading" class="close-section__title">
-            See Your Whole Team <em>Clearly</em>
+            Take Your Team to the <em>Next Level</em>
           </h2>
           <p class="close-section__sub">
-            One call with your leadership. No pitch, no pressure. You walk away with a clear read on what's
-            actually holding your roster back — and a plan to make your top producers' playbook the standard.
-            <strong>That's the whole offer.</strong>
+            One short call with your leadership. Walk away with a clear understanding of what's holding your team
+            back and a plan to make your top producers' playbook the standard.
           </p>
         </div>
 
@@ -592,15 +560,6 @@ $tla_active      = '';
             <span>
               <span class="close-section-action__label">Schedule an Enterprise Consultation</span>
               <span class="close-section-action__hint">No cost · No obligation · Pick a time that works</span>
-            </span>
-            <span class="close-section-action__arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
-            </span>
-          </a>
-          <a class="close-section-action close-section-action--secondary" href="/enterprise/">
-            <span>
-              <span class="close-section-action__label">See the Enterprise Overview</span>
-              <span class="close-section-action__hint">How The Loan Atlas works across a full team and roster</span>
             </span>
             <span class="close-section-action__arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
