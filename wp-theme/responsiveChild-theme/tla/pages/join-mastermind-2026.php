@@ -7,7 +7,7 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 $tla_title       = 'Mastermind Summit 2026 — Exclusive Loan Atlas Offer';
-$tla_description = 'An offer exclusively for Mastermind Summit 2026 attendees: get full access to The Loan Atlas for $49 your first month, then $249/mo locked in — over $2,600 in savings.';
+$tla_description = 'An offer exclusively for Mastermind Summit 2026 attendees: get full access to The Loan Atlas for $49 your first month, then $249/mo locked in — over $2,186 in savings.';
 $tla_active      = '';
 ?>
   <style>
@@ -166,19 +166,6 @@ $tla_active      = '';
       z-index: 1;
       margin-bottom: var(--space-md);
     }
-    .mm-offer__regular {
-      position: relative;
-      z-index: 1;
-      font-family: var(--font-body);
-      font-size: 0.9375rem;
-      color: rgba(255, 255, 255, 0.7);
-      margin: 0 0 var(--space-lg);
-      line-height: 1.6;
-    }
-    .mm-offer__regular b {
-      color: rgba(255, 255, 255, 0.9);
-      font-weight: 600;
-    }
     .mm-offer__strike {
       position: relative;
       white-space: nowrap;
@@ -213,8 +200,12 @@ $tla_active      = '';
       }
     }
     .mm-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
       border-radius: var(--radius-2xl);
-      padding: clamp(20px, 3vw, 32px) var(--space-md);
+      padding: clamp(32px, 4vw, 48px) var(--space-lg);
     }
     .mm-step--first {
       background: rgba(234, 194, 90, 0.1);
@@ -227,12 +218,25 @@ $tla_active      = '';
     .mm-step__label {
       display: block;
       font-family: var(--font-body);
-      font-size: 0.6875rem;
+      font-size: 0.75rem;
       font-weight: 700;
       letter-spacing: 0.18em;
       text-transform: uppercase;
       color: var(--brass-bright);
-      margin-bottom: 6px;
+    }
+    /* Struck regular price sitting above the discounted price */
+    .mm-step__was {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.375rem, 1.1rem + 1vw, 1.875rem);
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .mm-step__was .mm-offer__strike {
+      letter-spacing: 0;
+    }
+    .mm-step__was .mm-offer__strike::after {
+      height: 3px;
     }
     .mm-step__price {
       display: block;
@@ -250,13 +254,12 @@ $tla_active      = '';
       color: transparent;
     }
     .mm-step--rest .mm-step__price {
-      font-size: clamp(2.75rem, 1.5rem + 5vw, 4.25rem);
+      font-size: clamp(3.25rem, 2rem + 6vw, 5rem);
     }
     .mm-step__sub {
       display: block;
-      margin-top: 8px;
       font-family: var(--font-body);
-      font-size: 0.875rem;
+      font-size: 0.9375rem;
       font-weight: 500;
       color: rgba(255, 255, 255, 0.72);
       line-height: 1.4;
@@ -312,6 +315,12 @@ $tla_active      = '';
       border-radius: var(--radius-full);
       padding: 8px 20px;
       margin-bottom: var(--space-lg);
+    }
+    /* Reused bottom-card savings elements inside the offer card need to clear the glow */
+    .mm-offer__card .mm-plan__plus,
+    .mm-offer__card .mm-plan__save {
+      position: relative;
+      z-index: 1;
     }
     .mm-offer__cta {
       position: relative;
@@ -566,7 +575,7 @@ $tla_active      = '';
     }
     .mm-row__eyebrow {
       font-family: var(--font-body);
-      font-size: 0.875rem;
+      font-size: 1rem;
       font-weight: 700;
       letter-spacing: 0.14em;
       text-transform: uppercase;
@@ -576,10 +585,10 @@ $tla_active      = '';
     }
     .mm-row__title {
       font-family: var(--font-display);
-      font-size: clamp(1.375rem, 1.1rem + 1vw, 1.75rem);
+      font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.375rem);
       font-weight: 700;
       letter-spacing: -0.01em;
-      line-height: 1.25;
+      line-height: 1.2;
       color: var(--primary-container);
       margin: 0 0 var(--space-sm);
     }
@@ -625,6 +634,11 @@ $tla_active      = '';
       filter:
         drop-shadow(0 12px 24px rgba(2, 28, 54, 0.22))
         drop-shadow(0 30px 60px rgba(2, 28, 54, 0.28));
+    }
+    /* Business Intelligence dashboard is wide, not a phone — keep it smaller. */
+    .mm-row__media--bi img {
+      max-height: 420px;
+      max-width: 88%;
     }
 
     /* Composite variant — overlapping platform UI fragments floating freely
@@ -943,13 +957,14 @@ $tla_active      = '';
     .mm-plat__showcase:hover .mm-plat__asset--social { transform: translateX(-50%) rotate(-1deg) translateY(-8px); }
 
     @media (max-width: 600px) {
-      .mm-plat__showcase { min-height: 0; display: grid; gap: var(--space-md); }
-      .mm-plat__asset {
-        position: static;
-        width: 100% !important;
-        transform: none !important;
-        max-width: 360px;
+      /* Keep the overlapping collage together, just sized down and moved
+         directly under the subheading (above the copy column). */
+      .mm-plat__showcase {
+        order: -1;
+        min-height: clamp(280px, 80vw, 360px);
+        max-width: 420px;
         margin-inline: auto;
+        width: 100%;
       }
       .mm-plat__asset figcaption { font-size: 0.625rem; }
     }
@@ -1351,18 +1366,34 @@ $tla_active      = '';
     .mm-plan {
       position: relative;
       z-index: 1;
-      max-width: 40rem;
+      max-width: 64rem;
       margin-inline: auto;
       margin-top: var(--space-xl);
       background: linear-gradient(135deg, #0a1628 0%, #021c36 55%, #0a223d 100%);
       border-radius: var(--radius-3xl);
-      border: 1px solid rgba(234, 194, 90, 0.55);
+      border: 1px solid rgba(234, 194, 90, 0.4);
       box-shadow:
         0 40px 90px rgba(2, 28, 54, 0.45),
-        0 0 60px rgba(234, 194, 90, 0.18),
-        inset 0 0 0 1px rgba(234, 194, 90, 0.22);
-      padding: clamp(32px, 4vw, 56px) clamp(24px, 4vw, 48px);
+        0 0 60px rgba(234, 194, 90, 0.14),
+        inset 0 0 0 1px rgba(234, 194, 90, 0.12);
+      padding: clamp(28px, 4vw, 56px);
+      overflow: hidden;
       text-align: center;
+    }
+    .mm-plan::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.2), transparent);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    .mm-plan > * {
+      position: relative;
+      z-index: 1;
     }
     /* Co-branded logo lockup — Loan Atlas × Mastermind */
     .mm-plan__lockup {
@@ -1420,92 +1451,85 @@ $tla_active      = '';
       background-clip: text;
       color: transparent;
     }
-    .mm-plan__price-row {
+    .mm-plan__plus {
       display: flex;
-      flex-wrap: wrap;
       align-items: center;
-      justify-content: center;
-      gap: var(--space-sm) var(--space-md);
-      margin-bottom: var(--space-sm);
-    }
-    .mm-plan__price {
+      gap: var(--space-md);
       font-family: var(--font-display);
-      font-weight: 800;
-      letter-spacing: -0.03em;
-      line-height: 0.95;
-      color: #ffffff;
+      font-weight: 700;
+      font-size: clamp(1.25rem, 1rem + 1vw, 1.625rem);
+      letter-spacing: 0;
+      line-height: 1.3;
+      color: rgba(255, 255, 255, 0.92);
+      text-align: center;
+      max-width: 40rem;
+      margin: var(--space-lg) auto;
     }
-    .mm-plan__price--first {
-      font-size: clamp(3.5rem, 2rem + 7vw, 5.5rem);
+    .mm-plan__plus::before,
+    .mm-plan__plus::after {
+      content: '';
+      flex: 1 0 32px;
+      min-width: 32px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(234, 194, 90, 0.5), transparent);
+    }
+    .mm-plan__plus > span {
+      flex: 0 1 auto;
+    }
+    .mm-plan__plus em {
+      font-style: normal;
+      font-weight: 800;
       background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-    }
-    .mm-plan__price small {
-      display: block;
-      font-family: var(--font-body);
-      font-size: 0.8125rem;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--brass-bright);
-      margin-top: 8px;
-    }
-    .mm-plan__then {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: clamp(2rem, 1.2rem + 3vw, 3rem);
-      letter-spacing: -0.02em;
-      color: #ffffff;
-    }
-    .mm-plan__then small {
-      display: block;
-      font-family: var(--font-body);
-      font-size: 0.75rem;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.6);
-      margin-top: 6px;
-    }
-    .mm-plan__arrow {
-      color: var(--brass-bright);
-      display: inline-flex;
-    }
-    .mm-plan__arrow svg { width: 26px; height: 26px; }
-    @media (max-width: 520px) {
-      .mm-plan__arrow { transform: rotate(90deg); }
     }
     .mm-plan__save {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: clamp(1.125rem, 0.9rem + 0.9vw, 1.5rem);
-      color: #ffffff;
-      margin: 0 0 var(--space-lg);
+      text-align: center;
+      margin: 0 0 var(--space-xl);
     }
-    .mm-plan__save em {
+    .mm-plan__save-pill {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 0.9rem + 0.5vw, 1.1875rem);
+      font-weight: 600;
+      letter-spacing: 0;
+      color: #6ee7a8;
+      background: rgba(52, 211, 153, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      border-radius: var(--radius-full);
+      padding: 12px 28px;
+      line-height: 1.5;
+    }
+    .mm-plan__save-pill em {
       font-style: normal;
-      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      font-weight: 800;
+      color: #34d399;
     }
     .mm-plan__list {
       list-style: none;
-      margin: 0 0 var(--space-lg);
-      padding: var(--space-lg) 0;
+      margin: 0 auto var(--space-xl);
+      padding: var(--space-xl) 0;
       border-block: 1px solid rgba(234, 194, 90, 0.18);
       display: grid;
-      gap: 12px;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
       text-align: left;
+      max-width: 32rem;
+    }
+    @media (min-width: 640px) {
+      .mm-plan__list {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-md) var(--space-lg);
+        max-width: 52rem;
+      }
     }
     .mm-plan__list li {
       display: flex;
       align-items: flex-start;
-      gap: 12px;
+      gap: 14px;
       font-size: 0.9375rem;
-      line-height: 1.5;
+      line-height: 1.55;
       color: rgba(255, 255, 255, 0.85);
     }
     .mm-plan__list .icon {
@@ -1520,6 +1544,7 @@ $tla_active      = '';
       flex-direction: column;
       align-items: center;
       gap: var(--space-sm);
+      margin-bottom: var(--space-xl);
     }
     .mm-plan__fine {
       font-size: 0.8125rem;
@@ -1576,7 +1601,7 @@ $tla_active      = '';
         <span class="mm-bar__sep mm-bar__hide-sm">·</span>
         <span class="mm-bar__hide-sm">$49 first month, then $249/mo locked</span>
         <span class="mm-bar__sep">·</span>
-        Save $2,600
+        Save $2,186
       </p>
       <a class="mm-bar__btn" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Claim Offer</a>
     </div>
@@ -1618,10 +1643,6 @@ $tla_active      = '';
             <img class="mm-plan__lockup-mm" src="<?php echo TLA_BASE; ?>/assets/mastermind-logo.webp" alt="Mastermind Summit 2026" />
           </div>
           <h3 class="mm-plan__hero-title mm-offer__hero-title"><span class="mm-plan__hero-plat">Platinum</span> Super Bonus</h3>
-          <p class="mm-offer__regular">
-            Regular membership is <b>$349/mo</b> + the <b>$100/mo</b> Platinum upgrade =
-            <span class="mm-offer__strike">$449/mo</span>. Here&rsquo;s what you pay as a Mastermind attendee:
-          </p>
 
           <div id="mm-offer-heading" class="mm-offer__steps">
             <div class="mm-step mm-step--first">
@@ -1633,17 +1654,21 @@ $tla_active      = '';
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
             </div>
             <div class="mm-step mm-step--rest">
-              <span class="mm-step__label">Months 2&ndash;12</span>
+              <span class="mm-step__was"><span class="mm-offer__strike">$349/mo</span></span>
               <span class="mm-step__price">$249<span style="font-size: 0.32em; font-weight: 700; letter-spacing: 0;">/mo</span></span>
               <span class="mm-step__sub"><strong>Locked in</strong> — no increase</span>
             </div>
           </div>
 
-          <p class="mm-offer__savings"><em>$2,600 in savings</em> exclusively for Mastermind</p>
-          <span class="mm-offer__pill">Save $400 month one · $200/mo after</span>
+          <p class="mm-plan__plus"><span>plus <em>6 months FREE</em> of Platinum Marketing</span></p>
+
+          <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$2,186</em> in Annual Savings — Exclusively for Mastermind Attendees</span></p>
 
           <div class="mm-offer__cta">
             <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/" style="font-size: 1.0625rem; padding: 18px 44px; box-shadow: 0 8px 28px rgba(201, 150, 28, 0.32);">Claim Your $49 First Month</a>
+            <a href="/consultation-mastermind-2026/" style="font-size: 0.9375rem; color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;">
+              Have questions? Book a free coaching session
+            </a>
           </div>
           <p class="mm-offer__fine">12-month commitment. Offer exclusively for Mastermind Summit 2026 attendees. Available to new members only.</p>
         </div>
@@ -1698,11 +1723,11 @@ $tla_active      = '';
 
           <!-- RIGHT: copy -->
           <div class="lp-bridge__inner" data-reveal="up">
-            <p class="text-brass" style="font-family: var(--font-display); font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.125rem); font-weight: 800; line-height: 1.25; letter-spacing: -0.015em; margin: 0 0 var(--space-md);">
-              The loan officers pulling away from the pack aren&rsquo;t working harder than you.
+            <p class="t-headline-md" style="line-height: 1.5; margin: 0 0 var(--space-md);">
+              The loan officers pulling away from the pack aren&rsquo;t working harder than you. They&rsquo;re running systems that compound their production every month.
             </p>
-            <p class="t-headline-md" style="line-height: 1.5; margin: 0;">
-              They&rsquo;re running a system that compounds every month. Mastermind is your chance to install it.
+            <p class="text-brass" style="font-family: var(--font-display); font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.125rem); font-weight: 800; line-height: 1.25; letter-spacing: -0.015em; margin: 0;">
+              Mastermind is your chance to install them all &mdash; for less than the commission of one extra loan.
             </p>
           </div>
 
@@ -1714,14 +1739,10 @@ $tla_active      = '';
     <section class="lp-systems" id="systems" aria-labelledby="systems-heading">
       <div class="container">
         <div class="center" data-reveal="up" style="max-width: 46rem; margin-inline: auto;">
-          <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
-            <span class="eyebrow__text" style="color: var(--brass-bright);">Five AI-Powered Systems</span>
-          </span>
           <h2 id="systems-heading" class="t-display" style="color: #ffffff; font-weight: 800; margin-bottom: var(--space-md);">
-            Help You Close More Loans<br>
-            <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">With Less Chaos</span>
+            <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">AI-Powered Systems</span> That Help You Close More Loans With Less Chaos
           </h2>
-          <p class="t-body-lg" style="color: rgba(255, 255, 255, 0.68);">Inside The Loan Atlas, these systems work together to help you make better decisions, execute faster, and stay focused on what actually drives production.</p>
+          <p class="t-body-lg" style="color: rgba(255, 255, 255, 0.68);">Inside The Loan Atlas, these five systems work together to help you close more loans, make better decisions, and finally feel in control of your production.</p>
         </div>
 
         <div class="lp-systems__grid" data-reveal-stagger="100">
@@ -1762,17 +1783,14 @@ $tla_active      = '';
     <!-- ── 6. VISUAL VALUE TOUR ─────────────────────────────────────────────── -->
     <section class="mm-tour" id="value" aria-labelledby="value-heading">
       <div class="container">
-        <div data-reveal="up" style="max-width: 46rem; margin-bottom: var(--space-xl);">
-          <span class="eyebrow" style="margin-bottom: var(--space-md);">
-            <span class="eyebrow__text">What's Inside</span>
-          </span>
-          <h2 id="value-heading" class="t-display" style="color: var(--primary-container); font-weight: 800; margin-bottom: var(--space-sm);">Stop Flying Blind.<br><span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Start Running a Predictable Mortgage Business.</span></h2>
+        <div data-reveal="up" style="margin: 0 auto var(--space-xl); text-align: center;">
+          <h2 id="value-heading" class="t-display" style="color: var(--primary-container); font-weight: 800; margin-bottom: var(--space-sm);">Everything You Need to Stop Flying Blind and <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Start Running a Predictable Mortgage Business.</span></h2>
         </div>
 
         <div class="mm-tour__rows">
 
           <div class="mm-row" data-reveal="up">
-            <div class="mm-row__media mm-row__media--phone" data-reveal="fade">
+            <div class="mm-row__media mm-row__media--phone mm-row__media--bi" data-reveal="fade">
             <img src="<?php echo TLA_BASE; ?>/assets/loan-officer-business-intelligence.png" alt="Loan Officer Business Intelligence" loading="lazy">
           </div>
             <div class="mm-row__copy">
@@ -1870,14 +1888,13 @@ $tla_active      = '';
             <div class="mm-plat__price">
               <div class="mm-plat__price-tag">
                 <span class="mm-plat__price-was">$100<span>/mo</span></span>
-                <span class="mm-plat__price-now">$0</span>
+                <span class="mm-plat__price-now"><span style="font-size: 0.42em; font-weight: 700; letter-spacing: 0;">6 months</span> FREE</span>
               </div>
-              <p class="mm-plat__price-note"><strong>Free</strong> with your Mastermind offer — a $1,200/year value, included.</p>
+              <p class="mm-plat__price-note">then $69/mo, or cancel anytime.</p>
             </div>
 
             <div class="mm-plat__actions">
-              <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Join The Loan Atlas with Platinum</a>
-              <a class="mm-plat__link" href="/consultation-mastermind-2026/">Schedule a free coaching session &rarr;</a>
+              <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Claim Your Free 6-Months</a>
             </div>
           </div>
 
@@ -1982,9 +1999,6 @@ $tla_active      = '';
     <section class="lp-testimonials" id="testimonials" aria-labelledby="testimonials-heading">
       <div class="container">
         <div class="center" data-reveal="up" style="max-width: 44rem; margin-inline: auto; margin-bottom: var(--space-xl);">
-          <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
-            <span class="eyebrow__text">Member Results</span>
-          </span>
           <h2 id="testimonials-heading" class="section-heading" style="text-align: center;">What Operating From a System Looks Like</h2>
         </div>
 
@@ -2064,10 +2078,7 @@ $tla_active      = '';
     <section class="mm-pricing" id="pricing" aria-labelledby="pricing-heading">
       <div class="container">
         <div class="center" data-reveal="up" style="max-width: 46rem; margin-inline: auto;">
-          <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
-            <span class="eyebrow__text" style="color: var(--brass-bright);">Your Mastermind Offer</span>
-          </span>
-          <h2 id="pricing-heading" class="t-display" style="color: #ffffff; font-weight: 800; margin-bottom: var(--space-sm);">One Membership. <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">A Price Only You Get.</span></h2>
+          <h2 id="pricing-heading" class="t-display" style="color: #ffffff; font-weight: 800; margin-bottom: var(--space-sm);">Everything You Need to Scale. <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">A Price Only for Mastermind.</span></h2>
           <p class="t-body-lg" style="color: rgba(255, 255, 255, 0.68);">Full access to everything above — the AI systems, live coaching, the curriculum, the community — at the exclusive Mastermind Summit rate.</p>
         </div>
 
@@ -2077,21 +2088,37 @@ $tla_active      = '';
             <span class="mm-plan__lockup-x" aria-hidden="true">×</span>
             <img class="mm-plan__lockup-mm" src="<?php echo TLA_BASE; ?>/assets/mastermind-logo.webp" alt="Mastermind Summit 2026" />
           </div>
-          <h3 class="mm-plan__hero-title"><span class="mm-plan__hero-plat">Platinum</span> Super Bonus</h3>
+          <h3 class="mm-plan__hero-title mm-offer__hero-title"><span class="mm-plan__hero-plat">Platinum</span> Super Bonus</h3>
 
-          <div class="mm-plan__price-row">
-            <div>
-              <div class="mm-plan__price mm-plan__price--first">$49<small>First Month</small></div>
+          <div class="mm-offer__steps">
+            <div class="mm-step mm-step--first">
+              <span class="mm-step__label">First Month</span>
+              <span class="mm-step__price">$49</span>
+              <span class="mm-step__sub"><strong>Immediate full access</strong> to The Loan Atlas</span>
             </div>
-            <span class="mm-plan__arrow" aria-hidden="true">
+            <div class="mm-offer__arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
-            </span>
-            <div>
-              <div class="mm-plan__then">$249<span style="font-size: 0.4em;">/mo</span><small>Months 2&ndash;12 · Locked In</small></div>
+            </div>
+            <div class="mm-step mm-step--rest">
+              <span class="mm-step__was"><span class="mm-offer__strike">$349/mo</span></span>
+              <span class="mm-step__price">$249<span style="font-size: 0.32em; font-weight: 700; letter-spacing: 0;">/mo</span></span>
+              <span class="mm-step__sub"><strong>Locked in</strong> — no increase</span>
             </div>
           </div>
 
-          <p class="mm-plan__save"><em>$2,600 in total savings</em> vs. the regular $449/mo</p>
+          <p class="mm-plan__plus"><span>plus <em>6 months FREE</em> of Platinum Marketing</span></p>
+
+          <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$2,186</em> in Annual Savings — Exclusively for Mastermind Attendees</span></p>
+
+          <div class="mm-plan__cta">
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/"
+              style="font-size: 1.0625rem; padding: 18px 44px; box-shadow: 0 8px 28px rgba(201, 150, 28, 0.32);">
+              Claim Your $49 First Month
+            </a>
+            <a href="/consultation-mastermind-2026/" style="font-size: 0.9375rem; color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;">
+              Have questions? Book a free coaching session
+            </a>
+          </div>
 
           <ul class="mm-plan__list">
             <li>
@@ -2112,7 +2139,7 @@ $tla_active      = '';
             </li>
             <li>
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Platinum Marketing upgrade included
+              Platinum Marketing free for 6 months (then $69/mo, or cancel)
             </li>
             <li>
               <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -2120,15 +2147,6 @@ $tla_active      = '';
             </li>
           </ul>
 
-          <div class="mm-plan__cta">
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/"
-              style="font-size: 1.0625rem; padding: 18px 44px; box-shadow: 0 8px 28px rgba(201, 150, 28, 0.32);">
-              Claim Your $49 First Month
-            </a>
-            <a href="/consultation-mastermind-2026/" style="font-size: 0.9375rem; color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;">
-              Have questions? Book a free coaching session
-            </a>
-          </div>
           <p class="mm-plan__fine">12-month commitment. Offer exclusively for Mastermind Summit 2026 attendees. Available to new members only.</p>
         </article>
       </div>

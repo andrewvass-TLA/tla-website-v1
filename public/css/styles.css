@@ -1373,7 +1373,6 @@ h6 {
   background: var(--surface-container-low);
   border-top: 1px solid var(--outline-variant);
   padding-block: var(--space-xl);
-  margin-top: var(--space-xl);
 }
 
 .site-footer__inner {
@@ -1428,6 +1427,40 @@ h6 {
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+  }
+}
+
+.site-footer__nav-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-sm);
+}
+
+.site-footer__social {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.site-footer__social-link {
+  display: inline-flex;
+  color: var(--on-surface-variant);
+  transition: color 0.15s ease;
+}
+
+.site-footer__social-link .icon {
+  width: 26px;
+  height: 26px;
+}
+
+.site-footer__social-link:hover {
+  color: var(--brass);
+}
+
+@media (min-width: 720px) {
+  .site-footer__nav-group {
+    align-items: flex-end;
   }
 }
 

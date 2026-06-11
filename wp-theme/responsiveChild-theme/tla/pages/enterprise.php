@@ -51,13 +51,30 @@ $tla_active      = 'enterprise';
       }
     }
 
-    /* Dark hero */
+    /* Dark hero — content left, full-bleed image with left→right fade (matches what's-inside) */
     .lp-intro {
-      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      /* Image anchored to the TOP so only the bottom crops; left-to-right navy
+         fade keeps the left-aligned copy legible while revealing the photo at right. */
+      background:
+        linear-gradient(to right,
+          rgba(2, 28, 54, 1)    0%,
+          rgba(2, 28, 54, 0.96) 30%,
+          rgba(2, 28, 54, 0.78) 50%,
+          rgba(2, 28, 54, 0.35) 75%,
+          rgba(2, 28, 54, 0)    100%),
+        url('<?php echo TLA_BASE; ?>/assets/enterprise-header-image.png') right top / cover no-repeat,
+        /* fallback navy gradient if the image fails to load */
+        linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
       padding-top: calc(var(--header-h) + clamp(56px, 8vw, 96px));
       padding-bottom: clamp(56px, 8vw, 96px);
       position: relative;
       overflow: hidden;
+    }
+    @media (max-width: 760px) {
+      /* flat navy stack on small screens for legibility */
+      .lp-intro {
+        background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      }
     }
     .lp-intro::before {
       content: '';
@@ -85,6 +102,9 @@ $tla_active      = 'enterprise';
       position: relative;
       z-index: 1;
       max-width: 56rem;
+      /* pin the copy to the left (matches what's-inside header) */
+      margin-inline: 0;
+      text-align: left;
     }
     .lp-intro__title {
       font-family: var(--font-display);
@@ -107,6 +127,8 @@ $tla_active      = 'enterprise';
       line-height: 1.7;
       color: rgba(255, 255, 255, 0.68);
       max-width: 40rem;
+      /* pin left, flush with the eyebrow + heading */
+      margin-inline: 0;
       margin-bottom: var(--space-lg);
     }
     .lp-intro__actions {
@@ -114,6 +136,8 @@ $tla_active      = 'enterprise';
       flex-wrap: wrap;
       gap: var(--space-sm);
       align-items: center;
+      /* left-align the buttons with the copy */
+      justify-content: flex-start;
     }
 
     /* Stat / trust */

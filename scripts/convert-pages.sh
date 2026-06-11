@@ -125,6 +125,8 @@ rewrite() {
   perl -0pi -e 's/href="whats-inside\.html"/href="\/whats-inside\/"/g'    "$f"
   perl -0pi -e 's/href="events\.html"/href="\/events\/"/g'                "$f"
   perl -0pi -e 's/href="mastermind\.html"/href="\/join-mastermind-2026\/"/g'   "$f"
+  perl -0pi -e 's/href="privacy-policy\.html"/href="\/privacy-policy\/"/g'      "$f"
+  perl -0pi -e 's/href="terms-of-use\.html"/href="\/terms-of-use\/"/g'          "$f"
 }
 
 # slug map (source | slug | active)
@@ -139,5 +141,7 @@ convert events                  events                        ""
 convert mastermind              join-mastermind-2026          ""
 convert consultation-corporate  enterprise-consultation       ""
 convert consultation-mastermind consultation-mastermind-2026  ""
+convert privacy-policy          privacy-policy                ""
+convert terms-of-use            terms-of-use                  ""
 
 echo "Done."
