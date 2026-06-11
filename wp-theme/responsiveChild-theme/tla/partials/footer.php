@@ -40,8 +40,8 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
         <p>© 2026 The Loan Atlas. Guiding Originators to Peak Performance.</p>
         <nav class="site-footer__links">
           <a class="site-footer__link" href="/privacy-policy/">Privacy Policy</a>
-          <a class="site-footer__link" href="/terms-of-use/">Terms of Service</a>
-          <a class="site-footer__link" href="#">Accessibility</a>
+          <a class="site-footer__link" href="/terms-of-use/">Terms of Use</a>
+          <a class="site-footer__link" href="/end-user-agreement/">End User Agreement</a>
           <a class="site-footer__link" href="#">Contact</a>
         </nav>
       </div>
