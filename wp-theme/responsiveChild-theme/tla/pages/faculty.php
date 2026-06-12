@@ -769,7 +769,7 @@ $tla_active      = 'faculty';
           <a class="close-section-action close-section-action--primary" href="/join/">
             <span>
               <span class="close-section-action__label">Join The Loan Atlas</span>
-              <span class="close-section-action__hint">See plans, pricing, and what's inside membership</span>
+              <span class="close-section-action__hint">View membership options and get access today.</span>
             </span>
             <span class="close-section-action__arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
@@ -777,8 +777,8 @@ $tla_active      = 'faculty';
           </a>
           <a class="close-section-action close-section-action--secondary" href="/consultation/">
             <span>
-              <span class="close-section-action__label">Book a Free Coaching Session</span>
-              <span class="close-section-action__hint">45 minutes with our team — build your growth plan</span>
+              <span class="close-section-action__label">Book Your Free Coaching Session</span>
+              <span class="close-section-action__hint">Start building your growth plan.</span>
             </span>
             <span class="close-section-action__arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
@@ -1043,7 +1043,10 @@ $tla_active      = 'faculty';
         if (!data) return;
         lastFocused = originEl || document.activeElement;
 
-        modalImg.src = data.image;
+        // Prefer the card's already-resolved image src so paths stay correct
+        // after the build rewrites asset URLs (the hardcoded data.image is not rewritten).
+        const cardImg = originEl && originEl.querySelector('.faculty-card__photo img');
+        modalImg.src = (cardImg && cardImg.getAttribute('src')) || data.image;
         modalImg.alt = data.name;
         modalPhoto.setAttribute('data-initials', data.initials || '');
         modalName.textContent = data.name;

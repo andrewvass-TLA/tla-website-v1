@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mockup — AI Financial Review hero metric cards (crafted graphics)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../public/css/styles.css" />
+  <style>
+    /* ─────────────────────────────────────────────────────────────
+       Preserved snapshot of the hand-crafted metric-card stack that
+       used to sit beside the "AI-Driven Financial Review Tool" hero on
+       whats-inside.html (income spark-line card, loan-tiles card, rate
+       ring card). Replaced on the live page by a flat product
+       screenshot (loan-officer-business-planning.png).
+
+       The .frs-* component CSS below was lifted verbatim from the
+       inline <style> block in public/whats-inside.html so this mockup
+       renders standalone. The count-up values (data-frs-count) animate
+       on the live page via inline JS; here they render at their final
+       values, which is fine for a static reference.
+       ───────────────────────────────────────────────────────────── */
+    body { background: #f7f9fb; }
+    .mockup-wrap { padding-block: 40px; }
+    .mockup-label {
+      max-width: 1280px;
+      margin: 0 auto 16px;
+      padding-inline: var(--gutter);
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .mockup-label span { color: var(--brass); }
+    .mockup-stage {
+      max-width: 720px;
+      margin: 0 auto;
+      padding-inline: var(--gutter);
+    }
+
+    /* ── Crafted graphics CSS (from whats-inside.html) ── */
+    .frs-hero__metrics {
+      position: relative;
+      width: 100%;
+      min-height: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      container-type: inline-size;
+      isolation: isolate;
+    }
+    @media (min-width: 1180px) { .frs-hero__metrics { min-height: 620px; } }
+
+    .frs-hero__metrics::before {
+      content: '';
+      position: absolute;
+      inset: 9% 2% 8% 8%;
+      border: 1px solid rgba(2, 28, 54, 0.08);
+      border-radius: 22px;
+      background:
+        linear-gradient(90deg, rgba(2, 28, 54, 0.045) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(2, 28, 54, 0.045) 1px, transparent 1px);
+      background-size: 34px 34px;
+      -webkit-mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent);
+      mask-image: linear-gradient(90deg, transparent, #000 16%, #000 84%, transparent);
+      opacity: 0.8;
+      z-index: -2;
+    }
+
+    .frs-hero__metrics::after {
+      content: '';
+      position: absolute;
+      inset: 16% 10% 16% 14%;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, 0.72);
+      box-shadow: 0 32px 80px rgba(2, 28, 54, 0.12);
+      z-index: -1;
+      transform: rotate(-2deg);
+    }
+
+    .frs-metric-stack {
+      width: min(100%, 650px);
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .frs-metric-card {
+      --metric-accent: #fcd34d;
+      --metric-accent-2: #fbbf24;
+      --metric-bg: #0e1422;
+      --metric-card: #172033;
+      --metric-card-2: #232d42;
+      --metric-muted: #94a3b8;
+      --metric-text: #ffffff;
+      --metric-delay: 0ms;
+
+      position: relative;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(150px, 0.72fr);
+      gap: clamp(16px, 4cqi, 28px);
+      min-height: 172px;
+      padding: clamp(18px, 4cqi, 30px);
+      border-radius: 18px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.06), transparent 36%),
+        linear-gradient(180deg, #121a2a 0%, var(--metric-bg) 100%);
+      color: var(--metric-text);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow:
+        0 24px 52px rgba(2, 28, 54, 0.22),
+        0 8px 18px rgba(2, 28, 54, 0.12);
+      overflow: hidden;
+      opacity: 0;
+      animation: frsMetricEnter 760ms cubic-bezier(.2, .8, .2, 1) forwards;
+      animation-delay: var(--metric-delay);
+    }
+
+    .frs-metric-card + .frs-metric-card { margin-top: -22px; }
+    .frs-metric-card--income {
+      z-index: 3;
+      width: 88%;
+      transform: translateX(3%) rotate(-1.2deg);
+    }
+    .frs-metric-card--loans {
+      z-index: 2;
+      width: 78%;
+      margin-left: auto;
+      transform: translateX(-1%) rotate(1.4deg);
+    }
+    .frs-metric-card--rate {
+      z-index: 1;
+      width: 90%;
+      transform: translateX(8%) rotate(-0.4deg);
+    }
+
+    .frs-metric-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(110deg, transparent 18%, rgba(255,255,255,0.12) 42%, transparent 62%);
+      transform: translateX(-120%);
+      animation: frsMetricSheen 5.2s ease-in-out infinite;
+      animation-delay: calc(var(--metric-delay) + 1000ms);
+      pointer-events: none;
+    }
+
+    .frs-metric-card::after {
+      content: '';
+      position: absolute;
+      inset: auto clamp(18px, 4cqi, 30px) 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(252, 211, 77, 0.52), transparent);
+    }
+
+    .frs-metric-card__main,
+    .frs-metric-card__visual {
+      position: relative;
+      z-index: 1;
+    }
+
+    .frs-metric-card__topline {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+      color: var(--metric-muted);
+      font-family: var(--font-body);
+      font-size: 0.76rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .frs-metric-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(252, 211, 77, 0.12);
+      color: var(--metric-accent);
+      box-shadow: inset 0 0 0 1px rgba(252, 211, 77, 0.2);
+      flex-shrink: 0;
+    }
+    .frs-metric-icon svg { width: 16px; height: 16px; }
+
+    .frs-metric-card__label {
+      font-family: var(--font-display);
+      font-size: clamp(1.05rem, 3cqi, 1.45rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      margin: 0 0 8px;
+      color: #ffffff;
+    }
+
+    .frs-metric-card__value {
+      font-family: var(--font-display);
+      font-size: clamp(2.35rem, 8cqi, 4.25rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin: 0;
+      color: var(--metric-accent);
+      text-shadow: 0 0 24px rgba(252, 211, 77, 0.22);
+      white-space: nowrap;
+    }
+    .frs-metric-card--rate .frs-metric-card__value {
+      font-size: clamp(2rem, 6.5cqi, 3.6rem);
+    }
+
+    .frs-metric-card__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 14px;
+      margin-top: 14px;
+      font-family: var(--font-body);
+      font-size: 0.82rem;
+      color: var(--metric-muted);
+    }
+    .frs-metric-card__meta strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .frs-metric-track {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      margin-top: 18px;
+    }
+    .frs-metric-track__fill {
+      width: var(--metric-progress);
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--metric-accent), var(--metric-accent-2));
+      transform: scaleX(0);
+      transform-origin: left;
+      animation: frsMetricFill 1100ms cubic-bezier(.2, .8, .2, 1) forwards;
+      animation-delay: calc(var(--metric-delay) + 520ms);
+    }
+
+    .frs-metric-spark {
+      width: 100%;
+      min-height: 110px;
+      align-self: center;
+    }
+    .frs-metric-spark__area {
+      fill: rgba(252, 211, 77, 0.09);
+      opacity: 0;
+      animation: frsSparkArea 900ms ease forwards;
+      animation-delay: calc(var(--metric-delay) + 820ms);
+    }
+    .frs-metric-spark__line {
+      fill: none;
+      stroke: var(--metric-accent);
+      stroke-width: 5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 420;
+      stroke-dashoffset: 420;
+      filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.34));
+      animation: frsSparkDraw 1200ms cubic-bezier(.2, .8, .2, 1) forwards;
+      animation-delay: calc(var(--metric-delay) + 520ms);
+    }
+    .frs-metric-spark__dot {
+      fill: var(--metric-accent);
+      opacity: 0;
+      transform-origin: center;
+      animation: frsDotPulse 1.8s ease-in-out infinite;
+      animation-delay: calc(var(--metric-delay) + 1500ms);
+    }
+
+    .frs-loan-visual {
+      align-self: center;
+      display: grid;
+      gap: 12px;
+    }
+    .frs-loan-tiles {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+    .frs-loan-tile {
+      aspect-ratio: 1;
+      border-radius: 10px;
+      background: var(--metric-card);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.32);
+      opacity: 0;
+      transform: translateY(12px) scale(0.92);
+      animation: frsLoanTileIn 520ms cubic-bezier(.2, .8, .2, 1) forwards;
+      animation-delay: calc(var(--metric-delay) + (var(--tile-index) * 120ms) + 480ms);
+    }
+    .frs-loan-tile svg { width: 20px; height: 20px; }
+    .frs-loan-tile--closed {
+      background: rgba(252, 211, 77, 0.13);
+      border-color: rgba(252, 211, 77, 0.45);
+      color: var(--metric-accent);
+      box-shadow: 0 0 0 1px rgba(252, 211, 77, 0.08), 0 12px 24px rgba(252, 211, 77, 0.08);
+    }
+    .frs-loan-caption {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      color: var(--metric-muted);
+    }
+    .frs-loan-caption strong {
+      color: #ffffff;
+      font-weight: 700;
+    }
+
+    .frs-rate-visual {
+      align-self: center;
+      display: grid;
+      place-items: center;
+    }
+    .frs-rate-ring {
+      position: relative;
+      width: clamp(116px, 28cqi, 168px);
+      aspect-ratio: 1;
+      display: grid;
+      place-items: center;
+    }
+    .frs-rate-ring svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      transform: rotate(-90deg);
+    }
+    .frs-rate-ring__base {
+      fill: none;
+      stroke: rgba(255,255,255,0.1);
+      stroke-width: 12;
+    }
+    .frs-rate-ring__value {
+      fill: none;
+      stroke: var(--metric-accent);
+      stroke-width: 12;
+      stroke-linecap: round;
+      stroke-dasharray: 276;
+      stroke-dashoffset: 276;
+      filter: drop-shadow(0 0 10px rgba(252, 211, 77, 0.35));
+      animation: frsRateRing 1200ms cubic-bezier(.2, .8, .2, 1) forwards;
+      animation-delay: calc(var(--metric-delay) + 520ms);
+    }
+    .frs-rate-ring__center {
+      width: 62%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--metric-card);
+      color: var(--metric-accent);
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.2rem, 4cqi, 1.85rem);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.08);
+    }
+    .frs-rate-ring__badge {
+      position: absolute;
+      right: -6px;
+      bottom: 15%;
+      padding: 6px 9px;
+      border-radius: 999px;
+      background: #22c55e;
+      color: #061018;
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 800;
+      box-shadow: 0 10px 22px rgba(34, 197, 94, 0.24);
+      opacity: 0;
+      transform: translateY(8px);
+      animation: frsBadgeIn 520ms ease forwards, frsBadgePulse 2.2s ease-in-out infinite;
+      animation-delay: calc(var(--metric-delay) + 1300ms), calc(var(--metric-delay) + 1900ms);
+    }
+
+    @keyframes frsMetricEnter {
+      from { opacity: 0; transform: translateY(28px) scale(0.98); }
+      to { opacity: 1; }
+    }
+    @keyframes frsMetricSheen {
+      0%, 48% { transform: translateX(-120%); }
+      68%, 100% { transform: translateX(120%); }
+    }
+    @keyframes frsMetricFill {
+      to { transform: scaleX(1); }
+    }
+    @keyframes frsSparkDraw {
+      to { stroke-dashoffset: 0; }
+    }
+    @keyframes frsSparkArea {
+      to { opacity: 1; }
+    }
+    @keyframes frsDotPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.55; transform: scale(1.45); }
+    }
+    @keyframes frsLoanTileIn {
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    @keyframes frsRateRing {
+      to { stroke-dashoffset: 38; }
+    }
+    @keyframes frsBadgeIn {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes frsBadgePulse {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(0) scale(1.06); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .frs-metric-card,
+      .frs-metric-card::before,
+      .frs-metric-track__fill,
+      .frs-metric-spark__area,
+      .frs-metric-spark__line,
+      .frs-metric-spark__dot,
+      .frs-loan-tile,
+      .frs-rate-ring__value,
+      .frs-rate-ring__badge {
+        animation: none;
+        opacity: 1;
+        transform: none;
+        stroke-dashoffset: 38;
+      }
+      .frs-metric-track__fill { transform: scaleX(1); }
+      .frs-metric-spark__line { stroke-dashoffset: 0; }
+    }
+
+    @media (max-width: 720px) {
+      .frs-hero__metrics {
+        min-height: 0;
+        padding-top: var(--space-xs);
+      }
+      .frs-hero__metrics::before,
+      .frs-hero__metrics::after { display: none; }
+      .frs-metric-stack {
+        width: 100%;
+        gap: var(--space-sm);
+      }
+      .frs-metric-card,
+      .frs-metric-card--income,
+      .frs-metric-card--loans,
+      .frs-metric-card--rate {
+        width: 100%;
+        margin: 0;
+        transform: none;
+      }
+      .frs-metric-card {
+        grid-template-columns: 1fr;
+        min-height: 0;
+      }
+      .frs-metric-spark { min-height: 92px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="mockup-wrap">
+
+    <p class="mockup-label">AI Financial Review hero · <span>Crafted metric-card graphics (retired from live page)</span></p>
+
+    <div class="mockup-stage">
+      <!-- ─────────────────────────────────────────────────────────────
+           Hand-crafted metric-card stack, preserved verbatim from the
+           "AI-Driven Financial Review Tool" hero. Three tilted, layered
+           cards: income spark-line, loan-tiles, and rate ring.
+           ───────────────────────────────────────────────────────────── -->
+      <div class="frs-hero__metrics" aria-hidden="true">
+        <div class="frs-metric-stack">
+
+          <article class="frs-metric-card frs-metric-card--income" style="--metric-progress: 82%; --metric-delay: 0ms;">
+            <div class="frs-metric-card__main">
+              <div class="frs-metric-card__topline">
+                <span class="frs-metric-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 15 4-4 3 3 5-7"/></svg>
+                </span>
+                Live production
+              </div>
+              <p class="frs-metric-card__label">Total Monthly Income</p>
+              <p class="frs-metric-card__value"><span data-frs-count="16750" data-frs-prefix="$">$16,750</span></p>
+              <div class="frs-metric-card__meta">
+                <span><strong>82%</strong> of monthly target</span>
+                <span>Target: <strong>$20,333</strong></span>
+              </div>
+              <div class="frs-metric-track">
+                <div class="frs-metric-track__fill"></div>
+              </div>
+            </div>
+            <div class="frs-metric-card__visual">
+              <svg class="frs-metric-spark" viewBox="0 0 260 120" role="img" aria-label="">
+                <path class="frs-metric-spark__area" d="M10 94 C34 86 42 74 64 78 C92 84 104 38 132 48 C154 56 166 34 190 39 C218 45 226 24 250 16 L250 112 L10 112 Z"></path>
+                <path class="frs-metric-spark__line" d="M10 94 C34 86 42 74 64 78 C92 84 104 38 132 48 C154 56 166 34 190 39 C218 45 226 24 250 16"></path>
+                <circle class="frs-metric-spark__dot" cx="250" cy="16" r="7"></circle>
+              </svg>
+            </div>
+          </article>
+
+          <article class="frs-metric-card frs-metric-card--loans" style="--metric-progress: 100%; --metric-delay: 170ms;">
+            <div class="frs-metric-card__main">
+              <div class="frs-metric-card__topline">
+                <span class="frs-metric-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-7h6v7"/></svg>
+                </span>
+                Closed business
+              </div>
+              <p class="frs-metric-card__label">Loans Closed This Month</p>
+              <p class="frs-metric-card__value"><span data-frs-count="2">2</span></p>
+              <div class="frs-metric-card__meta">
+                <span><strong>2x</strong> monthly pace</span>
+                <span>Target: <strong>1</strong></span>
+              </div>
+              <div class="frs-metric-track">
+                <div class="frs-metric-track__fill"></div>
+              </div>
+            </div>
+            <div class="frs-metric-card__visual frs-loan-visual">
+              <div class="frs-loan-tiles">
+                <span class="frs-loan-tile frs-loan-tile--closed" style="--tile-index: 0;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                </span>
+                <span class="frs-loan-tile frs-loan-tile--closed" style="--tile-index: 1;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+                </span>
+                <span class="frs-loan-tile" style="--tile-index: 2;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+                </span>
+                <span class="frs-loan-tile" style="--tile-index: 3;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
+                </span>
+              </div>
+              <div class="frs-loan-caption">
+                <span><strong>2</strong> closed</span>
+                <span>4 tracked</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="frs-metric-card frs-metric-card--rate" style="--metric-progress: 100%; --metric-delay: 340ms;">
+            <div class="frs-metric-card__main">
+              <div class="frs-metric-card__topline">
+                <span class="frs-metric-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+                </span>
+                Time value
+              </div>
+              <p class="frs-metric-card__label">Hourly Rate of Pay</p>
+              <p class="frs-metric-card__value"><span data-frs-count="3045" data-frs-prefix="$" data-frs-suffix="/hr">$3,045/hr</span></p>
+              <div class="frs-metric-card__meta">
+                <span><strong>3.6x</strong> over target</span>
+                <span>Target: <strong>$850/hr</strong></span>
+              </div>
+              <div class="frs-metric-track">
+                <div class="frs-metric-track__fill"></div>
+              </div>
+            </div>
+            <div class="frs-metric-card__visual frs-rate-visual">
+              <div class="frs-rate-ring">
+                <svg viewBox="0 0 100 100">
+                  <circle class="frs-rate-ring__base" cx="50" cy="50" r="44"></circle>
+                  <circle class="frs-rate-ring__value" cx="50" cy="50" r="44"></circle>
+                </svg>
+                <span class="frs-rate-ring__center">3.6x</span>
+                <span class="frs-rate-ring__badge">Ahead</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>

@@ -1170,10 +1170,6 @@ $tla_active      = 'whats-inside';
       width: 100%;
       max-width: 640px;
       height: auto;
-      border-radius: 14px;
-      box-shadow:
-        0 24px 52px rgba(2, 28, 54, 0.22),
-        0 8px 18px rgba(2, 28, 54, 0.12);
     }
 
     /* BOTTOM BLOCK — accordion + dynamic stage */
@@ -1503,6 +1499,536 @@ $tla_active      = 'whats-inside';
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 0.6em 1em;
+    }
+
+    /* HOURLY RATE OF PAY — purpose-built calculation graphic
+       (recreated for the web, not a screenshot copy). Reuses .frs-tool
+       vars so it scales via the same container-query font sizing. */
+    .hrop {
+      display: grid;
+      gap: 0.9em;
+    }
+    .hrop__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      font-size: 0.7em;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--tool-accent);
+    }
+    .hrop__eyebrow svg { width: 1.3em; height: 1.3em; }
+
+    /* compact input chips that feed the calculation */
+    .hrop__inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0.6em;
+    }
+    .hrop__chip {
+      background: var(--tool-card-2);
+      border: 1px solid var(--tool-border);
+      border-radius: 0.55em;
+      padding: 0.7em 0.8em;
+    }
+    .hrop__chip-label {
+      font-size: 0.6em;
+      line-height: 1.3;
+      color: var(--tool-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.4em;
+    }
+    .hrop__chip-value {
+      font-family: var(--font-display);
+      font-size: 1.15em;
+      font-weight: 700;
+      color: var(--tool-text);
+    }
+    .hrop__chip-value small {
+      font-size: 0.6em;
+      font-weight: 600;
+      color: var(--tool-muted);
+    }
+
+    .hrop__flow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6em;
+      color: var(--tool-muted);
+      font-size: 0.66em;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .hrop__flow::before,
+    .hrop__flow::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--tool-border), transparent);
+    }
+
+    /* the two hero results — the numbers we want to stand out */
+    .hrop__results {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.8em;
+    }
+    .hrop__result {
+      position: relative;
+      border-radius: 0.7em;
+      padding: 2.4em 1.1em 1.2em;
+      background:
+        radial-gradient(120% 140% at 100% 0%, rgba(252, 211, 77, 0.10), transparent 60%),
+        var(--tool-card);
+      border: 1px solid var(--tool-border);
+      overflow: hidden;
+    }
+    .hrop__result--feature {
+      background:
+        radial-gradient(120% 140% at 100% 0%, rgba(252, 211, 77, 0.22), transparent 62%),
+        linear-gradient(160deg, #1f2740, var(--tool-card));
+      border-color: rgba(252, 211, 77, 0.45);
+      box-shadow: 0 0 0 1px rgba(252, 211, 77, 0.12), 0 16px 30px rgba(2, 28, 54, 0.28);
+    }
+    .hrop__result-label {
+      font-size: 0.66em;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--tool-muted-2);
+      margin-bottom: 0.5em;
+    }
+    .hrop__result-value {
+      font-family: var(--font-display);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--tool-text);
+      font-size: 2.4em;
+    }
+    .hrop__result--feature .hrop__result-value {
+      color: var(--tool-accent);
+      text-shadow: 0 0 26px rgba(252, 211, 77, 0.3);
+      font-size: 3em;
+    }
+    .hrop__result-value small {
+      font-family: var(--font-body);
+      font-size: 0.34em;
+      font-weight: 700;
+      letter-spacing: 0;
+      color: var(--tool-muted);
+      margin-left: 0.15em;
+    }
+    .hrop__result-foot {
+      margin-top: 0.6em;
+      font-size: 0.64em;
+      color: var(--tool-muted);
+    }
+    .hrop__result-tag {
+      position: absolute;
+      top: 0.9em;
+      right: 0.9em;
+      font-size: 0.56em;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.35em 0.6em;
+      border-radius: 999px;
+      background: rgba(252, 211, 77, 0.16);
+      color: var(--tool-accent);
+    }
+    @media (max-width: 420px) {
+      .hrop__inputs { grid-template-columns: 1fr; }
+    }
+
+    /* ============================================================
+       AI BUSINESS & LIFE PLANNER — bpl reveal block
+       Elements also carry .frs-* classes, so structural styling is
+       inherited. Below: only the deltas + the 4 bespoke graphics.
+       ============================================================ */
+
+    /* image-less hero: single column so no blank right gap */
+    .frs-hero__grid--copy-only { grid-template-columns: 1fr; }
+    @media (min-width: 960px) {
+      .frs-hero__grid--copy-only { grid-template-columns: 1fr; }
+      .frs-hero__grid--copy-only .frs-hero__lede { max-width: 52rem; }
+    }
+
+    /* step number badge in the accordion header title */
+    .bpl-item__title { display: inline-flex; align-items: center; gap: 0.6em; }
+    .bpl-step {
+      flex-shrink: 0;
+      width: 1.7em;
+      height: 1.7em;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-size: 0.78em;
+      font-weight: 700;
+      color: var(--brass);
+      background: rgba(201, 150, 28, 0.12);
+      box-shadow: inset 0 0 0 1px rgba(201, 150, 28, 0.35);
+    }
+    .bpl-item.is-open .bpl-step {
+      color: var(--primary);
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      box-shadow: none;
+    }
+
+    /* ── Graphic 1 · Assessment (.bpa-*) ── */
+    .bpa-qmeta {
+      font-size: 0.66em;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--tool-muted);
+      margin-bottom: 0.7em;
+    }
+    .bpa-question {
+      font-family: var(--font-display);
+      font-size: 1.05em;
+      font-weight: 700;
+      line-height: 1.3;
+      color: var(--tool-text);
+      margin-bottom: 1.2em;
+    }
+    .bpa-scale {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.5em;
+      margin-bottom: 0.7em;
+    }
+    .bpa-dot {
+      aspect-ratio: 1;
+      border-radius: 0.5em;
+      border: 1px solid var(--tool-border);
+      background: var(--tool-card-2);
+      color: var(--tool-muted-2);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.95em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: default;
+    }
+    .bpa-dot.is-selected {
+      background: linear-gradient(135deg, var(--tool-accent), var(--tool-accent-2));
+      color: #0e1422;
+      border-color: transparent;
+      box-shadow: 0 0 0 1px rgba(252, 211, 77, 0.4), 0 10px 22px rgba(252, 211, 77, 0.18);
+    }
+    .bpa-legend {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.66em;
+      color: var(--tool-muted);
+    }
+
+    /* ── Graphic 2 · Coach's Report + radar (.bpc-*) ── */
+    .bpc-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2em;
+      align-items: center;
+    }
+    @container (min-width: 360px) {
+      .bpc-grid { grid-template-columns: 1.05fr 1fr; }
+    }
+    .bpc-radar {
+      background: var(--tool-card);
+      border: 1px solid var(--tool-border);
+      border-radius: 0.7em;
+      padding: 0.8em;
+    }
+    .bpc-radar svg { width: 100%; height: auto; display: block; }
+    .bpc-radar__grid polygon { fill: none; stroke: rgba(255, 255, 255, 0.10); stroke-width: 1; }
+    .bpc-radar__spokes line { stroke: rgba(255, 255, 255, 0.08); stroke-width: 1; }
+    .bpc-radar__area {
+      fill: rgba(252, 211, 77, 0.18);
+      stroke: var(--tool-accent);
+      stroke-width: 2;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 0 8px rgba(252, 211, 77, 0.25));
+    }
+    .bpc-radar__dots circle { fill: var(--tool-accent); stroke: #0e1422; stroke-width: 1; }
+    .bpc-tag {
+      display: inline-block;
+      font-size: 0.62em;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #0e1422;
+      background: linear-gradient(135deg, var(--tool-accent), var(--tool-accent-2));
+      padding: 0.4em 0.7em;
+      border-radius: 999px;
+      margin-bottom: 0.8em;
+    }
+    .bpc-focus {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.6em;
+      padding: 0.55em 0.7em;
+      background: var(--tool-card-2);
+      border: 1px solid var(--tool-border);
+      border-radius: 0.5em;
+      margin-bottom: 0.5em;
+    }
+    .bpc-focus__label { font-size: 0.78em; font-weight: 600; color: var(--tool-text); }
+    .bpc-focus__chip {
+      font-size: 0.72em;
+      font-weight: 700;
+      color: var(--tool-accent);
+      white-space: nowrap;
+    }
+    .bpc-plan-label {
+      font-size: 0.66em;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--tool-muted);
+      margin: 1em 0 0.5em;
+    }
+    .bpc-plan {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 0.5em;
+    }
+    .bpc-plan li {
+      position: relative;
+      padding-left: 1.1em;
+      font-size: 0.76em;
+      line-height: 1.45;
+      color: var(--tool-muted-2);
+    }
+    .bpc-plan li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.5em;
+      width: 0.4em;
+      height: 0.4em;
+      border-radius: 50%;
+      background: var(--tool-accent);
+    }
+
+    /* ── Graphic 3 · Goals library (.bpg-*) ── */
+    .bpg-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.6em;
+      margin-bottom: 1em;
+    }
+    .bpg-stat {
+      background: var(--tool-card);
+      border: 1px solid var(--tool-border);
+      border-radius: 0.55em;
+      padding: 0.7em 0.6em;
+      text-align: center;
+    }
+    .bpg-stat__num {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 1.3em;
+      font-weight: 800;
+      color: var(--tool-accent);
+      line-height: 1;
+    }
+    .bpg-stat__label {
+      display: block;
+      margin-top: 0.35em;
+      font-size: 0.62em;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--tool-muted);
+    }
+    .bpg-list { display: grid; gap: 0.6em; }
+    .bpg-goal {
+      background: var(--tool-card);
+      border: 1px solid var(--tool-border);
+      border-radius: 0.6em;
+      overflow: hidden;
+    }
+    .bpg-goal.is-open { border-color: rgba(252, 211, 77, 0.4); }
+    .bpg-goal__head {
+      display: flex;
+      align-items: center;
+      gap: 0.6em;
+      padding: 0.75em 0.85em;
+    }
+    .bpg-goal__chev {
+      flex-shrink: 0;
+      width: 0.5em;
+      height: 0.5em;
+      border-right: 2px solid var(--tool-muted);
+      border-bottom: 2px solid var(--tool-muted);
+      transform: rotate(45deg);
+    }
+    .bpg-goal.is-open .bpg-goal__chev { transform: rotate(-135deg); border-color: var(--tool-accent); }
+    .bpg-goal__title {
+      flex: 1;
+      font-size: 0.84em;
+      font-weight: 600;
+      color: var(--tool-text);
+    }
+    .bpg-tag {
+      flex-shrink: 0;
+      font-size: 0.62em;
+      font-weight: 700;
+      color: var(--tool-accent);
+      background: rgba(252, 211, 77, 0.12);
+      padding: 0.35em 0.6em;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    .bpg-actions {
+      list-style: none;
+      margin: 0;
+      padding: 0 0.85em 0.85em;
+      display: grid;
+      gap: 0.45em;
+    }
+    .bpg-action {
+      display: flex;
+      align-items: center;
+      gap: 0.55em;
+      padding: 0.55em 0.7em;
+      background: var(--tool-card-2);
+      border-radius: 0.45em;
+      font-size: 0.76em;
+      color: var(--tool-muted-2);
+    }
+    .bpg-action__icon {
+      flex-shrink: 0;
+      width: 1.4em;
+      height: 1.4em;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(252, 211, 77, 0.14);
+      color: var(--tool-accent);
+    }
+    .bpg-action__icon svg { width: 0.85em; height: 0.85em; }
+
+    /* ── Graphic 4 · Reminders (.bpr-*) ── */
+    .bpr-field-label,
+    .bpr-freq__label {
+      font-size: 0.66em;
+      color: var(--tool-muted);
+      margin-bottom: 0.4em;
+    }
+    .bpr-field {
+      background: var(--tool-card-2);
+      border: 1px solid var(--tool-border);
+      border-radius: 0.5em;
+      padding: 0.8em 0.9em;
+      font-size: 0.82em;
+      line-height: 1.4;
+      color: var(--tool-text);
+      margin-bottom: 1em;
+    }
+    .bpr-reminder {
+      background: var(--tool-card-2);
+      border: 1px solid var(--tool-border);
+      border-radius: 0.6em;
+      padding: 0.9em 1em 1em;
+    }
+    .bpr-reminder__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.7em;
+    }
+    .bpr-reminder__title { font-size: 0.82em; font-weight: 700; color: var(--tool-text); }
+    .bpr-reminder__on {
+      font-size: 0.62em;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--tool-positive);
+      background: rgba(34, 197, 94, 0.14);
+      padding: 0.3em 0.6em;
+      border-radius: 999px;
+    }
+    .bpr-seg {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.3em;
+      padding: 0.25em;
+      background: rgba(0, 0, 0, 0.25);
+      border-radius: 0.5em;
+      margin-bottom: 0.8em;
+    }
+    .bpr-seg__btn {
+      border: 0;
+      border-radius: 0.4em;
+      padding: 0.5em;
+      font-size: 0.76em;
+      font-weight: 600;
+      color: var(--tool-muted-2);
+      background: transparent;
+      cursor: default;
+    }
+    .bpr-seg__btn.is-active {
+      background: linear-gradient(135deg, var(--tool-accent), var(--tool-accent-2));
+      color: #0e1422;
+      font-weight: 700;
+    }
+    .bpr-freq {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.8em;
+    }
+    .bpr-freq__value { font-size: 0.8em; font-weight: 700; color: var(--tool-text); }
+    .bpr-days { display: grid; grid-template-columns: repeat(7, 1fr); gap: 0.35em; }
+    .bpr-day {
+      aspect-ratio: 1;
+      border-radius: 0.4em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72em;
+      font-weight: 700;
+      color: var(--tool-muted);
+      background: var(--tool-card);
+      border: 1px solid var(--tool-border);
+    }
+    .bpr-day.is-on {
+      color: #0e1422;
+      background: linear-gradient(135deg, var(--tool-accent), var(--tool-accent-2));
+      border-color: transparent;
+    }
+    .bpr-footer { align-items: center; }
+    .bpr-addgoal {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5em;
+      border: 1px dashed var(--tool-border);
+      background: transparent;
+      color: var(--tool-muted-2);
+      padding: 0.5em 0.8em;
+      border-radius: 0.4em;
+      font-size: 0.76em;
+      font-weight: 600;
+      cursor: default;
+    }
+    .bpr-aiwriter {
+      font-size: 0.85em;
+      font-weight: 700;
+      color: var(--tool-accent);
+      background: rgba(252, 211, 77, 0.12);
+      padding: 0.2em 0.5em;
+      border-radius: 999px;
     }
 
     .frs-panel-breakeven__inputs {
@@ -1903,12 +2429,12 @@ $tla_active      = 'whats-inside';
             <span class="stats-bar__label">Training Modules</span>
           </div>
           <div class="stats-bar__item">
-            <span class="stats-bar__num" data-countup="8" data-countup-commas="false">8</span>
-            <span class="stats-bar__label">Disciplines</span>
+            <span class="stats-bar__num" data-countup="18" data-countup-commas="false">18</span>
+            <span class="stats-bar__label">Experienced Coaches</span>
           </div>
           <div class="stats-bar__item">
-            <span class="stats-bar__num">Live</span>
-            <span class="stats-bar__label">Every Week</span>
+            <span class="stats-bar__num">Weekly</span>
+            <span class="stats-bar__label">Live Coaching</span>
           </div>
         </div>
       </div>
@@ -1927,107 +2453,9 @@ $tla_active      = 'whats-inside';
             <p class="frs-hero__lede">Most loan originators set an income goal and hope. The AI-Driven Financial Review replaces hope with math. Tell it what you want to earn, how many hours you want to work, and how many weeks you want off. It builds the entire financial picture of your business — what your time is worth, how many loans you need, and exactly where every one of them has to come from.</p>
           </div>
 
-          <div class="frs-hero__metrics" aria-hidden="true">
-            <div class="frs-metric-stack">
-
-              <article class="frs-metric-card frs-metric-card--income" style="--metric-progress: 82%; --metric-delay: 0ms;">
-                <div class="frs-metric-card__main">
-                  <div class="frs-metric-card__topline">
-                    <span class="frs-metric-icon">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 15 4-4 3 3 5-7"/></svg>
-                    </span>
-                    Live production
-                  </div>
-                  <p class="frs-metric-card__label">Total Monthly Income</p>
-                  <p class="frs-metric-card__value"><span data-frs-count="16750" data-frs-prefix="$">$16,750</span></p>
-                  <div class="frs-metric-card__meta">
-                    <span><strong>82%</strong> of monthly target</span>
-                    <span>Target: <strong>$20,333</strong></span>
-                  </div>
-                  <div class="frs-metric-track">
-                    <div class="frs-metric-track__fill"></div>
-                  </div>
-                </div>
-                <div class="frs-metric-card__visual">
-                  <svg class="frs-metric-spark" viewBox="0 0 260 120" role="img" aria-label="">
-                    <path class="frs-metric-spark__area" d="M10 94 C34 86 42 74 64 78 C92 84 104 38 132 48 C154 56 166 34 190 39 C218 45 226 24 250 16 L250 112 L10 112 Z"></path>
-                    <path class="frs-metric-spark__line" d="M10 94 C34 86 42 74 64 78 C92 84 104 38 132 48 C154 56 166 34 190 39 C218 45 226 24 250 16"></path>
-                    <circle class="frs-metric-spark__dot" cx="250" cy="16" r="7"></circle>
-                  </svg>
-                </div>
-              </article>
-
-              <article class="frs-metric-card frs-metric-card--loans" style="--metric-progress: 100%; --metric-delay: 170ms;">
-                <div class="frs-metric-card__main">
-                  <div class="frs-metric-card__topline">
-                    <span class="frs-metric-icon">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-7h6v7"/></svg>
-                    </span>
-                    Closed business
-                  </div>
-                  <p class="frs-metric-card__label">Loans Closed This Month</p>
-                  <p class="frs-metric-card__value"><span data-frs-count="2">2</span></p>
-                  <div class="frs-metric-card__meta">
-                    <span><strong>2x</strong> monthly pace</span>
-                    <span>Target: <strong>1</strong></span>
-                  </div>
-                  <div class="frs-metric-track">
-                    <div class="frs-metric-track__fill"></div>
-                  </div>
-                </div>
-                <div class="frs-metric-card__visual frs-loan-visual">
-                  <div class="frs-loan-tiles">
-                    <span class="frs-loan-tile frs-loan-tile--closed" style="--tile-index: 0;">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                    </span>
-                    <span class="frs-loan-tile frs-loan-tile--closed" style="--tile-index: 1;">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
-                    </span>
-                    <span class="frs-loan-tile" style="--tile-index: 2;">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
-                    </span>
-                    <span class="frs-loan-tile" style="--tile-index: 3;">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14"/><path d="M5 12h14"/></svg>
-                    </span>
-                  </div>
-                  <div class="frs-loan-caption">
-                    <span><strong>2</strong> closed</span>
-                    <span>4 tracked</span>
-                  </div>
-                </div>
-              </article>
-
-              <article class="frs-metric-card frs-metric-card--rate" style="--metric-progress: 100%; --metric-delay: 340ms;">
-                <div class="frs-metric-card__main">
-                  <div class="frs-metric-card__topline">
-                    <span class="frs-metric-icon">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-                    </span>
-                    Time value
-                  </div>
-                  <p class="frs-metric-card__label">Hourly Rate of Pay</p>
-                  <p class="frs-metric-card__value"><span data-frs-count="3045" data-frs-prefix="$" data-frs-suffix="/hr">$3,045/hr</span></p>
-                  <div class="frs-metric-card__meta">
-                    <span><strong>3.6x</strong> over target</span>
-                    <span>Target: <strong>$850/hr</strong></span>
-                  </div>
-                  <div class="frs-metric-track">
-                    <div class="frs-metric-track__fill"></div>
-                  </div>
-                </div>
-                <div class="frs-metric-card__visual frs-rate-visual">
-                  <div class="frs-rate-ring">
-                    <svg viewBox="0 0 100 100">
-                      <circle class="frs-rate-ring__base" cx="50" cy="50" r="44"></circle>
-                      <circle class="frs-rate-ring__value" cx="50" cy="50" r="44"></circle>
-                    </svg>
-                    <span class="frs-rate-ring__center">3.6x</span>
-                    <span class="frs-rate-ring__badge">Ahead</span>
-                  </div>
-                </div>
-              </article>
-
-            </div>
+          <!-- Crafted metric-card graphics retired to mockups/financial-review-metric-cards.html -->
+          <div class="frs-hero__metrics frs-hero__metrics--bare" aria-hidden="true">
+            <img class="bp-screenshot" src="<?php echo TLA_BASE; ?>/assets/loan-officer-business-planning.png" alt="Loan officer reviewing their business plan with the AI-Driven Financial Review" />
           </div>
         </div>
       </div>
@@ -2092,10 +2520,7 @@ $tla_active      = 'whats-inside';
           <div class="frs-stage" aria-live="polite">
 
             <div class="frs-stage__panel is-active" data-frs-panel="1" data-tool="assumptions">
-              <span class="frs-callout frs-callout--hourly">
-                <span class="frs-callout__line"></span>
-                <span class="frs-callout__pill">Your true hourly rate</span>
-              </span>
+              <!-- Redesigned graphic carries its own "Your number" emphasis; external callout removed. -->
             </div>
 
             <div class="frs-stage__panel" data-frs-panel="2" data-tool="breakeven">
@@ -2129,36 +2554,52 @@ $tla_active      = 'whats-inside';
       <div class="frs-tool">
         <div class="frs-tool__topbar">
           <span class="frs-tool__topbar-icon" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M9 3v2h6V3"/><path d="M9 11h6M9 15h4"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
           </span>
           <div>
-            <p class="frs-tool__topbar-title">Financial Planning Assessment</p>
-            <p class="frs-tool__topbar-subtitle">Build your financial roadmap</p>
+            <p class="frs-tool__topbar-title">Hourly Rate of Pay</p>
+            <p class="frs-tool__topbar-subtitle">What every hour of your time is worth</p>
           </div>
         </div>
         <div class="frs-tool__content">
-          <p class="frs-tool__breadcrumb">Financial Planning <span class="frs-tool__breadcrumb-sep">›</span><span class="frs-tool__breadcrumb-active">Assessment</span></p>
-          <div class="frs-tool__progress">
-            <div class="frs-tool__progress-row">
-              <span>Step 2 of 6: Assumptions</span>
-              <span class="frs-tool__progress-pct">33%</span>
+          <div class="hrop">
+
+            <span class="hrop__eyebrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M4 19h16"/><path d="m7 15 4-4 3 3 5-7"/></svg>
+              Your assumptions
+            </span>
+
+            <div class="hrop__inputs">
+              <div class="hrop__chip">
+                <p class="hrop__chip-label">Desired annual income</p>
+                <p class="hrop__chip-value">$400,000</p>
+              </div>
+              <div class="hrop__chip">
+                <p class="hrop__chip-label">Hours per week</p>
+                <p class="hrop__chip-value">45 <small>hrs</small></p>
+              </div>
+              <div class="hrop__chip">
+                <p class="hrop__chip-label">Vacation weeks</p>
+                <p class="hrop__chip-value">3 <small>wks</small></p>
+              </div>
             </div>
-            <div class="frs-tool__progress-bar"><div class="frs-tool__progress-fill" style="width:33%"></div></div>
-          </div>
-          <div class="frs-tool__panel">
-            <h3 class="frs-tool__panel-title">Core Assumptions</h3>
-            <div class="frs-panel-assumptions">
-              <div class="frs-field"><p class="frs-field__label">my average gross income per loan</p><div class="frs-field__input"><span class="frs-field__prefix">$</span>4000</div></div>
-              <div class="frs-field"><p class="frs-field__label">my desired annual income</p><div class="frs-field__input"><span class="frs-field__prefix">$</span>400000</div></div>
-              <div class="frs-field"><p class="frs-field__label">Hours I desire to work per week</p><div class="frs-field__input">45</div></div>
-              <div class="frs-field"><p class="frs-field__label">weeks I desire to take for vacation annually</p><div class="frs-field__input">3</div></div>
-              <div class="frs-field frs-field--highlight"><p class="frs-field__label">number of weeks I will work annually</p><div class="frs-field__input">49</div></div>
-              <div class="frs-field frs-field--highlight"><p class="frs-field__label">my desired hourly rate of pay</p><div class="frs-field__input">$181</div></div>
+
+            <div class="hrop__flow">The math</div>
+
+            <div class="hrop__results">
+              <div class="hrop__result">
+                <p class="hrop__result-label">Weeks you’ll work this year</p>
+                <p class="hrop__result-value">49 <small>weeks</small></p>
+                <p class="hrop__result-foot">52 weeks − 3 vacation</p>
+              </div>
+              <div class="hrop__result hrop__result--feature">
+                <span class="hrop__result-tag">Your number</span>
+                <p class="hrop__result-label">Your true hourly rate of pay</p>
+                <p class="hrop__result-value">$181<small>/hr</small></p>
+                <p class="hrop__result-foot">$400K ÷ 49 wks ÷ 45 hrs</p>
+              </div>
             </div>
-          </div>
-          <div class="frs-tool__footer">
-            <button class="frs-tool__btn frs-tool__btn--back">‹ Back</button>
-            <button class="frs-tool__btn frs-tool__btn--next">Next ›</button>
+
           </div>
         </div>
       </div>
@@ -2399,24 +2840,300 @@ $tla_active      = 'whats-inside';
     </template>
 
     <!-- ============================================================
-         AI BUSINESS & LIFE PLANNER — hero-format showcase
+         AI BUSINESS & LIFE PLANNER — hero copy
          ============================================================ -->
     <section class="frs-section">
       <div class="frs-section__inner">
-        <div class="frs-hero__grid">
+        <div class="frs-hero__grid frs-hero__grid--copy-only">
 
           <div class="frs-hero__copy">
-            <h2 class="frs-hero__title">AI Business &amp; Life Planner Tool</h2>
+            <span class="eyebrow"><span class="eyebrow__text">AI Business Planning</span></span>
+            <h2 class="frs-hero__title">Turn self-awareness into a year you actually <em>run</em>.</h2>
             <p class="frs-hero__subhead">No more <em>Monday morning paralysis</em>.</p>
-            <p class="frs-hero__lede">Most loan officers know what they should be doing. They just never have a clear plan for the week in front of them. This tool fixes that. It takes your goals &mdash; real goals, not generic ones &mdash; and builds a specific execution plan that tells you exactly what to work on today, this week, this quarter. The bottlenecks get diagnosed. The calendar gets designed around the work that actually closes loans.</p>
+            <p class="frs-hero__lede">Most loan officers know what they should be doing. They just never have a clear plan for the week in front of them. This tool fixes that. It diagnoses your business across the eight disciplines of origination mastery, turns it into a personalized coach&rsquo;s report, and builds a working plan &mdash; real goals, real action items &mdash; that tells you exactly what to work on today, this week, this quarter.</p>
           </div>
 
-          <div class="frs-hero__metrics frs-hero__metrics--bare" aria-hidden="true">
-            <img class="bp-screenshot" src="<?php echo TLA_BASE; ?>/assets/ai-business-planning-2.png" alt="AI Business &amp; Life Planner screenshot" />
-          </div>
         </div>
       </div>
     </section>
+
+    <!-- ============================================================
+         AI BUSINESS & LIFE PLANNER — click-to-reveal (Assess → Diagnose → Plan → Execute)
+         Scoped .bpl-* namespace; styling reuses .frs-* classes.
+         ============================================================ -->
+    <section class="frs-section">
+      <div class="frs-section__inner">
+        <div class="bpl-reveal__grid frs-reveal__grid">
+
+          <ol class="bpl-accordion frs-accordion">
+
+            <li class="bpl-item frs-item is-open" data-bpl-item="1">
+              <button class="bpl-item__header frs-item__header" type="button" aria-expanded="true" aria-controls="bpl-panel-1">
+                <span class="bpl-item__title frs-item__title"><span class="bpl-step">1</span>Business Assessment</span>
+                <span class="bpl-item__chevron frs-item__chevron" aria-hidden="true"></span>
+              </button>
+              <div id="bpl-panel-1" class="bpl-item__panel frs-item__panel" role="region">
+                <p class="bpl-item__sub frs-item__sub">See your entire business clearly — for the first time.</p>
+                <p class="bpl-item__body frs-item__body">A 40-question diagnostic across the eight disciplines of origination mastery — sales, marketing, time management, team leadership, and more. You rate yourself one to five. Ten minutes later, you have the most honest picture of your business you&rsquo;ve ever seen.</p>
+                <div class="bpl-item__inline frs-item__inline" data-bpl-tool="assess"></div>
+              </div>
+            </li>
+
+            <li class="bpl-item frs-item" data-bpl-item="2">
+              <button class="bpl-item__header frs-item__header" type="button" aria-expanded="false" aria-controls="bpl-panel-2">
+                <span class="bpl-item__title frs-item__title"><span class="bpl-step">2</span>AI Coach&rsquo;s Report</span>
+                <span class="bpl-item__chevron frs-item__chevron" aria-hidden="true"></span>
+              </button>
+              <div id="bpl-panel-2" class="bpl-item__panel frs-item__panel" role="region">
+                <p class="bpl-item__sub frs-item__sub">Your personalized roadmap, generated by AI.</p>
+                <p class="bpl-item__body frs-item__body">The moment you finish your assessment, AI builds you a personal coach&rsquo;s report. Your strengths. Your blind spots. The exact areas where focus will move the needle most. Not generic advice — your business, your gaps, your roadmap.</p>
+                <div class="bpl-item__inline frs-item__inline" data-bpl-tool="coach"></div>
+              </div>
+            </li>
+
+            <li class="bpl-item frs-item" data-bpl-item="3">
+              <button class="bpl-item__header frs-item__header" type="button" aria-expanded="false" aria-controls="bpl-panel-3">
+                <span class="bpl-item__title frs-item__title"><span class="bpl-step">3</span>Goals &amp; Action Items Library</span>
+                <span class="bpl-item__chevron frs-item__chevron" aria-hidden="true"></span>
+              </button>
+              <div id="bpl-panel-3" class="bpl-item__panel frs-item__panel" role="region">
+                <p class="bpl-item__sub frs-item__sub">The playbook the top producers actually run.</p>
+                <p class="bpl-item__body frs-item__body">86 professionally written SMART goals. Over 950 action items. All organized by the eight disciplines and built from fifteen years of Tim Braheem coaching top producers. The AI surfaces the goals most relevant to your results — you decide which ones become your plan.</p>
+                <div class="bpl-item__inline frs-item__inline" data-bpl-tool="goals"></div>
+              </div>
+            </li>
+
+            <li class="bpl-item frs-item" data-bpl-item="4">
+              <button class="bpl-item__header frs-item__header" type="button" aria-expanded="false" aria-controls="bpl-panel-4">
+                <span class="bpl-item__title frs-item__title"><span class="bpl-step">4</span>Custom Goals &amp; Automated Reminders</span>
+                <span class="bpl-item__chevron frs-item__chevron" aria-hidden="true"></span>
+              </button>
+              <div id="bpl-panel-4" class="bpl-item__panel frs-item__panel" role="region">
+                <p class="bpl-item__sub frs-item__sub">Make the plan yours — and make it stick.</p>
+                <p class="bpl-item__body frs-item__body">Edit any action item. Delete the ones that don&rsquo;t fit. Or write your own — the AI Goal Writer helps you build custom goals tailored to your business. Then set your reminders: daily, weekly, or any rhythm that fits your week. Because the originators who win are the ones with the best follow-through.</p>
+                <div class="bpl-item__inline frs-item__inline" data-bpl-tool="remind"></div>
+              </div>
+            </li>
+
+          </ol>
+
+          <div class="bpl-stage frs-stage" aria-live="polite">
+            <div class="bpl-stage__panel frs-stage__panel is-active" data-bpl-panel="1" data-bpl-tool="assess"></div>
+            <div class="bpl-stage__panel frs-stage__panel" data-bpl-panel="2" data-bpl-tool="coach"></div>
+            <div class="bpl-stage__panel frs-stage__panel" data-bpl-panel="3" data-bpl-tool="goals"></div>
+            <div class="bpl-stage__panel frs-stage__panel" data-bpl-panel="4" data-bpl-tool="remind"></div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Tool templates for AI Business & Life Planner showcase -->
+    <template id="tpl-bpl-assess">
+      <div class="frs-tool">
+        <div class="frs-tool__topbar">
+          <span class="frs-tool__topbar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 3v2h6V3"/><path d="m9 12 2 2 4-4"/></svg>
+          </span>
+          <div>
+            <p class="frs-tool__topbar-title">Business Assessment</p>
+            <p class="frs-tool__topbar-subtitle">Rate yourself, 1 to 5</p>
+          </div>
+        </div>
+        <div class="frs-tool__content">
+          <div class="frs-tool__progress">
+            <div class="frs-tool__progress-row">
+              <span>Step 1 of 8: Essential Knowledge</span>
+              <span class="frs-tool__progress-pct">13%</span>
+            </div>
+            <div class="frs-tool__progress-bar"><div class="frs-tool__progress-fill" style="width:13%"></div></div>
+          </div>
+          <div class="frs-tool__panel">
+            <p class="bpa-qmeta">Question 4 of 40</p>
+            <p class="bpa-question">I am an expert on how financial markets and economic factors affect interest rates.</p>
+            <div class="bpa-scale">
+              <button class="bpa-dot" type="button" tabindex="-1">1</button>
+              <button class="bpa-dot" type="button" tabindex="-1">2</button>
+              <button class="bpa-dot" type="button" tabindex="-1">3</button>
+              <button class="bpa-dot is-selected" type="button" tabindex="-1">4</button>
+              <button class="bpa-dot" type="button" tabindex="-1">5</button>
+            </div>
+            <div class="bpa-legend">
+              <span>Strongly disagree</span>
+              <span>Strongly agree</span>
+            </div>
+          </div>
+          <div class="frs-tool__footer">
+            <button class="frs-tool__btn frs-tool__btn--back">‹ Back</button>
+            <button class="frs-tool__btn frs-tool__btn--next">Next ›</button>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="tpl-bpl-coach">
+      <div class="frs-tool">
+        <div class="frs-tool__topbar">
+          <span class="frs-tool__topbar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v2"/><path d="M5.5 6.5 7 8"/><path d="M3 13h2"/><path d="M19 13h2"/><path d="M18.5 6.5 17 8"/><rect x="7" y="9" width="10" height="9" rx="2.5"/><path d="M10 13v1"/><path d="M14 13v1"/><path d="M9 21h6"/></svg>
+          </span>
+          <div>
+            <p class="frs-tool__topbar-title">AI Coach&rsquo;s Report</p>
+            <p class="frs-tool__topbar-subtitle">Your strengths and focus areas</p>
+          </div>
+        </div>
+        <div class="frs-tool__content">
+          <div class="bpc-grid">
+            <div class="bpc-radar">
+              <svg viewBox="0 0 220 220" role="img" aria-label="Wheel of Life radar chart across eight disciplines">
+                <g class="bpc-radar__grid">
+                  <polygon points="110,30 166.6,53.4 190,110 166.6,166.6 110,190 53.4,166.6 30,110 53.4,53.4"/>
+                  <polygon points="110,50 151.7,68.3 170,110 151.7,151.7 110,170 68.3,151.7 50,110 68.3,68.3"/>
+                  <polygon points="110,70 136.9,83.1 150,110 136.9,136.9 110,150 83.1,136.9 70,110 83.1,83.1"/>
+                  <polygon points="110,90 122.1,97.9 130,110 122.1,122.1 110,130 97.9,122.1 90,110 97.9,97.9"/>
+                </g>
+                <g class="bpc-radar__spokes">
+                  <line x1="110" y1="110" x2="110" y2="30"/>
+                  <line x1="110" y1="110" x2="166.6" y2="53.4"/>
+                  <line x1="110" y1="110" x2="190" y2="110"/>
+                  <line x1="110" y1="110" x2="166.6" y2="166.6"/>
+                  <line x1="110" y1="110" x2="110" y2="190"/>
+                  <line x1="110" y1="110" x2="53.4" y2="166.6"/>
+                  <line x1="110" y1="110" x2="30" y2="110"/>
+                  <line x1="110" y1="110" x2="53.4" y2="53.4"/>
+                </g>
+                <!-- data polygon: per-axis radius from center (max 80). N, NE, E, SE, S, SW, W, NW -->
+                <polygon class="bpc-radar__area" points="110,62 150.3,69.7 168,110 144.5,144.5 110,158 75.1,144.9 58,110 75.1,75.1"/>
+                <g class="bpc-radar__dots">
+                  <circle cx="110" cy="62" r="3.2"/>
+                  <circle cx="150.3" cy="69.7" r="3.2"/>
+                  <circle cx="168" cy="110" r="3.2"/>
+                  <circle cx="144.5" cy="144.5" r="3.2"/>
+                  <circle cx="110" cy="158" r="3.2"/>
+                  <circle cx="75.1" cy="144.9" r="3.2"/>
+                  <circle cx="58" cy="110" r="3.2"/>
+                  <circle cx="75.1" cy="75.1" r="3.2"/>
+                </g>
+              </svg>
+            </div>
+            <div class="bpc-narrative">
+              <span class="bpc-tag">Focus Areas</span>
+              <div class="bpc-focus">
+                <span class="bpc-focus__label">Time Management</span>
+                <span class="bpc-focus__chip">11 / 25</span>
+              </div>
+              <div class="bpc-focus">
+                <span class="bpc-focus__label">Legacy &amp; Freedom</span>
+                <span class="bpc-focus__chip">13 / 25</span>
+              </div>
+              <p class="bpc-plan-label">Action Plan</p>
+              <ul class="bpc-plan">
+                <li>Protect two deep-work blocks each week before the calendar fills.</li>
+                <li>Define the one-year vision that the weekly plan ladders up to.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="tpl-bpl-goals">
+      <div class="frs-tool">
+        <div class="frs-tool__topbar">
+          <span class="frs-tool__topbar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/></svg>
+          </span>
+          <div>
+            <p class="frs-tool__topbar-title">My Plan</p>
+            <p class="frs-tool__topbar-subtitle">Goals &amp; action items</p>
+          </div>
+        </div>
+        <div class="frs-tool__content">
+          <p class="frs-tool__breadcrumb">My Plan <span class="frs-tool__breadcrumb-sep">›</span><span class="frs-tool__breadcrumb-active">Goals &amp; Actions</span></p>
+          <div class="bpg-stats">
+            <div class="bpg-stat"><span class="bpg-stat__num">86</span><span class="bpg-stat__label">Goals</span></div>
+            <div class="bpg-stat"><span class="bpg-stat__num">950+</span><span class="bpg-stat__label">Actions</span></div>
+            <div class="bpg-stat"><span class="bpg-stat__num">8</span><span class="bpg-stat__label">Disciplines</span></div>
+          </div>
+          <div class="bpg-list">
+            <div class="bpg-goal is-open">
+              <div class="bpg-goal__head">
+                <span class="bpg-goal__chev" aria-hidden="true"></span>
+                <span class="bpg-goal__title">Build a weekly database touch system</span>
+                <span class="bpg-tag">Time Management</span>
+              </div>
+              <ul class="bpg-actions">
+                <li class="bpg-action"><span class="bpg-action__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Call 10 past clients every week</li>
+                <li class="bpg-action"><span class="bpg-action__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Send a market-update note monthly</li>
+                <li class="bpg-action"><span class="bpg-action__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Tag every contact by referral potential</li>
+              </ul>
+            </div>
+            <div class="bpg-goal">
+              <div class="bpg-goal__head">
+                <span class="bpg-goal__chev" aria-hidden="true"></span>
+                <span class="bpg-goal__title">Run a structured weekly team huddle</span>
+                <span class="bpg-tag">Team &amp; Leadership</span>
+              </div>
+            </div>
+            <div class="bpg-goal">
+              <div class="bpg-goal__head">
+                <span class="bpg-goal__chev" aria-hidden="true"></span>
+                <span class="bpg-goal__title">Protect a daily morning routine</span>
+                <span class="bpg-tag">Mindset &amp; Health</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </template>
+
+    <template id="tpl-bpl-remind">
+      <div class="frs-tool">
+        <div class="frs-tool__topbar">
+          <span class="frs-tool__topbar-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>
+          </span>
+          <div>
+            <p class="frs-tool__topbar-title">Edit Action</p>
+            <p class="frs-tool__topbar-subtitle">Make it yours</p>
+          </div>
+        </div>
+        <div class="frs-tool__content">
+          <div class="frs-tool__panel">
+            <p class="bpr-field-label">Action</p>
+            <div class="bpr-field">Block 90 minutes every morning for revenue-generating activity.</div>
+
+            <div class="bpr-reminder">
+              <div class="bpr-reminder__head">
+                <span class="bpr-reminder__title">Reminder</span>
+                <span class="bpr-reminder__on">On</span>
+              </div>
+              <div class="bpr-seg">
+                <button class="bpr-seg__btn is-active" type="button" tabindex="-1">Ongoing</button>
+                <button class="bpr-seg__btn" type="button" tabindex="-1">Per Week</button>
+              </div>
+              <div class="bpr-freq">
+                <span class="bpr-freq__label">Frequency</span>
+                <span class="bpr-freq__value">7× per week</span>
+              </div>
+              <div class="bpr-days">
+                <span class="bpr-day is-on">M</span>
+                <span class="bpr-day is-on">T</span>
+                <span class="bpr-day is-on">W</span>
+                <span class="bpr-day is-on">T</span>
+                <span class="bpr-day is-on">F</span>
+                <span class="bpr-day is-on">S</span>
+                <span class="bpr-day is-on">S</span>
+              </div>
+            </div>
+          </div>
+          <div class="frs-tool__footer bpr-footer">
+            <button class="bpr-addgoal" type="button" tabindex="-1">+ Add Custom Goal <span class="bpr-aiwriter">AI Goal Writer</span></button>
+            <button class="frs-tool__btn frs-tool__btn--next">Save</button>
+          </div>
+        </div>
+      </div>
+    </template>
 
     <!-- ============================================================
          AI BUSINESS AND LIFE COACHES — grid around centered phone image
@@ -2984,7 +3701,7 @@ $tla_active      = 'whats-inside';
           <a class="close-section-action close-section-action--primary" href="/join/">
             <span>
               <span class="close-section-action__label">Join The Loan Atlas</span>
-              <span class="close-section-action__hint">See plans, pricing, and what's inside membership</span>
+              <span class="close-section-action__hint">View membership options and get access today.</span>
             </span>
             <span class="close-section-action__arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
@@ -2992,8 +3709,8 @@ $tla_active      = 'whats-inside';
           </a>
           <a class="close-section-action close-section-action--secondary" href="/consultation/">
             <span>
-              <span class="close-section-action__label">Book a Free Coaching Session</span>
-              <span class="close-section-action__hint">45 minutes with our team — build your growth plan</span>
+              <span class="close-section-action__label">Book Your Free Coaching Session</span>
+              <span class="close-section-action__hint">Start building your growth plan.</span>
             </span>
             <span class="close-section-action__arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
@@ -3052,8 +3769,11 @@ $tla_active      = 'whats-inside';
         });
       });
 
-      var items = Array.prototype.slice.call(document.querySelectorAll('.frs-item'));
-      var stagePanels = Array.prototype.slice.call(document.querySelectorAll('.frs-stage__panel'));
+      // Scope to the Financial Review grid only — the Business Planner block reuses
+      // .frs-* classes for styling but is driven by its own scoped IIFE below.
+      var frsRoot = document.querySelector('.frs-reveal__grid:not(.bpl-reveal__grid)');
+      var items = frsRoot ? Array.prototype.slice.call(frsRoot.querySelectorAll('.frs-item')) : [];
+      var stagePanels = frsRoot ? Array.prototype.slice.call(frsRoot.querySelectorAll('.frs-stage__panel')) : [];
 
       function openItem(target) {
         var targetIndex = target.getAttribute('data-frs-item');
@@ -3080,6 +3800,52 @@ $tla_active      = 'whats-inside';
           } else if (e.key === 'ArrowUp') {
             e.preventDefault();
             items[(idx - 1 + items.length) % items.length].querySelector('.frs-item__header').focus();
+          }
+        });
+      });
+    })();
+  </script>
+
+  <script>
+    /* AI Business & Life Planner showcase — scoped to .bpl-reveal__grid so it never touches the Financial Review block */
+    (function () {
+      var root = document.querySelector('.bpl-reveal__grid');
+      if (!root) return;
+
+      root.querySelectorAll('[data-bpl-tool]').forEach(function (slot) {
+        var key = slot.getAttribute('data-bpl-tool');
+        var tpl = document.getElementById('tpl-bpl-' + key);
+        if (tpl) slot.appendChild(tpl.content.cloneNode(true));
+      });
+
+      var items = Array.prototype.slice.call(root.querySelectorAll('.bpl-item'));
+      var stagePanels = Array.prototype.slice.call(root.querySelectorAll('.bpl-stage__panel'));
+
+      function openItem(target) {
+        var idx = target.getAttribute('data-bpl-item');
+        items.forEach(function (item) {
+          var isTarget = item === target;
+          item.classList.toggle('is-open', isTarget);
+          item.querySelector('.bpl-item__header').setAttribute('aria-expanded', isTarget ? 'true' : 'false');
+        });
+        stagePanels.forEach(function (panel) {
+          panel.classList.toggle('is-active', panel.getAttribute('data-bpl-panel') === idx);
+        });
+      }
+
+      items.forEach(function (item, i) {
+        var header = item.querySelector('.bpl-item__header');
+        header.addEventListener('click', function () {
+          if (item.classList.contains('is-open')) return;
+          openItem(item);
+        });
+        header.addEventListener('keydown', function (e) {
+          if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            items[(i + 1) % items.length].querySelector('.bpl-item__header').focus();
+          } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            items[(i - 1 + items.length) % items.length].querySelector('.bpl-item__header').focus();
           }
         });
       });

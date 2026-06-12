@@ -517,7 +517,7 @@ $tla_active      = '';
 
           <a class="gallery-card" href="/whats-inside/">
             <div class="gallery-card__media">
-              <img src="<?php echo TLA_BASE; ?>/assets/performance-coach.png" alt="On-Demand Training"
+              <img src="<?php echo TLA_BASE; ?>/assets/faculty-header.png" alt="On-Demand Training"
                 style="width:100%;height:100%;object-fit:cover;display:block;" />
               <div class="gallery-card__media-fade" aria-hidden="true"></div>
             </div>
@@ -537,7 +537,7 @@ $tla_active      = '';
 
           <a class="gallery-card" href="/whats-inside/">
             <div class="gallery-card__media">
-              <img src="<?php echo TLA_BASE; ?>/assets/weekly-coaching.png" alt="Talk to Tim live coaching session"
+              <img src="<?php echo TLA_BASE; ?>/assets/what%27s-inside-masterclass.jpg" alt="Talk to Tim live coaching session"
                 style="width:100%;height:100%;object-fit:cover;display:block;" />
               <div class="gallery-card__media-fade" aria-hidden="true"></div>
             </div>
@@ -864,7 +864,7 @@ $tla_active      = '';
         <div class="close-section__copy" data-reveal="up">
           <span class="close-section__eyebrow">Start Your Transformation</span>
           <h2 id="final-cta-heading" class="close-section__title">
-            Take Control of Your Production, <em>Your Income, and Your Life.</em>
+            Take Control of <em>Your Production, Your Income, and Your Life.</em>
           </h2>
           <p class="close-section__sub">
             If you're tired of inconsistent months, if you're done improvising your way through a business that should
@@ -877,7 +877,7 @@ $tla_active      = '';
           <a class="close-section-action close-section-action--primary" href="/join/">
             <span>
               <span class="close-section-action__label">Join The Loan Atlas</span>
-              <span class="close-section-action__hint">See plans, pricing, and what's inside membership</span>
+              <span class="close-section-action__hint">View membership options and get access today.</span>
             </span>
             <span class="close-section-action__arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
@@ -889,8 +889,8 @@ $tla_active      = '';
           </a>
           <a class="close-section-action close-section-action--secondary" href="/consultation/">
             <span>
-              <span class="close-section-action__label">Book a Free Coaching Session</span>
-              <span class="close-section-action__hint">45 minutes with our team — build your growth plan</span>
+              <span class="close-section-action__label">Book Your Free Coaching Session</span>
+              <span class="close-section-action__hint">Start building your growth plan.</span>
             </span>
             <span class="close-section-action__arrow" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"
