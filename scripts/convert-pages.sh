@@ -145,5 +145,8 @@ convert consultation-mastermind consultation-mastermind-2026  ""
 convert privacy-policy          privacy-policy                ""
 convert terms-of-use            terms-of-use                  ""
 convert end-user-agreement      end-user-agreement            ""
+convert ai-masterplan           ai-masterplan                 ""
+convert 5-scripts               5-scripts                     ""
+convert contact                 contact                       ""
 
 echo "Done."

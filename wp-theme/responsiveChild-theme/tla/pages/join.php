@@ -525,7 +525,7 @@ $tla_active      = 'join';
               <p class="plan__desc">For teams, branches, and organizations</p>
             </div>
             <div class="plan__price plan__price--custom">Custom Pricing</div>
-            <a class="btn btn--ghost btn--block" href="/consultation/">Get Your Custom Quote</a>
+            <a class="btn btn--ghost btn--block" href="/enterprise-consultation/">Get Your Custom Quote</a>
             <ul class="checklist">
               <li>
                 <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
@@ -708,11 +708,6 @@ $tla_active      = 'join';
             <details class="faq-item">
               <summary>Can I switch from monthly to annual later?</summary>
               <div class="faq-item__body">Yes. Many members start with monthly billing and move to annual at renewal once they've seen the platform pay for itself.</div>
-            </details>
-
-            <details class="faq-item">
-              <summary>Do you offer team or enterprise pricing?</summary>
-              <div class="faq-item__body">Yes — for branches, divisions, and full organizations. <a href="/consultation/" class="text-brass" style="font-weight: 600;">Explore Enterprise Pricing →</a></div>
             </details>
 
           </div>

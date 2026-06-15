@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mockup — AI Business Planner product description section</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../public/css/styles.css" />
+  <style>
+    /* ─────────────────────────────────────────────────────────────
+       Mockup: AI Business & Life Planner product-description section.
+       Inspired by the Circle "AI-enabled financial infrastructure"
+       layout — centered heading/intro, then a two-column row with a
+       soft gradient panel holding overlapping product UI screenshots
+       on the left and a stacked feature list + CTAs on the right.
+
+       Brand-adapted: the Circle blue gradient is swapped for the TLA
+       brass/midnight palette. All component CSS is scoped to `.aip-*`
+       so it can be lifted into whats-inside.html (or a page) without
+       colliding with existing blocks. Uses real planner screenshots
+       from public/assets/.
+       ───────────────────────────────────────────────────────────── */
+    body { background: var(--background); }
+
+    .mockup-label {
+      max-width: var(--container-max);
+      margin: 40px auto 0;
+      padding-inline: var(--gutter);
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    .mockup-label span { color: var(--brass); }
+
+    /* ── Section shell ── */
+    .aip-section { padding-block: clamp(48px, 8vw, 96px); }
+    .aip-container {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+
+    /* ── Centered intro ── */
+    .aip-intro {
+      max-width: 760px;
+      margin-inline: auto;
+      text-align: center;
+    }
+    .aip-eyebrow {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin: 0 0 var(--space-sm);
+    }
+    .aip-title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2.25rem, 5vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--primary);
+      margin: 0 0 var(--space-md);
+    }
+    .aip-lead {
+      font-family: var(--font-body);
+      font-size: clamp(1.0625rem, 1.6vw, 1.1875rem);
+      line-height: 1.6;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+
+    /* ── Two-column body ── */
+    .aip-body {
+      margin-top: clamp(40px, 6vw, 72px);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(32px, 5vw, 56px);
+      align-items: center;
+    }
+    @media (min-width: 960px) {
+      .aip-body { grid-template-columns: 1.05fr 1fr; }
+    }
+
+    /* ── Left: gradient panel with overlapping UI screenshots ── */
+    .aip-visual {
+      position: relative;
+      border-radius: var(--radius-3xl);
+      padding: clamp(28px, 5vw, 56px);
+      /* brand brass→midnight wash, echoing the reference's soft gradient */
+      background:
+        radial-gradient(120% 120% at 85% 10%, rgba(234, 194, 90, 0.42) 0%, rgba(234, 194, 90, 0) 55%),
+        linear-gradient(150deg, #fbf3dd 0%, #f3e6c2 38%, #e9eef6 100%);
+      box-shadow: var(--shadow-lg);
+      isolation: isolate;
+      min-height: 380px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* faint grid texture, very subtle */
+    .aip-visual::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background-image:
+        linear-gradient(rgba(2, 28, 54, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(2, 28, 54, 0.04) 1px, transparent 1px);
+      background-size: 28px 28px;
+      mask-image: radial-gradient(120% 120% at 50% 30%, #000 30%, transparent 80%);
+      z-index: -1;
+    }
+
+    .aip-shots {
+      position: relative;
+      width: 100%;
+      max-width: 560px;
+    }
+    .aip-shot {
+      border-radius: var(--radius-2xl);
+      background: #fff;
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.9);
+    }
+    .aip-shot img { display: block; width: 100%; height: auto; }
+
+    /* back/primary panel */
+    .aip-shot--back {
+      width: 100%;
+    }
+    /* overlapping inset card, lower-left, echoing the reference */
+    .aip-shot--front {
+      position: absolute;
+      left: -6%;
+      bottom: -14%;
+      width: 52%;
+      box-shadow: var(--shadow-xl);
+    }
+    @media (max-width: 540px) {
+      .aip-shot--front { width: 58%; left: -2%; bottom: -10%; }
+    }
+
+    /* ── Right: feature list + CTAs ── */
+    .aip-features {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(22px, 3vw, 30px);
+    }
+    .aip-feature__title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.3125rem;
+      line-height: 1.25;
+      color: var(--primary);
+      margin: 0 0 6px;
+    }
+    .aip-feature__body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--on-surface-variant);
+      margin: 0;
+      max-width: 46ch;
+    }
+
+    .aip-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+      margin-top: var(--space-xs);
+    }
+    .aip-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      letter-spacing: 0.01em;
+      padding: 0.875rem 1.5rem;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+    .aip-btn--primary {
+      background: var(--primary);
+      color: var(--on-primary);
+      box-shadow: var(--shadow);
+    }
+    .aip-btn--primary:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-lg);
+    }
+    .aip-btn--ghost {
+      background: transparent;
+      color: var(--primary);
+      border: 1px solid var(--outline-variant);
+    }
+    .aip-btn--ghost:hover {
+      border-color: var(--primary);
+      background: rgba(2, 28, 54, 0.03);
+    }
+  </style>
+</head>
+<body>
+  <p class="mockup-label">Mockup · <span>AI Business &amp; Life Planner — product description section</span></p>
+
+  <section class="aip-section">
+    <div class="aip-container">
+
+      <div class="aip-intro">
+        <span class="aip-eyebrow">The AI Business &amp; Life Planner</span>
+        <h2 class="aip-title">An operating system for the business you actually want</h2>
+        <p class="aip-lead">
+          The Loan Atlas planner turns your goals into a living plan — assessing where you
+          stand today, modeling what's possible, and translating it into the daily actions
+          that move the numbers. Built for loan officers who want to grow on purpose.
+        </p>
+      </div>
+
+      <div class="aip-body">
+
+        <!-- Left: gradient panel with overlapping product screenshots -->
+        <div class="aip-visual">
+          <div class="aip-shots">
+            <div class="aip-shot aip-shot--back">
+              <img src="../public/assets/ai-business-planning-screenshot.png"
+                   alt="AI Business Planner dashboard showing the goal-planning workspace" />
+            </div>
+            <div class="aip-shot aip-shot--front">
+              <img src="../public/assets/HOME-business-planning-wheel.png"
+                   alt="Business planning wheel breaking goals into balanced focus areas" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: feature list + CTAs -->
+        <div class="aip-features">
+          <div class="aip-feature">
+            <h3 class="aip-feature__title">Know exactly where you stand</h3>
+            <p class="aip-feature__body">
+              A guided assessment maps your production, pipeline, and habits into a clear
+              baseline — so every decision starts from reality, not guesswork.
+            </p>
+          </div>
+
+          <div class="aip-feature">
+            <h3 class="aip-feature__title">Model the year you want</h3>
+            <p class="aip-feature__body">
+              Set income and growth targets and watch the planner work backward into the
+              loan volume, conversion, and activity that get you there.
+            </p>
+          </div>
+
+          <div class="aip-feature">
+            <h3 class="aip-feature__title">Turn the plan into daily action</h3>
+            <p class="aip-feature__body">
+              Goals become prioritized, time-bound action items the AI keeps in front of
+              you — closing the gap between intention and execution.
+            </p>
+          </div>
+
+          <div class="aip-actions">
+            <a class="aip-btn aip-btn--primary" href="#">Start your plan</a>
+            <a class="aip-btn aip-btn--ghost" href="#">See what's inside</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</body>
+</html>

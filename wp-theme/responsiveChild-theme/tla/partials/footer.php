@@ -42,7 +42,7 @@ if ( ! defined( 'ABSPATH' ) ) { exit; }
           <a class="site-footer__link" href="/privacy-policy/">Privacy Policy</a>
           <a class="site-footer__link" href="/terms-of-use/">Terms of Use</a>
           <a class="site-footer__link" href="/end-user-agreement/">End User Agreement</a>
-          <a class="site-footer__link" href="#">Contact</a>
+          <a class="site-footer__link" href="/contact/">Contact</a>
         </nav>
       </div>
     </div>
