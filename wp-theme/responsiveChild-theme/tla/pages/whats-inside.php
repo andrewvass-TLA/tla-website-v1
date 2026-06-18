@@ -557,16 +557,44 @@ $tla_active      = 'whats-inside';
       width: 44px;
       height: 2px;
     }
-    .disc-clusters .discipline-card__num {
-      color: rgba(201, 150, 28, 0.55);
-      font-size: 2.75rem;
+    .disc-clusters .discipline-card__num { display: none; }
+    /* Blue gradient discipline cards (scoped to this section) */
+    .disc-clusters .discipline-card {
+      background: linear-gradient(135deg, #0a1628, #131b2e, #1e293b);
+      border-color: rgba(255, 255, 255, 0.08);
     }
+    .disc-clusters .discipline-card:hover {
+      border-color: rgba(234, 194, 90, 0.4);
+      box-shadow: 0 8px 28px rgba(2, 28, 54, 0.28);
+    }
+    .disc-clusters .discipline-card__title {
+      font-size: 1.375rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: var(--space-sm);
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .disc-clusters .discipline-card__desc { color: rgba(255, 255, 255, 0.72); }
     .disc-clusters .quote-card {
       flex: none;
       width: 100%;
       max-width: none;
       margin: var(--space-lg) 0 0;
     }
+    /* Two testimonials side by side */
+    .quotes-pair {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      margin-top: var(--space-xl);
+    }
+    @media (min-width: 760px) {
+      .quotes-pair { grid-template-columns: 1fr 1fr; }
+    }
+    .quotes-pair .quote-card--block { margin: 0; }
     /* Block-level inline testimonial — used in section bodies */
     .quote-card--block {
       flex: none;
@@ -576,6 +604,7 @@ $tla_active      = 'whats-inside';
     }
     .quote-card--on-dark .quote-card__quote { color: rgba(255, 255, 255, 0.7); }
     .quote-card--on-dark .quote-card__name { color: #ffffff; }
+
 
     /* Community section — 2x2 grid of vertical YouTube Shorts */
     .wi-shorts {
@@ -675,6 +704,38 @@ $tla_active      = 'whats-inside';
       overflow: hidden;
     }
     .frs-section + .frs-section { padding-top: 0; }
+    .frs-section--grey { background: var(--background); }
+
+    /* White card wrapping the tab content — elevated white panel on the grey section. */
+    .frs-section--grey .frs-tabs__card {
+      background: #ffffff;
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-3xl);
+      box-shadow: 0 30px 70px rgba(2, 28, 54, 0.22);
+      padding: clamp(28px, 4vw, 56px);
+      max-width: 1060px;
+      margin-inline: auto;
+    }
+
+    /* Tool-section intro — small image left, heading/body right */
+    .frs-intro {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      align-items: center;
+      margin-bottom: var(--space-xl);
+    }
+    @media (min-width: 760px) {
+      .frs-intro { grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: clamp(32px, 4vw, 56px); }
+    }
+    .frs-intro__media img {
+      width: 100%;
+      max-width: 320px;
+      height: auto;
+      display: block;
+      border-radius: var(--radius-2xl);
+    }
+    .frs-intro__copy { margin-bottom: 0; }
     .frs-section__inner {
       max-width: var(--container-max);
       margin-inline: auto;
@@ -1287,6 +1348,237 @@ $tla_active      = 'whats-inside';
     }
     .frs-stage__panel.is-active { display: block; }
 
+    /* ── AI Financial Review — TABBED SHOWCASE ─────────────────────────── */
+    .frs-tabs__head { margin-bottom: var(--space-lg); }
+    .frs-tabs__eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6em;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.0625rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: var(--space-md);
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .frs-tabs__eyebrow::before {
+      content: "";
+      width: 32px;
+      height: 3px;
+      border-radius: 2px;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+    }
+    .frs-tabs__title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 1.4rem + 2.4vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      color: var(--primary);
+      margin: 0.2rem 0 var(--space-md);
+      text-wrap: balance;
+    }
+    .frs-tabs__title em {
+      font-style: normal;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .frs-tabs__lede {
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--on-surface-variant);
+      max-width: 46rem;
+      margin: 0;
+    }
+    .frs-tabs__bar {
+      display: flex;
+      gap: 6px;
+      padding: 6px;
+      margin: 0 0 var(--space-lg);
+      width: max-content;
+      max-width: 100%;
+      background: var(--surface-container-low);
+      border: 1px solid var(--outline-variant);
+      border-radius: 999px;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .frs-tabs__bar::-webkit-scrollbar { display: none; }
+    .frs-tab {
+      flex: 0 0 auto;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      color: var(--on-surface-variant);
+      padding: 10px 20px;
+      border-radius: 999px;
+      transition: background 180ms ease, color 180ms ease;
+      white-space: nowrap;
+    }
+    .frs-tab:hover { color: var(--primary); }
+    .frs-tab.is-active { background: var(--primary); color: #ffffff; }
+    .frs-tab:focus-visible { outline: 2px solid var(--brass); outline-offset: 2px; }
+
+    .frs-tabs__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+    @media (min-width: 860px) {
+      .frs-tabs__grid {
+        grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+        gap: clamp(40px, 5vw, 72px);
+      }
+    }
+    .frs-tabs__copy { position: relative; }
+    .frs-pane { display: none; }
+    .frs-pane.is-active { display: block; animation: frsFade 360ms ease; }
+    @keyframes frsFade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+    .frs-pane__sub {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--brass);
+      margin: 0 0 var(--space-xs);
+      letter-spacing: -0.01em;
+    }
+    .frs-pane__title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.5rem, 1.1rem + 1.4vw, 1.9rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: var(--primary);
+      margin: 0 0 var(--space-md);
+    }
+    .frs-pane__body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+    .frs-tabs__stage { container-type: inline-size; }
+    .frs-tabs__panel { display: none; position: relative; }
+    .frs-tabs__panel.is-active { display: block; animation: frsFade 360ms ease; }
+
+    /* ── AI Business Planning — LINEAR NUMBERED STEPS ──────────────────── */
+    .bpl-steps__head { margin-bottom: var(--space-lg); }
+    .bpl-steps__eyebrow {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: var(--space-sm);
+    }
+    .bpl-steps__title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 1.4rem + 2.4vw, 3rem);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      color: var(--primary);
+      margin: 0.2rem 0 var(--space-md);
+      text-wrap: balance;
+    }
+    .bpl-steps__title em {
+      font-style: normal;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .bpl-steps__lede {
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--on-surface-variant);
+      max-width: 46rem;
+      margin: 0;
+    }
+    .bpl-steps {
+      list-style: none;
+      margin: 0 0 var(--space-xl);
+      padding: 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      counter-reset: bpl;
+    }
+    @media (min-width: 640px) { .bpl-steps { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 1000px) { .bpl-steps { grid-template-columns: repeat(4, 1fr); } }
+    .bpl-step {
+      position: relative;
+      background: var(--surface-container-lowest);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-lg) var(--space-md) var(--space-md);
+      transition: border-color 180ms ease, box-shadow 180ms ease, transform 180ms ease;
+    }
+    .bpl-step:hover {
+      border-color: rgba(201, 150, 28, 0.4);
+      box-shadow: 0 10px 30px rgba(2, 28, 54, 0.08);
+      transform: translateY(-2px);
+    }
+    .bpl-step__n {
+      position: absolute;
+      top: var(--space-md);
+      right: var(--space-md);
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 0.8125rem;
+      letter-spacing: 0.08em;
+      color: rgba(201, 150, 28, 0.5);
+    }
+    .bpl-step__ico {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #0a1628, #131b2e, #1e293b);
+      color: var(--brass-bright);
+      margin-bottom: var(--space-md);
+    }
+    .bpl-step__ico svg { width: 24px; height: 24px; }
+    .bpl-step__title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.0625rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: var(--primary);
+      margin: 0 0 var(--space-xs);
+    }
+    .bpl-step__body {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+    .bpl-steps__img {
+      border-radius: var(--radius-3xl);
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(2, 28, 54, 0.16);
+      border: 1px solid var(--outline-variant);
+    }
+    .bpl-steps__img img { width: 100%; display: block; }
+
     /* TOOL — Financial Planning Assessment wizard */
     .frs-tool {
       --tool-bg: #0e1422;
@@ -1317,7 +1609,11 @@ $tla_active      = 'whats-inside';
       letter-spacing: 0;
       box-sizing: border-box;
     }
-    .frs-stage .frs-tool { font-size: clamp(11px, 2.6cqi, 15px); }
+    .frs-stage .frs-tool,
+    .frs-tabs__panel .frs-tool { font-size: clamp(11px, 2.6cqi, 15px); }
+    @media (max-width: 859px) {
+      .frs-tabs__panel .frs-tool { font-size: clamp(12px, 4cqi, 16px); }
+    }
     @media (max-width: 959px) {
       .frs-item__inline .frs-tool { font-size: clamp(11px, 3.4cqi, 14px); }
     }
@@ -1655,29 +1951,6 @@ $tla_active      = 'whats-inside';
     @media (min-width: 960px) {
       .frs-hero__grid--copy-only { grid-template-columns: 1fr; }
       .frs-hero__grid--copy-only .frs-hero__lede { max-width: 52rem; }
-    }
-
-    /* step number badge in the accordion header title */
-    .bpl-item__title { display: inline-flex; align-items: center; gap: 0.6em; }
-    .bpl-step {
-      flex-shrink: 0;
-      width: 1.7em;
-      height: 1.7em;
-      border-radius: 50%;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-family: var(--font-body);
-      font-size: 0.78em;
-      font-weight: 700;
-      color: var(--brass);
-      background: rgba(201, 150, 28, 0.12);
-      box-shadow: inset 0 0 0 1px rgba(201, 150, 28, 0.35);
-    }
-    .bpl-item.is-open .bpl-step {
-      color: var(--primary);
-      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
-      box-shadow: none;
     }
 
     /* ── Graphic 1 · Assessment (.bpa-*) ── */
@@ -2443,109 +2716,65 @@ $tla_active      = 'whats-inside';
     <!-- ============================================================
          AI FINANCIAL REVIEW — click-and-reveal showcase
          ============================================================ -->
-    <section class="frs-section">
+    <section class="frs-section frs-section--grey">
       <div class="frs-section__inner">
-        <div class="frs-hero__grid">
 
-          <div class="frs-hero__copy">
-            <h2 class="frs-hero__title">AI-Driven Financial Review Tool</h2>
-            <p class="frs-hero__subhead">Build your year <em>by the numbers</em>.</p>
-            <p class="frs-hero__lede">Most loan originators set an income goal and hope. The AI-Driven Financial Review replaces hope with math. Tell it what you want to earn, how many hours you want to work, and how many weeks you want off. It builds the entire financial picture of your business — what your time is worth, how many loans you need, and exactly where every one of them has to come from.</p>
+        <div class="frs-intro">
+          <div class="frs-intro__media">
+            <img src="<?php echo TLA_BASE; ?>/assets/loan-officer-business-intelligence.png" alt="Loan officer reviewing her business numbers with the AI-Driven Financial Review" loading="lazy" />
           </div>
-
-          <!-- Crafted metric-card graphics retired to mockups/financial-review-metric-cards.html -->
-          <div class="frs-hero__metrics frs-hero__metrics--bare" aria-hidden="true">
-            <img class="bp-screenshot" src="<?php echo TLA_BASE; ?>/assets/loan-officer-business-planning.png" alt="Loan officer reviewing their business plan with the AI-Driven Financial Review" />
+          <div class="frs-tabs__head frs-intro__copy">
+            <span class="frs-tabs__eyebrow">AI-Driven Financial Review Tool</span>
+            <h2 class="frs-tabs__title">Build your year <em>by the numbers</em>.</h2>
+            <p class="frs-tabs__lede">Most loan originators set an income goal and hope. This replaces hope with math. Tell it what you want to earn, how many hours you want to work, and how many weeks off — it builds the entire financial picture of your business, including what your time is worth, how many loans you need, and exactly where every one comes from.</p>
           </div>
         </div>
-      </div>
-    </section>
 
-    <section class="frs-section">
-      <div class="frs-section__inner">
-        <div class="frs-reveal__grid">
+       <div class="frs-tabs__card">
+        <div class="frs-tabs" data-frs-tabs>
 
-          <ol class="frs-accordion">
+          <div class="frs-tabs__bar" role="tablist" aria-label="AI Financial Review tools">
+            <button class="frs-tab is-active" type="button" role="tab" aria-selected="true" data-frs-tab="assumptions">Hourly Rate Calculator</button>
+            <button class="frs-tab" type="button" role="tab" aria-selected="false" data-frs-tab="breakeven">Break-Even Analysis</button>
+            <button class="frs-tab" type="button" role="tab" aria-selected="false" data-frs-tab="sources">Lead Mapping</button>
+            <button class="frs-tab" type="button" role="tab" aria-selected="false" data-frs-tab="modeling">Live Tracking</button>
+          </div>
 
-            <li class="frs-item is-open" data-frs-item="1">
-              <button class="frs-item__header" type="button" aria-expanded="true" aria-controls="frs-panel-1">
-                <span class="frs-item__title">Hourly Rate of Pay Calculator</span>
-                <span class="frs-item__chevron" aria-hidden="true"></span>
-              </button>
-              <div id="frs-panel-1" class="frs-item__panel" role="region">
-                <p class="frs-item__sub">Know what every hour of your time is worth.</p>
-                <p class="frs-item__body">The planner takes your income goal, your working hours, and your vacation weeks and shows you your true hourly rate of pay. The moment you see that number, you stop spending hours on tasks you should be paying someone else to do.</p>
-                <div class="frs-item__inline" data-tool="assumptions"></div>
+          <div class="frs-tabs__grid">
+
+            <div class="frs-tabs__copy">
+              <div class="frs-pane is-active" role="tabpanel" data-frs-pane="assumptions">
+                <p class="frs-pane__sub">Know what every hour of your time is worth.</p>
+                <h3 class="frs-pane__title">Hourly Rate of Pay Calculator</h3>
+                <p class="frs-pane__body">The planner takes your income goal, your working hours, and your vacation weeks and shows you your true hourly rate of pay. The moment you see that number, you stop spending hours on tasks you should be paying someone else to do.</p>
               </div>
-            </li>
-
-            <li class="frs-item" data-frs-item="2">
-              <button class="frs-item__header" type="button" aria-expanded="false" aria-controls="frs-panel-2">
-                <span class="frs-item__title">Break-Even Loan Calculator</span>
-                <span class="frs-item__chevron" aria-hidden="true"></span>
-              </button>
-              <div id="frs-panel-2" class="frs-item__panel" role="region">
-                <p class="frs-item__sub">The most important number in your business.</p>
-                <p class="frs-item__body">Enter your expenses and tax bracket. The planner shows you the exact number of loans you have to close every month just to break even. Most originators have never run this number. Once you do, every decision gets easier.</p>
-                <div class="frs-item__inline" data-tool="breakeven"></div>
+              <div class="frs-pane" role="tabpanel" data-frs-pane="breakeven">
+                <p class="frs-pane__sub">The most important number in your business.</p>
+                <h3 class="frs-pane__title">Break-Even Loan Calculator</h3>
+                <p class="frs-pane__body">Enter your expenses and tax bracket. The planner shows you the exact number of loans you have to close every month just to break even. Most originators have never run this number. Once you do, every decision gets easier.</p>
               </div>
-            </li>
-
-            <li class="frs-item" data-frs-item="3">
-              <button class="frs-item__header" type="button" aria-expanded="false" aria-controls="frs-panel-3">
-                <span class="frs-item__title">Lead Source Mapping</span>
-                <span class="frs-item__chevron" aria-hidden="true"></span>
-              </button>
-              <div id="frs-panel-3" class="frs-item__panel" role="region">
-                <p class="frs-item__sub">Every loan, mapped to its source.</p>
-                <p class="frs-item__body">The planner reverse-engineers your year — past database, referral partners, consumer direct marketing. It tells you how many leads you need from each source, and the conversion rate you have to hit on each, to land your income goal.</p>
-                <div class="frs-item__inline" data-tool="sources"></div>
+              <div class="frs-pane" role="tabpanel" data-frs-pane="sources">
+                <p class="frs-pane__sub">Every loan, mapped to its source.</p>
+                <h3 class="frs-pane__title">Lead Source Mapping</h3>
+                <p class="frs-pane__body">The planner reverse-engineers your year — past database, referral partners, consumer direct marketing. It tells you how many leads you need from each source, and the conversion rate you have to hit on each, to land your income goal.</p>
               </div>
-            </li>
-
-            <li class="frs-item" data-frs-item="4">
-              <button class="frs-item__header" type="button" aria-expanded="false" aria-controls="frs-panel-4">
-                <span class="frs-item__title">Live Performance Tracking</span>
-                <span class="frs-item__chevron" aria-hidden="true"></span>
-              </button>
-              <div id="frs-panel-4" class="frs-item__panel" role="region">
-                <p class="frs-item__sub">Always know if you're on pace.</p>
-                <p class="frs-item__body">Every lead, every loan, every closed deal feeds your numbers in real time. Your batting average. Your income. Your hourly rate. Updating live — so you can adjust before the year gets away from you, not after.</p>
-                <div class="frs-item__inline" data-tool="modeling"></div>
+              <div class="frs-pane" role="tabpanel" data-frs-pane="modeling">
+                <p class="frs-pane__sub">Always know if you're on pace.</p>
+                <h3 class="frs-pane__title">Live Performance Tracking</h3>
+                <p class="frs-pane__body">Every lead, every loan, every closed deal feeds your numbers in real time. Your batting average. Your income. Your hourly rate. Updating live — so you can adjust before the year gets away from you, not after.</p>
               </div>
-            </li>
-
-          </ol>
-
-          <div class="frs-stage" aria-live="polite">
-
-            <div class="frs-stage__panel is-active" data-frs-panel="1" data-tool="assumptions">
-              <!-- Redesigned graphic carries its own "Your number" emphasis; external callout removed. -->
             </div>
 
-            <div class="frs-stage__panel" data-frs-panel="2" data-tool="breakeven">
-              <span class="frs-callout frs-callout--breakeven">
-                <span class="frs-callout__line"></span>
-                <span class="frs-callout__pill">Loans to break even</span>
-              </span>
-            </div>
-
-            <div class="frs-stage__panel" data-frs-panel="3" data-tool="sources">
-              <span class="frs-callout frs-callout--sources">
-                <span class="frs-callout__pill">Your year, mapped to its sources</span>
-                <span class="frs-callout__line"></span>
-              </span>
-            </div>
-
-            <div class="frs-stage__panel" data-frs-panel="4" data-tool="modeling">
-              <span class="frs-callout frs-callout--live">
-                <span class="frs-callout__line"></span>
-                <span class="frs-callout__pill">Your batting average — live</span>
-              </span>
+            <div class="frs-tabs__stage" aria-live="polite">
+              <div class="frs-tabs__panel is-active" data-frs-panel="assumptions" data-tool="assumptions"></div>
+              <div class="frs-tabs__panel" data-frs-panel="breakeven" data-tool="breakeven"></div>
+              <div class="frs-tabs__panel" data-frs-panel="sources" data-tool="sources"></div>
+              <div class="frs-tabs__panel" data-frs-panel="modeling" data-tool="modeling"></div>
             </div>
 
           </div>
         </div>
+       </div>
       </div>
     </section>
 
@@ -2840,91 +3069,67 @@ $tla_active      = 'whats-inside';
     </template>
 
     <!-- ============================================================
-         AI BUSINESS & LIFE PLANNER — hero copy
+         AI BUSINESS & LIFE PLANNER — tabbed showcase
          ============================================================ -->
-    <section class="frs-section">
+    <section class="frs-section frs-section--grey">
       <div class="frs-section__inner">
-        <div class="frs-hero__grid frs-hero__grid--copy-only">
 
-          <div class="frs-hero__copy">
-            <span class="eyebrow"><span class="eyebrow__text">AI Business Planning</span></span>
-            <h2 class="frs-hero__title">Turn self-awareness into a year you actually <em>run</em>.</h2>
-            <p class="frs-hero__subhead">No more <em>Monday morning paralysis</em>.</p>
-            <p class="frs-hero__lede">Most loan officers know what they should be doing. They just never have a clear plan for the week in front of them. This tool fixes that. It diagnoses your business across the eight disciplines of origination mastery, turns it into a personalized coach&rsquo;s report, and builds a working plan &mdash; real goals, real action items &mdash; that tells you exactly what to work on today, this week, this quarter.</p>
+        <div class="frs-intro">
+          <div class="frs-intro__media">
+            <img src="<?php echo TLA_BASE; ?>/assets/ai-business-intelligence-2.png" alt="Loan officer working their personalized plan with the AI Business Planning tool" loading="lazy" />
+          </div>
+          <div class="frs-tabs__head frs-intro__copy">
+            <span class="frs-tabs__eyebrow">AI Business Planning Tool</span>
+            <h2 class="frs-tabs__title"><em>86</em> SMART goals.<br>Over <em>950</em> Action Items.</h2>
+            <p class="frs-tabs__lede">Most loan officers know what they should be doing — they just never have a clear plan for the week in front of them. This tool diagnoses your business across the eight disciplines of origination mastery, turns it into a personalized coach&rsquo;s report, and builds a working plan that tells you exactly what to work on today, this week, this quarter.</p>
+          </div>
+        </div>
+
+       <div class="frs-tabs__card">
+        <div class="frs-tabs" data-frs-tabs>
+
+          <div class="frs-tabs__bar" role="tablist" aria-label="AI Business Planning tools">
+            <button class="frs-tab is-active" type="button" role="tab" aria-selected="true" data-frs-tab="assess">Assessment</button>
+            <button class="frs-tab" type="button" role="tab" aria-selected="false" data-frs-tab="coach">Coach&rsquo;s Report</button>
+            <button class="frs-tab" type="button" role="tab" aria-selected="false" data-frs-tab="goals">Goals Library</button>
+            <button class="frs-tab" type="button" role="tab" aria-selected="false" data-frs-tab="remind">Customize &amp; Remind</button>
           </div>
 
-        </div>
-      </div>
-    </section>
+          <div class="frs-tabs__grid">
 
-    <!-- ============================================================
-         AI BUSINESS & LIFE PLANNER — click-to-reveal (Assess → Diagnose → Plan → Execute)
-         Scoped .bpl-* namespace; styling reuses .frs-* classes.
-         ============================================================ -->
-    <section class="frs-section">
-      <div class="frs-section__inner">
-        <div class="bpl-reveal__grid frs-reveal__grid">
-
-          <ol class="bpl-accordion frs-accordion">
-
-            <li class="bpl-item frs-item is-open" data-bpl-item="1">
-              <button class="bpl-item__header frs-item__header" type="button" aria-expanded="true" aria-controls="bpl-panel-1">
-                <span class="bpl-item__title frs-item__title"><span class="bpl-step">1</span>Business Assessment</span>
-                <span class="bpl-item__chevron frs-item__chevron" aria-hidden="true"></span>
-              </button>
-              <div id="bpl-panel-1" class="bpl-item__panel frs-item__panel" role="region">
-                <p class="bpl-item__sub frs-item__sub">See your entire business clearly — for the first time.</p>
-                <p class="bpl-item__body frs-item__body">A 40-question diagnostic across the eight disciplines of origination mastery — sales, marketing, time management, team leadership, and more. You rate yourself one to five. Ten minutes later, you have the most honest picture of your business you&rsquo;ve ever seen.</p>
-                <div class="bpl-item__inline frs-item__inline" data-bpl-tool="assess"></div>
+            <div class="frs-tabs__copy">
+              <div class="frs-pane is-active" role="tabpanel" data-frs-pane="assess">
+                <p class="frs-pane__sub">See your entire business clearly — for the first time.</p>
+                <h3 class="frs-pane__title">Business Assessment</h3>
+                <p class="frs-pane__body">A 40-question diagnostic across the eight disciplines of origination mastery — sales, marketing, time management, team leadership, and more. You rate yourself one to five. Ten minutes later, you have the most honest picture of your business you&rsquo;ve ever seen.</p>
               </div>
-            </li>
-
-            <li class="bpl-item frs-item" data-bpl-item="2">
-              <button class="bpl-item__header frs-item__header" type="button" aria-expanded="false" aria-controls="bpl-panel-2">
-                <span class="bpl-item__title frs-item__title"><span class="bpl-step">2</span>AI Coach&rsquo;s Report</span>
-                <span class="bpl-item__chevron frs-item__chevron" aria-hidden="true"></span>
-              </button>
-              <div id="bpl-panel-2" class="bpl-item__panel frs-item__panel" role="region">
-                <p class="bpl-item__sub frs-item__sub">Your personalized roadmap, generated by AI.</p>
-                <p class="bpl-item__body frs-item__body">The moment you finish your assessment, AI builds you a personal coach&rsquo;s report. Your strengths. Your blind spots. The exact areas where focus will move the needle most. Not generic advice — your business, your gaps, your roadmap.</p>
-                <div class="bpl-item__inline frs-item__inline" data-bpl-tool="coach"></div>
+              <div class="frs-pane" role="tabpanel" data-frs-pane="coach">
+                <p class="frs-pane__sub">Your personalized roadmap, generated by AI.</p>
+                <h3 class="frs-pane__title">AI Coach&rsquo;s Report</h3>
+                <p class="frs-pane__body">The moment you finish your assessment, AI builds you a personal coach&rsquo;s report. Your strengths. Your blind spots. The exact areas where focus will move the needle most. Not generic advice — your business, your gaps, your roadmap.</p>
               </div>
-            </li>
-
-            <li class="bpl-item frs-item" data-bpl-item="3">
-              <button class="bpl-item__header frs-item__header" type="button" aria-expanded="false" aria-controls="bpl-panel-3">
-                <span class="bpl-item__title frs-item__title"><span class="bpl-step">3</span>Goals &amp; Action Items Library</span>
-                <span class="bpl-item__chevron frs-item__chevron" aria-hidden="true"></span>
-              </button>
-              <div id="bpl-panel-3" class="bpl-item__panel frs-item__panel" role="region">
-                <p class="bpl-item__sub frs-item__sub">The playbook the top producers actually run.</p>
-                <p class="bpl-item__body frs-item__body">86 professionally written SMART goals. Over 950 action items. All organized by the eight disciplines and built from fifteen years of Tim Braheem coaching top producers. The AI surfaces the goals most relevant to your results — you decide which ones become your plan.</p>
-                <div class="bpl-item__inline frs-item__inline" data-bpl-tool="goals"></div>
+              <div class="frs-pane" role="tabpanel" data-frs-pane="goals">
+                <p class="frs-pane__sub">The playbook the top producers actually run.</p>
+                <h3 class="frs-pane__title">Goals &amp; Action Items Library</h3>
+                <p class="frs-pane__body">86 professionally written SMART goals. Over 950 action items. All organized by the eight disciplines and built from fifteen years of Tim Braheem coaching top producers. The AI surfaces the goals most relevant to your results — you decide which ones become your plan.</p>
               </div>
-            </li>
-
-            <li class="bpl-item frs-item" data-bpl-item="4">
-              <button class="bpl-item__header frs-item__header" type="button" aria-expanded="false" aria-controls="bpl-panel-4">
-                <span class="bpl-item__title frs-item__title"><span class="bpl-step">4</span>Custom Goals &amp; Automated Reminders</span>
-                <span class="bpl-item__chevron frs-item__chevron" aria-hidden="true"></span>
-              </button>
-              <div id="bpl-panel-4" class="bpl-item__panel frs-item__panel" role="region">
-                <p class="bpl-item__sub frs-item__sub">Make the plan yours — and make it stick.</p>
-                <p class="bpl-item__body frs-item__body">Edit any action item. Delete the ones that don&rsquo;t fit. Or write your own — the AI Goal Writer helps you build custom goals tailored to your business. Then set your reminders: daily, weekly, or any rhythm that fits your week. Because the originators who win are the ones with the best follow-through.</p>
-                <div class="bpl-item__inline frs-item__inline" data-bpl-tool="remind"></div>
+              <div class="frs-pane" role="tabpanel" data-frs-pane="remind">
+                <p class="frs-pane__sub">Make the plan yours — and make it stick.</p>
+                <h3 class="frs-pane__title">Custom Goals &amp; Automated Reminders</h3>
+                <p class="frs-pane__body">Edit any action item. Delete the ones that don&rsquo;t fit. Or write your own — the AI Goal Writer helps you build custom goals tailored to your business. Then set your reminders: daily, weekly, or any rhythm that fits your week. Because the originators who win are the ones with the best follow-through.</p>
               </div>
-            </li>
+            </div>
 
-          </ol>
+            <div class="frs-tabs__stage" aria-live="polite">
+              <div class="frs-tabs__panel is-active" data-frs-panel="assess" data-bpl-tool="assess"></div>
+              <div class="frs-tabs__panel" data-frs-panel="coach" data-bpl-tool="coach"></div>
+              <div class="frs-tabs__panel" data-frs-panel="goals" data-bpl-tool="goals"></div>
+              <div class="frs-tabs__panel" data-frs-panel="remind" data-bpl-tool="remind"></div>
+            </div>
 
-          <div class="bpl-stage frs-stage" aria-live="polite">
-            <div class="bpl-stage__panel frs-stage__panel is-active" data-bpl-panel="1" data-bpl-tool="assess"></div>
-            <div class="bpl-stage__panel frs-stage__panel" data-bpl-panel="2" data-bpl-tool="coach"></div>
-            <div class="bpl-stage__panel frs-stage__panel" data-bpl-panel="3" data-bpl-tool="goals"></div>
-            <div class="bpl-stage__panel frs-stage__panel" data-bpl-panel="4" data-bpl-tool="remind"></div>
           </div>
-
         </div>
+       </div>
       </div>
     </section>
 
@@ -3258,11 +3463,21 @@ $tla_active      = 'whats-inside';
 
         <div class="disc-split">
 
-          <!-- LEFT: heading + body -->
+          <!-- LEFT: heading + body + testimonial -->
           <div class="disc-copy" data-reveal="up">
             <span class="disc-copy__eyebrow">The Training Framework</span>
             <h2 class="disc-copy__title">Built upon the <em>8 Disciplines</em> of Mortgage Origination Mastery.</h2>
             <p class="disc-copy__lede">Nobody taught you how to run a mortgage business. They taught you how to originate loans. The 8 Disciplines cover what's actually required to do both — so you're building something that compounds instead of grinding through a job that resets every Monday.</p>
+
+            <!-- Inline testimonial — homepage quote-card style (no image) -->
+            <figure class="quote-card quote-card--block">
+              <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
+              <blockquote class="quote-card__quote">If you did nothing else but go through the System for Selling module &mdash; it&rsquo;ll change your career and your life.</blockquote>
+              <figcaption class="quote-card__attr">
+                <div class="quote-card__name">Jim Juergens</div>
+                <div class="quote-card__org">NEO Home Loans</div>
+              </figcaption>
+            </figure>
           </div>
 
           <!-- RIGHT: vertical marquee of module thumbnails -->
@@ -3355,16 +3570,6 @@ $tla_active      = 'whats-inside';
               </div>
 
             </div>
-
-            <!-- Inline testimonial quote (homepage quote-card style) -->
-            <figure class="quote-card">
-              <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
-              <blockquote class="quote-card__quote">If you did nothing else but go through the System for Selling module &mdash; it&rsquo;ll change your career and your life.</blockquote>
-              <figcaption class="quote-card__attr">
-                <div class="quote-card__name">Jim Juergens</div>
-                <div class="quote-card__org">NEO Home Loans</div>
-              </figcaption>
-            </figure>
           </div>
 
           <!-- Cluster 2: Personal disciplines -->
@@ -3491,15 +3696,26 @@ $tla_active      = 'whats-inside';
 
         </div><!-- /coaching-grid -->
 
-        <!-- Testimonial -->
-        <figure class="quote-card quote-card--block">
-          <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
-          <blockquote class="quote-card__quote">Being able to sit in on Office Hours and live group coaching is worth the price of membership itself.</blockquote>
-          <figcaption class="quote-card__attr">
-            <div class="quote-card__name">Gabe Garza</div>
-            <div class="quote-card__org">The Mortgage Brokers</div>
-          </figcaption>
-        </figure>
+        <!-- Testimonials — homepage quote-card style (no image), side by side -->
+        <div class="quotes-pair">
+          <figure class="quote-card quote-card--block">
+            <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
+            <blockquote class="quote-card__quote">Being able to sit in on Office Hours and live group coaching is worth the price of membership itself.</blockquote>
+            <figcaption class="quote-card__attr">
+              <div class="quote-card__name">Gabe Garza</div>
+              <div class="quote-card__org">The Mortgage Brokers</div>
+            </figcaption>
+          </figure>
+
+          <figure class="quote-card quote-card--block">
+            <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
+            <blockquote class="quote-card__quote">The depth of knowledge from the faculty is incredible. If you have an area you want to focus on, there&rsquo;s a high probability someone on the faculty is a world-class expert in it.</blockquote>
+            <figcaption class="quote-card__attr">
+              <div class="quote-card__name">Bryce Olsen</div>
+              <div class="quote-card__org">SelectRate Mortgage</div>
+            </figcaption>
+          </figure>
+        </div>
 
       </div>
     </section>
@@ -3600,14 +3816,25 @@ $tla_active      = 'whats-inside';
 
         </div><!-- /templates-grid -->
 
-        <!-- Testimonial -->
-        <figure class="quote-card quote-card--block">
-          <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
-          <blockquote class="quote-card__quote">I took one of Tim&rsquo;s scripts and executed it with a borrower. We never even talked about interest rates &mdash; and I got a commitment that they wanted to work with us.</blockquote>
-          <figcaption class="quote-card__attr">
-            <div class="quote-card__name">Loan Atlas Member</div>
-          </figcaption>
-        </figure>
+        <!-- Testimonials — homepage quote-card style, side by side -->
+        <div class="quotes-pair">
+          <figure class="quote-card quote-card--block">
+            <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
+            <blockquote class="quote-card__quote">I took one of Tim&rsquo;s scripts and executed it with a borrower. We never even talked about interest rates &mdash; and I got a commitment that they wanted to work with us.</blockquote>
+            <figcaption class="quote-card__attr">
+              <div class="quote-card__name">Loan Atlas Member</div>
+            </figcaption>
+          </figure>
+
+          <figure class="quote-card quote-card--block">
+            <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
+            <blockquote class="quote-card__quote">I wish I would have known about this 5 years ago. I&rsquo;ve been looking for this level of support my entire Loan Officer career of 15 years. I have needed this so desperately!</blockquote>
+            <figcaption class="quote-card__attr">
+              <div class="quote-card__name">Jill Coss</div>
+              <div class="quote-card__org">Equity Smart Home Loans</div>
+            </figcaption>
+          </figure>
+        </div>
 
       </div>
     </section>
@@ -3631,6 +3858,15 @@ $tla_active      = 'whats-inside';
               <figcaption class="quote-card__attr">
                 <div class="quote-card__name">Scott DiGregorio</div>
                 <div class="quote-card__org">NEO Home Loans</div>
+              </figcaption>
+            </figure>
+
+            <figure class="quote-card quote-card--block quote-card--on-dark">
+              <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
+              <blockquote class="quote-card__quote">The Loan Atlas has re-energized and motivated me to excel in my mortgage business with all the amazing resources and expertise that it offers.</blockquote>
+              <figcaption class="quote-card__attr">
+                <div class="quote-card__name">Lynn Whipple</div>
+                <div class="quote-card__org">Branch Manager, Geneva Financial, LLC</div>
               </figcaption>
             </figure>
           </div>
@@ -3745,6 +3981,13 @@ $tla_active      = 'whats-inside';
         slot.appendChild(tpl.content.cloneNode(true));
       });
 
+      document.querySelectorAll('[data-bpl-tool]').forEach(function (slot) {
+        var key = slot.getAttribute('data-bpl-tool');
+        var tpl = document.getElementById('tpl-bpl-' + key);
+        if (!tpl) return;
+        slot.appendChild(tpl.content.cloneNode(true));
+      });
+
       document.querySelectorAll('[data-frs-count]').forEach(function (el) {
         var target = Number(el.getAttribute('data-frs-count'));
         var prefix = el.getAttribute('data-frs-prefix') || '';
@@ -3769,84 +4012,35 @@ $tla_active      = 'whats-inside';
         });
       });
 
-      // Scope to the Financial Review grid only — the Business Planner block reuses
-      // .frs-* classes for styling but is driven by its own scoped IIFE below.
-      var frsRoot = document.querySelector('.frs-reveal__grid:not(.bpl-reveal__grid)');
-      var items = frsRoot ? Array.prototype.slice.call(frsRoot.querySelectorAll('.frs-item')) : [];
-      var stagePanels = frsRoot ? Array.prototype.slice.call(frsRoot.querySelectorAll('.frs-stage__panel')) : [];
+      // Tabbed showcase — each [data-frs-tabs] root is independent; tab bar
+      // drives that root's copy pane + cloned tool mockup. Used by both the
+      // Financial Review and Business Planning sections.
+      document.querySelectorAll('[data-frs-tabs]').forEach(function (tabsRoot) {
+        var tabs = Array.prototype.slice.call(tabsRoot.querySelectorAll('.frs-tab'));
+        var panes = Array.prototype.slice.call(tabsRoot.querySelectorAll('.frs-pane'));
+        var panels = Array.prototype.slice.call(tabsRoot.querySelectorAll('.frs-tabs__panel'));
 
-      function openItem(target) {
-        var targetIndex = target.getAttribute('data-frs-item');
-        items.forEach(function (item) {
-          var isTarget = item === target;
-          item.classList.toggle('is-open', isTarget);
-          item.querySelector('.frs-item__header').setAttribute('aria-expanded', isTarget ? 'true' : 'false');
-        });
-        stagePanels.forEach(function (panel) {
-          panel.classList.toggle('is-active', panel.getAttribute('data-frs-panel') === targetIndex);
-        });
-      }
+        function selectTab(key) {
+          tabs.forEach(function (t) {
+            var on = t.getAttribute('data-frs-tab') === key;
+            t.classList.toggle('is-active', on);
+            t.setAttribute('aria-selected', on ? 'true' : 'false');
+          });
+          panes.forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-frs-pane') === key); });
+          panels.forEach(function (p) { p.classList.toggle('is-active', p.getAttribute('data-frs-panel') === key); });
+        }
 
-      items.forEach(function (item, idx) {
-        var header = item.querySelector('.frs-item__header');
-        header.addEventListener('click', function () {
-          if (item.classList.contains('is-open')) return;
-          openItem(item);
-        });
-        header.addEventListener('keydown', function (e) {
-          if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            items[(idx + 1) % items.length].querySelector('.frs-item__header').focus();
-          } else if (e.key === 'ArrowUp') {
-            e.preventDefault();
-            items[(idx - 1 + items.length) % items.length].querySelector('.frs-item__header').focus();
-          }
-        });
-      });
-    })();
-  </script>
-
-  <script>
-    /* AI Business & Life Planner showcase — scoped to .bpl-reveal__grid so it never touches the Financial Review block */
-    (function () {
-      var root = document.querySelector('.bpl-reveal__grid');
-      if (!root) return;
-
-      root.querySelectorAll('[data-bpl-tool]').forEach(function (slot) {
-        var key = slot.getAttribute('data-bpl-tool');
-        var tpl = document.getElementById('tpl-bpl-' + key);
-        if (tpl) slot.appendChild(tpl.content.cloneNode(true));
-      });
-
-      var items = Array.prototype.slice.call(root.querySelectorAll('.bpl-item'));
-      var stagePanels = Array.prototype.slice.call(root.querySelectorAll('.bpl-stage__panel'));
-
-      function openItem(target) {
-        var idx = target.getAttribute('data-bpl-item');
-        items.forEach(function (item) {
-          var isTarget = item === target;
-          item.classList.toggle('is-open', isTarget);
-          item.querySelector('.bpl-item__header').setAttribute('aria-expanded', isTarget ? 'true' : 'false');
-        });
-        stagePanels.forEach(function (panel) {
-          panel.classList.toggle('is-active', panel.getAttribute('data-bpl-panel') === idx);
-        });
-      }
-
-      items.forEach(function (item, i) {
-        var header = item.querySelector('.bpl-item__header');
-        header.addEventListener('click', function () {
-          if (item.classList.contains('is-open')) return;
-          openItem(item);
-        });
-        header.addEventListener('keydown', function (e) {
-          if (e.key === 'ArrowDown') {
-            e.preventDefault();
-            items[(i + 1) % items.length].querySelector('.bpl-item__header').focus();
-          } else if (e.key === 'ArrowUp') {
-            e.preventDefault();
-            items[(i - 1 + items.length) % items.length].querySelector('.bpl-item__header').focus();
-          }
+        tabs.forEach(function (tab, idx) {
+          tab.addEventListener('click', function () { selectTab(tab.getAttribute('data-frs-tab')); });
+          tab.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowRight') {
+              e.preventDefault();
+              tabs[(idx + 1) % tabs.length].focus();
+            } else if (e.key === 'ArrowLeft') {
+              e.preventDefault();
+              tabs[(idx - 1 + tabs.length) % tabs.length].focus();
+            }
+          });
         });
       });
     })();

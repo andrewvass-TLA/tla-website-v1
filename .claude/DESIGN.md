@@ -272,3 +272,26 @@ The homepage establishes a pattern to follow on new pages:
 6. **Dark final CTA** — closing conversion, full-width
 
 Not every page needs all six beats, but alternate dark/light rather than stacking same-tone sections.
+
+---
+
+## Fresh Page Designs (emulating an external reference)
+
+Most pages follow the house system above. But sometimes the brief is **"make this page look like `<external site>`"** — a standout landing page that should adopt a *different* visual language, not the Loan Atlas house style. When that is the explicit ask, follow these rules. They override "Page Section Rhythm," the component catalog, and the house layout conventions for that page only.
+
+**What stays sacred (the ONLY things that carry over):**
+- **Colors** — the brand palette (Midnight Slate `#021c36`, Brass `#c9961c` / `#eac25a`, the brass gradient, the surface/text tokens). Map the reference's *roles* (its accent, its dark sections, its text) onto our colors. If the reference uses teal as its accent, we use brass in that role.
+- **Fonts** — Manrope (display) + Inter (body). No new font families.
+- **Logo** — the Loan Atlas mark.
+
+**What must be rebuilt from the reference (do NOT carry over):**
+- The **entire stylesheet.** Author a new page-scoped `<style>` block (or new namespaced classes) from the reference's conventions. Do not reuse the existing component classes (`.eyebrow`, `.compare`, `.systems`, bento cells, marquees, the chat-frame, count-ups, etc.) or their DNA. Reskinning an existing component is the failure mode — if a section looks structurally like our other pages, it is wrong.
+- **Layout, spacing rhythm, section types, card shapes, image treatments, motion.** Replicate the reference's actual patterns: how it crops/rounds/overlaps imagery, its stat displays, its carousels, its calculators, its phone mockups, its FAQ treatment, its whitespace cadence, its button shape.
+
+**Process (required before writing CSS):**
+1. **Study the real reference, not memory or a single screenshot.** Fetch the live site (WebFetch for structure + `curl` the HTML to sample its radius scale, type scale, spacing, and signature components). Screenshots supplement but do not replace this.
+2. Map the reference's color *roles* onto our sacred palette.
+3. Build a new stylesheet section-by-section from the reference's conventions. Default to "their style, our narrative" — adopt their visual language while keeping our page's copy/sections, unless told to mirror their structure 1:1.
+4. Verify against the reference visually (build → preview → screenshot desktop/tablet/mobile) and ask: *does this look like the reference, or does it still look like our other pages?* If the latter, it is not done.
+
+This is recorded as a recurring expectation: **"emulate `<X>`" means a fresh design language, keeping only colors + fonts + logo — not our house components reskinned.**

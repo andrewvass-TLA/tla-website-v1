@@ -128,6 +128,7 @@ rewrite() {
   perl -0pi -e 's/href="privacy-policy\.html"/href="\/privacy-policy\/"/g'      "$f"
   perl -0pi -e 's/href="terms-of-use\.html"/href="\/terms-of-use\/"/g'          "$f"
   perl -0pi -e 's/href="end-user-agreement\.html"/href="\/end-user-agreement\/"/g' "$f"
+  perl -0pi -e 's/href="platinum-marketing\.html"/href="\/platinum-marketing\/"/g' "$f"
 }
 
 # slug map (source | slug | active)
@@ -148,5 +149,6 @@ convert end-user-agreement      end-user-agreement            ""
 convert ai-masterplan           ai-masterplan                 ""
 convert 5-scripts               5-scripts                     ""
 convert contact                 contact                       ""
+convert platinum-marketing      platinum-marketing            ""
 
 echo "Done."

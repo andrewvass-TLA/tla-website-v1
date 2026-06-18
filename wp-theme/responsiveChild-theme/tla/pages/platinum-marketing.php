@@ -1,0 +1,800 @@
+<?php
+/**
+ * Body partial for /platinum-marketing/ (TLA Full HTML template).
+ * Generated from public/platinum-marketing.html by scripts/convert-pages.sh — do not hand-edit;
+ * edit the source HTML (or the shared header/footer partials) and re-run.
+ */
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+
+$tla_title       = 'Platinum Marketing — The Loan Atlas';
+$tla_description = 'Platinum is the marketing engine inside The Loan Atlas — built on the principles top producers use and trained on the entire Loan Atlas library, so the content you send actually gets read.';
+$tla_active      = '';
+?>
+  <style>
+    /* ── PLATINUM — built in the Mastermind page design language ─────────────
+       Reuses the shared styles.css classes (lp-intro, btn--gold, eyebrow,
+       checklist, trust strip) and ports the page-scoped mm-*/lp-*/disc-*
+       component patterns from mastermind.html so the page reads as the same
+       design system. Page-scoped here, prefixed to match their originals. */
+
+    @media (max-width: 600px) { .lp-intro__title { font-size: clamp(1.75rem, 0.9rem + 3.6vw, 2.4rem); overflow-wrap: break-word; } }
+
+    /* ── Hero marketing-assistant — chat graphic over a faded scrolling strip ─
+       Marquee adapts faculty's .access-marquee; chat ports homepage .aisc__chatdemo. */
+    .pl-hero-assistant {
+      position: relative;
+      max-width: var(--container-max);
+      margin: clamp(32px, 4vw, 56px) auto 0;
+      padding-block: clamp(40px, 6vw, 80px);
+      padding-inline: var(--gutter);
+      box-sizing: border-box;
+      isolation: isolate;
+    }
+    /* Faded scrolling strip (background) */
+    .pl-hero-marquee {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 50%;
+      width: 100vw;
+      margin-left: -50vw;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      opacity: 0.28;
+      z-index: 0;
+      pointer-events: none;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+    }
+    .pl-hero-marquee__track {
+      display: flex;
+      width: max-content;
+      gap: var(--space-md);
+      animation: pl-hero-marquee-scroll 60s linear infinite;
+    }
+    .pl-hero-assistant:hover .pl-hero-marquee__track { animation-play-state: paused; }
+    .pl-hero-marquee__item {
+      flex-shrink: 0;
+      height: clamp(240px, 30vw, 360px);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      box-shadow: 0 12px 32px rgba(2, 28, 54, 0.18);
+    }
+    .pl-hero-marquee__item img { width: auto; height: 100%; object-fit: contain; display: block; }
+    @keyframes pl-hero-marquee-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(calc(-50% - var(--space-md) / 2)); }
+    }
+    /* Chat graphic (foreground focal point) */
+    .pl-hero-chat {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      margin-inline: auto;
+      display: flex;
+      flex-direction: column;
+      gap: clamp(16px, 2vw, 24px);
+      padding: clamp(24px, 3.5vw, 40px);
+      background: var(--surface-container-lowest);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-3xl);
+      box-shadow: 0 30px 70px rgba(2, 28, 54, 0.22), 0 0 0 1px rgba(234, 194, 90, 0.08);
+    }
+    /* Brass glow behind the chat box */
+    .pl-hero-chat::before {
+      content: '';
+      position: absolute;
+      inset: -12%;
+      z-index: -1;
+      background:
+        radial-gradient(55% 60% at 50% 40%, rgba(234, 194, 90, 0.45), transparent 70%),
+        radial-gradient(45% 50% at 50% 70%, rgba(201, 150, 28, 0.22), transparent 75%);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    .pl-hero-chat__heading {
+      margin: 0;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.25rem, 1.05rem + 1vw, 1.875rem);
+      line-height: 1.2;
+      color: var(--primary);
+      text-align: center;
+      text-wrap: balance;
+    }
+    .pl-hero-chat__input {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 14px 14px 18px;
+      background: linear-gradient(180deg, #0c2440 0%, #021c36 100%);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-2xl);
+      box-shadow: 0 14px 32px rgba(2, 28, 54, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      color: #fff;
+      min-height: 64px;
+    }
+    .pl-hero-chat__tools { flex: none; display: flex; align-items: center; }
+    .pl-hero-chat__plus { width: 22px; height: 22px; color: rgba(255, 255, 255, 0.55); }
+    .pl-hero-chat__text {
+      flex: 1;
+      min-width: 0;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.35;
+      color: rgba(255, 255, 255, 0.92);
+      display: flex;
+      align-items: center;
+      padding-block: 4px;
+    }
+    .pl-hero-chat__typed { white-space: pre-wrap; }
+    .pl-hero-chat__caret {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      margin-left: 2px;
+      background: var(--brass-bright);
+      vertical-align: text-bottom;
+      animation: pl-hero-caret-blink 1s steps(2, end) infinite;
+    }
+    .pl-hero-chat__actions { flex: none; display: flex; align-items: center; gap: 10px; }
+    .pl-hero-chat__mic { width: 20px; height: 20px; color: rgba(255, 255, 255, 0.55); }
+    .pl-hero-chat__send {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 9999px;
+      border: 0;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      color: #021c36;
+      cursor: default;
+      box-shadow: 0 4px 12px rgba(234, 194, 90, 0.35);
+    }
+    .pl-hero-chat__send svg { width: 16px; height: 16px; }
+    @keyframes pl-hero-caret-blink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .pl-hero-marquee__track { animation: none; }
+      .pl-hero-chat__caret { animation: none; opacity: 1; }
+    }
+    @media (max-width: 600px) {
+      .pl-hero-marquee { opacity: 0.2; }
+      .pl-hero-marquee__item { height: clamp(170px, 40vw, 240px); }
+      .pl-hero-chat__heading { font-size: clamp(1.15rem, 0.9rem + 1.6vw, 1.5rem); }
+    }
+
+    /* ── Problem bridge — stacked stat (light) ──────────────────────────── */
+    .pl-bridge__bignum-top { display: block; font-size: 0.9375rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--on-surface-variant); margin-bottom: var(--space-lg); }
+    .pl-bridge__bignum { font-family: var(--font-display); font-weight: 800; line-height: 0.9; letter-spacing: -0.04em; font-size: clamp(4.5rem, 2.5rem + 11vw, 9rem);
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .pl-bridge__bignum-label { display: block; font-size: 0.9375rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--on-surface-variant); margin-top: var(--space-lg); }
+
+    /* ── Full-width comparison chart ────────────────────────────────────── */
+    .compare-v2--wide { width: 100%; grid-template-columns: 1fr 1fr; }
+    @media (max-width: 580px) { .compare-v2--wide { grid-template-columns: 1fr; } }
+
+    /* ── Transition — bold statement band ───────────────────────────────── */
+    .pl-transition { position: relative; overflow: hidden; background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%); padding-block: clamp(64px, 9vw, 128px); text-align: center; isolation: isolate; }
+    .pl-transition__glow { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 760px; height: 760px; max-width: 110vw; background: radial-gradient(closest-side, rgba(234, 194, 90, 0.18), transparent 70%); filter: blur(70px); pointer-events: none; z-index: -1; }
+    .pl-transition__inner { max-width: 56rem; margin-inline: auto; }
+    .pl-transition__title { font-family: var(--font-display); font-weight: 800; font-size: clamp(2rem, 1.3rem + 3.4vw, 3.75rem); line-height: 1.06; letter-spacing: -0.03em; color: #ffffff; margin: 0 0 var(--space-lg); text-wrap: balance; }
+    .pl-transition__gold { background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .pl-transition__sub { font-size: clamp(1.0625rem, 1rem + 0.5vw, 1.375rem); line-height: 1.6; color: rgba(255, 255, 255, 0.74); margin: 0 auto; max-width: 44rem; }
+
+    /* ── Visual value tour — alternating image + copy rows ──────────────── */
+    .mm-tour { background: var(--surface-container-low); padding-block: clamp(56px, 7vw, 96px); }
+    .mm-tour__rows { display: flex; flex-direction: column; gap: clamp(48px, 6vw, 88px); margin-top: var(--space-xl); }
+    .mm-row { display: grid; grid-template-columns: 1fr; gap: var(--space-lg); align-items: center; }
+    @media (min-width: 860px) { .mm-row { grid-template-columns: 1fr 1fr; gap: clamp(40px, 5vw, 72px); } .mm-row--flip .mm-stack, .mm-row--flip .mm-chat, .mm-row--flip .mm-emailflow { order: 2; } }
+    .mm-row__copy { max-width: 34rem; }
+    .mm-row__eyebrow { font-family: var(--font-body); font-size: 1rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--brass); display: block; margin-bottom: var(--space-sm); }
+    .mm-row__title { font-family: var(--font-display); font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.375rem); font-weight: 700; letter-spacing: -0.01em; line-height: 1.2; color: var(--primary-container); margin: 0 0 var(--space-sm); }
+    .mm-row__desc { font-size: 1rem; line-height: 1.65; color: var(--on-surface-variant); margin: 0; }
+    /* clean 2×2 grid — full images, never cropped */
+    .mm-stack { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px, 1.6vw, 18px); align-items: start; }
+    .mm-stack__img { display: block; width: 100%; height: auto; border-radius: var(--radius-xl); box-shadow: 0 12px 30px rgba(2, 28, 54, 0.16); transition: transform 250ms cubic-bezier(0.22, 1, 0.36, 1), box-shadow 250ms ease; }
+    .mm-stack__img:hover { transform: translateY(-4px); box-shadow: 0 20px 44px rgba(2, 28, 54, 0.24); }
+    /* Decks & Flyers — two stacked decks beside a single flyer */
+    .mm-stack--decks { grid-template-columns: 1.15fr 1fr; align-items: center; }
+    .mm-stack__decks { display: grid; gap: clamp(12px, 1.6vw, 18px); }
+    /* sample conversation graphic (talking to The Loan Atlas) */
+    .mm-chat { display: flex; flex-direction: column; gap: 12px; }
+    .mm-chat__bot { display: flex; align-items: flex-end; gap: 10px; max-width: 92%; align-self: flex-start; }
+    .mm-chat__avatar { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 9999px; background: var(--primary); box-shadow: 0 4px 12px rgba(2, 28, 54, 0.22); }
+    .mm-chat__avatar img { width: 22px; height: 22px; object-fit: contain; display: block; }
+    .mm-chat__msg { padding: 12px 16px; font-size: 0.9375rem; line-height: 1.5; border-radius: 16px; }
+    .mm-chat__msg--bot { background: #ffffff; border: 1px solid var(--outline-variant); border-bottom-left-radius: 5px; color: var(--on-surface); box-shadow: 0 6px 16px rgba(2, 28, 54, 0.06); }
+    .mm-chat__msg--user { max-width: 86%; align-self: flex-end; background: linear-gradient(135deg, #0c2440 0%, #021c36 100%); border-bottom-right-radius: 5px; color: #ffffff; }
+    /* email-campaign output graphic */
+    .mm-emailflow__intro-row { display: flex; align-items: flex-end; gap: 10px; margin-bottom: var(--space-md); }
+    .mm-emailflow__intro { background: #ffffff; border: 1px solid var(--outline-variant); border-radius: 16px; border-bottom-left-radius: 5px; padding: 14px 16px; font-size: 0.9375rem; line-height: 1.5; color: var(--on-surface); box-shadow: 0 6px 16px rgba(2, 28, 54, 0.06); }
+    .mm-emailflow__intro strong { color: var(--primary-container); }
+    .mm-emailflow__steps { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
+    .mm-emailflow__step { display: flex; align-items: center; gap: 14px; padding: 12px 14px; background: #ffffff; border: 1px solid var(--outline-variant); border-radius: var(--radius-xl); box-shadow: 0 6px 16px rgba(2, 28, 54, 0.05); }
+    .mm-emailflow__step + .mm-emailflow__step { position: relative; margin-top: 26px; }
+    /* connecting arrow between steps */
+    .mm-emailflow__step + .mm-emailflow__step::before { content: ''; position: absolute; left: calc(14px + 16px); top: -22px; width: 2px; height: 18px; background: rgba(201, 150, 28, 0.5); }
+    .mm-emailflow__step + .mm-emailflow__step::after { content: ''; position: absolute; left: calc(14px + 16px); top: -8px; width: 7px; height: 7px; border-right: 2px solid var(--brass); border-bottom: 2px solid var(--brass); transform: translateX(-2.5px) rotate(45deg); }
+    .mm-emailflow__num { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 9999px; font-family: var(--font-display); font-weight: 800; font-size: 0.9375rem; color: #021c36; background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); box-shadow: 0 4px 12px rgba(234, 194, 90, 0.3); }
+    .mm-emailflow__body { min-width: 0; }
+    .mm-emailflow__label { display: block; font-family: var(--font-body); font-size: 0.625rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--on-surface-variant); margin-bottom: 2px; }
+    .mm-emailflow__body { font-size: 0.9375rem; font-weight: 600; line-height: 1.35; color: var(--on-surface); }
+
+    /* ── Platinum showcase — floating asset collage (ported from .mm-plat) ─ */
+    .mm-plat { position: relative; overflow: hidden;
+      background: radial-gradient(120% 90% at 100% 0%, #14243f 0%, transparent 55%), linear-gradient(160deg, #04122a 0%, #021c36 45%, #050c1a 100%);
+      padding-block: clamp(64px, 8vw, 120px); isolation: isolate; }
+    .mm-plat__glow { position: absolute; top: -160px; right: -120px; width: 620px; height: 620px; max-width: 90vw; background: radial-gradient(closest-side, rgba(234, 194, 90, 0.22), transparent 70%); filter: blur(60px); pointer-events: none; z-index: -1; }
+    .mm-plat__header { text-align: center; max-width: 60rem; margin: 0 auto clamp(40px, 5vw, 72px); }
+    .mm-plat__title { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.75rem, 1.6rem + 5.5vw, 6rem); line-height: 1.0; letter-spacing: -0.03em; margin: 0 0 var(--space-md);
+      background: linear-gradient(180deg, #ffffff 0%, #f2f6fb 30%, #c3cedd 55%, #8b9bb3 78%, #e8eef6 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3); filter: drop-shadow(0 8px 26px rgba(0, 0, 0, 0.5)); position: relative; }
+    .mm-plat__title::after { content: 'What Platinum Builds'; position: absolute; inset: 0;
+      background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.9) 50%, transparent 60%); -webkit-background-clip: text; background-clip: text; color: transparent;
+      background-size: 250% 100%; background-position: 200% 0; animation: mm-plat-shine 6s ease-in-out 1s infinite; pointer-events: none; }
+    @keyframes mm-plat-shine { 0% { background-position: 200% 0; } 55% { background-position: -130% 0; } 100% { background-position: -130% 0; } }
+    @media (prefers-reduced-motion: reduce) { .mm-plat__title::after { animation: none; display: none; } }
+    .mm-plat__subhead { font-family: var(--font-display); font-weight: 600; font-size: clamp(1.25rem, 1rem + 1.1vw, 1.875rem); line-height: 1.35; letter-spacing: -0.01em; color: #ffffff; margin: 0 auto; max-width: 44rem; text-wrap: balance; }
+    .mm-plat__subhead-em { background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .mm-plat__grid { display: grid; grid-template-columns: 1fr; gap: clamp(40px, 6vw, 80px); align-items: center; }
+    @media (min-width: 960px) { .mm-plat__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); } }
+    .mm-plat__list-label { font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255, 255, 255, 0.5); margin: 0 0 var(--space-md); }
+    .mm-plat__list { margin: 0 0 var(--space-lg); display: grid; gap: 12px var(--space-lg); }
+    @media (min-width: 480px) { .mm-plat__list { grid-template-columns: 1fr 1fr; } }
+    .mm-plat__list li { font-size: 0.9375rem; }
+    .mm-plat__actions { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-sm); }
+    /* right showcase — floating asset cards */
+    .mm-plat__showcase { position: relative; min-height: clamp(380px, 50vw, 540px); }
+    .mm-plat__asset { position: absolute; margin: 0; border-radius: 14px; overflow: hidden; background: #ffffff; box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45), 0 2px 8px rgba(0, 0, 0, 0.3); transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1); }
+    .mm-plat__asset img { display: block; width: 100%; height: auto; }
+    .mm-plat__asset figcaption { position: absolute; left: 0; right: 0; bottom: 0; padding: 18px 14px 10px; font-family: var(--font-body); font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #ffffff; text-align: center; background: linear-gradient(0deg, rgba(2, 12, 26, 0.82) 0%, transparent 100%); }
+    .mm-plat__asset--flyer { width: 46%; top: 0; left: 0; transform: rotate(-5deg); z-index: 1; }
+    .mm-plat__asset--news { width: 42%; top: 8%; right: 0; transform: rotate(5deg); z-index: 2; }
+    .mm-plat__asset--social { width: 50%; bottom: 0; left: 50%; transform: translateX(-50%) rotate(-1deg); z-index: 3; }
+    .mm-plat__showcase:hover .mm-plat__asset--flyer { transform: rotate(-7deg) translateY(-6px); }
+    .mm-plat__showcase:hover .mm-plat__asset--news { transform: rotate(7deg) translateY(-6px); }
+    .mm-plat__showcase:hover .mm-plat__asset--social { transform: translateX(-50%) rotate(-1deg) translateY(-8px); }
+    @media (max-width: 600px) { .mm-plat__showcase { order: -1; min-height: clamp(280px, 80vw, 360px); max-width: 420px; margin-inline: auto; width: 100%; } .mm-plat__asset figcaption { font-size: 0.625rem; } }
+
+    /* ── Why-different (white, full-width) ──────────────────────────────── */
+    .disc-section { background: #ffffff; padding-block: clamp(64px, 8vw, 112px); overflow: hidden; }
+    .disc-section__inner { max-width: var(--container-max); margin-inline: auto; padding-inline: var(--gutter); }
+    /* comparison chart (ported feel from homepage .compare-v2, expanded to a 3-col matrix) */
+    /* whole chart sits in one rounded, elevated box */
+    .pl-compare { max-width: 60rem; margin: clamp(40px, 5vw, 64px) auto 0; border-radius: var(--radius-3xl); overflow: hidden; box-shadow: var(--shadow-xl); background: #ffffff; }
+    .pl-compare__head, .pl-compare__row { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr) minmax(0, 1fr); align-items: stretch; }
+    .pl-compare__row + .pl-compare__row, .pl-compare__head + .pl-compare__row { border-top: 1px solid var(--outline-variant); }
+    /* header row */
+    .pl-compare__cat-head { background: var(--surface-container); }
+    .pl-compare__col { display: flex; align-items: center; justify-content: center; text-align: center; padding: clamp(18px, 2.6vw, 26px) var(--space-sm); font-family: var(--font-display); font-weight: 700; font-size: clamp(0.875rem, 0.8rem + 0.4vw, 1.0625rem); line-height: 1.25; }
+    .pl-compare__col--theirs { background: var(--surface-container); color: var(--on-surface-variant); }
+    .pl-compare__col--ours { background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%); color: #ffffff; }
+    /* logomark + silver "Platinum" lockup in the comparison header (matches the hero lockup) */
+    .pl-compare__lockup { display: inline-flex; align-items: center; justify-content: center; gap: 4px; }
+    .pl-compare__mark { height: clamp(22px, 2.6vw, 30px); width: auto; display: block; }
+    .pl-compare__word { font-family: var(--font-display); font-weight: 800; font-size: clamp(22px, 2.6vw, 30px); line-height: 1;
+      background: linear-gradient(180deg, #ffffff 0%, #f2f6fb 30%, #c3cedd 55%, #8b9bb3 78%, #e8eef6 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3); }
+    /* body rows */
+    .pl-compare__cat { display: flex; align-items: center; padding: clamp(16px, 2vw, 22px) clamp(18px, 2.4vw, 28px); font-family: var(--font-body); font-size: 0.9375rem; font-weight: 600; line-height: 1.4; color: var(--on-surface); background: #ffffff; }
+    .pl-compare__cell { display: flex; align-items: center; justify-content: center; padding: clamp(14px, 1.8vw, 20px) var(--space-sm); }
+    .pl-compare__cell--theirs { background: var(--surface-container-low); }
+    .pl-compare__cell--ours { background: rgba(201, 150, 28, 0.06); }
+    /* inner vertical shadows down each comparison column for depth (like the pricing-table reference) */
+    .pl-compare__col--theirs, .pl-compare__cell--theirs,
+    .pl-compare__col--ours, .pl-compare__cell--ours {
+      box-shadow: inset 11px 0 14px -12px rgba(2, 28, 54, 0.28), inset -11px 0 14px -12px rgba(2, 28, 54, 0.28);
+    }
+    /* X / check marks */
+    .pl-mark { position: relative; flex: none; width: clamp(28px, 3vw, 34px); height: clamp(28px, 3vw, 34px); border-radius: 9999px; }
+    .pl-mark--check { background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); box-shadow: 0 4px 12px rgba(234, 194, 90, 0.35); }
+    .pl-mark--check::after { content: ''; position: absolute; top: 46%; left: 50%; width: 30%; height: 56%; border: solid #021c36; border-width: 0 2.5px 2.5px 0; transform: translate(-50%, -55%) rotate(45deg); border-radius: 1px; }
+    .pl-mark--x { background: linear-gradient(135deg, #b91c1c 0%, #ef4444 60%, #f87171 100%); box-shadow: 0 4px 12px rgba(185, 28, 28, 0.28); }
+    .pl-mark--x::before, .pl-mark--x::after { content: ''; position: absolute; top: 50%; left: 50%; width: 44%; height: 2.5px; border-radius: 2px; background: #ffffff; }
+    .pl-mark--x::before { transform: translate(-50%, -50%) rotate(45deg); }
+    .pl-mark--x::after { transform: translate(-50%, -50%) rotate(-45deg); }
+    @media (max-width: 560px) {
+      .pl-compare__head, .pl-compare__row { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr) minmax(0, 1fr); }
+      .pl-compare__cat { font-size: 0.8125rem; padding-inline: 12px; }
+      .pl-compare__col { font-size: 0.75rem; }
+    }
+
+
+    /* ── Pricing (ported from .mm-pricing / .mm-plan) ───────────────────── */
+    .mm-pricing { background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%); padding-block: clamp(56px, 7vw, 104px); position: relative; overflow: hidden; }
+    .mm-pricing::before { content: ''; position: absolute; top: -80px; left: 6%; width: 480px; height: 480px; background: radial-gradient(closest-side, rgba(234, 194, 90, 0.1), transparent); filter: blur(70px); pointer-events: none; }
+    .mm-plan { position: relative; z-index: 1; max-width: 64rem; margin-inline: auto; margin-top: var(--space-xl);
+      background: linear-gradient(135deg, #0a1628 0%, #021c36 55%, #0a223d 100%); border-radius: var(--radius-3xl); border: 1px solid rgba(234, 194, 90, 0.4);
+      box-shadow: 0 40px 90px rgba(2, 28, 54, 0.45), 0 0 60px rgba(234, 194, 90, 0.14), inset 0 0 0 1px rgba(234, 194, 90, 0.12); padding: clamp(28px, 4vw, 56px); overflow: hidden; text-align: center; }
+    .mm-plan::before { content: ''; position: absolute; top: -120px; right: -120px; width: 360px; height: 360px; background: radial-gradient(closest-side, rgba(234, 194, 90, 0.2), transparent); filter: blur(50px); pointer-events: none; }
+    .mm-plan > * { position: relative; z-index: 1; }
+    /* silver "Platinum" lockup above the price (matches the hero lockup) */
+    .mm-plan__lockup { display: inline-flex; align-items: center; justify-content: center; gap: 4px; margin: 0 0 var(--space-sm); }
+    .mm-plan__lockup-mark { height: clamp(28px, 3.4vw, 38px); width: auto; display: block; }
+    .mm-plan__lockup-word { font-family: var(--font-display); font-weight: 800; font-size: clamp(28px, 3.4vw, 38px); line-height: 1;
+      background: linear-gradient(180deg, #ffffff 0%, #f2f6fb 30%, #c3cedd 55%, #8b9bb3 78%, #e8eef6 100%); -webkit-background-clip: text; background-clip: text; color: transparent;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3); }
+    .mm-plan__price { font-family: var(--font-display); font-weight: 800; font-size: clamp(3.25rem, 2rem + 5vw, 5rem); line-height: 0.9; letter-spacing: -0.03em; margin: 0 0 var(--space-lg);
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .mm-plan__price span { font-size: 0.26em; font-weight: 700; letter-spacing: 0; -webkit-text-fill-color: rgba(255,255,255,0.6); }
+    .mm-plan__price-was { font-size: 0.42em; font-weight: 700; letter-spacing: 0; margin-right: 0.28em; text-decoration-thickness: 0.06em; -webkit-text-fill-color: rgba(255,255,255,0.45); }
+    /* 2-column body: examples left, one-column features right */
+    .mm-plan__body { display: grid; grid-template-columns: 1fr; gap: clamp(28px, 4vw, 48px); align-items: center; text-align: left; margin: 0 auto var(--space-xl); max-width: 56rem; padding: var(--space-xl) 0; border-block: 1px solid rgba(234, 194, 90, 0.18); }
+    @media (min-width: 760px) { .mm-plan__body { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr); } }
+    /* overlapping composite of frameless examples with drop shadows */
+    .mm-plan__examples { position: relative; aspect-ratio: 1 / 1; min-height: 260px; }
+    .mm-plan__example { position: absolute; display: block; border-radius: 10px; box-shadow: 0 22px 50px rgba(0, 0, 0, 0.5), 0 4px 12px rgba(0, 0, 0, 0.35); transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1); }
+    .mm-plan__example--1 { width: 70%; top: 2%; left: 0; transform: rotate(-5deg); z-index: 1; }
+    .mm-plan__example--2 { width: 46%; top: 30%; right: 2%; transform: rotate(6deg); z-index: 2; }
+    .mm-plan__example--3 { width: 52%; bottom: 0; left: 18%; transform: rotate(-2deg); z-index: 3; }
+    .mm-plan__examples:hover .mm-plan__example--1 { transform: rotate(-7deg) translateY(-6px); }
+    .mm-plan__examples:hover .mm-plan__example--2 { transform: rotate(8deg) translateY(-6px); }
+    .mm-plan__examples:hover .mm-plan__example--3 { transform: rotate(-2deg) translateY(-8px); }
+    .mm-plan__list-heading { font-family: var(--font-body); font-size: 0.75rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brass-bright); margin: 0 0 var(--space-md); }
+    .mm-plan__list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr; gap: var(--space-md); text-align: left; }
+    .mm-plan__list li { display: flex; align-items: flex-start; gap: 14px; font-size: 0.9375rem; line-height: 1.55; color: rgba(255, 255, 255, 0.85); }
+    .mm-plan__list .icon { flex-shrink: 0; width: 20px; height: 20px; margin-top: 2px; color: var(--brass-bright); }
+    .mm-plan__cta { display: flex; flex-direction: column; align-items: center; gap: var(--space-sm); }
+    .mm-plan__cta-link { font-size: 0.9375rem; color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px; transition: color 150ms ease; }
+    .mm-plan__cta-link:hover { color: var(--brass-bright); }
+    .mm-plan__fine { font-size: 0.8125rem; color: rgba(255, 255, 255, 0.5); margin: var(--space-md) 0 0; line-height: 1.5; }
+  </style>
+
+
+<?php include get_stylesheet_directory() . '/tla/partials/header.php'; ?>
+
+  <main>
+
+    <!-- ── 1. HERO ──────────────────────────────────────────────────────────── -->
+    <section class="lp-intro" aria-labelledby="pl-hero-heading" data-screenshot="platinum-hero">
+      <div class="container">
+        <div class="lp-intro__content">
+          <h1 id="pl-hero-heading" class="lp-intro__title" data-hero-step="2">Take your marketing from ignored to <em>irresistible.</em></h1>
+          <p class="lp-intro__subtitle" data-hero-step="3">Platinum is the marketing engine inside The Loan Atlas, built on the principles top producers use and trained on the entire Loan Atlas library — so the content you send actually gets read.</p>
+          <div class="lp-intro__actions" data-hero-step="4">
+            <a class="btn btn--gold btn--lg" href="/join/">Join The Loan Atlas with Platinum</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="pl-hero-assistant" data-hero-step="5">
+        <!-- Faded scrolling strip of Platinum sample work (background) -->
+        <div class="pl-hero-marquee" aria-hidden="true">
+          <div class="pl-hero-marquee__track">
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-flyer-1.jpeg" alt="" loading="eager" /></div>
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-1.jpeg" alt="" loading="eager" /></div>
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-presentation-deck-1.png" alt="" loading="eager" /></div>
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-example-1.png" alt="" loading="lazy" /></div>
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-landing-page-1.png" alt="" loading="lazy" /></div>
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-2.jpeg" alt="" loading="lazy" /></div>
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-flyer-2.jpeg" alt="" loading="lazy" /></div>
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-example-2.png" alt="" loading="lazy" /></div>
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-presentation-deck-2.png" alt="" loading="lazy" /></div>
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-3.jpeg" alt="" loading="lazy" /></div>
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-example-3.png" alt="" loading="lazy" /></div>
+            <!-- Duplicate set 1:1 for a seamless loop -->
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-flyer-1.jpeg" alt="" loading="lazy" /></div>
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-1.jpeg" alt="" loading="lazy" /></div>
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-presentation-deck-1.png" alt="" loading="lazy" /></div>
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-example-1.png" alt="" loading="lazy" /></div>
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-landing-page-1.png" alt="" loading="lazy" /></div>
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-2.jpeg" alt="" loading="lazy" /></div>
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-flyer-2.jpeg" alt="" loading="lazy" /></div>
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-example-2.png" alt="" loading="lazy" /></div>
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-presentation-deck-2.png" alt="" loading="lazy" /></div>
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-3.jpeg" alt="" loading="lazy" /></div>
+            <div class="pl-hero-marquee__item"><img src="<?php echo TLA_BASE; ?>/assets/platinum-example-3.png" alt="" loading="lazy" /></div>
+          </div>
+        </div>
+
+        <!-- Marketing-assistant chat graphic (foreground focal point) -->
+        <div class="pl-hero-chat" data-pl-chat
+          data-messages="Create a flyer for my new 5%-down program|Write a social post about this week's rate drop|Design a presentation deck for a realtor lunch-and-learn|Draft a follow-up email to my past clients">
+          <p class="pl-hero-chat__heading">Hi, I'm your marketing assistant. What should we create today?</p>
+          <div class="pl-hero-chat__input">
+            <div class="pl-hero-chat__tools">
+              <svg class="pl-hero-chat__plus" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+            </div>
+            <div class="pl-hero-chat__text">
+              <span class="pl-hero-chat__typed"></span><span class="pl-hero-chat__caret"></span>
+            </div>
+            <div class="pl-hero-chat__actions">
+              <svg class="pl-hero-chat__mic" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                <line x1="12" y1="19" x2="12" y2="23" />
+                <line x1="8" y1="23" x2="16" y2="23" />
+              </svg>
+              <button class="pl-hero-chat__send" type="button" tabindex="-1" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="19" x2="12" y2="5" />
+                  <polyline points="5 12 12 5 19 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 2. THE REASON YOUR MARKETING GETS IGNORED ───────────────────────── -->
+    <section class="section" id="principles" aria-labelledby="reason-heading">
+      <div class="container">
+        <div class="grid-2" style="gap: var(--space-xl); align-items: center;">
+          <div class="grid" style="grid-template-columns: 1fr;" data-reveal="left">
+            <h2 id="reason-heading"
+              style="font-family: var(--font-display); font-size: clamp(1.625rem, 1.25rem + 1.6vw, 2.5rem); font-weight: 700; line-height: 1.18; letter-spacing: -0.02em; color: var(--on-surface); margin: 0 0 var(--space-md);">
+              The Reason Your Marketing Keeps Getting <span
+                style="font-weight: 800; background: linear-gradient(135deg, #b91c1c 0%, #ef4444 50%, #f87171 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Ignored</span>
+            </h2>
+            <p class="t-body-lg t-muted" style="margin-bottom: var(--space-md);">Most of what loan officers send sounds like every other lender's content — generic AI templates, the same &ldquo;service and rates&rdquo; promise — and gets filtered out before it's ever read.</p>
+            <p class="t-body-lg t-muted" style="margin: 0;">Most mortgage marketing gets ignored because it's missing the fundamentals — it talks about the lender instead of the client, fails to lead with a problem the prospect actually cares about, carries no real proof, and makes the path to closing feel slow and complicated.</p>
+          </div>
+
+          <div class="center" data-reveal="right">
+            <span class="pl-bridge__bignum-top">Your clients and partners see</span>
+            <span class="pl-bridge__bignum" data-countup="10000">10,000</span>
+            <span class="pl-bridge__bignum-label">marketing messages every single day</span>
+          </div>
+        </div>
+
+        <div class="compare-v2 compare-v2--wide" style="margin-top: clamp(40px, 5vw, 64px);" data-reveal="up">
+          <div class="compare-v2__col compare-v2__col--theirs">
+            <h3 class="compare-v2__title">Marketing That Gets Ignored</h3>
+            <div class="compare-v2__rows">
+              <div class="compare-v2__row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                Talks about the lender instead of the client
+              </div>
+              <div class="compare-v2__row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                Opens with a generic intro nobody cares about
+              </div>
+              <div class="compare-v2__row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                Makes claims with no proof to back them up
+              </div>
+              <div class="compare-v2__row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                Buries the offer in vague, slow-feeling promises
+              </div>
+              <div class="compare-v2__row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                Loaded with jargon and complicated next steps
+              </div>
+            </div>
+          </div>
+          <div class="compare-v2__col compare-v2__col--ours">
+            <h3 class="compare-v2__title">Marketing That Converts</h3>
+            <div class="compare-v2__rows">
+              <div class="compare-v2__row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Speaks directly to the client, not about you
+              </div>
+              <div class="compare-v2__row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Opens with a problem they're already aware of
+              </div>
+              <div class="compare-v2__row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Builds proof into every asset
+              </div>
+              <div class="compare-v2__row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Frames the dream outcome around speed and certainty
+              </div>
+              <div class="compare-v2__row">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                Strips out the jargon and friction
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 3. TRANSITION — bold statement ───────────────────────────────────── -->
+    <section class="pl-transition" aria-label="How Platinum changes your marketing">
+      <div class="pl-transition__glow" aria-hidden="true"></div>
+      <div class="container">
+        <div class="pl-transition__inner" data-reveal="up">
+          <h2 class="pl-transition__title"><span class="pl-transition__gold">Platinum builds all of it in, automatically</span> — into every flyer, email, post, and deck it creates.</h2>
+          <p class="pl-transition__sub">You don't need to learn the framework, hire a marketer, or fight with a blank page. You describe what you need. Platinum sends back marketing that's already built the way top producers build it.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 4. WHAT'S INSIDE — visual value tour ─────────────────────────────── -->
+    <section class="mm-tour" id="inside" aria-labelledby="inside-heading">
+      <div class="container">
+        <div data-reveal="up" style="margin: 0 auto var(--space-xl); max-width: 60rem; text-align: center;">
+          <h2 id="inside-heading" class="t-display" style="color: var(--primary-container); font-weight: 800; margin-bottom: var(--space-md);">What's Inside Platinum</h2>
+          <p class="t-body-lg" style="color: var(--on-surface-variant); margin: 0 auto;">Everything you'd hire a marketing team to build — planned, created, and deployed in minutes.</p>
+        </div>
+
+        <div class="mm-tour__rows">
+
+          <div class="mm-row" data-reveal="up">
+            <div class="mm-chat" aria-label="A sample conversation with The Loan Atlas">
+              <div class="mm-chat__bot">
+                <span class="mm-chat__avatar"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" /></span>
+                <div class="mm-chat__msg mm-chat__msg--bot">Hi, I'm your marketing assistant. What should we create today?</div>
+              </div>
+              <div class="mm-chat__msg mm-chat__msg--user">Help me win more business from a top Realtor I just met.</div>
+              <div class="mm-chat__bot">
+                <span class="mm-chat__avatar"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" /></span>
+                <div class="mm-chat__msg mm-chat__msg--bot">Great — let's build a partner pitch. Who's the audience and what's the angle?</div>
+              </div>
+              <div class="mm-chat__msg mm-chat__msg--user">A buyer's agent who works mostly first-time buyers.</div>
+              <div class="mm-chat__bot">
+                <span class="mm-chat__avatar"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" /></span>
+                <div class="mm-chat__msg mm-chat__msg--bot">Done. I drafted a co-branded first-time-buyer presentation, a one-page program flyer, and a 5-email nurture sequence. Want me to personalize them with your details?</div>
+              </div>
+            </div>
+            <div class="mm-row__copy">
+              <h3 class="mm-row__title">Marketing Assistant</h3>
+              <p class="mm-row__desc">Your in-house strategist. Builds campaign architecture, drafts copy, refines messaging, and works through scripting with you — trained on the Marketing Mastery discipline and the broader Loan Atlas curriculum.</p>
+            </div>
+          </div>
+
+          <div class="mm-row mm-row--flip" data-reveal="up">
+            <div class="mm-stack mm-stack--decks" aria-hidden="true">
+              <div class="mm-stack__decks">
+                <img class="mm-stack__img" src="<?php echo TLA_BASE; ?>/assets/platinum-presentation-deck-1.png" alt="" loading="lazy" />
+                <img class="mm-stack__img" src="<?php echo TLA_BASE; ?>/assets/platinum-presentation-deck-2.png" alt="" loading="lazy" />
+              </div>
+              <img class="mm-stack__img" src="<?php echo TLA_BASE; ?>/assets/platinum-flyer-1.jpeg" alt="" loading="lazy" />
+            </div>
+            <div class="mm-row__copy">
+              <h3 class="mm-row__title">Decks &amp; Flyers</h3>
+              <p class="mm-row__desc">Multi-slide presentations and single-page flyers for the topics originators actually market — buyer education, refinance scenarios, VA loans, Realtor partner pitches. Ready to personalize and send.</p>
+            </div>
+          </div>
+
+          <div class="mm-row" data-reveal="up">
+            <div class="mm-stack" aria-hidden="true">
+              <img class="mm-stack__img" src="<?php echo TLA_BASE; ?>/assets/platinum-example-3.png" alt="" loading="lazy" />
+              <img class="mm-stack__img" src="<?php echo TLA_BASE; ?>/assets/platinum-example-1.png" alt="" loading="lazy" />
+              <img class="mm-stack__img" src="<?php echo TLA_BASE; ?>/assets/platinum-example-2.png" alt="" loading="lazy" />
+              <img class="mm-stack__img" src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-3.jpeg" alt="" loading="lazy" />
+            </div>
+            <div class="mm-row__copy">
+              <h3 class="mm-row__title">Newsletters</h3>
+              <p class="mm-row__desc">Monthly market and rate-environment newsletters written in your voice, sourced from live data, formatted to be read — the kind of consistent touchpoint that turns past clients into a referral engine.</p>
+            </div>
+          </div>
+
+          <div class="mm-row mm-row--flip" data-reveal="up">
+            <div class="mm-stack" aria-hidden="true">
+              <img class="mm-stack__img" src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-1.jpeg" alt="" loading="lazy" />
+              <img class="mm-stack__img" src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-2.jpeg" alt="" loading="lazy" />
+              <img class="mm-stack__img" src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-3.jpeg" alt="" loading="lazy" />
+              <img class="mm-stack__img" src="<?php echo TLA_BASE; ?>/assets/platinum-example-2.png" alt="" loading="lazy" />
+            </div>
+            <div class="mm-row__copy">
+              <h3 class="mm-row__title">Social Graphics</h3>
+              <p class="mm-row__desc">Original visuals for Instagram, LinkedIn, and Facebook — feed posts, Stories, carousels — built for mortgage marketing instead of generic stock. Replaces the stock photo subscription and the Canva session.</p>
+            </div>
+          </div>
+
+          <div class="mm-row" data-reveal="up">
+            <div class="mm-stack" aria-hidden="true">
+              <img class="mm-stack__img" src="<?php echo TLA_BASE; ?>/assets/platinum-example-1.png" alt="" loading="lazy" />
+              <img class="mm-stack__img" src="<?php echo TLA_BASE; ?>/assets/platinum-example-2.png" alt="" loading="lazy" />
+              <img class="mm-stack__img" src="<?php echo TLA_BASE; ?>/assets/platinum-example-3.png" alt="" loading="lazy" />
+              <img class="mm-stack__img" src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-2.jpeg" alt="" loading="lazy" />
+            </div>
+            <div class="mm-row__copy">
+              <h3 class="mm-row__title">Landing Pages</h3>
+              <p class="mm-row__desc">Custom landing pages for lead generation, niche audiences, and campaign-specific offers — structured to convert.</p>
+            </div>
+          </div>
+
+          <div class="mm-row mm-row--flip" data-reveal="up">
+            <div class="mm-emailflow" aria-label="A 5-step email campaign generated by The Loan Atlas">
+              <div class="mm-chat__bot mm-emailflow__intro-row">
+                <span class="mm-chat__avatar"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" /></span>
+                <div class="mm-emailflow__intro">Here's your email campaign for <strong>first-time homebuyers — "Is now the right time to buy?"</strong></div>
+              </div>
+              <ol class="mm-emailflow__steps">
+                <li class="mm-emailflow__step"><span class="mm-emailflow__num">1</span><div class="mm-emailflow__body"><span class="mm-emailflow__label">Email 1 · Subject</span>Is now actually the right time to buy?</div></li>
+                <li class="mm-emailflow__step"><span class="mm-emailflow__num">2</span><div class="mm-emailflow__body"><span class="mm-emailflow__label">Email 2 · Subject</span>The number that matters more than the rate</div></li>
+                <li class="mm-emailflow__step"><span class="mm-emailflow__num">3</span><div class="mm-emailflow__body"><span class="mm-emailflow__label">Email 3 · Subject</span>How much home you can really afford</div></li>
+                <li class="mm-emailflow__step"><span class="mm-emailflow__num">4</span><div class="mm-emailflow__body"><span class="mm-emailflow__label">Email 4 · Subject</span>3 first-time buyer mistakes to avoid</div></li>
+                <li class="mm-emailflow__step"><span class="mm-emailflow__num">5</span><div class="mm-emailflow__body"><span class="mm-emailflow__label">Email 5 · Subject</span>Ready when you are — let's run your numbers</div></li>
+              </ol>
+            </div>
+            <div class="mm-row__copy">
+              <h3 class="mm-row__title">Email Campaigns</h3>
+              <p class="mm-row__desc">Multi-touch email sequences for past-client reactivation, Realtor partner nurture, and rate-move opportunities — written, sequenced, and ready to schedule.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 6. WHY DIFFERENT (light) ─────────────────────────────────────────── -->
+    <section class="disc-section" id="why" aria-labelledby="why-heading">
+      <div class="disc-section__inner">
+        <div data-reveal="up" style="margin: 0 auto var(--space-xl); max-width: 60rem; text-align: center;">
+          <h2 id="why-heading" class="t-display" style="color: var(--primary-container); font-weight: 800; margin-bottom: var(--space-md);">Why Platinum Is Different</h2>
+          <p class="t-body-lg" style="color: var(--on-surface-variant); margin: 0 auto var(--space-md);">Most AI-generated mortgage content reads like every piece of generic AI marketing in your inbox right now. Clients and Realtors spot it instantly.</p>
+          <p class="t-body-lg" style="color: var(--on-surface-variant); margin: 0 auto;">With Platinum, your content will look and sound like a top producer wrote it, because the playbook underneath was built by top producers — trained on the entire Loan Atlas content library and decades of curriculum from a faculty responsible for over $29 billion in closed loan volume.</p>
+        </div>
+
+        <div class="pl-compare" data-reveal="up" role="table" aria-label="Other AI marketing tools compared with Platinum Marketing">
+          <div class="pl-compare__head" role="row">
+            <div class="pl-compare__cat-head" role="columnheader"></div>
+            <div class="pl-compare__col pl-compare__col--theirs" role="columnheader">Other AI Marketing Tools</div>
+            <div class="pl-compare__col pl-compare__col--ours" role="columnheader" aria-label="Platinum Marketing">
+              <span class="pl-compare__lockup">
+                <img class="pl-compare__mark" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="" />
+                <span class="pl-compare__word">Platinum</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="pl-compare__row" role="row">
+            <div class="pl-compare__cat" role="rowheader">Trained on proven mortgage marketing principles</div>
+            <div class="pl-compare__cell pl-compare__cell--theirs" role="cell"><span class="pl-mark pl-mark--x" aria-label="No"></span></div>
+            <div class="pl-compare__cell pl-compare__cell--ours" role="cell"><span class="pl-mark pl-mark--check" aria-label="Yes"></span></div>
+          </div>
+          <div class="pl-compare__row" role="row">
+            <div class="pl-compare__cat" role="rowheader">Speaks to the client, not about you</div>
+            <div class="pl-compare__cell pl-compare__cell--theirs" role="cell"><span class="pl-mark pl-mark--x" aria-label="No"></span></div>
+            <div class="pl-compare__cell pl-compare__cell--ours" role="cell"><span class="pl-mark pl-mark--check" aria-label="Yes"></span></div>
+          </div>
+          <div class="pl-compare__row" role="row">
+            <div class="pl-compare__cat" role="rowheader">Sounds like a top producer wrote it</div>
+            <div class="pl-compare__cell pl-compare__cell--theirs" role="cell"><span class="pl-mark pl-mark--x" aria-label="No"></span></div>
+            <div class="pl-compare__cell pl-compare__cell--ours" role="cell"><span class="pl-mark pl-mark--check" aria-label="Yes"></span></div>
+          </div>
+          <div class="pl-compare__row" role="row">
+            <div class="pl-compare__cat" role="rowheader">Builds proof into every asset</div>
+            <div class="pl-compare__cell pl-compare__cell--theirs" role="cell"><span class="pl-mark pl-mark--x" aria-label="No"></span></div>
+            <div class="pl-compare__cell pl-compare__cell--ours" role="cell"><span class="pl-mark pl-mark--check" aria-label="Yes"></span></div>
+          </div>
+          <div class="pl-compare__row" role="row">
+            <div class="pl-compare__cat" role="rowheader">Generates copy fast</div>
+            <div class="pl-compare__cell pl-compare__cell--theirs" role="cell"><span class="pl-mark pl-mark--check" aria-label="Yes"></span></div>
+            <div class="pl-compare__cell pl-compare__cell--ours" role="cell"><span class="pl-mark pl-mark--check" aria-label="Yes"></span></div>
+          </div>
+          <div class="pl-compare__row" role="row">
+            <div class="pl-compare__cat" role="rowheader">Creates flyers, social posts, decks &amp; emails</div>
+            <div class="pl-compare__cell pl-compare__cell--theirs" role="cell"><span class="pl-mark pl-mark--check" aria-label="Yes"></span></div>
+            <div class="pl-compare__cell pl-compare__cell--ours" role="cell"><span class="pl-mark pl-mark--check" aria-label="Yes"></span></div>
+          </div>
+          <div class="pl-compare__row" role="row">
+            <div class="pl-compare__cat" role="rowheader">Trained on the entire Loan Atlas library</div>
+            <div class="pl-compare__cell pl-compare__cell--theirs" role="cell"><span class="pl-mark pl-mark--x" aria-label="No"></span></div>
+            <div class="pl-compare__cell pl-compare__cell--ours" role="cell"><span class="pl-mark pl-mark--check" aria-label="Yes"></span></div>
+          </div>
+          <div class="pl-compare__row" role="row">
+            <div class="pl-compare__cat" role="rowheader">Marketing your clients and partners actually open</div>
+            <div class="pl-compare__cell pl-compare__cell--theirs" role="cell"><span class="pl-mark pl-mark--x" aria-label="No"></span></div>
+            <div class="pl-compare__cell pl-compare__cell--ours" role="cell"><span class="pl-mark pl-mark--check" aria-label="Yes"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 8. PRICING ───────────────────────────────────────────────────────── -->
+    <section class="mm-pricing" id="pricing" aria-labelledby="pricing-heading">
+      <div class="container">
+        <div class="center" data-reveal="up" style="max-width: 50rem; margin-inline: auto;">
+          <h2 id="pricing-heading" class="t-display" style="color: #ffffff; font-weight: 800; margin-bottom: var(--space-md);">Stop sending marketing that sounds like <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">everyone else's.</span></h2>
+          <p style="font-size: clamp(1.0625rem, 1rem + 0.4vw, 1.25rem); line-height: 1.6; color: rgba(255, 255, 255, 0.72); margin: 0 auto;">When the marketing you send actually gets read, the conversations change, the referrals show up, and the way you compete in your market shifts. Platinum is how top producers run their marketing.</p>
+        </div>
+
+        <article class="mm-plan" data-reveal="scale">
+          <span class="mm-plan__lockup" aria-label="Platinum">
+            <img class="mm-plan__lockup-mark" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="" />
+            <span class="mm-plan__lockup-word">Platinum</span>
+          </span>
+          <p class="mm-plan__price"><s class="mm-plan__price-was" aria-label="Regularly $100 per month">$100</s>$69<span>/month</span></p>
+
+          <div class="mm-plan__body">
+            <div class="mm-plan__examples" aria-hidden="true">
+              <img class="mm-plan__example mm-plan__example--1" src="<?php echo TLA_BASE; ?>/assets/platinum-presentation-deck-1.png" alt="" loading="lazy" />
+              <img class="mm-plan__example mm-plan__example--2" src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-1.jpeg" alt="" loading="lazy" />
+              <img class="mm-plan__example mm-plan__example--3" src="<?php echo TLA_BASE; ?>/assets/platinum-flyer-1.jpeg" alt="" loading="lazy" />
+            </div>
+
+            <div class="mm-plan__features">
+              <p class="mm-plan__list-heading">What you get with Platinum:</p>
+              <ul class="mm-plan__list">
+                <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>The full Platinum marketing engine, trained on the entire Loan Atlas library</li>
+                <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Flyers, social posts, presentation decks, and email campaigns — done for you</li>
+                <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Landing pages built to convert leads and partner audiences</li>
+                <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Content that sounds like a top producer wrote it — never generic AI</li>
+                <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Built on the marketing framework refined inside The Loan Atlas for two decades</li>
+                <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Marketing your clients and partners actually open, read, and act on</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="mm-plan__cta">
+            <a class="btn btn--gold btn--lg" href="/join/" style="font-size: 1.0625rem; padding: 18px 44px; box-shadow: 0 8px 28px rgba(201, 150, 28, 0.32);">Join The Loan Atlas with Platinum</a>
+            <a class="mm-plan__cta-link" href="/consultation/">Want to check it out first? Schedule your free coaching call.</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+<?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>
+
+
+  <!-- Hero marketing-assistant — typing animation (ported from the homepage chat demo) -->
+  <script>
+    (function () {
+      var el = document.querySelector('[data-pl-chat]');
+      if (!el) return;
+      var typedEl = el.querySelector('.pl-hero-chat__typed');
+      var messages = (el.dataset.messages || '').split('|').map(function (s) { return s.trim(); }).filter(Boolean);
+      if (!typedEl || !messages.length) return;
+
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var msgIdx = 0, charIdx = 0, mode = 'typing', timeoutId = null, running = false, visible = false;
+
+      function schedule(ms, fn) {
+        if (timeoutId) { window.clearTimeout(timeoutId); timeoutId = null; }
+        if (!running) return;
+        timeoutId = window.setTimeout(function () { timeoutId = null; if (running) fn(); }, ms);
+      }
+
+      function tick() {
+        var msg = messages[msgIdx];
+        if (mode === 'typing') {
+          charIdx++;
+          typedEl.textContent = msg.slice(0, charIdx);
+          if (charIdx >= msg.length) { mode = 'pause'; schedule(1500, tick); }
+          else { schedule(32 + Math.random() * 26, tick); }
+        } else if (mode === 'pause') {
+          mode = 'erasing'; schedule(14, tick);
+        } else if (mode === 'erasing') {
+          charIdx--;
+          typedEl.textContent = msg.slice(0, Math.max(0, charIdx));
+          if (charIdx <= 0) { charIdx = 0; mode = 'gap'; schedule(350, tick); }
+          else { schedule(14, tick); }
+        } else if (mode === 'gap') {
+          msgIdx = (msgIdx + 1) % messages.length;
+          mode = 'typing'; schedule(50, tick);
+        }
+      }
+
+      function start() {
+        if (running) return;
+        running = true; charIdx = 0; mode = 'typing'; typedEl.textContent = '';
+        if (reduceMotion) { typedEl.textContent = messages[0]; return; }
+        schedule(600, tick);
+      }
+      function stop() {
+        running = false;
+        if (timeoutId) { window.clearTimeout(timeoutId); timeoutId = null; }
+      }
+
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            visible = entry.isIntersecting;
+            if (visible) start(); else stop();
+          });
+        }, { threshold: 0.25 });
+        io.observe(el);
+      } else {
+        start();
+      }
+    })();
+  </script>

@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AI Financial Review — Layout Directions</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --primary:#021c36; --primary-container:#021c36;
+    --brass:#c9961c; --brass-bright:#eac25a;
+    --grad:linear-gradient(135deg,#c9961c 0%,#eac25a 50%,#ffd56c 100%);
+    --dark:linear-gradient(135deg,#0a1628,#131b2e,#1e293b);
+    --background:#f7f9fb; --surface:#ffffff; --surface-low:#f2f4f6;
+    --on-surface:#191c1e; --on-surface-variant:#45464d; --outline:#c6c6cd;
+    --radius-xl:0.75rem; --radius-2xl:1rem; --radius-3xl:1.5rem;
+    --xs:8px; --sm:16px; --md:24px; --lg:40px; --xl:64px;
+    --max:1280px; --gutter:24px;
+    --shadow-lg:0 12px 32px rgba(2,28,54,.10);
+    --font-d:'Manrope',system-ui,sans-serif; --font-b:'Inter',system-ui,sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:var(--font-b);color:var(--on-surface);background:var(--background);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 var(--gutter)}
+  .eyebrow{font-family:var(--font-b);font-weight:600;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--brass)}
+  h2.title{font-family:var(--font-d);font-weight:700;font-size:clamp(2rem,1.4rem + 2.4vw,3rem);line-height:1.08;letter-spacing:-.025em;color:var(--primary);margin:.4rem 0 .6rem;text-wrap:balance}
+  h2.title em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lede{font-size:1.0625rem;line-height:1.7;color:var(--on-surface-variant);max-width:46rem}
+  .grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+  /* page chrome */
+  .nav{position:sticky;top:0;z-index:50;background:rgba(2,28,54,.95);backdrop-filter:blur(8px);display:flex;gap:8px;padding:12px var(--gutter);flex-wrap:wrap;align-items:center}
+  .nav b{color:#fff;font-family:var(--font-d);margin-right:12px}
+  .nav a{color:rgba(255,255,255,.8);text-decoration:none;font-size:.85rem;font-weight:600;padding:6px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.18)}
+  .nav a:hover{background:rgba(255,255,255,.1);color:#fff}
+  .demo-label{position:sticky;top:49px;z-index:40;background:var(--brass);color:#021c36;font-family:var(--font-d);font-weight:800;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;padding:8px var(--gutter)}
+  .demo-note{font-weight:500;text-transform:none;letter-spacing:0;opacity:.85;font-size:.78rem}
+  section.dir{padding:clamp(56px,7vw,96px) 0;border-bottom:1px solid var(--outline)}
+  .head{margin-bottom:var(--lg)}
+
+  /* ============ A. LINEAR STORY / STEPS ============ */
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--md);position:relative}
+  @media(max-width:860px){.steps{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.steps{grid-template-columns:1fr}}
+  .step{position:relative;padding:var(--md);background:var(--surface);border:1px solid var(--outline);border-radius:var(--radius-2xl)}
+  .step__n{font-family:var(--font-d);font-weight:800;font-size:.8rem;letter-spacing:.1em;color:var(--brass)}
+  .step__ico{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;background:var(--dark);color:var(--brass-bright);margin:10px 0 14px}
+  .step__ico svg{width:22px;height:22px}
+  .step__t{font-family:var(--font-d);font-weight:700;font-size:1.0625rem;color:var(--primary);margin:0 0 6px}
+  .step__d{font-size:.9rem;line-height:1.55;color:var(--on-surface-variant);margin:0}
+  .step__arrow{position:absolute;right:-16px;top:50%;transform:translateY(-50%);color:var(--outline);z-index:2}
+  @media(max-width:860px){.step__arrow{display:none}}
+  .steps-img{margin-top:var(--lg);border-radius:var(--radius-3xl);overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--outline)}
+  .steps-img img{width:100%;display:block}
+
+  /* ============ B. BENTO GRID ============ */
+  .bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(150px,auto);gap:var(--sm)}
+  @media(max-width:760px){.bento{grid-template-columns:1fr 1fr}}
+  .tile{background:var(--surface);border:1px solid var(--outline);border-radius:var(--radius-2xl);padding:var(--md);display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;position:relative}
+  .tile--hero{grid-column:span 2;grid-row:span 2;background:var(--dark);color:#fff;border-color:rgba(255,255,255,.08)}
+  .tile--wide{grid-column:span 2}
+  .tile__k{font-size:.78rem;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:var(--brass)}
+  .tile__big{font-family:var(--font-d);font-weight:800;font-size:clamp(2.4rem,4vw,3.4rem);line-height:1;margin:8px 0;letter-spacing:-.02em}
+  .tile--hero .tile__sub{color:rgba(255,255,255,.7);font-size:.95rem;line-height:1.5;max-width:24ch}
+  .tile__t{font-family:var(--font-d);font-weight:700;font-size:1rem;color:var(--primary);margin:10px 0 4px}
+  .tile__d{font-size:.85rem;line-height:1.5;color:var(--on-surface-variant);margin:0}
+  .tile__num{font-family:var(--font-d);font-weight:800;font-size:1.9rem;color:var(--primary);letter-spacing:-.02em}
+
+  /* ============ C. SCROLLYTELLING ============ */
+  .scrolly{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr);gap:clamp(32px,5vw,72px);align-items:start}
+  @media(max-width:860px){.scrolly{grid-template-columns:1fr}}
+  .scrolly__steps{display:flex;flex-direction:column;gap:0}
+  .sc-step{padding:clamp(40px,9vh,90px) 0;border-left:2px solid var(--outline);padding-left:var(--md);position:relative;opacity:.4;transition:opacity .3s}
+  .sc-step.is-on{opacity:1;border-left-color:var(--brass)}
+  .sc-step__t{font-family:var(--font-d);font-weight:700;font-size:1.35rem;color:var(--primary);margin:0 0 8px}
+  .sc-step__d{font-size:.98rem;line-height:1.6;color:var(--on-surface-variant);margin:0}
+  .scrolly__sticky{position:sticky;top:140px;height:min(72vh,560px);border-radius:var(--radius-3xl);overflow:hidden;background:var(--dark);box-shadow:var(--shadow-lg)}
+  .sc-frame{position:absolute;inset:0;display:grid;place-items:center;opacity:0;transition:opacity .5s;padding:var(--lg);text-align:center}
+  .sc-frame.is-on{opacity:1}
+  .sc-frame__big{font-family:var(--font-d);font-weight:800;font-size:clamp(3rem,7vw,5rem);line-height:1;letter-spacing:-.03em}
+  .sc-frame__lab{color:rgba(255,255,255,.6);font-size:.9rem;letter-spacing:.12em;text-transform:uppercase;margin-top:14px}
+
+  /* ============ D. TABBED SHOWCASE ============ */
+  .tabs{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:var(--md);background:var(--surface-low);padding:6px;border-radius:999px;width:max-content;max-width:100%;border:1px solid var(--outline)}
+  .tab{border:0;background:transparent;font-family:var(--font-d);font-weight:600;font-size:.92rem;color:var(--on-surface-variant);padding:10px 18px;border-radius:999px;cursor:pointer}
+  .tab.is-on{background:var(--primary);color:#fff}
+  .tab-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(32px,4vw,56px);align-items:center;min-height:340px}
+  @media(max-width:760px){.tab-grid{grid-template-columns:1fr}}
+  .tab-pane{display:none}
+  .tab-pane.is-on{display:block}
+  .tab-pane__sub{font-family:var(--font-d);font-weight:600;color:var(--brass);margin:0 0 8px;font-size:1.05rem}
+  .tab-pane__t{font-family:var(--font-d);font-weight:700;font-size:1.6rem;color:var(--primary);margin:0 0 12px}
+  .tab-pane__d{font-size:1rem;line-height:1.65;color:var(--on-surface-variant);margin:0}
+  .tab-shot{border-radius:var(--radius-3xl);overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--outline);background:var(--dark);aspect-ratio:16/11;display:grid;place-items:center}
+  .tab-shot img{width:100%;height:100%;object-fit:cover;display:block}
+</style>
+</head>
+<body>
+
+<div class="nav">
+  <b>FRS layout directions</b>
+  <a href="#a">A · Linear steps</a>
+  <a href="#b">B · Bento</a>
+  <a href="#c">C · Scrollytelling</a>
+  <a href="#d">D · Tabs</a>
+</div>
+
+<!-- ===================== A ===================== -->
+<div class="demo-label" id="a">Direction A — Linear story / steps <span class="demo-note">· nothing hidden, narrative does the selling</span></div>
+<section class="dir">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">AI-Driven Financial Review</span>
+      <h2 class="title">Build your year <em>by the numbers</em>.</h2>
+      <p class="lede">Tell it what you want to earn, how many hours you want to work, and how many weeks off. It builds the entire financial picture of your business — what your time is worth, how many loans you need, and exactly where every one comes from.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <span class="step__n">STEP 01</span>
+        <div class="step__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+        <p class="step__t">Know your hourly rate</p>
+        <p class="step__d">Income goal + hours + vacation → your true rate of pay. The number that changes how you spend every hour.</p>
+        <span class="step__arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="step">
+        <span class="step__n">STEP 02</span>
+        <div class="step__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5M4 19h16M7 15l4-4 3 3 5-7"/></svg></div>
+        <p class="step__t">Find your break-even</p>
+        <p class="step__d">Expenses + tax bracket → the exact number of loans you must close each month just to break even.</p>
+        <span class="step__arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="step">
+        <span class="step__n">STEP 03</span>
+        <div class="step__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></div>
+        <p class="step__t">Map every loan to a source</p>
+        <p class="step__d">Database, partners, consumer-direct. How many leads from each, and the conversion rate to hit your goal.</p>
+        <span class="step__arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
+      <div class="step">
+        <span class="step__n">STEP 04</span>
+        <div class="step__ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18M7 14l4-4 3 3 5-6"/></svg></div>
+        <p class="step__t">Track yourself live</p>
+        <p class="step__d">Every lead and closing feeds your numbers in real time — batting average, income, hourly rate. Adjust before the year gets away.</p>
+      </div>
+    </div>
+    <div class="steps-img"><img src="../assets/financial-review-tool-section.png" alt="AI Financial Review dashboard" /></div>
+  </div>
+</section>
+
+<!-- ===================== B ===================== -->
+<div class="demo-label" id="b">Direction B — Bento grid <span class="demo-note">· compact, scannable, big outcome anchors it</span></div>
+<section class="dir">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">AI-Driven Financial Review</span>
+      <h2 class="title">Build your year <em>by the numbers</em>.</h2>
+      <p class="lede">Most originators set an income goal and hope. This replaces hope with math.</p>
+    </div>
+    <div class="bento">
+      <div class="tile tile--hero">
+        <span class="tile__k">Your true hourly rate</span>
+        <div>
+          <div class="tile__big grad-text">$312<span style="font-size:1.4rem;color:rgba(255,255,255,.5)">/hr</span></div>
+          <p class="tile__sub">The moment you see this number, you stop doing the work you should be paying someone else to do.</p>
+        </div>
+      </div>
+      <div class="tile">
+        <span class="tile__k">Break-even</span>
+        <div><div class="tile__num">6.2</div><p class="tile__d">loans / month to cover the business</p></div>
+      </div>
+      <div class="tile">
+        <span class="tile__k">Income goal</span>
+        <div><div class="tile__num">$420K</div><p class="tile__d">reverse-engineered into a plan</p></div>
+      </div>
+      <div class="tile tile--wide">
+        <span class="tile__k">Lead source mapping</span>
+        <div><p class="tile__t">Every loan, mapped to its source</p><p class="tile__d">Database, referral partners, consumer-direct — how many leads and what conversion rate each must hit.</p></div>
+      </div>
+      <div class="tile">
+        <span class="tile__k">Live tracking</span>
+        <div><p class="tile__t">Always on pace</p><p class="tile__d">Real-time batting average, income, and rate.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== C ===================== -->
+<div class="demo-label" id="c">Direction C — Scrollytelling <span class="demo-note">· scroll the copy; the visual on the right morphs</span></div>
+<section class="dir">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">AI-Driven Financial Review</span>
+      <h2 class="title">Build your year <em>by the numbers</em>.</h2>
+    </div>
+    <div class="scrolly">
+      <div class="scrolly__steps">
+        <div class="sc-step is-on" data-frame="1"><p class="sc-step__t">Know what your time is worth</p><p class="sc-step__d">Income goal, working hours, vacation weeks → your true hourly rate of pay.</p></div>
+        <div class="sc-step" data-frame="2"><p class="sc-step__t">Find the number that matters most</p><p class="sc-step__d">Expenses and tax bracket → the loans you must close each month to break even.</p></div>
+        <div class="sc-step" data-frame="3"><p class="sc-step__t">Map your entire year</p><p class="sc-step__d">Every loan reverse-engineered to a lead source and a conversion rate.</p></div>
+        <div class="sc-step" data-frame="4"><p class="sc-step__t">Track it live</p><p class="sc-step__d">Every lead and closing updates your numbers in real time.</p></div>
+      </div>
+      <div class="scrolly__sticky">
+        <div class="sc-frame is-on" data-frame="1"><div><div class="sc-frame__big grad-text">$312/hr</div><div class="sc-frame__lab">Your true hourly rate</div></div></div>
+        <div class="sc-frame" data-frame="2"><div><div class="sc-frame__big grad-text">6.2</div><div class="sc-frame__lab">Loans to break even / mo</div></div></div>
+        <div class="sc-frame" data-frame="3"><div><div class="sc-frame__big grad-text">38</div><div class="sc-frame__lab">Loans mapped to sources</div></div></div>
+        <div class="sc-frame" data-frame="4"><div><div class="sc-frame__big grad-text">71%</div><div class="sc-frame__lab">Batting average — live</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== D ===================== -->
+<div class="demo-label" id="d">Direction D — Tabbed showcase <span class="demo-note">· compact tabs above one big screenshot</span></div>
+<section class="dir" style="border-bottom:0">
+  <div class="wrap">
+    <div class="head">
+      <span class="eyebrow">AI-Driven Financial Review</span>
+      <h2 class="title">Build your year <em>by the numbers</em>.</h2>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="tab is-on" data-tab="1">Hourly Rate</button>
+      <button class="tab" data-tab="2">Break-Even</button>
+      <button class="tab" data-tab="3">Lead Mapping</button>
+      <button class="tab" data-tab="4">Live Tracking</button>
+    </div>
+    <div class="tab-grid">
+      <div>
+        <div class="tab-pane is-on" data-tab="1"><p class="tab-pane__sub">Know what every hour is worth.</p><h3 class="tab-pane__t">Hourly Rate of Pay</h3><p class="tab-pane__d">Income goal, working hours, vacation weeks → your true hourly rate. The moment you see it, you stop spending hours on work you should delegate.</p></div>
+        <div class="tab-pane" data-tab="2"><p class="tab-pane__sub">The most important number in your business.</p><h3 class="tab-pane__t">Break-Even Loans</h3><p class="tab-pane__d">Enter expenses and tax bracket. See the exact number of loans you must close every month just to break even.</p></div>
+        <div class="tab-pane" data-tab="3"><p class="tab-pane__sub">Every loan, mapped to its source.</p><h3 class="tab-pane__t">Lead Source Mapping</h3><p class="tab-pane__d">Reverse-engineers your year across database, referral partners, and consumer-direct — leads needed and conversion rate per source.</p></div>
+        <div class="tab-pane" data-tab="4"><p class="tab-pane__sub">Always know if you're on pace.</p><h3 class="tab-pane__t">Live Performance Tracking</h3><p class="tab-pane__d">Every lead and closing feeds your numbers in real time — batting average, income, hourly rate, all updating live.</p></div>
+      </div>
+      <div class="tab-shot"><img src="../assets/financial-review-tool-section.png" alt="AI Financial Review" /></div>
+    </div>
+  </div>
+</section>
+
+<script>
+  // tabs
+  document.querySelectorAll('.tab').forEach(t=>t.addEventListener('click',()=>{
+    const id=t.dataset.tab;
+    document.querySelectorAll('.tab').forEach(x=>x.classList.toggle('is-on',x===t));
+    document.querySelectorAll('.tab-pane').forEach(p=>p.classList.toggle('is-on',p.dataset.tab===id));
+  }));
+  // scrollytelling
+  const scSteps=[...document.querySelectorAll('.sc-step')];
+  const scFrames=[...document.querySelectorAll('.sc-frame')];
+  const io=new IntersectionObserver((es)=>{
+    es.forEach(e=>{if(e.isIntersecting){const f=e.target.dataset.frame;
+      scSteps.forEach(s=>s.classList.toggle('is-on',s===e.target));
+      scFrames.forEach(fr=>fr.classList.toggle('is-on',fr.dataset.frame===f));}});
+  },{rootMargin:'-45% 0px -45% 0px'});
+  scSteps.forEach(s=>io.observe(s));
+</script>
+</body>
+</html>

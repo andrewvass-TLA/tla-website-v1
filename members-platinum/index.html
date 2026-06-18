@@ -6,12 +6,47 @@
     1. Upload the 3 images (see ASSET URLS below) to the WordPress Media Library
        on members.theloanatlas.com. Copy each resulting full URL.
     2. Replace every  __MEDIA_URL_*__  placeholder in this file with the real URL.
-    3. Replace  __ACTIVATE_URL__  with the real activation flow URL.
-    4. Replace  __COACHING_URL__  with the free coaching session booking URL.
-    5. In WP admin: create the page > add a single "Custom HTML" block >
+    3. The two CTA areas (hero + final) each contain THREE shortcodes (see
+       "ACTIVATION CTA" below). The snippets that define them must be active in
+       WPCode, AND the do_shortcode snippet (below) must be active so the HTML
+       widget actually runs them.
+    4. In WP admin: edit the page with Elementor > add a single "HTML" widget >
        paste EVERYTHING below the marked line (do not paste this comment).
-    6. Preview the page (not just the editor). Round-trip re-save to confirm
-       the block is not flagged as invalid.
+    5. Preview the page (the live front end, not just the editor). Round-trip
+       re-save to confirm the block is not flagged as invalid.
+
+  ACTIVATION CTA (IMPORTANT):
+    - This page is held in ONE Elementor "HTML" widget. By default a shortcode
+      does NOT execute inside an HTML widget — it prints as literal
+      "[tla_platinum_cta]" text. To fix that ONCE, add this PHP snippet in
+      WPCode (PHP Snippet, Auto Insert, Run Everywhere, no <?php tag):
+
+        add_filter( 'elementor/widget/render_content', function ( $content, $widget ) {
+            if ( 'html' === $widget->get_name() ) {
+                $content = do_shortcode( $content );
+            }
+            return $content;
+        }, 10, 2 );
+
+      With that active, the three shortcodes below render inline, in place.
+
+    - Each CTA area (hero + final) contains, stacked vertically:
+        [tla_magic_login_form]                      → passwordless login (logged-out visitors)
+        [tla_platinum_cta]                          → smart button, self-adjusts by login/subscription
+        [tla_spt_add_url product_id="115314" ... ]  → direct "add Platinum (product 115314)" action
+      Each shortcode decides its own visibility by visitor state, so stacking
+      all three is safe — only the relevant one(s) render for a given visitor.
+
+    - VERIFY ON THE LIVE PAGE in 3 states — logged out, logged-in monthly
+      subscriber, logged-in with no subscription — to confirm the right
+      control(s) show and that the two buttons don't visibly compete. If they
+      do, trim one with the admin.
+
+    - The shortcode buttons render their OWN styling (gold / DM Sans), which is
+      intentionally NOT the .tp-btn--gold style used elsewhere on this page —
+      expect a slightly different gold and font. (Option A: accepted.)
+
+    - Coaching-session buttons removed per request.
 
   NOTES:
     - JS-free by design (survives multisite / security-plugin sanitization).
@@ -75,6 +110,24 @@
   scroll-behavior: smooth;
 }
 
+/* Paint the page background full-width behind the whole component, so light
+   sections never reveal the theme's white backdrop at the sides. The ::before
+   sits behind all content and spans the full viewport width regardless of how
+   narrow the host widget/container is. */
+.tla-plat { position: relative; }
+.tla-plat::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  background: var(--tp-bg);
+  pointer-events: none;
+}
+.tla-plat > * { position: relative; z-index: 1; }
+
 /* Reset scoped to our subtree only — predictable box model regardless of theme */
 .tla-plat *,
 .tla-plat *::before,
@@ -106,12 +159,26 @@
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
 }
+/* Tinted (grey) full-bleed section — same breakout as .tp-dark so the grey
+   background extends edge-to-edge instead of leaving white bars at the sides. */
+.tla-plat .tp-tint {
+  background: var(--tp-surface-low);
+}
 .tla-plat .tp-dark {
   background: var(--tp-dark-panel);
   color: #fff;
 }
 .tla-plat .tp-dark .tp-eyebrow { color: var(--tp-brass-bright); }
 .tla-plat .tp-dark p { color: rgba(255,255,255,0.78); }
+/* Force white headings inside dark sections — beats theme/Elementor heading color rules
+   that would otherwise override the inherited white. */
+.tla-plat .tp-dark h1,
+.tla-plat .tp-dark h2,
+.tla-plat .tp-dark h3,
+.tla-plat .tp-dark .tp-h2,
+.tla-plat .tp-dark .tp-h3,
+.tla-plat .tp-dark .tp-display,
+.tla-plat .tp-dark .tp-punch { color: #fff; }
 
 /* ---- Type ---- */
 .tla-plat .tp-display {
@@ -187,15 +254,18 @@
   color: #fff;
 }
 .tla-plat .tp-btn--primary:hover { transform: translateY(-2px); box-shadow: var(--tp-shadow-lg); }
-.tla-plat .tp-btn--ghost-dark {
-  background: transparent;
-  color: #fff;
-  border-color: rgba(255,255,255,0.32);
-}
-.tla-plat .tp-btn--ghost-dark:hover { border-color: rgba(255,255,255,0.7); }
 .tla-plat .tp-btn--lg { padding: 18px 36px; font-size: 1.0625rem; border-radius: var(--tp-radius-xl); }
 
 .tla-plat .tp-actions { display: flex; flex-wrap: wrap; gap: var(--tp-space-sm); }
+/* Vertical stack for the activation CTA: magic-login form + the two Platinum
+   buttons sit on their own lines (the login form is a form, not an inline btn). */
+.tla-plat .tp-actions--stack {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--tp-space-md);
+  max-width: 420px;
+}
+.tla-plat .tp-final .tp-actions--stack { margin-inline: auto; align-items: center; }
 
 /* ---- HERO ---- */
 .tla-plat .tp-hero {
@@ -497,9 +567,10 @@
         <p class="tp-eyebrow" style="margin-top:20px;">Platinum by The Loan Atlas</p>
         <h1 class="tp-display">The mortgage marketing you keep meaning to send — <span class="tp-em">finally built, polished, and ready to go.</span></h1>
         <p class="tp-lead">Platinum is the marketing engine inside The Loan Atlas that helps you turn campaign ideas into usable mortgage marketing assets — faster, cleaner, and with less friction. As a member, your next 6 months are on us.</p>
-        <div class="tp-actions">
-          <a class="tp-btn tp-btn--gold tp-btn--lg" href="__ACTIVATE_URL__">Activate my free 6 months</a>
-          <a class="tp-btn tp-btn--ghost-dark tp-btn--lg" href="__COACHING_URL__">Schedule a free coaching session</a>
+        <div class="tp-actions tp-actions--stack">
+          [tla_magic_login_form]
+          [tla_platinum_cta]
+          [tla_spt_add_url product_id="115314" label="Upgrade to Platinum Now"]
         </div>
         <p class="tp-hero-note">No charge for 6 months. Nothing changes on your account until you choose to continue.</p>
       </div>
@@ -526,7 +597,7 @@
   </section>
 
   <!-- ============ WHAT YOU CAN BUILD ============ -->
-  <section class="tp-section" style="background:var(--tp-surface-low);">
+  <section class="tp-section tp-bleed tp-tint">
     <div class="tp-container">
       <div class="tp-head tp-center">
         <p class="tp-eyebrow">What you can build with Platinum</p>
@@ -708,9 +779,10 @@
       <p class="tp-eyebrow" style="color:var(--tp-brass-bright);">Your upgrade is waiting</p>
       <h2 class="tp-display" style="margin-top:14px;">Stop wishing your marketing was <span class="tp-em">getting done.</span></h2>
       <p class="tp-lead">So the next time rates move, a Realtor asks for something, or your past clients need to hear from you, you are not starting from scratch — you are operating from a system. Activate your free 6 months of Platinum today.</p>
-      <div class="tp-actions">
-        <a class="tp-btn tp-btn--gold tp-btn--lg" href="__ACTIVATE_URL__">Activate my free 6 months</a>
-        <a class="tp-btn tp-btn--ghost-dark tp-btn--lg" href="__COACHING_URL__">Schedule your free coaching session</a>
+      <div class="tp-actions tp-actions--stack">
+        [tla_magic_login_form]
+        [tla_platinum_cta]
+        [tla_spt_add_url product_id="115314" label="Upgrade to Platinum Now"]
       </div>
       <p class="tp-final-note">Included with your membership · No charge for 6 months</p>
     </div>
