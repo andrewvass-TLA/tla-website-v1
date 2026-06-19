@@ -8,16 +8,20 @@ lives here for version control only; deploy is a manual copy-paste into WP.
 ## Files
 - `index.html` — the snippet + deploy instructions in the top comment. Open it directly in a browser to preview.
 
+This page mirrors the public marketing page (`../public/platinum-marketing.html`,
+theloanatlas.com/platinum-marketing) in look and content, rebuilt JS-free and re-pointed at the
+members' **free 6-month activation** offer.
+
 ## Deploy (copy-paste, no SFTP / no theme edits)
-1. **Upload images** to the WP Media Library on members.theloanatlas.com. Source images you can reuse:
-   `../public/assets/platinum-example-1.png`, `-2.png`, `-3.png`.
-2. Copy each Media URL and replace the placeholders, then **uncomment** the gallery block in `index.html`:
-   - `__MEDIA_URL_EXAMPLE_1__`, `__MEDIA_URL_EXAMPLE_2__`, `__MEDIA_URL_EXAMPLE_3__`
-3. Replace the link placeholders:
-   - `__ACTIVATE_URL__` — the activation flow URL
-   - `__COACHING_URL__` — the free coaching session booking URL
-4. WP admin → new page → add one **Custom HTML** block → paste everything between the
-   `PASTE FROM THE NEXT LINE DOWN` and `PASTE UP TO HERE` markers (omit the top comment).
+1. **All images are wired** to the members.theloanatlas.com Media Library
+   (`.../wp-content/uploads/2026/06/...`) — decks, flyer, newsletter, social (1–4), landing (1–2),
+   and the Loan Atlas logomark (chat avatars + comparison lockup). No placeholders remain.
+2. The two CTA areas (hero + final) use the WPCode shortcodes (`[tla_magic_login_form]`,
+   `[tla_platinum_cta]`, `[tla_spt_add_url …]`). Confirm those snippets + the `do_shortcode`
+   filter snippet are active (see the top comment in `index.html`).
+4. WP admin → new page → add one **Custom HTML** block (or single Elementor "HTML" widget) → paste
+   everything between the `PASTE FROM THE NEXT LINE DOWN` and `PASTE UP TO HERE` markers (omit the
+   top comment).
 5. **Preview** the page (not just the editor view). Then re-open + re-save to confirm the block
    isn't flagged "invalid" (round-trip test).
 6. Set `<title>` / meta description / OG tags in the **SEO plugin fields** on the page — not in the HTML.

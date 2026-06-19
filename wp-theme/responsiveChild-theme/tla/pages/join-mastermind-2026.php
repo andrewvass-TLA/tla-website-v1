@@ -77,13 +77,6 @@ $tla_active      = '';
       justify-content: center;
       gap: clamp(16px, 2.5vw, 28px);
       margin: 0 auto var(--space-lg);
-      padding: clamp(12px, 1.8vw, 18px) clamp(20px, 3vw, 32px);
-      background: #ffffff;
-      border: 1px solid rgba(201, 150, 28, 0.35);
-      border-radius: var(--radius-full);
-      box-shadow:
-        0 18px 44px rgba(2, 28, 54, 0.16),
-        0 0 0 4px rgba(234, 194, 90, 0.1);
     }
     .mm-hero-lockup__atlas {
       height: clamp(40px, 6vw, 64px);
@@ -102,6 +95,85 @@ $tla_active      = '';
       color: var(--brass);
       line-height: 1;
     }
+
+    /* ── Larger CTAs (page-scoped — bigger pad + text than the shared .btn--lg) ── */
+    .lp-intro .btn--gold.btn--lg,
+    .mm-offer__cta .btn--gold.btn--lg,
+    .mm-plat__actions .btn--gold.btn--lg,
+    .mm-plan__cta .btn--gold.btn--lg {
+      font-size: clamp(1.0625rem, 0.95rem + 0.6vw, 1.3125rem);
+      padding: clamp(20px, 1.6vw, 26px) clamp(36px, 4vw, 56px);
+      border-radius: var(--radius-2xl);
+      box-shadow: 0 10px 32px rgba(201, 150, 28, 0.34);
+    }
+
+    /* ── Countdown timer ───────────────────────────────────────────────────── */
+    .mm-countdown {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin: var(--space-md) auto 0;
+    }
+    .mm-countdown__label {
+      font-family: var(--font-display);
+      font-size: clamp(1.375rem, 1.1rem + 1.1vw, 1.75rem);
+      font-weight: 800;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      line-height: 1.1;
+      color: var(--brass);
+    }
+    .mm-countdown__expires {
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: var(--on-surface-variant);
+    }
+    .mm-countdown__clock {
+      display: inline-flex;
+      align-items: flex-start;
+      gap: clamp(8px, 1.4vw, 16px);
+    }
+    .mm-countdown__unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      min-width: clamp(56px, 7vw, 76px);
+      padding: clamp(8px, 1vw, 12px) clamp(6px, 1vw, 10px);
+      background: linear-gradient(135deg, #0a1628 0%, #021c36 100%);
+      border: 1px solid rgba(234, 194, 90, 0.4);
+      border-radius: var(--radius-xl);
+      box-shadow: inset 0 0 0 1px rgba(234, 194, 90, 0.1);
+    }
+    .mm-countdown__num {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      font-variant-numeric: tabular-nums;
+    }
+    .mm-countdown__unit-label {
+      font-family: var(--font-body);
+      font-size: 0.625rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.62);
+    }
+    .mm-countdown.is-ended .mm-countdown__clock { display: none; }
+    .mm-countdown__ended {
+      display: none;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.125rem;
+      color: #ffffff;
+    }
+    .mm-countdown.is-ended .mm-countdown__ended { display: block; }
     /* This headline is longer than the default lp-intro title, so scale it down
        on narrow screens to prevent the long words from overflowing the gutter. */
     @media (max-width: 600px) {
@@ -728,18 +800,34 @@ $tla_active      = '';
       pointer-events: none;
       z-index: -1;
     }
-    .mm-plat__grid {
+    /* Faded background collage of every Platinum asset */
+    .mm-plat > .container { position: relative; z-index: 1; }
+    .mm-plat__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
       display: grid;
-      grid-template-columns: 1fr;
-      gap: clamp(40px, 6vw, 80px);
-      align-items: center;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(10px, 1.4vw, 18px);
+      padding: clamp(10px, 1.4vw, 18px);
+      align-content: start;
+      opacity: 0.16;
+      filter: saturate(0.85);
+      pointer-events: none;
+      -webkit-mask-image: radial-gradient(120% 90% at 50% 30%, #000 0%, rgba(0,0,0,0.35) 55%, transparent 85%);
+      mask-image: radial-gradient(120% 90% at 50% 30%, #000 0%, rgba(0,0,0,0.35) 55%, transparent 85%);
     }
-    @media (min-width: 960px) {
-      .mm-plat__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); }
+    @media (min-width: 700px) {
+      .mm-plat__bg { grid-template-columns: repeat(6, 1fr); }
+    }
+    .mm-plat__bg img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
     }
 
-    /* Left copy column */
-    /* Full-width header above the grid */
+    /* Full-width header */
     .mm-plat__header {
       text-align: center;
       max-width: 60rem;
@@ -800,6 +888,38 @@ $tla_active      = '';
       background-clip: text;
       color: transparent;
     }
+    /* Full-width box: checklist (left) + offer (right) */
+    .mm-plat__offer {
+      position: relative;
+      max-width: 60rem;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(28px, 4vw, 48px);
+      align-items: center;
+      padding: clamp(28px, 4vw, 48px);
+      background: linear-gradient(135deg, #0a1628 0%, #021c36 55%, #0a223d 100%);
+      border: 1px solid rgba(234, 194, 90, 0.4);
+      border-radius: var(--radius-3xl);
+      box-shadow:
+        0 40px 90px rgba(2, 28, 54, 0.5),
+        0 0 60px rgba(234, 194, 90, 0.14),
+        inset 0 0 0 1px rgba(234, 194, 90, 0.12);
+    }
+    @media (min-width: 760px) {
+      .mm-plat__offer { grid-template-columns: 1fr 1fr; }
+      /* Divider in the exact middle of the box */
+      .mm-plat__offer::before {
+        content: '';
+        position: absolute;
+        top: clamp(28px, 4vw, 48px);
+        bottom: clamp(28px, 4vw, 48px);
+        left: 50%;
+        width: 1px;
+        background: rgba(234, 194, 90, 0.22);
+      }
+    }
+
     .mm-plat__list-label {
       font-family: var(--font-body);
       font-size: 0.75rem;
@@ -809,31 +929,32 @@ $tla_active      = '';
       color: rgba(255, 255, 255, 0.5);
       margin: 0 0 var(--space-md);
     }
-    .mm-plat__list {
-      margin: 0 0 var(--space-lg);
-      display: grid;
-      gap: 10px var(--space-lg);
-    }
-    @media (min-width: 480px) {
-      .mm-plat__list { grid-template-columns: 1fr 1fr; }
-    }
-    .mm-plat__list li { font-size: 0.9375rem; }
-
-    /* Price tag — $100 struck through → free */
-    .mm-plat__price {
+    /* Left side — checklist, centered in its half */
+    .mm-plat__offer-list {
       display: flex;
-      align-items: center;
-      gap: var(--space-md);
-      flex-wrap: wrap;
-      padding: var(--space-md) var(--space-lg);
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(234, 194, 90, 0.28);
-      border-radius: var(--radius-2xl);
-      margin-bottom: var(--space-lg);
+      justify-content: center;
     }
+    .mm-plat__list {
+      margin: 0;
+      display: inline-flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .mm-plat__list li { font-size: 1.125rem; font-weight: 700; }
+
+    /* Right side — the deal */
+    .mm-plat__offer-deal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-lg);
+      text-align: center;
+    }
+    .mm-plat__offer-deal .btn { width: 100%; }
     .mm-plat__price-tag {
       display: flex;
-      align-items: baseline;
+      flex-direction: column;
+      align-items: center;
       gap: 12px;
       flex-shrink: 0;
     }
@@ -841,10 +962,10 @@ $tla_active      = '';
       position: relative;
       font-family: var(--font-display);
       font-weight: 700;
-      font-size: 1.75rem;
+      font-size: 2.5rem;
       color: rgba(255, 255, 255, 0.5);
     }
-    .mm-plat__price-was span { font-size: 0.9375rem; font-weight: 600; }
+    .mm-plat__price-was span { font-size: 1.125rem; font-weight: 600; }
     .mm-plat__price-was::after {
       content: '';
       position: absolute;
@@ -859,9 +980,10 @@ $tla_active      = '';
     .mm-plat__price-now {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: clamp(2.75rem, 1.8rem + 3vw, 3.75rem);
-      line-height: 0.9;
+      font-size: clamp(2.25rem, 1.5rem + 2.4vw, 3rem);
+      line-height: 0.95;
       letter-spacing: -0.03em;
+      white-space: nowrap;
       background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
       -webkit-background-clip: text;
       background-clip: text;
@@ -872,102 +994,9 @@ $tla_active      = '';
       font-size: 0.9375rem;
       line-height: 1.45;
       color: rgba(255, 255, 255, 0.78);
-      margin: 0;
+      margin: calc(var(--space-md) * -0.75) 0 0;
     }
     .mm-plat__price-note strong { color: var(--brass-bright); font-weight: 700; }
-
-    .mm-plat__actions {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: var(--space-sm);
-    }
-    .mm-plat__link {
-      font-size: 0.9375rem;
-      color: rgba(255, 255, 255, 0.7);
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      text-decoration-thickness: 1px;
-      transition: color 150ms ease;
-    }
-    .mm-plat__link:hover { color: var(--brass-bright); }
-
-    /* Right showcase — floating asset cards */
-    .mm-plat__showcase {
-      position: relative;
-      min-height: clamp(380px, 50vw, 540px);
-    }
-    .mm-plat__asset {
-      position: absolute;
-      margin: 0;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #ffffff;
-      box-shadow:
-        0 24px 60px rgba(0, 0, 0, 0.45),
-        0 2px 8px rgba(0, 0, 0, 0.3);
-      transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
-    }
-    .mm-plat__asset img {
-      display: block;
-      width: 100%;
-      height: auto;
-    }
-    .mm-plat__asset figcaption {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      padding: 18px 14px 10px;
-      font-family: var(--font-body);
-      font-size: 0.6875rem;
-      font-weight: 700;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: #ffffff;
-      text-align: center;
-      background: linear-gradient(0deg, rgba(2, 12, 26, 0.82) 0%, transparent 100%);
-    }
-    /* Flyer — tall, back-left */
-    .mm-plat__asset--flyer {
-      width: 46%;
-      top: 0;
-      left: 0;
-      transform: rotate(-5deg);
-      z-index: 1;
-    }
-    /* Newsletter — tall, back-right */
-    .mm-plat__asset--news {
-      width: 42%;
-      top: 8%;
-      right: 0;
-      transform: rotate(5deg);
-      z-index: 2;
-    }
-    /* Social — square, front-center, overlapping */
-    .mm-plat__asset--social {
-      width: 50%;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%) rotate(-1deg);
-      z-index: 3;
-    }
-    .mm-plat__showcase:hover .mm-plat__asset--flyer { transform: rotate(-7deg) translateY(-6px); }
-    .mm-plat__showcase:hover .mm-plat__asset--news { transform: rotate(7deg) translateY(-6px); }
-    .mm-plat__showcase:hover .mm-plat__asset--social { transform: translateX(-50%) rotate(-1deg) translateY(-8px); }
-
-    @media (max-width: 600px) {
-      /* Keep the overlapping collage together, just sized down and moved
-         directly under the subheading (above the copy column). */
-      .mm-plat__showcase {
-        order: -1;
-        min-height: clamp(280px, 80vw, 360px);
-        max-width: 420px;
-        margin-inline: auto;
-        width: 100%;
-      }
-      .mm-plat__asset figcaption { font-size: 0.625rem; }
-    }
 
     /* ── 8 Disciplines (matches what's-inside.html top section) ─────────────── */
     .disc-section {
@@ -1599,7 +1628,9 @@ $tla_active      = '';
       <p class="mm-bar__text">
         <strong>Mastermind Exclusive</strong>
         <span class="mm-bar__sep mm-bar__hide-sm">·</span>
-        <span class="mm-bar__hide-sm">$49 first month, then $249/mo locked</span>
+        <span class="mm-bar__hide-sm">$49 First Month</span>
+        <span class="mm-bar__sep mm-bar__hide-sm">·</span>
+        <span class="mm-bar__hide-sm">6 Months Free Platinum</span>
         <span class="mm-bar__sep">·</span>
         Save $2,186
       </p>
@@ -1622,6 +1653,17 @@ $tla_active      = '';
           <p class="lp-intro__subtitle" data-hero-step="3">Five AI-powered systems, live coaching every week, and the full curriculum that built billion-dollar mortgage teams — now at a price reserved only for Mastermind Summit attendees.</p>
           <div class="lp-intro__actions" data-hero-step="4">
             <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Start Your Transformation — $49 Today</a>
+          </div>
+          <div class="mm-countdown" data-hero-step="4" data-countdown="2026-06-26T23:59:59" role="timer" aria-label="Time remaining until the offer ends">
+            <span class="mm-countdown__label">Limited Time Offer</span>
+            <span class="mm-countdown__expires">Expires Friday, June&nbsp;26th</span>
+            <div class="mm-countdown__clock" aria-hidden="false">
+              <div class="mm-countdown__unit"><span class="mm-countdown__num" data-cd="days">00</span><span class="mm-countdown__unit-label">Days</span></div>
+              <div class="mm-countdown__unit"><span class="mm-countdown__num" data-cd="hours">00</span><span class="mm-countdown__unit-label">Hrs</span></div>
+              <div class="mm-countdown__unit"><span class="mm-countdown__num" data-cd="minutes">00</span><span class="mm-countdown__unit-label">Min</span></div>
+              <div class="mm-countdown__unit"><span class="mm-countdown__num" data-cd="seconds">00</span><span class="mm-countdown__unit-label">Sec</span></div>
+            </div>
+            <span class="mm-countdown__ended">This offer has ended.</span>
           </div>
         </div>
       </div>
@@ -1665,7 +1707,7 @@ $tla_active      = '';
           <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$2,186</em> in Annual Savings — Exclusively for Mastermind Attendees</span></p>
 
           <div class="mm-offer__cta">
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/" style="font-size: 1.0625rem; padding: 18px 44px; box-shadow: 0 8px 28px rgba(201, 150, 28, 0.32);">Claim Your $49 First Month</a>
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Claim Your $49 First Month</a>
             <a href="/consultation-mastermind-2026/" style="font-size: 0.9375rem; color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;">
               Have questions? Book a free coaching session
             </a>
@@ -1857,63 +1899,55 @@ $tla_active      = '';
     <!-- ── 7b. PLATINUM MARKETING ───────────────────────────────────────────── -->
     <section class="mm-plat" id="platinum" aria-labelledby="plat-heading">
       <div class="mm-plat__glow" aria-hidden="true"></div>
+
+      <!-- Faded background collage of every Platinum asset -->
+      <div class="mm-plat__bg" aria-hidden="true">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-landing-page-1.png" alt="" loading="lazy">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-presentation-deck-1.png" alt="" loading="lazy">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-flyer-1.jpeg" alt="" loading="lazy">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-1.jpeg" alt="" loading="lazy">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-newsletter.png" alt="" loading="lazy">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-presentation-deck-2.png" alt="" loading="lazy">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-2.jpeg" alt="" loading="lazy">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-landing-page-2.png" alt="" loading="lazy">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-flyer-2.jpeg" alt="" loading="lazy">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-3.jpeg" alt="" loading="lazy">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-4.png" alt="" loading="lazy">
+      </div>
+
       <div class="container">
 
-        <!-- FULL-WIDTH HEADER -->
         <div class="mm-plat__header" data-reveal="up">
           <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
             <span class="eyebrow__text" style="color: var(--brass-bright);">Just Launched for Mastermind</span>
           </span>
           <h2 id="plat-heading" class="mm-plat__title">Platinum Marketing</h2>
           <p class="mm-plat__subhead">
-            The mortgage marketing you keep meaning to send — <span class="mm-plat__subhead-em">finally built, polished, and ready to go.</span>
+            Take your marketing from ignored to <span class="mm-plat__subhead-em" style="font-weight: 800;">irresistible.</span>
           </p>
         </div>
 
-        <div class="mm-plat__grid">
-
-          <!-- LEFT: copy + checklist + price + CTAs -->
-          <div class="mm-plat__copy" data-reveal="up">
-            <p class="mm-plat__list-label">What you can build with Platinum</p>
+        <!-- Full-width box: checklist (left) + offer (right) -->
+        <div class="mm-plat__offer" data-reveal="scale">
+          <div class="mm-plat__offer-list">
             <ul class="checklist checklist--inverse mm-plat__list">
-              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Refinance flyers</li>
-              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Market update emails</li>
-              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Realtor presentations</li>
-              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Buyer education campaigns</li>
-              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Social graphics</li>
-              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Past-client campaigns</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Marketing Assistant</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Decks &amp; Flyers</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Newsletters</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Email Campaigns</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Social Graphics</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Landing Pages</li>
             </ul>
-
-            <!-- Price tag — $100/mo struck through, free with Mastermind -->
-            <div class="mm-plat__price">
-              <div class="mm-plat__price-tag">
-                <span class="mm-plat__price-was">$100<span>/mo</span></span>
-                <span class="mm-plat__price-now"><span style="font-size: 0.42em; font-weight: 700; letter-spacing: 0;">6 months</span> FREE</span>
-              </div>
-              <p class="mm-plat__price-note">then $69/mo, or cancel anytime.</p>
-            </div>
-
-            <div class="mm-plat__actions">
-              <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Claim Your Free 6-Months</a>
-            </div>
           </div>
 
-          <!-- RIGHT: floating asset screenshots -->
-          <div class="mm-plat__showcase" data-reveal="scale" aria-label="Examples of marketing assets built with Platinum">
-            <figure class="mm-plat__asset mm-plat__asset--flyer">
-              <img src="<?php echo TLA_BASE; ?>/assets/platinum-example-1.png" alt="Renovation home loan programs flyer built in Platinum" loading="lazy">
-              <figcaption>Refinance &amp; Program Flyers</figcaption>
-            </figure>
-            <figure class="mm-plat__asset mm-plat__asset--social">
-              <img src="<?php echo TLA_BASE; ?>/assets/platinum-example-2.png" alt="Homebuyer success story social graphic built in Platinum" loading="lazy">
-              <figcaption>Social Graphics</figcaption>
-            </figure>
-            <figure class="mm-plat__asset mm-plat__asset--news">
-              <img src="<?php echo TLA_BASE; ?>/assets/platinum-example-3.png" alt="Monthly market update newsletter built in Platinum" loading="lazy">
-              <figcaption>Market Updates</figcaption>
-            </figure>
+          <div class="mm-plat__offer-deal">
+            <div class="mm-plat__price-tag">
+              <span class="mm-plat__price-was">$100<span>/mo</span></span>
+              <span class="mm-plat__price-now">6 Months FREE</span>
+            </div>
+            <p class="mm-plat__price-note">then $69/mo, or cancel anytime.</p>
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Claim Your Free 6-Months</a>
           </div>
-
         </div>
       </div>
     </section>
@@ -2111,8 +2145,7 @@ $tla_active      = '';
           <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$2,186</em> in Annual Savings — Exclusively for Mastermind Attendees</span></p>
 
           <div class="mm-plan__cta">
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/"
-              style="font-size: 1.0625rem; padding: 18px 44px; box-shadow: 0 8px 28px rgba(201, 150, 28, 0.32);">
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">
               Claim Your $49 First Month
             </a>
             <a href="/consultation-mastermind-2026/" style="font-size: 0.9375rem; color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;">
@@ -2157,3 +2190,33 @@ $tla_active      = '';
   <!-- ── Footer (standard site chrome) ──────────────────────────────────────── -->
 <?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>
 
+  <script>
+    // Offer countdown — ticks down to the local target time, then shows an ended state.
+    (function () {
+      var el = document.querySelector('[data-countdown]');
+      if (!el) return;
+      var target = new Date(el.getAttribute('data-countdown')).getTime();
+      var fields = {
+        days: el.querySelector('[data-cd="days"]'),
+        hours: el.querySelector('[data-cd="hours"]'),
+        minutes: el.querySelector('[data-cd="minutes"]'),
+        seconds: el.querySelector('[data-cd="seconds"]')
+      };
+      var pad = function (n) { return (n < 10 ? '0' : '') + n; };
+      function tick() {
+        var diff = target - Date.now();
+        if (diff <= 0) {
+          el.classList.add('is-ended');
+          clearInterval(timer);
+          return;
+        }
+        var s = Math.floor(diff / 1000);
+        fields.days.textContent = pad(Math.floor(s / 86400));
+        fields.hours.textContent = pad(Math.floor((s % 86400) / 3600));
+        fields.minutes.textContent = pad(Math.floor((s % 3600) / 60));
+        fields.seconds.textContent = pad(s % 60);
+      }
+      tick();
+      var timer = setInterval(tick, 1000);
+    })();
+  </script>

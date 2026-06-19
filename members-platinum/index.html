@@ -3,9 +3,11 @@
   THE LOAN ATLAS — Platinum Activation Page (members.theloanatlas.com)
   ============================================================================
   HOW TO DEPLOY:
-    1. Upload the 3 images (see ASSET URLS below) to the WordPress Media Library
+    1. Upload the images (see ASSET URLS below) to the WordPress Media Library
        on members.theloanatlas.com. Copy each resulting full URL.
-    2. Replace every  __MEDIA_URL_*__  placeholder in this file with the real URL.
+    2. All images are wired to the members.theloanatlas.com Media Library
+       (.../wp-content/uploads/2026/06/...) — decks, flyer, newsletter, social,
+       landing pages, and the Loan Atlas logomark. No placeholders remain.
     3. The two CTA areas (hero + final) each contain THREE shortcodes (see
        "ACTIVATION CTA" below). The snippets that define them must be active in
        WPCode, AND the do_shortcode snippet (below) must be active so the HTML
@@ -39,14 +41,11 @@
 
     - VERIFY ON THE LIVE PAGE in 3 states — logged out, logged-in monthly
       subscriber, logged-in with no subscription — to confirm the right
-      control(s) show and that the two buttons don't visibly compete. If they
-      do, trim one with the admin.
+      control(s) show and that the two buttons don't visibly compete.
 
     - The shortcode buttons render their OWN styling (gold / DM Sans), which is
       intentionally NOT the .tp-btn--gold style used elsewhere on this page —
       expect a slightly different gold and font. (Option A: accepted.)
-
-    - Coaching-session buttons removed per request.
 
   NOTES:
     - JS-free by design (survives multisite / security-plugin sanitization).
@@ -58,6 +57,9 @@
       the page still reads cleanly in the fallback stack.
     - <title> / meta description / OG tags: set these in the SEO plugin fields
       on the page, NOT here — they are ignored inside a content block.
+    - This page mirrors the public marketing page (theloanatlas.com/platinum-
+      marketing) in look and content, rebuilt JS-free and re-pointed at the
+      members' free 6-month activation offer.
   ============================================================================
   PASTE FROM THE NEXT LINE DOWN ↓↓↓
 -->
@@ -67,6 +69,7 @@
 .tla-plat {
   /* ---- Design tokens (mirrors .claude/DESIGN.md) ---- */
   --tp-primary: #021c36;
+  --tp-primary-container: #b2c8e9;
   --tp-bg: #f7f9fb;
   --tp-surface: #ffffff;
   --tp-surface-low: #f2f4f6;
@@ -76,9 +79,12 @@
   --tp-outline-variant: #c6c6cd;
   --tp-brass: #c9961c;
   --tp-brass-bright: #eac25a;
+  --tp-red-gradient: linear-gradient(135deg, #b91c1c 0%, #ef4444 50%, #f87171 100%);
   --tp-brass-gradient: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+  --tp-silver: linear-gradient(180deg, #ffffff 0%, #f2f6fb 30%, #c3cedd 55%, #8b9bb3 78%, #e8eef6 100%);
   --tp-dark-panel: linear-gradient(135deg, #0a1628 0%, #131b2e 50%, #1e293b 100%);
   --tp-dark-cta: linear-gradient(160deg, #021c36 0%, #0a1628 50%, #131b2e 100%);
+  --tp-dark-band: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
 
   --tp-radius: 0.25rem;
   --tp-radius-lg: 0.5rem;
@@ -111,9 +117,7 @@
 }
 
 /* Paint the page background full-width behind the whole component, so light
-   sections never reveal the theme's white backdrop at the sides. The ::before
-   sits behind all content and spans the full viewport width regardless of how
-   narrow the host widget/container is. */
+   sections never reveal the theme's white backdrop at the sides. */
 .tla-plat { position: relative; }
 .tla-plat::before {
   content: "";
@@ -128,13 +132,14 @@
 }
 .tla-plat > * { position: relative; z-index: 1; }
 
-/* Reset scoped to our subtree only — predictable box model regardless of theme */
+/* Reset scoped to our subtree only */
 .tla-plat *,
 .tla-plat *::before,
 .tla-plat *::after { box-sizing: border-box; }
 
 .tla-plat p,
 .tla-plat ul,
+.tla-plat ol,
 .tla-plat li,
 .tla-plat h1,
 .tla-plat h2,
@@ -143,35 +148,24 @@
 
 .tla-plat img { max-width: 100%; height: auto; display: block; }
 .tla-plat a { color: inherit; }
+.tla-plat ul, .tla-plat ol { list-style: none; }
 
 /* ---- Layout primitives ---- */
-.tla-plat .tp-section {
-  padding-block: clamp(48px, 6vw, 96px);
-}
+.tla-plat .tp-section { padding-block: clamp(48px, 6vw, 96px); }
 .tla-plat .tp-container {
   max-width: var(--tp-container);
   margin-inline: auto;
   padding-inline: var(--tp-space-md);
 }
-/* Full-bleed break-out of the theme's content container */
 .tla-plat .tp-bleed {
   width: 100vw;
   margin-left: calc(50% - 50vw);
   margin-right: calc(50% - 50vw);
 }
-/* Tinted (grey) full-bleed section — same breakout as .tp-dark so the grey
-   background extends edge-to-edge instead of leaving white bars at the sides. */
-.tla-plat .tp-tint {
-  background: var(--tp-surface-low);
-}
-.tla-plat .tp-dark {
-  background: var(--tp-dark-panel);
-  color: #fff;
-}
+.tla-plat .tp-tint { background: var(--tp-surface-low); }
+.tla-plat .tp-dark { background: var(--tp-dark-panel); color: #fff; }
 .tla-plat .tp-dark .tp-eyebrow { color: var(--tp-brass-bright); }
 .tla-plat .tp-dark p { color: rgba(255,255,255,0.78); }
-/* Force white headings inside dark sections — beats theme/Elementor heading color rules
-   that would otherwise override the inherited white. */
 .tla-plat .tp-dark h1,
 .tla-plat .tp-dark h2,
 .tla-plat .tp-dark h3,
@@ -225,6 +219,15 @@
   color: transparent;
   font-style: normal;
 }
+.tla-plat .tp-em-red {
+  background: var(--tp-red-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-style: normal;
+  font-weight: 800;
+}
 
 /* ---- Buttons ---- */
 .tla-plat .tp-btn {
@@ -249,16 +252,9 @@
   box-shadow: 0 8px 24px rgba(201,150,28,0.28);
 }
 .tla-plat .tp-btn--gold:hover { transform: translateY(-2px); box-shadow: 0 12px 30px rgba(201,150,28,0.36); }
-.tla-plat .tp-btn--primary {
-  background: var(--tp-primary);
-  color: #fff;
-}
-.tla-plat .tp-btn--primary:hover { transform: translateY(-2px); box-shadow: var(--tp-shadow-lg); }
 .tla-plat .tp-btn--lg { padding: 18px 36px; font-size: 1.0625rem; border-radius: var(--tp-radius-xl); }
 
 .tla-plat .tp-actions { display: flex; flex-wrap: wrap; gap: var(--tp-space-sm); }
-/* Vertical stack for the activation CTA: magic-login form + the two Platinum
-   buttons sit on their own lines (the login form is a form, not an inline btn). */
 .tla-plat .tp-actions--stack {
   flex-direction: column;
   align-items: flex-start;
@@ -267,13 +263,85 @@
 }
 .tla-plat .tp-final .tp-actions--stack { margin-inline: auto; align-items: center; }
 
-/* ---- HERO ---- */
+/* ---- Silver "Platinum" lockup (logomark + word) ---- */
+.tla-plat .tp-lockup { display: inline-flex; align-items: center; justify-content: center; gap: 4px; }
+.tla-plat .tp-lockup__mark { width: auto; display: block; }
+.tla-plat .tp-lockup__word {
+  font-family: var(--tp-display);
+  font-weight: 800;
+  line-height: 1;
+  background: var(--tp-silver);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.3);
+}
+
+/* ---- HERO ----
+   Corporate-style treatment: a Platinum-asset collage fills the hero, then a
+   left→right navy fade sits over it — opaque navy on the left (keeps the copy
+   legible) fading to transparent on the right to reveal the imagery. */
 .tla-plat .tp-hero {
-  background: var(--tp-dark-cta);
+  /* fallback navy if the collage images fail to load */
+  background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
   color: #fff;
   position: relative;
   overflow: hidden;
+  isolation: isolate;
 }
+/* Collage of every Platinum asset (each shown ONCE, no duplicates) — packed into
+   the RIGHT HALF of the hero, where the navy fade reveals it. A grid whose rows
+   stretch to fill the full height so there's no empty space below the tiles. */
+.tla-plat .tp-hero-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 50%;
+  z-index: 0;
+  display: flex;
+  gap: clamp(5px, 0.7vw, 9px);
+  padding: clamp(5px, 0.7vw, 9px);
+  filter: saturate(0.9);
+  pointer-events: none;
+  overflow: hidden;
+}
+/* Each flex child is a column; images stack and stretch to fill the column's
+   full height, so together the columns cover the right half with no empty space. */
+.tla-plat .tp-hero-bg__col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(5px, 0.7vw, 9px);
+  min-width: 0;
+}
+.tla-plat .tp-hero-bg__col:last-child { display: none; }
+@media (min-width: 700px) {
+  .tla-plat .tp-hero-bg__col:last-child { display: flex; }
+}
+.tla-plat .tp-hero-bg img {
+  display: block;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  object-fit: cover;
+  border-radius: 6px;
+}
+/* Left→right navy fade overlay (the corporate-page gradient) */
+.tla-plat .tp-hero-fade {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background: linear-gradient(to right,
+    rgba(2,28,54,1)    0%,
+    rgba(2,28,54,1)    45%,
+    rgba(2,28,54,0.92) 60%,
+    rgba(2,28,54,0.7)  80%,
+    rgba(2,28,54,0.55) 100%);
+}
+/* Brass / blue glow accents, above the fade */
 .tla-plat .tp-hero::before,
 .tla-plat .tp-hero::after {
   content: "";
@@ -281,18 +349,24 @@
   border-radius: 50%;
   filter: blur(70px);
   pointer-events: none;
+  z-index: 2;
 }
 .tla-plat .tp-hero::before {
   width: 420px; height: 420px;
-  background: rgba(234,194,90,0.10);
-  top: -120px; right: -80px;
+  background: rgba(234,194,90,0.11);
+  top: -80px; right: 8%;
 }
 .tla-plat .tp-hero::after {
-  width: 480px; height: 480px;
+  width: 400px; height: 400px;
   background: rgba(178,200,233,0.08);
-  bottom: -160px; left: -120px;
+  bottom: -80px; left: 4%;
 }
-.tla-plat .tp-hero .tp-container { position: relative; z-index: 1; }
+@media (max-width: 760px) {
+  /* flat navy stack on small screens for legibility (matches corporate) */
+  .tla-plat .tp-hero-bg { display: none; }
+  .tla-plat .tp-hero-fade { display: none; }
+}
+.tla-plat .tp-hero .tp-container { position: relative; z-index: 3; }
 .tla-plat .tp-hero-inner { max-width: 760px; }
 .tla-plat .tp-hero .tp-display { color: #fff; margin-top: var(--tp-space-sm); }
 .tla-plat .tp-hero .tp-lead { margin-top: var(--tp-space-md); color: rgba(255,255,255,0.80); }
@@ -323,165 +397,311 @@
   color: rgba(255,255,255,0.6);
 }
 
+/* Bold lead-in line inside the hero copy block (matches .tp-lead, weight only) */
+.tla-plat .tp-lead--bold { margin-top: var(--tp-space-sm); font-weight: 700; color: #fff; }
+
+/* Two-column hero — copy left, price card right */
+.tla-plat .tp-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(40px, 5vw, 72px);
+  align-items: center;
+}
+@media (min-width: 920px) {
+  .tla-plat .tp-hero-grid { grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); }
+}
+
+/* Hero price card — large gold-bordered dark panel (ported from mastermind .mm-plat__offer) */
+.tla-plat .tp-price-card {
+  width: 100%;
+  padding: clamp(32px, 4.5vw, 56px) clamp(28px, 4vw, 48px);
+  text-align: center;
+  background: linear-gradient(135deg, #0a1628 0%, #021c36 55%, #0a223d 100%);
+  border: 1px solid rgba(234,194,90,0.4);
+  border-radius: var(--tp-radius-3xl);
+  box-shadow:
+    0 40px 90px rgba(2,28,54,0.5),
+    0 0 60px rgba(234,194,90,0.14),
+    inset 0 0 0 1px rgba(234,194,90,0.12);
+}
+.tla-plat .tp-price-card__logo {
+  height: clamp(48px, 6vw, 72px);
+  width: auto;
+  margin: 0 auto var(--tp-space-md);
+}
+.tla-plat .tp-price-card__heading {
+  font-family: var(--tp-display);
+  font-weight: 700;
+  font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.625rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #fff;
+  margin-bottom: var(--tp-space-lg);
+}
+.tla-plat .tp-price-tag {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+.tla-plat .tp-price-was {
+  position: relative;
+  font-family: var(--tp-display);
+  font-weight: 700;
+  font-size: clamp(2.5rem, 1.8rem + 2vw, 3.25rem);
+  line-height: 1;
+  color: rgba(255,255,255,0.5);
+}
+.tla-plat .tp-price-was span { font-size: 0.4em; font-weight: 600; }
+.tla-plat .tp-price-was::after {
+  content: '';
+  position: absolute;
+  left: -4px;
+  right: -4px;
+  top: 52%;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--tp-brass-bright);
+  transform: rotate(-8deg);
+}
+.tla-plat .tp-price-now {
+  font-family: var(--tp-display);
+  font-weight: 800;
+  font-size: clamp(2.75rem, 1.8rem + 3.2vw, 4rem);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  white-space: nowrap;
+  background: var(--tp-brass-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.tla-plat .tp-price-note {
+  margin-top: var(--tp-space-md);
+  font-family: var(--tp-sans);
+  font-size: 1rem;
+  color: rgba(255,255,255,0.7);
+}
+
 /* ---- Section heading block ---- */
 .tla-plat .tp-head { max-width: 720px; }
-.tla-plat .tp-head .tp-h2 { margin-top: 12px; }
+.tla-plat .tp-head .tp-h2 { margin-top: 0; }
 .tla-plat .tp-head .tp-lead { margin-top: var(--tp-space-md); }
 .tla-plat .tp-center { margin-inline: auto; text-align: center; }
 
-/* ---- Problem list ---- */
-.tla-plat .tp-problem-list {
-  list-style: none;
-  margin-top: var(--tp-space-lg);
+/* ---- "Why ignored" — split with big stat ---- */
+.tla-plat .tp-ignored {
   display: grid;
-  gap: 12px;
-  max-width: 640px;
+  grid-template-columns: 1fr;
+  gap: var(--tp-space-xl);
+  align-items: center;
 }
-.tla-plat .tp-problem-list li {
-  position: relative;
-  padding-left: 32px;
-  font-size: 1.0625rem;
+@media (min-width: 860px) { .tla-plat .tp-ignored { grid-template-columns: 1fr 1fr; } }
+.tla-plat .tp-ignored h2 {
+  font-family: var(--tp-display);
+  font-weight: 700;
+  font-size: clamp(1.625rem, 1.25rem + 1.6vw, 2.5rem);
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: var(--tp-on-surface);
+  margin-bottom: var(--tp-space-md);
+}
+.tla-plat .tp-ignored p { margin-bottom: var(--tp-space-md); }
+.tla-plat .tp-ignored p:last-child { margin-bottom: 0; }
+.tla-plat .tp-stat { text-align: center; }
+.tla-plat .tp-stat__top,
+.tla-plat .tp-stat__label {
+  display: block;
+  font-size: 0.9375rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--tp-on-surface-variant);
+}
+.tla-plat .tp-stat__top { margin-bottom: var(--tp-space-lg); }
+.tla-plat .tp-stat__label { margin-top: var(--tp-space-lg); }
+.tla-plat .tp-stat__num {
+  font-family: var(--tp-display);
+  font-weight: 800;
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  font-size: clamp(4.5rem, 2.5rem + 11vw, 9rem);
+  background: var(--tp-brass-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+.tla-plat .tp-bignote {
+  margin: clamp(40px, 5vw, 64px) auto 0;
+  max-width: 68rem;
+  text-align: center;
+  font-family: var(--tp-display);
+  font-size: clamp(1.375rem, 1.1rem + 1.1vw, 1.875rem);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
   color: var(--tp-on-surface);
 }
-.tla-plat .tp-problem-list li::before {
-  content: "";
-  position: absolute;
-  left: 0; top: 9px;
-  width: 14px; height: 14px;
-  border-radius: 3px;
-  background: var(--tp-brass-gradient);
-}
 
-/* ---- Build-with cards grid ---- */
-.tla-plat .tp-grid {
+/* ---- Ignored vs Converts compare ---- */
+.tla-plat .tp-vs {
+  margin-top: var(--tp-space-lg);
   display: grid;
+  grid-template-columns: 1fr;
   gap: var(--tp-space-md);
-  margin-top: var(--tp-space-xl);
-  grid-template-columns: repeat(3, 1fr);
 }
-.tla-plat .tp-card {
-  background: var(--tp-surface);
-  border: 1px solid var(--tp-outline-variant);
+@media (min-width: 720px) { .tla-plat .tp-vs { grid-template-columns: 1fr 1fr; } }
+.tla-plat .tp-vs__col {
   border-radius: var(--tp-radius-2xl);
+  border: 1px solid var(--tp-outline-variant);
+  background: var(--tp-surface);
   padding: var(--tp-space-lg) var(--tp-space-md);
   box-shadow: var(--tp-shadow);
 }
-.tla-plat .tp-card .tp-icon {
-  width: 44px; height: 44px;
-  border-radius: var(--tp-radius-lg);
-  background: rgba(201,150,28,0.12);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--tp-brass);
-  margin-bottom: var(--tp-space-md);
-}
-.tla-plat .tp-card .tp-icon svg { width: 22px; height: 22px; }
-.tla-plat .tp-card .tp-h3 { margin-bottom: 8px; }
-.tla-plat .tp-card p { font-size: 0.9375rem; }
-
-.tla-plat .tp-bridge {
-  margin-top: var(--tp-space-xl);
-  text-align: center;
-  font-family: var(--tp-display);
-  font-weight: 600;
-  font-size: clamp(1.125rem, 1rem + 0.6vw, 1.375rem);
-  color: var(--tp-on-surface);
-  max-width: 680px;
-  margin-inline: auto;
-}
-
-/* ---- Steps (How it works) ---- */
-.tla-plat .tp-steps {
-  margin-top: var(--tp-space-xl);
-  display: grid;
-  gap: var(--tp-space-md);
-}
-.tla-plat .tp-step {
-  display: grid;
-  grid-template-columns: 56px 1fr;
-  gap: var(--tp-space-md);
-  align-items: start;
-  padding: var(--tp-space-md) 0;
-  border-top: 1px solid rgba(255,255,255,0.12);
-}
-.tla-plat .tp-step:first-child { border-top: none; }
-.tla-plat .tp-step-num {
-  width: 48px; height: 48px;
-  border-radius: 50%;
-  border: 1px solid rgba(234,194,90,0.5);
-  color: var(--tp-brass-bright);
+.tla-plat .tp-vs__col--ours { border-color: rgba(201,150,28,0.45); background: linear-gradient(180deg, #fffdf6 0%, #ffffff 60%); }
+.tla-plat .tp-vs__title {
   font-family: var(--tp-display);
   font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
   font-size: 1.125rem;
+  margin-bottom: var(--tp-space-md);
+  color: var(--tp-on-surface);
 }
-.tla-plat .tp-step .tp-h3 { color: #fff; margin-bottom: 6px; }
+.tla-plat .tp-vs__list { display: grid; gap: 12px; }
+.tla-plat .tp-vs__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.9375rem;
+  line-height: 1.45;
+  color: var(--tp-on-surface-variant);
+}
+.tla-plat .tp-vs__icon { flex: none; width: 20px; height: 20px; margin-top: 1px; }
+.tla-plat .tp-vs__icon--x { color: #ef4444; }
+.tla-plat .tp-vs__icon--check { color: var(--tp-brass); }
 
-/* ---- Compare table ---- */
+/* ---- Transition band ---- */
+.tla-plat .tp-transition {
+  position: relative;
+  overflow: hidden;
+  background: var(--tp-dark-band);
+  padding-block: clamp(64px, 9vw, 128px);
+  text-align: center;
+}
+.tla-plat .tp-transition::before {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 760px; height: 760px; max-width: 110vw;
+  background: radial-gradient(closest-side, rgba(234,194,90,0.18), transparent 70%);
+  filter: blur(70px);
+  pointer-events: none;
+}
+.tla-plat .tp-transition__inner { position: relative; z-index: 1; max-width: 56rem; margin-inline: auto; }
+.tla-plat .tp-transition__title {
+  font-family: var(--tp-display);
+  font-weight: 800;
+  font-size: clamp(2rem, 1.3rem + 3.4vw, 3.75rem);
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  color: #fff;
+  margin: 0 0 var(--tp-space-lg);
+}
+.tla-plat .tp-transition__sub {
+  font-size: clamp(1.0625rem, 1rem + 0.5vw, 1.375rem);
+  line-height: 1.6;
+  color: rgba(255,255,255,0.74);
+  margin: 0 auto;
+  max-width: 44rem;
+}
+
+/* ---- "What's Inside" value tour ---- */
+.tla-plat .tp-tour__rows { display: flex; flex-direction: column; gap: clamp(48px, 6vw, 88px); margin-top: var(--tp-space-xl); }
+.tla-plat .tp-row { display: grid; grid-template-columns: 1fr; gap: var(--tp-space-lg); align-items: center; }
+@media (min-width: 860px) {
+  .tla-plat .tp-row { grid-template-columns: 1fr 1fr; gap: clamp(40px, 5vw, 72px); }
+  .tla-plat .tp-row--flip .tp-row__media { order: 2; }
+}
+.tla-plat .tp-row__copy { max-width: 34rem; }
+.tla-plat .tp-row__title {
+  font-family: var(--tp-display);
+  font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  color: var(--tp-primary);
+  margin: 0 0 var(--tp-space-sm);
+}
+.tla-plat .tp-row__desc { font-size: 1rem; line-height: 1.65; color: var(--tp-on-surface-variant); margin: 0; }
+
+/* image stacks */
+.tla-plat .tp-stack { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(12px, 1.6vw, 18px); align-items: start; }
+.tla-plat .tp-stack__img {
+  display: block; width: 100%; height: auto;
+  border-radius: var(--tp-radius-xl);
+  box-shadow: 0 12px 30px rgba(2,28,54,0.16);
+  background: var(--tp-surface-container);
+}
+.tla-plat .tp-stack--decks { grid-template-columns: 1.15fr 1fr; align-items: center; }
+.tla-plat .tp-stack--single { grid-template-columns: 1fr; justify-items: center; }
+.tla-plat .tp-stack--single .tp-stack__img { max-width: 62%; }
+.tla-plat .tp-stack__decks { display: grid; gap: clamp(12px, 1.6vw, 18px); }
+
+/* sample conversation graphic */
+.tla-plat .tp-chat { display: flex; flex-direction: column; gap: 12px; }
+.tla-plat .tp-chat__bot { display: flex; align-items: flex-end; gap: 10px; max-width: 92%; align-self: flex-start; }
+.tla-plat .tp-chat__avatar { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 9999px; background: var(--tp-primary); box-shadow: 0 4px 12px rgba(2,28,54,0.22); }
+.tla-plat .tp-chat__avatar img { width: 22px; height: 22px; object-fit: contain; }
+.tla-plat .tp-chat__msg { padding: 12px 16px; font-size: 0.9375rem; line-height: 1.5; border-radius: 16px; }
+.tla-plat .tp-chat__msg--bot { background: #fff; border: 1px solid var(--tp-outline-variant); border-bottom-left-radius: 5px; color: var(--tp-on-surface); box-shadow: 0 6px 16px rgba(2,28,54,0.06); }
+.tla-plat .tp-chat__msg--user { max-width: 86%; align-self: flex-end; background: linear-gradient(135deg, #0c2440 0%, #021c36 100%); border-bottom-right-radius: 5px; color: #fff; }
+
+/* email-campaign output graphic */
+.tla-plat .tp-emailflow__intro-row { display: flex; align-items: flex-end; gap: 10px; margin-bottom: var(--tp-space-md); }
+.tla-plat .tp-emailflow__intro { background: #fff; border: 1px solid var(--tp-outline-variant); border-radius: 16px; border-bottom-left-radius: 5px; padding: 14px 16px; font-size: 0.9375rem; line-height: 1.5; color: var(--tp-on-surface); box-shadow: 0 6px 16px rgba(2,28,54,0.06); }
+.tla-plat .tp-emailflow__intro strong { color: var(--tp-primary); }
+.tla-plat .tp-emailflow__steps { display: flex; flex-direction: column; }
+.tla-plat .tp-emailflow__step { display: flex; align-items: center; gap: 14px; padding: 12px 14px; background: #fff; border: 1px solid var(--tp-outline-variant); border-radius: var(--tp-radius-xl); box-shadow: 0 6px 16px rgba(2,28,54,0.05); }
+.tla-plat .tp-emailflow__step + .tp-emailflow__step { position: relative; margin-top: 26px; }
+.tla-plat .tp-emailflow__step + .tp-emailflow__step::before { content: ''; position: absolute; left: 30px; top: -22px; width: 2px; height: 18px; background: rgba(201,150,28,0.5); }
+.tla-plat .tp-emailflow__step + .tp-emailflow__step::after { content: ''; position: absolute; left: 30px; top: -8px; width: 7px; height: 7px; border-right: 2px solid var(--tp-brass); border-bottom: 2px solid var(--tp-brass); transform: translateX(-2.5px) rotate(45deg); }
+.tla-plat .tp-emailflow__num { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 9999px; font-family: var(--tp-display); font-weight: 800; font-size: 0.9375rem; color: #021c36; background: var(--tp-brass-gradient); box-shadow: 0 4px 12px rgba(234,194,90,0.3); }
+.tla-plat .tp-emailflow__body { min-width: 0; font-size: 0.9375rem; font-weight: 600; line-height: 1.35; color: var(--tp-on-surface); }
+.tla-plat .tp-emailflow__label { display: block; font-family: var(--tp-sans); font-size: 0.625rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--tp-on-surface-variant); margin-bottom: 2px; }
+
+/* ---- Why-different comparison matrix ---- */
 .tla-plat .tp-compare {
-  margin-top: var(--tp-space-xl);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--tp-outline-variant);
+  max-width: 60rem;
+  margin: clamp(40px, 5vw, 64px) auto 0;
   border-radius: var(--tp-radius-3xl);
   overflow: hidden;
-  border: 1px solid var(--tp-outline-variant);
+  box-shadow: var(--tp-shadow-xl);
+  background: #fff;
 }
-.tla-plat .tp-compare-head {
-  padding: var(--tp-space-md);
-  font-family: var(--tp-display);
-  font-weight: 600;
-  font-size: 0.9375rem;
+.tla-plat .tp-compare__head,
+.tla-plat .tp-compare__row { display: grid; grid-template-columns: minmax(0,1.6fr) minmax(0,1fr) minmax(0,1fr); align-items: stretch; }
+.tla-plat .tp-compare__row + .tp-compare__row,
+.tla-plat .tp-compare__head + .tp-compare__row { border-top: 1px solid var(--tp-outline-variant); }
+.tla-plat .tp-compare__cat-head { background: var(--tp-surface-container); }
+.tla-plat .tp-compare__col { display: flex; align-items: center; justify-content: center; text-align: center; padding: clamp(18px,2.6vw,26px) var(--tp-space-sm); font-family: var(--tp-display); font-weight: 700; font-size: clamp(0.875rem, 0.8rem + 0.4vw, 1.0625rem); line-height: 1.25; }
+.tla-plat .tp-compare__col--theirs { background: var(--tp-surface-container); color: var(--tp-on-surface-variant); }
+.tla-plat .tp-compare__col--ours { background: var(--tp-dark-band); color: #fff; }
+.tla-plat .tp-compare__cat { display: flex; align-items: center; padding: clamp(16px,2vw,22px) clamp(18px,2.4vw,28px); font-family: var(--tp-sans); font-size: 0.9375rem; font-weight: 600; line-height: 1.4; color: var(--tp-on-surface); background: #fff; }
+.tla-plat .tp-compare__cell { display: flex; align-items: center; justify-content: center; padding: clamp(14px,1.8vw,20px) var(--tp-space-sm); }
+.tla-plat .tp-compare__cell--theirs { background: var(--tp-surface-low); }
+.tla-plat .tp-compare__cell--ours { background: rgba(201,150,28,0.06); }
+.tla-plat .tp-compare__col--theirs, .tla-plat .tp-compare__cell--theirs,
+.tla-plat .tp-compare__col--ours, .tla-plat .tp-compare__cell--ours {
+  box-shadow: inset 11px 0 14px -12px rgba(2,28,54,0.28), inset -11px 0 14px -12px rgba(2,28,54,0.28);
 }
-.tla-plat .tp-compare-head.is-without { background: #fbeeee; color: #93000a; }
-.tla-plat .tp-compare-head.is-with { background: #eef4ff; color: var(--tp-primary); }
-.tla-plat .tp-compare-cell {
-  background: var(--tp-surface);
-  padding: var(--tp-space-md);
-  font-size: 0.9375rem;
-  line-height: 1.5;
-}
-.tla-plat .tp-compare-cell.is-without { color: var(--tp-on-surface-variant); }
-.tla-plat .tp-compare-cell.is-with { color: var(--tp-primary); font-weight: 500; }
-.tla-plat .tp-compare-close {
-  margin-top: var(--tp-space-lg);
-  text-align: center;
-  font-size: 1.0625rem;
-  color: var(--tp-on-surface-variant);
-  max-width: 680px;
-  margin-inline: auto;
-}
-
-/* ---- Gallery (example assets) ---- */
-.tla-plat .tp-gallery {
-  margin-top: var(--tp-space-xl);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: var(--tp-space-md);
-}
-.tla-plat .tp-gallery figure {
-  border-radius: var(--tp-radius-2xl);
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.1);
-  box-shadow: 0 24px 64px rgba(0,0,0,0.5);
-  background: #0a1628;
-}
-
-/* ---- Why different ---- */
-.tla-plat .tp-why {
-  max-width: 760px;
-  margin-inline: auto;
-  text-align: center;
-}
-.tla-plat .tp-why .tp-punch {
-  margin-top: var(--tp-space-lg);
-  font-family: var(--tp-display);
-  font-weight: 700;
-  font-size: clamp(1.25rem, 1.05rem + 0.9vw, 1.75rem);
-  line-height: 1.25;
-  color: #fff;
-}
-.tla-plat .tp-why .tp-punch .tp-em { font-weight: 700; }
+.tla-plat .tp-mark { position: relative; flex: none; width: clamp(28px,3vw,34px); height: clamp(28px,3vw,34px); border-radius: 9999px; }
+.tla-plat .tp-mark--check { background: var(--tp-brass-gradient); box-shadow: 0 4px 12px rgba(234,194,90,0.35); }
+.tla-plat .tp-mark--check::after { content: ''; position: absolute; top: 46%; left: 50%; width: 30%; height: 56%; border: solid #021c36; border-width: 0 2.5px 2.5px 0; transform: translate(-50%,-55%) rotate(45deg); border-radius: 1px; }
+.tla-plat .tp-mark--x { background: var(--tp-red-gradient); box-shadow: 0 4px 12px rgba(185,28,28,0.28); }
+.tla-plat .tp-mark--x::before, .tla-plat .tp-mark--x::after { content: ''; position: absolute; top: 50%; left: 50%; width: 44%; height: 2.5px; border-radius: 2px; background: #fff; }
+.tla-plat .tp-mark--x::before { transform: translate(-50%,-50%) rotate(45deg); }
+.tla-plat .tp-mark--x::after { transform: translate(-50%,-50%) rotate(-45deg); }
 
 /* ---- Final CTA ---- */
 .tla-plat .tp-final {
@@ -543,15 +763,11 @@
 }
 
 /* ============== RESPONSIVE ============== */
-@media (max-width: 900px) {
-  .tla-plat .tp-grid { grid-template-columns: repeat(2, 1fr); }
-  .tla-plat .tp-gallery { grid-template-columns: 1fr; }
-}
 @media (max-width: 600px) {
-  .tla-plat .tp-grid { grid-template-columns: 1fr; }
-  .tla-plat .tp-compare { grid-template-columns: 1fr; }
-  .tla-plat .tp-compare-head.is-without,
-  .tla-plat .tp-compare-cell.is-without { order: 0; }
+  .tla-plat .tp-stack--landing .tp-stack__img { height: auto; }
+  .tla-plat .tp-compare__head, .tla-plat .tp-compare__row { grid-template-columns: minmax(0,1.4fr) minmax(0,1fr) minmax(0,1fr); }
+  .tla-plat .tp-compare__cat { font-size: 0.8125rem; padding-inline: 12px; }
+  .tla-plat .tp-compare__col { font-size: 0.75rem; }
   .tla-plat .tp-actions { flex-direction: column; align-items: stretch; }
   .tla-plat .tp-btn { width: 100%; }
 }
@@ -561,213 +777,320 @@
 
   <!-- ============ HERO / ACTIVATION ============ -->
   <section class="tp-hero tp-bleed tp-section">
+    <!-- Collage of every Platinum asset (each once) packed into the right half.
+         Columns stretch their images to fill full height — no empty space. -->
+    <div class="tp-hero-bg" aria-hidden="true">
+      <div class="tp-hero-bg__col">
+        <img src="https://members.theloanatlas.com/wp-content/uploads/2026/06/platinum-landing-page-1.png" alt="" loading="lazy" />
+        <img src="https://members.theloanatlas.com/wp-content/uploads/2026/06/platinum-social-image-1.jpeg" alt="" loading="lazy" />
+        <img src="https://members.theloanatlas.com/wp-content/uploads/2026/06/platinum-flyer-2.jpeg" alt="" loading="lazy" />
+      </div>
+      <div class="tp-hero-bg__col">
+        <img src="https://members.theloanatlas.com/wp-content/uploads/2026/06/platinum-presentation-deck-1.jpg" alt="" loading="lazy" />
+        <img src="https://members.theloanatlas.com/wp-content/uploads/2026/06/platinum-newsletter.png" alt="" loading="lazy" />
+        <img src="https://members.theloanatlas.com/wp-content/uploads/2026/06/platinum-social-image-3.jpeg" alt="" loading="lazy" />
+      </div>
+      <div class="tp-hero-bg__col">
+        <img src="https://members.theloanatlas.com/wp-content/uploads/2026/06/platinum-flyer-1.jpeg" alt="" loading="lazy" />
+        <img src="https://members.theloanatlas.com/wp-content/uploads/2026/06/platinum-presentation-deck-2.jpg" alt="" loading="lazy" />
+        <img src="https://members.theloanatlas.com/wp-content/uploads/2026/06/platinum-social-image-4.png" alt="" loading="lazy" />
+      </div>
+      <div class="tp-hero-bg__col">
+        <img src="https://members.theloanatlas.com/wp-content/uploads/2026/06/platinum-social-image-2.jpeg" alt="" loading="lazy" />
+        <img src="https://members.theloanatlas.com/wp-content/uploads/2026/06/platinum-landing-page-2.png" alt="" loading="lazy" />
+      </div>
+    </div>
+    <div class="tp-hero-fade" aria-hidden="true"></div>
     <div class="tp-container">
-      <div class="tp-hero-inner">
-        <span class="tp-badge"><span class="tp-dot"></span> Your free 6-month Platinum upgrade is ready</span>
-        <p class="tp-eyebrow" style="margin-top:20px;">Platinum by The Loan Atlas</p>
-        <h1 class="tp-display">The mortgage marketing you keep meaning to send — <span class="tp-em">finally built, polished, and ready to go.</span></h1>
-        <p class="tp-lead">Platinum is the marketing engine inside The Loan Atlas that helps you turn campaign ideas into usable mortgage marketing assets — faster, cleaner, and with less friction. As a member, your next 6 months are on us.</p>
-        <div class="tp-actions tp-actions--stack">
-          [tla_magic_login_form]
-          [tla_platinum_cta]
-          [tla_spt_add_url product_id="115314" label="Upgrade to Platinum Now"]
+      <div class="tp-hero-grid">
+        <div class="tp-hero-inner">
+          <h1 class="tp-display">Take your marketing from ignored to <span class="tp-em">irresistible.</span></h1>
+          <p class="tp-lead">Platinum is the marketing engine inside The Loan Atlas — built on the principles top producers use and trained on the entire Loan Atlas library, so the content you send actually gets read.</p>
+          <p class="tp-lead tp-lead--bold">As a Mastermind attendee, your first 6 months are on us.</p>
+          <div class="tp-actions tp-actions--stack">
+            [tla_magic_login_form]
+            [tla_platinum_cta]
+            [tla_spt_add_url product_id="115314" label="Upgrade to Platinum Now"]
+          </div>
+          <p class="tp-hero-note">No charge for 6 months. $69/month will apply in months 7+. You must opt in to upgrade.</p>
         </div>
-        <p class="tp-hero-note">No charge for 6 months. Nothing changes on your account until you choose to continue.</p>
+
+        <div class="tp-price-card">
+          <img class="tp-price-card__logo" src="https://members.theloanatlas.com/wp-content/uploads/2026/06/mastermind-logo-white-red.png" alt="Mastermind Summit 2026" />
+          <h2 class="tp-price-card__heading">Member Platinum Upgrade</h2>
+          <div class="tp-price-tag">
+            <span class="tp-price-was">$100<span>/mo</span></span>
+            <span class="tp-price-now">6 Months FREE</span>
+          </div>
+          <p class="tp-price-note">then $69/mo, or cancel anytime.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ PROBLEM ============ -->
+  <!-- ============ WHY MARKETING GETS IGNORED ============ -->
   <section class="tp-section">
     <div class="tp-container">
-      <div class="tp-head">
-        <p class="tp-eyebrow">The real bottleneck</p>
-        <h2 class="tp-h2">Marketing is usually the first thing to fall off your desk.</h2>
-        <p class="tp-lead">You already know the marketing you should be doing.</p>
+      <div class="tp-ignored">
+        <div>
+          <h2>The Reason Your Marketing Keeps Getting <span class="tp-em-red">Ignored</span></h2>
+          <p class="tp-body">Your clients and partners are being bombarded with marketing messages all day, every day — and their brains have built a filter against most of it.</p>
+          <p class="tp-body">Most mortgage marketing hits that filter and bounces: emails deleted on subject line alone, flyers tossed without a glance, social posts scrolled past in half a second.</p>
+        </div>
+        <div class="tp-stat">
+          <span class="tp-stat__top">Your clients and partners see</span>
+          <span class="tp-stat__num">10,000</span>
+          <span class="tp-stat__label">marketing messages every single day</span>
+        </div>
       </div>
-      <ul class="tp-problem-list">
-        <li>The refinance flyer when rates move</li>
-        <li>The weekly market update</li>
-        <li>The Realtor presentation</li>
-        <li>The past-client email</li>
-        <li>The buyer education campaign</li>
-      </ul>
-      <p class="tp-lead" style="margin-top:40px;max-width:640px;">The problem is not knowing what to send. The problem is getting it built, finished, and out the door while you are originating loans, managing clients, supporting partners, and keeping files moving.</p>
+
+      <p class="tp-bignote">The marketing that breaks through the noise is built on a specific set of principles most loan officers have never been taught.</p>
+
+      <div class="tp-vs">
+        <div class="tp-vs__col">
+          <h3 class="tp-vs__title">Marketing That Gets Ignored</h3>
+          <div class="tp-vs__list">
+            <div class="tp-vs__item"><svg class="tp-vs__icon tp-vs__icon--x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>Talks about the lender instead of the client</div>
+            <div class="tp-vs__item"><svg class="tp-vs__icon tp-vs__icon--x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>Opens with a generic intro nobody cares about</div>
+            <div class="tp-vs__item"><svg class="tp-vs__icon tp-vs__icon--x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>Makes claims with no proof to back them up</div>
+            <div class="tp-vs__item"><svg class="tp-vs__icon tp-vs__icon--x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>Buries the offer in vague, slow-feeling promises</div>
+            <div class="tp-vs__item"><svg class="tp-vs__icon tp-vs__icon--x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>Loaded with jargon and complicated next steps</div>
+          </div>
+        </div>
+        <div class="tp-vs__col tp-vs__col--ours">
+          <h3 class="tp-vs__title">Marketing That Converts</h3>
+          <div class="tp-vs__list">
+            <div class="tp-vs__item"><svg class="tp-vs__icon tp-vs__icon--check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Speaks directly to the client, not about you</div>
+            <div class="tp-vs__item"><svg class="tp-vs__icon tp-vs__icon--check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Opens with a problem they're already aware of</div>
+            <div class="tp-vs__item"><svg class="tp-vs__icon tp-vs__icon--check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Builds proof into every asset</div>
+            <div class="tp-vs__item"><svg class="tp-vs__icon tp-vs__icon--check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Frames the dream outcome around speed and certainty</div>
+            <div class="tp-vs__item"><svg class="tp-vs__icon tp-vs__icon--check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>Strips out the jargon and friction</div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ============ WHAT YOU CAN BUILD ============ -->
+  <!-- ============ TRANSITION — bold statement ============ -->
+  <section class="tp-transition tp-bleed">
+    <div class="tp-container">
+      <div class="tp-transition__inner">
+        <h2 class="tp-transition__title"><span class="tp-em">Platinum builds all of it in, automatically</span> — into every flyer, email, post, and deck it creates.</h2>
+        <p class="tp-transition__sub">You don't need to learn the framework, hire a marketer, or fight with a blank page. You describe what you need. Platinum sends back marketing that's already built the way top producers build it.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ WHAT'S INSIDE — value tour ============ -->
   <section class="tp-section tp-bleed tp-tint">
     <div class="tp-container">
       <div class="tp-head tp-center">
-        <p class="tp-eyebrow">What you can build with Platinum</p>
-        <h2 class="tp-h2">The complete system to help you execute on marketing that actually converts.</h2>
-        <p class="tp-lead">Platinum gives you a mortgage-specific marketing workflow that helps you build the strategy, write the copy, create the asset, save the content, and move the campaign out the door.</p>
+        <h2 class="tp-h2" style="color:var(--tp-primary);">What's Inside Platinum</h2>
+        <p class="tp-lead">Everything you'd hire a marketing team to build — planned, created, and deployed in minutes.</p>
       </div>
 
-      <div class="tp-grid">
-        <div class="tp-card">
-          <div class="tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 7v10l9 4 9-4V7"/></svg></div>
-          <h3 class="tp-h3">Refinance flyers</h3>
-          <p>Turn market movement into borrower-friendly flyers that explain the opportunity clearly and professionally.</p>
-        </div>
-        <div class="tp-card">
-          <div class="tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div>
-          <h3 class="tp-h3">Market update emails</h3>
-          <p>Create timely updates that help you stay visible, credible, and valuable to clients and referral partners.</p>
-        </div>
-        <div class="tp-card">
-          <div class="tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="13" rx="2"/><path d="M8 21h8M12 16v5"/></svg></div>
-          <h3 class="tp-h3">Realtor presentations</h3>
-          <p>Build polished education assets for Realtor partners, open houses, buyer seminars, and referral conversations.</p>
-        </div>
-        <div class="tp-card">
-          <div class="tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 13v-2z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></div>
-          <h3 class="tp-h3">Buyer education campaigns</h3>
-          <p>Create clear, helpful content for first-time buyers, move-up buyers, VA buyers, and other key audiences.</p>
-        </div>
-        <div class="tp-card">
-          <div class="tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-5-5L5 21"/></svg></div>
-          <h3 class="tp-h3">Social graphics</h3>
-          <p>Generate mortgage-specific visuals without wasting an hour searching Canva or stock photos.</p>
-        </div>
-        <div class="tp-card">
-          <div class="tp-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2v4M3 10h18"/><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M8 14h.01M12 14h.01M16 14h.01"/></svg></div>
-          <h3 class="tp-h3">Past-client campaigns</h3>
-          <p>Re-engage your database with timely messages when rates, equity, or market conditions create a reason to reach out.</p>
-        </div>
-      </div>
+      <div class="tp-tour__rows">
 
-      <p class="tp-bridge">The goal is not to give you more marketing to think about. The goal is to help the right marketing finally get done.</p>
+        <!-- Marketing Assistant -->
+        <div class="tp-row">
+          <div class="tp-row__media">
+            <div class="tp-chat" aria-label="A sample conversation with The Loan Atlas">
+              <div class="tp-chat__bot">
+                <span class="tp-chat__avatar"><img src="https://members.theloanatlas.com/wp-content/uploads/2026/06/Loan-Atlas-logomark-18.png" alt="The Loan Atlas" /></span>
+                <div class="tp-chat__msg tp-chat__msg--bot">Hi, I'm your marketing assistant. What should we create today?</div>
+              </div>
+              <div class="tp-chat__msg tp-chat__msg--user">Help me win more business from a top Realtor I just met.</div>
+              <div class="tp-chat__bot">
+                <span class="tp-chat__avatar"><img src="https://members.theloanatlas.com/wp-content/uploads/2026/06/Loan-Atlas-logomark-18.png" alt="The Loan Atlas" /></span>
+                <div class="tp-chat__msg tp-chat__msg--bot">Great — let's build a partner pitch. Who's the audience and what's the angle?</div>
+              </div>
+              <div class="tp-chat__msg tp-chat__msg--user">A buyer's agent who works mostly first-time buyers.</div>
+              <div class="tp-chat__bot">
+                <span class="tp-chat__avatar"><img src="https://members.theloanatlas.com/wp-content/uploads/2026/06/Loan-Atlas-logomark-18.png" alt="The Loan Atlas" /></span>
+                <div class="tp-chat__msg tp-chat__msg--bot">Done. I drafted a co-branded first-time-buyer presentation, a one-page program flyer, and a 5-email nurture sequence. Want me to personalize them with your details?</div>
+              </div>
+            </div>
+          </div>
+          <div class="tp-row__copy">
+            <h3 class="tp-row__title">Marketing Assistant</h3>
+            <p class="tp-row__desc">Your in-house strategist. Builds campaign architecture, drafts copy, refines messaging, and works through scripting with you — trained on the Marketing Mastery discipline and the broader Loan Atlas curriculum.</p>
+          </div>
+        </div>
+
+        <!-- Decks & Flyers -->
+        <div class="tp-row tp-row--flip">
+          <div class="tp-row__media">
+            <div class="tp-stack tp-stack--decks" aria-hidden="true">
+              <div class="tp-stack__decks">
+                <img class="tp-stack__img" src="https://members.theloanatlas.com/wp-content/uploads/2026/06/platinum-presentation-deck-1.jpg" alt="" loading="lazy" />
+                <img class="tp-stack__img" src="https://members.theloanatlas.com/wp-content/uploads/2026/06/platinum-presentation-deck-2.jpg" alt="" loading="lazy" />
+              </div>
+              <img class="tp-stack__img" src="https://members.theloanatlas.com/wp-content/uploads/2026/06/platinum-flyer-1.jpeg" alt="" loading="lazy" />
+            </div>
+          </div>
+          <div class="tp-row__copy">
+            <h3 class="tp-row__title">Decks &amp; Flyers</h3>
+            <p class="tp-row__desc">Multi-slide presentations and single-page flyers for the topics originators actually market — buyer education, refinance scenarios, VA loans, Realtor partner pitches. Ready to personalize and send.</p>
+          </div>
+        </div>
+
+        <!-- Newsletters -->
+        <div class="tp-row">
+          <div class="tp-row__media">
+            <div class="tp-stack tp-stack--single" aria-hidden="true">
+              <img class="tp-stack__img" src="https://members.theloanatlas.com/wp-content/uploads/2026/06/platinum-newsletter.png" alt="" loading="lazy" />
+            </div>
+          </div>
+          <div class="tp-row__copy">
+            <h3 class="tp-row__title">Newsletters</h3>
+            <p class="tp-row__desc">Monthly market and rate-environment newsletters written in your voice, sourced from live data, formatted to be read — the kind of consistent touchpoint that turns past clients into a referral engine.</p>
+          </div>
+        </div>
+
+        <!-- Social Graphics -->
+        <div class="tp-row tp-row--flip">
+          <div class="tp-row__media">
+            <div class="tp-stack" aria-hidden="true">
+              <img class="tp-stack__img" src="https://members.theloanatlas.com/wp-content/uploads/2026/06/platinum-social-image-1.jpeg" alt="" loading="lazy" />
+              <img class="tp-stack__img" src="https://members.theloanatlas.com/wp-content/uploads/2026/06/platinum-social-image-2.jpeg" alt="" loading="lazy" />
+              <img class="tp-stack__img" src="https://members.theloanatlas.com/wp-content/uploads/2026/06/platinum-social-image-3.jpeg" alt="" loading="lazy" />
+              <img class="tp-stack__img" src="https://members.theloanatlas.com/wp-content/uploads/2026/06/platinum-social-image-4.png" alt="" loading="lazy" />
+            </div>
+          </div>
+          <div class="tp-row__copy">
+            <h3 class="tp-row__title">Social Graphics</h3>
+            <p class="tp-row__desc">Original visuals for Instagram, LinkedIn, and Facebook — feed posts, Stories, carousels — built for mortgage marketing instead of generic stock. Replaces the stock photo subscription and the Canva session.</p>
+          </div>
+        </div>
+
+        <!-- Landing Pages -->
+        <div class="tp-row">
+          <div class="tp-row__media">
+            <div class="tp-stack tp-stack--landing" aria-hidden="true">
+              <img class="tp-stack__img" src="https://members.theloanatlas.com/wp-content/uploads/2026/06/platinum-landing-page-1.png" alt="" loading="lazy" />
+              <img class="tp-stack__img" src="https://members.theloanatlas.com/wp-content/uploads/2026/06/platinum-landing-page-2.png" alt="" loading="lazy" />
+            </div>
+          </div>
+          <div class="tp-row__copy">
+            <h3 class="tp-row__title">Landing Pages</h3>
+            <p class="tp-row__desc">Custom landing pages for lead generation, niche audiences, and campaign-specific offers — structured to convert.</p>
+          </div>
+        </div>
+
+        <!-- Email Campaigns -->
+        <div class="tp-row tp-row--flip">
+          <div class="tp-row__media">
+            <div class="tp-emailflow" aria-label="A 5-step email campaign generated by The Loan Atlas">
+              <div class="tp-chat__bot tp-emailflow__intro-row">
+                <span class="tp-chat__avatar"><img src="https://members.theloanatlas.com/wp-content/uploads/2026/06/Loan-Atlas-logomark-18.png" alt="The Loan Atlas" /></span>
+                <div class="tp-emailflow__intro">Here's your email campaign for <strong>first-time homebuyers — "Is now the right time to buy?"</strong></div>
+              </div>
+              <ol class="tp-emailflow__steps">
+                <li class="tp-emailflow__step"><span class="tp-emailflow__num">1</span><div class="tp-emailflow__body"><span class="tp-emailflow__label">Email 1 · Subject</span>Is now actually the right time to buy?</div></li>
+                <li class="tp-emailflow__step"><span class="tp-emailflow__num">2</span><div class="tp-emailflow__body"><span class="tp-emailflow__label">Email 2 · Subject</span>The number that matters more than the rate</div></li>
+                <li class="tp-emailflow__step"><span class="tp-emailflow__num">3</span><div class="tp-emailflow__body"><span class="tp-emailflow__label">Email 3 · Subject</span>How much home you can really afford</div></li>
+                <li class="tp-emailflow__step"><span class="tp-emailflow__num">4</span><div class="tp-emailflow__body"><span class="tp-emailflow__label">Email 4 · Subject</span>3 first-time buyer mistakes to avoid</div></li>
+                <li class="tp-emailflow__step"><span class="tp-emailflow__num">5</span><div class="tp-emailflow__body"><span class="tp-emailflow__label">Email 5 · Subject</span>Ready when you are — let's run your numbers</div></li>
+              </ol>
+            </div>
+          </div>
+          <div class="tp-row__copy">
+            <h3 class="tp-row__title">Email Campaigns</h3>
+            <p class="tp-row__desc">Multi-touch email sequences for past-client reactivation, Realtor partner nurture, and rate-move opportunities — written, sequenced, and ready to schedule.</p>
+          </div>
+        </div>
+
+      </div>
     </div>
   </section>
 
-  <!-- ============ HOW IT WORKS (dark) ============ -->
-  <section class="tp-dark tp-bleed tp-section">
-    <div class="tp-container">
-      <div class="tp-head">
-        <p class="tp-eyebrow">How it works</p>
-        <h2 class="tp-h2">From idea to deployable campaign in one platform.</h2>
-        <p class="tp-lead">Most loan officers who try to build marketing on their own end up scattered across tools. Every handoff creates friction, and friction is where campaigns die. Platinum brings the workflow together.</p>
-      </div>
-
-      <div class="tp-steps">
-        <div class="tp-step">
-          <div class="tp-step-num">1</div>
-          <div>
-            <h3 class="tp-h3">Choose the campaign goal</h3>
-            <p>A refinance push. A market update. A Realtor presentation. A first-time buyer campaign. A VA loan education piece. A past-client reactivation sequence. Platinum helps turn the goal into a usable campaign structure.</p>
-          </div>
-        </div>
-        <div class="tp-step">
-          <div class="tp-step-num">2</div>
-          <div>
-            <h3 class="tp-h3">Build the message</h3>
-            <p>The Marketing Assistant helps shape the audience, angle, copy, headline, and call to action — so you are not just creating content, you are creating content with a reason behind it.</p>
-          </div>
-        </div>
-        <div class="tp-step">
-          <div class="tp-step-num">3</div>
-          <div>
-            <h3 class="tp-h3">Add market context</h3>
-            <p>Use source-backed research and current market context to make your marketing more timely, credible, and useful — so it helps the borrower or partner understand what is happening and why it matters.</p>
-          </div>
-        </div>
-        <div class="tp-step">
-          <div class="tp-step-num">4</div>
-          <div>
-            <h3 class="tp-h3">Create the asset</h3>
-            <p>Build flyers, presentations, visuals, and campaign materials designed around real mortgage conversations. The asset does not sit in someone else's queue — you build it, adjust it, and get it ready while the opportunity is still timely.</p>
-          </div>
-        </div>
-        <div class="tp-step">
-          <div class="tp-step-num">5</div>
-          <div>
-            <h3 class="tp-h3">Save, reuse, and campaign it</h3>
-            <p>Every asset becomes part of your Content Library — saved, organized, and ready to use again. Then Campaign Manager helps you move the work from "good idea" to live campaign: sequence the touches, schedule the sends, track what is going out. Marketing only counts when it ships.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Example assets gallery — uncomment once images are uploaded to Media -->
-      <!--
-      <div class="tp-gallery">
-        <figure><img src="__MEDIA_URL_EXAMPLE_1__" alt="Platinum marketing example — refinance flyer" loading="lazy"></figure>
-        <figure><img src="__MEDIA_URL_EXAMPLE_2__" alt="Platinum marketing example — market update" loading="lazy"></figure>
-        <figure><img src="__MEDIA_URL_EXAMPLE_3__" alt="Platinum marketing example — social graphic" loading="lazy"></figure>
-      </div>
-      -->
-    </div>
-  </section>
-
-  <!-- ============ WITH / WITHOUT ============ -->
+  <!-- ============ WHY DIFFERENT — comparison matrix ============ -->
   <section class="tp-section">
     <div class="tp-container">
-      <div class="tp-head">
-        <p class="tp-eyebrow">The difference</p>
-        <h2 class="tp-h2">What changes when your marketing has a system?</h2>
+      <div class="tp-head tp-center">
+        <h2 class="tp-h2" style="color:var(--tp-primary);">Why Platinum Is Different</h2>
+        <p class="tp-lead">Most AI-generated mortgage content reads like every piece of generic AI marketing in your inbox right now. Clients and Realtors spot it instantly.</p>
+        <p class="tp-body" style="margin-top:var(--tp-space-md);max-width:60rem;margin-inline:auto;">With Platinum, your content will look and sound like a top producer wrote it, because the playbook underneath was built by top producers — trained on the entire Loan Atlas content library and decades of curriculum from a faculty responsible for over $29 billion in closed loan volume.</p>
       </div>
-      <div class="tp-compare">
-        <div class="tp-compare-head is-without">Without Platinum</div>
-        <div class="tp-compare-head is-with">With Platinum</div>
 
-        <div class="tp-compare-cell is-without">You know what you should send, but it stays on your list.</div>
-        <div class="tp-compare-cell is-with">You start with a campaign goal and build the asset faster.</div>
+      <div class="tp-compare" role="table" aria-label="Other AI marketing tools compared with Platinum">
+        <div class="tp-compare__head" role="row">
+          <div class="tp-compare__cat-head" role="columnheader"></div>
+          <div class="tp-compare__col tp-compare__col--theirs" role="columnheader">Other AI Marketing Tools</div>
+          <div class="tp-compare__col tp-compare__col--ours" role="columnheader" aria-label="Platinum">
+            <span class="tp-lockup">
+              <img class="tp-lockup__mark" src="https://members.theloanatlas.com/wp-content/uploads/2026/06/Loan-Atlas-logomark-18.png" alt="" style="height:clamp(22px,2.6vw,30px);" />
+              <span class="tp-lockup__word" style="font-size:clamp(22px,2.6vw,30px);">Platinum</span>
+            </span>
+          </div>
+        </div>
 
-        <div class="tp-compare-cell is-without">A refinance flyer can take days or weeks because you are waiting on someone else.</div>
-        <div class="tp-compare-cell is-with">A refinance flyer can be built, edited, and ready to use the same day.</div>
-
-        <div class="tp-compare-cell is-without">You bounce between AI tools, Canva, Google, folders, and email platforms.</div>
-        <div class="tp-compare-cell is-with">Strategy, copy, visuals, assets, storage, and campaign management live in one workflow.</div>
-
-        <div class="tp-compare-cell is-without">Your market update goes out whenever you finally get time.</div>
-        <div class="tp-compare-cell is-with">Your market update becomes a repeatable weekly touchpoint.</div>
-
-        <div class="tp-compare-cell is-without">Every campaign starts from a blank page.</div>
-        <div class="tp-compare-cell is-with">Every campaign starts from a structure you can personalize.</div>
-
-        <div class="tp-compare-cell is-without">Your marketing depends on motivation and spare time.</div>
-        <div class="tp-compare-cell is-with">Your marketing runs through a system.</div>
-      </div>
-      <p class="tp-compare-close">Platinum does not ask you to become a full-time marketer. Instead, it gives you a full-time marketing assistant.</p>
-    </div>
-  </section>
-
-  <!-- ============ WHY DIFFERENT (dark) ============ -->
-  <section class="tp-dark tp-bleed tp-section">
-    <div class="tp-container">
-      <div class="tp-why">
-        <p class="tp-eyebrow">Why Platinum is different</p>
-        <h2 class="tp-h2" style="margin-top:12px;">Most AI tools hand you a blank chat box and expect you to know what to ask for.</h2>
-        <p class="tp-lead" style="margin-top:24px;">Platinum gives you a mortgage-specific workflow. It helps you think through the audience, the problem, the message, the asset, the call to action, and the campaign. Because mortgage marketing is about creating the right message at the right time for the right audience — and getting it out before the opportunity passes.</p>
-        <p class="tp-punch">Generic AI can help you write. <span class="tp-em">Platinum helps you execute.</span></p>
+        <div class="tp-compare__row" role="row">
+          <div class="tp-compare__cat" role="rowheader">Trained on proven mortgage marketing principles</div>
+          <div class="tp-compare__cell tp-compare__cell--theirs" role="cell"><span class="tp-mark tp-mark--x" aria-label="No"></span></div>
+          <div class="tp-compare__cell tp-compare__cell--ours" role="cell"><span class="tp-mark tp-mark--check" aria-label="Yes"></span></div>
+        </div>
+        <div class="tp-compare__row" role="row">
+          <div class="tp-compare__cat" role="rowheader">Speaks to the client, not about you</div>
+          <div class="tp-compare__cell tp-compare__cell--theirs" role="cell"><span class="tp-mark tp-mark--x" aria-label="No"></span></div>
+          <div class="tp-compare__cell tp-compare__cell--ours" role="cell"><span class="tp-mark tp-mark--check" aria-label="Yes"></span></div>
+        </div>
+        <div class="tp-compare__row" role="row">
+          <div class="tp-compare__cat" role="rowheader">Sounds like a top producer wrote it</div>
+          <div class="tp-compare__cell tp-compare__cell--theirs" role="cell"><span class="tp-mark tp-mark--x" aria-label="No"></span></div>
+          <div class="tp-compare__cell tp-compare__cell--ours" role="cell"><span class="tp-mark tp-mark--check" aria-label="Yes"></span></div>
+        </div>
+        <div class="tp-compare__row" role="row">
+          <div class="tp-compare__cat" role="rowheader">Builds proof into every asset</div>
+          <div class="tp-compare__cell tp-compare__cell--theirs" role="cell"><span class="tp-mark tp-mark--x" aria-label="No"></span></div>
+          <div class="tp-compare__cell tp-compare__cell--ours" role="cell"><span class="tp-mark tp-mark--check" aria-label="Yes"></span></div>
+        </div>
+        <div class="tp-compare__row" role="row">
+          <div class="tp-compare__cat" role="rowheader">Generates copy fast</div>
+          <div class="tp-compare__cell tp-compare__cell--theirs" role="cell"><span class="tp-mark tp-mark--check" aria-label="Yes"></span></div>
+          <div class="tp-compare__cell tp-compare__cell--ours" role="cell"><span class="tp-mark tp-mark--check" aria-label="Yes"></span></div>
+        </div>
+        <div class="tp-compare__row" role="row">
+          <div class="tp-compare__cat" role="rowheader">Creates flyers, social posts, decks &amp; emails</div>
+          <div class="tp-compare__cell tp-compare__cell--theirs" role="cell"><span class="tp-mark tp-mark--check" aria-label="Yes"></span></div>
+          <div class="tp-compare__cell tp-compare__cell--ours" role="cell"><span class="tp-mark tp-mark--check" aria-label="Yes"></span></div>
+        </div>
+        <div class="tp-compare__row" role="row">
+          <div class="tp-compare__cat" role="rowheader">Trained on the entire Loan Atlas library</div>
+          <div class="tp-compare__cell tp-compare__cell--theirs" role="cell"><span class="tp-mark tp-mark--x" aria-label="No"></span></div>
+          <div class="tp-compare__cell tp-compare__cell--ours" role="cell"><span class="tp-mark tp-mark--check" aria-label="Yes"></span></div>
+        </div>
+        <div class="tp-compare__row" role="row">
+          <div class="tp-compare__cat" role="rowheader">Marketing your clients and partners actually open</div>
+          <div class="tp-compare__cell tp-compare__cell--theirs" role="cell"><span class="tp-mark tp-mark--x" aria-label="No"></span></div>
+          <div class="tp-compare__cell tp-compare__cell--ours" role="cell"><span class="tp-mark tp-mark--check" aria-label="Yes"></span></div>
+        </div>
       </div>
     </div>
   </section>
 
   <!-- ============ FAQ ============ -->
-  <section class="tp-section">
+  <section class="tp-section tp-bleed tp-tint">
     <div class="tp-container">
       <div class="tp-head tp-center">
-        <p class="tp-eyebrow">Activation details</p>
-        <h2 class="tp-h2">A few quick answers before you activate.</h2>
+        <h2 class="tp-h2" style="color:var(--tp-primary);">A few quick answers before you activate.</h2>
       </div>
       <div class="tp-faq">
         <details>
           <summary>What does the free 6-month upgrade include?</summary>
-          <div class="tp-faq-body">Full access to Platinum inside The Loan Atlas — the Marketing Assistant, market-context research, asset creation, your Content Library, and Campaign Manager — for six months at no additional charge.</div>
+          <div class="tp-faq-body">Full access to Platinum inside The Loan Atlas — the Marketing Assistant, decks and flyers, newsletters, social graphics, landing pages, and email campaigns — for six months at no additional charge.</div>
         </details>
         <details>
           <summary>Will I be charged when the 6 months end?</summary>
-          <div class="tp-faq-body">Nothing changes on your account automatically. Before your free period ends, you'll have the option to continue with Platinum or stay on your current plan. <em>(Confirm exact terms with your team before publishing.)</em></div>
+          <div class="tp-faq-body">Only if you decide to keep it! Your first 6 months are completely free. After that, Platinum is just $69/month — and since there's no annual commitment, you're free to cancel any time.</div>
         </details>
         <details>
           <summary>How do I activate it?</summary>
-          <div class="tp-faq-body">Click "Activate my free 6 months" above. It takes less than a minute, and Platinum unlocks on your existing account — no separate login.</div>
+          <div class="tp-faq-body">Click "Upgrade to Platinum Now." It takes less than a minute, and Platinum unlocks on your existing account — no separate login.</div>
         </details>
         <details>
           <summary>Do I need any marketing experience to use it?</summary>
-          <div class="tp-faq-body">No. Platinum is a guided, mortgage-specific workflow — it walks you from a campaign goal to a finished, deployable asset. If you've ever meant to send a flyer or market update and never finished it, this is built for you.</div>
+          <div class="tp-faq-body">No. You describe what you need — a flyer, a market update, a Realtor pitch, a past-client campaign — and Platinum sends back marketing already built the way top producers build it. If you've ever meant to send something and never finished it, this is built for you.</div>
         </details>
       </div>
     </div>
@@ -776,15 +1099,15 @@
   <!-- ============ FINAL CTA ============ -->
   <section class="tp-final tp-bleed tp-section">
     <div class="tp-container">
-      <p class="tp-eyebrow" style="color:var(--tp-brass-bright);">Your upgrade is waiting</p>
-      <h2 class="tp-display" style="margin-top:14px;">Stop wishing your marketing was <span class="tp-em">getting done.</span></h2>
-      <p class="tp-lead">So the next time rates move, a Realtor asks for something, or your past clients need to hear from you, you are not starting from scratch — you are operating from a system. Activate your free 6 months of Platinum today.</p>
+      <h2 class="tp-display">Stop sending marketing that sounds like <span class="tp-em">everyone else's.</span></h2>
+      <p class="tp-lead">When the marketing you send actually gets read, the conversations change, the referrals show up, and the way you compete in your market shifts.</p>
+      <p class="tp-lead tp-lead--bold">Activate your free 6 months of Platinum today.</p>
       <div class="tp-actions tp-actions--stack">
         [tla_magic_login_form]
         [tla_platinum_cta]
         [tla_spt_add_url product_id="115314" label="Upgrade to Platinum Now"]
       </div>
-      <p class="tp-final-note">Included with your membership · No charge for 6 months</p>
+      <p class="tp-final-note">No charge for 6 months. $69/month will apply in months 7+. You must opt in to upgrade.</p>
     </div>
   </section>
 
