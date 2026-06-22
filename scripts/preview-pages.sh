@@ -34,7 +34,12 @@ render_partial() {
 # Footer has no active state — render once.
 FTR=$(mktemp)
 render_partial "$TLA/partials/footer.php" "" > "$FTR"
-trap 'rm -f "$FTR"' EXIT
+
+# Minimal landing-page header (logo only) — no active state, render once.
+HDRMIN=$(mktemp)
+render_partial "$TLA/partials/header-minimal.php" "" > "$HDRMIN"
+
+trap 'rm -f "$FTR" "$HDRMIN"' EXIT
 
 for partial in "$TLA"/pages/*.php; do
   slug=$(basename "$partial" .php)
@@ -59,9 +64,10 @@ for partial in "$TLA"/pages/*.php; do
 
     # Body: strip the PHP header block, inline header/footer from temp files
     # (read inside perl to avoid shell escaping), then resolve TLA_BASE.
-    HDR="$HDR" FTR="$FTR" perl -0pe '
+    HDR="$HDR" HDRMIN="$HDRMIN" FTR="$FTR" perl -0pe '
       s/^<\?php.*?\?>\s*//s;
-      if (!our $h) { local $/; open my $f,"<",$ENV{HDR}; our $h=<$f>; open my $g,"<",$ENV{FTR}; our $ft=<$g>; }
+      if (!our $h) { local $/; open my $f,"<",$ENV{HDR}; our $h=<$f>; open my $m,"<",$ENV{HDRMIN}; our $hm=<$m>; open my $g,"<",$ENV{FTR}; our $ft=<$g>; }
+      s#<\?php include get_stylesheet_directory\(\) \. .\/tla/partials/header-minimal\.php.; \?>#$hm#g;
       s#<\?php include get_stylesheet_directory\(\) \. .\/tla/partials/header\.php.; \?>#$h#g;
       s#<\?php include get_stylesheet_directory\(\) \. .\/tla/partials/footer\.php.; \?>#$ft#g;
     ' "$partial" | sed "s#<?php echo TLA_BASE; ?>#$BASE#g"

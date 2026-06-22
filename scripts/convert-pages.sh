@@ -82,7 +82,8 @@ convert() {
   #    (e.g. the faculty modal) are preserved wherever they sit.
   awk 'NR>'"$body_open"' && NR<'"$body_close"'' "$file" \
     | grep -vE '<script[^>]*src="js/(nav|animations)\.js' \
-    | perl -0pe "s{<!-- TLA_HEADER -->}{<?php include get_stylesheet_directory() . '/tla/partials/header.php'; ?>}g;
+    | perl -0pe "s{<!-- TLA_HEADER_MINIMAL -->}{<?php include get_stylesheet_directory() . '/tla/partials/header-minimal.php'; ?>}g;
+                 s{<!-- TLA_HEADER -->}{<?php include get_stylesheet_directory() . '/tla/partials/header.php'; ?>}g;
                  s{<!-- TLA_FOOTER -->}{<?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>}g" \
     >> "$tmp"
 

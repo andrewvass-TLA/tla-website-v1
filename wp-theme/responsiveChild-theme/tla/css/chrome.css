@@ -41,6 +41,9 @@ body > main { padding-top: 72px; }
   .site-header__inner { gap: 24px; }
 }
 
+/* Minimal landing-page header: center the lone logo. */
+.site-header--minimal .site-header__inner { justify-content: center; }
+
 .site-header .brand {
   display: inline-flex;
   align-items: center;

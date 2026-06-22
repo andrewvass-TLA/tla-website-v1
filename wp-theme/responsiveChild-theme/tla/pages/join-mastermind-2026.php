@@ -70,31 +70,6 @@ $tla_active      = '';
     }
 
     /* ── Hero (reuses lp-intro; tightened for offer focus) ──────────────────── */
-    /* Hero co-brand lockup — Loan Atlas mark × full-color Mastermind logo */
-    .mm-hero-lockup {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: clamp(16px, 2.5vw, 28px);
-      margin: 0 auto var(--space-lg);
-    }
-    .mm-hero-lockup__atlas {
-      height: clamp(40px, 6vw, 64px);
-      width: auto;
-      display: block;
-    }
-    .mm-hero-lockup__mm {
-      height: clamp(34px, 5vw, 54px);
-      width: auto;
-      display: block;
-    }
-    .mm-hero-lockup__x {
-      font-family: var(--font-display);
-      font-weight: 400;
-      font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
-      color: var(--brass);
-      line-height: 1;
-    }
 
     /* ── Larger CTAs (page-scoped — bigger pad + text than the shared .btn--lg) ── */
     .lp-intro .btn--gold.btn--lg,
@@ -1619,8 +1594,8 @@ $tla_active      = '';
   </style>
 
 
-  <!-- ── Header (standard site chrome) ──────────────────────────────────────── -->
-<?php include get_stylesheet_directory() . '/tla/partials/header.php'; ?>
+  <!-- ── Header (minimal landing chrome — logo only) ─────────────────────────── -->
+<?php include get_stylesheet_directory() . '/tla/partials/header-minimal.php'; ?>
 
   <!-- ── Sticky offer bar ───────────────────────────────────────────────────── -->
   <div class="mm-bar">
@@ -1644,11 +1619,6 @@ $tla_active      = '';
     <section class="lp-intro" aria-labelledby="mm-hero-heading">
       <div class="container">
         <div class="lp-intro__content">
-          <div class="mm-hero-lockup" data-hero-step="1" aria-label="The Loan Atlas — official Mastermind Summit 2026 offer">
-            <img class="mm-hero-lockup__atlas" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" />
-            <span class="mm-hero-lockup__x" aria-hidden="true">×</span>
-            <img class="mm-hero-lockup__mm" src="<?php echo TLA_BASE; ?>/assets/mastermind-logo.webp" alt="Mastermind Summit 2026" />
-          </div>
           <h1 id="mm-hero-heading" class="lp-intro__title" data-hero-step="2">Walk Away From Mastermind With the <em>System Top Producers Run</em></h1>
           <p class="lp-intro__subtitle" data-hero-step="3">Five AI-powered systems, live coaching every week, and the full curriculum that built billion-dollar mortgage teams — now at a price reserved only for Mastermind Summit attendees.</p>
           <div class="lp-intro__actions" data-hero-step="4">
