@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hero Mockup — The Loan Atlas</title>
+  <meta name="description"
+    content="Mockup: homepage hero with a full-width live-events band and cycling AI persona chat overlay." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css?v=3" />
+  <link rel="stylesheet" href="css/chrome.css?v=3" />
+  <style>
+    /* ── HERO MOCKUP — full-bleed live-events band + cycling persona chat ──────
+       Reuses shared styles.css classes (lp-intro, btn--gold, hero__text-*) and
+       ports the homepage .aisc__chatdemo input pattern + platinum full-bleed
+       strip pattern. All page-scoped, hm-* prefixed. Live homepage untouched. */
+
+    /* Stage replaces .lp-intro__stage. Full-width band + chat overlay. */
+    .hm-stage {
+      position: relative;
+      max-width: var(--container-max);
+      margin: clamp(24px, 3vw, 40px) auto 0;
+      isolation: isolate;
+    }
+
+    /* Full-bleed events band — four 16:9 images shown uncropped, side by side.
+       Height follows the image aspect (full-bleed width / 4 ÷ 16*9), so no crop. */
+    .hm-events {
+      position: relative;
+      left: 50%;
+      width: 100vw;
+      margin-left: -50vw;
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 1fr;
+      gap: 4px;
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%);
+    }
+
+    .hm-events__img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 16 / 9;
+      object-fit: contain;
+      display: block;
+      /* fly-in start state: pushed out (direction set per-image via --fly), zoomed, hidden */
+      opacity: 0;
+      transform: translateX(calc(var(--fly, 1) * 64px)) scale(1.06);
+      transition: opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 1100ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+
+    /* settle: fly in to place, full opacity */
+    .hm-stage.is-flown .hm-events__img {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+
+    /* fade: after settling, the images go slightly transparent */
+    .hm-stage.is-dim .hm-events__img {
+      opacity: 0.45;
+    }
+
+    /* staggered arrival */
+    .hm-stage.is-flown .hm-events__img:nth-child(1) { transition-delay: 80ms; }
+    .hm-stage.is-flown .hm-events__img:nth-child(2) { transition-delay: 220ms; }
+    .hm-stage.is-flown .hm-events__img:nth-child(3) { transition-delay: 360ms; }
+    .hm-stage.is-flown .hm-events__img:nth-child(4) { transition-delay: 500ms; }
+
+    /* Reset the stagger delay once dimming so the fade is uniform, not staggered. */
+    .hm-stage.is-dim .hm-events__img { transition-delay: 0ms; }
+
+    /* Scrim — starts clear, then fades up to a light wash for chat legibility. */
+    .hm-events__scrim {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      opacity: 0;
+      background:
+        radial-gradient(60% 70% at 50% 50%, rgba(247, 249, 251, 0.20), rgba(247, 249, 251, 0.05) 100%);
+      transition: opacity 800ms ease;
+    }
+
+    .hm-stage.is-dim .hm-events__scrim { opacity: 1; }
+
+    /* Cycling persona chat — designed exactly like the homepage 5-systems
+       chat tab (.aisc__card.is-chat). The card matches that tab's stage panel;
+       the heading + dark input pill below are ported 1:1 from .aisc__chatdemo-*. */
+    .hm-chat {
+      position: absolute;
+      z-index: 2;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      /* Fixed width — never reflows per question; wide enough for the longest
+         example question + the input-pill icons to sit on a single line. */
+      width: 860px;
+      max-width: calc(100% - 2 * var(--gutter));
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      /* matches .aisc__card.is-chat .aisc__stage */
+      background: linear-gradient(135deg, #f2f4f6 0%, #e6e8ea 100%);
+      border-radius: var(--radius-2xl);
+      box-shadow: 0 18px 40px rgba(2, 28, 54, 0.18);
+      padding: clamp(24px, 3vw, 40px);
+    }
+
+    /* brass glow behind the card */
+    .hm-chat::before {
+      content: '';
+      position: absolute;
+      inset: -14%;
+      z-index: -1;
+      background:
+        radial-gradient(55% 60% at 50% 40%, rgba(234, 194, 90, 0.45), transparent 70%),
+        radial-gradient(45% 50% at 50% 70%, rgba(201, 150, 28, 0.22), transparent 75%);
+      filter: blur(60px);
+      pointer-events: none;
+    }
+
+    /* Heading — ported from .aisc__card.is-chat .aisc__chatdemo-heading.
+       Fixed height so the card never changes size as the system name swaps. */
+    .hm-chat__heading {
+      margin: 0 0 var(--space-xs);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 2.4em;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.25rem);
+      line-height: 1.2;
+      color: var(--primary);
+      text-align: center;
+      transition: opacity 260ms ease;
+    }
+
+    .hm-chat__heading.is-swapping { opacity: 0; }
+
+    /* Input pill — ported 1:1 from .aisc__chatdemo-input (+ is-chat overrides) */
+    .hm-chat__input {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 14px 14px 18px;
+      background: linear-gradient(180deg, #0c2440 0%, #021c36 100%);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-2xl);
+      box-shadow: 0 14px 32px rgba(2, 28, 54, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      color: #fff;
+      min-height: 64px;
+    }
+
+    .hm-chat__tools {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      flex-shrink: 0;
+    }
+
+    .hm-chat__plus {
+      width: 22px;
+      height: 22px;
+      color: rgba(255, 255, 255, 0.72);
+      flex-shrink: 0;
+    }
+
+    .hm-chat__text {
+      flex: 1;
+      min-width: 0;
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.35;
+      color: rgba(255, 255, 255, 0.92);
+      display: flex;
+      align-items: center;
+      padding-block: 4px;
+      /* keep the typed question on a single line */
+      white-space: nowrap;
+      overflow: hidden;
+    }
+
+    .hm-chat__typed { white-space: pre; }
+
+    .hm-chat__caret {
+      display: inline-block;
+      width: 2px;
+      height: 1.1em;
+      margin-left: 2px;
+      background: var(--brass-bright);
+      vertical-align: text-bottom;
+      animation: hmCaretBlink 1s steps(2, end) infinite;
+    }
+
+    @keyframes hmCaretBlink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    .hm-chat__actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .hm-chat__mic {
+      width: 18px;
+      height: 18px;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .hm-chat__send {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border-radius: 9999px;
+      border: 0;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      color: #021c36;
+      cursor: default;
+      box-shadow: 0 4px 12px rgba(234, 194, 90, 0.35);
+    }
+
+    .hm-chat__send svg { width: 16px; height: 16px; }
+
+    @media (max-width: 600px) {
+      .hm-chat {
+        gap: var(--space-sm);
+        width: calc(100% - 2 * var(--gutter));
+      }
+      .hm-chat__heading { font-size: clamp(1.25rem, 1rem + 1.6vw, 1.75rem); }
+      .hm-chat__input { min-height: 56px; padding: 12px 12px 12px 16px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hm-events__img { transition: none; opacity: 1; transform: none; }
+      .hm-events__scrim { transition: none; opacity: 1; }
+      .hm-chat__caret { animation: none; opacity: 1; }
+      .hm-chat__heading { transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+
+<!-- TLA_HEADER -->
+
+  <main class="site-main">
+
+    <!-- Hero (MOCKUP) — same copy/buttons as homepage, new imagery -->
+    <section class="lp-intro" aria-labelledby="hero-heading">
+      <div class="container">
+        <div class="lp-intro__content">
+          <h1 id="hero-heading" class="lp-intro__title" data-hero-step="1"><em>AI-Powered Systems</em> That Help You
+            Close More Loans With Less Chaos</h1>
+          <p class="lp-intro__subtitle" data-hero-step="2">The Loan Atlas installs 5 AI-powered systems into your
+            mortgage business to help you make better decisions, execute faster, and stay focused on what actually
+            drives production.</p>
+          <div class="lp-intro__actions" data-hero-step="3">
+            <a class="btn btn--gold btn--lg" href="pricing.html">Install the System Top Producers Are Using</a>
+          </div>
+          <p class="hero__text-cta" data-hero-step="4" style="margin-top: var(--space-md);">
+            Or <a class="hero__text-link" href="consultation.html">Schedule Your Free Coaching Session</a> to build your
+            growth plan.
+          </p>
+        </div>
+      </div>
+
+      <div class="hm-stage" data-hero-step="5" data-hm-stage>
+        <div class="hm-events" aria-hidden="true">
+          <img class="hm-events__img" style="--fly:-1" src="assets/what%27s-inside-masterclass.jpg"
+            alt="" loading="eager" />
+          <img class="hm-events__img" style="--fly:1" src="assets/what%27s-inside-ai-labs.jpg"
+            alt="" loading="eager" />
+          <img class="hm-events__img" style="--fly:-1" src="assets/what%27s-inside-office-hours.jpg"
+            alt="" loading="eager" />
+          <img class="hm-events__img" style="--fly:1" src="assets/what%27s-inside-talk-to-tim.jpg"
+            alt="" loading="eager" />
+        </div>
+        <div class="hm-events__scrim" aria-hidden="true"></div>
+
+        <!-- Single cycling chat — designed exactly like the homepage 5-systems chat tab -->
+        <div class="hm-chat" data-hm-chat aria-hidden="true">
+          <p class="hm-chat__heading" data-hm-heading>AI Sales &amp; Marketing Advisor</p>
+          <div class="hm-chat__input">
+            <div class="hm-chat__tools">
+              <svg class="hm-chat__plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 5v14M5 12h14" />
+              </svg>
+            </div>
+            <div class="hm-chat__text">
+              <span class="hm-chat__typed" data-hm-typed></span><span class="hm-chat__caret"></span>
+            </div>
+            <div class="hm-chat__actions">
+              <svg class="hm-chat__mic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" />
+                <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                <line x1="12" y1="19" x2="12" y2="23" />
+                <line x1="8" y1="23" x2="16" y2="23" />
+              </svg>
+              <button class="hm-chat__send" type="button" tabindex="-1" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" y1="19" x2="12" y2="5" />
+                  <polyline points="5 12 12 5 19 12" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+<!-- TLA_FOOTER -->
+
+  <script src="js/nav.js?v=3"></script>
+  <script src="js/animations.js?v=3" defer></script>
+  <script>
+    // ── Hero mockup driver: fly-in band + persona-cycling typed chat ─────────
+    (function () {
+      var stage = document.querySelector('[data-hm-stage]');
+      var chat = document.querySelector('[data-hm-chat]');
+      if (!stage || !chat) return;
+
+      var typedEl = chat.querySelector('[data-hm-typed]');
+      var headingEl = chat.querySelector('[data-hm-heading]');
+
+      // One system per chatbox: heading names the system, the single typed
+      // question mirrors the homepage 5-systems tabbed chat-demo (index.html).
+      var personas = [
+        {
+          heading: 'AI Sales & Marketing Advisor',
+          message: 'How do I respond to "I want to wait for rates to drop"?'
+        },
+        {
+          heading: 'AI Performance Coach',
+          message: "What's the biggest gap holding me back this quarter?"
+        },
+        {
+          heading: 'AI Strategic Thought Partner',
+          message: 'Should I hire an LOA or stay solo this year?'
+        }
+      ];
+
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // ── Fly-in + scrim dim ──────────────────────────────────────────────
+      function runIntro() {
+        if (reduceMotion) { stage.classList.add('is-flown', 'is-dim'); return; }
+        // next frame so the transition fires from the start state
+        requestAnimationFrame(function () {
+          stage.classList.add('is-flown');
+        });
+        // dim the band a beat after the last image settles (~500ms delay + 1100ms)
+        window.setTimeout(function () { stage.classList.add('is-dim'); }, 1700);
+      }
+      if (document.body.classList.contains('is-loaded')) runIntro();
+      else window.addEventListener('load', runIntro);
+
+      // ── System-cycling typing engine — one question per chatbox ─────────
+      var pIdx = 0, charIdx = 0, mode = 'typing';
+      var timeoutId = null, running = false;
+
+      function schedule(ms, fn) {
+        if (timeoutId) { window.clearTimeout(timeoutId); timeoutId = null; }
+        if (!running) return;
+        timeoutId = window.setTimeout(function () { timeoutId = null; if (running) fn(); }, ms);
+      }
+
+      function applyPersona() {
+        headingEl.textContent = personas[pIdx].heading;
+      }
+
+      function tick() {
+        var msg = personas[pIdx].message;
+        if (mode === 'typing') {
+          charIdx++;
+          typedEl.textContent = msg.slice(0, charIdx);
+          if (charIdx >= msg.length) { mode = 'pause'; schedule(1600, tick); }
+          else { schedule(32 + Math.random() * 26, tick); }
+        } else if (mode === 'pause') {
+          mode = 'erasing'; schedule(16, tick);
+        } else if (mode === 'erasing') {
+          charIdx--;
+          typedEl.textContent = msg.slice(0, Math.max(0, charIdx));
+          if (charIdx <= 0) { charIdx = 0; mode = 'advance'; schedule(300, tick); }
+          else { schedule(14, tick); }
+        } else if (mode === 'advance') {
+          // one question per system → always advance to the next system
+          pIdx = (pIdx + 1) % personas.length;
+          headingEl.classList.add('is-swapping');
+          schedule(260, function () {
+            applyPersona();
+            headingEl.classList.remove('is-swapping');
+            mode = 'typing'; schedule(380, tick);
+          });
+        }
+      }
+
+      function start() {
+        if (running) return;
+        running = true;
+        pIdx = 0; charIdx = 0; mode = 'typing';
+        applyPersona();
+        typedEl.textContent = '';
+        if (reduceMotion) { typedEl.textContent = personas[0].message; return; }
+        schedule(900, tick); // let the band fly in first
+      }
+
+      function stop() {
+        running = false;
+        if (timeoutId) { window.clearTimeout(timeoutId); timeoutId = null; }
+      }
+
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) start(); else stop();
+          });
+        }, { threshold: 0.25 });
+        io.observe(chat);
+      } else {
+        start();
+      }
+    })();
+  </script>
+</body>
+
+</html>

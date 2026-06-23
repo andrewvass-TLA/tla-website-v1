@@ -154,11 +154,26 @@
       color: #ffffff;
     }
     .mm-countdown.is-ended .mm-countdown__ended { display: block; }
+    /* Hero headline — bumped up slightly across all views vs. the shared default. */
+    .lp-intro__title {
+      font-size: clamp(2.5rem, 1.5rem + 3.6vw, 4.25rem);
+    }
+    /* "With Less Chaos" — brass gold gradient. */
+    .mm-hero-gold {
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    /* One line on desktop; breaks onto its own line below the desktop breakpoint. */
+    @media (max-width: 859.98px) {
+      .mm-hero-gold { display: block; }
+    }
     /* This headline is longer than the default lp-intro title, so scale it down
        on narrow screens to prevent the long words from overflowing the gutter. */
     @media (max-width: 600px) {
       .lp-intro__title {
-        font-size: clamp(1.625rem, 0.9rem + 3.2vw, 2.25rem);
+        font-size: clamp(1.875rem, 1rem + 3.6vw, 2.5rem);
         overflow-wrap: break-word;
       }
     }
@@ -1654,6 +1669,229 @@
         transform: translateY(0);
       }
     }
+
+    /* ── Hero stage — system card over a scrolling event-image strip ──────────
+       Left: cycling system eyebrow + name. Divider. Right: chat bubbles. The
+       whole pair cycles through the four systems. Marquee adapts Platinum hero. */
+    .hm-stage {
+      position: relative;
+      max-width: var(--container-max);
+      margin: clamp(32px, 4vw, 56px) auto 0;
+      padding-block: clamp(32px, 5vw, 72px);
+      padding-inline: var(--gutter);
+      box-sizing: border-box;
+      isolation: isolate;
+    }
+
+    /* Background — faded scrolling strip of the event images (behind the box) */
+    .hm-marquee {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 50%;
+      width: 100vw;
+      margin-left: -50vw;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      opacity: 0.3;
+      z-index: 0;
+      pointer-events: none;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+      mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+    }
+    .hm-marquee__track {
+      display: flex;
+      width: max-content;
+      gap: var(--space-md);
+      animation: hm-marquee-scroll 55s linear infinite;
+    }
+    .hm-marquee__item {
+      flex-shrink: 0;
+      height: clamp(220px, 28vw, 340px);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      box-shadow: 0 12px 32px rgba(2, 28, 54, 0.18);
+    }
+    .hm-marquee__item img {
+      width: auto;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .hm-stage:hover .hm-marquee__track { animation-play-state: paused; }
+    @keyframes hm-marquee-scroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(calc(-50% - var(--space-md) / 2)); }
+    }
+
+    /* The box — foreground card holding the two-column system graphic */
+    .hm-box {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      margin-inline: auto;
+      padding: clamp(24px, 3.5vw, 44px);
+      background: var(--surface-container-lowest);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-3xl);
+      box-shadow: 0 30px 70px rgba(2, 28, 54, 0.22), 0 0 0 1px rgba(234, 194, 90, 0.08);
+    }
+    /* Brass glow behind the box */
+    .hm-box::before {
+      content: '';
+      position: absolute;
+      inset: -10%;
+      z-index: -1;
+      background:
+        radial-gradient(55% 60% at 50% 40%, rgba(234, 194, 90, 0.28), transparent 70%),
+        radial-gradient(45% 50% at 50% 70%, rgba(201, 150, 28, 0.16), transparent 75%);
+      filter: blur(55px);
+      pointer-events: none;
+    }
+
+    .hm-stage__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(20px, 3vw, 40px);
+      align-items: center;
+    }
+    @media (min-width: 760px) {
+      .hm-stage__grid {
+        /* heading | divider | chat */
+        grid-template-columns: minmax(0, 0.82fr) 1px minmax(0, 1fr);
+        gap: clamp(28px, 3.5vw, 48px);
+      }
+    }
+
+    /* Vertical divider between the heading and the chat (horizontal on mobile) */
+    .hm-divider {
+      align-self: stretch;
+      background: var(--outline-variant);
+    }
+    @media (max-width: 759.98px) {
+      .hm-divider { height: 1px; width: 100%; }
+    }
+
+    /* LEFT — cycling system name */
+    .hm-system {
+      min-height: 4.4em;
+      display: flex;
+      align-items: center;
+    }
+    @media (min-width: 760px) {
+      .hm-system { min-height: 3.2em; }
+    }
+    .hm-system__label {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: var(--space-sm);
+    }
+    .hm-system__name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 1.3rem + 2.8vw, 3.25rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--on-surface);
+      margin: 0;
+      text-wrap: balance;
+    }
+    .hm-system__name em {
+      font-style: normal;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    /* fade-swap on system change */
+    .hm-system__label,
+    .hm-system__name { transition: opacity 260ms ease; }
+    .hm-stage.is-swapping .hm-system__label,
+    .hm-stage.is-swapping .hm-system__name { opacity: 0; }
+
+    /* RIGHT — conversation bubbles (ported 1:1 from the Platinum page .mm-chat):
+       a white bot bubble with the Loan Atlas logo avatar + a dark right-aligned
+       user bubble. The whole stack fades in once on load. */
+    .hm-chat {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      /* fade in once on load */
+      opacity: 0;
+      transform: translateY(14px);
+      transition:
+        opacity 700ms ease,
+        transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+    .hm-stage.is-shown .hm-chat {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hm-chat__bot { display: flex; align-items: flex-end; gap: 14px; max-width: 94%; align-self: flex-start; }
+    .hm-chat__avatar {
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 9999px;
+      background: var(--primary);
+      box-shadow: 0 4px 12px rgba(2, 28, 54, 0.22);
+    }
+    .hm-chat__avatar img { width: 30px; height: 30px; object-fit: contain; display: block; }
+    .hm-chat__msg { padding: 16px 22px; font-size: clamp(1rem, 0.92rem + 0.4vw, 1.1875rem); line-height: 1.5; border-radius: 20px; }
+    .hm-chat__msg--bot {
+      background: #ffffff;
+      border: 1px solid var(--outline-variant);
+      border-bottom-left-radius: 6px;
+      color: var(--on-surface);
+      box-shadow: 0 6px 16px rgba(2, 28, 54, 0.06);
+      transition: opacity 260ms ease;
+    }
+    .hm-chat__msg--user {
+      max-width: 90%;
+      align-self: flex-end;
+      background: linear-gradient(135deg, #0c2440 0%, #021c36 100%);
+      border-bottom-right-radius: 6px;
+      color: #ffffff;
+      transition: opacity 260ms ease;
+    }
+    /* fade both bubbles out while the system swaps — the old typed text clears
+       under cover of the fade rather than deleting on screen */
+    .hm-stage.is-swapping .hm-chat__msg--bot,
+    .hm-stage.is-swapping .hm-chat__msg--user { opacity: 0; }
+
+    .hm-chat__typed { white-space: pre-wrap; }
+    .hm-chat__caret {
+      display: inline-block;
+      width: 2px;
+      height: 1.05em;
+      margin-left: 1px;
+      background: var(--brass-bright);
+      vertical-align: text-bottom;
+      animation: hmCaretBlink 1s steps(2, end) infinite;
+    }
+    @keyframes hmCaretBlink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hm-marquee__track { animation: none; }
+      .hm-chat { transition: none; opacity: 1; transform: none; }
+      .hm-chat__caret { animation: none; opacity: 1; }
+      .hm-system__label,
+      .hm-system__name,
+      .hm-chat__msg--bot { transition: none; }
+    }
   </style>
 </head>
 
@@ -1684,8 +1922,8 @@
     <section class="lp-intro" aria-labelledby="mm-hero-heading">
       <div class="container">
         <div class="lp-intro__content">
-          <h1 id="mm-hero-heading" class="lp-intro__title" data-hero-step="2">Walk Away From Mastermind With the <em>System Top Producers Run</em></h1>
-          <p class="lp-intro__subtitle" data-hero-step="3">Five AI-powered systems, live coaching every week, and the full curriculum that built billion-dollar mortgage teams — now at a price reserved only for Mastermind Summit attendees.</p>
+          <h1 id="mm-hero-heading" class="lp-intro__title" data-hero-step="2">Close More Loans <span class="mm-hero-gold">With Less Chaos</span></h1>
+          <p class="lp-intro__subtitle" data-hero-step="3">Five AI-powered systems, live coaching every week, and the tools to turn ignored marketing into real clients — <em>at a price exclusively for Mastermind.</em></p>
           <div class="lp-intro__actions" data-hero-step="4">
             <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Start Your Transformation — $49 Today</a>
           </div>
@@ -1703,10 +1941,55 @@
         </div>
       </div>
 
-      <div class="lp-intro__stage" data-hero-step="5">
-        <div class="lp-intro__glow" aria-hidden="true"></div>
-        <img class="lp-intro__dash" src="assets/dashboard.png" alt="The Loan Atlas member dashboard" loading="eager" />
-        <img class="lp-phone-img" src="assets/sales-coach-phone.png" alt="AI Sales &amp; Scripting Coach on mobile" />
+      <!-- System graphic — a box (system name | divider | chat) over a
+           horizontally-scrolling strip of the what's-inside event images.
+           The whole pair cycles through the four systems (driven by the script). -->
+      <div class="hm-stage" data-hero-step="5" data-hm-stage>
+
+        <!-- Background — scrolling event images (duplicated set for seamless loop) -->
+        <div class="hm-marquee" aria-hidden="true">
+          <div class="hm-marquee__track">
+            <div class="hm-marquee__item"><img src="assets/what%27s-inside-masterclass.jpg" alt="" loading="eager" /></div>
+            <div class="hm-marquee__item"><img src="assets/what%27s-inside-talk-to-tim.jpg" alt="" loading="eager" /></div>
+            <div class="hm-marquee__item"><img src="assets/what%27s-inside-office-hours.jpg" alt="" loading="eager" /></div>
+            <div class="hm-marquee__item"><img src="assets/what%27s-inside-ai-labs.jpg" alt="" loading="eager" /></div>
+            <!-- duplicate set -->
+            <div class="hm-marquee__item"><img src="assets/what%27s-inside-masterclass.jpg" alt="" /></div>
+            <div class="hm-marquee__item"><img src="assets/what%27s-inside-talk-to-tim.jpg" alt="" /></div>
+            <div class="hm-marquee__item"><img src="assets/what%27s-inside-office-hours.jpg" alt="" /></div>
+            <div class="hm-marquee__item"><img src="assets/what%27s-inside-ai-labs.jpg" alt="" /></div>
+          </div>
+        </div>
+
+        <!-- The box -->
+        <div class="hm-box">
+          <div class="hm-stage__grid">
+
+            <!-- LEFT — cycling system eyebrow + name -->
+            <div class="hm-system">
+              <div>
+                <span class="hm-system__label" data-hm-label>Stop Guessing What to Say</span>
+                <h2 class="hm-system__name" data-hm-system>AI Sales &amp; Marketing Advisor</h2>
+              </div>
+            </div>
+
+            <!-- Divider between heading and chat -->
+            <div class="hm-divider" aria-hidden="true"></div>
+
+            <!-- RIGHT — conversation bubbles (Platinum .mm-chat style):
+                 white bot bubble w/ Loan Atlas avatar + dark right-aligned user bubble -->
+            <div class="hm-chat" data-hm-chat aria-label="A sample conversation with The Loan Atlas">
+              <div class="hm-chat__bot">
+                <span class="hm-chat__avatar"><img src="assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" /></span>
+                <div class="hm-chat__msg hm-chat__msg--bot" data-hm-heading>What's Your Sales Challenge Today?</div>
+              </div>
+              <div class="hm-chat__msg hm-chat__msg--user">
+                <span class="hm-chat__typed" data-hm-typed></span><span class="hm-chat__caret"></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
       </div>
     </section>
 
@@ -2255,6 +2538,122 @@
       }
       tick();
       var timer = setInterval(tick, 1000);
+    })();
+
+    // ── Hero system-cycling chat: eyebrow + name (left) + bot heading + typed input ──
+    (function () {
+      var stage = document.querySelector('[data-hm-stage]');
+      var chat = stage && stage.querySelector('[data-hm-chat]');
+      if (!stage || !chat) return;
+
+      var labelEl = stage.querySelector('[data-hm-label]');    // left eyebrow
+      var systemEl = stage.querySelector('[data-hm-system]');  // left column name
+      var headingEl = chat.querySelector('[data-hm-heading]'); // bot prompt
+      var typedEl = chat.querySelector('[data-hm-typed]');     // typed user input
+
+      // Each system: eyebrow, name, bot heading (homepage tab demo), and a single
+      // example user input that gets typed out.
+      var systems = [
+        {
+          eyebrow: 'Stop Guessing What to Say',
+          name: 'AI Sales &amp; Marketing Advisor',
+          heading: "What's Your Sales Challenge Today?",
+          message: 'How do I respond to "I want to wait for rates to drop"?'
+        },
+        {
+          eyebrow: 'Stop Spinning Your Wheels',
+          name: 'AI Performance Coach',
+          heading: 'Where Are You Stuck Right Now?',
+          message: "What's the biggest gap holding me back this quarter?"
+        },
+        {
+          eyebrow: 'Stop Making Big Decisions Alone',
+          name: 'AI Strategic Thought Partner',
+          heading: 'What Decision Can I Help You Think Through?',
+          message: 'Should I hire an LOA or stay solo this year?'
+        },
+        {
+          eyebrow: 'Turn Ignored Marketing Into Real Clients',
+          name: 'Platinum Marketing',
+          heading: 'What Should We Create Today?',
+          message: 'Create a flyer for my new 5%-down program'
+        }
+      ];
+
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Fade the whole card in once, a beat after load.
+      function runIntro() {
+        if (reduceMotion) { stage.classList.add('is-shown'); return; }
+        window.setTimeout(function () { stage.classList.add('is-shown'); }, 500);
+      }
+      if (document.body.classList.contains('is-loaded')) runIntro();
+      else window.addEventListener('load', runIntro);
+
+      var sIdx = 0, charIdx = 0, mode = 'typing';
+      var timeoutId = null, running = false;
+
+      function schedule(ms, fn) {
+        if (timeoutId) { window.clearTimeout(timeoutId); timeoutId = null; }
+        if (!running) return;
+        timeoutId = window.setTimeout(function () { timeoutId = null; if (running) fn(); }, ms);
+      }
+
+      // Set the left eyebrow + name + bot heading for the current system
+      // (innerHTML for the name so the &amp; entity renders as "&").
+      function applySystem() {
+        labelEl.textContent = systems[sIdx].eyebrow;
+        systemEl.innerHTML = systems[sIdx].name;
+        headingEl.textContent = systems[sIdx].heading;
+      }
+
+      function tick() {
+        var msg = systems[sIdx].message;
+        if (mode === 'typing') {
+          charIdx++;
+          typedEl.textContent = msg.slice(0, charIdx);
+          if (charIdx >= msg.length) { mode = 'advance'; schedule(2400, tick); }
+          else { schedule(30 + Math.random() * 26, tick); }
+        } else if (mode === 'advance') {
+          // Fade the card out, clear the typed text under cover of the fade,
+          // then swap to the next system and type fresh — no on-screen deletion.
+          sIdx = (sIdx + 1) % systems.length;
+          stage.classList.add('is-swapping');
+          schedule(280, function () {
+            applySystem();
+            charIdx = 0;
+            typedEl.textContent = '';
+            stage.classList.remove('is-swapping');
+            mode = 'typing'; schedule(420, tick);
+          });
+        }
+      }
+
+      function start() {
+        if (running) return;
+        running = true;
+        sIdx = 0; charIdx = 0; mode = 'typing';
+        applySystem();
+        typedEl.textContent = '';
+        if (reduceMotion) { typedEl.textContent = systems[0].message; return; }
+        schedule(1200, tick); // let the card fade in first
+      }
+
+      function stop() {
+        running = false;
+        if (timeoutId) { window.clearTimeout(timeoutId); timeoutId = null; }
+      }
+
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) start(); else stop();
+          });
+        }, { threshold: 0.25 });
+        io.observe(chat);
+      } else {
+        start();
+      }
     })();
   </script>
 </body>
