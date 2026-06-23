@@ -698,10 +698,12 @@ $tla_active      = 'whats-inside';
       align-items: center;
       margin-bottom: var(--space-xl);
     }
-    /* Hide the intro image on mobile; it only appears in the two-column layout. */
+    /* Hide the intro image on mobile; it only appears in the two-column layout.
+       Tighten the gap to the tabbed boxes since the image no longer fills it. */
     .frs-intro__media { display: none; }
+    .frs-intro { margin-bottom: var(--space-lg); }
     @media (min-width: 760px) {
-      .frs-intro { grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: clamp(32px, 4vw, 56px); }
+      .frs-intro { grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: clamp(32px, 4vw, 56px); margin-bottom: var(--space-xl); }
       .frs-intro__media { display: block; }
     }
     .frs-intro__media img {

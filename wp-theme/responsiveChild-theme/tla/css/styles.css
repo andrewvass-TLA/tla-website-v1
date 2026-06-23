@@ -1311,6 +1311,9 @@ h6 {
 
   .faculty-panel__content {
     max-width: none;
+    /* Photo stacks directly below on mobile — trim the large bottom padding so
+       the button isn't separated from the photo by dead space. */
+    padding-bottom: var(--space-lg);
   }
 
   .faculty-panel__photo {
