@@ -89,11 +89,19 @@
 
     /* ── Countdown timer ───────────────────────────────────────────────────── */
     .mm-countdown {
-      display: inline-flex;
+      display: flex;
       flex-direction: column;
       align-items: center;
       gap: 10px;
-      margin: var(--space-md) auto 0;
+      /* Bottom margin gives the timer space before the dashboard graphic below. */
+      margin: var(--space-md) auto var(--space-xl);
+    }
+    /* Label + expires grouped above the clock */
+    .mm-countdown__text {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
     }
     .mm-countdown__label {
       font-family: var(--font-display);
@@ -158,6 +166,10 @@
     .lp-intro__title {
       font-size: clamp(2.5rem, 1.5rem + 3.6vw, 4.25rem);
     }
+    /* Larger hero body copy (matches the homepage hero). */
+    .lp-intro__subtitle {
+      font-size: clamp(1.125rem, 0.95rem + 0.6vw, 1.375rem);
+    }
     /* "With Less Chaos" — brass gold gradient. */
     .mm-hero-gold {
       background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
@@ -173,7 +185,7 @@
        on narrow screens to prevent the long words from overflowing the gutter. */
     @media (max-width: 600px) {
       .lp-intro__title {
-        font-size: clamp(1.875rem, 1rem + 3.6vw, 2.5rem);
+        font-size: clamp(2.25rem, 1.3rem + 4.4vw, 3rem);
         overflow-wrap: break-word;
       }
     }
@@ -1670,72 +1682,69 @@
       }
     }
 
-    /* ── Hero stage — system card over a scrolling event-image strip ──────────
+    /* ── Hero stage — system card over the member dashboard image ─────────────
        Left: cycling system eyebrow + name. Divider. Right: chat bubbles. The
-       whole pair cycles through the four systems. Marquee adapts Platinum hero. */
+       whole pair cycles through the four systems. (Matches the homepage hero.) */
     .hm-stage {
       position: relative;
       max-width: var(--container-max);
-      margin: clamp(32px, 4vw, 56px) auto 0;
+      margin: clamp(48px, 6vw, 96px) auto 0;
       padding-block: clamp(32px, 5vw, 72px);
       padding-inline: var(--gutter);
       box-sizing: border-box;
       isolation: isolate;
     }
 
-    /* Background — faded scrolling strip of the event images (behind the box) */
-    .hm-marquee {
+    /* Background — member dashboard stage (full color, exactly as the sales
+       page), anchored to the bottom of the hero behind the box. The stage keeps
+       its own natural 2.85/1 aspect ratio so the dashboard is never distorted. */
+    .hm-backdrop {
       position: absolute;
-      top: 0; bottom: 0;
       left: 50%;
+      bottom: 0;
       width: 100vw;
       margin-left: -50vw;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      opacity: 0.3;
       z-index: 0;
       pointer-events: none;
-      -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
-      mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
     }
-    .hm-marquee__track {
-      display: flex;
-      width: max-content;
-      gap: var(--space-md);
-      animation: hm-marquee-scroll 55s linear infinite;
+    /* On mobile the chat box covers the dashboard down to a useless sliver —
+       hide the dashboard entirely and let the box stand on its own. */
+    @media (max-width: 759.98px) {
+      .hm-backdrop { display: none; }
     }
-    .hm-marquee__item {
-      flex-shrink: 0;
-      height: clamp(220px, 28vw, 340px);
-      border-radius: var(--radius-2xl);
-      overflow: hidden;
-      box-shadow: 0 12px 32px rgba(2, 28, 54, 0.18);
-    }
-    .hm-marquee__item img {
-      width: auto;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-    .hm-stage:hover .hm-marquee__track { animation-play-state: paused; }
-    @keyframes hm-marquee-scroll {
-      from { transform: translateX(0); }
-      to   { transform: translateX(calc(-50% - var(--space-md) / 2)); }
+    /* Match the sales page exactly: the stage breaks out of the .hm-stage gutter
+       to the full section width and keeps its own 1440px max-width + margins.
+       Faded slightly so the foreground chat box reads as the focal point. */
+    .hm-backdrop .lp-intro__stage {
+      margin: 0 auto;
+      opacity: 0.82;
+      filter: blur(2px);
     }
 
-    /* The box — foreground card holding the two-column system graphic */
+    /* The box — foreground card holding the two-column system graphic.
+       A fixed min-height keeps the box (and therefore the bottom-anchored
+       dashboard) from resizing as the cycling system content changes length. */
     .hm-box {
       position: relative;
       z-index: 1;
       max-width: 960px;
+      /* Reserve the tallest cycle state so the box never resizes (and the
+         bottom-anchored dashboard never shifts) as systems swap. Tuned per
+         breakpoint from the measured worst-case heights. */
+      min-height: 400px;
       margin-inline: auto;
       padding: clamp(24px, 3.5vw, 44px);
       background: var(--surface-container-lowest);
       border: 1px solid var(--outline-variant);
       border-radius: var(--radius-3xl);
-      box-shadow: 0 30px 70px rgba(2, 28, 54, 0.22), 0 0 0 1px rgba(234, 194, 90, 0.08);
+      box-shadow:
+        0 10px 30px rgba(2, 28, 54, 0.28),
+        0 50px 110px -12px rgba(2, 28, 54, 0.62),
+        0 0 0 1px rgba(234, 194, 90, 0.08);
     }
+    @media (min-width: 760px) { .hm-box { min-height: 264px; } }
+    @media (min-width: 1100px) { .hm-box { min-height: 292px; } }
+    @media (min-width: 1280px) { .hm-box { min-height: 300px; } }
     /* Brass glow behind the box */
     .hm-box::before {
       content: '';
@@ -1885,7 +1894,6 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .hm-marquee__track { animation: none; }
       .hm-chat { transition: none; opacity: 1; transform: none; }
       .hm-chat__caret { animation: none; opacity: 1; }
       .hm-system__label,
@@ -1928,8 +1936,10 @@
             <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Start Your Transformation — $49 Today</a>
           </div>
           <div class="mm-countdown" data-hero-step="4" data-countdown="2026-06-26T23:59:59" role="timer" aria-label="Time remaining until the offer ends">
-            <span class="mm-countdown__label">Limited Time Offer</span>
-            <span class="mm-countdown__expires">Expires Friday, June&nbsp;26th</span>
+            <div class="mm-countdown__text">
+              <span class="mm-countdown__label">Limited Time Offer</span>
+              <span class="mm-countdown__expires">Expires Friday, June&nbsp;26th</span>
+            </div>
             <div class="mm-countdown__clock" aria-hidden="false">
               <div class="mm-countdown__unit"><span class="mm-countdown__num" data-cd="days">00</span><span class="mm-countdown__unit-label">Days</span></div>
               <div class="mm-countdown__unit"><span class="mm-countdown__num" data-cd="hours">00</span><span class="mm-countdown__unit-label">Hrs</span></div>
@@ -1941,23 +1951,17 @@
         </div>
       </div>
 
-      <!-- System graphic — a box (system name | divider | chat) over a
-           horizontally-scrolling strip of the what's-inside event images.
-           The whole pair cycles through the four systems (driven by the script). -->
+      <!-- System graphic — a box (system name | divider | chat) over the
+           member dashboard image.
+           The pair cycles through the four systems (driven by the script). -->
       <div class="hm-stage" data-hero-step="5" data-hm-stage>
 
-        <!-- Background — scrolling event images (duplicated set for seamless loop) -->
-        <div class="hm-marquee" aria-hidden="true">
-          <div class="hm-marquee__track">
-            <div class="hm-marquee__item"><img src="assets/what%27s-inside-masterclass.jpg" alt="" loading="eager" /></div>
-            <div class="hm-marquee__item"><img src="assets/what%27s-inside-talk-to-tim.jpg" alt="" loading="eager" /></div>
-            <div class="hm-marquee__item"><img src="assets/what%27s-inside-office-hours.jpg" alt="" loading="eager" /></div>
-            <div class="hm-marquee__item"><img src="assets/what%27s-inside-ai-labs.jpg" alt="" loading="eager" /></div>
-            <!-- duplicate set -->
-            <div class="hm-marquee__item"><img src="assets/what%27s-inside-masterclass.jpg" alt="" /></div>
-            <div class="hm-marquee__item"><img src="assets/what%27s-inside-talk-to-tim.jpg" alt="" /></div>
-            <div class="hm-marquee__item"><img src="assets/what%27s-inside-office-hours.jpg" alt="" /></div>
-            <div class="hm-marquee__item"><img src="assets/what%27s-inside-ai-labs.jpg" alt="" /></div>
+        <!-- Background — member dashboard stage, exactly as on the sales page
+             (full-color dashboard with the brass glow), behind the box -->
+        <div class="hm-backdrop" aria-hidden="true">
+          <div class="lp-intro__stage">
+            <div class="lp-intro__glow" aria-hidden="true"></div>
+            <img class="lp-intro__dash" src="assets/dashboard.png" alt="The Loan Atlas member dashboard" loading="eager" />
           </div>
         </div>
 
