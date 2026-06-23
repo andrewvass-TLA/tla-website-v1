@@ -615,6 +615,61 @@
       gap: var(--space-lg);
       align-items: center;
     }
+    /* Mobile: the eyebrow and heading run full-width; the image then sits to
+       the LEFT of the body copy below them.
+       display:contents hoists the copy's children into the row grid so they
+       can be placed independently. */
+    @media (max-width: 859.98px) {
+      .mm-tour__rows { gap: 0; }
+      .mm-row {
+        grid-template-columns: 120px 1fr;
+        column-gap: var(--space-md);
+        row-gap: 6px;
+        align-items: center;
+        grid-template-areas:
+          "eyebrow eyebrow"
+          "title   title"
+          "media   desc";
+      }
+      /* Divider + breathing room between each section on mobile. */
+      .mm-row + .mm-row {
+        border-top: 1px solid var(--outline-variant);
+        margin-top: var(--space-lg);
+        padding-top: var(--space-lg);
+      }
+      .mm-row__copy { display: contents; }
+      .mm-row > .mm-row__media { grid-area: media; align-self: center; margin-top: var(--space-sm); }
+      .mm-row__eyebrow { grid-area: eyebrow; margin-bottom: 0; }
+      .mm-row__title   { grid-area: title; margin-top: 2px; }
+      .mm-row__desc    { grid-area: desc; max-width: none; margin-top: var(--space-sm); }
+      /* Phone mockups: fit the width of the small left column. */
+      .mm-row__media--phone img { max-height: none; width: 100%; }
+      .mm-row__media--bi img { max-width: 100%; max-height: none; }
+
+      /* Sales & Scripting Coaches: the phone is very tall — crop it to a
+         square-ish thumbnail (show the top) instead of a thin sliver. */
+      .mm-row__media--crop img {
+        aspect-ratio: 1;
+        object-fit: cover;
+        object-position: top center;
+        border-radius: var(--radius-2xl);
+      }
+
+      /* Live Coaching: the 4-image overlap doesn't fit a narrow column — show
+         only the first card, laid out normally instead of absolutely. */
+      .mm-card-stack {
+        aspect-ratio: auto;
+        position: static;
+      }
+      .mm-card-stack__img:nth-child(n + 2) { display: none; }
+      .mm-card-stack__img:nth-child(1) {
+        position: static;
+        width: 100%;
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+    }
     @media (min-width: 860px) {
       .mm-row {
         grid-template-columns: 1fr 1fr;
@@ -1091,6 +1146,9 @@
       width: 100%;
       max-width: none;
       margin: var(--space-xl) 0 0;
+    }
+    @media (max-width: 859.98px) {
+      .quote-card--block { display: none; }
     }
     @media (prefers-reduced-motion: reduce) {
       .disc-marquee__track { animation: none !important; }
@@ -1843,7 +1901,7 @@
           </div>
 
           <div class="mm-row mm-row--flip" data-reveal="up">
-            <div class="mm-row__media mm-row__media--phone"><img src="assets/sales-coach-phone.png" alt="AI Sales &amp; Scripting Coach on a phone" loading="lazy"></div>
+            <div class="mm-row__media mm-row__media--phone mm-row__media--crop"><img src="assets/sales-coach-phone.png" alt="AI Sales &amp; Scripting Coach on a phone" loading="lazy"></div>
             <div class="mm-row__copy">
               <span class="mm-row__eyebrow">AI Sales &amp; Scripting Coaches</span>
               <h3 class="mm-row__title">The right words for every conversation, in your pocket</h3>

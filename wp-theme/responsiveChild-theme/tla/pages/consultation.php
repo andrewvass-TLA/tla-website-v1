@@ -150,6 +150,10 @@ $tla_active      = '';
       .process-grid {
         grid-template-columns: 1fr;
       }
+
+      .process-grid__image {
+        display: none;
+      }
     }
 
     .process-steps {
@@ -281,6 +285,14 @@ $tla_active      = '';
         position: static;
         top: auto;
       }
+    }
+
+    /* All-white "What You'll Leave This Call With" heading (override brass accent) */
+    .takeaways--dark .takeaways__heading-accent {
+      background: none;
+      -webkit-background-clip: border-box;
+      background-clip: border-box;
+      color: #ffffff;
     }
   </style>
 
@@ -417,7 +429,7 @@ $tla_active      = '';
     <!-- ── What you'll leave this call with ── -->
     <section class="takeaways takeaways--dark">
       <div class="takeaways__intro" data-reveal="up">
-        <h2 class="takeaways__heading">What you'll leave <span class="takeaways__heading-accent">this call</span> with
+        <h2 class="takeaways__heading">What You'll Leave <span class="takeaways__heading-accent">This Call</span> With
         </h2>
         <p class="takeaways__lede">Most originators are working harder than ever and still can't figure out why their
           production is uneven. It's rarely an effort problem. It's almost always a system problem — and you can't fix

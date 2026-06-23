@@ -2489,8 +2489,8 @@ h6 {
 
 .compare-v2__label {
   font-family: var(--font-body);
-  font-size: 0.6875rem;
-  font-weight: 600;
+  font-size: 0.8125rem;
+  font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   margin: 0 0 var(--space-sm);
@@ -2506,8 +2506,8 @@ h6 {
 
 .compare-v2__title {
   font-family: var(--font-display);
-  font-size: 1.125rem;
-  font-weight: 700;
+  font-size: 1.5rem;
+  font-weight: 800;
   margin: 0 0 var(--space-md);
   padding-bottom: var(--space-md);
   border-bottom: 1px solid;
@@ -2575,6 +2575,12 @@ h6 {
   height: 100%;
   object-fit: cover;
   display: block;
+}
+
+@media (max-width: 768px) {
+  .problem-media {
+    display: none;
+  }
 }
 
 /* --- Faculty ------------------------------------------------------------- */
@@ -3482,11 +3488,22 @@ h6 {
   text-align: center;
   gap: 4px;
   padding: var(--space-sm);
+}
+
+/* 2-col grid: divider only between the two columns; none on the right edge. */
+.stats-bar__item:nth-child(odd) {
   border-right: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-.stats-bar__item:last-child {
-  border-right: none;
+@media (min-width: 640px) {
+  /* Single row: divider between every item except the last. */
+  .stats-bar__item {
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .stats-bar__item:last-child {
+    border-right: none;
+  }
 }
 
 .stats-bar__num {
@@ -4606,6 +4623,9 @@ h6 {
 
   .aisc__card.is-stacked {
     min-height: 0;
+    /* Establish a container so the composite stage can scale to the available
+       width via cqw units, preserving the exact desktop layered composition. */
+    container-type: inline-size;
   }
 }
 
@@ -4844,44 +4864,25 @@ h6 {
 }
 
 @media (max-width: 860px) {
-  .aisc__card.is-stacked .aisc__stage {
-    width: 100%;
+  /* Render the stage at a fixed desktop reference size so every layer's
+     percentage/pixel offset resolves exactly as it does on desktop, then scale
+     the whole composition down to the available width with transform. */
+  /* :not(.is-chat) — chat tabs carry both is-stacked and is-chat; the chat stage
+     is auto-height with its own layout and must not be scaled/fixed-height here. */
+  .aisc__card.is-stacked:not(.is-chat) .aisc__stage {
+    --aisc-ref-w: 680;
+    --aisc-ref-h: 440;
+    /* length / length = unitless number — required by scale(); dividing by a
+       bare number yields a length and silently invalidates the transform. */
+    --aisc-scale: calc(100cqw / (var(--aisc-ref-w) * 1px));
+    width: calc(var(--aisc-ref-w) * 1px);
+    height: calc(var(--aisc-ref-h) * 1px);
     margin-left: 0;
-    height: 320px;
-  }
-
-  .aisc__compose-img--core {
-    top: 4px;
-    width: 98%;
-  }
-
-  .aisc__compose-img--conversion {
-    right: 2%;
-    bottom: 40px;
-    width: 48%;
-  }
-
-  .aisc__compose-img--income {
-    left: 2%;
-    bottom: 80px;
-    width: 46%;
-  }
-
-  .aisc__compose-img--summary {
-    top: 4px;
-    width: 98%;
-  }
-
-  .aisc__compose-img--wheel {
-    right: 2%;
-    bottom: 32px;
-    width: 50%;
-  }
-
-  .aisc__compose-img--action {
-    left: 2%;
-    bottom: 90px;
-    width: 76%;
+    transform: scale(var(--aisc-scale));
+    transform-origin: top left;
+    /* transform doesn't reclaim layout height — collapse the gap left below the
+       shrunk stage so following content isn't pushed down by the full 440px. */
+    margin-bottom: calc(var(--aisc-ref-h) * 1px * (var(--aisc-scale) - 1));
   }
 }
 
@@ -4986,7 +4987,9 @@ h6 {
 }
 
 .aisc__chatdemo-typed {
-  white-space: pre;
+  /* pre-wrap (not pre) preserves the typed spaces while still allowing the line
+     to wrap inside the input on narrow/mobile widths. */
+  white-space: pre-wrap;
 }
 
 .aisc__chatdemo-caret {

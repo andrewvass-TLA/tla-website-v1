@@ -90,6 +90,13 @@ $tla_active      = 'join';
        elevate it: wider column, larger padding/price, brass-glow
        border, centered podium badge. Side cards are subtly scaled
        down so the middle one clearly dominates. */
+    /* On mobile the cards stack; surface the Annual (featured) card first */
+    @media (max-width: 879.98px) {
+      .pr-cards-section .plan--featured {
+        order: -1;
+      }
+    }
+
     @media (min-width: 880px) {
       .pr-cards-section .pricing-grid {
         grid-template-columns: 1fr 1.35fr 1fr;
@@ -569,7 +576,6 @@ $tla_active      = 'join';
       <div class="container">
 
         <div class="pr-section-head" data-reveal="up">
-          <span class="eyebrow"><span class="eyebrow__text">What Members Say</span></span>
         </div>
 
         <div class="pr-testimonials" data-reveal-stagger="120">
@@ -611,7 +617,6 @@ $tla_active      = 'join';
       <div class="container">
 
         <div class="pr-section-head" data-reveal="up">
-          <span class="eyebrow"><span class="eyebrow__text">Everything in Your Membership</span></span>
           <h2 class="section-heading">What's Included</h2>
         </div>
 
@@ -689,7 +694,6 @@ $tla_active      = 'join';
 
         <div style="max-width: 48rem; margin-inline: auto;">
           <div class="pr-section-head" data-reveal="up">
-            <span class="eyebrow"><span class="eyebrow__text">Common Questions</span></span>
             <h2 class="section-heading">Frequently Asked Questions</h2>
           </div>
 

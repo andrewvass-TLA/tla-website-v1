@@ -14,23 +14,38 @@ $tla_active      = 'faculty';
     /* ── Faculty page ─────────────────────────────────────────────── */
 
     .fh-hero {
-      background:
-        /* gradient fades from solid navy on the left to transparent on the right,
-           revealing the image underneath */
-        linear-gradient(to right,
-          rgba(2, 28, 54, 1)    0%,
-          rgba(2, 28, 54, 0.96) 30%,
-          rgba(2, 28, 54, 0.78) 50%,
-          rgba(2, 28, 54, 0.35) 75%,
-          rgba(2, 28, 54, 0)    100%
-        ),
-        url('<?php echo TLA_BASE; ?>/assets/faculty-header.png') right center / cover no-repeat,
-        /* fallback navy gradient if the image fails to load */
-        linear-gradient(160deg, #021c36 0%, #0a1628 60%, #131b2e 100%);
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
       padding-top: calc(var(--header-h) + clamp(56px, 8vw, 96px));
       padding-bottom: clamp(56px, 8vw, 96px);
       position: relative;
       overflow: hidden;
+    }
+    .fh-hero__bg {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 70%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .fh-hero__fade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right,
+        rgba(2, 28, 54, 1)    0%,
+        rgba(2, 28, 54, 0.96) 30%,
+        rgba(2, 28, 54, 0.78) 50%,
+        rgba(2, 28, 54, 0.35) 75%,
+        rgba(2, 28, 54, 0)    100%);
+      pointer-events: none;
+      z-index: 1;
+    }
+    @media (max-width: 760px) {
+      .fh-hero__bg { display: none; }
+      .fh-hero__fade { display: none; }
     }
     .fh-hero::before {
       content: '';
@@ -42,6 +57,7 @@ $tla_active      = 'faculty';
       background: radial-gradient(closest-side, rgba(234, 194, 90, 0.11), transparent);
       filter: blur(70px);
       pointer-events: none;
+      z-index: 0;
     }
     .fh-hero::after {
       content: '';
@@ -53,10 +69,11 @@ $tla_active      = 'faculty';
       background: radial-gradient(closest-side, rgba(178, 200, 233, 0.08), transparent);
       filter: blur(70px);
       pointer-events: none;
+      z-index: 0;
     }
     .fh-hero__content {
       position: relative;
-      z-index: 1;
+      z-index: 2;
       max-width: 52rem;
     }
     .fh-hero__title {
@@ -340,6 +357,7 @@ $tla_active      = 'faculty';
       width: 100%;
       height: 100%;
       object-fit: cover;
+      object-position: center top;
       position: relative;
       z-index: 1;
     }
@@ -463,9 +481,16 @@ $tla_active      = 'faculty';
       color: var(--on-surface-variant);
     }
     @media (max-width: 819px) {
-      .faculty-modal__photo { aspect-ratio: 16 / 9; }
+      .faculty-modal__photo { aspect-ratio: 4 / 5; }
       .faculty-modal__identity { padding: var(--space-md); }
       .faculty-modal__right { padding: var(--space-md); }
+      /* Close button overlaps the dark photo on mobile — make it a solid, high-contrast chip. */
+      .faculty-modal__close {
+        background: #ffffff;
+        color: var(--primary);
+        box-shadow: 0 2px 10px rgba(2,28,54,0.35);
+      }
+      .faculty-modal__close:hover { background: var(--primary); color: #ffffff; }
     }
     body.faculty-modal-open { overflow: hidden; }
 
@@ -564,6 +589,8 @@ $tla_active      = 'faculty';
 
     <!-- ── Hero ─────────────────────────────────────────────────────── -->
     <section class="fh-hero" aria-labelledby="fh-hero-heading">
+      <img class="fh-hero__bg" src="<?php echo TLA_BASE; ?>/assets/faculty-header.png" alt="" aria-hidden="true" />
+      <div class="fh-hero__fade" aria-hidden="true"></div>
       <div class="container">
         <div class="fh-hero__content">
           <span class="eyebrow" data-hero-step="1" style="margin-bottom: var(--space-md);">
@@ -576,7 +603,7 @@ $tla_active      = 'faculty';
           </p>
           <div class="fh-hero__actions" data-hero-step="4">
             <a class="btn btn--gold btn--lg" href="/join/">Start Your Transformation</a>
-            <a class="btn btn--primary btn--lg" href="/consultation/">Book Your Free Coaching Session</a>
+            <a class="btn btn--ghost-on-dark btn--lg" href="/consultation/">Book Your Free Coaching Session</a>
           </div>
         </div>
       </div>

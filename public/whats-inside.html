@@ -418,6 +418,8 @@
       .aicg__grid { grid-template-columns: 1fr; }
       .aicg__col { gap: var(--space-lg); }
       .aicg__stage { max-width: 100%; }
+      /* Hide the phone image on mobile; coaches stack into a single column. */
+      .aicg__center { display: none; }
     }
     @media (prefers-reduced-motion: reduce) {
       .aicg__dot,
@@ -665,35 +667,6 @@
       display: block;
     }
 
-    /* Coaching-cards as full-card links (gallery-card pattern) */
-    a.coaching-card {
-      text-decoration: none;
-      color: inherit;
-      isolation: isolate;
-    }
-    a.coaching-card:hover .coaching-card__arrow,
-    a.coaching-card:focus-visible .coaching-card__arrow {
-      color: var(--brass);
-      border-color: rgba(201, 150, 28, 0.4);
-    }
-    .coaching-card__arrow {
-      margin-top: auto;
-      align-self: flex-start;
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      border: 1px solid var(--outline-variant);
-      background: var(--surface-container-lowest);
-      color: var(--primary-container);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transition: color 200ms ease, border-color 200ms ease;
-    }
-    .coaching-card__arrow svg {
-      width: 14px;
-      height: 14px;
-    }
 
     /* =====================================================================
        AI-Driven Financial Review — click-and-reveal showcase
@@ -725,8 +698,11 @@
       align-items: center;
       margin-bottom: var(--space-xl);
     }
+    /* Hide the intro image on mobile; it only appears in the two-column layout. */
+    .frs-intro__media { display: none; }
     @media (min-width: 760px) {
       .frs-intro { grid-template-columns: minmax(0, 320px) minmax(0, 1fr); gap: clamp(32px, 4vw, 56px); }
+      .frs-intro__media { display: block; }
     }
     .frs-intro__media img {
       width: 100%;
@@ -1411,6 +1387,32 @@
       scrollbar-width: none;
     }
     .frs-tabs__bar::-webkit-scrollbar { display: none; }
+    /* On mobile, drop the pill container and turn each tab into a
+       distinct, clearly-tappable outlined button on its own row. */
+    @media (max-width: 560px) {
+      .frs-tabs__bar {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 0;
+        width: auto;
+        background: transparent;
+        border: 0;
+        border-radius: 0;
+        overflow-x: visible;
+      }
+      .frs-tab {
+        flex: 1 1 calc(50% - 8px);
+        background: var(--surface);
+        border: 1px solid var(--outline-variant);
+        border-radius: var(--radius-xl);
+        padding: 12px 16px;
+        box-shadow: 0 1px 2px rgba(2, 28, 54, 0.06);
+      }
+      .frs-tab.is-active {
+        border-color: var(--primary);
+        box-shadow: 0 2px 8px rgba(2, 28, 54, 0.18);
+      }
+    }
     .frs-tab {
       flex: 0 0 auto;
       border: 0;
@@ -1698,6 +1700,7 @@
       font-size: 0.78em;
       font-weight: 600;
       margin-bottom: 0.55em;
+      color: var(--tool-text);
     }
     .frs-tool__progress-pct { color: var(--tool-accent); }
     .frs-tool__progress-bar {
@@ -1722,6 +1725,7 @@
       font-weight: 700;
       margin: 0 0 1em;
       letter-spacing: -0.01em;
+      color: var(--tool-text);
     }
     .frs-tool__panel-title--large {
       font-size: 1.1em;
@@ -2444,17 +2448,6 @@
       font-weight: 700;
       letter-spacing: -0.015em;
     }
-    .frs-stat__progress {
-      height: 0.25em;
-      background: rgba(255,255,255,0.08);
-      border-radius: 0.15em;
-      margin-top: 0.5em;
-      overflow: hidden;
-    }
-    .frs-stat__progress-fill {
-      height: 100%;
-      background: var(--tool-accent);
-    }
     .frs-stat__target {
       position: absolute;
       bottom: 0.5em;
@@ -2679,9 +2672,7 @@
           <h1 class="wi-hero__title" data-hero-step="2">Everything you need to stop flying blind and start running a <em>predictable</em> mortgage business.</h1>
           <p class="wi-hero__sub" data-hero-step="3">Five AI-powered systems. 200+ training modules. Live coaching every week. Scripts and templates for every high-leverage conversation.</p>
           <div class="wi-hero__actions" data-hero-step="4">
-            <a class="btn btn--gold btn--lg" href="pricing.html">Start Your Transformation
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
+            <a class="btn btn--gold btn--lg" href="pricing.html">Start Your Transformation</a>
             <a class="btn btn--ghost-on-dark btn--lg" href="consultation.html">Book Your Free Coaching Call</a>
           </div>
         </div>
@@ -2848,13 +2839,6 @@
         </div>
         <div class="frs-tool__content">
           <p class="frs-tool__breadcrumb">Financial Planning <span class="frs-tool__breadcrumb-sep">›</span><span class="frs-tool__breadcrumb-active">Assessment</span></p>
-          <div class="frs-tool__progress">
-            <div class="frs-tool__progress-row">
-              <span>Step 3 of 6: Step #1: Break-Even</span>
-              <span class="frs-tool__progress-pct">50%</span>
-            </div>
-            <div class="frs-tool__progress-bar"><div class="frs-tool__progress-fill" style="width:50%"></div></div>
-          </div>
           <div class="frs-tool__panel">
             <h3 class="frs-tool__panel-title frs-tool__panel-title--large">Step #1: How many loans do I need to cover my expenses?</h3>
             <div class="frs-panel-breakeven__inputs">
@@ -2888,13 +2872,6 @@
         </div>
         <div class="frs-tool__content">
           <p class="frs-tool__breadcrumb">Financial Planning <span class="frs-tool__breadcrumb-sep">›</span><span class="frs-tool__breadcrumb-active">Assessment</span></p>
-          <div class="frs-tool__progress">
-            <div class="frs-tool__progress-row">
-              <span>Step 4 of 6: Step #2: Business Sources</span>
-              <span class="frs-tool__progress-pct">67%</span>
-            </div>
-            <div class="frs-tool__progress-bar"><div class="frs-tool__progress-fill" style="width:67%"></div></div>
-          </div>
           <div class="frs-tool__panel">
             <h3 class="frs-tool__panel-title frs-tool__panel-title--large">Step #2: Where is this business going to come from?</h3>
 
@@ -2977,19 +2954,16 @@
             <div class="frs-stat">
               <p class="frs-stat__label">Total Monthly Income</p>
               <p class="frs-stat__value">$16,750</p>
-              <div class="frs-stat__progress"><div class="frs-stat__progress-fill" style="width:82%"></div></div>
               <span class="frs-stat__target">Target: $20,333</span>
             </div>
             <div class="frs-stat">
               <p class="frs-stat__label">Loans This Month</p>
               <p class="frs-stat__value">2</p>
-              <div class="frs-stat__progress"><div class="frs-stat__progress-fill" style="width:100%"></div></div>
               <span class="frs-stat__target">Target: 1</span>
             </div>
             <div class="frs-stat">
               <p class="frs-stat__label">Hourly Rate This Month</p>
               <p class="frs-stat__value">$3,045/hr</p>
-              <div class="frs-stat__progress"><div class="frs-stat__progress-fill" style="width:100%"></div></div>
               <span class="frs-stat__target">Target: $850/hr</span>
             </div>
           </div>
@@ -3628,7 +3602,7 @@
         <div class="coaching-grid" data-reveal-stagger="120">
 
           <!-- Masterclasses -->
-          <a class="coaching-card" href="events.html">
+          <div class="coaching-card">
             <div class="coaching-card__media">
               <div class="video-ph" style="aspect-ratio: auto; width: 100%; height: 100%; border-radius: 0; box-shadow: none; border: none;">
                 <img src="assets/what%27s-inside-masterclass.jpg" alt="" />
@@ -3638,14 +3612,11 @@
               <span class="coaching-card__type">Masterclasses</span>
               <h3 class="coaching-card__title">60–90 minute deep dives on the systems that move your business.</h3>
               <p class="coaching-card__desc">Led by Atlas faculty. The System for Selling, Strike Rate Strategy, Realtor attraction, AI productivity, market economics — with slides, worksheets, and live Q&amp;A. This is where you get the framework.</p>
-              <span class="coaching-card__arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </span>
             </div>
-          </a>
+          </div>
 
           <!-- Office Hours -->
-          <a class="coaching-card" href="events.html">
+          <div class="coaching-card">
             <div class="coaching-card__media">
               <div class="video-ph" style="aspect-ratio: auto; width: 100%; height: 100%; border-radius: 0; box-shadow: none; border: none;">
                 <img src="assets/what%27s-inside-office-hours.jpg" alt="" />
@@ -3655,14 +3626,11 @@
               <span class="coaching-card__type">Office Hours</span>
               <h3 class="coaching-card__title">Bring a real problem. Get coached on it live.</h3>
               <p class="coaching-card__desc">A pricing scenario you can't figure out, a Realtor relationship going sideways, a deal about to fall apart, a week that's gotten away from you. This is where learning becomes action — week after week, not once in a blue moon.</p>
-              <span class="coaching-card__arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </span>
             </div>
-          </a>
+          </div>
 
           <!-- Talk to Tim -->
-          <a class="coaching-card" href="events.html">
+          <div class="coaching-card">
             <div class="coaching-card__media">
               <div class="video-ph" style="aspect-ratio: auto; width: 100%; height: 100%; border-radius: 0; box-shadow: none; border: none;">
                 <img src="assets/what%27s-inside-talk-to-tim.jpg" alt="" />
@@ -3672,14 +3640,11 @@
               <span class="coaching-card__type">Talk to Tim LIVE</span>
               <h3 class="coaching-card__title">Monthly sessions directly with Tim Braheem.</h3>
               <p class="coaching-card__desc">These go deeper than tactics — into the mindset, the identity, the fear, and the emotional patterns that are actually driving your results. If you've ever wondered why you keep producing at the same level despite knowing what to do, this is the session.</p>
-              <span class="coaching-card__arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </span>
             </div>
-          </a>
+          </div>
 
           <!-- AI Labs & Workshops -->
-          <a class="coaching-card" href="events.html">
+          <div class="coaching-card">
             <div class="coaching-card__media">
               <div class="video-ph" style="aspect-ratio: auto; width: 100%; height: 100%; border-radius: 0; box-shadow: none; border: none;">
                 <img src="assets/what%27s-inside-ai-labs.jpg" alt="" />
@@ -3689,11 +3654,8 @@
               <span class="coaching-card__type">AI Labs &amp; Workshops</span>
               <h3 class="coaching-card__title">Hands-on implementation. Leave with something installed, not just understood.</h3>
               <p class="coaching-card__desc">Planning Intensives, PPC Workshops, AI Bootcamps, Realtor Attraction Challenges. Multi-session structures with worksheets, scripts, and accountability built in.</p>
-              <span class="coaching-card__arrow" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-              </span>
             </div>
-          </a>
+          </div>
 
         </div><!-- /coaching-grid -->
 
