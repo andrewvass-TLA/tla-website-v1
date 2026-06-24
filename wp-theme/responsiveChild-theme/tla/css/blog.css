@@ -189,6 +189,26 @@ body { --blog-overlap: clamp(64px, 9vw, 132px); }
   padding-block: calc(var(--header-h) + clamp(28px, 4vw, 56px)) calc(var(--blog-overlap) + clamp(28px, 4vw, 48px));
   position: relative; overflow: hidden;
 }
+/* Featured-image layer + left→right fade. single.php sets --blog-hero-img inline
+   and adds --has-image only when the post has a featured image; the fade caps at
+   0.5 so the image stays subtly veiled (never fully exposed). */
+.blog-post-head--has-image {
+  background:
+    linear-gradient(to right,
+      rgba(2, 28, 54, 1)    0%,
+      rgba(2, 28, 54, 0.99) 22%,
+      rgba(2, 28, 54, 0.9)  42%,
+      rgba(2, 28, 54, 0.7)  68%,
+      rgba(2, 28, 54, 0.5)  100%),
+    var(--blog-hero-img) right top / cover no-repeat,
+    linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+}
+/* On small screens the image behind the text hurts legibility — flat navy. */
+@media (max-width: 760px) {
+  .blog-post-head--has-image {
+    background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+  }
+}
 .blog-post-head::after {
   content: ""; position: absolute; inset: 0;
   background: radial-gradient(55% 70% at 80% 0%, rgba(201, 150, 28, 0.16), transparent 60%);
