@@ -3,13 +3,13 @@
  * single.php — a single blog post, rendered in the TLA blog design.
  * Source mockup: public/blog-post.html.
  *
+ * Two-column layout: a wide white content card (the_content styled via
+ * .tla-article) + a sticky sidebar (header image, jump-to TOC, resources).
  * Applies automatically to EVERY single post once this theme is active.
- * Content comes from the post itself (title, content, featured image,
- * category, author) — nothing is hand-coded per post.
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-the_post(); // set up $post for this single view
+the_post();
 
 // --- Head vars ----------------------------------------------------------
 $tla_title       = wp_get_document_title();
@@ -21,30 +21,18 @@ if ( has_post_thumbnail() ) {
 // --- Derived display data ----------------------------------------------
 $cats        = get_the_category();
 $primary_cat = ! empty( $cats ) ? $cats[0] : null;
-$author_id   = get_the_author_meta( 'ID' );
 $author_name = get_the_author();
-$author_url  = get_author_posts_url( $author_id );
-$author_bio  = get_the_author_meta( 'description' );
-
-// Read time from the content word count (~200 wpm).
-$word_count = str_word_count( wp_strip_all_tags( get_the_content() ) );
-$read_min   = max( 1, (int) round( $word_count / 200 ) );
-
-// Author initials for the avatar fallback.
-$initials = '';
-foreach ( preg_split( '/\s+/', trim( $author_name ) ) as $part ) {
-	if ( $part !== '' ) { $initials .= strtoupper( $part[0] ); }
-}
-$initials = substr( $initials, 0, 2 );
+$word_count  = str_word_count( wp_strip_all_tags( get_the_content() ) );
+$read_min    = max( 1, (int) round( $word_count / 200 ) );
 
 include get_stylesheet_directory() . '/tla/partials/blog-head.php';
 ?>
 
   <div class="blog-progress" id="blogProgress"></div>
 
-  <!-- ===== Post header ===== -->
+  <!-- ===== Post header (dark band) ===== -->
   <header class="blog-post-head">
-    <div class="container blog-post-head__inner">
+    <div class="blog-post-head__inner">
 <?php if ( $primary_cat ) : ?>
       <p><a href="<?php echo esc_url( get_category_link( $primary_cat->term_id ) ); ?>" class="blog-post-head__cat" style="text-decoration:none;">&larr; <?php echo esc_html( $primary_cat->name ); ?></a></p>
 <?php endif; ?>
@@ -53,10 +41,7 @@ include get_stylesheet_directory() . '/tla/partials/blog-head.php';
       <p class="blog-post-head__dek"><?php echo esc_html( get_the_excerpt() ); ?></p>
 <?php endif; ?>
       <div class="blog-post-head__meta">
-        <span class="blog-post-head__avatar"><?php
-          $av = get_avatar( $author_id, 88, '', $author_name, array( 'class' => '' ) );
-          echo $av ? $av : esc_html( $initials );
-        ?></span>
+        <span class="blog-post-head__avatar"><img src="<?php echo esc_url( TLA_BASE ); ?>/assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" /></span>
         <span class="blog-post-head__byline"><strong><?php echo esc_html( $author_name ); ?></strong></span>
         <span class="blog-post-head__meta-dot"></span>
         <span><?php echo esc_html( get_the_date() ); ?></span>
@@ -66,103 +51,112 @@ include get_stylesheet_directory() . '/tla/partials/blog-head.php';
     </div>
   </header>
 
-<?php if ( has_post_thumbnail() ) : ?>
-  <!-- ===== Hero image ===== -->
-  <div class="blog-post-hero">
-    <?php the_post_thumbnail( 'large', array( 'alt' => esc_attr( get_the_title() ) ) ); ?>
-  </div>
-<?php endif; ?>
+  <!-- ===== Two-column shell (pulled up over the dark band) ===== -->
+  <div class="blog-post-shell">
+    <div class="blog-post-grid">
 
-  <!-- ===== Article body (the_content) ===== -->
-  <article class="section blog-post-layout">
-    <div class="tla-article">
-      <?php the_content(); ?>
-    </div>
-  </article>
+      <!-- LEFT: white content card -->
+      <main class="blog-post-card">
 
-  <!-- ===== Tags + share ===== -->
-  <div class="blog-post-foot">
-    <div class="blog-tags">
-<?php
-      $tags = get_the_tags();
-      if ( $tags ) {
-        foreach ( $tags as $tag ) {
-          printf( '<a class="blog-tag" href="%s">%s</a>', esc_url( get_tag_link( $tag->term_id ) ), esc_html( $tag->name ) );
-        }
-      }
-?>
-    </div>
-  </div>
+        <!-- Mobile-only collapsible TOC (populated by JS) -->
+        <details class="blog-toc-mobile">
+          <summary>On this page
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </summary>
+          <ul class="blog-toc" id="tocMobile"></ul>
+        </details>
 
-<?php if ( $author_name ) : ?>
-  <!-- ===== Author card ===== -->
-  <div class="blog-author">
-    <div class="blog-author__inner">
-      <span class="blog-author__avatar"><?php
-        $av = get_avatar( $author_id, 128, '', $author_name, array( 'class' => '' ) );
-        echo $av ? $av : esc_html( $initials );
-      ?></span>
-      <div>
-        <div class="blog-author__name"><a href="<?php echo esc_url( $author_url ); ?>" style="text-decoration:none;color:inherit;"><?php echo esc_html( $author_name ); ?></a></div>
-<?php if ( $author_bio ) : ?>
-        <p class="blog-author__bio"><?php echo esc_html( $author_bio ); ?></p>
-<?php endif; ?>
-      </div>
-    </div>
-  </div>
-<?php endif; ?>
-
-<?php
-// ===== Related posts: same primary category, newest, excluding this post =====
-if ( $primary_cat ) :
-	$related = new WP_Query( array(
-		'category__in'        => array( $primary_cat->term_id ),
-		'post__not_in'        => array( get_the_ID() ),
-		'posts_per_page'      => 3,
-		'ignore_sticky_posts' => true,
-		'no_found_rows'       => true,
-	) );
-	if ( $related->have_posts() ) : ?>
-  <section class="section blog-related">
-    <div class="container" style="max-width:64rem;">
-      <h2 class="t-headline-lg">Keep reading</h2>
-      <div class="blog-related__grid">
-<?php while ( $related->have_posts() ) : $related->the_post(); ?>
-        <article class="blog-card">
-          <a class="blog-card__media" href="<?php the_permalink(); ?>">
-<?php if ( has_post_thumbnail() ) : the_post_thumbnail( 'medium_large', array( 'alt' => esc_attr( get_the_title() ) ) );
-      else : ?><img src="<?php echo esc_url( TLA_BASE ); ?>/assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /><?php endif; ?>
-          </a>
-          <div class="blog-card__body">
-            <span class="blog-card__cat"><?php echo esc_html( $primary_cat->name ); ?></span>
-            <h3 class="blog-card__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h3>
-          </div>
+        <article class="tla-article" id="articleBody">
+          <?php the_content(); ?>
         </article>
-<?php endwhile; ?>
-      </div>
-    </div>
-  </section>
-<?php
-	endif;
-	wp_reset_postdata();
-endif;
-?>
 
-  <script>
-    (function () {
-      var bar = document.getElementById('blogProgress');
-      var article = document.querySelector('.blog-post-layout');
-      if (!bar || !article) return;
-      function update() {
-        var rect = article.getBoundingClientRect();
-        var total = article.offsetHeight - window.innerHeight;
-        var scrolled = Math.min(Math.max(-rect.top, 0), total);
-        bar.style.width = total > 0 ? (scrolled / total * 100) + '%' : '0%';
-      }
-      window.addEventListener('scroll', update, { passive: true });
-      window.addEventListener('resize', update);
-      update();
-    })();
-  </script>
+        <!-- Tags + share -->
+        <div class="blog-post-foot">
+          <div class="blog-tags">
+<?php
+            $tags = get_the_tags();
+            if ( $tags ) {
+              foreach ( $tags as $tag ) {
+                printf( '<a class="blog-tag" href="%s">%s</a>', esc_url( get_tag_link( $tag->term_id ) ), esc_html( $tag->name ) );
+              }
+            }
+?>
+          </div>
+          <div class="blog-share" id="blogShare">
+            <span class="blog-share__label">Share</span>
+            <a class="blog-share__btn" data-share="linkedin" href="#" target="_blank" rel="noopener" aria-label="Share on LinkedIn">
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.36V9h3.41v1.56h.05c.47-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.8 0 0 .78 0 1.74v20.52C0 23.22.8 24 1.77 24h20.45c.98 0 1.78-.78 1.78-1.74V1.74C24 .78 23.2 0 22.22 0z"/></svg>
+            </a>
+            <a class="blog-share__btn" data-share="facebook" href="#" target="_blank" rel="noopener" aria-label="Share on Facebook">
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.07C24 5.4 18.63 0 12 0S0 5.4 0 12.07c0 6.02 4.39 11.01 10.13 11.93v-8.44H7.08v-3.49h3.05V9.41c0-3.02 1.79-4.69 4.53-4.69 1.31 0 2.69.24 2.69.24v2.97h-1.52c-1.49 0-1.96.93-1.96 1.89v2.25h3.33l-.53 3.49h-2.8V24C19.61 23.08 24 18.09 24 12.07z"/></svg>
+            </a>
+            <a class="blog-share__btn" data-share="twitter" href="#" target="_blank" rel="noopener" aria-label="Share on X">
+              <svg class="icon" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a class="blog-share__btn" data-share="email" href="#" aria-label="Share by email">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 7-10 5L2 7"></path></svg>
+            </a>
+            <button type="button" class="blog-share__btn" data-share="copy" aria-label="Copy link">
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+            </button>
+          </div>
+        </div>
+      </main>
+
+      <!-- RIGHT: sticky sidebar -->
+      <aside class="blog-sidebar">
+<?php if ( has_post_thumbnail() ) : ?>
+        <div class="blog-side-card blog-side-hero">
+          <?php the_post_thumbnail( 'large', array( 'alt' => esc_attr( get_the_title() ) ) ); ?>
+        </div>
+<?php endif; ?>
+
+        <!-- TOC (desktop; populated by JS) -->
+        <div class="blog-side-card blog-side-toc">
+          <div class="blog-side-card__pad">
+            <p class="blog-side-card__title">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"></line><line x1="8" y1="12" x2="21" y2="12"></line><line x1="8" y1="18" x2="21" y2="18"></line><line x1="3" y1="6" x2="3.01" y2="6"></line><line x1="3" y1="12" x2="3.01" y2="12"></line><line x1="3" y1="18" x2="3.01" y2="18"></line></svg>
+              On this page
+            </p>
+            <ul class="blog-toc" id="tocDesktop"></ul>
+          </div>
+        </div>
+
+        <!-- Additional resources: latest posts overall -->
+<?php
+        $resources = new WP_Query( array(
+          'post__not_in'        => array( get_the_ID() ),
+          'posts_per_page'      => 4,
+          'ignore_sticky_posts' => true,
+          'no_found_rows'       => true,
+        ) );
+        if ( $resources->have_posts() ) : ?>
+        <div class="blog-side-card">
+          <div class="blog-side-card__pad">
+            <p class="blog-side-card__title">Additional Resources</p>
+<?php   while ( $resources->have_posts() ) : $resources->the_post();
+          $rcats = get_the_category();
+          $rcat  = ! empty( $rcats ) ? $rcats[0]->name : '';
+?>
+            <div class="blog-resource">
+              <a class="blog-resource__thumb" href="<?php the_permalink(); ?>">
+<?php       if ( has_post_thumbnail() ) { the_post_thumbnail( 'thumbnail', array( 'alt' => esc_attr( get_the_title() ) ) ); }
+            else { echo '<img src="' . esc_url( TLA_BASE ) . '/assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:18%;" />'; } ?>
+              </a>
+              <div>
+<?php       if ( $rcat ) : ?><span class="blog-resource__cat"><?php echo esc_html( $rcat ); ?></span><?php endif; ?>
+                <p class="blog-resource__title"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></p>
+              </div>
+            </div>
+<?php   endwhile; wp_reset_postdata(); ?>
+          </div>
+        </div>
+<?php   endif; ?>
+      </aside>
+
+    </div>
+  </div>
+
+  <script src="<?php echo esc_url( TLA_BASE ); ?>/js/blog.js" defer></script>
 
 <?php include get_stylesheet_directory() . '/tla/partials/blog-foot.php'; ?>

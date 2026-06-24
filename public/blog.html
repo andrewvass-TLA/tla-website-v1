@@ -18,24 +18,44 @@
   <style>
     /* --- Blog hero / page header ------------------------------------ */
     .blog-masthead {
-      background: linear-gradient(135deg, #0a1628, #131b2e, #1e293b);
+      /* Matches the pricing/join hero gradient (deep midnight slate) */
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
       color: var(--on-primary);
-      padding-block: clamp(56px, 7vw, 104px) clamp(40px, 5vw, 72px);
+      /* Clear the fixed 72px nav so content isn't tucked under it. */
+      padding-block: calc(var(--header-h) + clamp(40px, 5vw, 56px)) clamp(40px, 5vw, 72px);
       position: relative;
       overflow: hidden;
     }
-    .blog-masthead::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(60% 80% at 85% 0%, rgba(201, 150, 28, 0.18), transparent 60%);
-      pointer-events: none;
+    /* Radial glow accents — same treatment as the enterprise/corporate hero. */
+    .blog-masthead::before {
+      content: ""; position: absolute; top: -80px; right: 8%;
+      width: 540px; height: 540px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.11), transparent);
+      filter: blur(70px); pointer-events: none;
     }
-    .blog-masthead__inner { position: relative; z-index: 1; max-width: 46rem; }
-    .blog-masthead .t-eyebrow { display: block; margin: 0; color: var(--brass-bright); }
-    .blog-masthead h1 { margin: 14px 0 18px; color: #fff; }
-    .blog-masthead p.t-body-lg { margin: 0; color: rgba(255, 255, 255, 0.78); max-width: 38rem; }
+    .blog-masthead::after {
+      content: ""; position: absolute; bottom: -80px; left: 4%;
+      width: 400px; height: 400px;
+      background: radial-gradient(closest-side, rgba(178, 200, 233, 0.08), transparent);
+      filter: blur(70px); pointer-events: none;
+    }
+    /* Fills the .container width (so the left edge lines up with the content
+       below). No max-width here — that combined with .container's auto margins
+       was centering the narrow box. The H1 caps its own width instead. */
+    .blog-masthead__inner { position: relative; z-index: 1; text-align: left; }
+    .blog-masthead .eyebrow__text { color: var(--brass-bright); }
+    /* Title styled like .lp-intro__title (enterprise/corporate hero). */
+    .blog-masthead h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 1.55rem + 3vw, 4rem);
+      line-height: 1.06; letter-spacing: -0.03em; font-weight: 800;
+      color: #fff; margin: 0; max-width: 46rem;
+    }
+    .blog-masthead h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #c9961c, #eac25a, #ffd56c);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
 
     /* --- Category filter bar ---------------------------------------- */
     .blog-filter {
@@ -61,6 +81,22 @@
       color: var(--on-secondary-container);
       border-color: transparent;
     }
+    /* Light variant — chips on a white (not dark) background, now that the
+       filter sits below the hero. Active/hover keep the brass treatment. */
+    .blog-filter--light { margin-top: 0; }
+    .blog-filter--light .blog-filter__chip {
+      border-color: var(--outline-variant);
+      color: var(--on-surface-variant);
+    }
+    .blog-filter--light .blog-filter__chip:hover {
+      background: var(--surface-container-low);
+      color: var(--on-surface);
+    }
+    .blog-filter--light .blog-filter__chip--active {
+      background: var(--secondary-container);
+      color: var(--on-secondary-container);
+      border-color: transparent;
+    }
 
     /* --- Featured (hero) post --------------------------------------- */
     .blog-featured {
@@ -76,20 +112,6 @@
     }
     .blog-featured__media { position: relative; aspect-ratio: 16 / 9; }
     .blog-featured__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
-    .blog-featured__badge {
-      position: absolute;
-      top: 18px;
-      left: 18px;
-      font-family: var(--font-body);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 6px 14px;
-      border-radius: var(--radius-full);
-      background: var(--secondary-container);
-      color: var(--on-secondary-container);
-    }
     .blog-featured__body { padding: clamp(24px, 3vw, 48px) clamp(24px, 3vw, 48px) clamp(24px, 3vw, 48px) 0; }
     .blog-featured__cat {
       font-family: var(--font-body);
@@ -201,33 +223,6 @@
       border-color: var(--primary);
     }
 
-    /* --- Newsletter band -------------------------------------------- */
-    .blog-newsletter {
-      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
-      border-radius: var(--radius-3xl);
-      padding: clamp(36px, 4vw, 56px);
-      color: var(--on-primary);
-      text-align: center;
-    }
-    .blog-newsletter h2 { color: #fff; margin: 0 0 10px; }
-    .blog-newsletter p { color: rgba(255,255,255,0.78); max-width: 36rem; margin: 0 auto 24px; }
-    .blog-newsletter__form {
-      display: flex;
-      gap: 10px;
-      max-width: 30rem;
-      margin: 0 auto;
-    }
-    .blog-newsletter__form input {
-      flex: 1;
-      padding: 12px 16px;
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(255,255,255,0.2);
-      background: rgba(255,255,255,0.06);
-      color: #fff;
-      font: inherit;
-    }
-    .blog-newsletter__form input::placeholder { color: rgba(255,255,255,0.5); }
-
     /* --- Responsive -------------------------------------------------- */
     @media (max-width: 900px) {
       .blog-featured { grid-template-columns: 1fr; }
@@ -237,7 +232,6 @@
     }
     @media (max-width: 600px) {
       .blog-grid { grid-template-columns: 1fr; }
-      .blog-newsletter__form { flex-direction: column; }
     }
   </style>
 </head>
@@ -286,12 +280,11 @@
     </div>
   </header>
 
-  <!-- ===== Masthead ===== -->
+  <!-- ===== Masthead (with category filter) ===== -->
   <section class="blog-masthead">
     <div class="container blog-masthead__inner">
-      <p class="t-eyebrow">The Loan Atlas Blog</p>
-      <h1 class="t-display">Insights for the modern loan originator</h1>
-      <p class="t-body-lg">Strategy, scripts, and AI-driven systems to help you originate more loans, build a referable business, and reclaim your time.</p>
+      <span class="eyebrow"><span class="eyebrow__text">The Loan Atlas Blog</span></span>
+      <h1><em>Articles and Resources</em> for Mortgage Originators</h1>
       <div class="blog-filter">
         <a class="blog-filter__chip blog-filter__chip--active" href="#">All</a>
         <a class="blog-filter__chip" href="#">AI &amp; Systems</a>
@@ -308,8 +301,7 @@
     <div class="container">
       <article class="blog-featured">
         <div class="blog-featured__media">
-          <span class="blog-featured__badge">Featured</span>
-          <img src="assets/Loan Atlas logo-color.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:18%;" />
+          <img src="assets/talk-to-tim.png" alt="" />
         </div>
         <div class="blog-featured__body">
           <span class="blog-featured__cat">AI &amp; Systems</span>
@@ -320,7 +312,7 @@
             <span>June 18, 2026</span><span class="blog-card__meta-dot"></span>
             <span>8 min read</span>
           </div>
-          <p style="margin-top:24px;"><a class="btn btn--primary" href="blog-post.html">Read the article</a></p>
+          <p style="margin-top:24px;"><a class="btn btn--primary btn--lg" href="blog-post.html">Read</a></p>
         </div>
       </article>
     </div>
@@ -336,7 +328,7 @@
       <div class="blog-grid">
         <!-- Card 1 -->
         <article class="blog-card">
-          <a class="blog-card__media" href="blog-post.html"><img src="assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
+          <a class="blog-card__media" href="blog-post.html"><img src="assets/connect-with-target-agents-module-thumbnail.png" alt="" /></a>
           <div class="blog-card__body">
             <span class="blog-card__cat">Lead Generation</span>
             <h3 class="blog-card__title"><a href="blog-post.html">5 referral scripts that fill your calendar without cold calling</a></h3>
@@ -346,7 +338,7 @@
         </article>
         <!-- Card 2 -->
         <article class="blog-card">
-          <a class="blog-card__media" href="blog-post.html"><img src="assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
+          <a class="blog-card__media" href="blog-post.html"><img src="assets/handling-objections-module-thumbnail.png" alt="" /></a>
           <div class="blog-card__body">
             <span class="blog-card__cat">Market Trends</span>
             <h3 class="blog-card__title"><a href="blog-post.html">What the 2026 rate environment means for your refi strategy</a></h3>
@@ -356,7 +348,7 @@
         </article>
         <!-- Card 3 -->
         <article class="blog-card">
-          <a class="blog-card__media" href="blog-post.html"><img src="assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
+          <a class="blog-card__media" href="blog-post.html"><img src="assets/peak-performance-rituals-module-thumbnail.jpg" alt="" /></a>
           <div class="blog-card__body">
             <span class="blog-card__cat">Mindset</span>
             <h3 class="blog-card__title"><a href="blog-post.html">The peak-performance habits of $100M originators</a></h3>
@@ -366,7 +358,7 @@
         </article>
         <!-- Card 4 -->
         <article class="blog-card">
-          <a class="blog-card__media" href="blog-post.html"><img src="assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
+          <a class="blog-card__media" href="blog-post.html"><img src="assets/email-optimization-module-thumbnail.png" alt="" /></a>
           <div class="blog-card__body">
             <span class="blog-card__cat">AI &amp; Systems</span>
             <h3 class="blog-card__title"><a href="blog-post.html">Automating your post-close follow-up with AI</a></h3>
@@ -376,7 +368,7 @@
         </article>
         <!-- Card 5 -->
         <article class="blog-card">
-          <a class="blog-card__media" href="blog-post.html"><img src="assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
+          <a class="blog-card__media" href="blog-post.html"><img src="assets/fixed-adjustable-module-thumbnail.png" alt="" /></a>
           <div class="blog-card__body">
             <span class="blog-card__cat">Sales &amp; Scripts</span>
             <h3 class="blog-card__title"><a href="blog-post.html">Handling the "I want to wait for rates to drop" objection</a></h3>
@@ -386,7 +378,7 @@
         </article>
         <!-- Card 6 -->
         <article class="blog-card">
-          <a class="blog-card__media" href="blog-post.html"><img src="assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
+          <a class="blog-card__media" href="blog-post.html"><img src="assets/gratitude-calls-module-thumbnail.jpg" alt="" /></a>
           <div class="blog-card__body">
             <span class="blog-card__cat">Lead Generation</span>
             <h3 class="blog-card__title"><a href="blog-post.html">Turning your CRM into a referral machine</a></h3>
@@ -407,20 +399,6 @@
     </div>
   </section>
 
-  <!-- ===== Newsletter ===== -->
-  <section class="section" style="padding-top:0;">
-    <div class="container">
-      <div class="blog-newsletter">
-        <p class="t-eyebrow" style="color:var(--brass-bright);">Stay sharp</p>
-        <h2 class="t-headline-lg">Get the playbook in your inbox</h2>
-        <p>Weekly strategies, scripts, and AI systems for originators who want to grow. No fluff.</p>
-        <form class="blog-newsletter__form" onsubmit="return false;">
-          <input type="email" placeholder="you@example.com" aria-label="Email address" />
-          <button class="btn btn--brass" type="submit">Subscribe</button>
-        </form>
-      </div>
-    </div>
-  </section>
 
   <!-- ===== Shared site footer (mirror of tla/partials/footer.php) ===== -->
   <footer class="site-footer">

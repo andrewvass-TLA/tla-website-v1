@@ -19,9 +19,11 @@
   <style>
     /* --- Archive header (lighter than the homepage masthead) -------- */
     .blog-archive-head {
-      background: linear-gradient(135deg, #0a1628, #131b2e, #1e293b);
+      /* Matches the pricing/join hero gradient (deep midnight slate) */
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
       color: var(--on-primary);
-      padding-block: clamp(44px, 5.5vw, 80px) clamp(32px, 4vw, 56px);
+      /* Clear the fixed 72px nav so content isn't tucked under it. */
+      padding-block: calc(var(--header-h) + clamp(28px, 4vw, 44px)) clamp(32px, 4vw, 56px);
       position: relative;
       overflow: hidden;
     }
@@ -31,7 +33,9 @@
       background: radial-gradient(55% 75% at 85% 0%, rgba(201, 150, 28, 0.16), transparent 60%);
       pointer-events: none;
     }
-    .blog-archive-head__inner { position: relative; z-index: 1; max-width: 46rem; }
+    /* Full container width so the header lines up with the card grid below.
+       (The __desc paragraph keeps its own narrower cap for readability.) */
+    .blog-archive-head__inner { position: relative; z-index: 1; }
     /* Breadcrumb back to the blog index */
     .blog-crumb {
       display: inline-block; margin: 0 0 12px;
@@ -46,14 +50,42 @@
       font-family: var(--font-body); font-size: 0.875rem; font-weight: 600;
       letter-spacing: 0.04em; color: rgba(255,255,255,0.6);
     }
-    .blog-archive-head h1 {
-      font-family: var(--font-display);
-      font-size: clamp(1.875rem, 1.3rem + 2.4vw, 2.75rem);
-      line-height: 1.1; letter-spacing: -0.02em; font-weight: 700;
-      color: #fff; margin: 0 0 14px;
+    /* Heading + description sit side by side, split by a gold-gradient divider. */
+    .blog-archive-head__row {
+      display: flex; align-items: center; gap: clamp(20px, 3vw, 40px);
     }
-    .blog-archive-head__desc { margin: 0; font-size: 1.0625rem; line-height: 1.55; color: rgba(255,255,255,0.78); max-width: 38rem; }
-    .blog-archive-head__count { margin: 16px 0 0; font-size: 0.875rem; color: rgba(255,255,255,0.55); }
+    .blog-archive-head__main { flex: 0 1 auto; min-width: 0; }
+    .blog-archive-head h1 {
+      /* Same scale as the home masthead H1. */
+      font-family: var(--font-display);
+      font-size: clamp(2.25rem, 1.55rem + 3vw, 4rem);
+      line-height: 1.06; letter-spacing: -0.03em; font-weight: 800;
+      color: #fff; margin: 0;
+    }
+    /* Gold-gradient vertical divider between heading and description. */
+    .blog-archive-head__divider {
+      align-self: stretch; flex: 0 0 3px; min-height: 3.5rem;
+      border-radius: var(--radius-full);
+      background: linear-gradient(180deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+    }
+    .blog-archive-head__desc { margin: 0; font-size: 1.0625rem; line-height: 1.55; color: rgba(255,255,255,0.78); max-width: 32rem; flex: 1 1 0; }
+
+    /* Standout article count — sits below the hero, above the cards. */
+    .blog-archive-count {
+      margin: 0 0 28px; padding-bottom: 16px;
+      border-bottom: 1px solid var(--outline-variant);
+      font-family: var(--font-display); font-weight: 700;
+      font-size: clamp(1.25rem, 1rem + 1vw, 1.625rem);
+      letter-spacing: -0.01em; color: var(--on-surface);
+    }
+    .blog-archive-count span { color: var(--brass); }
+
+    /* Stack on narrow screens; drop the divider (it adds little when stacked)
+       and tighten the gap so the description sits right under the heading. */
+    @media (max-width: 760px) {
+      .blog-archive-head__row { flex-direction: column; align-items: flex-start; gap: 14px; }
+      .blog-archive-head__divider { display: none; }
+    }
 
     /* --- Category filter bar (carried over from homepage) ----------- */
     .blog-filter { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
@@ -164,9 +196,13 @@
     <div class="container blog-archive-head__inner">
       <a class="blog-crumb" href="blog.html">← The Loan Atlas Blog</a>
       <span class="blog-archive-head__kicker">Category</span>
-      <h1>AI &amp; Systems</h1>
-      <p class="blog-archive-head__desc">Build the automated, AI-powered systems that turn your origination business into a referral engine that runs without you.</p>
-      <p class="blog-archive-head__count">12 articles</p>
+      <div class="blog-archive-head__row">
+        <div class="blog-archive-head__main">
+          <h1>AI &amp; Systems</h1>
+        </div>
+        <div class="blog-archive-head__divider" aria-hidden="true"></div>
+        <p class="blog-archive-head__desc">Build the automated, AI-powered systems that turn your origination business into a referral engine that runs without you.</p>
+      </div>
       <div class="blog-filter">
         <a class="blog-filter__chip" href="blog.html">All</a>
         <a class="blog-filter__chip blog-filter__chip--active" href="#">AI &amp; Systems</a>
@@ -181,6 +217,7 @@
   <!-- ===== Card grid (the WP loop) ===== -->
   <section class="section">
     <div class="container">
+      <p class="blog-archive-count"><span>12</span> articles</p>
       <div class="blog-grid">
         <!-- Card 1 -->
         <article class="blog-card">
