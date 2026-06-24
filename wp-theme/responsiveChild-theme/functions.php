@@ -50,6 +50,17 @@ function tla_is_fullhtml_page() {
 }
 
 /**
+ * Any standalone TLA-designed view: a "TLA Full HTML" marketing page OR a
+ * blog template (single/home/archive/search). Used by the floating-bar
+ * suppression so BOTH surfaces are protected from the Elementor floating
+ * bar's focus-stealing scroll-to-bottom. (tla_is_blog_view() is defined
+ * below; it's only called at request time, so order doesn't matter.)
+ */
+function tla_is_standalone_design() {
+	return tla_is_fullhtml_page() || tla_is_blog_view();
+}
+
+/**
  * On TLA Full HTML pages only, strip out the parent theme + Elementor + child
  * stylesheets so the page renders standalone exactly as designed. Runs late
  * (priority 100) so it removes styles other code enqueued earlier. Every OTHER
@@ -147,7 +158,7 @@ function tla_noop_passthrough( $content ) {
  */
 add_action( 'wp_footer', 'tla_neutralize_floating_bar_focus', 999 );
 function tla_neutralize_floating_bar_focus() {
-	if ( ! tla_is_fullhtml_page() ) {
+	if ( ! tla_is_standalone_design() ) {
 		return;
 	}
 	?>
@@ -177,7 +188,7 @@ function tla_neutralize_floating_bar_focus() {
  */
 add_action( 'wp_head', 'tla_hide_floating_bar_css', 1 );
 function tla_hide_floating_bar_css() {
-	if ( ! tla_is_fullhtml_page() ) {
+	if ( ! tla_is_standalone_design() ) {
 		return;
 	}
 	?>
