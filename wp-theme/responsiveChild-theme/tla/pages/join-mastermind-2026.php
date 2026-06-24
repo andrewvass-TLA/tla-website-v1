@@ -2182,9 +2182,8 @@ $tla_active      = '';
           <!-- BOTTOM: full-width video -->
           <div class="lp-bridge__video" data-reveal="fade">
             <div class="mm-video" data-mm-video>
-              <iframe class="mm-video__frame"
-                src="https://player.mediadelivery.net/embed/684087/c27ffc9d-ddca-4238-b29a-15849e2347f8?autoplay=false&loop=false&muted=false&preload=true&responsive=true"
-                data-mm-video-src="https://player.mediadelivery.net/embed/684087/c27ffc9d-ddca-4238-b29a-15849e2347f8?autoplay=true&loop=false&muted=false&preload=true&responsive=true"
+              <iframe class="mm-video__frame" data-mm-video-frame
+                src="https://player.mediadelivery.net/embed/684087/c27ffc9d-ddca-4238-b29a-15849e2347f8?autoplay=false&loop=false&muted=false&preload=true&responsive=true&playerjs=true"
                 loading="lazy" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;" allowfullscreen="true"></iframe>
               <button type="button" class="mm-video__play" data-mm-video-play aria-label="Play video">
                 <span class="mm-video__play-ring">
@@ -2649,14 +2648,36 @@ $tla_active      = '';
       var timer = setInterval(tick, 1000);
     })();
 
-    // ── Click-to-play video — swaps the iframe to its autoplay src on first click ──
+    // ── Click-to-play video — drives the Bunny (Player.js) player so the click
+    //    counts as a user gesture and the video plays immediately with sound. ──
     (function () {
       document.querySelectorAll('[data-mm-video]').forEach(function (wrap) {
         var btn = wrap.querySelector('[data-mm-video-play]');
-        var frame = wrap.querySelector('[data-mm-video-src]');
+        var frame = wrap.querySelector('[data-mm-video-frame]');
         if (!btn || !frame) return;
+
+        // Player.js protocol used by mediadelivery.net (Bunny Stream)
+        function send(method, value) {
+          var win = frame.contentWindow;
+          if (!win) return;
+          var payload = { context: 'player.js', method: method };
+          if (value !== undefined) payload.value = value;
+          win.postMessage(JSON.stringify(payload), '*');
+        }
+
+        var wantsPlay = false;
+        // Subscribe to the player's "ready" event so a queued play fires once it loads.
+        send('addEventListener', 'ready');
+        window.addEventListener('message', function (e) {
+          if (typeof e.data !== 'string' || e.data.indexOf('player.js') === -1) return;
+          var msg;
+          try { msg = JSON.parse(e.data); } catch (err) { return; }
+          if (msg.event === 'ready' && wantsPlay) send('play');
+        });
+
         btn.addEventListener('click', function () {
-          frame.setAttribute('src', frame.getAttribute('data-mm-video-src'));
+          wantsPlay = true;
+          send('play');          // immediate — uses the click as the user gesture
           btn.classList.add('is-hidden');
           window.setTimeout(function () { btn.remove(); }, 400);
         });
