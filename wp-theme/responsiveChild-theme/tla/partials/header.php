@@ -38,11 +38,11 @@ $tla_is = function ( $key ) use ( $tla_active ) {
             </svg>
           </button>
           <div class="nav__dropdown-menu" role="menu">
-            <a class="nav__dropdown-item" href="https://www.theloanatlas.com/blog/" target="_blank" rel="noopener" role="menuitem">Blog</a>
+            <a class="nav__dropdown-item" href="https://www.theloanatlas.com/blog/" role="menuitem">Blog</a>
             <a class="nav__dropdown-item" href="https://go.theloanatlas.com/perfect-loan-process" target="_blank" rel="noopener" role="menuitem">Perfect Loan Process</a>
             <a class="nav__dropdown-item" href="https://go.theloanatlas.com/5-essential-scripts" target="_blank" rel="noopener" role="menuitem">Success Scripts</a>
             <a class="nav__dropdown-item" href="https://go.theloanatlas.com/refinance-masterplan" target="_blank" rel="noopener" role="menuitem">Refinance Masterplan</a>
-            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/ai-empowered-originator-masterplan" target="_blank" rel="noopener" role="menuitem">AI-Empowered Originator Masterplan</a>
+            <a class="nav__dropdown-item" href="https://www.theloanatlas.com/ai-originator-masterplan/" role="menuitem">AI-Empowered Originator Masterplan</a>
             <a class="nav__dropdown-item" href="https://www.theloanatlas.com/podcast-revamp/" target="_blank" rel="noopener" role="menuitem">The 360 Experience</a>
             <a class="nav__dropdown-item" href="/contact/" role="menuitem">Contact Us</a>
           </div>
@@ -64,11 +64,11 @@ $tla_is = function ( $key ) use ( $tla_active ) {
       <a class="mobile-nav__link<?php echo $tla_is( 'faculty' ); ?>" href="/faculty/">Faculty</a>
       <a class="mobile-nav__link<?php echo $tla_is( 'join' ); ?>" href="/join/">Pricing</a>
       <p class="mobile-nav__group-label">Resources</p>
-      <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/blog/" target="_blank" rel="noopener">Blog</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/blog/">Blog</a>
       <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/perfect-loan-process" target="_blank" rel="noopener">Perfect Loan Process</a>
       <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/5-essential-scripts" target="_blank" rel="noopener">Success Scripts</a>
       <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/refinance-masterplan" target="_blank" rel="noopener">Refinance Masterplan</a>
-      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/ai-empowered-originator-masterplan" target="_blank" rel="noopener">AI-Empowered Originator Masterplan</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/ai-originator-masterplan/">AI-Empowered Originator Masterplan</a>
       <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/podcast-revamp/" target="_blank" rel="noopener">The 360 Experience</a>
       <a class="mobile-nav__link mobile-nav__sublink" href="/contact/">Contact Us</a>
       <a class="mobile-nav__link" href="https://members.theloanatlas.com/login/">Login</a>

@@ -824,6 +824,12 @@ h6 {
   border-radius: var(--radius-xl);
 }
 
+.btn--xl {
+  padding: 22px 44px;
+  font-size: 1.1875rem;
+  border-radius: var(--radius-xl);
+}
+
 .btn--block {
   width: 100%;
 }
@@ -6787,8 +6793,8 @@ body.is-loaded [data-hero-step="5"] {
   /* page-local tokens (don't leak into the rest of the site) */
   --aimp-navy-top: #0d1d2c;
   --aimp-navy-bot: #0f1221;
-  --aimp-ink: #e8eef6;          /* primary text on navy */
-  --aimp-ink-dim: #9fb0c4;      /* muted text on navy */
+  --aimp-ink: #ffffff;          /* primary text on navy */
+  --aimp-ink-dim: #ffffff;      /* body text — white (was muted #9fb0c4) */
   --aimp-line: rgba(255, 255, 255, 0.10);
   --aimp-card: rgba(255, 255, 255, 0.035);
   --aimp-card-hi: rgba(255, 255, 255, 0.06);
@@ -6848,6 +6854,21 @@ body.is-loaded [data-hero-step="5"] {
   overflow: hidden;
   padding-block: clamp(48px, 7vw, 104px);
   background: linear-gradient(180deg, var(--aimp-navy-top) 0%, var(--aimp-navy-bot) 100%);
+}
+/* faint blue gradient divider at the hero's bottom edge — a hairline that
+   fades out at both ends to visually separate the hero from the next section */
+.aimp-hero::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(65, 183, 249, 0.5) 50%,
+    transparent 100%);
+  pointer-events: none;
 }
 /* electric blue glow, top-right — echoes the guide cover */
 .aimp-hero__bg {
@@ -6961,13 +6982,58 @@ body.is-loaded [data-hero-step="5"] {
 @media (max-width: 720px) {
   .aimp-hero__stage { min-height: 460px; }
 }
+/* hide the decorative device imagery on mobile — it's not content */
+@media (max-width: 560px) {
+  .aimp-hero__stage { display: none; }
+}
 
 /* ── Floating lead-capture card (straddles hero/problem seam) ── */
-.aimp-formband {
-  position: relative;
-  z-index: 5;
-  background: linear-gradient(180deg, var(--aimp-navy-bot) 0%, var(--aimp-navy-bot) 50%, #0b1422 50%, #0b1422 100%);
-  padding-block: clamp(8px, 2vw, 16px);
+/* ── Lead-capture modal (opened by every "Get the Masterplan" CTA) ── */
+.aimp-modal {
+  border: none;
+  background: transparent;
+  padding: 0;
+  width: min(760px, calc(100vw - 32px));
+  max-width: 760px;
+  max-height: calc(100dvh - 32px);
+  margin: auto;
+  overflow: visible;
+  color: inherit;
+}
+.aimp-modal::backdrop {
+  background: rgba(4, 10, 20, 0.72);
+  backdrop-filter: blur(4px);
+}
+/* dialog defaults to display:none until open */
+.aimp-modal:not([open]) { display: none; }
+.aimp-modal__close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  color: #cfe2f5;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+.aimp-modal__close:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #fff;
+}
+.aimp-modal__close svg {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
 }
 .aimp-formcard {
   position: relative;
@@ -6978,6 +7044,8 @@ body.is-loaded [data-hero-step="5"] {
     linear-gradient(180deg, #122336 0%, #0e1a2a 100%);
   box-shadow: 0 40px 90px -36px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.07);
   padding: clamp(28px, 4vw, 48px);
+  max-height: calc(100dvh - 32px);
+  overflow-y: auto;
 }
 .aimp-formcard__title {
   font-family: var(--font-display);
@@ -7133,83 +7201,124 @@ body.is-loaded [data-hero-step="5"] {
 .aimp-change__close em { font-weight: 600; }
 
 /* ── 5 systems grid ── */
-.aimp-systems {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: var(--space-md);
-}
-@media (min-width: 680px) {
-  .aimp-systems { grid-template-columns: repeat(2, 1fr); }
-}
-@media (min-width: 1040px) {
-  .aimp-systems { grid-template-columns: repeat(3, 1fr); }
-}
-.aimp-syscard {
+/* ── "What you'll learn" vertical timeline ──
+   A single left rail with icon nodes; each step's card sits to the right.
+   The rail fill + nodes + cards stagger in when the list reveals. */
+.aimp-timeline {
   position: relative;
-  overflow: hidden;
-  border: 1px solid var(--aimp-line);
-  border-radius: var(--radius-2xl);
-  background: var(--aimp-card);
-  padding: clamp(24px, 2.6vw, 32px);
-  transition: transform 200ms ease, border-color 200ms ease, background 200ms ease;
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 760px;
+  /* node column width + gap, reused by rail position and item padding */
+  --tl-node: 52px;
+  --tl-gap: clamp(20px, 3vw, 32px);
 }
-.aimp-syscard:hover {
-  transform: translateY(-3px);
-  border-color: rgba(65, 183, 249, 0.4);
-  background: var(--aimp-card-hi);
-}
-.aimp-syscard__num {
+/* the rail sits centered on the node column */
+.aimp-timeline__rail {
   position: absolute;
-  top: 14px;
-  right: 18px;
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 2.5rem;
-  line-height: 1;
-  color: rgba(255, 255, 255, 0.06);
+  top: 8px;
+  bottom: 8px;
+  left: calc(var(--tl-node) / 2);
+  width: 2px;
+  transform: translateX(-50%);
+  background: var(--aimp-line);
+  border-radius: 2px;
+  overflow: hidden;
 }
-.aimp-syscard__icon {
+.aimp-timeline__fill {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, var(--aimp-blue) 0%, var(--brass-bright) 100%);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 1200ms cubic-bezier(0.22, 1, 0.36, 1) 200ms;
+}
+[data-reveal].is-revealed .aimp-timeline__fill { transform: scaleY(1); }
+
+.aimp-tl {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--tl-node) 1fr;
+  gap: var(--tl-gap);
+  align-items: start;
+}
+.aimp-tl + .aimp-tl { margin-top: clamp(20px, 3vw, 32px); }
+
+.aimp-tl__node {
+  position: relative;
+  z-index: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 52px;
-  height: 52px;
-  border-radius: var(--radius-lg);
-  background: var(--aimp-blue-soft);
-  margin-bottom: var(--space-md);
+  width: var(--tl-node);
+  height: var(--tl-node);
+  border-radius: 50%;
+  /* solid blue fill so the white icon reads clearly (was faint blue-soft) */
+  background: linear-gradient(135deg, #41b7f9 0%, #2b6fc4 100%);
+  border: 2px solid var(--aimp-navy-bot);
+  box-shadow: 0 0 0 4px rgba(65, 183, 249, 0.16);
+  /* pop in on reveal */
+  transform: scale(0.6);
+  opacity: 0;
+  transition: transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1), opacity 500ms ease;
 }
-.aimp-syscard__icon svg {
+[data-reveal].is-revealed .aimp-tl__node { transform: scale(1); opacity: 1; }
+.aimp-tl__node svg {
   width: 26px;
   height: 26px;
   fill: none;
-  stroke: var(--aimp-blue);
+  stroke: #fff;
   stroke-width: 1.9;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.aimp-syscard__title {
+
+.aimp-tl__card {
+  position: relative;
+  border: 1px solid var(--aimp-line);
+  border-radius: var(--radius-2xl);
+  background: var(--aimp-card);
+  padding: clamp(20px, 2.6vw, 28px);
+  transition: transform 200ms ease, border-color 200ms ease, background 200ms ease;
+}
+.aimp-tl__card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(65, 183, 249, 0.4);
+  background: var(--aimp-card-hi);
+}
+.aimp-tl__title {
   font-family: var(--font-display);
   font-weight: 700;
   font-size: 1.1875rem;
   line-height: 1.25;
-  margin: 0 0 4px;
+  margin: 0 0 6px;
   color: #fff;
 }
-.aimp-syscard__kicker {
-  font-family: var(--font-body);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--aimp-blue);
-  margin: 0 0 var(--space-sm);
-}
-.aimp-syscard__body {
+.aimp-tl__body {
   font-family: var(--font-body);
   font-size: 0.9375rem;
   line-height: 1.55;
   color: var(--aimp-ink-dim);
   margin: 0;
+}
+
+/* per-step stagger so nodes + the fill feel synced as you scroll in */
+[data-reveal].is-revealed .aimp-tl:nth-child(2) .aimp-tl__node { transition-delay: 120ms; }
+[data-reveal].is-revealed .aimp-tl:nth-child(3) .aimp-tl__node { transition-delay: 280ms; }
+[data-reveal].is-revealed .aimp-tl:nth-child(4) .aimp-tl__node { transition-delay: 440ms; }
+[data-reveal].is-revealed .aimp-tl:nth-child(5) .aimp-tl__node { transition-delay: 600ms; }
+[data-reveal].is-revealed .aimp-tl:nth-child(6) .aimp-tl__node { transition-delay: 760ms; }
+[data-reveal].is-revealed .aimp-tl:nth-child(7) .aimp-tl__node { transition-delay: 920ms; }
+
+@media (prefers-reduced-motion: reduce) {
+  .aimp-timeline__fill,
+  .aimp-tl__node { transition: none; }
+}
+
+@media (max-width: 560px) {
+  .aimp-timeline { --tl-node: 44px; --tl-gap: 16px; }
+  .aimp-tl__node svg { width: 22px; height: 22px; }
 }
 
 /* ───────────────────────── PAYOFF BAND ───────────────────────── */
@@ -7222,189 +7331,108 @@ body.is-loaded [data-hero-step="5"] {
     linear-gradient(180deg, var(--aimp-navy-bot) 0%, var(--aimp-navy-top) 100%);
   text-align: center;
 }
-.aimp-payoff__inner { max-width: 820px; margin-inline: auto; }
-.aimp-payoff__eyebrow {
-  font-family: var(--font-body);
-  font-size: 0.875rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  color: var(--aimp-ink-dim);
-  margin: 0 0 var(--space-md);
+/* faint blue gradient divider at the payoff section's top edge (mirrors the
+   hero divider) to separate it from the section above */
+.aimp-payoff::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    rgba(65, 183, 249, 0.5) 50%,
+    transparent 100%);
+  pointer-events: none;
+  z-index: 1;
 }
+.aimp-payoff__inner { max-width: 1100px; margin-inline: auto; }
 .aimp-payoff__title {
   font-family: var(--font-display);
   font-weight: 800;
   font-size: clamp(1.875rem, 1.3rem + 2.6vw, 2.75rem);
   line-height: 1.12;
   letter-spacing: -0.02em;
-  margin: 0 0 var(--space-lg);
+  max-width: 18em;
+  margin: 0 auto clamp(40px, 6vw, 64px);
   color: #fff;
 }
-.aimp-payoff__cta { margin: 0 auto; }
-
-/* ───────── TLA PITCH — floating callout on a light "outer" band ───────── */
-.aimp-pitch-outer {
-  /* light band makes the dark callout card read as a separate, floating offer */
-  background:
-    radial-gradient(70% 80% at 90% 0%, rgba(178, 200, 233, 0.35), transparent 60%),
-    var(--surface);
-  padding-block: clamp(56px, 8vw, 112px);
+/* CTA centered in the left column, beneath the comparison list */
+.aimp-payoff__cta {
+  margin-top: clamp(32px, 5vw, 48px);
+  text-align: center;
 }
-.aimp-pitchcard {
-  position: relative;
-  overflow: hidden;
+
+/* ── Problem section: body copy left, closings chart right ── */
+.aimp-problem__grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: clamp(28px, 4vw, 48px);
+  gap: clamp(32px, 5vw, 56px);
   align-items: center;
-  border-radius: var(--radius-3xl);
-  background: linear-gradient(150deg, #0e2034 0%, #0a1626 55%, #0d1d2c 100%);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  /* big ambient shadow + ring so it clearly floats above the light band */
-  box-shadow:
-    0 60px 120px -40px rgba(2, 28, 54, 0.6),
-    0 0 0 1px rgba(2, 28, 54, 0.04);
-  padding: clamp(28px, 4vw, 56px);
 }
-@media (min-width: 940px) {
-  .aimp-pitchcard { grid-template-columns: 1fr 1.05fr; }
+@media (min-width: 880px) {
+  .aimp-problem__grid { grid-template-columns: 1fr 1fr; }
 }
-/* brass top-edge accent so it reads as a branded card */
-.aimp-pitchcard::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 auto 0;
-  height: 4px;
-  background: linear-gradient(90deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
-}
-
-/* media mosaic */
-.aimp-pitchcard__media {
-  position: relative;
-  min-height: 320px;
-  border-radius: var(--radius-2xl);
-}
-.aimp-pitchcard__glow {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(60% 60% at 40% 40%, rgba(65, 183, 249, 0.28), transparent 70%);
-  filter: blur(10px);
-}
-.aimp-mosaic {
-  position: absolute;
-  display: block;
-  border-radius: var(--radius-lg);
-  border: 1px solid var(--aimp-line);
-  box-shadow: 0 24px 50px -22px rgba(0, 0, 0, 0.85);
-}
-.aimp-mosaic--dash    { z-index: 1; top: 4%;  left: 0;    width: 84%; }
-.aimp-mosaic--coaching{ z-index: 2; bottom: 6%; left: 8%; width: 66%; }
-.aimp-mosaic--phone   { z-index: 3; bottom: 0;  right: 0;  width: 26%; border-radius: var(--radius-xl); }
-@media (max-width: 939px) {
-  .aimp-pitchcard__media { min-height: 280px; }
-}
-
-/* body */
-.aimp-pitchcard__eyebrow {
-  display: inline-block;
-  font-family: var(--font-body);
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  color: var(--brass-bright);
-  margin-bottom: var(--space-sm);
-}
-.aimp-pitchcard__title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(1.75rem, 1.3rem + 2vw, 2.5rem);
-  line-height: 1.12;
-  letter-spacing: -0.02em;
-  margin: 0 0 var(--space-md);
-  color: #fff;
-}
-.aimp-pitchcard__lead {
-  font-family: var(--font-body);
-  font-size: 1.0625rem;
-  line-height: 1.6;
-  color: var(--aimp-ink-dim);
-  margin: 0 0 var(--space-md);
-}
-.aimp-pitchcard__feats {
-  list-style: none;
-  margin: 0 0 var(--space-lg);
-  padding: 0;
-  display: grid;
-  gap: 10px;
-}
-.aimp-pitchcard__feats li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-body);
-  font-size: 0.9375rem;
-  color: var(--aimp-ink);
-}
-.aimp-pitchcard__feats svg {
-  flex: none; width: 18px; height: 18px;
-  fill: none; stroke: var(--aimp-blue);
-  stroke-width: 2.6; stroke-linecap: round; stroke-linejoin: round;
-}
-.aimp-pitchcard__actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: var(--space-md);
-  margin-top: var(--space-lg);
-}
-.aimp-pitchcard__textlink {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 0.9375rem;
-  color: var(--aimp-ink-dim);
-  text-decoration: none;
-}
-.aimp-pitchcard__textlink:hover { color: #fff; }
-
-.aimp-quote {
+/* left-aligned header variant (used only inside the two-column problem grid) */
+.aimp-secthead--left {
+  max-width: none;
   margin: 0;
-  border-left: 3px solid var(--aimp-blue);
-  padding-left: var(--space-md);
+  text-align: left;
 }
-.aimp-quote__text {
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 1.25rem;
-  line-height: 1.4;
-  color: #fff;
-  margin: 0 0 var(--space-sm);
+/* roomier rhythm in this column: more leading on the heading and a larger
+   gap before the body copy */
+.aimp-secthead--left .aimp-secthead__title {
+  line-height: 1.18;
+  margin-bottom: var(--space-lg);
 }
-.aimp-quote__by {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-family: var(--font-body);
-  font-size: 0.9375rem;
-  line-height: 1.3;
-  color: var(--aimp-ink-dim);
+.aimp-secthead--left .aimp-secthead__sub + .aimp-secthead__sub {
+  margin-top: var(--space-md);
 }
-.aimp-quote__by strong { color: #fff; font-weight: 600; }
-.aimp-quote__avatar {
-  width: 48px;
-  height: 48px;
-  border-radius: var(--radius-full);
-  object-fit: cover;
+.aimp-secthead__sub--bold { font-weight: 700; }
+
+/* ── Card wrapping the closings chart ── */
+.aimp-chart-card {
   border: 1px solid var(--aimp-line);
+  border-radius: var(--radius-2xl);
+  background:
+    radial-gradient(90% 120% at 0% 0%, rgba(65, 183, 249, 0.10), transparent 55%),
+    var(--aimp-card);
+  padding: clamp(24px, 3vw, 36px);
+}
+.aimp-chart-card__heading {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.375rem, 1.1rem + 1.2vw, 1.75rem);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  color: #fff;
+  margin: 0 0 var(--space-md);
 }
 
-/* ── Masterplan: floating volatile monthly-closings chart (no card) ── */
 .aimp-chart {
   max-width: 760px;
   margin: clamp(28px, 4vw, 48px) auto 0;
   position: relative;
 }
-/* large, centered title above the graph */
+/* inline variant: fills the card, no centering margin or width cap.
+   Label + legend left-align to sit flush with the heading above. */
+.aimp-chart--inline {
+  max-width: none;
+  margin: 0;
+}
+.aimp-chart--inline .aimp-chart__legend { justify-content: flex-start; }
+/* small label that reads as the graph's caption, not a heading */
+.aimp-chart__label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--aimp-blue);
+  margin: 0 0 4px;
+}
+/* large, centered title above the graph (floating, non-card variant) */
 .aimp-chart__title {
   font-family: var(--font-display);
   font-weight: 700;
@@ -7458,60 +7486,6 @@ body.is-loaded [data-hero-step="5"] {
   height: 3px;
 }
 
-/* ── Masterplan: standout "truth" card (closing statement) ── */
-.aimp-truth {
-  max-width: 820px;
-  margin: clamp(40px, 6vw, 64px) auto 0;
-  display: flex;
-  gap: var(--space-md);
-  align-items: flex-start;
-  border-radius: var(--radius-2xl);
-  padding: clamp(28px, 4vw, 40px);
-  background:
-    radial-gradient(80% 140% at 0% 0%, rgba(65, 183, 249, 0.16), transparent 55%),
-    linear-gradient(135deg, #122336 0%, #0d1d2c 100%);
-  border: 1px solid rgba(65, 183, 249, 0.35);
-  box-shadow: 0 36px 80px -34px rgba(0, 0, 0, 0.85), inset 0 1px 0 rgba(255, 255, 255, 0.06);
-  position: relative;
-  overflow: hidden;
-}
-/* brass left edge so it reads as a highlighted callout */
-.aimp-truth::before {
-  content: '';
-  position: absolute;
-  inset: 0 auto 0 0;
-  width: 4px;
-  background: linear-gradient(180deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
-}
-.aimp-truth__mark {
-  flex: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-full);
-  background: var(--aimp-blue-soft);
-}
-.aimp-truth__mark svg {
-  width: 24px; height: 24px;
-  fill: none; stroke: var(--aimp-blue);
-  stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round;
-}
-.aimp-truth__text {
-  margin: 0;
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: clamp(1.125rem, 0.95rem + 0.9vw, 1.5rem);
-  line-height: 1.4;
-  letter-spacing: -0.01em;
-  color: #fff;
-}
-.aimp-truth__text strong { color: var(--aimp-blue); font-weight: 700; }
-@media (max-width: 560px) {
-  .aimp-truth { flex-direction: column; gap: var(--space-sm); }
-}
-
 /* grow-in animation when the section reveals (respects reduced-motion) */
 .aimp-chart__bars rect,
 .aimp-chart__swing { transform-origin: center bottom; }
@@ -7549,80 +7523,155 @@ body.is-loaded [data-hero-step="5"] {
   [data-reveal] .aimp-chart__bars rect { transform: none; }
   [data-reveal] .aimp-chart__swing { stroke-dasharray: none; stroke-dashoffset: 0; }
 }
-.aimp-pains {
+/* ── Masterplan: "What's Inside" — whole section wrapped in one card ── */
+.aimp-systems__card {
+  position: relative;
+  border: 1px solid rgba(65, 183, 249, 0.28);
+  border-radius: var(--radius-3xl);
+  background:
+    radial-gradient(70% 90% at 50% 0%, rgba(65, 183, 249, 0.12), transparent 55%),
+    linear-gradient(180deg, #122336 0%, #0e1a2a 100%);
+  box-shadow: 0 40px 90px -40px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  padding: clamp(28px, 5vw, 64px);
+  /* the oversized tablet image intentionally extends past this card — do not clip */
+}
+.aimp-systems__head {
+  max-width: none;
+  margin: 0 0 clamp(32px, 5vw, 56px);
+  text-align: center;
+}
+
+/* ── Masterplan: "What's Inside" two-column layout ──
+   Timeline + CTA on the left, the large Masterplan tablet on the right. */
+.aimp-systems__grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--space-md);
-  max-width: 1040px;
-  margin-inline: auto;
+  gap: clamp(40px, 6vw, 72px);
+  align-items: start;
 }
-@media (min-width: 760px) { .aimp-pains { grid-template-columns: repeat(3, 1fr); } }
-.aimp-pain {
-  border: 1px solid var(--aimp-line);
-  border-radius: var(--radius-2xl);
-  background: var(--aimp-card);
-  padding: clamp(22px, 2.6vw, 28px);
-  text-align: left;
+@media (min-width: 920px) {
+  .aimp-systems__grid {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: center;
+  }
 }
-.aimp-pain__icon {
-  display: inline-flex;
+.aimp-systems__main { min-width: 0; }
+
+/* right column: just the tablet image, centered in its column */
+.aimp-systems__media {
+  display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-lg);
-  background: rgba(255, 255, 255, 0.05);
-  margin-bottom: var(--space-sm);
 }
-.aimp-pain__icon svg {
-  width: 22px; height: 22px;
-  fill: none; stroke: var(--aimp-ink-dim);
-  stroke-width: 2; stroke-linecap: round; stroke-linejoin: round;
-}
-.aimp-pain p {
-  margin: 0;
-  font-family: var(--font-body);
-  font-size: 1rem;
-  line-height: 1.5;
-  color: var(--aimp-ink);
+/* CTA below the timeline in the left column, centered under the cards */
+.aimp-systems__cta {
+  margin-top: clamp(28px, 4vw, 44px);
+  text-align: center;
 }
 
-/* ── Masterplan: "free" CTA card inside the curriculum grid ── */
-.aimp-syscard--cta {
-  border-color: rgba(65, 183, 249, 0.45);
-  background:
-    radial-gradient(110% 90% at 50% 0%, rgba(65, 183, 249, 0.18), transparent 62%),
-    var(--aimp-card-hi);
+/* the large tablet image with a glow behind it */
+.aimp-systems__media-inner {
+  position: relative;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  overflow: visible;
 }
-.aimp-syscard__icon--cta { background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); }
-.aimp-syscard__icon--cta svg { stroke: var(--primary); }
-.aimp-syscard__link {
-  margin-top: auto;
-  padding-top: var(--space-sm);
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 0.9375rem;
-  color: var(--brass-bright);
-  text-decoration: none;
+.aimp-systems__glow {
+  position: absolute;
+  inset: -10%;
+  background: radial-gradient(56% 56% at 50% 45%, rgba(65, 183, 249, 0.32), transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
 }
-.aimp-syscard__link:hover { color: #fff; }
+.aimp-systems__ipad {
+  position: relative;
+  z-index: 2;
+  display: block;
+  width: min(100%, 640px);
+  height: auto;
+  filter: drop-shadow(0 50px 72px rgba(0, 0, 0, 0.6));
+}
+/* desktop: pull the media column out of flow and anchor it to the card's right
+   edge, vertically centered. The image is scaled big and pushed past only the
+   right edge so it breaks out to the right without spilling below the card. */
+@media (min-width: 920px) {
+  /* Anchor the tablet to the right HALF of the card and vertically center it.
+     The right edge is pushed past the card so only the right side breaks out. */
+  .aimp-systems__media {
+    position: absolute;
+    /* sits above the card's midpoint; nudged so it reads centered against the
+       cards (the downward drop-shadow otherwise makes it look bottom-heavy) */
+    top: 15%;
+    transform: translateY(-50%);
+    /* span from the card's midpoint to well past its right edge — the larger
+       right break-out also enlarges the tablet */
+    left: 52%;
+    right: clamp(-200px, -12vw, -120px);
+    width: auto;
+    margin: 0;
+    z-index: 3;
+  }
+  .aimp-systems__ipad {
+    width: 100%;
+    max-width: none;
+    filter: drop-shadow(0 60px 90px rgba(0, 0, 0, 0.65));
+  }
+  /* reserve the right ~half so the timeline cards stay on the left */
+  .aimp-systems__grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+}
+/* mobile: drop the decorative image (not content) but keep the column so the
+   button falls below the cards */
+@media (max-width: 560px) {
+  .aimp-systems__media-inner { display: none; }
+}
 
 /* ── Masterplan: "what changes for you" sub + before→after shift list ── */
-.aimp-payoff__sub {
-  max-width: 620px;
-  margin: 0 auto var(--space-lg);
-  font-family: var(--font-body);
-  font-size: 1.0625rem;
-  line-height: 1.6;
-  color: var(--aimp-ink-dim);
+/* two columns: comparison list on the left, photo on the right */
+.aimp-payoff__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(32px, 5vw, 56px);
+  align-items: center;
+  text-align: left;
+}
+@media (min-width: 860px) {
+  .aimp-payoff__grid {
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+  }
+}
+/* right photo with a glow behind it */
+.aimp-payoff__media {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.aimp-payoff__glow {
+  position: absolute;
+  inset: -8%;
+  background: radial-gradient(56% 56% at 50% 45%, rgba(65, 183, 249, 0.28), transparent 70%);
+  filter: blur(20px);
+  pointer-events: none;
+}
+.aimp-payoff__img {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: min(100%, 460px);
+  height: auto;
+  border-radius: var(--radius-2xl);
+  filter: drop-shadow(0 44px 64px rgba(0, 0, 0, 0.5));
+}
+@media (max-width: 560px) {
+  .aimp-payoff__media { display: none; }
 }
 .aimp-shift {
   list-style: none;
-  margin: 0 auto var(--space-lg);
+  margin: 0;
   padding: 0;
-  max-width: 640px;
   display: grid;
   gap: 12px;
   text-align: left;

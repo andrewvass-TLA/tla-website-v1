@@ -99,7 +99,7 @@ $tla_active      = '';
               LEAD-CAPTURE FORM — LeadConnector (GoHighLevel) embed.
               TODO: replace PLACEHOLDER_FORM_ID below with the real form/survey
               widget ID from LeadConnector (same platform as the booking iframes
-              on consultation.html and the form on ai-masterplan.html). The
+              on consultation.html and the form on ai-originator-masterplan.html). The
               form_embed.js include is at the bottom of this file. Until the real
               ID is in, this renders a GHL "form not found" frame — that is expected.
               ───────────────────────────────────────────────────────────────
