@@ -28,7 +28,7 @@ $blog_url  = get_permalink( get_option( 'page_for_posts' ) ) ?: home_url( '/blog
   <!-- ===== Archive header ===== -->
   <header class="blog-archive-head">
     <div class="container blog-archive-head__inner">
-      <a class="blog-crumb" href="<?php echo esc_url( $blog_url ); ?>">&larr; The Loan Atlas Blog</a>
+      <a class="blog-crumb" href="<?php echo esc_url( $blog_url ); ?>">&larr; Articles and Resources</a>
       <span class="blog-archive-head__kicker"><?php echo esc_html( $kicker ); ?></span>
       <div class="blog-archive-head__row">
         <div class="blog-archive-head__main">

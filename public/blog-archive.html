@@ -38,7 +38,7 @@
     .blog-archive-head__inner { position: relative; z-index: 1; }
     /* Breadcrumb back to the blog index */
     .blog-crumb {
-      display: inline-block; margin: 0 0 12px;
+      display: inline-block; margin: 0 0 20px;
       font-family: var(--font-body); font-size: 0.8125rem; font-weight: 700;
       letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass-bright);
       text-decoration: none;
@@ -46,12 +46,13 @@
     .blog-crumb:hover { color: #fff; }
     /* "Category" / "Tag" / "Author" / "Search results for" label */
     .blog-archive-head__kicker {
-      display: block; margin: 0 0 6px;
+      display: block; margin: 0 0 12px;
       font-family: var(--font-body); font-size: 0.875rem; font-weight: 600;
       letter-spacing: 0.04em; color: rgba(255,255,255,0.6);
     }
     /* Heading + description sit side by side, split by a gold-gradient divider. */
     .blog-archive-head__row {
+      margin-top: 4px;
       display: flex; align-items: center; gap: clamp(20px, 3vw, 40px);
     }
     .blog-archive-head__main { flex: 0 1 auto; min-width: 0; }
@@ -88,7 +89,7 @@
     }
 
     /* --- Category filter bar (carried over from homepage) ----------- */
-    .blog-filter { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+    .blog-filter { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
     .blog-filter__chip {
       font-family: var(--font-body); font-size: 0.875rem; font-weight: 600;
       letter-spacing: 0.01em; padding: 8px 16px; border-radius: var(--radius-full);
@@ -194,7 +195,7 @@
          count   = $wp_query->found_posts -->
   <header class="blog-archive-head">
     <div class="container blog-archive-head__inner">
-      <a class="blog-crumb" href="blog.html">← The Loan Atlas Blog</a>
+      <a class="blog-crumb" href="blog.html">← Articles and Resources</a>
       <span class="blog-archive-head__kicker">Category</span>
       <div class="blog-archive-head__row">
         <div class="blog-archive-head__main">

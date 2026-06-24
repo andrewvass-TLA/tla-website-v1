@@ -40,9 +40,14 @@ include get_stylesheet_directory() . '/tla/partials/blog-head.php';
 ?>
   <header class="blog-post-head<?php echo $head_class; ?>"<?php echo $head_style; ?>>
     <div class="blog-post-head__inner">
+<?php $blog_url = get_permalink( get_option( 'page_for_posts' ) ) ?: home_url( '/blog/' ); ?>
+      <nav class="blog-crumbs" aria-label="Breadcrumb">
+        <a href="<?php echo esc_url( $blog_url ); ?>">Articles and Resources</a>
 <?php if ( $primary_cat ) : ?>
-      <p><a href="<?php echo esc_url( get_category_link( $primary_cat->term_id ) ); ?>" class="blog-post-head__cat" style="text-decoration:none;">&larr; <?php echo esc_html( $primary_cat->name ); ?></a></p>
+        <span class="blog-crumbs__sep" aria-hidden="true">&rsaquo;</span>
+        <a href="<?php echo esc_url( get_category_link( $primary_cat->term_id ) ); ?>"><?php echo esc_html( $primary_cat->name ); ?></a>
 <?php endif; ?>
+      </nav>
       <h1><?php the_title(); ?></h1>
 <?php if ( has_excerpt() ) : ?>
       <p class="blog-post-head__dek"><?php echo esc_html( get_the_excerpt() ); ?></p>

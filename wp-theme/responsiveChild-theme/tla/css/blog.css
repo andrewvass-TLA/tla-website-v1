@@ -43,7 +43,7 @@ body { --blog-overlap: clamp(64px, 9vw, 132px); }
 .blog-section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 28px; }
 
 /* --- Category filter chips ----------------------------------------------- */
-.blog-filter { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.blog-filter { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 32px; }
 .blog-filter__chip {
   font-family: var(--font-body); font-size: 0.875rem; font-weight: 600;
   letter-spacing: 0.01em; padding: 8px 16px; border-radius: var(--radius-full);
@@ -139,18 +139,18 @@ body { --blog-overlap: clamp(64px, 9vw, 132px); }
 }
 .blog-archive-head__inner { position: relative; z-index: 1; }
 .blog-crumb {
-  display: inline-block; margin: 0 0 12px;
+  display: inline-block; margin: 0 0 20px;
   font-family: var(--font-body); font-size: 0.8125rem; font-weight: 700;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass-bright); text-decoration: none;
 }
 .blog-crumb:hover { color: #fff; }
 .blog-archive-head__kicker {
-  display: block; margin: 0 0 6px;
+  display: block; margin: 0 0 12px;
   font-family: var(--font-body); font-size: 0.875rem; font-weight: 600;
   letter-spacing: 0.04em; color: rgba(255,255,255,0.6);
 }
 /* Heading + description side by side, split by a gold-gradient divider. */
-.blog-archive-head__row { display: flex; align-items: center; gap: clamp(20px, 3vw, 40px); }
+.blog-archive-head__row { margin-top: 4px; display: flex; align-items: center; gap: clamp(20px, 3vw, 40px); }
 .blog-archive-head__main { flex: 0 1 auto; min-width: 0; }
 .blog-archive-head h1 {
   font-family: var(--font-display);
@@ -219,8 +219,16 @@ body { --blog-overlap: clamp(64px, 9vw, 132px); }
   position: relative; z-index: 1; max-width: 75rem; margin-inline: auto;
   padding-inline: calc(var(--gutter) + clamp(28px, 3.5vw, 56px));
 }
-.blog-post-head__inner > p:first-child { margin: 0; }
-.blog-post-head__cat { font-family: var(--font-body); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--brass-bright); }
+.blog-post-head__inner > :first-child { margin: 0; }
+/* Breadcrumb: Articles and Resources › Category */
+.blog-crumbs {
+  display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
+  font-family: var(--font-body); font-size: 0.8125rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+}
+.blog-crumbs a { color: var(--brass-bright); transition: color 150ms ease; }
+.blog-crumbs a:hover { color: #fff; }
+.blog-crumbs__sep { color: rgba(255,255,255,0.4); }
 .blog-post-head h1 {
   font-family: var(--font-display); font-size: clamp(1.875rem, 1.2rem + 2.8vw, 3rem);
   line-height: 1.1; letter-spacing: -0.02em; font-weight: 700; color: #fff; margin: 14px 0 18px;
@@ -285,15 +293,19 @@ body { --blog-overlap: clamp(64px, 9vw, 132px); }
 .tla-article > :first-child { margin-top: 0; }
 .tla-article > :last-child { margin-bottom: 0; }
 .tla-article p { margin: 0 0 1.25em; }
-/* H2 — heading text itself is a subtle deep-gold gradient (no bar). */
+/* H2 — plain bold black. */
 .tla-article h2 {
   font-family: var(--font-display); font-size: 1.5rem; line-height: 1.25;
-  letter-spacing: -0.01em; font-weight: 800;
-  margin: 1.9em 0 0.7em; scroll-margin-top: 88px; width: fit-content;
+  letter-spacing: -0.01em; font-weight: 800; color: var(--on-surface);
+  margin: 1.9em 0 0.7em; scroll-margin-top: 88px;
+}
+/* H3 — subtle deep-gold gradient text. */
+.tla-article h3 {
+  font-family: var(--font-display); font-size: 1.125rem; line-height: 1.35;
+  font-weight: 700; margin: 1.6em 0 0.4em; scroll-margin-top: 88px; width: fit-content;
   background: linear-gradient(135deg, #a87a16 0%, #c9961c 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
-.tla-article h3 { font-family: var(--font-display); font-size: 1.125rem; line-height: 1.35; font-weight: 700; color: var(--on-surface); margin: 1.6em 0 0.4em; scroll-margin-top: 88px; }
 .tla-article a { color: var(--brass); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
 .tla-article a:hover { color: var(--secondary); }
 .tla-article strong { font-weight: 700; color: var(--on-surface); }
@@ -302,6 +314,7 @@ body { --blog-overlap: clamp(64px, 9vw, 132px); }
 .tla-article ol { margin: 0 0 1.25em; padding-left: 1.4em; list-style: decimal; }
 .tla-article li + li { margin-top: 0.45em; }
 .tla-article li::marker { color: var(--brass); }
+.tla-article ol > li::marker { font-weight: 700; }
 .tla-article img { margin: 0 0 1.25em; border-radius: var(--radius-xl); box-shadow: var(--shadow); height: auto; }
 /* Smaller, indented, italic. No name/cite line (most quotes have none,
    which left an empty gap). */
