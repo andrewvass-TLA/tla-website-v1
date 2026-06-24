@@ -76,7 +76,8 @@
 
     /* ── Hero (reuses lp-intro; tightened for offer focus) ──────────────────── */
 
-    /* ── Larger CTAs (page-scoped — bigger pad + text than the shared .btn--lg) ── */
+    /* ── Larger landing-page CTA — bigger pad + text than the shared .btn--lg ── */
+    .btn--landing,
     .lp-intro .btn--gold.btn--lg,
     .mm-offer__cta .btn--gold.btn--lg,
     .mm-plat__actions .btn--gold.btn--lg,
@@ -439,6 +440,28 @@
       max-width: 40rem;
     }
 
+    /* Stacked variant — copy on top, full-width video below */
+    .lp-bridge__stack {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(32px, 4vw, 56px);
+      align-items: center;
+      text-align: center;
+    }
+    .lp-bridge__stack .lp-bridge__inner {
+      max-width: 56rem;
+    }
+    .lp-bridge__cta {
+      display: flex;
+      justify-content: center;
+    }
+    .lp-bridge__video {
+      width: 100%;
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg, 0 24px 60px -24px rgba(2, 28, 54, 0.45));
+    }
+
     /* Volume-up / hours-down chart */
     .bridge-chart {
       background: linear-gradient(160deg, #ffffff 0%, var(--surface-container-low) 100%);
@@ -539,7 +562,7 @@
     .lp-trust-strip__eyebrow {
       text-align: center;
       font-family: var(--font-body);
-      font-size: 0.75rem;
+      font-size: 0.875rem;
       font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -683,15 +706,22 @@
       }
 
       /* Live Coaching: the 4-image overlap doesn't fit a narrow column — show
-         only the first card, laid out normally instead of absolutely. */
+         the Office Hours and Masterclass cards stacked vertically instead of
+         absolutely positioned. */
       .mm-card-stack {
         aspect-ratio: auto;
         position: static;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
       }
-      .mm-card-stack__img:nth-child(n + 2) { display: none; }
-      .mm-card-stack__img:nth-child(1) {
+      .mm-card-stack__img:nth-child(2),
+      .mm-card-stack__img:nth-child(4) { display: none; }
+      .mm-card-stack__img:nth-child(1),
+      .mm-card-stack__img:nth-child(3) {
         position: static;
         width: 100%;
+        border: none;
         opacity: 1;
         transform: none;
         animation: none;
@@ -1188,6 +1218,15 @@
     .lp-proof-section {
       background: var(--surface);
       padding-block: clamp(56px, 7vw, 96px);
+    }
+    .mm-page-footnote {
+      margin: clamp(32px, 4vw, 48px) auto 0;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      line-height: 1.5;
+      color: #ffffff;
+      text-align: center;
     }
     .lp-proof-card {
       max-width: 64rem;
@@ -2042,7 +2081,7 @@
     <!-- ── 3. TRUST STRIP ───────────────────────────────────────────────────── -->
     <section class="lp-trust-strip" aria-label="Trusted by loan officers at these companies">
       <div class="container">
-        <p class="lp-trust-strip__eyebrow">Trusted by loan officers at</p>
+        <p class="lp-trust-strip__eyebrow">Trusted by over 1,000+ top producing loan officers and teams across the country</p>
       </div>
       <div class="trust__marquee">
         <div class="trust__track">
@@ -2079,13 +2118,8 @@
     <!-- ── 4. BRIDGE ────────────────────────────────────────────────────────── -->
     <div class="lp-bridge">
       <div class="container">
-        <div class="lp-bridge__split">
-          <!-- LEFT: Image -->
-          <div class="mm-row__media" data-reveal="fade">
-            <img src="assets/loan-officer-smiling-phone.png" alt="Loan officer smiling at phone" loading="lazy">
-          </div>
-
-          <!-- RIGHT: copy -->
+        <div class="lp-bridge__stack">
+          <!-- TOP: copy -->
           <div class="lp-bridge__inner" data-reveal="up">
             <p class="t-headline-md" style="line-height: 1.5; margin: 0 0 var(--space-md);">
               The loan officers pulling away from the pack aren&rsquo;t working harder than you. They&rsquo;re running systems that compound their production every month.
@@ -2093,6 +2127,16 @@
             <p class="text-brass" style="font-family: var(--font-display); font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.125rem); font-weight: 800; line-height: 1.25; letter-spacing: -0.015em; margin: 0;">
               Mastermind is your chance to install them all &mdash; for less than the commission of one extra loan.
             </p>
+          </div>
+
+          <!-- BOTTOM: full-width video -->
+          <div class="lp-bridge__video" data-reveal="fade">
+            <div style="position:relative;padding-top:56.25%;"><iframe src="https://player.mediadelivery.net/embed/684087/c27ffc9d-ddca-4238-b29a-15849e2347f8?autoplay=true&loop=false&muted=true&preload=true&responsive=true" loading="lazy" style="border:0;position:absolute;top:0;left:0;height:100%;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;" allowfullscreen="true"></iframe></div>
+          </div>
+
+          <!-- CTA -->
+          <div class="lp-bridge__cta" data-reveal="up">
+            <a class="btn btn--gold btn--lg btn--landing" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Start Your Transformation — $49 Today</a>
           </div>
 
         </div>
@@ -2106,7 +2150,7 @@
           <h2 id="systems-heading" class="t-display" style="color: #ffffff; font-weight: 800; margin-bottom: var(--space-md);">
             <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">AI-Powered Systems</span> That Help You Close More Loans With Less Chaos
           </h2>
-          <p class="t-body-lg" style="color: rgba(255, 255, 255, 0.68);">Inside The Loan Atlas, these five systems work together to help you close more loans, make better decisions, and finally feel in control of your production.</p>
+          <p class="t-body-lg" style="color: rgba(255, 255, 255, 0.68); font-size: clamp(1.125rem, 0.95rem + 0.6vw, 1.375rem);">Inside The Loan Atlas, these five systems work together to help you close more loans, make better decisions, and finally feel in control of your production.</p>
         </div>
 
         <div class="lp-systems__grid" data-reveal-stagger="100">
@@ -2159,7 +2203,7 @@
           </div>
             <div class="mm-row__copy">
               <span class="mm-row__eyebrow">AI Business Intelligence</span>
-              <h3 class="mm-row__title">See the numbers that actually run your business</h3>
+              <h3 class="mm-row__title">See the numbers that actually drive your production</h3>
               <p class="mm-row__desc">Lead sources, conversion rates, referral partners, pipeline health — all in one view. Stop guessing where your production comes from and start making decisions backed by your own data.</p>
             </div>
           </div>
@@ -2182,7 +2226,7 @@
             </div>
             <div class="mm-row__copy">
               <span class="mm-row__eyebrow">Live Coaching Every Week</span>
-              <h3 class="mm-row__title">Bring your real deals to active top producers</h3>
+              <h3 class="mm-row__title">Bring your toughest deals to active top producers</h3>
               <p class="mm-row__desc">Weekly Office Hours, monthly Masterclasses, and live group coaching with branch managers, division presidents, and top 1% originators — all still serving families and leading high-producing teams.</p>
             </div>
           </div>
@@ -2200,7 +2244,7 @@
             <div class="mm-row__media mm-row__media--phone"><img src="assets/scripts-presentation-templates.png" alt="Scripts, presentations, and templates library" loading="lazy"></div>
             <div class="mm-row__copy">
               <span class="mm-row__eyebrow">Scripts, Presentations &amp; Templates</span>
-              <h3 class="mm-row__title">Word-for-word language for the conversations that close</h3>
+              <h3 class="mm-row__title">Pre-built and proven resources to help you present with confidence</h3>
               <p class="mm-row__desc">Discovery calls, rate-shopper responses, objection handling, referral-partner meetings, client-facing presentations — pre-built, proven, and ready to use tomorrow.</p>
             </div>
           </div>
@@ -2208,8 +2252,8 @@
           <div class="mm-row mm-row--flip" data-reveal="up">
             <div class="mm-row__media"><img src="assets/private-member-community.png" alt="The Loan Atlas private member community" loading="lazy"></div>
             <div class="mm-row__copy">
-              <span class="mm-row__eyebrow">A Community of Originators</span>
-              <h3 class="mm-row__title">You're never solving a problem alone again</h3>
+              <span class="mm-row__eyebrow">A Community of Active Originators</span>
+              <h3 class="mm-row__title">Never solve a problem alone again</h3>
               <p class="mm-row__desc">Top producers, mid-career operators, newer LOs, and team leaders working through the same frameworks in real time — with faculty inside the conversation answering the questions that matter today.</p>
             </div>
           </div>
@@ -2282,9 +2326,8 @@
 
           <!-- LEFT: heading + body + testimonial -->
           <div class="disc-copy" data-reveal="up">
-            <span class="disc-copy__eyebrow">The Training Framework</span>
             <h2 class="disc-copy__title">Built upon the <em>8 Disciplines</em> of Mortgage Origination Mastery.</h2>
-            <p class="disc-copy__lede">Nobody taught you how to run a mortgage business. They taught you how to originate loans. The 8 Disciplines cover what's actually required to do both — so you're building something that compounds instead of grinding through a job that resets every Monday.</p>
+            <p class="disc-copy__lede">Nobody taught you how to run a mortgage business. They taught you how to originate loans. The 8 Disciplines cover what's actually required to do both — so you're constantly improving and building a business that compounds month after month.</p>
 
             <!-- Inline testimonial quote (homepage quote-card style) -->
             <figure class="quote-card quote-card--block">
@@ -2411,7 +2454,7 @@
             <p id="proof-heading" class="lp-proof-card__stat" aria-label="$8.2 million plus more per year">
               <span class="lp-proof-card__currency">$</span><span class="lp-proof-card__number" data-countup="8.2">8.2</span><span class="lp-proof-card__unit">M</span><span class="lp-proof-card__plus" aria-hidden="true">+</span>
             </p>
-            <p class="lp-proof-card__caption">More in annual production than the industry average.</p>
+            <p class="lp-proof-card__caption">More in annual production than the industry average.<sup>*</sup></p>
           </div>
 
           <figure class="lp-proof-card__test-col">
@@ -2435,7 +2478,7 @@
       <div class="container">
         <div class="center" data-reveal="up" style="max-width: 46rem; margin-inline: auto;">
           <h2 id="pricing-heading" class="t-display" style="color: #ffffff; font-weight: 800; margin-bottom: var(--space-sm);">Everything You Need to Scale. <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">A Price Only for Mastermind.</span></h2>
-          <p class="t-body-lg" style="color: rgba(255, 255, 255, 0.68);">Full access to everything above — the AI systems, live coaching, the curriculum, the community — at the exclusive Mastermind Summit rate.</p>
+          <p class="t-body-lg" style="color: rgba(255, 255, 255, 0.68); font-size: clamp(1.125rem, 0.95rem + 0.6vw, 1.375rem);">Full access to everything above — the AI systems, live coaching, the curriculum, the community — at the exclusive Mastermind Summit rate.</p>
         </div>
 
         <article class="mm-plan" data-reveal="scale">
@@ -2504,6 +2547,8 @@
 
           <p class="mm-plan__fine">12-month commitment. Offer exclusively for Mastermind Summit 2026 attendees. Available to new members only.</p>
         </article>
+
+        <p class="mm-page-footnote">* Past 12 months, ending 2/15/2026. Must have closed one loan in last 90 days (154,000 LO population).</p>
       </div>
     </section>
 
