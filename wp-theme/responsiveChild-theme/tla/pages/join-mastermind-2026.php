@@ -457,6 +457,63 @@ $tla_active      = '';
       box-shadow: var(--shadow-lg, 0 24px 60px -24px rgba(2, 28, 54, 0.45));
     }
 
+    /* Click-to-play video with a Loan Atlas-branded play button */
+    .mm-video {
+      position: relative;
+      padding-top: 56.25%;
+      background: #021c36;
+    }
+    .mm-video__frame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+    .mm-video__play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      border: 0;
+      cursor: pointer;
+      background: radial-gradient(ellipse at center, rgba(2, 28, 54, 0.35) 0%, rgba(2, 28, 54, 0.62) 100%);
+      transition: background 0.3s ease, opacity 0.35s ease;
+    }
+    .mm-video__play:hover {
+      background: radial-gradient(ellipse at center, rgba(2, 28, 54, 0.28) 0%, rgba(2, 28, 54, 0.55) 100%);
+    }
+    .mm-video__play.is-hidden {
+      opacity: 0;
+      pointer-events: none;
+    }
+    .mm-video__play-ring {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: clamp(76px, 9vw, 108px);
+      height: clamp(76px, 9vw, 108px);
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      box-shadow: 0 14px 40px rgba(201, 150, 28, 0.45), 0 0 0 0 rgba(234, 194, 90, 0.55);
+      transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s ease;
+    }
+    .mm-video__play:hover .mm-video__play-ring,
+    .mm-video__play:focus-visible .mm-video__play-ring {
+      transform: scale(1.08);
+      box-shadow: 0 18px 48px rgba(201, 150, 28, 0.55), 0 0 0 10px rgba(234, 194, 90, 0.18);
+    }
+    .mm-video__play:focus-visible { outline: none; }
+    .mm-video__play-icon {
+      width: 44%;
+      height: 44%;
+      fill: #021c36;
+    }
+
     /* Volume-up / hours-down chart */
     .bridge-chart {
       background: linear-gradient(160deg, #ffffff 0%, var(--surface-container-low) 100%);
@@ -2124,7 +2181,19 @@ $tla_active      = '';
 
           <!-- BOTTOM: full-width video -->
           <div class="lp-bridge__video" data-reveal="fade">
-            <div style="position:relative;padding-top:56.25%;"><iframe src="https://player.mediadelivery.net/embed/684087/c27ffc9d-ddca-4238-b29a-15849e2347f8?autoplay=true&loop=false&muted=true&preload=true&responsive=true" loading="lazy" style="border:0;position:absolute;top:0;left:0;height:100%;width:100%;" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;" allowfullscreen="true"></iframe></div>
+            <div class="mm-video" data-mm-video>
+              <iframe class="mm-video__frame"
+                src="https://player.mediadelivery.net/embed/684087/c27ffc9d-ddca-4238-b29a-15849e2347f8?autoplay=false&loop=false&muted=false&preload=true&responsive=true"
+                data-mm-video-src="https://player.mediadelivery.net/embed/684087/c27ffc9d-ddca-4238-b29a-15849e2347f8?autoplay=true&loop=false&muted=false&preload=true&responsive=true"
+                loading="lazy" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;" allowfullscreen="true"></iframe>
+              <button type="button" class="mm-video__play" data-mm-video-play aria-label="Play video">
+                <span class="mm-video__play-ring">
+                  <svg class="mm-video__play-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                    <path d="M6 4.8v14.4a1 1 0 0 0 1.52.86l11.5-7.2a1 1 0 0 0 0-1.72L7.52 3.94A1 1 0 0 0 6 4.8Z"/>
+                  </svg>
+                </span>
+              </button>
+            </div>
           </div>
 
           <!-- CTA -->
@@ -2578,6 +2647,20 @@ $tla_active      = '';
       }
       tick();
       var timer = setInterval(tick, 1000);
+    })();
+
+    // ── Click-to-play video — swaps the iframe to its autoplay src on first click ──
+    (function () {
+      document.querySelectorAll('[data-mm-video]').forEach(function (wrap) {
+        var btn = wrap.querySelector('[data-mm-video-play]');
+        var frame = wrap.querySelector('[data-mm-video-src]');
+        if (!btn || !frame) return;
+        btn.addEventListener('click', function () {
+          frame.setAttribute('src', frame.getAttribute('data-mm-video-src'));
+          btn.classList.add('is-hidden');
+          window.setTimeout(function () { btn.remove(); }, 400);
+        });
+      });
     })();
 
     // ── Hero system-cycling chat: eyebrow + name (left) + bot heading + typed input ──
