@@ -30,8 +30,15 @@ include get_stylesheet_directory() . '/tla/partials/blog-head.php';
 
   <div class="blog-progress" id="blogProgress"></div>
 
-  <!-- ===== Post header (dark band) ===== -->
-  <header class="blog-post-head">
+  <!-- ===== Post header (dark band; featured image revealed at right) ===== -->
+<?php
+  // The featured image is dynamic, so set it via an inline custom property and
+  // add --has-image (the fade layer) only when the post actually has one.
+  $hero_img   = has_post_thumbnail() ? get_the_post_thumbnail_url( get_the_ID(), 'large' ) : '';
+  $head_class = $hero_img ? ' blog-post-head--has-image' : '';
+  $head_style = $hero_img ? ' style="--blog-hero-img: url(\'' . esc_url( $hero_img ) . '\');"' : '';
+?>
+  <header class="blog-post-head<?php echo $head_class; ?>"<?php echo $head_style; ?>>
     <div class="blog-post-head__inner">
 <?php if ( $primary_cat ) : ?>
       <p><a href="<?php echo esc_url( get_category_link( $primary_cat->term_id ) ); ?>" class="blog-post-head__cat" style="text-decoration:none;">&larr; <?php echo esc_html( $primary_cat->name ); ?></a></p>
@@ -103,14 +110,8 @@ include get_stylesheet_directory() . '/tla/partials/blog-head.php';
         </div>
       </main>
 
-      <!-- RIGHT: sticky sidebar -->
+      <!-- RIGHT: sticky sidebar (featured image now lives in the hero) -->
       <aside class="blog-sidebar">
-<?php if ( has_post_thumbnail() ) : ?>
-        <div class="blog-side-card blog-side-hero">
-          <?php the_post_thumbnail( 'large', array( 'alt' => esc_attr( get_the_title() ) ) ); ?>
-        </div>
-<?php endif; ?>
-
         <!-- TOC (desktop; populated by JS) -->
         <div class="blog-side-card blog-side-toc">
           <div class="blog-side-card__pad">

@@ -103,14 +103,16 @@
       display: grid;
       grid-template-columns: 1.15fr 1fr;
       gap: clamp(24px, 4vw, 56px);
-      align-items: center;
+      align-items: stretch; /* media column matches the body column's height */
       background: var(--surface-container-lowest);
       border: 1px solid var(--outline-variant);
       border-radius: var(--radius-3xl);
       overflow: hidden;
       box-shadow: var(--shadow-lg);
     }
-    .blog-featured__media { position: relative; aspect-ratio: 16 / 9; }
+    /* No fixed aspect-ratio — the media fills the full height of the card so the
+       image covers the entire left space (a min-height guards a short body). */
+    .blog-featured__media { position: relative; min-height: 22rem; }
     .blog-featured__media img { display: block; width: 100%; height: 100%; object-fit: cover; }
     .blog-featured__body { padding: clamp(24px, 3vw, 48px) clamp(24px, 3vw, 48px) clamp(24px, 3vw, 48px) 0; }
     .blog-featured__cat {
@@ -226,7 +228,7 @@
     /* --- Responsive -------------------------------------------------- */
     @media (max-width: 900px) {
       .blog-featured { grid-template-columns: 1fr; }
-      .blog-featured__media { aspect-ratio: 16 / 9; }
+      .blog-featured__media { aspect-ratio: 16 / 9; min-height: 0; }
       .blog-featured__body { padding: clamp(20px, 5vw, 32px); }
       .blog-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -301,7 +303,7 @@
     <div class="container">
       <article class="blog-featured">
         <div class="blog-featured__media">
-          <img src="assets/talk-to-tim.png" alt="" />
+          <img src="assets/TLA Blog Image.png" alt="" />
         </div>
         <div class="blog-featured__body">
           <span class="blog-featured__cat">AI &amp; Systems</span>
@@ -328,7 +330,7 @@
       <div class="blog-grid">
         <!-- Card 1 -->
         <article class="blog-card">
-          <a class="blog-card__media" href="blog-post.html"><img src="assets/connect-with-target-agents-module-thumbnail.png" alt="" /></a>
+          <a class="blog-card__media" href="blog-post.html"><img src="assets/TLA Blog Image.png" alt="" /></a>
           <div class="blog-card__body">
             <span class="blog-card__cat">Lead Generation</span>
             <h3 class="blog-card__title"><a href="blog-post.html">5 referral scripts that fill your calendar without cold calling</a></h3>

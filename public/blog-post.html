@@ -17,9 +17,13 @@
        The .tla-article block styles the_content() output.
        ============================================================ -->
   <style>
-    /* --- Post header (dark band) ------------------------------------ */
+    /* --- Post header (dark band, featured image revealed at right) ------
+       The featured image is dynamic, so PHP sets it via the inline custom
+       property --blog-hero-img on this element. The left→right navy fade
+       (matches the enterprise/corporate hero) keeps the left-aligned copy
+       legible while revealing the image toward the right. Falls back to the
+       flat navy gradient when no featured image is set. */
     .blog-post-head {
-      /* Matches the pricing/join hero gradient (deep midnight slate) */
       background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
       color: var(--on-primary);
       /* Top padding clears the FIXED 72px nav (var(--header-h)) plus a gap.
@@ -29,10 +33,31 @@
       padding-block: calc(var(--header-h) + clamp(28px, 4vw, 56px)) calc(var(--blog-overlap) + clamp(28px, 4vw, 48px));
       position: relative; overflow: hidden;
     }
+    /* Featured-image layer + left→right fade (only when --blog-hero-img set).
+       The image is sized to the RIGHT HALF at its natural aspect ratio (not
+       full-bleed cover), so the WHOLE image is visible rather than just the
+       cropped right portion. The fade feathers its left edge into the navy. */
+    .blog-post-head--has-image {
+      background:
+        linear-gradient(to right,
+          rgba(2, 28, 54, 1)    0%,
+          rgba(2, 28, 54, 0.99) 22%,
+          rgba(2, 28, 54, 0.9)  42%,
+          rgba(2, 28, 54, 0.7)  68%,
+          rgba(2, 28, 54, 0.5)  100%),
+        var(--blog-hero-img) right top / cover no-repeat,
+        linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+    }
     .blog-post-head::after {
       content: ""; position: absolute; inset: 0;
       background: radial-gradient(55% 70% at 80% 0%, rgba(201, 150, 28, 0.16), transparent 60%);
       pointer-events: none;
+    }
+    /* On small screens the image behind text hurts legibility — flat navy. */
+    @media (max-width: 760px) {
+      .blog-post-head--has-image {
+        background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      }
     }
     /* Header content shares the shell geometry (max 75rem, gutter, centered),
        PLUS the content card's inner padding, so the hero copy aligns with the
@@ -149,16 +174,14 @@
     .tla-article p { margin: 0 0 1.25em; }
 
     /* H2 — gold-gradient left bar (NerdWallet's colored bar, brass) */
+    /* H2 — no bar; the heading text itself is a deep gold gradient. */
     .tla-article h2 {
-      position: relative;
       font-family: var(--font-display); font-size: 1.5rem; line-height: 1.25;
-      letter-spacing: -0.01em; font-weight: 700; color: var(--on-surface);
-      margin: 1.9em 0 0.7em; padding-left: 16px; scroll-margin-top: 88px;
-    }
-    .tla-article h2::before {
-      content: ""; position: absolute; left: 0; top: 0.1em; bottom: 0.1em;
-      width: 5px; border-radius: var(--radius-full);
-      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      letter-spacing: -0.01em; font-weight: 800;
+      margin: 1.9em 0 0.7em; scroll-margin-top: 88px;
+      background: linear-gradient(135deg, #a87a16 0%, #c9961c 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+      width: fit-content;
     }
     /* H3 — smaller bold subhead */
     .tla-article h3 {
@@ -176,12 +199,16 @@
     .tla-article li + li { margin-top: 0.45em; }
     .tla-article li::marker { color: var(--brass); }
     .tla-article img { margin: 0 0 1.25em; border-radius: var(--radius-xl); box-shadow: var(--shadow); height: auto; }
+    /* Smaller, indented, italic. No name/cite line (most quotes have none,
+       which left an empty gap). */
     .tla-article blockquote {
-      border-left: 4px solid var(--brass); padding: 4px 0 4px 22px; margin: 1.6em 0;
-      font-family: var(--font-display); font-size: 1.25rem; line-height: 1.4;
-      font-weight: 500; color: var(--on-surface); font-style: normal;
+      border-left: 4px solid var(--brass);
+      padding: 2px 0 2px 22px; margin: 1.6em 0 1.6em 1.5em;
+      font-family: var(--font-body); font-size: 1.0625rem; line-height: 1.6;
+      font-weight: 400; font-style: italic; color: var(--on-surface-variant);
     }
-    .tla-article blockquote cite { display: block; margin-top: 12px; font-family: var(--font-body); font-size: 0.9375rem; font-weight: 400; font-style: normal; color: var(--on-surface-variant); }
+    .tla-article blockquote p { margin: 0; }
+    .tla-article blockquote cite { display: none; }
     .tla-article code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9em; background: var(--surface-container); padding: 2px 6px; border-radius: var(--radius); }
     .tla-article pre {
       margin: 0 0 1.25em; background: var(--primary); color: #e6edf6;
@@ -297,7 +324,7 @@
   </header>
 
   <!-- ===== Post header (dark band) ===== -->
-  <header class="blog-post-head">
+  <header class="blog-post-head blog-post-head--has-image" style="--blog-hero-img: url('assets/TLA Blog Image.png');">
     <div class="blog-post-head__inner">
       <p><a href="blog.html" class="blog-post-head__cat" style="text-decoration:none;">← AI &amp; Systems</a></p>
       <h1>The AI-Empowered Originator: building a predictable pipeline in 2026</h1>
@@ -338,7 +365,6 @@
 
           <blockquote>
             The goal isn't to originate more loans this month. It's to build a machine that originates loans every month — with or without you.
-            <cite>— from the Atlas Mastermind</cite>
           </blockquote>
 
           <figure>
@@ -415,11 +441,6 @@ THEN trigger "refi opportunity" sequence
 
       <!-- RIGHT: sticky sidebar -->
       <aside class="blog-sidebar">
-        <!-- Header image -->
-        <div class="blog-side-card blog-side-hero">
-          <img src="assets/Loan Atlas logo-color.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:14%;" />
-        </div>
-
         <!-- TOC (desktop) -->
         <div class="blog-side-card blog-side-toc">
           <div class="blog-side-card__pad">
