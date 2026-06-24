@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Blog — The Loan Atlas (MOCKUP)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Antonio:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/chrome.css" />
+
+  <!-- ============================================================
+       BLOG STYLES — this <style> block is the future tla/css/blog.css
+       Everything is namespaced .blog-* so it never collides with the
+       main stylesheet. Uses the existing design tokens throughout.
+       ============================================================ -->
+  <style>
+    /* --- Blog hero / page header ------------------------------------ */
+    .blog-masthead {
+      background: linear-gradient(135deg, #0a1628, #131b2e, #1e293b);
+      color: var(--on-primary);
+      padding-block: clamp(56px, 7vw, 104px) clamp(40px, 5vw, 72px);
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-masthead::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(60% 80% at 85% 0%, rgba(201, 150, 28, 0.18), transparent 60%);
+      pointer-events: none;
+    }
+    .blog-masthead__inner { position: relative; z-index: 1; max-width: 46rem; }
+    .blog-masthead .t-eyebrow { display: block; margin: 0; color: var(--brass-bright); }
+    .blog-masthead h1 { margin: 14px 0 18px; color: #fff; }
+    .blog-masthead p.t-body-lg { margin: 0; color: rgba(255, 255, 255, 0.78); max-width: 38rem; }
+
+    /* --- Category filter bar ---------------------------------------- */
+    .blog-filter {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 28px;
+    }
+    .blog-filter__chip {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: rgba(255, 255, 255, 0.82);
+      transition: background 150ms ease, color 150ms ease, border-color 150ms ease;
+    }
+    .blog-filter__chip:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
+    .blog-filter__chip--active {
+      background: var(--secondary-container);
+      color: var(--on-secondary-container);
+      border-color: transparent;
+    }
+
+    /* --- Featured (hero) post --------------------------------------- */
+    .blog-featured {
+      display: grid;
+      grid-template-columns: 1.15fr 1fr;
+      gap: clamp(24px, 4vw, 56px);
+      align-items: center;
+      background: var(--surface-container-lowest);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-3xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .blog-featured__media { position: relative; aspect-ratio: 4 / 3; height: 100%; }
+    .blog-featured__media img { width: 100%; height: 100%; object-fit: cover; }
+    .blog-featured__badge {
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      background: var(--secondary-container);
+      color: var(--on-secondary-container);
+    }
+    .blog-featured__body { padding: clamp(24px, 3vw, 48px) clamp(24px, 3vw, 48px) clamp(24px, 3vw, 48px) 0; }
+    .blog-featured__cat {
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--brass);
+    }
+    .blog-featured__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      font-weight: 700;
+      color: var(--on-surface);
+      margin: 12px 0 14px;
+    }
+    .blog-featured__excerpt { color: var(--on-surface-variant); font-size: 1.0625rem; line-height: 1.6; }
+
+    /* --- Post card grid --------------------------------------------- */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(20px, 2.5vw, 32px);
+    }
+    .blog-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--surface-container-lowest);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+    }
+    .blog-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--brass);
+    }
+    .blog-card__media { aspect-ratio: 16 / 10; overflow: hidden; }
+    .blog-card__media img { width: 100%; height: 100%; object-fit: cover; transition: transform 300ms ease; }
+    .blog-card:hover .blog-card__media img { transform: scale(1.04); }
+    .blog-card__body { padding: 22px 24px 26px; display: flex; flex-direction: column; flex: 1; }
+    .blog-card__cat {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--brass);
+    }
+    .blog-card__title {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      font-weight: 600;
+      color: var(--on-surface);
+      margin: 10px 0 10px;
+    }
+    .blog-card__excerpt { color: var(--on-surface-variant); font-size: 0.9375rem; line-height: 1.55; flex: 1; }
+    .blog-card__meta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 18px;
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+    }
+    .blog-card__meta-dot { width: 3px; height: 3px; border-radius: 50%; background: var(--outline); }
+
+    /* --- Section heading ROW ---------------------------------------- */
+    .blog-section-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    /* --- Pagination -------------------------------------------------- */
+    .blog-pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 8px;
+      margin-top: clamp(40px, 5vw, 64px);
+    }
+    .blog-pagination a, .blog-pagination span {
+      min-width: 42px;
+      height: 42px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 14px;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--outline-variant);
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      color: var(--on-surface);
+      transition: background 150ms ease, border-color 150ms ease;
+    }
+    .blog-pagination a:hover { background: var(--surface-container-low); border-color: var(--outline); }
+    .blog-pagination .is-current {
+      background: var(--primary);
+      color: var(--on-primary);
+      border-color: var(--primary);
+    }
+
+    /* --- Newsletter band -------------------------------------------- */
+    .blog-newsletter {
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      border-radius: var(--radius-3xl);
+      padding: clamp(36px, 4vw, 56px);
+      color: var(--on-primary);
+      text-align: center;
+    }
+    .blog-newsletter h2 { color: #fff; margin: 0 0 10px; }
+    .blog-newsletter p { color: rgba(255,255,255,0.78); max-width: 36rem; margin: 0 auto 24px; }
+    .blog-newsletter__form {
+      display: flex;
+      gap: 10px;
+      max-width: 30rem;
+      margin: 0 auto;
+    }
+    .blog-newsletter__form input {
+      flex: 1;
+      padding: 12px 16px;
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.06);
+      color: #fff;
+      font: inherit;
+    }
+    .blog-newsletter__form input::placeholder { color: rgba(255,255,255,0.5); }
+
+    /* --- Responsive -------------------------------------------------- */
+    @media (max-width: 900px) {
+      .blog-featured { grid-template-columns: 1fr; }
+      .blog-featured__media { aspect-ratio: 16 / 9; }
+      .blog-featured__body { padding: clamp(20px, 5vw, 32px); }
+      .blog-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 600px) {
+      .blog-grid { grid-template-columns: 1fr; }
+      .blog-newsletter__form { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== Shared site header (mirror of tla/partials/header.php) ===== -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="/" class="brand" aria-label="The Loan Atlas — home">
+        <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
+      </a>
+      <nav class="nav" aria-label="Primary">
+        <a class="nav__link" href="/whats-inside/">Loan Originators</a>
+        <a class="nav__link" href="/enterprise/">Enterprise</a>
+        <a class="nav__link" href="/faculty/">Faculty</a>
+        <a class="nav__link" href="/join/">Pricing</a>
+        <div class="nav__dropdown">
+          <button type="button" class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+            Resources
+            <svg class="nav__dropdown-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="nav__dropdown-menu" role="menu">
+            <a class="nav__dropdown-item" href="/blog/" role="menuitem">Blog</a>
+            <a class="nav__dropdown-item" href="/contact/" role="menuitem">Contact Us</a>
+          </div>
+        </div>
+      </nav>
+      <div class="site-header__actions">
+        <a class="site-header__login" href="https://members.theloanatlas.com/login/">Login</a>
+        <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="mobile-nav">
+          <span class="nav-toggle__line"></span><span class="nav-toggle__line"></span><span class="nav-toggle__line"></span>
+        </button>
+        <a class="btn btn--primary btn--header" href="/join/"><span class="btn__short">Join Atlas</span><span class="btn__full">Join The Loan Atlas</span></a>
+      </div>
+    </div>
+    <div class="mobile-nav" id="mobile-nav">
+      <a class="mobile-nav__link" href="/whats-inside/">Loan Originators</a>
+      <a class="mobile-nav__link" href="/enterprise/">Enterprise</a>
+      <a class="mobile-nav__link" href="/faculty/">Faculty</a>
+      <a class="mobile-nav__link" href="/join/">Pricing</a>
+      <p class="mobile-nav__group-label">Resources</p>
+      <a class="mobile-nav__link mobile-nav__sublink" href="/blog/">Blog</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="/contact/">Contact Us</a>
+      <a class="mobile-nav__link" href="https://members.theloanatlas.com/login/">Login</a>
+      <a class="btn btn--primary btn--header mobile-nav__cta" href="/join/">Join The Loan Atlas</a>
+    </div>
+  </header>
+
+  <!-- ===== Masthead ===== -->
+  <section class="blog-masthead">
+    <div class="container blog-masthead__inner">
+      <p class="t-eyebrow">The Loan Atlas Blog</p>
+      <h1 class="t-display">Insights for the modern loan originator</h1>
+      <p class="t-body-lg">Strategy, scripts, and AI-driven systems to help you originate more loans, build a referable business, and reclaim your time.</p>
+      <div class="blog-filter">
+        <a class="blog-filter__chip blog-filter__chip--active" href="#">All</a>
+        <a class="blog-filter__chip" href="#">AI &amp; Systems</a>
+        <a class="blog-filter__chip" href="#">Lead Generation</a>
+        <a class="blog-filter__chip" href="#">Sales &amp; Scripts</a>
+        <a class="blog-filter__chip" href="#">Mindset</a>
+        <a class="blog-filter__chip" href="#">Market Trends</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Featured post ===== -->
+  <section class="section section--tight">
+    <div class="container">
+      <article class="blog-featured">
+        <div class="blog-featured__media">
+          <span class="blog-featured__badge">Featured</span>
+          <img src="assets/Loan Atlas logo-color.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:18%;" />
+        </div>
+        <div class="blog-featured__body">
+          <span class="blog-featured__cat">AI &amp; Systems</span>
+          <h2 class="blog-featured__title"><a href="blog-post.html">The AI-Empowered Originator: building a predictable pipeline in 2026</a></h2>
+          <p class="blog-featured__excerpt">The originators winning right now aren't working harder — they've built systems that compound. Here's the exact framework our top performers use to turn AI into a referral engine that runs whether they're at the closing table or on vacation.</p>
+          <div class="blog-card__meta">
+            <span>Andrew Vass</span><span class="blog-card__meta-dot"></span>
+            <span>June 18, 2026</span><span class="blog-card__meta-dot"></span>
+            <span>8 min read</span>
+          </div>
+          <p style="margin-top:24px;"><a class="btn btn--primary" href="blog-post.html">Read the article</a></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== Latest grid ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="blog-section-head">
+        <h2 class="t-headline-lg">Latest articles</h2>
+        <a class="text-brass" href="#" style="font-weight:600;">View all →</a>
+      </div>
+      <div class="blog-grid">
+        <!-- Card 1 -->
+        <article class="blog-card">
+          <a class="blog-card__media" href="blog-post.html"><img src="assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
+          <div class="blog-card__body">
+            <span class="blog-card__cat">Lead Generation</span>
+            <h3 class="blog-card__title"><a href="blog-post.html">5 referral scripts that fill your calendar without cold calling</a></h3>
+            <p class="blog-card__excerpt">Word-for-word language to turn past clients and agents into a steady stream of warm introductions.</p>
+            <div class="blog-card__meta"><span>June 12, 2026</span><span class="blog-card__meta-dot"></span><span>6 min read</span></div>
+          </div>
+        </article>
+        <!-- Card 2 -->
+        <article class="blog-card">
+          <a class="blog-card__media" href="blog-post.html"><img src="assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
+          <div class="blog-card__body">
+            <span class="blog-card__cat">Market Trends</span>
+            <h3 class="blog-card__title"><a href="blog-post.html">What the 2026 rate environment means for your refi strategy</a></h3>
+            <p class="blog-card__excerpt">How to position refinances now so you're first in line when the window opens for your database.</p>
+            <div class="blog-card__meta"><span>June 6, 2026</span><span class="blog-card__meta-dot"></span><span>5 min read</span></div>
+          </div>
+        </article>
+        <!-- Card 3 -->
+        <article class="blog-card">
+          <a class="blog-card__media" href="blog-post.html"><img src="assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
+          <div class="blog-card__body">
+            <span class="blog-card__cat">Mindset</span>
+            <h3 class="blog-card__title"><a href="blog-post.html">The peak-performance habits of $100M originators</a></h3>
+            <p class="blog-card__excerpt">The daily routines and mental models that separate the top 1% from everyone grinding for the same leads.</p>
+            <div class="blog-card__meta"><span>May 29, 2026</span><span class="blog-card__meta-dot"></span><span>7 min read</span></div>
+          </div>
+        </article>
+        <!-- Card 4 -->
+        <article class="blog-card">
+          <a class="blog-card__media" href="blog-post.html"><img src="assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
+          <div class="blog-card__body">
+            <span class="blog-card__cat">AI &amp; Systems</span>
+            <h3 class="blog-card__title"><a href="blog-post.html">Automating your post-close follow-up with AI</a></h3>
+            <p class="blog-card__excerpt">Set up a follow-up sequence once and let it nurture every borrower into a lifelong referral source.</p>
+            <div class="blog-card__meta"><span>May 22, 2026</span><span class="blog-card__meta-dot"></span><span>4 min read</span></div>
+          </div>
+        </article>
+        <!-- Card 5 -->
+        <article class="blog-card">
+          <a class="blog-card__media" href="blog-post.html"><img src="assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
+          <div class="blog-card__body">
+            <span class="blog-card__cat">Sales &amp; Scripts</span>
+            <h3 class="blog-card__title"><a href="blog-post.html">Handling the "I want to wait for rates to drop" objection</a></h3>
+            <p class="blog-card__excerpt">A consultative framework that reframes the conversation around cost of waiting — not rate timing.</p>
+            <div class="blog-card__meta"><span>May 15, 2026</span><span class="blog-card__meta-dot"></span><span>6 min read</span></div>
+          </div>
+        </article>
+        <!-- Card 6 -->
+        <article class="blog-card">
+          <a class="blog-card__media" href="blog-post.html"><img src="assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
+          <div class="blog-card__body">
+            <span class="blog-card__cat">Lead Generation</span>
+            <h3 class="blog-card__title"><a href="blog-post.html">Turning your CRM into a referral machine</a></h3>
+            <p class="blog-card__excerpt">Most originators sit on a goldmine of past clients. Here's how to systematically mine it.</p>
+            <div class="blog-card__meta"><span>May 8, 2026</span><span class="blog-card__meta-dot"></span><span>5 min read</span></div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Pagination -->
+      <nav class="blog-pagination" aria-label="Blog pagination">
+        <span class="is-current">1</span>
+        <a href="#">2</a>
+        <a href="#">3</a>
+        <span>…</span>
+        <a href="#">Next →</a>
+      </nav>
+    </div>
+  </section>
+
+  <!-- ===== Newsletter ===== -->
+  <section class="section" style="padding-top:0;">
+    <div class="container">
+      <div class="blog-newsletter">
+        <p class="t-eyebrow" style="color:var(--brass-bright);">Stay sharp</p>
+        <h2 class="t-headline-lg">Get the playbook in your inbox</h2>
+        <p>Weekly strategies, scripts, and AI systems for originators who want to grow. No fluff.</p>
+        <form class="blog-newsletter__form" onsubmit="return false;">
+          <input type="email" placeholder="you@example.com" aria-label="Email address" />
+          <button class="btn btn--brass" type="submit">Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Shared site footer (mirror of tla/partials/footer.php) ===== -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="site-footer__top">
+        <a href="/" class="brand"><img src="assets/Loan Atlas logo-color.png" alt="The Loan Atlas" class="brand__logo" /></a>
+        <div class="site-footer__nav-group">
+          <nav class="site-footer__links" aria-label="Footer">
+            <a class="site-footer__link" href="/whats-inside/">Loan Originators</a>
+            <a class="site-footer__link" href="/enterprise/">Enterprise</a>
+            <a class="site-footer__link" href="/join/">Pricing</a>
+            <a class="site-footer__link" href="/consultation/">Book Your Coaching Session</a>
+          </nav>
+        </div>
+      </div>
+      <div class="site-footer__bottom">
+        <p>© 2026 The Loan Atlas. Guiding Originators to Peak Performance.</p>
+        <nav class="site-footer__links">
+          <a class="site-footer__link" href="/privacy-policy/">Privacy Policy</a>
+          <a class="site-footer__link" href="/terms-of-use/">Terms of Use</a>
+          <a class="site-footer__link" href="/contact/">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/nav.js"></script>
+</body>
+</html>
