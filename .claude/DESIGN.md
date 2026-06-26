@@ -435,6 +435,29 @@ Label 0.875rem/600. Inputs: white bg, `--outline-variant` border, `--radius-md`.
 `--primary-container` border + `0 0 0 3px rgba(2,28,54,0.08)` ring. `.form-grid-2` →
 2-col at 480px+.
 
+### Callout & interrupt system (`.tlc-*`)
+A loud, architectural counterpart to the calm house cards — built to **break the reading
+rhythm** and drive one action. Lives at the end of the `styles.css` component catalog.
+Unifying tell: a **brass top-edge** + heavy Manrope display headline; two-tone headlines
+via `.tlc-gold`; the brass-keyline CTA `.tlc-btn` (+`--keyline` / `--dark`); brass check
+bullet `.tlc-chk`. Reuses `.tlc-eyebrow` (Inter 700 uppercase, 0.14em).
+
+**Family A — sidebar callouts** (narrow, title-case headlines, for the sticky rail):
+- `.tlc-navy` — navy slab w/ brass list + CTA (premium / membership). Optional media on top.
+- `.tlc-split` — brass-gradient header cap over a white body (secondary offer; hosts the
+  booking iframe on Office Hours).
+- `.tlc-quiet` — white card, brass top-edge, text-link (low-pressure lead magnet).
+
+**Family B — inline interrupts** (full-width, ALL-CAPS headlines, mid-page / mid-blog):
+- `.tlc-interrupt` — full-bleed navy band, gold-flanked eyebrow, two-tone headline (the
+  strongest stop).
+- `.tlc-bar` — brass-gradient horizontal banner w/ `.tlc-btn--dark` (announcement / urgency).
+- `.tlc-proof` — split: brass stat panel + white CTA panel (stat/proof + action).
+- `.tlc-notify` — **live-events notify block**: left 2×3 collage of past-event square
+  thumbnails (`.tlc-notify__art img`, decorative `alt=""`) fading into the navy, with
+  eyebrow + headline + email-capture form (`.tlc-notify__form`, submit reuses `.tlc-btn`).
+  Drops to a 3-wide top strip ≤640px. Used on Office Hours; reusable across event pages.
+
 ### Footer (`chrome.css`)
 `#f2f4f6` bg, 1px `#c6c6cd` top border, `padding-block: 64px`. Color-variant logo (60px)
 top-left, nav links top-right. Legal links 0.75rem uppercase `#45464d`. Rows go

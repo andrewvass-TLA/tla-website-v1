@@ -5,7 +5,7 @@
  * Edit nav links HERE once — every page that includes this partial updates.
  *
  * The including page may set $tla_active to one of:
- *   'whats-inside' | 'enterprise' | 'faculty' | 'join'
+ *   'whats-inside' | 'enterprise' | 'faculty' | 'events' | 'join'
  * to highlight the matching top-level nav link. Unknown/empty = nothing highlighted.
  *
  * Requires TLA_BASE to be defined (the template defines it).
@@ -29,6 +29,7 @@ $tla_is = function ( $key ) use ( $tla_active ) {
         <a class="nav__link<?php echo $tla_active === 'whats-inside' ? ' nav__link--active' : ''; ?>" href="/whats-inside/">Loan Originators</a>
         <a class="nav__link<?php echo $tla_active === 'enterprise' ? ' nav__link--active' : ''; ?>" href="/enterprise/">Enterprise</a>
         <a class="nav__link<?php echo $tla_active === 'faculty' ? ' nav__link--active' : ''; ?>" href="/faculty/">Faculty</a>
+        <a class="nav__link<?php echo $tla_active === 'events' ? ' nav__link--active' : ''; ?>" href="/live-events/">Live Events</a>
         <a class="nav__link<?php echo $tla_active === 'join' ? ' nav__link--active' : ''; ?>" href="/join/">Pricing</a>
         <div class="nav__dropdown">
           <button type="button" class="nav__dropdown-toggle" aria-haspopup="true" aria-expanded="false">
@@ -62,6 +63,7 @@ $tla_is = function ( $key ) use ( $tla_active ) {
       <a class="mobile-nav__link<?php echo $tla_is( 'whats-inside' ); ?>" href="/whats-inside/">Loan Originators</a>
       <a class="mobile-nav__link<?php echo $tla_is( 'enterprise' ); ?>" href="/enterprise/">Enterprise</a>
       <a class="mobile-nav__link<?php echo $tla_is( 'faculty' ); ?>" href="/faculty/">Faculty</a>
+      <a class="mobile-nav__link<?php echo $tla_is( 'events' ); ?>" href="/live-events/">Live Events</a>
       <a class="mobile-nav__link<?php echo $tla_is( 'join' ); ?>" href="/join/">Pricing</a>
       <p class="mobile-nav__group-label">Resources</p>
       <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/blog/">Blog</a>

@@ -8222,3 +8222,539 @@ body.is-loaded [data-hero-step="5"] {
   text-decoration: none;
 }
 .s5-pitchcard__textlink:hover { color: #fff; }
+
+/* ==========================================================================
+   TLA CALLOUT & INTERRUPT SYSTEM  (.tlc-*)
+   --------------------------------------------------------------------------
+   A loud, architectural counterpart to the calm house cards — built to break
+   the reading rhythm and pull the eye to a single action. Two families:
+     • Family A — sidebar callouts (narrow, vertical, for the sticky rail).
+       Headlines are TITLE CASE so the rail reads less shouty.
+     • Family B — inline interrupts (full-width, for mid-page / mid-blog).
+       Headlines are ALL-CAPS for maximum scroll-break.
+   Unifying tell across all: a brass top-edge + heavy Manrope display headline,
+   two-tone headlines via .tlc-gold, and the brass-keyline CTA button.
+   Pulls its visual language from the legacy gold-bar/navy-slab callouts.
+   ========================================================================== */
+
+/* --- Shared callout DNA --------------------------------------------------- */
+.tlc-eyebrow {
+  font-family: var(--font-body);
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-size: 0.72rem;
+}
+/* two-tone headline accent — one word in the brass gradient */
+.tlc-gold {
+  background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+/* the signature brass button (navy text); --keyline adds the midnight border */
+.tlc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  font-size: 0.95rem;
+  color: var(--primary);
+  background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+  border: none;
+  cursor: pointer;
+  padding: 14px 26px;
+  border-radius: var(--radius-lg);
+  text-decoration: none;
+  box-shadow: 0 6px 18px rgba(201, 150, 28, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.tlc-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 9px 24px rgba(201, 150, 28, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+.tlc-btn--keyline { border: 2px solid var(--primary); }
+/* dark inline button (used on the gold-bar banner) */
+.tlc-btn--dark {
+  color: var(--brass-bright);
+  background: var(--primary);
+  box-shadow: 0 6px 16px rgba(2, 28, 54, 0.3);
+}
+.tlc-btn--dark:hover { box-shadow: 0 9px 22px rgba(2, 28, 54, 0.4); }
+/* brass check bullet for callout lists */
+.tlc-chk {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  padding: 4px;
+  border-radius: var(--radius-full);
+  color: var(--primary);
+  background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+  box-shadow: 0 2px 7px rgba(201, 150, 28, 0.4);
+}
+/* Bare gold-gradient tick — no circle, no fill. The brass gradient is applied
+   to the stroke via an inline SVG <defs> (stroke="url(#tlcGoldCheck)"); see the
+   hidden gradient def rendered once per list. */
+.tlc-chk--bare {
+  width: 22px;
+  height: 22px;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  box-shadow: none;
+  margin-top: 1px;
+}
+
+/* ==========================================================================
+   FAMILY A — SIDEBAR CALLOUTS (narrow, title-case headlines)
+   ========================================================================== */
+
+/* A1 · Navy Slab — premium / membership workhorse ------------------------- */
+.tlc-navy {
+  position: relative;
+  background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: 0 18px 44px -18px rgba(2, 28, 54, 0.6);
+}
+.tlc-navy::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+}
+.tlc-navy__in { padding: 26px 24px 28px; }
+.tlc-navy .tlc-eyebrow { color: var(--brass-bright); }
+.tlc-navy__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  font-size: 1.5rem;
+  margin: 10px 0 4px;
+}
+.tlc-navy__text {
+  color: #b7c1cf;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 6px 0 18px;
+}
+.tlc-list {
+  list-style: none;
+  margin: 0 0 22px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+.tlc-list li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-family: var(--font-body);
+  color: #d6dde6;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+.tlc-list strong { color: #fff; font-weight: 700; }
+.tlc-navy .tlc-btn { width: 100%; }
+
+/* A2 · Gold-Header Split — secondary offer -------------------------------- */
+.tlc-split {
+  background: var(--surface-container-lowest);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(2, 28, 54, 0.08);
+}
+.tlc-split__cap {
+  background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+  padding: 16px 22px;
+}
+.tlc-split__cap .tlc-eyebrow { color: rgba(2, 28, 54, 0.7); }
+.tlc-split__cap-title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--primary);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  font-size: 1.25rem;
+  margin: 3px 0 0;
+}
+.tlc-split__body { padding: 20px 22px 24px; }
+.tlc-split__body p {
+  color: var(--on-surface-variant);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0 0 18px;
+}
+.tlc-split__body .tlc-btn { width: 100%; }
+
+/* A3 · Brass-Edge Quiet Card — low-pressure lead magnet ------------------- */
+.tlc-quiet {
+  background: var(--surface-container-lowest);
+  border: 1px solid var(--outline-variant);
+  border-top: 4px solid transparent;
+  border-image: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%) 1;
+  padding: 24px 22px 26px;
+  box-shadow: 0 10px 24px rgba(2, 28, 54, 0.06);
+}
+.tlc-quiet__eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.tlc-quiet__eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 2px;
+  background: var(--brass);
+}
+.tlc-quiet__eyebrow .tlc-eyebrow { color: var(--brass); }
+.tlc-quiet__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--primary);
+  font-size: 1.25rem;
+  letter-spacing: -0.015em;
+  margin: 0 0 8px;
+}
+.tlc-quiet__text {
+  color: var(--on-surface-variant);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  margin: 0 0 18px;
+}
+.tlc-quiet__link {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--brass);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.95rem;
+}
+.tlc-quiet__link svg { width: 16px; height: 16px; transition: transform 0.15s ease; }
+.tlc-quiet__link:hover svg { transform: translateX(3px); }
+
+/* ==========================================================================
+   FAMILY B — INLINE INTERRUPTS (full-width, all-caps headlines)
+   ========================================================================== */
+
+/* B1 · Full-Bleed Navy Interrupt — the strongest stop --------------------- */
+.tlc-interrupt {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: var(--radius-2xl);
+  padding: clamp(36px, 5vw, 60px) clamp(24px, 5vw, 72px);
+  margin-block: clamp(32px, 4vw, 48px);
+}
+.tlc-interrupt::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 90% at 50% -10%, rgba(201, 150, 28, 0.18), transparent 60%);
+  pointer-events: none;
+}
+.tlc-interrupt::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+}
+.tlc-interrupt .tlc-eyebrow {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  color: var(--brass-bright);
+}
+.tlc-interrupt .tlc-eyebrow::before,
+.tlc-interrupt .tlc-eyebrow::after {
+  content: '';
+  width: 30px;
+  height: 2px;
+  background: var(--brass);
+}
+.tlc-interrupt__title {
+  position: relative;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 1.04;
+  font-size: clamp(1.8rem, 1.2rem + 2.4vw, 2.9rem);
+  margin: 16px 0 0;
+  text-wrap: balance;
+}
+.tlc-interrupt__text {
+  position: relative;
+  color: #c4cdd9;
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  max-width: 600px;
+  margin: 16px auto 28px;
+}
+.tlc-interrupt .tlc-btn { position: relative; padding: 16px 34px; font-size: 1.05rem; }
+
+/* B2 · Gold-Bar Banner — announcement / urgency -------------------------- */
+.tlc-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+  background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+  border-radius: var(--radius-xl);
+  padding: 20px 28px;
+  margin-block: clamp(32px, 4vw, 48px);
+  box-shadow: 0 12px 28px rgba(201, 150, 28, 0.3);
+}
+.tlc-bar__txt {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  min-width: 0;
+}
+.tlc-bar__badge {
+  font-family: var(--font-body);
+  font-weight: 800;
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: var(--primary);
+  color: var(--brass-bright);
+  padding: 6px 11px;
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+}
+.tlc-bar__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--primary);
+  font-size: clamp(1.1rem, 0.9rem + 0.7vw, 1.4rem);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  margin: 0;
+}
+.tlc-bar .tlc-btn--dark {
+  font-size: 0.92rem;
+  padding: 13px 24px;
+  white-space: nowrap;
+}
+
+/* B3 · Split Interrupt — stat / proof + action --------------------------- */
+.tlc-proof {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  margin-block: clamp(32px, 4vw, 48px);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  box-shadow: 0 18px 44px -16px rgba(2, 28, 54, 0.4);
+  min-height: 230px;
+}
+.tlc-proof__left {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 36px 32px;
+  background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+  border-top: 4px solid transparent;
+  border-image: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%) 1;
+}
+.tlc-proof__stat {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 3.2rem;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.tlc-proof__statlabel {
+  color: #c4cdd9;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin-top: 10px;
+}
+.tlc-proof__right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 36px 38px;
+  background: var(--surface-container-lowest);
+}
+.tlc-proof__right .tlc-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--brass);
+}
+.tlc-proof__right .tlc-eyebrow::before {
+  content: '';
+  width: 24px;
+  height: 2px;
+  background: var(--brass);
+}
+.tlc-proof__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--primary);
+  font-size: 1.6rem;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  margin: 12px 0 10px;
+  text-wrap: balance;
+}
+.tlc-proof__text {
+  color: var(--on-surface-variant);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  margin: 0 0 20px;
+  font-size: 0.97rem;
+}
+.tlc-proof__right .tlc-btn { align-self: flex-start; }
+
+/* B4 · Notify Collage — past-event thumbnails + capture form on navy ------ */
+/* Left rail of square event thumbnails fading into the navy where a
+   "get notified" eyebrow + headline + email-capture form sit. Built for the
+   live-events pages; the .tlc-notify__art images are decorative (alt=""). */
+.tlc-notify {
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+  color: var(--on-primary);
+  border-radius: var(--radius-3xl);
+}
+.tlc-notify::after {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -40px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(closest-side, rgba(234, 194, 90, 0.16), transparent);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 1;
+}
+.tlc-notify__art {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-auto-rows: 1fr;
+}
+.tlc-notify__art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  aspect-ratio: 1;
+}
+.tlc-notify__art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg,
+    rgba(6, 14, 28, 0.10) 0%,
+    rgba(6, 14, 28, 0.30) 55%,
+    rgba(6, 14, 28, 0.80) 85%,
+    #060e1c 100%);
+}
+.tlc-notify__in {
+  position: relative;
+  z-index: 2;
+  padding: clamp(28px, 4vw, 48px);
+}
+.tlc-notify .tlc-eyebrow { color: var(--brass-bright); }
+.tlc-notify__title {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: clamp(1.375rem, 1.1rem + 1vw, 1.75rem);
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  color: #fff;
+  margin: 8px 0 0;
+}
+.tlc-notify__sub {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 10px 0 0;
+}
+.tlc-notify__form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+.tlc-notify__field { flex: 1 1 200px; }
+.tlc-notify__form input {
+  width: 100%;
+  padding: 14px 16px;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: var(--radius-lg);
+}
+.tlc-notify__form input::placeholder { color: rgba(255, 255, 255, 0.5); }
+.tlc-notify__form input:focus {
+  outline: none;
+  border-color: var(--brass-bright);
+  background: rgba(255, 255, 255, 0.10);
+}
+/* the submit reuses .tlc-btn; flex-shrink so it sits beside the inputs */
+.tlc-notify__form .tlc-btn { flex: 0 0 auto; }
+
+/* --- Callout system: responsive ----------------------------------------- */
+@media (max-width: 760px) {
+  .tlc-proof { grid-template-columns: 1fr; }
+  .tlc-bar { justify-content: center; text-align: center; }
+}
+/* Notify collage: drop the left rail to a 3-wide strip on top when narrow */
+@media (max-width: 640px) {
+  .tlc-notify { grid-template-columns: 1fr; }
+  .tlc-notify__art { grid-template-columns: repeat(3, 1fr); }
+  .tlc-notify__art::after {
+    background: linear-gradient(180deg,
+      rgba(6, 14, 28, 0.10) 0%,
+      rgba(6, 14, 28, 0.45) 60%,
+      #060e1c 100%);
+  }
+}
+@media (max-width: 520px) {
+  .tlc-notify__form .tlc-btn { flex-basis: 100%; }
+}
+
+/* --- Callout system: motion fallback ------------------------------------ */
+@media (prefers-reduced-motion: reduce) {
+  .tlc-btn, .tlc-quiet__link svg { transition: none; }
+  .tlc-btn:hover { transform: none; }
+}

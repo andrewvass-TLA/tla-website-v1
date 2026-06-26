@@ -1,21 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Live Events &amp; Masterclasses — The Loan Atlas</title>
-  <meta name="description" content="Join live expert-led masterclasses, office hours, AI Labs and Talk to Tim sessions inside The Loan Atlas — and catch up on past masterclasses and AI Labs on demand." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/chrome.css" />
+<?php
+/**
+ * Body partial for /live-events/ (TLA Full HTML template).
+ * Generated from public/events.html by scripts/convert-pages.sh — do not hand-edit;
+ * edit the source HTML (or the shared header/footer partials) and re-run.
+ */
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-  <!-- ============================================================
-       EVENTS PAGE STYLES — fresh standalone design, namespaced .ev-*.
-       Brand colors/fonts/logo are reused via design tokens; layout,
-       components and motion are bespoke to this page.
-       ============================================================ -->
+$tla_title       = 'Live Events &amp; Masterclasses — The Loan Atlas';
+$tla_description = 'Join live expert-led masterclasses, office hours, AI Labs and Talk to Tim sessions inside The Loan Atlas — and catch up on past masterclasses and AI Labs on demand.';
+$tla_active      = 'events';
+?>
   <style>
     /* --- Page hero (styled like the blog masthead) ------------------- */
     .ev-hero {
@@ -441,10 +435,9 @@
       .ev-modal__dialog { transform: none; }
     }
   </style>
-</head>
-<body>
 
-<!-- TLA_HEADER -->
+
+<?php include get_stylesheet_directory() . '/tla/partials/header.php'; ?>
 
   <main class="site-main ev">
 
@@ -465,7 +458,7 @@
           <div class="ev-feature-card__grid">
             <!-- Square thumbnail -->
             <div class="ev-feature-card__media">
-              <img src="assets/live-events/Masterclass-Massive-Leverage-0709-1x1.png" alt="Winning the AI Game masterclass — Highway + The Loan Atlas" loading="eager" />
+              <img src="<?php echo TLA_BASE; ?>/assets/live-events/Masterclass-Massive-Leverage-0709-1x1.png" alt="Winning the AI Game masterclass — Highway + The Loan Atlas" loading="eager" />
             </div>
 
             <!-- Copy -->
@@ -502,7 +495,7 @@
         <div class="ev-grid" data-reveal-stagger="80">
 
           <article class="ev-card">
-            <div class="ev-card__media"><img src="assets/live-events/Office-Hours-Caleb-Legrand-0701.png" alt="Office Hours with Caleb Legrand" loading="lazy" /></div>
+            <div class="ev-card__media"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Caleb-Legrand-0701.png" alt="Office Hours with Caleb Legrand" loading="lazy" /></div>
             <div class="ev-card__body">
               <div class="ev-card__date">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -515,7 +508,7 @@
           </article>
 
           <article class="ev-card">
-            <div class="ev-card__media"><img src="assets/live-events/Office-Hours-Mark-Robertson-0708.png" alt="Office Hours with Mark Robertson" loading="lazy" /></div>
+            <div class="ev-card__media"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Mark-Robertson-0708.png" alt="Office Hours with Mark Robertson" loading="lazy" /></div>
             <div class="ev-card__body">
               <div class="ev-card__date">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -528,7 +521,7 @@
           </article>
 
           <article class="ev-card">
-            <div class="ev-card__media"><img src="assets/live-events/Office-Hours-Kelly-Marsh-0715.png" alt="Office Hours with Kelly Marsh" loading="lazy" /></div>
+            <div class="ev-card__media"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Kelly-Marsh-0715.png" alt="Office Hours with Kelly Marsh" loading="lazy" /></div>
             <div class="ev-card__body">
               <div class="ev-card__date">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -541,7 +534,7 @@
           </article>
 
           <article class="ev-card">
-            <div class="ev-card__media"><img src="assets/live-events/Masterclass-2026-Playbook-0716.png" alt="The 2026 Playbook Masterclass" loading="lazy" /></div>
+            <div class="ev-card__media"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Masterclass-2026-Playbook-0716.png" alt="The 2026 Playbook Masterclass" loading="lazy" /></div>
             <div class="ev-card__body">
               <div class="ev-card__date">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -554,7 +547,7 @@
           </article>
 
           <article class="ev-card">
-            <div class="ev-card__media"><img src="assets/live-events/AI-Lab-Inside-Platinum-0717.png" alt="AI Lab — Inside Platinum" loading="lazy" /></div>
+            <div class="ev-card__media"><img src="<?php echo TLA_BASE; ?>/assets/live-events/AI-Lab-Inside-Platinum-0717.png" alt="AI Lab — Inside Platinum" loading="lazy" /></div>
             <div class="ev-card__body">
               <div class="ev-card__date">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -567,7 +560,7 @@
           </article>
 
           <article class="ev-card">
-            <div class="ev-card__media"><img src="assets/live-events/Office-Hours-Jay-Dacey-0722.png" alt="Office Hours with Jay Dacey" loading="lazy" /></div>
+            <div class="ev-card__media"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Jay-Dacey-0722.png" alt="Office Hours with Jay Dacey" loading="lazy" /></div>
             <div class="ev-card__body">
               <div class="ev-card__date">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -580,7 +573,7 @@
           </article>
 
           <article class="ev-card">
-            <div class="ev-card__media"><img src="assets/live-events/Masterclass-Mortgage-Success-Plan-0723.png" alt="The Mortgage Success Plan Masterclass" loading="lazy" /></div>
+            <div class="ev-card__media"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Masterclass-Mortgage-Success-Plan-0723.png" alt="The Mortgage Success Plan Masterclass" loading="lazy" /></div>
             <div class="ev-card__body">
               <div class="ev-card__date">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -593,7 +586,7 @@
           </article>
 
           <article class="ev-card">
-            <div class="ev-card__media"><img src="assets/live-events/Office-Hours-Steve-Grossman-0729.png" alt="Office Hours with Steve Grossman" loading="lazy" /></div>
+            <div class="ev-card__media"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Steve-Grossman-0729.png" alt="Office Hours with Steve Grossman" loading="lazy" /></div>
             <div class="ev-card__body">
               <div class="ev-card__date">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -606,7 +599,7 @@
           </article>
 
           <article class="ev-card">
-            <div class="ev-card__media"><img src="assets/live-events/Talk-to-Tim-0731.png" alt="Talk to Tim live session" loading="lazy" /></div>
+            <div class="ev-card__media"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Talk-to-Tim-0731.png" alt="Talk to Tim live session" loading="lazy" /></div>
             <div class="ev-card__body">
               <div class="ev-card__date">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -635,7 +628,7 @@
           <!-- Whole card is clickable → stub detail page (event-detail.html) -->
           <a class="ev-pastcard" href="#" data-ev-modal>
             <div class="ev-pastcard__media">
-              <img src="assets/live-events/past-events/Masterclass-Fuel-Your-Fire-0611-16x9.jpg" alt="" loading="lazy" />
+              <img src="<?php echo TLA_BASE; ?>/assets/live-events/past-events/Masterclass-Fuel-Your-Fire-0611-16x9.jpg" alt="" loading="lazy" />
             </div>
             <div class="ev-pastcard__body">
               <span class="ev-pastcard__recorded">
@@ -652,7 +645,7 @@
 
           <a class="ev-pastcard" href="#" data-ev-modal>
             <div class="ev-pastcard__media">
-              <img src="assets/live-events/past-events/Talk-To-Tim-0616-16x9.jpg" alt="" loading="lazy" />
+              <img src="<?php echo TLA_BASE; ?>/assets/live-events/past-events/Talk-To-Tim-0616-16x9.jpg" alt="" loading="lazy" />
             </div>
             <div class="ev-pastcard__body">
               <span class="ev-pastcard__recorded">
@@ -669,7 +662,7 @@
 
           <a class="ev-pastcard" href="#" data-ev-modal>
             <div class="ev-pastcard__media">
-              <img src="assets/live-events/past-events/AI-Lab-Follow-Up-Pro-0514-16x9.jpg" alt="" loading="lazy" />
+              <img src="<?php echo TLA_BASE; ?>/assets/live-events/past-events/AI-Lab-Follow-Up-Pro-0514-16x9.jpg" alt="" loading="lazy" />
             </div>
             <div class="ev-pastcard__body">
               <span class="ev-pastcard__recorded">
@@ -686,7 +679,7 @@
 
           <a class="ev-pastcard" href="#" data-ev-modal>
             <div class="ev-pastcard__media">
-              <img src="assets/live-events/past-events/Sales-Leadership-Panel-0507-16x9.jpg" alt="" loading="lazy" />
+              <img src="<?php echo TLA_BASE; ?>/assets/live-events/past-events/Sales-Leadership-Panel-0507-16x9.jpg" alt="" loading="lazy" />
             </div>
             <div class="ev-pastcard__body">
               <span class="ev-pastcard__recorded">
@@ -720,11 +713,11 @@
         <!-- Square event tiles, full-bleed across the top, fading into the navy -->
         <div class="ev-modal__strip" aria-hidden="true">
           <div class="ev-modal__strip-row">
-            <img src="assets/live-events/AI-Lab-Inside-Platinum-0717.png" alt="" loading="lazy" />
-            <img src="assets/live-events/Masterclass-2026-Playbook-0716.png" alt="" loading="lazy" />
-            <img src="assets/live-events/Office-Hours-Kelly-Marsh-0715.png" alt="" loading="lazy" />
-            <img src="assets/live-events/Talk-to-Tim-0731.png" alt="" loading="lazy" />
-            <img src="assets/live-events/Masterclass-Massive-Leverage-0709-1x1.png" alt="" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/live-events/AI-Lab-Inside-Platinum-0717.png" alt="" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/live-events/Masterclass-2026-Playbook-0716.png" alt="" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Kelly-Marsh-0715.png" alt="" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/live-events/Talk-to-Tim-0731.png" alt="" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/live-events/Masterclass-Massive-Leverage-0709-1x1.png" alt="" loading="lazy" />
           </div>
         </div>
         <div class="ev-modal__head-in">
@@ -750,10 +743,10 @@
               <li><svg class="tlc-chk tlc-chk--bare" viewBox="0 0 24 24" fill="none" stroke="url(#evGoldCheck)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>An all-star faculty</strong> with over $29 billion in collective loan funding</span></li>
               <li><svg class="tlc-chk tlc-chk--bare" viewBox="0 0 24 24" fill="none" stroke="url(#evGoldCheck)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>The Ultimate AI GPT Coach</strong> for scripting, follow-up, realtor relationships and more</span></li>
             </ul>
-            <a class="tlc-btn" href="pricing.html">View Membership Options</a>
+            <a class="tlc-btn" href="/join/">View Membership Options</a>
           </div>
           <div class="ev-join__media">
-            <img src="assets/hero image.png" alt="The Loan Atlas member platform" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/hero image.png" alt="The Loan Atlas member platform" loading="lazy" />
           </div>
         </div>
 
@@ -777,10 +770,8 @@
     </div>
   </div>
 
-<!-- TLA_FOOTER -->
+<?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>
 
-  <script src="js/nav.js"></script>
-  <script src="js/animations.js" defer></script>
   <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
   <script>
     /* ── Events access modal: every CTA with [data-ev-modal] opens it ── */
@@ -824,5 +815,3 @@
       });
     })();
   </script>
-</body>
-</html>

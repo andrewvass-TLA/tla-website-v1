@@ -125,7 +125,9 @@ rewrite() {
   perl -0pi -e 's/href="faculty\.html"/href="\/faculty\/"/g'             "$f"
   perl -0pi -e 's/href="whats-inside\.html"/href="\/whats-inside\/"/g'    "$f"
   perl -0pi -e 's/href="ai-originator-masterplan\.html"/href="\/ai-originator-masterplan\/"/g' "$f"
-  perl -0pi -e 's/href="events\.html"/href="\/events\/"/g'                "$f"
+  perl -0pi -e 's/href="events\.html"/href="\/live-events\/"/g'           "$f"
+  perl -0pi -e 's/href="event-detail\.html"/href="\/event-detail\/"/g'    "$f"
+  perl -0pi -e 's/href="office-hours-caleb-legrand\.html"/href="\/office-hours-caleb-legrand\/"/g' "$f"
   perl -0pi -e 's/href="mastermind\.html"/href="\/join-mastermind-2026\/"/g'   "$f"
   perl -0pi -e 's/href="privacy-policy\.html"/href="\/privacy-policy\/"/g'      "$f"
   perl -0pi -e 's/href="terms-of-use\.html"/href="\/terms-of-use\/"/g'          "$f"
@@ -141,7 +143,9 @@ convert corporate               enterprise                    enterprise
 convert whats-inside            whats-inside                  whats-inside
 convert sales-individual        membership                    membership
 convert consultation            consultation                  ""
-convert events                  events                        ""
+convert events                  live-events                   events
+convert event-detail            event-detail                  ""
+convert office-hours-caleb-legrand office-hours-caleb-legrand  ""
 convert mastermind              join-mastermind-2026          ""
 convert consultation-corporate  enterprise-consultation       ""
 convert consultation-mastermind consultation-mastermind-2026  ""
