@@ -1078,15 +1078,7 @@ $tla_active      = '';
           </div>
           <h3 class="mm-plan__hero-title mm-offer__hero-title"><span class="mm-plan__hero-plat">Platinum</span> Super Bonus</h3>
 
-          <div class="mm-offer__steps">
-            <div class="mm-step mm-step--first">
-              <span class="mm-step__label">First Month</span>
-              <span class="mm-step__price">$49</span>
-              <span class="mm-step__sub"><strong>Immediate full access</strong> to The Loan Atlas</span>
-            </div>
-            <div class="mm-offer__arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
-            </div>
+          <div class="mm-offer__steps" style="grid-template-columns: 1fr; max-width: 22rem;">
             <div class="mm-step mm-step--rest">
               <span class="mm-step__was"><span class="mm-offer__strike">$349/mo</span></span>
               <span class="mm-step__price">$249<span style="font-size: 0.32em; font-weight: 700; letter-spacing: 0;">/mo</span></span>
@@ -1096,12 +1088,12 @@ $tla_active      = '';
 
           <p class="mm-plan__plus"><span>plus <em>6 months FREE</em> of Platinum Marketing</span></p>
 
-          <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$2,186</em> in Annual Savings — Exclusively for Mastermind Attendees</span></p>
+          <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$1,800</em> in Annual Savings — Exclusively for Mastermind Attendees</span></p>
 
           <div class="mm-plan__cta">
             <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/"
               style="font-size: 1.0625rem; padding: 18px 44px; box-shadow: 0 8px 28px rgba(201, 150, 28, 0.32);">
-              Claim Your $49 First Month
+              Start Your Transformation
             </a>
           </div>
 

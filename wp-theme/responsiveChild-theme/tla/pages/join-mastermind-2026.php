@@ -7,7 +7,7 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 $tla_title       = 'Mastermind Summit 2026 — Exclusive Loan Atlas Offer';
-$tla_description = 'An offer exclusively for Mastermind Summit 2026 attendees: get full access to The Loan Atlas for $49 your first month, then $249/mo locked in — over $2,186 in savings.';
+$tla_description = 'An offer exclusively for Mastermind Summit 2026 attendees: full access to The Loan Atlas at $249/mo locked in, plus 6 months free of Platinum Marketing — over $1,800 in savings.';
 $tla_active      = '';
 ?>
   <style>
@@ -158,6 +158,25 @@ $tla_active      = '';
       color: #ffffff;
     }
     .mm-countdown.is-ended .mm-countdown__ended { display: block; }
+    /* Hero standout offer line — large brass headline above the primary CTA. */
+    .mm-hero-offer {
+      margin: var(--space-md) auto 0;
+      max-width: 38rem;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.375rem);
+      line-height: 1.18;
+      letter-spacing: -0.015em;
+      text-align: center;
+      text-wrap: balance;
+    }
+    .mm-hero-offer em {
+      font-style: normal;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
     /* Hero headline — bumped up slightly across all views vs. the shared default. */
     .lp-intro__title {
       font-size: clamp(2.5rem, 1.5rem + 3.6vw, 4.25rem);
@@ -1959,12 +1978,8 @@ $tla_active      = '';
     <div class="mm-bar__inner">
       <p class="mm-bar__text">
         <strong>Mastermind Exclusive</strong>
-        <span class="mm-bar__sep mm-bar__hide-sm">·</span>
-        <span class="mm-bar__hide-sm">$49 First Month</span>
-        <span class="mm-bar__sep mm-bar__hide-sm">·</span>
-        <span class="mm-bar__hide-sm">6 Months Free Platinum</span>
         <span class="mm-bar__sep">·</span>
-        Save $2,186
+        Save $100/mo + 6 Months Free Platinum Marketing
       </p>
       <a class="mm-bar__btn" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Claim Offer</a>
     </div>
@@ -1979,12 +1994,12 @@ $tla_active      = '';
           <h1 id="mm-hero-heading" class="lp-intro__title" data-hero-step="2">Close More Loans <span class="mm-hero-gold">With Less Chaos</span></h1>
           <p class="lp-intro__subtitle" data-hero-step="3">Five AI-powered systems, live coaching every week, and the tools to turn ignored marketing into real clients — <em>at a price exclusively for Mastermind.</em></p>
           <div class="lp-intro__actions" data-hero-step="4">
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Start Your Transformation — $49 Today</a>
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Start Your Transformation</a>
           </div>
-          <div class="mm-countdown" data-hero-step="4" data-countdown="2026-06-26T23:59:59" role="timer" aria-label="Time remaining until the offer ends">
+          <div class="mm-countdown" data-hero-step="4" data-countdown="2026-07-11T23:59:59" role="timer" aria-label="Time remaining until the offer ends">
             <div class="mm-countdown__text">
               <span class="mm-countdown__label">Limited Time Offer</span>
-              <span class="mm-countdown__expires">Expires Friday, June&nbsp;26th</span>
+              <span class="mm-countdown__expires">Expires Saturday, July&nbsp;11th</span>
             </div>
             <div class="mm-countdown__clock" aria-hidden="false">
               <div class="mm-countdown__unit"><span class="mm-countdown__num" data-cd="days">00</span><span class="mm-countdown__unit-label">Days</span></div>
@@ -2054,15 +2069,7 @@ $tla_active      = '';
           </div>
           <h3 class="mm-plan__hero-title mm-offer__hero-title"><span class="mm-plan__hero-plat">Platinum</span> Super Bonus</h3>
 
-          <div id="mm-offer-heading" class="mm-offer__steps">
-            <div class="mm-step mm-step--first">
-              <span class="mm-step__label">First Month</span>
-              <span class="mm-step__price">$49</span>
-              <span class="mm-step__sub"><strong>Immediate full access</strong> to The Loan Atlas</span>
-            </div>
-            <div class="mm-offer__arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
-            </div>
+          <div id="mm-offer-heading" class="mm-offer__steps" style="grid-template-columns: 1fr; max-width: 22rem;">
             <div class="mm-step mm-step--rest">
               <span class="mm-step__was"><span class="mm-offer__strike">$349/mo</span></span>
               <span class="mm-step__price">$249<span style="font-size: 0.32em; font-weight: 700; letter-spacing: 0;">/mo</span></span>
@@ -2072,10 +2079,10 @@ $tla_active      = '';
 
           <p class="mm-plan__plus"><span>plus <em>6 months FREE</em> of Platinum Marketing</span></p>
 
-          <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$2,186</em> in Annual Savings — Exclusively for Mastermind Attendees</span></p>
+          <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$1,800</em> in Annual Savings — Exclusively for Mastermind Attendees</span></p>
 
           <div class="mm-offer__cta">
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Claim Your $49 First Month</a>
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Start Your Transformation</a>
             <a href="/consultation-mastermind-2026/" style="font-size: 0.9375rem; color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;">
               Have questions? Book a free coaching session
             </a>
@@ -2147,7 +2154,7 @@ $tla_active      = '';
 
           <!-- CTA -->
           <div class="lp-bridge__cta" data-reveal="up">
-            <a class="btn btn--gold btn--lg btn--landing" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Start Your Transformation — $49 Today</a>
+            <a class="btn btn--gold btn--lg btn--landing" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Start Your Transformation</a>
           </div>
 
         </div>
@@ -2323,7 +2330,7 @@ $tla_active      = '';
               <span class="mm-plat__price-now">6 Months FREE</span>
             </div>
             <p class="mm-plat__price-note">then $69/mo, or cancel anytime.</p>
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Claim Your Free 6-Months</a>
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Start Your Transformation</a>
           </div>
         </div>
       </div>
@@ -2500,15 +2507,7 @@ $tla_active      = '';
           </div>
           <h3 class="mm-plan__hero-title mm-offer__hero-title"><span class="mm-plan__hero-plat">Platinum</span> Super Bonus</h3>
 
-          <div class="mm-offer__steps">
-            <div class="mm-step mm-step--first">
-              <span class="mm-step__label">First Month</span>
-              <span class="mm-step__price">$49</span>
-              <span class="mm-step__sub"><strong>Immediate full access</strong> to The Loan Atlas</span>
-            </div>
-            <div class="mm-offer__arrow" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
-            </div>
+          <div class="mm-offer__steps" style="grid-template-columns: 1fr; max-width: 22rem;">
             <div class="mm-step mm-step--rest">
               <span class="mm-step__was"><span class="mm-offer__strike">$349/mo</span></span>
               <span class="mm-step__price">$249<span style="font-size: 0.32em; font-weight: 700; letter-spacing: 0;">/mo</span></span>
@@ -2518,11 +2517,11 @@ $tla_active      = '';
 
           <p class="mm-plan__plus"><span>plus <em>6 months FREE</em> of Platinum Marketing</span></p>
 
-          <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$2,186</em> in Annual Savings — Exclusively for Mastermind Attendees</span></p>
+          <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$1,800</em> in Annual Savings — Exclusively for Mastermind Attendees</span></p>
 
           <div class="mm-plan__cta">
             <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">
-              Claim Your $49 First Month
+              Start Your Transformation
             </a>
             <a href="/consultation-mastermind-2026/" style="font-size: 0.9375rem; color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;">
               Have questions? Book a free coaching session
