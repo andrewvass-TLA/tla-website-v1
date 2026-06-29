@@ -1,21 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The AI-Empowered Originator — The Loan Atlas (MOCKUP)</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Antonio:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/chrome.css" />
+<?php
+/**
+ * Body partial for /blog-post/ (TLA Full HTML template).
+ * Generated from public/blog-post.html by scripts/convert-pages.sh — do not hand-edit;
+ * edit the source HTML (or the shared header/footer partials) and re-run.
+ */
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-  <!-- ============================================================
-       BLOG STYLES (single post) — future tla/css/blog.css
-       NerdWallet-style two-column layout: wide white content card +
-       sticky sidebar (header image, jump-to TOC, resources).
-       The .tla-article block styles the_content() output.
-       ============================================================ -->
+$tla_title       = 'The AI-Empowered Originator — The Loan Atlas (MOCKUP)';
+$tla_description = '';
+$tla_active      = '';
+?>
   <style>
     /* --- Post header (dark band, featured image revealed at right) ------
        The featured image is dynamic, so PHP sets it via the inline custom
@@ -278,25 +272,24 @@
       .blog-toc-mobile .blog-toc { border: 1px solid var(--outline-variant); border-top: 0; border-radius: 0 0 var(--radius-lg) var(--radius-lg); padding: 8px 18px; }
     }
   </style>
-</head>
-<body>
+
 
   <div class="blog-progress" id="blogProgress"></div>
 
-  <!-- TLA_HEADER -->
+  <?php include get_stylesheet_directory() . '/tla/partials/header.php'; ?>
 
   <!-- ===== Post header (dark band) ===== -->
-  <header class="blog-post-head blog-post-head--has-image" style="--blog-hero-img: url('assets/TLA Blog Image.png');">
+  <header class="blog-post-head blog-post-head--has-image" style="--blog-hero-img: url('<?php echo TLA_BASE; ?>/assets/TLA Blog Image.png');">
     <div class="blog-post-head__inner">
       <nav class="blog-crumbs" aria-label="Breadcrumb">
-        <a href="blog.html">Articles and Resources</a>
+        <a href="/blog/">Articles and Resources</a>
         <span class="blog-crumbs__sep" aria-hidden="true">&rsaquo;</span>
-        <a href="blog-archive.html">AI &amp; Systems</a>
+        <a href="/blog-archive/">AI &amp; Systems</a>
       </nav>
       <h1>The AI-Empowered Originator: building a predictable pipeline in 2026</h1>
       <p class="blog-post-head__dek">The originators winning right now aren't working harder — they've built systems that compound. Here's the exact framework our top performers use.</p>
       <div class="blog-post-head__meta">
-        <span class="blog-post-head__avatar"><img src="assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" /></span>
+        <span class="blog-post-head__avatar"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" /></span>
         <span class="blog-post-head__byline"><strong>Andrew Vass</strong></span>
         <span class="blog-post-head__meta-dot"></span>
         <span>June 18, 2026</span>
@@ -334,7 +327,7 @@
           </blockquote>
 
           <figure>
-            <img src="assets/talk-to-tim.png" alt="Talk to Tim — book a coaching session" />
+            <img src="<?php echo TLA_BASE; ?>/assets/talk-to-tim.png" alt="Talk to Tim — book a coaching session" />
             <figcaption>An inline image as it renders inside an article body.</figcaption>
           </figure>
 
@@ -423,24 +416,24 @@ THEN trigger "refi opportunity" sequence
           <div class="blog-side-card__pad">
             <p class="blog-side-card__title">Additional Resources</p>
             <div class="blog-resource">
-              <a class="blog-resource__thumb" href="blog-post.html"><img src="assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:18%;" /></a>
+              <a class="blog-resource__thumb" href="/blog-post/"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:18%;" /></a>
               <div>
                 <span class="blog-resource__cat">Lead Generation</span>
-                <p class="blog-resource__title"><a href="blog-post.html">5 referral scripts that fill your calendar</a></p>
+                <p class="blog-resource__title"><a href="/blog-post/">5 referral scripts that fill your calendar</a></p>
               </div>
             </div>
             <div class="blog-resource">
-              <a class="blog-resource__thumb" href="blog-post.html"><img src="assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:18%;" /></a>
+              <a class="blog-resource__thumb" href="/blog-post/"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:18%;" /></a>
               <div>
                 <span class="blog-resource__cat">Mindset</span>
-                <p class="blog-resource__title"><a href="blog-post.html">The habits of $100M originators</a></p>
+                <p class="blog-resource__title"><a href="/blog-post/">The habits of $100M originators</a></p>
               </div>
             </div>
             <div class="blog-resource">
-              <a class="blog-resource__thumb" href="blog-post.html"><img src="assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:18%;" /></a>
+              <a class="blog-resource__thumb" href="/blog-post/"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:18%;" /></a>
               <div>
                 <span class="blog-resource__cat">Market Trends</span>
-                <p class="blog-resource__title"><a href="blog-post.html">The 2026 rate environment &amp; your refi strategy</a></p>
+                <p class="blog-resource__title"><a href="/blog-post/">The 2026 rate environment &amp; your refi strategy</a></p>
               </div>
             </div>
           </div>
@@ -450,9 +443,8 @@ THEN trigger "refi opportunity" sequence
     </div>
   </div>
 
-  <!-- TLA_FOOTER -->
+  <?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>
 
-  <script src="js/nav.js"></script>
   <script>
     /* Blog single-post behaviors. Ships as tla/js/blog.js after the port. */
     (function () {
@@ -545,5 +537,3 @@ THEN trigger "refi opportunity" sequence
       }
     })();
   </script>
-</body>
-</html>

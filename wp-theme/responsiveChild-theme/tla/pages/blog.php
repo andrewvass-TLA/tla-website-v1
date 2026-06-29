@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Blog — The Loan Atlas (MOCKUP)</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Antonio:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/chrome.css" />
+<?php
+/**
+ * Body partial for /blog/ (TLA Full HTML template).
+ * Generated from public/blog.html by scripts/convert-pages.sh — do not hand-edit;
+ * edit the source HTML (or the shared header/footer partials) and re-run.
+ */
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-  <!-- ============================================================
-       BLOG STYLES — this block is the future tla/css/blog.css
-       Everything is namespaced .blog-* so it never collides with the
-       main stylesheet. Uses the existing design tokens throughout.
-       ============================================================ -->
+$tla_title       = 'Blog — The Loan Atlas (MOCKUP)';
+$tla_description = '';
+$tla_active      = '';
+?>
   <style>
     /* --- Blog hero / page header ------------------------------------ */
     .blog-masthead {
@@ -439,10 +434,9 @@
       .res-rail .res-card { flex: 0 0 auto; }
     }
   </style>
-</head>
-<body>
 
-  <!-- TLA_HEADER -->
+
+  <?php include get_stylesheet_directory() . '/tla/partials/header.php'; ?>
 
   <main class="site-main">
 
@@ -472,11 +466,11 @@
       <!-- Featured (hero) post -->
       <article class="blog-featured">
         <div class="blog-featured__media">
-          <img src="assets/TLA Blog Image.png" alt="" />
+          <img src="<?php echo TLA_BASE; ?>/assets/TLA Blog Image.png" alt="" />
         </div>
         <div class="blog-featured__body">
           <span class="blog-featured__cat">AI &amp; Systems</span>
-          <h2 class="blog-featured__title"><a href="blog-post.html">The AI-Empowered Originator: building a predictable pipeline in 2026</a></h2>
+          <h2 class="blog-featured__title"><a href="/blog-post/">The AI-Empowered Originator: building a predictable pipeline in 2026</a></h2>
           <p class="blog-featured__excerpt">The originators winning right now aren't working harder — they've built systems that compound. Here's the exact framework our top performers use to turn AI into a referral engine that runs whether they're at the closing table or on vacation.</p>
           <div class="blog-card__meta">
             <span>Andrew Vass</span><span class="blog-card__meta-dot"></span>
@@ -493,60 +487,60 @@
       <div class="blog-grid">
         <!-- Card 1 -->
         <article class="blog-card">
-          <div class="blog-card__media"><img src="assets/TLA Blog Image.png" alt="" /></div>
+          <div class="blog-card__media"><img src="<?php echo TLA_BASE; ?>/assets/TLA Blog Image.png" alt="" /></div>
           <div class="blog-card__body">
             <span class="blog-card__cat">Lead Generation</span>
-            <h3 class="blog-card__title"><a href="blog-post.html">5 referral scripts that fill your calendar without cold calling</a></h3>
+            <h3 class="blog-card__title"><a href="/blog-post/">5 referral scripts that fill your calendar without cold calling</a></h3>
             <p class="blog-card__excerpt">Word-for-word language to turn past clients and agents into a steady stream of warm introductions.</p>
             <div class="blog-card__meta"><span>June 12, 2026</span><span class="blog-card__meta-dot"></span><span>6 min read</span></div>
           </div>
         </article>
         <!-- Card 2 -->
         <article class="blog-card">
-          <div class="blog-card__media"><img src="assets/handling-objections-module-thumbnail.png" alt="" /></div>
+          <div class="blog-card__media"><img src="<?php echo TLA_BASE; ?>/assets/handling-objections-module-thumbnail.png" alt="" /></div>
           <div class="blog-card__body">
             <span class="blog-card__cat">Market Trends</span>
-            <h3 class="blog-card__title"><a href="blog-post.html">What the 2026 rate environment means for your refi strategy</a></h3>
+            <h3 class="blog-card__title"><a href="/blog-post/">What the 2026 rate environment means for your refi strategy</a></h3>
             <p class="blog-card__excerpt">How to position refinances now so you're first in line when the window opens for your database.</p>
             <div class="blog-card__meta"><span>June 6, 2026</span><span class="blog-card__meta-dot"></span><span>5 min read</span></div>
           </div>
         </article>
         <!-- Card 3 -->
         <article class="blog-card">
-          <div class="blog-card__media"><img src="assets/peak-performance-rituals-module-thumbnail.jpg" alt="" /></div>
+          <div class="blog-card__media"><img src="<?php echo TLA_BASE; ?>/assets/peak-performance-rituals-module-thumbnail.jpg" alt="" /></div>
           <div class="blog-card__body">
             <span class="blog-card__cat">Mindset</span>
-            <h3 class="blog-card__title"><a href="blog-post.html">The peak-performance habits of $100M originators</a></h3>
+            <h3 class="blog-card__title"><a href="/blog-post/">The peak-performance habits of $100M originators</a></h3>
             <p class="blog-card__excerpt">The daily routines and mental models that separate the top 1% from everyone grinding for the same leads.</p>
             <div class="blog-card__meta"><span>May 29, 2026</span><span class="blog-card__meta-dot"></span><span>7 min read</span></div>
           </div>
         </article>
         <!-- Card 4 -->
         <article class="blog-card">
-          <div class="blog-card__media"><img src="assets/email-optimization-module-thumbnail.png" alt="" /></div>
+          <div class="blog-card__media"><img src="<?php echo TLA_BASE; ?>/assets/email-optimization-module-thumbnail.png" alt="" /></div>
           <div class="blog-card__body">
             <span class="blog-card__cat">AI &amp; Systems</span>
-            <h3 class="blog-card__title"><a href="blog-post.html">Automating your post-close follow-up with AI</a></h3>
+            <h3 class="blog-card__title"><a href="/blog-post/">Automating your post-close follow-up with AI</a></h3>
             <p class="blog-card__excerpt">Set up a follow-up sequence once and let it nurture every borrower into a lifelong referral source.</p>
             <div class="blog-card__meta"><span>May 22, 2026</span><span class="blog-card__meta-dot"></span><span>4 min read</span></div>
           </div>
         </article>
         <!-- Card 5 -->
         <article class="blog-card">
-          <div class="blog-card__media"><img src="assets/fixed-adjustable-module-thumbnail.png" alt="" /></div>
+          <div class="blog-card__media"><img src="<?php echo TLA_BASE; ?>/assets/fixed-adjustable-module-thumbnail.png" alt="" /></div>
           <div class="blog-card__body">
             <span class="blog-card__cat">Sales &amp; Scripts</span>
-            <h3 class="blog-card__title"><a href="blog-post.html">Handling the "I want to wait for rates to drop" objection</a></h3>
+            <h3 class="blog-card__title"><a href="/blog-post/">Handling the "I want to wait for rates to drop" objection</a></h3>
             <p class="blog-card__excerpt">A consultative framework that reframes the conversation around cost of waiting — not rate timing.</p>
             <div class="blog-card__meta"><span>May 15, 2026</span><span class="blog-card__meta-dot"></span><span>6 min read</span></div>
           </div>
         </article>
         <!-- Card 6 -->
         <article class="blog-card">
-          <div class="blog-card__media"><img src="assets/gratitude-calls-module-thumbnail.jpg" alt="" /></div>
+          <div class="blog-card__media"><img src="<?php echo TLA_BASE; ?>/assets/gratitude-calls-module-thumbnail.jpg" alt="" /></div>
           <div class="blog-card__body">
             <span class="blog-card__cat">Lead Generation</span>
-            <h3 class="blog-card__title"><a href="blog-post.html">Turning your CRM into a referral machine</a></h3>
+            <h3 class="blog-card__title"><a href="/blog-post/">Turning your CRM into a referral machine</a></h3>
             <p class="blog-card__excerpt">Most originators sit on a goldmine of past clients. Here's how to systematically mine it.</p>
             <div class="blog-card__meta"><span>May 8, 2026</span><span class="blog-card__meta-dot"></span><span>5 min read</span></div>
           </div>
@@ -572,7 +566,7 @@
 
         <!-- 1 · AI Masterplan — dark product card with device mockup -->
         <a class="res-card res-card--ai" href="https://www.theloanatlas.com/ai-originator-masterplan/">
-          <div class="res-card__shot"><img src="assets/ai-masterplan-ipad.png" alt="The AI-Empowered Originator Masterplan on an iPad" /></div>
+          <div class="res-card__shot"><img src="<?php echo TLA_BASE; ?>/assets/ai-masterplan-ipad.png" alt="The AI-Empowered Originator Masterplan on an iPad" /></div>
           <div class="res-card__pad">
             <p class="res-card__eyebrow">Close twice the loans in half the time</p>
             <h3 class="res-card__title">The AI-Empowered Originator Masterplan</h3>
@@ -585,7 +579,7 @@
 
         <!-- 2 · 5 Scripts — full-bleed photo card, copy over a scrim -->
         <a class="res-card res-card--photo" href="https://go.theloanatlas.com/5-essential-scripts">
-          <img class="res-card__img" src="assets/5-scripts-hero.png" alt="Loan officer on the phone closing a deal" />
+          <img class="res-card__img" src="<?php echo TLA_BASE; ?>/assets/5-scripts-hero.png" alt="Loan officer on the phone closing a deal" />
           <div class="res-card__pad">
             <p class="res-card__eyebrow">Handle objections effortlessly</p>
             <h3 class="res-card__title">5 Essential Scripts for Dominating the Point of Sale</h3>
@@ -598,7 +592,7 @@
 
         <!-- 3 · Perfect Loan Process — light document card -->
         <a class="res-card res-card--doc" href="https://go.theloanatlas.com/perfect-loan-process">
-          <div class="res-card__shot"><img src="assets/perfect-loan-process.png" alt="The Perfect Loan Process framework pages" /></div>
+          <div class="res-card__shot"><img src="<?php echo TLA_BASE; ?>/assets/perfect-loan-process.png" alt="The Perfect Loan Process framework pages" /></div>
           <div class="res-card__pad">
             <p class="res-card__eyebrow">Generate consistent referrals</p>
             <h3 class="res-card__title">The Perfect Loan Process</h3>
@@ -611,7 +605,7 @@
 
         <!-- 4 · The 360 Experience podcast — cover-art card -->
         <a class="res-card res-card--podcast" href="https://www.theloanatlas.com/podcast/">
-          <img class="res-card__art" src="assets/360 experience podcast.webp" alt="The 360 Experience podcast" />
+          <img class="res-card__art" src="<?php echo TLA_BASE; ?>/assets/360 experience podcast.webp" alt="The 360 Experience podcast" />
           <div class="res-card__pad">
             <span class="res-card__btn">
               <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
@@ -627,8 +621,5 @@
 
   </main><!-- /.site-main -->
 
-  <!-- TLA_FOOTER -->
+  <?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>
 
-  <script src="js/nav.js"></script>
-</body>
-</html>

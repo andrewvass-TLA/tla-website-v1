@@ -1,21 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Category: AI &amp; Systems — The Loan Atlas (MOCKUP)</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Antonio:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/chrome.css" />
+<?php
+/**
+ * Body partial for /blog-archive/ (TLA Full HTML template).
+ * Generated from public/blog-archive.html by scripts/convert-pages.sh — do not hand-edit;
+ * edit the source HTML (or the shared header/footer partials) and re-run.
+ */
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-  <!-- ============================================================
-       BLOG STYLES (archive) — same future tla/css/blog.css.
-       Reuses the card grid + pagination + filter chips from the
-       homepage; only the page header differs (lighter, names the
-       archive term). Everything namespaced .blog-* / .tla-*.
-       ============================================================ -->
+$tla_title       = 'Category: AI &amp; Systems — The Loan Atlas (MOCKUP)';
+$tla_description = '';
+$tla_active      = '';
+?>
   <style>
     /* --- Archive header (lighter than the homepage masthead) -------- */
     .blog-archive-head {
@@ -141,10 +135,9 @@
     @media (max-width: 900px) { .blog-grid { grid-template-columns: repeat(2, 1fr); } }
     @media (max-width: 600px) { .blog-grid { grid-template-columns: 1fr; } }
   </style>
-</head>
-<body>
 
-  <!-- TLA_HEADER -->
+
+  <?php include get_stylesheet_directory() . '/tla/partials/header.php'; ?>
 
   <!-- ===== Archive header =====
        In single.php/archive.php this maps to:
@@ -154,7 +147,7 @@
          count   = $wp_query->found_posts -->
   <header class="blog-archive-head">
     <div class="container blog-archive-head__inner">
-      <a class="blog-crumb" href="blog.html">← Articles and Resources</a>
+      <a class="blog-crumb" href="/blog/">← Articles and Resources</a>
       <span class="blog-archive-head__kicker">Category</span>
       <div class="blog-archive-head__row">
         <div class="blog-archive-head__main">
@@ -164,7 +157,7 @@
         <p class="blog-archive-head__desc">Build the automated, AI-powered systems that turn your origination business into a referral engine that runs without you.</p>
       </div>
       <div class="blog-filter">
-        <a class="blog-filter__chip" href="blog.html">All</a>
+        <a class="blog-filter__chip" href="/blog/">All</a>
         <a class="blog-filter__chip blog-filter__chip--active" href="#">AI &amp; Systems</a>
         <a class="blog-filter__chip" href="#">Lead Generation</a>
         <a class="blog-filter__chip" href="#">Sales &amp; Scripts</a>
@@ -181,60 +174,60 @@
       <div class="blog-grid">
         <!-- Card 1 -->
         <article class="blog-card">
-          <a class="blog-card__media" href="blog-post.html"><img src="assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
+          <a class="blog-card__media" href="/blog-post/"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
           <div class="blog-card__body">
             <span class="blog-card__cat">AI &amp; Systems</span>
-            <h3 class="blog-card__title"><a href="blog-post.html">The AI-Empowered Originator: building a predictable pipeline in 2026</a></h3>
+            <h3 class="blog-card__title"><a href="/blog-post/">The AI-Empowered Originator: building a predictable pipeline in 2026</a></h3>
             <p class="blog-card__excerpt">The exact framework our top performers use to turn AI into a referral engine that runs while they sleep.</p>
             <div class="blog-card__meta"><span>June 18, 2026</span><span class="blog-card__meta-dot"></span><span>8 min read</span></div>
           </div>
         </article>
         <!-- Card 2 -->
         <article class="blog-card">
-          <a class="blog-card__media" href="blog-post.html"><img src="assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
+          <a class="blog-card__media" href="/blog-post/"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
           <div class="blog-card__body">
             <span class="blog-card__cat">AI &amp; Systems</span>
-            <h3 class="blog-card__title"><a href="blog-post.html">Automating your post-close follow-up with AI</a></h3>
+            <h3 class="blog-card__title"><a href="/blog-post/">Automating your post-close follow-up with AI</a></h3>
             <p class="blog-card__excerpt">Set up a follow-up sequence once and let it nurture every borrower into a lifelong referral source.</p>
             <div class="blog-card__meta"><span>May 22, 2026</span><span class="blog-card__meta-dot"></span><span>4 min read</span></div>
           </div>
         </article>
         <!-- Card 3 -->
         <article class="blog-card">
-          <a class="blog-card__media" href="blog-post.html"><img src="assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
+          <a class="blog-card__media" href="/blog-post/"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
           <div class="blog-card__body">
             <span class="blog-card__cat">AI &amp; Systems</span>
-            <h3 class="blog-card__title"><a href="blog-post.html">The AI prompt library every originator should steal</a></h3>
+            <h3 class="blog-card__title"><a href="/blog-post/">The AI prompt library every originator should steal</a></h3>
             <p class="blog-card__excerpt">Ready-to-use prompts for emails, social posts, and borrower education — written for mortgage pros.</p>
             <div class="blog-card__meta"><span>May 4, 2026</span><span class="blog-card__meta-dot"></span><span>6 min read</span></div>
           </div>
         </article>
         <!-- Card 4 -->
         <article class="blog-card">
-          <a class="blog-card__media" href="blog-post.html"><img src="assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
+          <a class="blog-card__media" href="/blog-post/"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
           <div class="blog-card__body">
             <span class="blog-card__cat">AI &amp; Systems</span>
-            <h3 class="blog-card__title"><a href="blog-post.html">From CRM to command center: the AI-driven dashboard</a></h3>
+            <h3 class="blog-card__title"><a href="/blog-post/">From CRM to command center: the AI-driven dashboard</a></h3>
             <p class="blog-card__excerpt">Turn scattered data into one screen that tells you exactly who to call today and why.</p>
             <div class="blog-card__meta"><span>April 28, 2026</span><span class="blog-card__meta-dot"></span><span>7 min read</span></div>
           </div>
         </article>
         <!-- Card 5 -->
         <article class="blog-card">
-          <a class="blog-card__media" href="blog-post.html"><img src="assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
+          <a class="blog-card__media" href="/blog-post/"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
           <div class="blog-card__body">
             <span class="blog-card__cat">AI &amp; Systems</span>
-            <h3 class="blog-card__title"><a href="blog-post.html">Should you trust AI to talk to your borrowers?</a></h3>
+            <h3 class="blog-card__title"><a href="/blog-post/">Should you trust AI to talk to your borrowers?</a></h3>
             <p class="blog-card__excerpt">Where automation belongs in the borrower relationship — and the human moments you should never hand off.</p>
             <div class="blog-card__meta"><span>April 15, 2026</span><span class="blog-card__meta-dot"></span><span>5 min read</span></div>
           </div>
         </article>
         <!-- Card 6 -->
         <article class="blog-card">
-          <a class="blog-card__media" href="blog-post.html"><img src="assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
+          <a class="blog-card__media" href="/blog-post/"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" /></a>
           <div class="blog-card__body">
             <span class="blog-card__cat">AI &amp; Systems</span>
-            <h3 class="blog-card__title"><a href="blog-post.html">Building your first automation in an afternoon</a></h3>
+            <h3 class="blog-card__title"><a href="/blog-post/">Building your first automation in an afternoon</a></h3>
             <p class="blog-card__excerpt">A no-code walkthrough to ship one high-leverage automation today, even if you're not technical.</p>
             <div class="blog-card__meta"><span>April 2, 2026</span><span class="blog-card__meta-dot"></span><span>6 min read</span></div>
           </div>
@@ -250,8 +243,5 @@
     </div>
   </section>
 
-  <!-- TLA_FOOTER -->
+  <?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>
 
-  <script src="js/nav.js"></script>
-</body>
-</html>

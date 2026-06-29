@@ -125,6 +125,7 @@ rewrite() {
   perl -0pi -e 's/href="faculty\.html"/href="\/faculty\/"/g'             "$f"
   perl -0pi -e 's/href="whats-inside\.html"/href="\/whats-inside\/"/g'    "$f"
   perl -0pi -e 's/href="ai-originator-masterplan\.html"/href="\/ai-originator-masterplan\/"/g' "$f"
+  perl -0pi -e 's/href="perfect-loan-process\.html"/href="\/perfect-loan-process\/"/g' "$f"
   perl -0pi -e 's/href="events\.html"/href="\/live-events\/"/g'           "$f"
   perl -0pi -e 's/href="event-detail\.html"/href="\/event-detail\/"/g'    "$f"
   perl -0pi -e 's/href="office-hours-caleb-legrand\.html"/href="\/office-hours-caleb-legrand\/"/g' "$f"
@@ -133,6 +134,9 @@ rewrite() {
   perl -0pi -e 's/href="terms-of-use\.html"/href="\/terms-of-use\/"/g'          "$f"
   perl -0pi -e 's/href="end-user-agreement\.html"/href="\/end-user-agreement\/"/g' "$f"
   perl -0pi -e 's/href="platinum-marketing\.html"/href="\/platinum-marketing\/"/g' "$f"
+  perl -0pi -e 's/href="blog\.html"/href="\/blog\/"/g'                   "$f"
+  perl -0pi -e 's/href="blog-post\.html"/href="\/blog-post\/"/g'         "$f"
+  perl -0pi -e 's/href="blog-archive\.html"/href="\/blog-archive\/"/g'   "$f"
 }
 
 # slug map (source | slug | active)
@@ -153,8 +157,12 @@ convert privacy-policy          privacy-policy                ""
 convert terms-of-use            terms-of-use                  ""
 convert end-user-agreement      end-user-agreement            ""
 convert ai-originator-masterplan ai-originator-masterplan     ""
+convert perfect-loan-process    perfect-loan-process          ""
 convert 5-scripts               5-scripts                     ""
 convert contact                 contact                       ""
 convert platinum-marketing      platinum-marketing            ""
+convert blog                    blog                          ""
+convert blog-post               blog-post                     ""
+convert blog-archive            blog-archive                  ""
 
 echo "Done."
