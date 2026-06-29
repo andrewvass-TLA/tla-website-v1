@@ -54,6 +54,29 @@ npm run ship          # ← does everything below; OR run the steps by hand:
 eyeball before committing, run `npm run build && npm run preview`, open the
 preview, then `npm run ship "message"` once you're happy.
 
+### The blog is different — it's WordPress templates, not `public/*.html`
+
+The blog (`/blog/`, single posts, category archives) is **NOT** a `public/*.html`
+page run through `convert-pages.sh`. It is rendered by real WordPress templates:
+
+| Live URL | Template | Styles | Card/loop helpers |
+|---|---|---|---|
+| `/blog/` (posts index) | `wp-theme/responsiveChild-theme/home.php` | `tla/css/blog.css` | `tla_blog_*` in `functions.php` |
+| single post | `single.php` | `tla/css/blog.css` | — |
+| category/tag/search | `archive.php` | `tla/css/blog.css` | `tla_blog_*` |
+
+`public/blog.html`, `blog-post.html`, `blog-archive.html` are **design mockups only**
+— editing them changes nothing live. To change the blog, edit `home.php` /
+`single.php` / `archive.php` + `tla/css/blog.css` directly.
+
+Preview them with **`npm run preview:blog`** (or it runs inside `npm run preview`):
+it stubs the WordPress post loop with fixture posts and renders the real template
+markup + real `blog.css` to `wp-theme/_preview-tpl-<template>.html`. No PHP needed.
+It prints a warning for any PHP it doesn't model (so the preview is honestly
+flagged as approximate) — `home.php` is fully modeled; `single`/`archive` are
+partial. It's a visual/structure check, not a real WP render — still verify the
+live page after deploy.
+
 ---
 
 ## ⚠️ Caching — the #1 reason a change "didn't work"

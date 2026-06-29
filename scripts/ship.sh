@@ -9,6 +9,7 @@ cd "$(dirname "$0")/.."
 
 bash scripts/convert-pages.sh
 bash scripts/preview-pages.sh
+node scripts/preview-blog.js
 
 git add -A
 git commit -m "${1:-Update site}"

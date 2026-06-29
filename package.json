@@ -6,7 +6,8 @@
   "scripts": {
     "serve": "cd public && python3 -m http.server 4321",
     "build": "bash scripts/convert-pages.sh",
-    "preview": "bash scripts/preview-pages.sh",
+    "preview": "bash scripts/preview-pages.sh && node scripts/preview-blog.js",
+    "preview:blog": "node scripts/preview-blog.js",
     "ship": "bash scripts/ship.sh",
     "shoot": "node scripts/screenshot.js",
     "shoot:install": "playwright install chromium"
