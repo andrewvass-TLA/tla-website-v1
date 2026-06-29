@@ -161,8 +161,9 @@ convert perfect-loan-process    perfect-loan-process          ""
 convert 5-scripts               5-scripts                     ""
 convert contact                 contact                       ""
 convert platinum-marketing      platinum-marketing            ""
-convert blog                    blog                          ""
-convert blog-post               blog-post                     ""
-convert blog-archive            blog-archive                  ""
+# NOTE: blog/blog-post/blog-archive are NOT fullhtml partials — the live blog
+# is rendered by home.php/single.php/archive.php (WP post loop) with CSS in
+# tla/css/blog.css. Do NOT add them here. The blog*.html link rewrites in
+# rewrite() are still useful (relative blog links -> /blog/ etc.).
 
 echo "Done."

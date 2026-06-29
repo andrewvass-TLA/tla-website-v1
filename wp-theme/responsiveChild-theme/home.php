@@ -21,21 +21,25 @@ $is_first = ( 1 === $paged );
   <!-- ===== Masthead (with category filter) ===== -->
   <section class="blog-masthead">
     <div class="container blog-masthead__inner">
-      <span class="eyebrow"><span class="eyebrow__text">The Loan Atlas Blog</span></span>
       <h1><em>Articles and Resources</em> for Mortgage Originators</h1>
 <?php tla_blog_category_filter(); ?>
     </div>
   </section>
 
+  <!-- ===== Featured + Latest grid + resource rail ===== -->
+  <section class="section section--tight">
+    <div class="container container--wide-blog">
+     <div class="blog-layout">
+
+      <!-- LEFT: featured post + section head + 3-up article grid -->
+      <div class="blog-layout__main">
 <?php
-// ===== Featured hero (page 1 only, newest post) =====
+// Featured hero (page 1 only, newest post).
 if ( $is_first && have_posts() ) :
 	the_post();
 	$cats        = get_the_category();
 	$primary_cat = ! empty( $cats ) ? $cats[0] : null;
 ?>
-  <section class="section section--tight">
-    <div class="container">
       <article class="blog-featured">
         <div class="blog-featured__media">
 <?php if ( has_post_thumbnail() ) : the_post_thumbnail( 'large', array( 'alt' => esc_attr( get_the_title() ) ) );
@@ -50,16 +54,10 @@ if ( $is_first && have_posts() ) :
             <span><?php the_author(); ?></span><span class="blog-card__meta-dot"></span>
             <span><?php echo esc_html( get_the_date() ); ?></span>
           </div>
-          <p style="margin-top:24px;"><a class="btn btn--primary btn--lg" href="<?php the_permalink(); ?>">Read</a></p>
         </div>
       </article>
-    </div>
-  </section>
 <?php endif; ?>
 
-  <!-- ===== Latest grid ===== -->
-  <section class="section" style="padding-top:0;">
-    <div class="container">
       <div class="blog-section-head">
         <h2 class="t-headline-lg"><?php echo $is_first ? 'Latest articles' : 'More articles'; ?></h2>
       </div>
@@ -74,6 +72,67 @@ if ( $is_first && have_posts() ) :
         <p>New insights are on the way — check back soon.</p>
       </div>
 <?php endif; ?>
+      </div><!-- /.blog-layout__main -->
+
+      <!-- RIGHT: free-resources rail (sticky promos) -->
+      <aside class="res-rail" aria-label="Free resources">
+        <div class="res-rail__header">
+          <p class="res-rail__eyebrow">Free Resources</p>
+          <h2 class="res-rail__heading">Tools to grow your business</h2>
+        </div>
+
+        <!-- 1 · AI Masterplan -->
+        <a class="res-card res-card--ai" href="https://www.theloanatlas.com/ai-originator-masterplan/">
+          <div class="res-card__shot"><img src="<?php echo esc_url( TLA_BASE ); ?>/assets/ai-masterplan-ipad.png" alt="The AI-Empowered Originator Masterplan on an iPad" /></div>
+          <div class="res-card__pad">
+            <p class="res-card__eyebrow">Close twice the loans in half the time</p>
+            <h3 class="res-card__title">The AI-Empowered Originator Masterplan</h3>
+            <p class="res-card__pitch">How the next generation of advisors close twice the loans in half the time.</p>
+            <span class="res-card__cta">Get the plan
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- 2 · 5 Scripts -->
+        <a class="res-card res-card--photo" href="https://go.theloanatlas.com/5-essential-scripts">
+          <img class="res-card__img" src="<?php echo esc_url( TLA_BASE ); ?>/assets/5-scripts-hero.png" alt="Loan officer on the phone closing a deal" />
+          <div class="res-card__pad">
+            <p class="res-card__eyebrow">Handle objections effortlessly</p>
+            <h3 class="res-card__title">5 Essential Scripts for Dominating the Point of Sale</h3>
+            <p class="res-card__pitch">Word-for-word language to win the deal at the table.</p>
+            <span class="res-card__cta">Get the scripts
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- 3 · Perfect Loan Process -->
+        <a class="res-card res-card--doc" href="https://go.theloanatlas.com/perfect-loan-process">
+          <div class="res-card__shot"><img src="<?php echo esc_url( TLA_BASE ); ?>/assets/perfect-loan-process.png" alt="The Perfect Loan Process framework pages" /></div>
+          <div class="res-card__pad">
+            <p class="res-card__eyebrow">Generate consistent referrals</p>
+            <h3 class="res-card__title">The Perfect Loan Process</h3>
+            <p class="res-card__pitch">The 72-step framework behind the most consistent, referral-generating originators.</p>
+            <span class="res-card__cta">Get the system
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+            </span>
+          </div>
+        </a>
+
+        <!-- 4 · The 360 Experience podcast -->
+        <a class="res-card res-card--podcast" href="https://www.theloanatlas.com/podcast/">
+          <img class="res-card__art" src="<?php echo esc_url( TLA_BASE ); ?>/assets/360 experience podcast.webp" alt="The 360 Experience podcast" />
+          <div class="res-card__pad">
+            <span class="res-card__btn">
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              Listen Now
+            </span>
+          </div>
+        </a>
+      </aside>
+
+     </div><!-- /.blog-layout -->
     </div>
   </section>
 

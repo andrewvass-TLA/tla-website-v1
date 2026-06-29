@@ -292,7 +292,7 @@ function tla_blog_card() {
 	$read_min    = max( 1, (int) round( $word_count / 200 ) );
 	?>
 	<article class="blog-card">
-	  <a class="blog-card__media" href="<?php the_permalink(); ?>">
+	  <div class="blog-card__media">
 	<?php
 	if ( has_post_thumbnail() ) {
 		the_post_thumbnail( 'medium_large', array( 'alt' => esc_attr( get_the_title() ) ) );
@@ -300,7 +300,7 @@ function tla_blog_card() {
 		echo '<img src="' . esc_url( TLA_BASE ) . '/assets/Loan Atlas logomark-18.png" alt="" style="object-fit:contain;background:var(--surface-container);padding:22%;" />';
 	}
 	?>
-	  </a>
+	  </div>
 	  <div class="blog-card__body">
 	<?php if ( $primary_cat ) : ?>
 	    <span class="blog-card__cat"><?php echo esc_html( $primary_cat->name ); ?></span>
