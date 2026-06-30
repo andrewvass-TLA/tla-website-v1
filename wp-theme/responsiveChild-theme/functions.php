@@ -367,3 +367,176 @@ function tla_blog_category_filter() {
 	</div>
 	<?php
 }
+
+/**
+ * Inline mid-post CTA band shortcode.
+ *
+ *   [tla_cta offer="consult"]            -> the offer's band, with its image
+ *   [tla_cta offer="consult" image="no"] -> text-only variant of that band
+ *
+ * Drop into a post body (Shortcode block, or inline in a paragraph). Styles
+ * come from .ctab-* in tla/css/blog.css. The offer copy/links/images live here
+ * so editors never hand-write markup or asset paths — change them once and
+ * every post that uses the shortcode updates. Each offer renders the matching
+ * skin from the design set (--ai / --scripts / --podcast / --join / --consult
+ * / --doc).
+ *
+ * @param array $atts  offer (required), image ("no" for the text-only form).
+ * @return string  band HTML, or empty string for an unknown offer.
+ */
+function tla_cta_shortcode( $atts ) {
+	$atts = shortcode_atts(
+		array(
+			'offer' => '',
+			'image' => 'yes',
+		),
+		$atts,
+		'tla_cta'
+	);
+
+	$key       = sanitize_key( $atts['offer'] );
+	$with_img  = ! in_array( strtolower( (string) $atts['image'] ), array( 'no', 'false', '0' ), true );
+	$assets    = get_stylesheet_directory_uri() . '/tla/assets';
+
+	// One entry per offer: skin class, copy, link, image file, alt, button icon.
+	$offers = array(
+		'ai' => array(
+			'skin'    => 'ai',
+			'eyebrow' => 'Free training',
+			'title'   => 'The AI-Empowered Originator Masterplan',
+			'pitch'   => 'See how the next generation of loan officers close twice the loans in half the time.',
+			'btn'     => 'Get the plan',
+			'url'     => 'https://www.theloanatlas.com/ai-originator-masterplan/',
+			'img'     => 'ai-masterplan-ipad.png',
+			'alt'     => 'The AI-Empowered Originator Masterplan on an iPad',
+			'icon'    => 'arrow',
+		),
+		'scripts' => array(
+			'skin'    => 'scripts',
+			'eyebrow' => 'Free download',
+			'title'   => '5 Scripts for Dominating the Point of Sale',
+			'pitch'   => "Stop losing deals because you didn't know what to say. The exact words, ready to use.",
+			'btn'     => 'Get the scripts',
+			'url'     => 'https://www.theloanatlas.com/5-scripts-for-dominating-point-of-sale/',
+			'img'     => '5-scripts-hero.png',
+			'alt'     => 'The 5 Essential Scripts guide',
+			'icon'    => 'arrow',
+		),
+		'podcast' => array(
+			'skin'    => 'podcast',
+			'eyebrow' => 'The 360 Experience podcast',
+			'title'   => 'Real conversations with the best in the business',
+			'pitch'   => 'Tactics, stories, and systems from top originators — a new episode every week.',
+			'btn'     => 'Listen now',
+			'url'     => 'https://www.theloanatlas.com/podcast/',
+			'img'     => '360 experience podcast.webp',
+			'alt'     => 'The 360 Experience podcast cover art',
+			'icon'    => 'play',
+		),
+		'join' => array(
+			'skin'    => 'join',
+			'eyebrow' => 'Membership',
+			'title'   => 'Join The Loan Atlas',
+			'pitch'   => 'Coaching, community, and the AI business system that runs your pipeline — all in one place.',
+			'btn'     => 'Become a member',
+			'url'     => '/join/',
+			'img'     => 'hero image.png',
+			'alt'     => 'Join The Loan Atlas',
+			'icon'    => 'arrow',
+		),
+		'consult' => array(
+			'skin'    => 'consult',
+			'eyebrow' => 'Free strategy call',
+			'title'   => 'Book a 1:1 consultation',
+			'pitch'   => 'A 30-minute call to pressure-test your growth plan with a Loan Atlas coach. No cost, no pitch.',
+			'btn'     => 'Book my call',
+			'url'     => '/consultation/',
+			'img'     => 'consultation-header.png',
+			'alt'     => 'Book a consultation with a Loan Atlas coach',
+			'icon'    => 'arrow',
+		),
+		'doc' => array(
+			'skin'    => 'doc',
+			'eyebrow' => 'Free system',
+			'title'   => 'The Perfect Loan Process',
+			'pitch'   => 'Create a five-star client experience on every file — the repeatable process behind the referrals.',
+			'btn'     => 'Get the system',
+			'url'     => 'https://go.theloanatlas.com/perfect-loan-process',
+			'img'     => 'perfect-loan-process.png',
+			'alt'     => 'The Perfect Loan Process system',
+			'icon'    => 'arrow',
+		),
+	);
+
+	if ( ! isset( $offers[ $key ] ) ) {
+		// Unknown offer: render nothing on the page (avoids a broken band),
+		// but leave a hint for an editor previewing in wp-admin.
+		return current_user_can( 'edit_posts' )
+			? '<!-- [tla_cta]: unknown offer "' . esc_html( $key ) . '". Use one of: ai, scripts, podcast, join, consult, doc. -->'
+			: '';
+	}
+
+	$o   = $offers[ $key ];
+	$src = esc_url( $assets . '/' . $o['img'] );
+	$alt = esc_attr( $o['alt'] );
+
+	// Button icon: arrow for most, play triangle for the podcast.
+	if ( 'play' === $o['icon'] ) {
+		$icon = '<svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 3v10l9-5z"/></svg>';
+	} else {
+		$icon = '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+	}
+
+	$eyebrow = '<p class="ctab__eyebrow">' . esc_html( $o['eyebrow'] ) . '</p>';
+	$title   = '<h3 class="ctab__title">' . esc_html( $o['title'] ) . '</h3>';
+	$pitch   = '<p class="ctab__pitch">' . esc_html( $o['pitch'] ) . '</p>';
+	$button  = '<a class="ctab-btn ctab-btn--gold" href="' . esc_url( $o['url'] ) . '">' . esc_html( $o['btn'] ) . ' ' . $icon . '</a>';
+	$img     = '<img src="' . $src . '" alt="' . $alt . '">';
+
+	// Each skin composes its parts differently (see .ctab-* in blog.css).
+	switch ( $o['skin'] ) {
+
+		case 'ai':
+			$body = '<div class="ctab__body">' . $eyebrow . $title . $pitch . $button . '</div>';
+			if ( $with_img ) {
+				return '<div class="ctab ctab--ai">' . $body . '<div class="ctab__device">' . $img . '</div></div>';
+			}
+			return '<div class="ctab ctab--ai">' . $body . '</div>';
+
+		case 'scripts':
+			$thumb = $with_img ? '<div class="ctab__thumb">' . $img . '</div>' : '';
+			return '<div class="ctab ctab--scripts">' . $thumb
+				. '<div class="ctab__body">' . $eyebrow . $title . $pitch . '</div>'
+				. $button . '</div>';
+
+		case 'podcast':
+			$cover = $with_img ? '<div class="ctab__cover">' . $img . '</div>' : '';
+			return '<div class="ctab ctab--podcast">' . $cover
+				. '<div class="ctab__body">' . $eyebrow . $title . $pitch . '</div>'
+				. $button . '</div>';
+
+		case 'join':
+			$copy = '<div class="ctab__copy">' . $eyebrow . $title . $pitch . '</div>';
+			if ( $with_img ) {
+				return '<div class="ctab ctab--join"><img class="ctab__bg" src="' . $src . '" alt="' . $alt . '">'
+					. '<div class="ctab__body">' . $copy . $button . '</div></div>';
+			}
+			return '<div class="ctab ctab--join ctab--join-flat"><div class="ctab__body">' . $copy . $button . '</div></div>';
+
+		case 'consult':
+			$body = '<div class="ctab__body">' . $eyebrow . $title . $pitch . $button . '</div>';
+			if ( $with_img ) {
+				return '<div class="ctab ctab--consult">' . $body . '<div class="ctab__photo">' . $img . '</div></div>';
+			}
+			return '<div class="ctab ctab--consult ctab--consult-flat">' . $body . '</div>';
+
+		case 'doc':
+			$shot = $with_img ? '<div class="ctab__shot">' . $img . '</div>' : '';
+			return '<div class="ctab ctab--doc">' . $shot
+				. '<div class="ctab__body">' . $eyebrow . $title . $pitch . '</div>'
+				. $button . '</div>';
+	}
+
+	return '';
+}
+add_shortcode( 'tla_cta', 'tla_cta_shortcode' );
