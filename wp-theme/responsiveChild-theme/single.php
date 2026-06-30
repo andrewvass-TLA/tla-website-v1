@@ -42,7 +42,7 @@ include get_stylesheet_directory() . '/tla/partials/blog-head.php';
     <div class="blog-post-head__inner">
 <?php $blog_url = get_permalink( get_option( 'page_for_posts' ) ) ?: home_url( '/blog/' ); ?>
       <nav class="blog-crumbs" aria-label="Breadcrumb">
-        <a href="<?php echo esc_url( $blog_url ); ?>">Articles and Resources</a>
+        <a href="<?php echo esc_url( $blog_url ); ?>">Atlas Insight</a>
 <?php if ( $primary_cat ) : ?>
         <span class="blog-crumbs__sep" aria-hidden="true">&rsaquo;</span>
         <a href="<?php echo esc_url( get_category_link( $primary_cat->term_id ) ); ?>"><?php echo esc_html( $primary_cat->name ); ?></a>

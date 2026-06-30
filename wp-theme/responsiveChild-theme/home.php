@@ -21,8 +21,8 @@ $is_first = ( 1 === $paged );
   <!-- ===== Masthead (with category filter) ===== -->
   <section class="blog-masthead">
     <div class="container blog-masthead__inner">
-      <h1><em>Articles and Resources</em> for Mortgage Originators</h1>
-<?php tla_blog_category_filter(); ?>
+      <h1>Atlas <em>Insight</em></h1>
+      <p class="blog-masthead__sub">Free articles and resources to help you start transforming your business.</p>
     </div>
   </section>
 
@@ -85,9 +85,8 @@ if ( $is_first && have_posts() ) :
         <a class="res-card res-card--ai" href="https://www.theloanatlas.com/ai-originator-masterplan/">
           <div class="res-card__shot"><img src="<?php echo esc_url( TLA_BASE ); ?>/assets/ai-masterplan-ipad.png" alt="The AI-Empowered Originator Masterplan on an iPad" /></div>
           <div class="res-card__pad">
-            <p class="res-card__eyebrow">Close twice the loans in half the time</p>
             <h3 class="res-card__title">The AI-Empowered Originator Masterplan</h3>
-            <p class="res-card__pitch">How the next generation of advisors close twice the loans in half the time.</p>
+            <p class="res-card__pitch">Learn how the next generation of loan officers are closing twice the loans in half the time.</p>
             <span class="res-card__cta">Get the plan
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </span>
@@ -98,9 +97,8 @@ if ( $is_first && have_posts() ) :
         <a class="res-card res-card--photo" href="https://www.theloanatlas.com/5-scripts-for-dominating-point-of-sale/">
           <img class="res-card__img" src="<?php echo esc_url( TLA_BASE ); ?>/assets/5-scripts-hero.png" alt="Loan officer on the phone closing a deal" />
           <div class="res-card__pad">
-            <p class="res-card__eyebrow">Handle objections effortlessly</p>
             <h3 class="res-card__title">5 Essential Scripts for Dominating the Point of Sale</h3>
-            <p class="res-card__pitch">Word-for-word language to win the deal at the table.</p>
+            <p class="res-card__pitch">Stop losing deals because you didn't know what to say.</p>
             <span class="res-card__cta">Get the scripts
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </span>
@@ -111,9 +109,8 @@ if ( $is_first && have_posts() ) :
         <a class="res-card res-card--doc" href="https://go.theloanatlas.com/perfect-loan-process">
           <div class="res-card__shot"><img src="<?php echo esc_url( TLA_BASE ); ?>/assets/perfect-loan-process.png" alt="The Perfect Loan Process framework pages" /></div>
           <div class="res-card__pad">
-            <p class="res-card__eyebrow">Generate consistent referrals</p>
             <h3 class="res-card__title">The Perfect Loan Process</h3>
-            <p class="res-card__pitch">The 72-step framework behind the most consistent, referral-generating originators.</p>
+            <p class="res-card__pitch">Create a 5-star client experience every time.</p>
             <span class="res-card__cta">Get the system
               <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </span>

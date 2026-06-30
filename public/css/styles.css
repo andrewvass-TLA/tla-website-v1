@@ -6171,7 +6171,7 @@ body.is-loaded [data-hero-step="5"] {
   --close-section-image: url('../assets/homepage-closing-cta.png');
 }
 .close-section--faculty {
-  --close-section-image: url('../assets/faculty-closing-cta.png');
+  --close-section-image: url('../assets/faculty-footer.png');
 }
 
 .close-section {

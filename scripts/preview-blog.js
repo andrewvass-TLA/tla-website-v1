@@ -56,6 +56,83 @@ const FIXTURE_POSTS = [
     excerpt: "Most originators sit on a goldmine of past clients. Here's how to systematically mine it." },
 ];
 const SAMPLE_IMG = `${TLA_BASE}/assets/TLA Blog Image.png`;
+const SAMPLE_IMG_2 = `${TLA_BASE}/assets/ai-masterplan-ipad.png`;
+
+// ---- Kitchen-sink article body: ONE of every content element the WordPress
+//      editor can emit, so single.php's .tla-article CSS can be eyeballed in
+//      full. Mirrors the_content() output (raw block HTML). Preview-only.
+const SAMPLE_ARTICLE = `
+<p>This is a standard introductory paragraph. It carries the opening idea of the
+post and shows the base <strong>body copy</strong> treatment, an
+<a href="#">inline link</a>, and how comfortably a full line measure reads inside
+the white content card. WordPress emits paragraphs exactly like this.</p>
+
+<h2 id="a-section-heading">An H2 section heading</h2>
+<p>H2 introduces a major section and is what the on-this-page table of contents is
+built from. The paragraph beneath returns to normal body rhythm.</p>
+
+<h3>An H3 subheading (gold gradient)</h3>
+<p>H3 nests under an H2 and renders as the deep-gold gradient text. Use it for the
+sub-points within a section.</p>
+
+<h4>An H4 label</h4>
+<p>H4 is the smallest heading the editor should reach for — a compact uppercase
+label above a tight block of copy.</p>
+
+<p>Below is a <strong>bulleted list</strong> for unordered points:</p>
+<ul>
+  <li>First unordered item with a brass marker.</li>
+  <li>Second item — lists wrap and indent cleanly.</li>
+  <li>Third item to show vertical rhythm between rows.</li>
+</ul>
+
+<p>And a <strong>numbered list</strong> for ordered steps:</p>
+<ol>
+  <li>First step in a sequence.</li>
+  <li>Second step, with a bold brass numeral.</li>
+  <li>Third step to close the sequence.</li>
+</ol>
+
+<blockquote><p>This is a block quote — a pulled-out, italic line for a key insight or
+a customer's words. It sits indented with a brass left rule.</p></blockquote>
+
+<div class="tla-callout"><p><strong>Callout box.</strong> A boxed aside for a tip,
+warning, or key takeaway. It uses the <code>.tla-callout</code> class — the surface
+panel with a brass left border.</p></div>
+
+<hr>
+
+<h2 id="media-examples">Media: images and video</h2>
+<p>A full-width inline image with rounded corners and a soft shadow:</p>
+<img src="${SAMPLE_IMG_2}" alt="Sample inline image">
+
+<p>The same image inside a <code>&lt;figure&gt;</code> with a caption:</p>
+<figure>
+  <img src="${SAMPLE_IMG}" alt="Sample figure image">
+  <figcaption>Figure caption — centered, muted, smaller than body copy.</figcaption>
+</figure>
+
+<p>An embedded video (YouTube oEmbed renders as this block on the live site):</p>
+<figure class="wp-block-embed wp-block-embed-youtube">
+  <div class="wp-block-embed__wrapper">
+    <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Sample embedded video" allowfullscreen loading="lazy"></iframe>
+  </div>
+  <figcaption>An embedded video keeps a responsive 16:9 frame inside the card.</figcaption>
+</figure>
+
+<hr>
+
+<h2 id="inline-formatting">Inline formatting & code</h2>
+<p>Run-of-text can carry <strong>bold</strong>, <em>italic</em>, an
+<a href="#">inline link</a>, and inline <code>code</code> snippets. A fenced code
+block looks like this:</p>
+<pre><code>function greet(name) {
+  return \`Welcome to The Loan Atlas, \${name}!\`;
+}</code></pre>
+
+<p>A closing paragraph wraps up the sample so the last-child spacing rule can be
+verified at the bottom of the article body.</p>
+`;
 
 // ---- A minimal "current post" cursor the template tags read from.
 let CURSOR = -1;
@@ -102,6 +179,18 @@ function renderTemplate(name) {
   const headIdx = src.search(/blog-head\.php/);
   if (headIdx !== -1) src = src.slice(src.indexOf('?>', headIdx) + 2);
   src = src.replace(/<\?php\s*include[^\n]*blog-foot\.php[^\n]*;\s*\?>/g, '');
+
+  // single.php sets the hero featured image via PHP ($head_class + $head_style).
+  // Reproduce that here so the preview shows the thumbnail in the dark header
+  // band (this is the block immediately before the <header> tag).
+  src = src.replace(/<\?php\s*\n?\s*\/\/ The featured image is dynamic[\s\S]*?\?>/,
+    `<?php /* preview: hero image injected below */ ?>`);
+  src = src.replace(
+    /class="blog-post-head<\?php echo \$head_class; \?>"<\?php echo \$head_style; \?>/,
+    `class="blog-post-head blog-post-head--has-image" style="--blog-hero-img: url('${SAMPLE_IMG}');"`);
+
+  // the_content() -> the kitchen-sink sample article (single.php only).
+  src = src.replace(/<\?php the_content\(\); \?>/g, SAMPLE_ARTICLE);
 
   // Featured image conditional FIRST (before the generic else/endif rules below,
   // which would otherwise eat its else-branch). Collapse to a sample image.
