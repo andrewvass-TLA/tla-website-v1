@@ -591,3 +591,129 @@ body { --blog-overlap: clamp(64px, 9vw, 132px); }
   .res-rail { flex-direction: column; }
   .res-rail .res-card { flex: 0 0 auto; }
 }
+
+/* ==========================================================================
+   INLINE MID-POST CTA BANDS (.ctab-*)
+   Drop into a post body (the_content / .tla-article). One base .ctab + six
+   per-offer skins, each with a with-image and a text-only form. Built only
+   from the shared design tokens; gradients written literally (styles.css has
+   no --gold/--band token). Buttons reuse the .ctab-btn family below.
+
+   Image src: point at a real asset, e.g.
+     <img src="/wp-content/themes/responsiveChild-theme/tla/assets/ai-masterplan-ipad.png" ...>
+   ========================================================================== */
+
+/* --- buttons --- */
+.ctab-btn {
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer;
+  font-family: var(--font-body); font-weight: 700; font-size: 0.9375rem; line-height: 1;
+  padding: 13px 24px; border-radius: var(--radius-lg); border: 1px solid transparent;
+  text-decoration: none; white-space: nowrap;
+  transition: filter 150ms ease, transform 80ms ease, background 150ms ease, color 150ms ease, border-color 150ms ease;
+}
+.ctab-btn svg { width: 16px; height: 16px; transition: transform 150ms ease; }
+.ctab-btn:hover svg { transform: translateX(3px); }
+.ctab-btn:active { transform: translateY(1px); }
+.ctab-btn--gold {
+  background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+  color: var(--primary); box-shadow: 0 6px 18px rgba(201, 150, 28, 0.26);
+}
+.ctab-btn--gold:hover { filter: brightness(1.06); }
+.ctab-btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+/* The bands live inside .tla-article, which underlines all links — undo that. */
+.tla-article .ctab-btn { text-decoration: none; }
+
+/* --- shared base --- */
+.ctab { position: relative; overflow: hidden; margin: 1.7em 0; border-radius: var(--radius-xl); }
+.ctab__eyebrow { font-family: var(--font-body); font-weight: 700; font-size: 0.6875rem; letter-spacing: 0.12em; text-transform: uppercase; margin: 0 0 7px; }
+.ctab__title { font-family: var(--font-display); font-weight: 800; font-size: 1.25rem; line-height: 1.22; letter-spacing: -0.01em; margin: 0 0 6px; text-wrap: balance; }
+.ctab__pitch { margin: 0; font-size: 0.9375rem; line-height: 1.5; }
+/* Reset .tla-article spacing so the band controls its own internals. */
+.tla-article .ctab p, .tla-article .ctab h3 { margin: 0; }
+.tla-article .ctab .ctab__eyebrow { margin: 0 0 7px; }
+.tla-article .ctab .ctab__title { margin: 0 0 6px; }
+.tla-article .ctab a { color: inherit; }
+
+/* --- 01 · AI MASTERPLAN — dark panel + framed device, right --- */
+.ctab--ai { background: linear-gradient(165deg, #122440 0%, #0c2241 55%, #0a1a30 100%); border: 1px solid rgba(201, 150, 28, 0.38); display: flex; align-items: center; gap: clamp(18px, 3vw, 32px); padding: clamp(20px, 3vw, 28px); }
+.ctab--ai::before { content: ""; position: absolute; right: 6%; top: -40%; width: 60%; height: 160%; background: radial-gradient(closest-side, rgba(82, 130, 214, 0.28), transparent 70%); pointer-events: none; }
+.ctab--ai .ctab__body { flex: 1 1 16rem; min-width: 0; position: relative; z-index: 1; }
+.ctab--ai .ctab__eyebrow { color: var(--brass-bright); }
+.ctab--ai .ctab__title { color: #fff; }
+.ctab--ai .ctab__pitch { color: rgba(255, 255, 255, 0.74); margin-bottom: 16px; }
+.ctab--ai .ctab__device { flex: 0 0 auto; width: 128px; position: relative; z-index: 1; }
+.ctab--ai .ctab__device img { width: 100%; height: auto; display: block; border-radius: 10px; filter: drop-shadow(0 14px 26px rgba(0, 0, 0, 0.5)); margin: 0; box-shadow: none; }
+
+/* --- 02 · 5 SCRIPTS — warm paper, brass top bar, thumb left --- */
+.ctab--scripts { background: linear-gradient(180deg, #fbf7ec 0%, #f7f3e6 100%); border: 1px solid rgba(201, 150, 28, 0.3); border-top: 4px solid var(--brass); display: flex; align-items: center; gap: clamp(16px, 3vw, 28px); padding: 22px clamp(20px, 3vw, 26px); }
+.ctab--scripts .ctab__thumb { flex: 0 0 auto; width: 112px; height: 88px; border-radius: var(--radius); overflow: hidden; box-shadow: 0 6px 16px rgba(2, 28, 54, 0.18); }
+.ctab--scripts .ctab__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; margin: 0; border-radius: 0; box-shadow: none; }
+.ctab--scripts .ctab__body { flex: 1 1 15rem; min-width: 0; }
+.ctab--scripts .ctab__eyebrow { color: var(--secondary); }
+.ctab--scripts .ctab__title { color: var(--on-surface); }
+.ctab--scripts .ctab__pitch { color: var(--on-surface-variant); }
+.ctab--scripts .ctab-btn { flex: 0 0 auto; }
+
+/* --- 03 · 360 PODCAST — dark gradient, circular cover, centered --- */
+.ctab--podcast { background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%); border: 1px solid rgba(201, 150, 28, 0.3); display: flex; align-items: center; gap: clamp(16px, 3vw, 26px); padding: clamp(18px, 3vw, 24px) clamp(20px, 3vw, 28px); }
+.ctab--podcast::after { content: ""; position: absolute; inset: 0; background: radial-gradient(60% 90% at 12% 50%, rgba(234, 194, 90, 0.14), transparent 60%); pointer-events: none; }
+.ctab--podcast .ctab__cover { flex: 0 0 auto; width: 84px; height: 84px; border-radius: 50%; overflow: hidden; border: 2px solid rgba(234, 194, 90, 0.6); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.45); position: relative; z-index: 1; }
+.ctab--podcast .ctab__cover img { width: 100%; height: 100%; object-fit: cover; display: block; margin: 0; border-radius: 0; box-shadow: none; }
+.ctab--podcast .ctab__body { flex: 1 1 14rem; min-width: 0; position: relative; z-index: 1; }
+.ctab--podcast .ctab__eyebrow { color: var(--brass-bright); }
+.ctab--podcast .ctab__title { color: #fff; font-size: 1.1875rem; }
+.ctab--podcast .ctab__pitch { color: rgba(255, 255, 255, 0.74); }
+.ctab--podcast .ctab-btn { flex: 0 0 auto; position: relative; z-index: 1; }
+
+/* --- 04 · JOIN — full-bleed photo + scrim --- */
+.ctab--join { border: 1px solid rgba(201, 150, 28, 0.34); min-height: 188px; display: flex; align-items: center; }
+.ctab--join .ctab__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(0.62) saturate(0.95); margin: 0; border-radius: 0; box-shadow: none; }
+.ctab--join::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, rgba(2, 12, 26, 0.95) 0%, rgba(2, 12, 26, 0.82) 42%, rgba(2, 12, 26, 0.42) 100%); }
+.ctab--join .ctab__body { position: relative; z-index: 1; padding: clamp(22px, 3vw, 30px); display: flex; align-items: center; gap: clamp(16px, 3vw, 28px); flex-wrap: wrap; width: 100%; }
+.ctab--join .ctab__copy { flex: 1 1 16rem; min-width: 0; }
+.ctab--join .ctab__eyebrow { color: var(--brass-bright); }
+.ctab--join .ctab__title { color: #fff; font-size: 1.375rem; }
+.ctab--join .ctab__pitch { color: rgba(255, 255, 255, 0.85); }
+.ctab--join .ctab-btn { flex: 0 0 auto; }
+.ctab--join.ctab--join-flat { background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%); min-height: 0; }
+.ctab--join.ctab--join-flat .ctab__body { padding: clamp(20px, 3vw, 28px); }
+
+/* --- 05 · CONSULTATION — light navy-tint, photo split right --- */
+.ctab--consult { background: linear-gradient(165deg, #eef3f9 0%, #e3edf7 100%); border: 1px solid #cdddee; display: flex; align-items: stretch; gap: 0; }
+.ctab--consult .ctab__body { flex: 1 1 0; min-width: 0; padding: clamp(20px, 3vw, 30px); display: flex; flex-direction: column; justify-content: center; }
+.ctab--consult .ctab__eyebrow { color: #1f4e79; }
+.ctab--consult .ctab__title { color: var(--primary); }
+.ctab--consult .ctab__pitch { color: #33506e; margin-bottom: 16px; }
+.ctab--consult .ctab__photo { flex: 0 0 38%; max-width: 230px; position: relative; }
+.ctab--consult .ctab__photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; margin: 0; border-radius: 0; box-shadow: none; }
+.ctab--consult .ctab-btn { align-self: flex-start; }
+.ctab--consult.ctab--consult-flat .ctab__body { padding: clamp(22px, 3vw, 30px); }
+
+/* --- 06 · PERFECT LOAN PROCESS — white document card, framed shot left --- */
+.ctab--doc { background: var(--surface-container-lowest); border: 1px solid var(--outline-variant); display: flex; align-items: center; gap: clamp(18px, 3vw, 30px); padding: clamp(18px, 3vw, 24px); box-shadow: var(--shadow); }
+.ctab--doc .ctab__shot { flex: 0 0 auto; width: 128px; padding: 12px 12px 0; background: linear-gradient(160deg, #eef2f6 0%, #f7f9fb 100%); border: 1px solid var(--outline-variant); border-radius: var(--radius); }
+.ctab--doc .ctab__shot img { width: 100%; height: auto; display: block; border-radius: 3px 3px 0 0; box-shadow: 0 8px 18px rgba(2, 28, 54, 0.16); margin: 0; }
+.ctab--doc .ctab__body { flex: 1 1 15rem; min-width: 0; }
+.ctab--doc .ctab__eyebrow { color: var(--brass); }
+.ctab--doc .ctab__title { color: var(--on-surface); }
+.ctab--doc .ctab__pitch { color: var(--on-surface-variant); }
+.ctab--doc .ctab-btn { flex: 0 0 auto; }
+
+/* --- responsive: every skin stacks --- */
+@media (max-width: 640px) {
+  .ctab--ai, .ctab--scripts, .ctab--podcast, .ctab--doc { flex-direction: column; align-items: stretch; text-align: left; }
+  .ctab--ai .ctab__device { width: 140px; align-self: center; order: -1; }
+  .ctab--scripts .ctab__thumb { width: 100%; height: 150px; }
+  .ctab--podcast { text-align: center; }
+  .ctab--podcast .ctab__cover { align-self: center; }
+  .ctab--podcast .ctab__body { text-align: center; }
+  .ctab--doc .ctab__shot { width: 150px; align-self: center; }
+  .ctab--consult { flex-direction: column; }
+  .ctab--consult .ctab__photo { flex: 0 0 150px; max-width: none; height: 150px; order: -1; }
+  .ctab--consult .ctab__photo img { position: static; height: 150px; }
+  .ctab--join .ctab__body { flex-direction: column; align-items: flex-start; }
+  .ctab .ctab-btn { justify-content: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ctab-btn, .ctab-btn svg { transition: none; }
+}
