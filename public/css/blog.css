@@ -197,18 +197,19 @@ body { --blog-overlap: clamp(64px, 9vw, 132px); }
   padding-block: calc(var(--header-h) + clamp(28px, 4vw, 56px)) calc(var(--blog-overlap) + clamp(28px, 4vw, 48px));
   position: relative; overflow: hidden;
 }
-/* Featured-image layer + left→right fade. single.php sets --blog-hero-img inline
-   and adds --has-image only when the post has a featured image; the fade caps at
-   0.5 so the image stays subtly veiled (never fully exposed). */
+/* Featured-image layer (vertically centered) + left→right fade. single.php sets
+   --blog-hero-img inline and adds --has-image only when the post has a featured
+   image; the fade stays heavily opaque (caps at 0.8) so the image is a subtle,
+   well-veiled accent at the right edge — never a competing visual. */
 .blog-post-head--has-image {
   background:
     linear-gradient(to right,
       rgba(2, 28, 54, 1)    0%,
-      rgba(2, 28, 54, 0.99) 22%,
-      rgba(2, 28, 54, 0.9)  42%,
-      rgba(2, 28, 54, 0.7)  68%,
-      rgba(2, 28, 54, 0.5)  100%),
-    var(--blog-hero-img) right top / cover no-repeat,
+      rgba(2, 28, 54, 1)    30%,
+      rgba(2, 28, 54, 0.97) 52%,
+      rgba(2, 28, 54, 0.9)  74%,
+      rgba(2, 28, 54, 0.8)  100%),
+    var(--blog-hero-img) right center / cover no-repeat,
     linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
 }
 /* On small screens the image behind the text hurts legibility — flat navy. */
@@ -314,6 +315,12 @@ body { --blog-overlap: clamp(64px, 9vw, 132px); }
   background: linear-gradient(135deg, #a87a16 0%, #c9961c 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
 }
+/* H4 — small bold uppercase label, the lowest level the editor should reach. */
+.tla-article h4 {
+  font-family: var(--font-body); font-size: 0.8125rem; line-height: 1.4;
+  font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--on-surface-variant); margin: 1.6em 0 0.5em; scroll-margin-top: 88px;
+}
 .tla-article a { color: var(--brass); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
 .tla-article a:hover { color: var(--secondary); }
 .tla-article strong { font-weight: 700; color: var(--on-surface); }
@@ -348,6 +355,22 @@ body { --blog-overlap: clamp(64px, 9vw, 132px); }
 /* WordPress aligned/captioned images from the editor */
 .tla-article .aligncenter { margin-left: auto; margin-right: auto; }
 .tla-article .wp-caption-text { font-size: 0.875rem; color: var(--on-surface-variant); text-align: center; margin-top: 10px; }
+/* Embedded video (YouTube/Vimeo oEmbed -> .wp-block-embed, or a raw iframe).
+   Force a responsive 16:9 frame so the player never overflows the card. */
+.tla-article .wp-block-embed,
+.tla-article figure.wp-block-embed { margin: 1.6em 0; }
+.tla-article .wp-block-embed__wrapper,
+.tla-article .tla-video {
+  position: relative; width: 100%; aspect-ratio: 16 / 9;
+  border-radius: var(--radius-xl); overflow: hidden; box-shadow: var(--shadow);
+}
+.tla-article .wp-block-embed__wrapper > iframe,
+.tla-article .tla-video > iframe,
+.tla-article video {
+  position: absolute; inset: 0; width: 100%; height: 100%; border: 0;
+}
+.tla-article video { position: static; border-radius: var(--radius-xl); box-shadow: var(--shadow); margin: 1.6em 0; aspect-ratio: 16 / 9; }
+.tla-article .wp-block-embed figcaption { font-size: 0.875rem; color: var(--on-surface-variant); text-align: center; margin-top: 10px; }
 
 /* In-card footer: tags + share */
 .blog-post-foot { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between; border-top: 1px solid var(--outline-variant); margin-top: 36px; padding-top: 28px; }
