@@ -1,49 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+/**
+ * Body partial for /5-scripts-for-dominating-point-of-sale/ (TLA Full HTML template).
+ * Generated from public/5-scripts.html by scripts/convert-pages.sh — do not hand-edit;
+ * edit the source HTML (or the shared header/footer partials) and re-run.
+ */
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>5 Essential Scripts for Dominating the Point of Sale | Free Download from The Loan Atlas</title>
-  <meta name="description"
-    content="Free word-for-word scripts for the 5 objections that kill mortgage deals at the point of sale — rate shopping, rate-drop fear, market timing, the stall, and Rocket/Zillow — plus the coaching notes that make them work." />
-
-  <!-- Open Graph / Facebook / LinkedIn / iMessage / Slack -->
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.theloanatlas.com/5-scripts/" />
-  <meta property="og:title"
-    content="5 Essential Scripts for Dominating the Point of Sale | The Loan Atlas" />
-  <meta property="og:description"
-    content="Calm, structured responses that keep you leading the conversation the moment a borrower asks about rate. Get the free scripts — word-for-word, with coaching notes." />
-  <!-- TODO: swap for a dedicated 5-scripts OG card (1200x630) when available -->
-  <meta property="og:image" content="https://www.theloanatlas.com/assets/tla-og-card.png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:site_name" content="The Loan Atlas" />
-
-  <!-- Twitter / X -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:url" content="https://www.theloanatlas.com/5-scripts/" />
-  <meta name="twitter:title"
-    content="5 Essential Scripts for Dominating the Point of Sale | The Loan Atlas" />
-  <meta name="twitter:description"
-    content="Calm, structured responses that keep you leading the conversation the moment a borrower asks about rate. Get the free scripts — word-for-word, with coaching notes." />
-  <meta name="twitter:image" content="https://www.theloanatlas.com/assets/tla-og-card.png" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Antonio:wght@400;500;600;700&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css?v=3" />
-  <link rel="stylesheet" href="css/chrome.css?v=3" />
-
-  <!-- ════════════════════════════════════════════════════════════════════════
-       5-SCRIPTS LANDING — page-scoped fresh design (.s5-*)
-       A standalone lead-magnet landing. Keeps only the brand palette
-       (Midnight Slate + brass), Manrope/Inter, and the logo. Layout, components,
-       and motion are bespoke to this page and live here inline (the established
-       pattern for fresh landings). Everything is scoped under <main class="s5">.
-       ════════════════════════════════════════════════════════════════════════ -->
+$tla_title       = '5 Essential Scripts for Dominating the Point of Sale | Free Download from The Loan Atlas';
+$tla_description = 'Free word-for-word scripts for the 5 objections that kill mortgage deals at the point of sale — rate shopping, rate-drop fear, market timing, the stall, and Rocket/Zillow — plus the coaching notes that make them work.';
+$tla_active      = '';
+?>
   <style>
     .s5 {
       --s5-navy: #021c36;
@@ -649,7 +615,7 @@
       z-index: -2;
       background:
         linear-gradient(105deg, rgba(2, 14, 30, 0.97) 0%, rgba(2, 28, 54, 0.93) 50%, rgba(6, 14, 28, 0.95) 100%),
-        url("assets/sales-scripting-gpt-screenshot.png");
+        url("<?php echo TLA_BASE; ?>/assets/sales-scripting-gpt-screenshot.png");
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -850,11 +816,9 @@
       .s5 .s5-card, .s5 .s5-cta { transition: none; }
     }
   </style>
-</head>
 
-<body>
 
-<!-- TLA_HEADER -->
+<?php include get_stylesheet_directory() . '/tla/partials/header.php'; ?>
 
   <main class="site-main s5">
 
@@ -863,11 +827,11 @@
       <!-- Background photo: white on the left half, image filling the right half of the
            band (full-bleed to the right edge), so it sits halfway behind the form card. -->
       <div class="s5-hero__bgphoto" aria-hidden="true"
-        style="background-image: url('assets/5-scripts-hero.png');"></div>
+        style="background-image: url('<?php echo TLA_BASE; ?>/assets/5-scripts-hero.png');"></div>
       <div class="s5-wrap s5-hero__grid">
         <div class="s5-hero__copy" data-s5-reveal>
           <p class="s5-hero__eyebrow">
-            <img class="s5-hero__eyebrow-logo" src="assets/Loan Atlas logo-color.png"
+            <img class="s5-hero__eyebrow-logo" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logo-color.png"
               alt="The Loan Atlas" height="40" />
             <span class="s5-hero__eyebrow-rule" aria-hidden="true"></span>
             Free Sales Scripts
@@ -1022,7 +986,7 @@
           <div class="s5-inside__stage" data-s5-reveal aria-label="The 5 objections these scripts answer">
             <div class="s5-inside__frame">
               <div class="s5-inside__glow" aria-hidden="true"></div>
-              <img class="s5-inside__photo" src="assets/5-scripts-hero.png"
+              <img class="s5-inside__photo" src="<?php echo TLA_BASE; ?>/assets/5-scripts-hero.png"
                 alt="A loan officer on the phone with a client" loading="lazy"
                 width="720" height="540" />
             </div>
@@ -1071,7 +1035,7 @@
             </div>
             <!-- 2 · coach -->
             <div class="s5-coach__turn s5-coach__turn--bot" data-s5-step="1">
-              <span class="s5-coach__avatar"><img src="assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" /></span>
+              <span class="s5-coach__avatar"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" /></span>
               <div class="s5-coach__msg s5-coach__msg--bot">
                 What are you currently saying (if anything) when you ask for referrals after closing? And are you making that ask on a call, text, email — or a mix?
               </div>
@@ -1085,7 +1049,7 @@
             </div>
             <!-- 4 · coach (the script) -->
             <div class="s5-coach__turn s5-coach__turn--bot" data-s5-step="3">
-              <span class="s5-coach__avatar"><img src="assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" /></span>
+              <span class="s5-coach__avatar"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" /></span>
               <div class="s5-coach__msg s5-coach__msg--bot">
                 Got it — this is about earning the right to ask through the experience, then confidently claiming the next step with a clear call to action. Try this: <em>&ldquo;It's been a pleasure getting this done for you. Most of my business comes from people like you — so if a friend or coworker mentions buying or refinancing, would you feel comfortable connecting us?&rdquo;</em>
               </div>
@@ -1146,10 +1110,8 @@
 
   </main>
 
-<!-- TLA_FOOTER -->
+<?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>
 
-  <script src="js/nav.js?v=3"></script>
-  <script src="js/animations.js?v=3" defer></script>
   <!-- LeadConnector form embed runtime (resizes the iframe form) -->
   <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
 
@@ -1240,6 +1202,3 @@
 
     })();
   </script>
-</body>
-
-</html>
