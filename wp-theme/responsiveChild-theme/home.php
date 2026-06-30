@@ -95,7 +95,7 @@ if ( $is_first && have_posts() ) :
         </a>
 
         <!-- 2 · 5 Scripts -->
-        <a class="res-card res-card--photo" href="https://go.theloanatlas.com/5-essential-scripts">
+        <a class="res-card res-card--photo" href="https://www.theloanatlas.com/5-scripts-for-dominating-point-of-sale/">
           <img class="res-card__img" src="<?php echo esc_url( TLA_BASE ); ?>/assets/5-scripts-hero.png" alt="Loan officer on the phone closing a deal" />
           <div class="res-card__pad">
             <p class="res-card__eyebrow">Handle objections effortlessly</p>

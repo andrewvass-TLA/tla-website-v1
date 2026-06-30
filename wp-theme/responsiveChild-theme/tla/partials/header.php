@@ -41,7 +41,7 @@ $tla_is = function ( $key ) use ( $tla_active ) {
           <div class="nav__dropdown-menu" role="menu">
             <a class="nav__dropdown-item" href="https://www.theloanatlas.com/blog/" role="menuitem">Blog</a>
             <a class="nav__dropdown-item" href="https://go.theloanatlas.com/perfect-loan-process" target="_blank" rel="noopener" role="menuitem">Perfect Loan Process</a>
-            <a class="nav__dropdown-item" href="https://go.theloanatlas.com/5-essential-scripts" target="_blank" rel="noopener" role="menuitem">Success Scripts</a>
+            <a class="nav__dropdown-item" href="https://www.theloanatlas.com/5-scripts-for-dominating-point-of-sale/" role="menuitem">Sales Scripts</a>
             <a class="nav__dropdown-item" href="https://go.theloanatlas.com/refinance-masterplan" target="_blank" rel="noopener" role="menuitem">Refinance Masterplan</a>
             <a class="nav__dropdown-item" href="https://www.theloanatlas.com/ai-originator-masterplan/" role="menuitem">AI-Empowered Originator Masterplan</a>
             <a class="nav__dropdown-item" href="https://www.theloanatlas.com/podcast-revamp/" target="_blank" rel="noopener" role="menuitem">The 360 Experience</a>
@@ -68,7 +68,7 @@ $tla_is = function ( $key ) use ( $tla_active ) {
       <p class="mobile-nav__group-label">Resources</p>
       <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/blog/">Blog</a>
       <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/perfect-loan-process" target="_blank" rel="noopener">Perfect Loan Process</a>
-      <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/5-essential-scripts" target="_blank" rel="noopener">Success Scripts</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/5-scripts-for-dominating-point-of-sale/">Sales Scripts</a>
       <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/refinance-masterplan" target="_blank" rel="noopener">Refinance Masterplan</a>
       <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/ai-originator-masterplan/">AI-Empowered Originator Masterplan</a>
       <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/podcast-revamp/" target="_blank" rel="noopener">The 360 Experience</a>

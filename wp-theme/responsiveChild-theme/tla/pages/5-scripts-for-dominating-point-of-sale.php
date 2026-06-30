@@ -619,8 +619,8 @@ $tla_active      = '';
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-      filter: blur(8px);
-      transform: scale(1.06);
+      filter: blur(3px);
+      transform: scale(1.03);
       pointer-events: none;
     }
     /* brass glow accent over the overlay */
