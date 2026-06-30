@@ -29,9 +29,12 @@ npm run shoot     # Playwright screenshots (run `npm run shoot:install` once fir
 
 - **Source of truth is `public/`** — `public/*.html`, `public/css/`, `public/js/`,
   `public/assets/`.
-- **The only files you hand-edit under `wp-theme/`** are the shared
-  `…/tla/partials/header.php` and `footer.php`. Each page's `<header>`/`<footer>` is a
-  `<!-- TLA_HEADER -->` placeholder the build swaps for these partials.
+- **Files you hand-edit under `wp-theme/` (NOT generated from `public/`):** the shared
+  `…/tla/partials/header.php` and `footer.php` (each page's `<header>`/`<footer>` is a
+  `<!-- TLA_HEADER -->` placeholder the build swaps for these), **and the live blog**
+  (see the ⚠️ note below) — `wp-theme/responsiveChild-theme/home.php` +
+  `…/tla/partials/blog-head.php`/`blog-foot.php` + the `tla_blog_*` helpers in
+  `functions.php`.
 - **The preview IS the test.** Judge a change from `wp-theme/_preview-<slug>.html` (it
   renders the exact files that deploy). A raw `public/*.html` opened directly will be
   missing the nav/footer — don't judge from it.
@@ -44,12 +47,23 @@ npm run shoot     # Playwright screenshots (run `npm run shoot:install` once fir
 
 ## Architecture
 
-**Pages:** 21 live `.html` pages in `public/`, each standalone. They fall into five
-design families (see DESIGN.md): house style (`index`, `pricing`, `sales-individual`,
+**Pages:** ~20 live `.html` pages in `public/`, each standalone. They fall into four
+`public/` design families (see DESIGN.md; the blog is separate — see below): house style (`index`, `pricing`, `sales-individual`,
 `events`, `contact`), dark-hero/enterprise (`faculty`, `consultation*`, `corporate`,
 `whats-inside`), fresh standalone landings (`ai-originator-masterplan`, `5-scripts`,
-`mastermind`, `platinum-marketing`), blog (`blog`, `blog-archive`, `blog-post`), and
+`mastermind`, `platinum-marketing`), and
 legal/utility (`privacy-policy`, `terms-of-use`, `end-user-agreement`).
+
+> ⚠️ **The blog is NOT a `public/` page — it's the #1 thing that trips people up.**
+> `public/blog.html` (also `blog-archive.html`, `blog-post.html`) is a **static mockup
+> only** — editing it changes nothing on the live site, and `convert-pages.sh` does
+> **not** build it. The live `/blog/` is WordPress's native posts index, rendered by
+> `wp-theme/responsiveChild-theme/home.php` (markup) + `…/tla/partials/blog-head.php`
+> (CSS) + `…/blog-foot.php` (scripts) + `tla_blog_*` helpers in `functions.php`. Single
+> posts = `single.php`, category archives = `archive.php`. To change the live blog you
+> **hand-edit those `wp-theme/` files directly** (no `public/` source, no build step);
+> port any mockup change INTO them. `_preview-blog*.html` previews the mockup, not the
+> live page.
 
 `hero-mockup*.html` and `patterns.html` are experiments/reference — **not live**.
 
