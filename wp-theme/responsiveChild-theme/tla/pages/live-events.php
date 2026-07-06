@@ -495,19 +495,6 @@ $tla_active      = 'events';
         <div class="ev-grid" data-reveal-stagger="80">
 
           <article class="ev-card">
-            <div class="ev-card__media"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Caleb-Legrand-0701.png" alt="Office Hours with Caleb Legrand" loading="lazy" /></div>
-            <div class="ev-card__body">
-              <div class="ev-card__date">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Jul 1, 2026 · 11:00 AM PT
-              </div>
-              <h3 class="ev-card__title">Office Hours with Caleb Legrand</h3>
-              <p class="ev-card__desc">Join this session with Caleb LeGrand, whose niche / specialty is in the area of Perfect Loan Process, Systems of Selling, Builder Business and Team Building.</p>
-              <div class="ev-card__foot"><button type="button" class="ev-card__join" data-ev-modal>Get Access</button></div>
-            </div>
-          </article>
-
-          <article class="ev-card">
             <div class="ev-card__media"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Mark-Robertson-0708.png" alt="Office Hours with Mark Robertson" loading="lazy" /></div>
             <div class="ev-card__body">
               <div class="ev-card__date">

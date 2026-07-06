@@ -497,7 +497,9 @@ function tla_cta_shortcode( $atts ) {
 	switch ( $o['skin'] ) {
 
 		case 'ai':
-			$body = '<div class="ctab__body">' . $eyebrow . $title . $pitch . $button . '</div>';
+			// AI band intentionally omits the eyebrow (title leads). The
+			// 'eyebrow' value stays in $offers above so it's easy to restore.
+			$body = '<div class="ctab__body">' . $title . $pitch . $button . '</div>';
 			if ( $with_img ) {
 				return '<div class="ctab ctab--ai">' . $body . '<div class="ctab__device">' . $img . '</div></div>';
 			}
