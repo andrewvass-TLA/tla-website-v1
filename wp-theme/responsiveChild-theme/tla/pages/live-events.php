@@ -587,7 +587,7 @@ $tla_active      = 'events';
         <div class="ev-library" data-reveal-stagger="90">
 
           <!-- Whole card is clickable → replay detail page -->
-          <a class="ev-pastcard" href="/live-events/replay-winning-the-ai-game/">
+          <a class="ev-pastcard" href="/winning-the-ai-game/">
             <div class="ev-pastcard__media">
               <img src="<?php echo TLA_BASE; ?>/assets/live-events/past-events/Masterclass-Winning-AI-Game-0709-16x9.jpg" alt="" loading="lazy" />
             </div>

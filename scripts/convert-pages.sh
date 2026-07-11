@@ -130,8 +130,7 @@ rewrite() {
   perl -0pi -e 's/href="events\.html"/href="\/live-events\/"/g'           "$f"
   perl -0pi -e 's/href="event-detail\.html"/href="\/event-detail\/"/g'    "$f"
   perl -0pi -e 's/href="office-hours-caleb-legrand\.html"/href="\/office-hours-caleb-legrand\/"/g' "$f"
-  # replay pages are WP children of live-events, so their public URL is nested
-  perl -0pi -e 's/href="replay-winning-the-ai-game\.html"/href="\/live-events\/replay-winning-the-ai-game\/"/g' "$f"
+  perl -0pi -e 's/href="replay-winning-the-ai-game\.html"/href="\/winning-the-ai-game\/"/g' "$f"
   perl -0pi -e 's/href="mastermind\.html"/href="\/join-mastermind-2026\/"/g'   "$f"
   perl -0pi -e 's/href="privacy-policy\.html"/href="\/privacy-policy\/"/g'      "$f"
   perl -0pi -e 's/href="terms-of-use\.html"/href="\/terms-of-use\/"/g'          "$f"
@@ -153,7 +152,7 @@ convert consultation            consultation                  ""
 convert events                  live-events                   events
 convert event-detail            event-detail                  ""
 convert office-hours-caleb-legrand office-hours-caleb-legrand  ""
-convert replay-winning-the-ai-game replay-winning-the-ai-game  ""
+convert replay-winning-the-ai-game winning-the-ai-game        ""
 convert mastermind              join-mastermind-2026          ""
 convert consultation-corporate  enterprise-consultation       ""
 convert consultation-mastermind consultation-mastermind-2026  ""

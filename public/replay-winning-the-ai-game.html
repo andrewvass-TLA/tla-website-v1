@@ -58,6 +58,11 @@
     /* Bottom CTA — centered below the Taught By section */
     .oh-cta-foot { display: flex; justify-content: center; }
 
+    /* Full-width watch CTA (gold .tlc-btn, stretched) — under the title
+       and again at the bottom of the card */
+    .oh-watch-btn { width: 100%; font-size: 1.125rem; padding-block: 16px; }
+    .oh-header .oh-watch-btn { margin-top: clamp(22px, 2.8vw, 32px); }
+
     .oh-title {
       font-family: var(--font-display);
       font-size: clamp(2rem, 1.4rem + 2.4vw, 2.875rem);
@@ -199,6 +204,20 @@
     .oh-or::before, .oh-or::after {
       content: ""; flex: 1; height: 1px; background: var(--outline-variant);
     }
+
+    /* Booking card header — restyled to match the navy slab above it:
+       navy gradient cap with the 4px gold gradient line (vs. the shared
+       component's solid gold cap). Scoped to the sidebar only. */
+    .oh-side .tlc-split__cap {
+      position: relative;
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      padding-top: 19px;
+    }
+    .oh-side .tlc-split__cap::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+    }
+    .oh-side .tlc-split__cap-title { color: #fff; }
 
     /* Booking calendar embed — mirrors consultation.html .booking-card__iframe.
        Bleeds to the card edges below the A2 split body's intro copy. */
@@ -371,15 +390,8 @@
                 </span>
               </div>
               <h1 class="oh-title">Winning the AI Game: How Top Loan Originators Are Using AI to Gain Massive Leverage</h1>
+              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch This Masterclass</button>
             </div>
-
-            <!-- Pull-quote — shared testimonial block (no gold mark; inline quotes instead) -->
-            <figure class="quote-card" data-reveal="up">
-              <blockquote class="quote-card__quote">&ldquo;There&rsquo;s been a mental shift from &lsquo;AI is going to put me out of business&rsquo; to &lsquo;I&rsquo;m going to use AI to put other originators that aren&rsquo;t using AI out of business.&rsquo;&rdquo;</blockquote>
-              <figcaption class="quote-card__attr">
-                <div class="quote-card__name">Josh Mettle</div>
-              </figcaption>
-            </figure>
 
             <!-- About this masterclass -->
             <section data-reveal="up">
@@ -400,6 +412,14 @@
                 <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Where your production is leaking right now, and how to identify your next strategic move on the AI maturity ladder</span></li>
               </ul>
             </section>
+
+            <!-- Pull-quote — shared testimonial block (no gold mark; inline quotes instead) -->
+            <figure class="quote-card" data-reveal="up">
+              <blockquote class="quote-card__quote">&ldquo;There&rsquo;s been a mental shift from &lsquo;AI is going to put me out of business&rsquo; to &lsquo;I&rsquo;m going to use AI to put other originators that aren&rsquo;t using AI out of business.&rsquo;&rdquo;</blockquote>
+              <figcaption class="quote-card__attr">
+                <div class="quote-card__name">Josh Mettle</div>
+              </figcaption>
+            </figure>
 
             <!-- Taught by -->
             <section data-reveal="up">
@@ -442,7 +462,7 @@
 
             <!-- Bottom CTA — opens the access modal -->
             <div class="oh-cta-foot" data-reveal="up">
-              <button type="button" class="btn btn--gold btn--xl" data-ev-modal>Watch This Masterclass</button>
+              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch This Masterclass</button>
             </div>
 
           </div>
@@ -483,7 +503,7 @@
             <!-- Card 2 — Free coaching session — A2 Gold-Header Split (.tlc-split) -->
             <div class="tlc-split">
               <div class="tlc-split__cap">
-                <h3 class="tlc-split__cap-title">Book a Free Coaching Session</h3>
+                <h3 class="tlc-split__cap-title">Schedule Your Free Business Assessment</h3>
               </div>
               <div class="tlc-split__body" style="padding-bottom:0;">
                 <p style="margin-bottom:14px;">Get a tour of The Loan Atlas and walk away with a clear read on what's actually holding your production back and what you can do to fix it.</p>
