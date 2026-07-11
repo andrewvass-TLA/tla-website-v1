@@ -458,24 +458,24 @@ $tla_active      = 'events';
           <div class="ev-feature-card__grid">
             <!-- Square thumbnail -->
             <div class="ev-feature-card__media">
-              <img src="<?php echo TLA_BASE; ?>/assets/live-events/Masterclass-Massive-Leverage-0709-1x1.png" alt="Winning the AI Game masterclass — Highway + The Loan Atlas" loading="eager" />
+              <img src="<?php echo TLA_BASE; ?>/assets/live-events/Masterclass-2026-Playbook-0716.png" alt="2026 Mid-Year Playbook masterclass — The Loan Atlas" loading="eager" />
             </div>
 
             <!-- Copy -->
             <div class="ev-feature-card__copy">
               <span class="ev-tag ev-tag--on-dark ev-tag--masterclass">Next Live Masterclass</span>
-              <h1 id="ev-featured-heading" class="ev-feature-card__title">Winning the AI Game: How Top Loan Originators Are Using AI to Gain Massive Leverage</h1>
+              <h1 id="ev-featured-heading" class="ev-feature-card__title">2026 Mid-Year Playbook: What Top Producers Are Doing Now</h1>
               <div class="ev-feature-card__meta">
                 <span class="ev-feature-card__meta-item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                  Thursday, July 9, 2026
+                  Thursday, July 16, 2026
                 </span>
                 <span class="ev-feature-card__meta-item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg>
                   2:00 PM PT
                 </span>
               </div>
-              <p class="ev-feature-card__desc">Top producers in 2026 aren't using AI for the occasional task — they're building their businesses around it. In this exclusive webinar, Highway + The Loan Atlas show you the systems they use to turn conversations and follow-up into a consistent execution system — and the mindset shift that makes it stick.</p>
+              <p class="ev-feature-card__desc">Top-producing Loan Atlas faculty members will share what they are doubling down on, what they have stopped doing, and what they believe loan officers need to focus on for the second half of the year.</p>
               <button type="button" class="btn btn--gold btn--xl" data-ev-modal>JOIN THIS MASTERCLASS</button>
             </div>
           </div>
@@ -495,19 +495,6 @@ $tla_active      = 'events';
         <div class="ev-grid" data-reveal-stagger="80">
 
           <article class="ev-card">
-            <div class="ev-card__media"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Mark-Robertson-0708.png" alt="Office Hours with Mark Robertson" loading="lazy" /></div>
-            <div class="ev-card__body">
-              <div class="ev-card__date">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Jul 8, 2026 · 11:00 AM PT
-              </div>
-              <h3 class="ev-card__title">Office Hours with Mark Robertson</h3>
-              <p class="ev-card__desc">Join this session with Mark Robertson, whose niche / specialty is in the area of Leadership, Team Building and Realtor Business Development.</p>
-              <div class="ev-card__foot"><button type="button" class="ev-card__join" data-ev-modal>Get Access</button></div>
-            </div>
-          </article>
-
-          <article class="ev-card">
             <div class="ev-card__media"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Kelly-Marsh-0715.png" alt="Office Hours with Kelly Marsh" loading="lazy" /></div>
             <div class="ev-card__body">
               <div class="ev-card__date">
@@ -516,19 +503,6 @@ $tla_active      = 'events';
               </div>
               <h3 class="ev-card__title">Office Hours with Kelly Marsh</h3>
               <p class="ev-card__desc">Join this session with Kelly Marsh, whose niche / specialty is in the area of Database Nurturing and Management, Leadership, Mindset and Personal Development.</p>
-              <div class="ev-card__foot"><button type="button" class="ev-card__join" data-ev-modal>Get Access</button></div>
-            </div>
-          </article>
-
-          <article class="ev-card">
-            <div class="ev-card__media"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Masterclass-2026-Playbook-0716.png" alt="The 2026 Playbook Masterclass" loading="lazy" /></div>
-            <div class="ev-card__body">
-              <div class="ev-card__date">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Jul 16, 2026 · 2:00 PM PT
-              </div>
-              <h3 class="ev-card__title">2026 Mid-Year Playbook: What Top Producers Are Doing Now</h3>
-              <p class="ev-card__desc">Top-producing Loan Atlas faculty members will share what they are doubling down on, what they have stopped doing, and what they believe loan officers need to focus on for the second half of the year.</p>
               <div class="ev-card__foot"><button type="button" class="ev-card__join" data-ev-modal>Get Access</button></div>
             </div>
           </article>
@@ -612,7 +586,24 @@ $tla_active      = 'events';
 
         <div class="ev-library" data-reveal-stagger="90">
 
-          <!-- Whole card is clickable → stub detail page (event-detail.html) -->
+          <!-- Whole card is clickable → replay detail page -->
+          <a class="ev-pastcard" href="/live-events/replay-winning-the-ai-game/">
+            <div class="ev-pastcard__media">
+              <img src="<?php echo TLA_BASE; ?>/assets/live-events/past-events/Masterclass-Winning-AI-Game-0709-16x9.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="ev-pastcard__body">
+              <span class="ev-pastcard__recorded">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Recorded on Jul 9, 2026
+              </span>
+              <h3 class="ev-pastcard__title">Winning the AI Game: How Top Loan Originators Are Using AI to Gain Massive Leverage</h3>
+              <p class="ev-pastcard__desc">Top producers in 2026 aren't using AI for the occasional task — they're building their businesses around it. In this exclusive webinar, Highway + The Loan Atlas share the systems they use to turn conversations and follow-up into a consistent execution system — and the mindset shift that makes it stick.</p>
+              <div class="ev-pastcard__foot">
+                <span class="ev-pastcard__watch">Access the Replay <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+              </div>
+            </div>
+          </a>
+
           <a class="ev-pastcard" href="#" data-ev-modal>
             <div class="ev-pastcard__media">
               <img src="<?php echo TLA_BASE; ?>/assets/live-events/past-events/Masterclass-Fuel-Your-Fire-0611-16x9.jpg" alt="" loading="lazy" />
@@ -704,7 +695,7 @@ $tla_active      = 'events';
             <img src="<?php echo TLA_BASE; ?>/assets/live-events/Masterclass-2026-Playbook-0716.png" alt="" loading="lazy" />
             <img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Kelly-Marsh-0715.png" alt="" loading="lazy" />
             <img src="<?php echo TLA_BASE; ?>/assets/live-events/Talk-to-Tim-0731.png" alt="" loading="lazy" />
-            <img src="<?php echo TLA_BASE; ?>/assets/live-events/Masterclass-Massive-Leverage-0709-1x1.png" alt="" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/live-events/Masterclass-Mortgage-Success-Plan-0723.png" alt="" loading="lazy" />
           </div>
         </div>
         <div class="ev-modal__head-in">
