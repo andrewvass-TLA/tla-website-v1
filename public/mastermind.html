@@ -88,81 +88,6 @@
       box-shadow: 0 10px 32px rgba(201, 150, 28, 0.34);
     }
 
-    /* ── Countdown timer ───────────────────────────────────────────────────── */
-    .mm-countdown {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      /* Bottom margin gives the timer space before the dashboard graphic below. */
-      margin: var(--space-md) auto var(--space-xl);
-    }
-    /* Label + expires grouped above the clock */
-    .mm-countdown__text {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 6px;
-    }
-    .mm-countdown__label {
-      font-family: var(--font-display);
-      font-size: clamp(1.375rem, 1.1rem + 1.1vw, 1.75rem);
-      font-weight: 800;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      line-height: 1.1;
-      color: var(--brass);
-    }
-    .mm-countdown__expires {
-      font-family: var(--font-body);
-      font-size: 0.9375rem;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      color: var(--on-surface-variant);
-    }
-    .mm-countdown__clock {
-      display: inline-flex;
-      align-items: flex-start;
-      gap: clamp(8px, 1.4vw, 16px);
-    }
-    .mm-countdown__unit {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      min-width: clamp(56px, 7vw, 76px);
-      padding: clamp(8px, 1vw, 12px) clamp(6px, 1vw, 10px);
-      background: linear-gradient(135deg, #0a1628 0%, #021c36 100%);
-      border: 1px solid rgba(234, 194, 90, 0.4);
-      border-radius: var(--radius-xl);
-      box-shadow: inset 0 0 0 1px rgba(234, 194, 90, 0.1);
-    }
-    .mm-countdown__num {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
-      line-height: 1;
-      letter-spacing: -0.02em;
-      color: #ffffff;
-      font-variant-numeric: tabular-nums;
-    }
-    .mm-countdown__unit-label {
-      font-family: var(--font-body);
-      font-size: 0.625rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.62);
-    }
-    .mm-countdown.is-ended .mm-countdown__clock { display: none; }
-    .mm-countdown__ended {
-      display: none;
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1.125rem;
-      color: #ffffff;
-    }
-    .mm-countdown.is-ended .mm-countdown__ended { display: block; }
     /* Hero standout offer line — large brass headline above the primary CTA. */
     .mm-hero-offer {
       margin: var(--space-md) auto 0;
@@ -2003,19 +1928,6 @@
           <div class="lp-intro__actions" data-hero-step="4">
             <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Start Your Transformation</a>
           </div>
-          <div class="mm-countdown" data-hero-step="4" data-countdown="2026-07-12T23:59:59" role="timer" aria-label="Time remaining until the offer ends">
-            <div class="mm-countdown__text">
-              <span class="mm-countdown__label">Limited Time Offer</span>
-              <span class="mm-countdown__expires">Expires Sunday, July&nbsp;12th</span>
-            </div>
-            <div class="mm-countdown__clock" aria-hidden="false">
-              <div class="mm-countdown__unit"><span class="mm-countdown__num" data-cd="days">00</span><span class="mm-countdown__unit-label">Days</span></div>
-              <div class="mm-countdown__unit"><span class="mm-countdown__num" data-cd="hours">00</span><span class="mm-countdown__unit-label">Hrs</span></div>
-              <div class="mm-countdown__unit"><span class="mm-countdown__num" data-cd="minutes">00</span><span class="mm-countdown__unit-label">Min</span></div>
-              <div class="mm-countdown__unit"><span class="mm-countdown__num" data-cd="seconds">00</span><span class="mm-countdown__unit-label">Sec</span></div>
-            </div>
-            <span class="mm-countdown__ended">This offer has ended.</span>
-          </div>
         </div>
       </div>
 
@@ -2577,35 +2489,6 @@
   <script src="js/nav.js"></script>
   <script src="js/animations.js" defer></script>
   <script>
-    // Offer countdown — ticks down to the local target time, then shows an ended state.
-    (function () {
-      var el = document.querySelector('[data-countdown]');
-      if (!el) return;
-      var target = new Date(el.getAttribute('data-countdown')).getTime();
-      var fields = {
-        days: el.querySelector('[data-cd="days"]'),
-        hours: el.querySelector('[data-cd="hours"]'),
-        minutes: el.querySelector('[data-cd="minutes"]'),
-        seconds: el.querySelector('[data-cd="seconds"]')
-      };
-      var pad = function (n) { return (n < 10 ? '0' : '') + n; };
-      function tick() {
-        var diff = target - Date.now();
-        if (diff <= 0) {
-          el.classList.add('is-ended');
-          clearInterval(timer);
-          return;
-        }
-        var s = Math.floor(diff / 1000);
-        fields.days.textContent = pad(Math.floor(s / 86400));
-        fields.hours.textContent = pad(Math.floor((s % 86400) / 3600));
-        fields.minutes.textContent = pad(Math.floor((s % 3600) / 60));
-        fields.seconds.textContent = pad(s % 60);
-      }
-      tick();
-      var timer = setInterval(tick, 1000);
-    })();
-
     // ── Hero system-cycling chat: eyebrow + name (left) + bot heading + typed input ──
     (function () {
       var stage = document.querySelector('[data-hm-stage]');
