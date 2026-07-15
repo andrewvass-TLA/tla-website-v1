@@ -638,7 +638,8 @@ $tla_active      = 'events';
             </div>
           </a>
 
-          <a class="ev-pastcard" href="#" data-ev-modal>
+          <!-- Whole card is clickable → replay detail page -->
+          <a class="ev-pastcard" href="/ai-lab-follow-up-pro/">
             <div class="ev-pastcard__media">
               <img src="<?php echo TLA_BASE; ?>/assets/live-events/past-events/AI-Lab-Follow-Up-Pro-0514-16x9.jpg" alt="" loading="lazy" />
             </div>
