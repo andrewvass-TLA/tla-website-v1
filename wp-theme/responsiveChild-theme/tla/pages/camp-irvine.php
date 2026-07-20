@@ -1,0 +1,2609 @@
+<?php
+/**
+ * Body partial for /camp-irvine/ (TLA Full HTML template).
+ * Generated from public/camp-irvine.html by scripts/convert-pages.sh — do not hand-edit;
+ * edit the source HTML (or the shared header/footer partials) and re-run.
+ */
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+
+$tla_title       = 'An Exclusive Loan Atlas Offer';
+$tla_description = 'An exclusive offer: get full access to The Loan Atlas for $49 your first month, then $249/mo locked in — over $2,186 in savings.';
+$tla_active      = '';
+?>
+  <style>
+    /* ── MASTERMIND-SPECIFIC STYLES (page-scoped) ───────────────────────────── */
+
+    /* ── Sticky offer bar — pinned under the header ─────────────────────────── */
+    .mm-bar {
+      position: sticky;
+      top: var(--header-h);
+      z-index: 40;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      color: #021c36;
+      box-shadow: 0 6px 20px rgba(2, 28, 54, 0.18);
+    }
+    .mm-bar__inner {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding: 10px var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+      text-align: center;
+    }
+    .mm-bar__text {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      line-height: 1.3;
+    }
+    .mm-bar__text strong { font-weight: 800; }
+    .mm-bar__sep {
+      opacity: 0.5;
+      padding-inline: 4px;
+    }
+    .mm-bar__btn {
+      flex-shrink: 0;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: #021c36;
+      color: #ffffff;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      padding: 8px 18px;
+      border-radius: var(--radius-full);
+      transition: transform 150ms ease, box-shadow 150ms ease;
+    }
+    .mm-bar__btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(2, 28, 54, 0.3);
+    }
+    @media (max-width: 600px) {
+      .mm-bar__hide-sm { display: none; }
+    }
+
+    /* ── Hero (reuses lp-intro; tightened for offer focus) ──────────────────── */
+
+    /* ── Larger landing-page CTA — bigger pad + text than the shared .btn--lg ── */
+    .btn--landing,
+    .lp-intro .btn--gold.btn--lg,
+    .mm-offer__cta .btn--gold.btn--lg,
+    .mm-plat__actions .btn--gold.btn--lg,
+    .mm-plan__cta .btn--gold.btn--lg {
+      font-size: clamp(1.0625rem, 0.95rem + 0.6vw, 1.3125rem);
+      padding: clamp(20px, 1.6vw, 26px) clamp(36px, 4vw, 56px);
+      border-radius: var(--radius-2xl);
+      box-shadow: 0 10px 32px rgba(201, 150, 28, 0.34);
+    }
+
+    /* Hero standout offer line — large brass headline above the primary CTA. */
+    .mm-hero-offer {
+      margin: var(--space-md) auto 0;
+      max-width: 38rem;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.5rem, 1.1rem + 1.8vw, 2.375rem);
+      line-height: 1.18;
+      letter-spacing: -0.015em;
+      text-align: center;
+      text-wrap: balance;
+    }
+    .mm-hero-offer em {
+      font-style: normal;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    /* Hero headline — bumped up slightly across all views vs. the shared default. */
+    .lp-intro__title {
+      font-size: clamp(2.5rem, 1.5rem + 3.6vw, 4.25rem);
+    }
+    /* Larger hero body copy (matches the homepage hero). */
+    .lp-intro__subtitle {
+      font-size: clamp(1.125rem, 0.95rem + 0.6vw, 1.375rem);
+    }
+    /* "With Less Chaos" — brass gold gradient. */
+    .mm-hero-gold {
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    /* One line on desktop; breaks onto its own line below the desktop breakpoint. */
+    @media (max-width: 859.98px) {
+      .mm-hero-gold { display: block; }
+    }
+    /* This headline is longer than the default lp-intro title, so scale it down
+       on narrow screens to prevent the long words from overflowing the gutter. */
+    @media (max-width: 600px) {
+      .lp-intro__title {
+        font-size: clamp(2.25rem, 1.3rem + 4.4vw, 3rem);
+        overflow-wrap: break-word;
+      }
+    }
+
+    /* ── Offer highlight card (the flyer centerpiece) ───────────────────────── */
+    .mm-offer {
+      background-image: url('<?php echo TLA_BASE; ?>/assets/bellagio.png');
+      background-size: cover;
+      background-position: center;
+      padding-block: clamp(48px, 6vw, 88px);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Navy gradient overlay over the bellagio photo */
+    .mm-offer::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(6, 14, 28, 0.92) 0%, rgba(2, 28, 54, 0.88) 50%, rgba(6, 14, 28, 0.94) 100%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .mm-offer > .container { position: relative; z-index: 1; }
+    .mm-offer__card {
+      max-width: 64rem;
+      margin-inline: auto;
+      background: linear-gradient(135deg, #0a1628 0%, #021c36 55%, #0a223d 100%);
+      border-radius: var(--radius-3xl);
+      border: 1px solid rgba(234, 194, 90, 0.4);
+      box-shadow:
+        0 40px 90px rgba(2, 28, 54, 0.45),
+        0 0 60px rgba(234, 194, 90, 0.14),
+        inset 0 0 0 1px rgba(234, 194, 90, 0.12);
+      padding: clamp(28px, 4vw, 56px);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .mm-offer__card::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.2), transparent);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    /* Lockup + Platinum Super Bonus title inside the offer card */
+    .mm-offer__card .mm-plan__lockup {
+      position: relative;
+      z-index: 1;
+    }
+    .mm-offer__hero-title {
+      position: relative;
+      z-index: 1;
+      margin-bottom: var(--space-md);
+    }
+    .mm-offer__strike {
+      position: relative;
+      white-space: nowrap;
+    }
+    .mm-offer__strike::after {
+      content: '';
+      position: absolute;
+      left: -2px;
+      right: -2px;
+      top: 50%;
+      height: 2px;
+      background: var(--brass-bright);
+      transform: rotate(-6deg);
+    }
+
+    /* Two-step deal blocks */
+    .mm-offer__steps {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      align-items: stretch;
+      max-width: 40rem;
+      margin: 0 auto var(--space-lg);
+    }
+    @media (min-width: 560px) {
+      .mm-offer__steps {
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: var(--space-sm);
+      }
+    }
+    .mm-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-md);
+      border-radius: var(--radius-2xl);
+      padding: clamp(32px, 4vw, 48px) var(--space-lg);
+    }
+    .mm-step--first {
+      background: rgba(234, 194, 90, 0.1);
+      border: 1px solid rgba(234, 194, 90, 0.45);
+    }
+    .mm-step--rest {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+    .mm-step__label {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+    }
+    /* Struck regular price sitting above the discounted price */
+    .mm-step__was {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.375rem, 1.1rem + 1vw, 1.875rem);
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .mm-step__was .mm-offer__strike {
+      letter-spacing: 0;
+    }
+    .mm-step__was .mm-offer__strike::after {
+      height: 3px;
+    }
+    .mm-step__price {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+    }
+    .mm-step--first .mm-step__price {
+      font-size: clamp(3.25rem, 2rem + 6vw, 5rem);
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .mm-step--rest .mm-step__price {
+      font-size: clamp(3.25rem, 2rem + 6vw, 5rem);
+    }
+    .mm-step__sub {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.4;
+    }
+    .mm-step__sub strong { color: #ffffff; font-weight: 700; }
+    .mm-offer__arrow {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--brass-bright);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.8125rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .mm-offer__arrow svg { width: 28px; height: 28px; }
+    @media (max-width: 559px) {
+      .mm-offer__arrow { transform: rotate(90deg); padding-block: 4px; }
+    }
+
+    /* Savings banner */
+    .mm-offer__savings {
+      position: relative;
+      z-index: 1;
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.25rem);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: #ffffff;
+      margin: 0 0 var(--space-sm);
+    }
+    .mm-offer__savings em {
+      font-style: normal;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .mm-offer__pill {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      background: rgba(234, 194, 90, 0.14);
+      border: 1px solid rgba(234, 194, 90, 0.32);
+      border-radius: var(--radius-full);
+      padding: 8px 20px;
+      margin-bottom: var(--space-lg);
+    }
+    /* Reused bottom-card savings elements inside the offer card need to clear the glow */
+    .mm-offer__card .mm-plan__plus,
+    .mm-offer__card .mm-plan__save {
+      position: relative;
+      z-index: 1;
+    }
+    .mm-offer__cta {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .mm-offer__fine {
+      position: relative;
+      z-index: 1;
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.55);
+      margin: var(--space-md) 0 0;
+      line-height: 1.5;
+    }
+
+    /* ── Bridge (visual + copy split) ───────────────────────────────────────── */
+    .lp-bridge {
+      background: #ffffff;
+      padding-block: clamp(48px, 6vw, 88px);
+      border-bottom: 1px solid var(--outline-variant);
+    }
+    .lp-bridge__split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(32px, 4vw, 64px);
+      align-items: center;
+    }
+    @media (min-width: 860px) {
+      .lp-bridge__split {
+        grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+      }
+    }
+    .lp-bridge__inner {
+      max-width: 40rem;
+    }
+
+    /* Stacked variant — copy on top, full-width video below */
+    .lp-bridge__stack {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(32px, 4vw, 56px);
+      align-items: center;
+      text-align: center;
+    }
+    .lp-bridge__stack .lp-bridge__inner {
+      max-width: 56rem;
+    }
+    .lp-bridge__cta {
+      display: flex;
+      justify-content: center;
+    }
+    .lp-bridge__video {
+      width: 100%;
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-lg, 0 24px 60px -24px rgba(2, 28, 54, 0.45));
+    }
+
+    /* Click-to-play video with a Loan Atlas-branded play button */
+    .mm-video {
+      position: relative;
+      padding-top: 56.25%;
+      background: #021c36;
+    }
+    .mm-video__frame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Volume-up / hours-down chart */
+    .bridge-chart {
+      background: linear-gradient(160deg, #ffffff 0%, var(--surface-container-low) 100%);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-3xl);
+      box-shadow: var(--shadow-lg);
+      padding: clamp(20px, 2.5vw, 32px);
+    }
+    .bridge-chart__legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm) var(--space-lg);
+      margin-bottom: var(--space-md);
+    }
+    .bridge-chart__legend-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .bridge-chart__legend-item--up { color: var(--brass); }
+    .bridge-chart__legend-item--down { color: var(--on-surface-variant); }
+    .bridge-chart__legend-item svg { width: 16px; height: 16px; }
+    .bridge-chart__dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .bridge-chart__dot--up { background: linear-gradient(135deg, #c9961c, #eac25a); }
+    .bridge-chart__dot--down { background: var(--on-surface-variant); }
+    .bridge-chart__svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 400 / 230;
+    }
+    .bridge-chart__grid line {
+      stroke: var(--outline-variant);
+      stroke-width: 1;
+    }
+    .bridge-chart__line {
+      fill: none;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .bridge-chart__line--up { stroke: #c9961c; }
+    .bridge-chart__line--down {
+      stroke: #94a3b8;
+      stroke-dasharray: 6 7;
+    }
+    .bridge-chart__axis {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+      font-family: var(--font-body);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+    }
+    /* Draw-on reveal: the solid volume line draws in, the area + dotted hours
+       line fade in, when the section scrolls into view. */
+    .bridge-chart__area {
+      opacity: 0;
+      transition: opacity 800ms ease 600ms;
+    }
+    .bridge-chart__line--up {
+      stroke-dasharray: 640;
+      stroke-dashoffset: 640;
+      transition: stroke-dashoffset 1500ms cubic-bezier(0.22, 1, 0.36, 1) 200ms;
+    }
+    .bridge-chart__line--down {
+      opacity: 0;
+      transition: opacity 900ms ease 400ms;
+    }
+    .bridge-chart.is-revealed .bridge-chart__line--up { stroke-dashoffset: 0; }
+    .bridge-chart.is-revealed .bridge-chart__line--down { opacity: 1; }
+    .bridge-chart.is-revealed .bridge-chart__area { opacity: 1; }
+    @media (prefers-reduced-motion: reduce) {
+      .bridge-chart__line--up { stroke-dashoffset: 0 !important; transition: none; }
+      .bridge-chart__line--down,
+      .bridge-chart__area { opacity: 1 !important; transition: none; }
+    }
+
+    /* ── Trust strip ────────────────────────────────────────────────────────── */
+    .lp-trust-strip {
+      background: var(--surface-container-low);
+      border-block: 1px solid var(--outline-variant);
+      padding-block: clamp(28px, 3.5vw, 52px);
+    }
+    .lp-trust-strip__eyebrow {
+      text-align: center;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--on-surface-variant);
+      margin: 0 0 var(--space-md);
+    }
+
+    /* ── 5 Systems grid ─────────────────────────────────────────────────────── */
+    .lp-systems {
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      padding-block: clamp(56px, 7vw, 104px);
+    }
+    .lp-systems__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+    @media (min-width: 720px) {
+      .lp-systems__grid { grid-template-columns: 1fr 1fr; }
+      .lp-systems__grid .system-card:last-child {
+        grid-column: 1 / -1;
+        max-width: calc(50% - var(--space-md) / 2);
+        justify-self: center;
+      }
+    }
+    .system-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: var(--radius-2xl);
+      padding: var(--space-lg);
+      position: relative;
+      overflow: hidden;
+      transition: background 200ms ease, border-color 200ms ease, transform 200ms ease;
+    }
+    .system-card:hover {
+      background: rgba(255, 255, 255, 0.07);
+      border-color: rgba(234, 194, 90, 0.28);
+      transform: translateY(-2px);
+    }
+    .system-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 130px;
+      height: 130px;
+      border-bottom-left-radius: 50%;
+      background: linear-gradient(135deg, rgba(234, 194, 90, 0.09), transparent 70%);
+      pointer-events: none;
+    }
+    .system-card__num {
+      font-family: var(--font-display);
+      font-size: 2.75rem;
+      font-weight: 700;
+      line-height: 1;
+      color: rgba(234, 194, 90, 0.16);
+      display: block;
+      margin-bottom: var(--space-sm);
+    }
+    .system-card__tagline {
+      font-family: var(--font-body);
+      font-size: 0.6875rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      display: block;
+      margin-bottom: 8px;
+    }
+    .system-card__title {
+      font-family: var(--font-display);
+      font-size: 1.1875rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: var(--space-sm);
+      line-height: 1.3;
+    }
+    .system-card p {
+      font-size: 0.9375rem;
+      line-height: 1.68;
+      color: rgba(255, 255, 255, 0.7);
+      margin: 0;
+    }
+
+    /* ── Visual value tour — alternating image + copy rows ──────────────────── */
+    .mm-tour {
+      background: #ffffff;
+      padding-block: clamp(56px, 7vw, 96px);
+    }
+    .mm-tour__rows {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(48px, 6vw, 88px);
+      margin-top: var(--space-xl);
+    }
+    .mm-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+    /* Mobile: the eyebrow and heading run full-width; the image then sits to
+       the LEFT of the body copy below them.
+       display:contents hoists the copy's children into the row grid so they
+       can be placed independently. */
+    @media (max-width: 859.98px) {
+      .mm-tour__rows { gap: 0; }
+      .mm-row {
+        grid-template-columns: 120px 1fr;
+        column-gap: var(--space-md);
+        row-gap: 6px;
+        align-items: center;
+        grid-template-areas:
+          "eyebrow eyebrow"
+          "title   title"
+          "media   desc";
+      }
+      /* Divider + breathing room between each section on mobile. */
+      .mm-row + .mm-row {
+        border-top: 1px solid var(--outline-variant);
+        margin-top: var(--space-lg);
+        padding-top: var(--space-lg);
+      }
+      .mm-row__copy { display: contents; }
+      .mm-row > .mm-row__media { grid-area: media; align-self: center; margin-top: var(--space-sm); }
+      .mm-row__eyebrow { grid-area: eyebrow; margin-bottom: 0; }
+      .mm-row__title   { grid-area: title; margin-top: 2px; }
+      .mm-row__desc    { grid-area: desc; max-width: none; margin-top: var(--space-sm); }
+      /* Phone mockups: fit the width of the small left column. */
+      .mm-row__media--phone img { max-height: none; width: 100%; }
+      .mm-row__media--bi img { max-width: 100%; max-height: none; }
+
+      /* Sales & Scripting Coaches: the phone is very tall — crop it to a
+         square-ish thumbnail (show the top) instead of a thin sliver. */
+      .mm-row__media--crop img {
+        aspect-ratio: 1;
+        object-fit: cover;
+        object-position: top center;
+        border-radius: var(--radius-2xl);
+      }
+
+      /* Live Coaching: the 4-image overlap doesn't fit a narrow column — show
+         the Office Hours and Masterclass cards stacked vertically instead of
+         absolutely positioned. */
+      .mm-card-stack {
+        aspect-ratio: auto;
+        position: static;
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-sm);
+      }
+      .mm-card-stack__img:nth-child(2),
+      .mm-card-stack__img:nth-child(4) { display: none; }
+      .mm-card-stack__img:nth-child(1),
+      .mm-card-stack__img:nth-child(3) {
+        position: static;
+        width: 100%;
+        border: none;
+        opacity: 1;
+        transform: none;
+        animation: none;
+      }
+    }
+    @media (min-width: 860px) {
+      .mm-row {
+        grid-template-columns: 1fr 1fr;
+        gap: clamp(40px, 5vw, 72px);
+      }
+      .mm-row--flip .mm-row__media { order: 2; }
+    }
+    .mm-row__copy {
+      max-width: 34rem;
+    }
+    .mm-row__eyebrow {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brass);
+      display: block;
+      margin-bottom: var(--space-sm);
+    }
+    .mm-row__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 1.3rem + 1.6vw, 2.375rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: var(--primary-container);
+      margin: 0 0 var(--space-sm);
+    }
+    .mm-row__desc {
+      font-size: 1rem;
+      line-height: 1.65;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+    .mm-row__media {
+      position: relative;
+      border-radius: var(--radius-3xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+      border: 1px solid var(--outline-variant);
+      background: var(--surface-container-low);
+    }
+    .mm-row__media img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      aspect-ratio: 16 / 11;
+    }
+    /* Phone variant — drop the card chrome so the full device shows, floating
+       with a soft shadow instead of being cropped inside a container. */
+    .mm-row__media--phone {
+      border: none;
+      background: none;
+      box-shadow: none;
+      border-radius: 0;
+      overflow: visible;
+      display: flex;
+      justify-content: center;
+    }
+    .mm-row__media--phone img {
+      width: auto;
+      height: auto;
+      max-height: 620px;
+      max-width: 100%;
+      aspect-ratio: auto;
+      object-fit: contain;
+      filter:
+        drop-shadow(0 12px 24px rgba(2, 28, 54, 0.22))
+        drop-shadow(0 30px 60px rgba(2, 28, 54, 0.28));
+    }
+    /* Business Intelligence dashboard is wide, not a phone — keep it smaller. */
+    .mm-row__media--bi img {
+      max-height: 420px;
+      max-width: 88%;
+    }
+
+    /* Composite variant — overlapping platform UI fragments floating freely
+       (no container card), mirroring the homepage AI-systems composite.
+       A large base card sits centered with two smaller cards overlapping at
+       the lower corners. */
+    .mm-compose {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+    }
+    .mm-compose__img {
+      position: absolute;
+      display: block;
+      border-radius: 12px;
+      background: #ffffff;
+      border: 1px solid rgba(2, 28, 54, 0.06);
+      box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.6) inset,
+        0 18px 40px rgba(2, 28, 54, 0.22),
+        0 2px 6px rgba(2, 28, 54, 0.12);
+    }
+    .mm-compose__img--base {
+      left: 50%;
+      top: 0;
+      transform: translateX(-50%);
+      width: 92%;
+      z-index: 1;
+    }
+    .mm-compose__img--left {
+      left: 0;
+      bottom: 6%;
+      width: 40%;
+      z-index: 2;
+    }
+    .mm-compose__img--left.mm-compose__img--action {
+      width: 60%;
+    }
+    .mm-compose__img--right {
+      right: 0;
+      bottom: 14%;
+      width: 38%;
+      z-index: 3;
+    }
+    @media (max-width: 600px) {
+      .mm-compose { aspect-ratio: 5 / 4; }
+      .mm-compose__img--left { width: 46%; }
+      .mm-compose__img--left.mm-compose__img--action { width: 68%; }
+      .mm-compose__img--right { width: 46%; }
+    }
+
+    /* ── What You Get features ──────────────────────────────────────────────── */
+    .lp-features {
+      background: var(--surface-container-low);
+      border-block: 1px solid var(--outline-variant);
+      padding-block: clamp(56px, 7vw, 96px);
+    }
+    .lp-features__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      margin-top: var(--space-xl);
+    }
+    @media (min-width: 720px) {
+      .lp-features__grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    /* ── Platinum Marketing — bold premium dark panel ───────────────────────── */
+    .mm-plat {
+      position: relative;
+      overflow: hidden;
+      background:
+        radial-gradient(120% 90% at 100% 0%, #14243f 0%, transparent 55%),
+        linear-gradient(160deg, #04122a 0%, #021c36 45%, #050c1a 100%);
+      padding-block: clamp(64px, 8vw, 120px);
+      isolation: isolate;
+    }
+    .mm-plat__glow {
+      position: absolute;
+      top: -160px;
+      right: -120px;
+      width: 620px;
+      height: 620px;
+      max-width: 90vw;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.22), transparent 70%);
+      filter: blur(60px);
+      pointer-events: none;
+      z-index: -1;
+    }
+    /* Faded background collage of every Platinum asset */
+    .mm-plat > .container { position: relative; z-index: 1; }
+    .mm-plat__bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(10px, 1.4vw, 18px);
+      padding: clamp(10px, 1.4vw, 18px);
+      align-content: start;
+      opacity: 0.16;
+      filter: saturate(0.85);
+      pointer-events: none;
+      -webkit-mask-image: radial-gradient(120% 90% at 50% 30%, #000 0%, rgba(0,0,0,0.35) 55%, transparent 85%);
+      mask-image: radial-gradient(120% 90% at 50% 30%, #000 0%, rgba(0,0,0,0.35) 55%, transparent 85%);
+    }
+    @media (min-width: 700px) {
+      .mm-plat__bg { grid-template-columns: repeat(6, 1fr); }
+    }
+    .mm-plat__bg img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 6px;
+    }
+
+    /* Full-width header */
+    .mm-plat__header {
+      text-align: center;
+      max-width: 60rem;
+      margin: 0 auto clamp(40px, 5vw, 72px);
+    }
+    /* Big shiny metallic-silver headline */
+    .mm-plat__title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2.75rem, 1.6rem + 5.5vw, 6rem);
+      line-height: 1.0;
+      letter-spacing: -0.03em;
+      margin: 0 0 var(--space-md);
+      background: linear-gradient(180deg, #ffffff 0%, #f2f6fb 30%, #c3cedd 55%, #8b9bb3 78%, #e8eef6 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.3);
+      filter: drop-shadow(0 8px 26px rgba(0, 0, 0, 0.5));
+      position: relative;
+    }
+    /* moving sheen sweep for the metallic shine */
+    .mm-plat__title::after {
+      content: 'Platinum Marketing';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.9) 50%, transparent 60%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      background-size: 250% 100%;
+      background-position: 200% 0;
+      animation: mm-plat-shine 6s ease-in-out 1s infinite;
+      pointer-events: none;
+    }
+    @keyframes mm-plat-shine {
+      0%   { background-position: 200% 0; }
+      55%  { background-position: -130% 0; }
+      100% { background-position: -130% 0; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .mm-plat__title::after { animation: none; display: none; }
+    }
+    .mm-plat__subhead {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(1.25rem, 1rem + 1.1vw, 1.875rem);
+      line-height: 1.35;
+      letter-spacing: -0.01em;
+      color: #ffffff;
+      margin: 0 auto;
+      max-width: 44rem;
+      text-wrap: balance;
+    }
+    .mm-plat__subhead-em {
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    /* Full-width box: checklist (left) + offer (right) */
+    .mm-plat__offer {
+      position: relative;
+      max-width: 60rem;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(28px, 4vw, 48px);
+      align-items: center;
+      padding: clamp(28px, 4vw, 48px);
+      background: linear-gradient(135deg, #0a1628 0%, #021c36 55%, #0a223d 100%);
+      border: 1px solid rgba(234, 194, 90, 0.4);
+      border-radius: var(--radius-3xl);
+      box-shadow:
+        0 40px 90px rgba(2, 28, 54, 0.5),
+        0 0 60px rgba(234, 194, 90, 0.14),
+        inset 0 0 0 1px rgba(234, 194, 90, 0.12);
+    }
+    @media (min-width: 760px) {
+      .mm-plat__offer { grid-template-columns: 1fr 1fr; }
+      /* Divider in the exact middle of the box */
+      .mm-plat__offer::before {
+        content: '';
+        position: absolute;
+        top: clamp(28px, 4vw, 48px);
+        bottom: clamp(28px, 4vw, 48px);
+        left: 50%;
+        width: 1px;
+        background: rgba(234, 194, 90, 0.22);
+      }
+    }
+
+    .mm-plat__list-label {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.5);
+      margin: 0 0 var(--space-md);
+    }
+    /* Left side — checklist, centered in its half */
+    .mm-plat__offer-list {
+      display: flex;
+      justify-content: center;
+    }
+    .mm-plat__list {
+      margin: 0;
+      display: inline-flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .mm-plat__list li { font-size: 1.125rem; font-weight: 700; }
+
+    /* Right side — the deal */
+    .mm-plat__offer-deal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-lg);
+      text-align: center;
+    }
+    .mm-plat__offer-deal .btn { width: 100%; }
+    .mm-plat__price-tag {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .mm-plat__price-was {
+      position: relative;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 2.5rem;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    .mm-plat__price-was span { font-size: 1.125rem; font-weight: 600; }
+    .mm-plat__price-was::after {
+      content: '';
+      position: absolute;
+      left: -4px;
+      right: -4px;
+      top: 52%;
+      height: 3px;
+      border-radius: 2px;
+      background: var(--brass-bright);
+      transform: rotate(-8deg);
+    }
+    .mm-plat__price-now {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2.25rem, 1.5rem + 2.4vw, 3rem);
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      white-space: nowrap;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .mm-plat__price-note {
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.78);
+      margin: calc(var(--space-md) * -0.75) 0 0;
+    }
+    .mm-plat__price-note strong { color: var(--brass-bright); font-weight: 700; }
+
+    /* ── 8 Disciplines (matches what's-inside.html top section) ─────────────── */
+    .disc-section {
+      background: var(--surface-container-low);
+      padding-block: clamp(64px, 8vw, 112px);
+      overflow: hidden;
+    }
+    .disc-section__inner {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
+    }
+    .disc-split {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-xl);
+      align-items: center;
+    }
+    @media (min-width: 960px) {
+      .disc-split {
+        grid-template-columns: minmax(320px, 5fr) minmax(0, 7fr);
+        gap: clamp(32px, 4vw, 64px);
+      }
+    }
+    .disc-copy__eyebrow {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: var(--space-sm);
+    }
+    .disc-copy__title {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      color: var(--primary);
+      margin: 0 0 var(--space-md);
+      text-wrap: balance;
+    }
+    .disc-copy__title em {
+      font-style: normal;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .disc-copy__lede {
+      font-family: var(--font-body);
+      font-size: 1.0625rem;
+      line-height: 1.7;
+      color: var(--on-surface-variant);
+      margin: 0 0 var(--space-lg);
+      max-width: 36rem;
+    }
+    .disc-marquee {
+      position: relative;
+      height: clamp(480px, 56vw, 660px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-md);
+      -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 14%, #000 86%, transparent 100%);
+              mask-image: linear-gradient(180deg, transparent 0, #000 14%, #000 86%, transparent 100%);
+    }
+    .disc-marquee__col {
+      position: relative;
+      overflow: hidden;
+    }
+    .disc-marquee__track {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+      animation: disc-scroll-up 80s linear infinite;
+      will-change: transform;
+    }
+    .disc-marquee__col--down .disc-marquee__track {
+      animation-name: disc-scroll-down;
+    }
+    @keyframes disc-scroll-up {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-50%); }
+    }
+    @keyframes disc-scroll-down {
+      from { transform: translateY(-50%); }
+      to   { transform: translateY(0); }
+    }
+    .disc-thumb {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      border: 1px solid var(--outline-variant);
+      box-shadow: var(--shadow);
+      background: var(--surface-container-lowest);
+      flex: 0 0 auto;
+    }
+    .disc-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    /* Block-level inline testimonial */
+    .quote-card--block {
+      flex: none;
+      width: 100%;
+      max-width: none;
+      margin: var(--space-xl) 0 0;
+    }
+    @media (max-width: 859.98px) {
+      .quote-card--block { display: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .disc-marquee__track { animation: none !important; }
+    }
+    @media (max-width: 720px) {
+      .disc-marquee { height: clamp(420px, 90vw, 520px); }
+    }
+
+    /* ── Proof panel — stat + Habib testimonial ─────────────────────────────── */
+    .lp-proof-section {
+      background: var(--surface);
+      padding-block: clamp(56px, 7vw, 96px);
+    }
+    .mm-page-footnote {
+      margin: clamp(32px, 4vw, 48px) auto 0;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      line-height: 1.5;
+      color: #ffffff;
+      text-align: center;
+    }
+    .lp-proof-card {
+      max-width: 64rem;
+      margin-inline: auto;
+      background: linear-gradient(135deg, #0a1628 0%, #021c36 55%, #0a223d 100%);
+      border-radius: var(--radius-3xl);
+      border: 1px solid rgba(234, 194, 90, 0.28);
+      box-shadow:
+        0 30px 70px rgba(2, 28, 54, 0.35),
+        inset 0 0 0 1px rgba(234, 194, 90, 0.08);
+      padding: clamp(32px, 4vw, 56px) clamp(24px, 4vw, 56px);
+      position: relative;
+      overflow: hidden;
+      display: grid;
+      gap: clamp(32px, 4vw, 56px);
+      grid-template-columns: 1fr;
+      align-items: center;
+      text-align: center;
+    }
+    .lp-proof-card::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.18), transparent);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    @media (min-width: 760px) {
+      .lp-proof-card {
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1fr);
+        text-align: left;
+      }
+    }
+    .lp-proof-card__stat-col { position: relative; z-index: 1; }
+    .lp-proof-card__label {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      margin-bottom: var(--space-sm);
+    }
+    .lp-proof-card__stat {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 4px;
+      font-family: var(--font-display);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.04em;
+      margin: 0 0 var(--space-sm);
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    @media (min-width: 760px) {
+      .lp-proof-card__stat { justify-content: flex-start; }
+    }
+    .lp-proof-card__currency {
+      font-size: clamp(2rem, 1rem + 3vw, 3rem);
+      padding-top: clamp(8px, 1.5vw, 16px);
+      font-weight: 700;
+    }
+    .lp-proof-card__number { font-size: clamp(4.5rem, 2rem + 8vw, 7.5rem); }
+    .lp-proof-card__unit {
+      font-size: clamp(2.5rem, 1rem + 4vw, 4rem);
+      padding-top: clamp(4px, 1vw, 8px);
+      font-weight: 700;
+    }
+    .lp-proof-card__plus {
+      display: inline-block;
+      font-size: clamp(1.25rem, 0.75rem + 1.5vw, 1.875rem);
+      vertical-align: top;
+      padding-top: clamp(8px, 1.5vw, 18px);
+      margin-left: 4px;
+    }
+    .lp-proof-card__caption {
+      font-size: clamp(1.0625rem, 0.95rem + 0.5vw, 1.375rem);
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.85);
+      margin: 0;
+      line-height: 1.4;
+      max-width: 26ch;
+      margin-inline: auto;
+    }
+    @media (min-width: 760px) {
+      .lp-proof-card__caption { margin-inline: 0; }
+    }
+    .lp-proof-card__test-col {
+      position: relative;
+      z-index: 1;
+      margin: 0;
+      padding-left: 0;
+      border-left: none;
+    }
+    @media (min-width: 760px) {
+      .lp-proof-card__test-col {
+        padding-left: clamp(28px, 3vw, 48px);
+        border-left: 1px solid rgba(234, 194, 90, 0.2);
+      }
+    }
+    .lp-proof-card__test-head {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-md);
+    }
+    @media (min-width: 760px) {
+      .lp-proof-card__test-head { justify-content: flex-start; }
+    }
+    .lp-proof-card__photo {
+      width: 56px;
+      height: 56px;
+      flex-shrink: 0;
+      padding: 2px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+    }
+    .lp-proof-card__photo img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      background: #021c36;
+    }
+    .lp-proof-card__attr-name {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+    .lp-proof-card__attr-role {
+      display: block;
+      margin-top: 2px;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--brass-bright);
+    }
+    .lp-proof-card__quote {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: clamp(1rem, 0.9rem + 0.5vw, 1.1875rem);
+      font-style: italic;
+      font-weight: 500;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    /* ── Testimonials — image-rich cards ────────────────────────────────────── */
+    .lp-testimonials {
+      background: var(--surface-container-low);
+      border-block: 1px solid var(--outline-variant);
+      padding-block: clamp(56px, 7vw, 96px);
+    }
+    .mm-tcards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(40px, 4vw, 32px);
+      margin-top: calc(var(--space-xl) + 28px);
+    }
+    @media (min-width: 760px) {
+      .mm-tcards { grid-template-columns: repeat(3, 1fr); }
+    }
+    .mm-tcard {
+      position: relative;
+      margin: 0;
+      background: #ffffff;
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-3xl);
+      box-shadow: var(--shadow-lg);
+      padding: 0 var(--space-lg) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    /* circular avatar straddling the top edge, with brass gradient ring */
+    .mm-tcard__photo {
+      width: 96px;
+      height: 96px;
+      margin-top: -48px;
+      margin-bottom: var(--space-md);
+      flex-shrink: 0;
+      padding: 3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      box-shadow: 0 10px 28px rgba(2, 28, 54, 0.22);
+    }
+    .mm-tcard__photo img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      background: #f2f4f6;
+    }
+    .mm-tcard__body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+    }
+    .mm-tcard__stars {
+      font-size: 1rem;
+      letter-spacing: 0.18em;
+      color: var(--brass);
+      margin-bottom: var(--space-sm);
+    }
+    .mm-tcard__quote {
+      margin: 0 0 var(--space-md);
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.0625rem;
+      line-height: 1.55;
+      color: var(--on-surface);
+      flex: 1;
+    }
+    .mm-tcard__attr {
+      padding-top: var(--space-md);
+      border-top: 1px solid var(--outline-variant);
+      width: 100%;
+    }
+    .mm-tcard__name {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--primary-container);
+    }
+    .mm-tcard__org {
+      display: block;
+      font-size: 0.8125rem;
+      color: var(--on-surface-variant);
+      margin-top: 3px;
+    }
+
+    /* ── Pricing section — the Mastermind offer card ────────────────────────── */
+    .mm-pricing {
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      padding-block: clamp(56px, 7vw, 104px);
+      position: relative;
+      overflow: hidden;
+    }
+    .mm-pricing::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 6%;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.1), transparent);
+      filter: blur(70px);
+      pointer-events: none;
+    }
+    .mm-plan {
+      position: relative;
+      z-index: 1;
+      max-width: 64rem;
+      margin-inline: auto;
+      margin-top: var(--space-xl);
+      background: linear-gradient(135deg, #0a1628 0%, #021c36 55%, #0a223d 100%);
+      border-radius: var(--radius-3xl);
+      border: 1px solid rgba(234, 194, 90, 0.4);
+      box-shadow:
+        0 40px 90px rgba(2, 28, 54, 0.45),
+        0 0 60px rgba(234, 194, 90, 0.14),
+        inset 0 0 0 1px rgba(234, 194, 90, 0.12);
+      padding: clamp(28px, 4vw, 56px);
+      overflow: hidden;
+      text-align: center;
+    }
+    .mm-plan::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.2), transparent);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    .mm-plan > * {
+      position: relative;
+      z-index: 1;
+    }
+    /* Co-branded logo lockup — Loan Atlas × Mastermind */
+    .mm-plan__lockup {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: clamp(12px, 2.5vw, 26px);
+      margin-bottom: var(--space-md);
+    }
+    /* Both marks sized to a similar visual height, sitting bare on the card */
+    .mm-plan__lockup-atlas {
+      height: clamp(56px, 8vw, 84px);
+      width: auto;
+      display: block;
+    }
+    .mm-plan__lockup-x {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(1.125rem, 0.9rem + 0.8vw, 1.5rem);
+      color: rgba(234, 194, 90, 0.7);
+      line-height: 1;
+    }
+    .mm-plan__lockup-mm {
+      height: clamp(48px, 7vw, 70px);
+      width: auto;
+      display: block;
+      filter: brightness(0) invert(1);
+    }
+    .mm-plan__sponsored {
+      font-family: var(--font-body);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      margin: 0 0 var(--space-xs);
+    }
+    /* Big, bold headline — shiny white with a red "Platinum" */
+    .mm-plan__hero-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 1.3rem + 3.2vw, 3.25rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      margin: 0 0 var(--space-lg);
+      color: #ffffff;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+      filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.45));
+    }
+    .mm-plan__hero-plat {
+      background: linear-gradient(180deg, #c2262b 0%, #9e1e22 60%, #7a171a 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .mm-plan__plus {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.25rem, 1rem + 1vw, 1.625rem);
+      letter-spacing: 0;
+      line-height: 1.3;
+      color: rgba(255, 255, 255, 0.92);
+      text-align: center;
+      max-width: 40rem;
+      margin: var(--space-lg) auto;
+    }
+    .mm-plan__plus::before,
+    .mm-plan__plus::after {
+      content: '';
+      flex: 1 0 32px;
+      min-width: 32px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(234, 194, 90, 0.5), transparent);
+    }
+    .mm-plan__plus > span {
+      flex: 0 1 auto;
+    }
+    .mm-plan__plus em {
+      font-style: normal;
+      font-weight: 800;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .mm-plan__save {
+      text-align: center;
+      margin: 0 0 var(--space-xl);
+    }
+    .mm-plan__save-pill {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 0.9rem + 0.5vw, 1.1875rem);
+      font-weight: 600;
+      letter-spacing: 0;
+      color: #6ee7a8;
+      background: rgba(52, 211, 153, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      border-radius: var(--radius-full);
+      padding: 12px 28px;
+      line-height: 1.5;
+    }
+    .mm-plan__save-pill em {
+      font-style: normal;
+      font-weight: 800;
+      color: #34d399;
+    }
+    .mm-plan__list {
+      list-style: none;
+      margin: 0 auto var(--space-xl);
+      padding: var(--space-xl) 0;
+      border-block: 1px solid rgba(234, 194, 90, 0.18);
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      text-align: left;
+      max-width: 32rem;
+    }
+    @media (min-width: 640px) {
+      .mm-plan__list {
+        grid-template-columns: 1fr 1fr;
+        gap: var(--space-md) var(--space-lg);
+        max-width: 52rem;
+      }
+    }
+    .mm-plan__list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 0.9375rem;
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.85);
+    }
+    .mm-plan__list .icon {
+      flex-shrink: 0;
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+      color: var(--brass-bright);
+    }
+    .mm-plan__cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-bottom: var(--space-xl);
+    }
+    .mm-plan__fine {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.5);
+      margin: var(--space-md) 0 0;
+      line-height: 1.5;
+    }
+      
+
+    /* Offset collage for weekly coaching */
+    .mm-card-stack {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1;
+    }
+    .mm-card-stack__img {
+      position: absolute;
+      width: 64%;
+      border-radius: 12px;
+      box-shadow: 0 20px 40px rgba(2, 28, 54, 0.25);
+      border: 6px solid white;
+      opacity: 0;
+      transform: translateY(28px);
+    }
+
+    /* Staggered collage positions — overlapping into one cohesive cluster */
+    .mm-card-stack__img:nth-child(1) { z-index: 1; top: 0;    left: 0;    animation-delay: 0.1s;  }
+    .mm-card-stack__img:nth-child(2) { z-index: 2; top: 6%;   right: 0;   animation-delay: 0.25s; }
+    .mm-card-stack__img:nth-child(3) { z-index: 3; bottom: 0; left: 2%;   animation-delay: 0.4s;  }
+    .mm-card-stack__img:nth-child(4) { z-index: 4; bottom: 6%; right: 1%; animation-delay: 0.55s; }
+
+    /* Reveal-on-scroll: subtle fade + slide-in, no rotation */
+    .mm-row.is-revealed .mm-card-stack__img {
+      animation: cardFadeIn 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+    }
+
+    @keyframes cardFadeIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── Hero stage — system card over the member dashboard image ─────────────
+       Left: cycling system eyebrow + name. Divider. Right: chat bubbles. The
+       whole pair cycles through the four systems. (Matches the homepage hero.) */
+    .hm-stage {
+      position: relative;
+      max-width: var(--container-max);
+      margin: clamp(48px, 6vw, 96px) auto 0;
+      padding-block: clamp(32px, 5vw, 72px);
+      padding-inline: var(--gutter);
+      box-sizing: border-box;
+      isolation: isolate;
+    }
+
+    /* Background — member dashboard stage (full color, exactly as the sales
+       page), anchored to the bottom of the hero behind the box. The stage keeps
+       its own natural 2.85/1 aspect ratio so the dashboard is never distorted. */
+    .hm-backdrop {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      width: 100vw;
+      margin-left: -50vw;
+      z-index: 0;
+      pointer-events: none;
+    }
+    /* On mobile the chat box covers the dashboard down to a useless sliver —
+       hide the dashboard entirely and let the box stand on its own. */
+    @media (max-width: 759.98px) {
+      .hm-backdrop { display: none; }
+    }
+    /* Match the sales page exactly: the stage breaks out of the .hm-stage gutter
+       to the full section width and keeps its own 1440px max-width + margins.
+       Faded slightly so the foreground chat box reads as the focal point. */
+    .hm-backdrop .lp-intro__stage {
+      margin: 0 auto;
+      opacity: 0.82;
+      filter: blur(2px);
+    }
+
+    /* The box — foreground card holding the two-column system graphic.
+       A fixed min-height keeps the box (and therefore the bottom-anchored
+       dashboard) from resizing as the cycling system content changes length. */
+    .hm-box {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      /* Reserve the tallest cycle state so the box never resizes (and the
+         bottom-anchored dashboard never shifts) as systems swap. Tuned per
+         breakpoint from the measured worst-case heights. */
+      min-height: 400px;
+      margin-inline: auto;
+      padding: clamp(24px, 3.5vw, 44px);
+      background: var(--surface-container-lowest);
+      border: 1px solid var(--outline-variant);
+      border-radius: var(--radius-3xl);
+      box-shadow:
+        0 10px 30px rgba(2, 28, 54, 0.28),
+        0 50px 110px -12px rgba(2, 28, 54, 0.62),
+        0 0 0 1px rgba(234, 194, 90, 0.08);
+    }
+    @media (min-width: 760px) { .hm-box { min-height: 264px; } }
+    @media (min-width: 1100px) { .hm-box { min-height: 292px; } }
+    @media (min-width: 1280px) { .hm-box { min-height: 300px; } }
+    /* Brass glow behind the box */
+    .hm-box::before {
+      content: '';
+      position: absolute;
+      inset: -10%;
+      z-index: -1;
+      background:
+        radial-gradient(55% 60% at 50% 40%, rgba(234, 194, 90, 0.28), transparent 70%),
+        radial-gradient(45% 50% at 50% 70%, rgba(201, 150, 28, 0.16), transparent 75%);
+      filter: blur(55px);
+      pointer-events: none;
+    }
+
+    .hm-stage__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(20px, 3vw, 40px);
+      align-items: center;
+    }
+    @media (min-width: 760px) {
+      .hm-stage__grid {
+        /* heading | divider | chat */
+        grid-template-columns: minmax(0, 0.82fr) 1px minmax(0, 1fr);
+        gap: clamp(28px, 3.5vw, 48px);
+      }
+    }
+
+    /* Vertical divider between the heading and the chat (horizontal on mobile) */
+    .hm-divider {
+      align-self: stretch;
+      background: var(--outline-variant);
+    }
+    @media (max-width: 759.98px) {
+      .hm-divider { height: 1px; width: 100%; }
+    }
+
+    /* LEFT — cycling system name */
+    .hm-system {
+      min-height: 4.4em;
+      display: flex;
+      align-items: center;
+    }
+    @media (min-width: 760px) {
+      .hm-system { min-height: 3.2em; }
+    }
+    .hm-system__label {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--brass);
+      margin-bottom: var(--space-sm);
+    }
+    .hm-system__name {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 1.3rem + 2.8vw, 3.25rem);
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--on-surface);
+      margin: 0;
+      text-wrap: balance;
+    }
+    .hm-system__name em {
+      font-style: normal;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    /* fade-swap on system change */
+    .hm-system__label,
+    .hm-system__name { transition: opacity 260ms ease; }
+    .hm-stage.is-swapping .hm-system__label,
+    .hm-stage.is-swapping .hm-system__name { opacity: 0; }
+
+    /* RIGHT — conversation bubbles (ported 1:1 from the Platinum page .mm-chat):
+       a white bot bubble with the Loan Atlas logo avatar + a dark right-aligned
+       user bubble. The whole stack fades in once on load. */
+    .hm-chat {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      /* fade in once on load */
+      opacity: 0;
+      transform: translateY(14px);
+      transition:
+        opacity 700ms ease,
+        transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: opacity, transform;
+    }
+    .hm-stage.is-shown .hm-chat {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .hm-chat__bot { display: flex; align-items: flex-end; gap: 14px; max-width: 94%; align-self: flex-start; }
+    .hm-chat__avatar {
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 9999px;
+      background: var(--primary);
+      box-shadow: 0 4px 12px rgba(2, 28, 54, 0.22);
+    }
+    .hm-chat__avatar img { width: 30px; height: 30px; object-fit: contain; display: block; }
+    .hm-chat__msg { padding: 16px 22px; font-size: clamp(1rem, 0.92rem + 0.4vw, 1.1875rem); line-height: 1.5; border-radius: 20px; }
+    .hm-chat__msg--bot {
+      background: #ffffff;
+      border: 1px solid var(--outline-variant);
+      border-bottom-left-radius: 6px;
+      color: var(--on-surface);
+      box-shadow: 0 6px 16px rgba(2, 28, 54, 0.06);
+      transition: opacity 260ms ease;
+    }
+    .hm-chat__msg--user {
+      max-width: 90%;
+      align-self: flex-end;
+      background: linear-gradient(135deg, #0c2440 0%, #021c36 100%);
+      border-bottom-right-radius: 6px;
+      color: #ffffff;
+      transition: opacity 260ms ease;
+    }
+    /* fade both bubbles out while the system swaps — the old typed text clears
+       under cover of the fade rather than deleting on screen */
+    .hm-stage.is-swapping .hm-chat__msg--bot,
+    .hm-stage.is-swapping .hm-chat__msg--user { opacity: 0; }
+
+    .hm-chat__typed { white-space: pre-wrap; }
+    .hm-chat__caret {
+      display: inline-block;
+      width: 2px;
+      height: 1.05em;
+      margin-left: 1px;
+      background: var(--brass-bright);
+      vertical-align: text-bottom;
+      animation: hmCaretBlink 1s steps(2, end) infinite;
+    }
+    @keyframes hmCaretBlink {
+      0%, 50% { opacity: 1; }
+      51%, 100% { opacity: 0; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hm-chat { transition: none; opacity: 1; transform: none; }
+      .hm-chat__caret { animation: none; opacity: 1; }
+      .hm-system__label,
+      .hm-system__name,
+      .hm-chat__msg--bot { transition: none; }
+    }
+  </style>
+
+
+  <!-- ── Header (minimal landing chrome — logo only) ─────────────────────────── -->
+<?php include get_stylesheet_directory() . '/tla/partials/header-minimal.php'; ?>
+
+  <!-- ── Sticky offer bar ───────────────────────────────────────────────────── -->
+  <div class="mm-bar">
+    <div class="mm-bar__inner">
+      <p class="mm-bar__text">
+        <strong>Exclusive Offer</strong>
+        <span class="mm-bar__sep mm-bar__hide-sm">·</span>
+        <span class="mm-bar__hide-sm">$49 First Month</span>
+        <span class="mm-bar__sep mm-bar__hide-sm">·</span>
+        <span class="mm-bar__hide-sm">6 Months Free Platinum</span>
+        <span class="mm-bar__sep">·</span>
+        Save $2,186
+      </p>
+      <a class="mm-bar__btn" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-platinum-scott-edgardo/">Claim Offer</a>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- ── 1. HERO ──────────────────────────────────────────────────────────── -->
+    <section class="lp-intro" aria-labelledby="mm-hero-heading">
+      <div class="container">
+        <div class="lp-intro__content">
+          <h1 id="mm-hero-heading" class="lp-intro__title" data-hero-step="2">Close More Loans <span class="mm-hero-gold">With Less Chaos</span></h1>
+          <p class="lp-intro__subtitle" data-hero-step="3">Five AI-powered systems, live coaching every week, and the tools to turn ignored marketing into real clients.</p>
+          <div class="lp-intro__actions" data-hero-step="4">
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-platinum-scott-edgardo/">Start Your Transformation — $49 Today</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- System graphic — a box (system name | divider | chat) over the
+           member dashboard image.
+           The pair cycles through the four systems (driven by the script). -->
+      <div class="hm-stage" data-hero-step="5" data-hm-stage>
+
+        <!-- Background — member dashboard stage, exactly as on the sales page
+             (full-color dashboard with the brass glow), behind the box -->
+        <div class="hm-backdrop" aria-hidden="true">
+          <div class="lp-intro__stage">
+            <div class="lp-intro__glow" aria-hidden="true"></div>
+            <img class="lp-intro__dash" src="<?php echo TLA_BASE; ?>/assets/dashboard.png" alt="The Loan Atlas member dashboard" loading="eager" />
+          </div>
+        </div>
+
+        <!-- The box -->
+        <div class="hm-box">
+          <div class="hm-stage__grid">
+
+            <!-- LEFT — cycling system eyebrow + name -->
+            <div class="hm-system">
+              <div>
+                <span class="hm-system__label" data-hm-label>Stop Guessing What to Say</span>
+                <h2 class="hm-system__name" data-hm-system>AI Sales &amp; Marketing Advisor</h2>
+              </div>
+            </div>
+
+            <!-- Divider between heading and chat -->
+            <div class="hm-divider" aria-hidden="true"></div>
+
+            <!-- RIGHT — conversation bubbles (Platinum .mm-chat style):
+                 white bot bubble w/ Loan Atlas avatar + dark right-aligned user bubble -->
+            <div class="hm-chat" data-hm-chat aria-label="A sample conversation with The Loan Atlas">
+              <div class="hm-chat__bot">
+                <span class="hm-chat__avatar"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" /></span>
+                <div class="hm-chat__msg hm-chat__msg--bot" data-hm-heading>What's Your Sales Challenge Today?</div>
+              </div>
+              <div class="hm-chat__msg hm-chat__msg--user">
+                <span class="hm-chat__typed" data-hm-typed></span><span class="hm-chat__caret"></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 2. OFFER HIGHLIGHT CARD ──────────────────────────────────────────── -->
+    <section class="mm-offer" aria-labelledby="mm-offer-heading">
+      <div class="container">
+        <div class="mm-offer__card" data-reveal="scale">
+          <div class="mm-plan__lockup" aria-label="The Loan Atlas — an exclusive offer">
+            <img class="mm-plan__lockup-atlas" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" />
+          </div>
+          <h3 class="mm-plan__hero-title mm-offer__hero-title"><span class="mm-plan__hero-plat">Platinum</span> Super Bonus</h3>
+
+          <div id="mm-offer-heading" class="mm-offer__steps">
+            <div class="mm-step mm-step--first">
+              <span class="mm-step__label">First Month</span>
+              <span class="mm-step__price">$49</span>
+              <span class="mm-step__sub"><strong>Immediate full access</strong> to The Loan Atlas</span>
+            </div>
+            <div class="mm-offer__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+            </div>
+            <div class="mm-step mm-step--rest">
+              <span class="mm-step__was"><span class="mm-offer__strike">$349/mo</span></span>
+              <span class="mm-step__price">$249<span style="font-size: 0.32em; font-weight: 700; letter-spacing: 0;">/mo</span></span>
+              <span class="mm-step__sub"><strong>Locked in</strong> — no increase</span>
+            </div>
+          </div>
+
+          <p class="mm-plan__plus"><span>plus <em>6 months FREE</em> of Platinum Marketing</span></p>
+
+          <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$2,186</em> in Annual Savings</span></p>
+
+          <div class="mm-offer__cta">
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-platinum-scott-edgardo/">Claim Your $49 First Month</a>
+            <a href="https://www.theloanatlas.com/consultation/" style="font-size: 0.9375rem; color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;">
+              Have questions? Book a free coaching session
+            </a>
+          </div>
+          <p class="mm-offer__fine">12-month commitment. Available to new members only.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 3. TRUST STRIP ───────────────────────────────────────────────────── -->
+    <section class="lp-trust-strip" aria-label="Trusted by loan officers at these companies">
+      <div class="container">
+        <p class="lp-trust-strip__eyebrow">Trusted by over 1,000+ top producing loan officers and teams across the country</p>
+      </div>
+      <div class="trust__marquee">
+        <div class="trust__track">
+          <ul class="trust__group">
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/american-pacific-logo.webp" alt="American Pacific Mortgage"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/acm-logo.webp" alt="Atlantic Coast Mortgage"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/cross-country-logo.webp" alt="CrossCountry Mortgage"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/UWM-logo.png" alt="United Wholesale Mortgage"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/fairway-logo.png" alt="Fairway Independent Mortgage"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/CMG-logo.svg" alt="CMG Financial"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/swbc-logo.png" alt="SWBC Mortgage"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/better-logo.png" alt="Better"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/lower-mortgage-logo.svg" alt="Lower"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/rate-logo.png" alt="Rate"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/loan-depot-logo.png" alt="loanDepot"></li>
+          </ul>
+          <ul class="trust__group" aria-hidden="true">
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/american-pacific-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/acm-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/cross-country-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/UWM-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/fairway-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/CMG-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/swbc-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/better-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/lower-mortgage-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/rate-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/loan-depot-logo.png" alt=""></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 4. BRIDGE ────────────────────────────────────────────────────────── -->
+    <div class="lp-bridge">
+      <div class="container">
+        <div class="lp-bridge__stack">
+          <!-- TOP: copy -->
+          <div class="lp-bridge__inner" data-reveal="up">
+            <p class="t-headline-md" style="line-height: 1.5; margin: 0 0 var(--space-md);">
+              The loan officers pulling away from the pack aren&rsquo;t working harder than you. They&rsquo;re running systems that compound their production every month.
+            </p>
+            <p class="text-brass" style="font-family: var(--font-display); font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.125rem); font-weight: 800; line-height: 1.25; letter-spacing: -0.015em; margin: 0;">
+This is your chance to install them all &mdash; for less than the commission of one extra loan.
+            </p>
+          </div>
+
+          <!-- BOTTOM: full-width video -->
+          <div class="lp-bridge__video" data-reveal="fade">
+            <div class="mm-video">
+              <iframe class="mm-video__frame"
+                src="https://player.mediadelivery.net/embed/684087/c27ffc9d-ddca-4238-b29a-15849e2347f8?autoplay=false&loop=false&muted=false&preload=true&responsive=true"
+                loading="lazy" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;" allowfullscreen="true"></iframe>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <div class="lp-bridge__cta" data-reveal="up">
+            <a class="btn btn--gold btn--lg btn--landing" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-platinum-scott-edgardo/">Start Your Transformation — $49 Today</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ── 5. FIVE AI SYSTEMS ───────────────────────────────────────────────── -->
+    <section class="lp-systems" id="systems" aria-labelledby="systems-heading">
+      <div class="container">
+        <div class="center" data-reveal="up" style="max-width: 46rem; margin-inline: auto;">
+          <h2 id="systems-heading" class="t-display" style="color: #ffffff; font-weight: 800; margin-bottom: var(--space-md);">
+            <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">AI-Powered Systems</span> That Help You Close More Loans With Less Chaos
+          </h2>
+          <p class="t-body-lg" style="color: rgba(255, 255, 255, 0.68); font-size: clamp(1.125rem, 0.95rem + 0.6vw, 1.375rem);">Inside The Loan Atlas, these five systems work together to help you close more loans, make better decisions, and finally feel in control of your production.</p>
+        </div>
+
+        <div class="lp-systems__grid" data-reveal-stagger="100">
+          <article class="system-card">
+            <span class="system-card__num">01</span>
+            <span class="system-card__tagline">Stop Flying Blind</span>
+            <h3 class="system-card__title">AI Business Intelligence System</h3>
+            <p>See exactly what's driving your numbers. Which lead sources are producing, which referral partners are worth your time, where deals are dying. Guesswork becomes answers.</p>
+          </article>
+          <article class="system-card">
+            <span class="system-card__num">02</span>
+            <span class="system-card__tagline">Stop Starting Every Week From Scratch</span>
+            <h3 class="system-card__title">AI Business Planning Tool</h3>
+            <p>A personalized plan and weekly priority list based on your real pipeline and goals. Not a generic to-do list — a system that tells you what moves the needle right now.</p>
+          </article>
+          <article class="system-card">
+            <span class="system-card__num">03</span>
+            <span class="system-card__tagline">Stop Guessing What to Say</span>
+            <h3 class="system-card__title">AI Sales &amp; Marketing Advisor</h3>
+            <p>The right words for every conversation. Rate shoppers, Realtor meetings, objections, follow-up. Stop improvising; start communicating with clarity and precision.</p>
+          </article>
+          <article class="system-card">
+            <span class="system-card__num">04</span>
+            <span class="system-card__tagline">Stop Spinning Your Wheels</span>
+            <h3 class="system-card__title">AI Performance Coach</h3>
+            <p>Find the exact gaps slowing your growth and fix them faster. Instead of consuming more content and hoping something sticks, you get a focused plan to improve what matters most right now.</p>
+          </article>
+          <article class="system-card">
+            <span class="system-card__num">05</span>
+            <span class="system-card__tagline">Stop Making Big Decisions Alone</span>
+            <h3 class="system-card__title">AI Strategic Thought Partner</h3>
+            <p>Real-time guidance on decisions, deal scenarios, and growth opportunities. Think more clearly. Move faster. Make better calls with less hesitation.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 6. VISUAL VALUE TOUR ─────────────────────────────────────────────── -->
+    <section class="mm-tour" id="value" aria-labelledby="value-heading">
+      <div class="container">
+        <div data-reveal="up" style="max-width: 46rem; margin: 0 auto var(--space-xl); text-align: center;">
+          <h2 id="value-heading" class="t-display" style="color: var(--primary-container); font-weight: 800; margin-bottom: var(--space-sm);">Everything You Need to Stop Flying Blind and Start Running a <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Predictable Mortgage Business</span></h2>
+        </div>
+
+        <div class="mm-tour__rows">
+
+          <div class="mm-row" data-reveal="up">
+            <div class="mm-row__media mm-row__media--phone mm-row__media--bi" data-reveal="fade">
+            <img src="<?php echo TLA_BASE; ?>/assets/loan-officer-business-intelligence.png" alt="Loan Officer Business Intelligence" loading="lazy">
+          </div>
+            <div class="mm-row__copy">
+              <span class="mm-row__eyebrow">AI Business Intelligence</span>
+              <h3 class="mm-row__title">See the numbers that actually drive your production</h3>
+              <p class="mm-row__desc">Lead sources, conversion rates, referral partners, pipeline health — all in one view. Stop guessing where your production comes from and start making decisions backed by your own data.</p>
+            </div>
+          </div>
+
+          <div class="mm-row" data-reveal="up">
+            <div class="mm-row__copy">
+              <span class="mm-row__eyebrow">AI Business Planning</span>
+              <h3 class="mm-row__title">A weekly plan built around your real goals</h3>
+              <p class="mm-row__desc">Turn big-picture goals into a focused weekly priority list tied to your actual pipeline. Walk into every week knowing exactly what moves the needle — and what to ignore.</p>
+            </div>
+            <div class="mm-row__media mm-row__media--phone"><img src="<?php echo TLA_BASE; ?>/assets/loan-officer-business-planning.png" alt="Loan Officer Business Planning" loading="lazy"></div>
+          </div>
+
+          <div class="mm-row" data-reveal="up">
+            <div class="mm-card-stack">
+              <img class="mm-card-stack__img" src="<?php echo TLA_BASE; ?>/assets/what's-inside-office-hours.jpg" alt="Office Hours" loading="lazy">
+              <img class="mm-card-stack__img" src="<?php echo TLA_BASE; ?>/assets/what's-inside-talk-to-tim.jpg" alt="Talk to Tim" loading="lazy">
+              <img class="mm-card-stack__img" src="<?php echo TLA_BASE; ?>/assets/what's-inside-masterclass.jpg" alt="Masterclass" loading="lazy">
+              <img class="mm-card-stack__img" src="<?php echo TLA_BASE; ?>/assets/what's-inside-ai-labs.jpg" alt="AI Labs" loading="lazy">
+            </div>
+            <div class="mm-row__copy">
+              <span class="mm-row__eyebrow">Live Coaching Every Week</span>
+              <h3 class="mm-row__title">Bring your toughest deals to active top producers</h3>
+              <p class="mm-row__desc">Weekly Office Hours, monthly Masterclasses, and live group coaching with branch managers, division presidents, and top 1% originators — all still serving families and leading high-producing teams.</p>
+            </div>
+          </div>
+
+          <div class="mm-row mm-row--flip" data-reveal="up">
+            <div class="mm-row__media mm-row__media--phone mm-row__media--crop"><img src="<?php echo TLA_BASE; ?>/assets/sales-coach-phone.png" alt="AI Sales &amp; Scripting Coach on a phone" loading="lazy"></div>
+            <div class="mm-row__copy">
+              <span class="mm-row__eyebrow">AI Sales &amp; Scripting Coaches</span>
+              <h3 class="mm-row__title">The right words for every conversation, in your pocket</h3>
+              <p class="mm-row__desc">Rate shoppers, Realtor meetings, objections, follow-up — ask your AI Sales &amp; Scripting Coach and get a tailored script on the spot. Stop improvising and start communicating with clarity and precision, right from your phone.</p>
+            </div>
+          </div>
+
+          <div class="mm-row" data-reveal="up">
+            <div class="mm-row__media mm-row__media--phone"><img src="<?php echo TLA_BASE; ?>/assets/scripts-presentation-templates.png" alt="Scripts, presentations, and templates library" loading="lazy"></div>
+            <div class="mm-row__copy">
+              <span class="mm-row__eyebrow">Scripts, Presentations &amp; Templates</span>
+              <h3 class="mm-row__title">Pre-built and proven resources to help you present with confidence</h3>
+              <p class="mm-row__desc">Discovery calls, rate-shopper responses, objection handling, referral-partner meetings, client-facing presentations — pre-built, proven, and ready to use tomorrow.</p>
+            </div>
+          </div>
+
+          <div class="mm-row mm-row--flip" data-reveal="up">
+            <div class="mm-row__media"><img src="<?php echo TLA_BASE; ?>/assets/private-member-community.png" alt="The Loan Atlas private member community" loading="lazy"></div>
+            <div class="mm-row__copy">
+              <span class="mm-row__eyebrow">A Community of Active Originators</span>
+              <h3 class="mm-row__title">Never solve a problem alone again</h3>
+              <p class="mm-row__desc">Top producers, mid-career operators, newer LOs, and team leaders working through the same frameworks in real time — with faculty inside the conversation answering the questions that matter today.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 7b. PLATINUM MARKETING ───────────────────────────────────────────── -->
+    <section class="mm-plat" id="platinum" aria-labelledby="plat-heading">
+      <div class="mm-plat__glow" aria-hidden="true"></div>
+
+      <!-- Faded background collage of every Platinum asset -->
+      <div class="mm-plat__bg" aria-hidden="true">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-landing-page-1.png" alt="" loading="lazy">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-presentation-deck-1.png" alt="" loading="lazy">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-flyer-1.jpeg" alt="" loading="lazy">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-1.jpeg" alt="" loading="lazy">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-newsletter.png" alt="" loading="lazy">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-presentation-deck-2.png" alt="" loading="lazy">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-2.jpeg" alt="" loading="lazy">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-landing-page-2.png" alt="" loading="lazy">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-flyer-2.jpeg" alt="" loading="lazy">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-3.jpeg" alt="" loading="lazy">
+        <img src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-4.png" alt="" loading="lazy">
+      </div>
+
+      <div class="container">
+
+        <div class="mm-plat__header" data-reveal="up">
+          <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
+            <span class="eyebrow__text" style="color: var(--brass-bright);">Just Launched</span>
+          </span>
+          <h2 id="plat-heading" class="mm-plat__title">Platinum Marketing</h2>
+          <p class="mm-plat__subhead">
+            Take your marketing from ignored to <span class="mm-plat__subhead-em" style="font-weight: 800;">irresistible.</span>
+          </p>
+        </div>
+
+        <!-- Full-width box: checklist (left) + offer (right) -->
+        <div class="mm-plat__offer" data-reveal="scale">
+          <div class="mm-plat__offer-list">
+            <ul class="checklist checklist--inverse mm-plat__list">
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Marketing Assistant</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Decks &amp; Flyers</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Newsletters</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Email Campaigns</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Social Graphics</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Landing Pages</li>
+            </ul>
+          </div>
+
+          <div class="mm-plat__offer-deal">
+            <div class="mm-plat__price-tag">
+              <span class="mm-plat__price-was">$100<span>/mo</span></span>
+              <span class="mm-plat__price-now">6 Months FREE</span>
+            </div>
+            <p class="mm-plat__price-note">then $69/mo, or cancel anytime.</p>
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-platinum-scott-edgardo/">Start Your Transformation</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 9. 8 DISCIPLINES ─────────────────────────────────────────────────── -->
+    <section class="disc-section" id="disciplines">
+      <div class="disc-section__inner">
+
+        <div class="disc-split">
+
+          <!-- LEFT: heading + body + testimonial -->
+          <div class="disc-copy" data-reveal="up">
+            <h2 class="disc-copy__title">Built upon the <em>8 Disciplines</em> of Mortgage Origination Mastery.</h2>
+            <p class="disc-copy__lede">Nobody taught you how to run a mortgage business. They taught you how to originate loans. The 8 Disciplines cover what's actually required to do both — so you're constantly improving and building a business that compounds month after month.</p>
+
+            <!-- Inline testimonial quote (homepage quote-card style) -->
+            <figure class="quote-card quote-card--block">
+              <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
+              <blockquote class="quote-card__quote">If you did nothing else but go through the System for Selling module &mdash; it&rsquo;ll change your career and your life.</blockquote>
+              <figcaption class="quote-card__attr">
+                <div class="quote-card__name">Jim Juergens</div>
+                <div class="quote-card__org">NEO Home Loans</div>
+              </figcaption>
+            </figure>
+          </div>
+
+          <!-- RIGHT: vertical marquee of module thumbnails -->
+          <div class="disc-marquee" aria-hidden="true">
+            <div class="disc-marquee__col disc-marquee__col--up">
+              <div class="disc-marquee__track">
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/connect-with-target-agents-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/Minimizing-Taxes-Maximizing-Investments-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/fixed-adjustable-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/handling-a-negative-review-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/peak-performance-rituals-module-thumbnail.jpg" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/experiencing-your-genius-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/reverse%20mortgages-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/turning-clients-into-advocates-module-thumbnail.jpg" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/ultimate-business-planning-tool-module-thumbnail.jpg" alt="" /></div>
+                <!-- duplicate set for seamless loop -->
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/connect-with-target-agents-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/Minimizing-Taxes-Maximizing-Investments-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/fixed-adjustable-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/handling-a-negative-review-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/peak-performance-rituals-module-thumbnail.jpg" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/experiencing-your-genius-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/reverse%20mortgages-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/turning-clients-into-advocates-module-thumbnail.jpg" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/ultimate-business-planning-tool-module-thumbnail.jpg" alt="" /></div>
+              </div>
+            </div>
+
+            <div class="disc-marquee__col disc-marquee__col--down">
+              <div class="disc-marquee__track">
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/female-empowerment-module-thumbnail.jpg" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/email-optimization-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/gratitude-calls-module-thumbnail.jpg" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/handling-objections-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/employee-reviews-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/the-process-for-creating-content-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/presenting-new-lead-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/take-care-of-your-epople-module-thumbnail.png" alt="" /></div>
+                <!-- duplicate set for seamless loop -->
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/female-empowerment-module-thumbnail.jpg" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/email-optimization-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/gratitude-calls-module-thumbnail.jpg" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/handling-objections-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/employee-reviews-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/the-process-for-creating-content-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/presenting-new-lead-module-thumbnail.png" alt="" /></div>
+                <div class="disc-thumb"><img src="<?php echo TLA_BASE; ?>/assets/take-care-of-your-epople-module-thumbnail.png" alt="" /></div>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /disc-split -->
+
+      </div>
+    </section>
+
+    <!-- ── 11. TESTIMONIALS + PROOF ─────────────────────────────────────────── -->
+    <section class="lp-testimonials" id="testimonials" aria-labelledby="testimonials-heading">
+      <div class="container">
+        <div class="center" data-reveal="up" style="max-width: 44rem; margin-inline: auto; margin-bottom: var(--space-xl);">
+          <h2 id="testimonials-heading" class="section-heading" style="text-align: center;">What Operating From a System Looks Like</h2>
+        </div>
+
+        <div class="mm-tcards" data-reveal-stagger="120">
+
+          <figure class="mm-tcard">
+            <div class="mm-tcard__photo">
+              <img src="<?php echo TLA_BASE; ?>/assets/gian-ceretto.png" alt="Gian Ceretto" loading="lazy">
+            </div>
+            <div class="mm-tcard__body">
+              <span class="mm-tcard__stars" aria-label="5 out of 5 stars">★★★★★</span>
+              <blockquote class="mm-tcard__quote">If you're considering joining The Loan Atlas, it's been the best investment I've ever made — and you will make it back within your first month's production.</blockquote>
+              <figcaption class="mm-tcard__attr">
+                <span class="mm-tcard__name">Gian Ceretto</span>
+                <span class="mm-tcard__org">Prosperity Home Mortgage</span>
+              </figcaption>
+            </div>
+          </figure>
+
+          <figure class="mm-tcard">
+            <div class="mm-tcard__photo">
+              <img src="<?php echo TLA_BASE; ?>/assets/sue botelho.jpeg" alt="Sue Botelho" loading="lazy">
+            </div>
+            <div class="mm-tcard__body">
+              <span class="mm-tcard__stars" aria-label="5 out of 5 stars">★★★★★</span>
+              <blockquote class="mm-tcard__quote">I'm a former Loan Toolbox member — the technology Tim had 20 years ago that got me where I am today. The Loan Atlas is Loan Toolbox 2.0. It's worth its weight in gold.</blockquote>
+              <figcaption class="mm-tcard__attr">
+                <span class="mm-tcard__name">Sue Botelho</span>
+                <span class="mm-tcard__org">Waterstone Mortgage</span>
+              </figcaption>
+            </div>
+          </figure>
+
+          <figure class="mm-tcard">
+            <div class="mm-tcard__photo">
+              <img src="<?php echo TLA_BASE; ?>/assets/edgardo-balentine.jpeg" alt="Edgardo Valentine" loading="lazy">
+            </div>
+            <div class="mm-tcard__body">
+              <span class="mm-tcard__stars" aria-label="5 out of 5 stars">★★★★★</span>
+              <blockquote class="mm-tcard__quote">The Loan Atlas makes it so I never have to guess. Anything you could need in your business, you'll find there.</blockquote>
+              <figcaption class="mm-tcard__attr">
+                <span class="mm-tcard__name">Edgardo Valentine</span>
+                <span class="mm-tcard__org">NEO Home Loans</span>
+              </figcaption>
+            </div>
+          </figure>
+
+        </div>
+
+        <!-- Proof stat + Habib quote -->
+        <div class="lp-proof-card" data-reveal="up" style="margin-top: clamp(32px, 4vw, 56px);">
+          <div class="lp-proof-card__stat-col">
+            <span class="lp-proof-card__label">Loan Atlas Members Close</span>
+            <p id="proof-heading" class="lp-proof-card__stat" aria-label="$8.2 million plus more per year">
+              <span class="lp-proof-card__currency">$</span><span class="lp-proof-card__number" data-countup="8.2">8.2</span><span class="lp-proof-card__unit">M</span><span class="lp-proof-card__plus" aria-hidden="true">+</span>
+            </p>
+            <p class="lp-proof-card__caption">More in annual production than the industry average.<sup>*</sup></p>
+          </div>
+
+          <figure class="lp-proof-card__test-col">
+            <blockquote class="lp-proof-card__quote">"The wealth that's in The Loan Atlas is absolutely incredible. Imagine how valuable it is to have access to the smartest minds in our industry."</blockquote>
+            <figcaption class="lp-proof-card__test-head" style="margin-top: var(--space-md); margin-bottom: 0;">
+              <div class="lp-proof-card__photo">
+                <img src="<?php echo TLA_BASE; ?>/assets/barry-habib.jpg" alt="Barry Habib">
+              </div>
+              <div>
+                <cite class="lp-proof-card__attr-name" style="font-style: normal;">Barry Habib</cite>
+                <span class="lp-proof-card__attr-role">Founder &amp; CEO, MBS Highway</span>
+              </div>
+            </figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 12. MASTERMIND PRICING ───────────────────────────────────────────── -->
+    <section class="mm-pricing" id="pricing" aria-label="Pricing">
+      <div class="container">
+
+        <article class="mm-plan" data-reveal="scale">
+          <div class="mm-plan__lockup" aria-label="The Loan Atlas — an exclusive offer">
+            <img class="mm-plan__lockup-atlas" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" />
+          </div>
+          <h3 class="mm-plan__hero-title mm-offer__hero-title"><span class="mm-plan__hero-plat">Platinum</span> Super Bonus</h3>
+
+          <div class="mm-offer__steps">
+            <div class="mm-step mm-step--first">
+              <span class="mm-step__label">First Month</span>
+              <span class="mm-step__price">$49</span>
+              <span class="mm-step__sub"><strong>Immediate full access</strong> to The Loan Atlas</span>
+            </div>
+            <div class="mm-offer__arrow" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/></svg>
+            </div>
+            <div class="mm-step mm-step--rest">
+              <span class="mm-step__was"><span class="mm-offer__strike">$349/mo</span></span>
+              <span class="mm-step__price">$249<span style="font-size: 0.32em; font-weight: 700; letter-spacing: 0;">/mo</span></span>
+              <span class="mm-step__sub"><strong>Locked in</strong> — no increase</span>
+            </div>
+          </div>
+
+          <p class="mm-plan__plus"><span>plus <em>6 months FREE</em> of Platinum Marketing</span></p>
+
+          <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$2,186</em> in Annual Savings</span></p>
+
+          <div class="mm-plan__cta">
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-platinum-scott-edgardo/">
+              Claim Your $49 First Month
+            </a>
+            <a href="https://www.theloanatlas.com/consultation/" style="font-size: 0.9375rem; color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;">
+              Have questions? Book a free coaching session
+            </a>
+          </div>
+
+          <ul class="mm-plan__list">
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              5 AI-powered systems to help you close twice the loans in half the time
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Live weekly and monthly coaching sessions
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              200+ training modules
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Full library of scripts, templates, and playbooks
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Platinum Marketing free for 6 months (then $69/mo, or cancel)
+            </li>
+            <li>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              New tools and content added every month
+            </li>
+          </ul>
+
+          <p class="mm-plan__fine">12-month commitment. Available to new members only.</p>
+        </article>
+
+        <p class="mm-page-footnote">* Past 12 months, ending 2/15/2026. Must have closed one loan in last 90 days (154,000 LO population).</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer (standard site chrome) ──────────────────────────────────────── -->
+<?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>
+
+  <script>
+    // ── Hero system-cycling chat: eyebrow + name (left) + bot heading + typed input ──
+    (function () {
+      var stage = document.querySelector('[data-hm-stage]');
+      var chat = stage && stage.querySelector('[data-hm-chat]');
+      if (!stage || !chat) return;
+
+      var labelEl = stage.querySelector('[data-hm-label]');    // left eyebrow
+      var systemEl = stage.querySelector('[data-hm-system]');  // left column name
+      var headingEl = chat.querySelector('[data-hm-heading]'); // bot prompt
+      var typedEl = chat.querySelector('[data-hm-typed]');     // typed user input
+
+      // Each system: eyebrow, name, bot heading (homepage tab demo), and a single
+      // example user input that gets typed out.
+      var systems = [
+        {
+          eyebrow: 'Stop Guessing What to Say',
+          name: 'AI Sales &amp; Marketing Advisor',
+          heading: "What's Your Sales Challenge Today?",
+          message: 'How do I respond to "I want to wait for rates to drop"?'
+        },
+        {
+          eyebrow: 'Stop Spinning Your Wheels',
+          name: 'AI Performance Coach',
+          heading: 'Where Are You Stuck Right Now?',
+          message: "What's the biggest gap holding me back this quarter?"
+        },
+        {
+          eyebrow: 'Stop Making Big Decisions Alone',
+          name: 'AI Strategic Thought Partner',
+          heading: 'What Decision Can I Help You Think Through?',
+          message: 'Should I hire an LOA or stay solo this year?'
+        },
+        {
+          eyebrow: 'Turn Ignored Marketing Into Real Clients',
+          name: 'Platinum Marketing',
+          heading: 'What Should We Create Today?',
+          message: 'Create a flyer for my new 5%-down program'
+        }
+      ];
+
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Fade the whole card in once, a beat after load.
+      function runIntro() {
+        if (reduceMotion) { stage.classList.add('is-shown'); return; }
+        window.setTimeout(function () { stage.classList.add('is-shown'); }, 500);
+      }
+      if (document.body.classList.contains('is-loaded')) runIntro();
+      else window.addEventListener('load', runIntro);
+
+      var sIdx = 0, charIdx = 0, mode = 'typing';
+      var timeoutId = null, running = false;
+
+      function schedule(ms, fn) {
+        if (timeoutId) { window.clearTimeout(timeoutId); timeoutId = null; }
+        if (!running) return;
+        timeoutId = window.setTimeout(function () { timeoutId = null; if (running) fn(); }, ms);
+      }
+
+      // Set the left eyebrow + name + bot heading for the current system
+      // (innerHTML for the name so the &amp; entity renders as "&").
+      function applySystem() {
+        labelEl.textContent = systems[sIdx].eyebrow;
+        systemEl.innerHTML = systems[sIdx].name;
+        headingEl.textContent = systems[sIdx].heading;
+      }
+
+      function tick() {
+        var msg = systems[sIdx].message;
+        if (mode === 'typing') {
+          charIdx++;
+          typedEl.textContent = msg.slice(0, charIdx);
+          if (charIdx >= msg.length) { mode = 'advance'; schedule(2400, tick); }
+          else { schedule(30 + Math.random() * 26, tick); }
+        } else if (mode === 'advance') {
+          // Fade the card out, clear the typed text under cover of the fade,
+          // then swap to the next system and type fresh — no on-screen deletion.
+          sIdx = (sIdx + 1) % systems.length;
+          stage.classList.add('is-swapping');
+          schedule(280, function () {
+            applySystem();
+            charIdx = 0;
+            typedEl.textContent = '';
+            stage.classList.remove('is-swapping');
+            mode = 'typing'; schedule(420, tick);
+          });
+        }
+      }
+
+      function start() {
+        if (running) return;
+        running = true;
+        sIdx = 0; charIdx = 0; mode = 'typing';
+        applySystem();
+        typedEl.textContent = '';
+        if (reduceMotion) { typedEl.textContent = systems[0].message; return; }
+        schedule(1200, tick); // let the card fade in first
+      }
+
+      function stop() {
+        running = false;
+        if (timeoutId) { window.clearTimeout(timeoutId); timeoutId = null; }
+      }
+
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (entry) {
+            if (entry.isIntersecting) start(); else stop();
+          });
+        }, { threshold: 0.25 });
+        io.observe(chat);
+      } else {
+        start();
+      }
+    })();
+  </script>
