@@ -279,6 +279,11 @@ body > main { padding-top: 72px; }
 }
 .site-header .mobile-nav__link:hover,
 .site-header .mobile-nav__link--active { color: #ffffff; }
+.site-header .mobile-nav__login {
+  color: #eac25a;
+  font-weight: 700;
+}
+.site-header .mobile-nav__login:hover { color: #ffd56c; }
 .site-header .mobile-nav__cta {
   margin-top: 12px;
   width: 100%;

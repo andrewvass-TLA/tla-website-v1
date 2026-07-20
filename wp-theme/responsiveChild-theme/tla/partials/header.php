@@ -60,6 +60,7 @@ $tla_is = function ( $key ) use ( $tla_active ) {
       </div>
     </div>
     <div class="mobile-nav" id="mobile-nav">
+      <a class="mobile-nav__link mobile-nav__login" href="https://members.theloanatlas.com/login/">Login</a>
       <a class="mobile-nav__link<?php echo $tla_is( 'whats-inside' ); ?>" href="/whats-inside/">Loan Originators</a>
       <a class="mobile-nav__link<?php echo $tla_is( 'enterprise' ); ?>" href="/enterprise/">Enterprise</a>
       <a class="mobile-nav__link<?php echo $tla_is( 'faculty' ); ?>" href="/faculty/">Faculty</a>
@@ -73,7 +74,6 @@ $tla_is = function ( $key ) use ( $tla_active ) {
       <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/ai-originator-masterplan/">AI-Empowered Originator Masterplan</a>
       <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/podcast-revamp/" target="_blank" rel="noopener">The 360 Experience</a>
       <a class="mobile-nav__link mobile-nav__sublink" href="/contact/">Contact Us</a>
-      <a class="mobile-nav__link" href="https://members.theloanatlas.com/login/">Login</a>
       <a class="btn btn--primary btn--header mobile-nav__cta" href="/join/">Join The Loan Atlas</a>
     </div>
   </header>
