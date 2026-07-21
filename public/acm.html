@@ -1234,11 +1234,15 @@
       position: relative;
       z-index: 1;
       margin-top: var(--space-lg);
+      /* Fill (nearly) the whole card. The embedded form has no internal width cap,
+         so it grows with the iframe as the box widens. */
+      max-width: 48rem;
+      margin-inline: auto;
       background: #ffffff;
       border: 1px solid rgba(234, 194, 90, 0.4);
       border-radius: var(--radius-2xl);
       box-shadow: inset 0 0 0 1px rgba(234, 194, 90, 0.12);
-      padding: clamp(20px, 3vw, 36px);
+      padding: clamp(16px, 2vw, 24px) clamp(16px, 2.4vw, 32px);
       overflow: hidden;
       text-align: center;
     }
@@ -1262,12 +1266,13 @@
       color: var(--on-surface-variant);
       margin: 0;
     }
-    /* The LeadConnector iframe reports its own height (data-height=754); give it a
-       floor so it renders before the embed script resizes it. */
+    /* The LeadConnector embed script sizes the iframe to the form's own content
+       height (~520px); keep a smaller floor so there's no big empty gap below the
+       form before the script runs. */
     .acm-form__embed iframe {
       display: block;
       width: 100%;
-      min-height: 754px;
+      min-height: 560px;
     }
     .lp-proof-card {
       max-width: 64rem;
@@ -2056,14 +2061,7 @@
             <span class="mm-plan__lockup-x" aria-hidden="true"></span>
             <img class="mm-plan__lockup-mm" src="assets/acm-logo-primary-blue.webp" alt="Atlantic Coast Mortgage" />
           </div>
-          <h3 class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Preferred Account Pricing</h3>
-
-          <div id="mm-offer-heading" class="mm-offer__steps" style="grid-template-columns: 1fr; max-width: 22rem;">
-            <div class="mm-step mm-step--rest">
-              <span class="mm-step__was"><span class="mm-offer__strike">$349/mo</span></span>
-              <span class="mm-step__price">$199<span style="font-size: 0.32em; font-weight: 700; letter-spacing: 0;">/mo</span></span>
-            </div>
-          </div>
+          <h3 id="mm-offer-heading" class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Complete the Form to Activate Your ACM Preferred Account for just <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">$199/mo</span></h3>
 
           <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$1,800</em> in Annual Savings — Exclusively for ACM Originators</span></p>
 
@@ -2373,37 +2371,7 @@
             <span class="mm-plan__lockup-x" aria-hidden="true"></span>
             <img class="mm-plan__lockup-mm" src="assets/acm-logo-primary-blue.webp" alt="Atlantic Coast Mortgage" />
           </div>
-          <h3 class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Preferred Account Pricing</h3>
-
-          <div class="mm-offer__steps" style="grid-template-columns: 1fr; max-width: 22rem;">
-            <div class="mm-step mm-step--rest">
-              <span class="mm-step__was"><span class="mm-offer__strike">$349/mo</span></span>
-              <span class="mm-step__price">$199<span style="font-size: 0.32em; font-weight: 700; letter-spacing: 0;">/mo</span></span>
-            </div>
-          </div>
-
-          <ul class="mm-plan__list">
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              5 AI-powered systems to help you close twice the loans in half the time
-            </li>
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Live weekly and monthly coaching sessions
-            </li>
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              200+ training modules
-            </li>
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Full library of scripts, templates, and playbooks
-            </li>
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              New tools and content added every month
-            </li>
-          </ul>
+          <h3 class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Complete the Form to Activate Your ACM Preferred Account for just <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">$199/mo</span></h3>
 
           <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$1,800</em> in Annual Savings — Exclusively for ACM Originators</span></p>
 
