@@ -1,6 +1,6 @@
 <?php
 /**
- * Body partial for /namb-ai-questionnaire/ (TLA Full HTML template).
+ * Body partial for /launch-namb-ai-questionnaire/ (TLA Full HTML template).
  * Generated from public/mortgage-advisor-questionnaire.html by scripts/convert-pages.sh — do not hand-edit;
  * edit the source HTML (or the shared header/footer partials) and re-run.
  */
@@ -10,11 +10,6 @@ $tla_title       = 'The Mortgage Advisor Questionnaire — Build Your AI Operati
 $tla_description = 'Teach AI how your mortgage business works. Fill in this worksheet to build your AI operating manual, then copy your answers straight into ChatGPT.';
 $tla_active      = '';
 ?>
-         - every answer field auto-saves to localStorage on input
-         - "Copy for ChatGPT" copies all answers, grouped by section
-         - "Clear answers" wipes saved answers + fields
-       All client-side — no backend.
-       ============================================================ -->
   <style>
     .maq {
       --maq-navy: #021c36;
@@ -83,8 +78,12 @@ $tla_active      = '';
         background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       }
-      /* Push the page content down so the band doesn't cover the hero. */
-      body > main.maq { padding-top: calc(var(--header-h, 72px) + 40px); }
+      /* The band is fixed (navy) and overlays the hero's navy top — no white
+         gap. Keep main's base 72px header clearance, and add the band's height
+         to the hero's top padding so the hero text starts below the band. */
+      .maq-hero {
+        padding-top: calc(var(--header-h, 72px) + 44px + clamp(24px, 6vw, 48px));
+      }
       /* Shrink the button so the full "Join The Loan Atlas" label fits beside
          the logo now that the savings copy has moved to the band below. */
       .site-header.site-header--maq .btn--header {
@@ -103,7 +102,13 @@ $tla_active      = '';
       overflow: hidden;
       background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
       color: #ffffff;
-      padding-block: clamp(48px, 7vw, 96px);
+      /* body > main gets padding-top:72px (chrome.css) to clear the fixed header;
+         that band would otherwise show main's light --background as a white strip
+         under the nav. Pull the hero up to fill it with navy, adding the height
+         back as top padding so the content isn't hidden behind the header. */
+      margin-top: calc(-1 * var(--header-h, 72px));
+      padding-top: calc(var(--header-h, 72px) + clamp(48px, 7vw, 96px));
+      padding-bottom: clamp(48px, 7vw, 96px);
     }
     /* brass + blue radial glows */
     .maq-hero::before,
@@ -590,9 +595,7 @@ $tla_active      = '';
       .maq-q__field { transition: none; }
     }
   </style>
-</head>
 
-<body>
 
   <!-- ── Header — logo left, CTA right (page-local landing nav) ───────────────── -->
   <header class="site-header site-header--maq">
@@ -617,9 +620,8 @@ $tla_active      = '';
       <div class="container">
         <div class="maq-hero__inner">
           <div>
-            <p class="maq-hero__eyebrow">Build Your AI Operating Manual</p>
             <h1 id="maq-hero-title" class="maq-hero__title">
-              The Mortgage Advisor Questionnaire
+              The Mortgage Advisor AI Questionnaire
               <span class="maq-hero__title-sub">Teach AI how your business works.</span>
             </h1>
             <p class="maq-hero__lede">
