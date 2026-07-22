@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Marketing Is Being Ignored — Replay — The Loan Atlas</title>
+  <meta name="description"
+    content="Watch the replay of Your Marketing Is Being Ignored — And It's Costing You More Than You Realize — then activate your ACM Preferred Account at $199/mo, down from $349/mo." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="stylesheet" href="css/chrome.css" />
+
+  <!-- ============================================================
+       LIVE-EVENT REPLAY TEMPLATE (ACM audience)
+       Custom heading + scroll-to-form CTA → Wistia replay → ACM
+       Preferred Account pricing card (ported from acm.html).
+       The offer-card CSS below is copied from acm.html's inline
+       block so this page renders standalone.
+       ============================================================ -->
+  <style>
+    /* TODO: replace REPLACE_WITH_WISTIA_ID (3 places: this swatch selector, the
+       embed loader script, and the <wistia-player> element) before shipping. */
+    /* Blur-up swatch while the Wistia web component defines itself */
+    wistia-player[media-id='REPLACE_WITH_WISTIA_ID']:not(:defined) {
+      background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/REPLACE_WITH_WISTIA_ID/swatch');
+      display: block;
+      filter: blur(5px);
+      padding-top: 56.25%;
+    }
+
+    /* ── Header: centered logo ──────────────────────────────────────────────── */
+    .site-header--replay .site-header__inner { justify-content: center; }
+
+    /* ── Replay heading (sits above the video, same navy section) ───────────── */
+    .rp-head__inner {
+      max-width: 52rem;
+      margin: 0 auto clamp(28px, 4vw, 48px);
+      text-align: center;
+    }
+    /* CTA between the body copy and the video */
+    .rp-head__cta {
+      margin-top: clamp(24px, 3vw, 36px);
+    }
+    .rp-head__eyebrow {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      margin: 0 0 var(--space-sm);
+    }
+    .rp-head__title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 1.4rem + 2.8vw, 3.25rem);
+      line-height: 1.08;
+      letter-spacing: -0.025em;
+      color: #ffffff;
+      margin: 0 0 var(--space-sm);
+      text-wrap: balance;
+    }
+    .rp-head__sub {
+      font-family: var(--font-body);
+      font-size: clamp(1.0625rem, 0.95rem + 0.5vw, 1.25rem);
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.72);
+      margin: 0 auto;
+      max-width: 40rem;
+    }
+
+    /* ── Video stage (holds the heading + player) ───────────────────────────── */
+    .rp-video {
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      padding-block: clamp(40px, 6vw, 80px) clamp(48px, 6vw, 88px);
+    }
+    .rp-video__frame {
+      max-width: 68rem;
+      margin-inline: auto;
+      border-radius: var(--radius-2xl);
+      overflow: hidden;
+      box-shadow:
+        0 40px 90px rgba(2, 28, 54, 0.5),
+        0 0 60px rgba(234, 194, 90, 0.14);
+      border: 1px solid rgba(234, 194, 90, 0.28);
+    }
+    .rp-video__frame wistia-player { display: block; }
+
+    /* ── Larger landing-page CTA ────────────────────────────────────────────── */
+    .btn--landing {
+      font-size: clamp(1.0625rem, 0.95rem + 0.6vw, 1.3125rem);
+      padding: clamp(20px, 1.6vw, 26px) clamp(36px, 4vw, 56px);
+      border-radius: var(--radius-2xl);
+      box-shadow: 0 10px 32px rgba(201, 150, 28, 0.34);
+    }
+    .rp-head__note {
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1px;
+    }
+
+    /* ══════════════════════════════════════════════════════════════════════════
+       ACM PRICING CARD — ported verbatim from acm.html's inline styles
+       ══════════════════════════════════════════════════════════════════════════ */
+    .mm-pricing {
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      padding-block: clamp(56px, 7vw, 104px);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Consultation dashboard photo behind the card — blurred and very faint so
+       it reads only as a subtle texture. Its own layer (::after) so the blur
+       doesn't affect the card/content above it. Inset is negative so the blur
+       has no hard edges at the section boundary. */
+    .mm-pricing::after {
+      content: '';
+      position: absolute;
+      inset: -60px;
+      z-index: 0;
+      background: url('assets/consultation-header.png') center / cover no-repeat;
+      filter: blur(8px);
+      opacity: 0.12;
+      pointer-events: none;
+    }
+    .mm-pricing::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 6%;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.1), transparent);
+      filter: blur(70px);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .mm-plan {
+      --mm-plan-pad: clamp(28px, 4vw, 56px);
+      position: relative;
+      z-index: 1;
+      max-width: 92rem;
+      margin-inline: auto;
+      background: linear-gradient(135deg, #0a1628 0%, #021c36 55%, #0a223d 100%);
+      border-radius: var(--radius-3xl);
+      border: 1px solid rgba(234, 194, 90, 0.4);
+      box-shadow:
+        0 40px 90px rgba(2, 28, 54, 0.45),
+        0 0 60px rgba(234, 194, 90, 0.14),
+        inset 0 0 0 1px rgba(234, 194, 90, 0.12);
+      padding: var(--mm-plan-pad);
+      overflow: hidden;
+      text-align: center;
+    }
+
+    /* ── Form/CTA sits on top (full width); the what's-inside band drops below ── */
+    .mm-plan__form { max-width: 48rem; margin-inline: auto; }
+
+    /* What's-inside band: checklist (left) · full-bleed image (right).
+       The band clears the card's bottom padding so the image can reach the
+       card's bottom + right edges; the image cell uses negative margins to
+       bleed past the padding into those edges. */
+    .mm-inside {
+      margin-top: clamp(36px, 4vw, 56px);
+      margin-bottom: calc(-1 * var(--mm-plan-pad));
+      /* Subtle gold gradient divider between the form (above) and this band. */
+      padding-top: clamp(36px, 4vw, 56px);
+      border-top: 1px solid transparent;
+      border-image: linear-gradient(90deg, transparent, rgba(234, 194, 90, 0.55), transparent) 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(28px, 3.5vw, 48px);
+      align-items: stretch;
+      text-align: left;
+    }
+    @media (min-width: 900px) {
+      .mm-inside {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: clamp(40px, 4vw, 64px);
+      }
+    }
+    .mm-inside__col { min-width: 0; }
+    /* Give the checklist column a little breathing room from the card bottom on
+       desktop (the image column reaches the edge instead). */
+    @media (min-width: 900px) {
+      .mm-inside__col--text { padding-bottom: var(--mm-plan-pad); }
+    }
+
+    /* What's-inside checklist */
+    .mm-inside__eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      margin: 0 0 var(--space-sm);
+    }
+    .mm-inside__title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.375rem, 1.1rem + 1vw, 1.875rem);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      color: #ffffff;
+      margin: 0 0 var(--space-lg);
+    }
+    .mm-inside__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: clamp(14px, 1.6vw, 20px);
+    }
+    .mm-inside__item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+      align-items: start;
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.82);
+    }
+    .mm-inside__item strong { color: #ffffff; font-weight: 700; }
+    .mm-inside__check {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      margin-top: 2px;
+      border-radius: var(--radius-full);
+      background: #34d399;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.16);
+    }
+    .mm-inside__check svg { width: 15px; height: 15px; display: block; }
+
+    /* Full-bleed image — reaches the card's right + bottom edges (no container).
+       Negative right/bottom margins cancel the card padding; the card's
+       overflow:hidden + radius clip the image to the rounded bottom-right corner. */
+    .mm-inside__media {
+      margin: 0 calc(-1 * var(--mm-plan-pad)) calc(-1 * var(--mm-plan-pad)) 0;
+      align-self: stretch;
+    }
+    .mm-inside__img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    /* Desktop: the media cell stretches to the checklist's height; the image
+       fills that height and crops to fit so both columns end level. */
+    @media (min-width: 900px) {
+      .mm-inside__media { position: relative; }
+      .mm-inside__img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: left center;
+      }
+    }
+    /* On mobile (stacked) the image bleeds to both side edges + the bottom. */
+    @media (max-width: 899.98px) {
+      .mm-inside__media {
+        margin: 0 calc(-1 * var(--mm-plan-pad)) calc(-1 * var(--mm-plan-pad));
+      }
+    }
+    .mm-plan::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.2), transparent);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    .mm-plan > * {
+      position: relative;
+      z-index: 1;
+    }
+    /* Co-branded logo lockup — Loan Atlas | ACM (styled to match the nav lockup:
+       gold logo, thin vertical divider, ACM logo bare in brand blue). */
+    .mm-plan__lockup {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: clamp(12px, 2.5vw, 26px);
+      margin-bottom: var(--space-lg);
+    }
+    /* Gold Loan Atlas logo — matched to the ACM logo's image height. */
+    .mm-plan__lockup-atlas {
+      height: clamp(32px, 4.6vw, 46px);
+      width: auto;
+      display: block;
+    }
+    .mm-plan__lockup-x {
+      width: 1px;
+      height: clamp(26px, 4vw, 38px);
+      background: rgba(255, 255, 255, 0.22);
+      flex-shrink: 0;
+    }
+    .mm-plan__lockup-mm {
+      height: clamp(32px, 4.6vw, 46px);
+      width: auto;
+      display: block;
+    }
+    /* Big, bold headline — shiny white */
+    .mm-plan__hero-title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 1.3rem + 3.2vw, 3.25rem);
+      line-height: 1.02;
+      letter-spacing: -0.03em;
+      margin: 0 0 var(--space-lg);
+      color: #ffffff;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.25);
+      filter: drop-shadow(0 6px 20px rgba(0, 0, 0, 0.45));
+    }
+    .mm-plan__hero-plat {
+      background: linear-gradient(180deg, #c2262b 0%, #9e1e22 60%, #7a171a 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .mm-plan__save { text-align: center; margin: 0 0 var(--space-xl); }
+    .mm-plan__save-pill {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 0.9rem + 0.5vw, 1.1875rem);
+      font-weight: 600;
+      letter-spacing: 0;
+      color: #6ee7a8;
+      background: rgba(52, 211, 153, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      border-radius: var(--radius-full);
+      padding: 12px 28px;
+      line-height: 1.5;
+    }
+    .mm-plan__save-pill em { font-style: normal; font-weight: 800; color: #34d399; }
+
+    /* Pricing card gets a little scroll offset so a fixed/landing header clears it. */
+    #acm-form {
+      scroll-margin-top: calc(var(--header-h) + 24px);
+    }
+    /* ── Embedded ACM enrollment form (nested inside the pricing card) ───────── */
+    .acm-form {
+      position: relative;
+      z-index: 1;
+      margin-top: var(--space-lg);
+      /* Fill (nearly) the whole card. The embedded form has no internal width cap,
+         so it grows with the iframe as the box widens. */
+      max-width: 48rem;
+      margin-inline: auto;
+      background: #ffffff;
+      border: 1px solid rgba(234, 194, 90, 0.4);
+      border-radius: var(--radius-2xl);
+      box-shadow: inset 0 0 0 1px rgba(234, 194, 90, 0.12);
+      padding: clamp(16px, 2vw, 24px) clamp(16px, 2.4vw, 32px);
+      overflow: hidden;
+      text-align: center;
+    }
+    .acm-form__head {
+      text-align: center;
+      margin-bottom: var(--space-md);
+    }
+    .acm-form__title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      color: var(--primary);
+      margin: 0 0 8px;
+    }
+    .acm-form__sub {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+    /* The LeadConnector embed script sizes the iframe to the form's own content
+       height (~520px); keep a smaller floor so there's no big empty gap below the
+       form before the script runs. */
+    .acm-form__embed iframe {
+      display: block;
+      width: 100%;
+      min-height: 560px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── Header — centered logo (page-local landing nav) ─────────────────────── -->
+  <header class="site-header site-header--replay">
+    <div class="site-header__inner">
+      <a class="brand" href="/" aria-label="The Loan Atlas">
+        <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
+      </a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ── 1. REPLAY — heading + video together ─────────────────────────────── -->
+    <section class="rp-video" aria-labelledby="rp-head-title">
+      <div class="container">
+        <div class="rp-head__inner">
+          <span class="rp-head__eyebrow">Live Event Replay</span>
+          <h1 id="rp-head-title" class="rp-head__title">Your Marketing Is Being Ignored — And It's Costing You More Than You Realize</h1>
+          <p class="rp-head__sub">Watch the full replay below &mdash; then activate your ACM Preferred Account and start installing the systems top producers are using to close more loans with less chaos.</p>
+          <div class="rp-head__cta">
+            <a class="btn btn--gold btn--landing" href="#acm-form">Activate Your ACM Account</a>
+          </div>
+        </div>
+        <div class="rp-video__frame">
+          <!-- Wistia loader scripts live in <body> (the build strips <head> scripts) -->
+          <!-- TODO: replace REPLACE_WITH_WISTIA_ID with the real media ID before shipping -->
+          <script src="https://fast.wistia.com/player.js" async></script>
+          <script src="https://fast.wistia.com/embed/REPLACE_WITH_WISTIA_ID.js" async type="module"></script>
+          <wistia-player media-id="REPLACE_WITH_WISTIA_ID" seo="false" aspect="1.7777777777777777"></wistia-player>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── 2. ACM PRICING CARD (from acm.html) ──────────────────────────────── -->
+    <section class="mm-pricing" id="pricing">
+      <div class="container">
+        <article id="acm-form" class="mm-plan">
+
+          <!-- TOP — instructions + form (full width) -->
+          <div class="mm-plan__form">
+            <div class="mm-plan__lockup" aria-label="The Loan Atlas — ACM Preferred Account pricing">
+              <img class="mm-plan__lockup-atlas" src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" />
+              <span class="mm-plan__lockup-x" aria-hidden="true"></span>
+              <img class="mm-plan__lockup-mm" src="assets/acm-logo-primary-blue.webp" alt="Atlantic Coast Mortgage" />
+            </div>
+            <h3 class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Complete the Form to Activate Your ACM Preferred Account for just <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">$199/mo</span></h3>
+
+            <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$1,800</em> in Annual Savings — Exclusively for ACM Originators</span></p>
+
+            <!-- ── Embedded ACM enrollment form (inside the pricing card) ──────── -->
+            <div class="acm-form">
+              <div class="acm-form__head">
+                <h4 class="acm-form__title">Activate Your ACM Preferred Account</h4>
+                <p class="acm-form__sub">Complete the form below and our team will get you set up at $199/mo.</p>
+              </div>
+              <div class="acm-form__embed">
+                <iframe
+                  src="https://api.leadconnectorhq.com/widget/form/iZbKtYJN0Ia5ayRrxOwU"
+                  style="width:100%;height:100%;border:none;border-radius:3px"
+                  id="inline-iZbKtYJN0Ia5ayRrxOwU"
+                  data-layout="{'id':'INLINE'}"
+                  data-trigger-type="alwaysShow"
+                  data-trigger-value=""
+                  data-activation-type="alwaysActivated"
+                  data-activation-value=""
+                  data-deactivation-type="neverDeactivate"
+                  data-deactivation-value=""
+                  data-form-name="CA: ACM"
+                  data-height="754"
+                  data-layout-iframe-id="inline-iZbKtYJN0Ia5ayRrxOwU"
+                  data-form-id="iZbKtYJN0Ia5ayRrxOwU"
+                  title="CA: ACM">
+                </iframe>
+              </div>
+            </div>
+          </div>
+
+          <!-- BOTTOM — what's inside: checklist (left) · full-bleed image (right) -->
+          <div class="mm-inside">
+            <div class="mm-inside__col mm-inside__col--text">
+              <ul class="mm-inside__list">
+                <li class="mm-inside__item">
+                  <span class="mm-inside__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#052e16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span><strong>Seven live, one-hour coaching calls</strong> every month</span>
+                </li>
+                <li class="mm-inside__item">
+                  <span class="mm-inside__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#052e16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span><strong>200+ training modules</strong> to help you along the 8 Disciplines of Loan Origination Mastery</span>
+                </li>
+                <li class="mm-inside__item">
+                  <span class="mm-inside__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#052e16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span><strong>An all-star faculty of coaches and mentors</strong> with over $29 billion in collective loan funding</span>
+                </li>
+                <li class="mm-inside__item">
+                  <span class="mm-inside__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#052e16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span><strong>The Perfect Loan Process™</strong> – Streamline your entire loan process from initial inquiry to final approval</span>
+                </li>
+                <li class="mm-inside__item">
+                  <span class="mm-inside__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#052e16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span><strong>AI Sales &amp; Scripting Coach</strong> – Confidently overcome every objection</span>
+                </li>
+                <li class="mm-inside__item">
+                  <span class="mm-inside__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#052e16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span><strong>Health, Mindset, &amp; Vitality Coach</strong> – Respond with intention and stop reacting to the day</span>
+                </li>
+                <li class="mm-inside__item">
+                  <span class="mm-inside__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#052e16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span><strong>Talk to Tim</strong> – Overcome any obstacle in this small group monthly coaching session with Tim Braheem</span>
+                </li>
+              </ul>
+            </div>
+            <div class="mm-inside__col mm-inside__media">
+              <img class="mm-inside__img" src="assets/hero image.png" alt="Inside The Loan Atlas — dashboard and AI coaching platform" loading="lazy" />
+            </div>
+          </div>
+
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+<!-- TLA_FOOTER -->
+
+  <script src="js/nav.js"></script>
+  <!-- LeadConnector form embed (ACM enrollment form) -->
+  <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+</body>
+
+</html>
