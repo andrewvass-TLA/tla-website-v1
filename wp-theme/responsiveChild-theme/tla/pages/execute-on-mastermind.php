@@ -345,6 +345,9 @@ $tla_active      = '';
           <p class="rp-head__sub">Watch the full replay below &mdash; then lock in your exclusive Mastermind Platinum bundle before you close this page.</p>
         </div>
         <div class="rp-video__frame">
+          <!-- Wistia loader scripts live in <body> (the build strips <head> scripts) -->
+          <script src="https://fast.wistia.com/player.js" async></script>
+          <script src="https://fast.wistia.com/embed/8xf5e7f2az.js" async type="module"></script>
           <wistia-player media-id="8xf5e7f2az" seo="false" aspect="1.7777777777777777"></wistia-player>
         </div>
       </div>
