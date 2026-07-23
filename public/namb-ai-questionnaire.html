@@ -86,11 +86,14 @@
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       }
       /* chrome.css already gives `body > main` a 72px top pad to clear the fixed
-         header. The savings band is fixed just below that header (~44px tall),
-         so add the band's height + spacing on top so the eyebrow starts clear
-         of the band. */
-      .naq-hero {
-        padding-top: calc(44px + clamp(24px, 6vw, 48px));
+         header. The savings band is fixed just below that header and is ~53px
+         tall (its copy wraps to two lines on narrow screens, more on the
+         narrowest), so the hero must add at least the band height + spacing on
+         top. Use a generous floor so the eyebrow always clears the band.
+         Doubled class raises specificity so this wins over the base .naq-hero
+         padding-top regardless of source order. */
+      .naq-hero.naq-hero {
+        padding-top: calc(64px + clamp(24px, 6vw, 40px));
       }
       /* Shrink the button so the full "Join The Loan Atlas" label fits beside
          the logo now that the savings copy has moved to the band below. */
@@ -109,7 +112,8 @@
        ══════════════════════════════════════════════════════════════════════════ */
     .naq-hero {
       background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
-      padding-block: clamp(48px, 7vw, 104px);
+      padding-top: clamp(48px, 7vw, 104px);
+      padding-bottom: clamp(48px, 7vw, 104px);
     }
     .naq-hero__grid {
       display: grid;
