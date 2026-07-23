@@ -1,7 +1,7 @@
 <?php
 /**
  * Body partial for /launch-namb-ai-operating-manual/ (TLA Full HTML template).
- * Generated from public/mortgage-advisor-questionnaire.html by scripts/convert-pages.sh — do not hand-edit;
+ * Generated from public/launch-namb-ai-operating-manual.html by scripts/convert-pages.sh — do not hand-edit;
  * edit the source HTML (or the shared header/footer partials) and re-run.
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
@@ -78,11 +78,11 @@ $tla_active      = '';
         background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       }
-      /* The band is fixed (navy) and overlays the hero's navy top — no white
-         gap. Keep main's base 72px header clearance, and add the band's height
-         to the hero's top padding so the hero text starts below the band. */
-      .maq-hero {
-        padding-top: calc(var(--header-h, 72px) + 44px + clamp(24px, 6vw, 48px));
+      /* The band is fixed (navy) and overlays the top of the page — no white
+         gap. main already has 72px header clearance (chrome.css); add the
+         band's height so the first section starts below the band. */
+      .maq-sheet.maq-sheet {
+        padding-top: calc(44px + clamp(40px, 6vw, 88px));
       }
       /* Shrink the button so the full "Join The Loan Atlas" label fits beside
          the logo now that the savings copy has moved to the band below. */
@@ -96,115 +96,32 @@ $tla_active      = '';
       .site-header.site-header--maq .brand__logo { height: 24px; }
     }
 
-    /* ── Hero band ──────────────────────────────────────────────────────────── */
-    .maq-hero {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
-      color: #ffffff;
-      /* body > main gets padding-top:72px (chrome.css) to clear the fixed header;
-         that band would otherwise show main's light --background as a white strip
-         under the nav. Pull the hero up to fill it with navy, adding the height
-         back as top padding so the content isn't hidden behind the header. */
-      margin-top: calc(-1 * var(--header-h, 72px));
-      padding-top: calc(var(--header-h, 72px) + clamp(48px, 7vw, 96px));
-      padding-bottom: clamp(48px, 7vw, 96px);
-    }
-    /* brass + blue radial glows */
-    .maq-hero::before,
-    .maq-hero::after {
-      content: "";
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(70px);
-      pointer-events: none;
-    }
-    .maq-hero::before {
-      width: 460px; height: 460px;
-      top: -160px; right: -120px;
-      background: rgba(234, 194, 90, 0.14);
-    }
-    .maq-hero::after {
-      width: 420px; height: 420px;
-      bottom: -180px; left: -140px;
-      background: rgba(178, 200, 233, 0.12);
-    }
-    .maq-hero__inner {
-      position: relative;
-      z-index: 1;
+    /* ── How it works — 1·2·3 steps, horizontal, above Section A ────────────── */
+    .maq-steps {
+      list-style: none;
+      margin: 0 0 clamp(28px, 4vw, 48px);
+      padding: 0;
       display: grid;
       grid-template-columns: 1fr;
-      gap: clamp(24px, 4vw, 40px);
-      align-items: start;
+      gap: clamp(14px, 2vw, 20px);
     }
-    @media (min-width: 860px) {
-      .maq-hero__inner { grid-template-columns: 1.55fr 1fr; }
+    @media (min-width: 760px) {
+      .maq-steps { grid-template-columns: repeat(3, 1fr); }
     }
-    .maq-hero__eyebrow {
-      font-family: var(--font-body);
-      font-weight: 700;
-      font-size: 0.875rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--maq-brass-bright);
-      margin: 0 0 var(--space-md);
-    }
-    .maq-hero__title {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: clamp(2rem, 1.5rem + 2.4vw, 3.25rem);
-      line-height: 1.08;
-      letter-spacing: -0.02em;
-      margin: 0;
-      background: var(--maq-grad);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-    .maq-hero__title .maq-hero__title-sub {
-      display: block;
-      margin-top: 0.15em;
-      background: none;
-      -webkit-background-clip: initial;
-      background-clip: initial;
-      color: #ffffff;
-    }
-    .maq-hero__lede {
-      font-family: var(--font-body);
-      font-size: clamp(1.0625rem, 0.95rem + 0.5vw, 1.25rem);
-      line-height: 1.6;
-      color: rgba(255, 255, 255, 0.78);
-      max-width: 40rem;
-      margin: var(--space-md) 0 0;
-    }
-    /* Right column: "how it works" steps, vertically centered in the hero */
-    .maq-hero__aside {
-      align-self: center;
-      display: flex;
-      flex-direction: column;
-    }
-    /* "How it works" steps — housed in the hero box */
-    .maq-hero__steps {
-      list-style: none;
-      margin: 0;
-      padding: clamp(20px, 2.8vw, 28px);
-      display: grid;
-      gap: clamp(16px, 2vw, 22px);
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(234, 194, 90, 0.4);
-      border-radius: var(--radius-2xl);
-      backdrop-filter: blur(8px);
-    }
-    .maq-hero__step {
+    .maq-steps__item {
       display: flex;
       align-items: center;
       gap: 16px;
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 55%, #060e1c 100%);
+      border: 1px solid rgba(234, 194, 90, 0.4);
+      border-radius: var(--radius-2xl);
+      padding: clamp(18px, 2.2vw, 24px);
       font-family: var(--font-body);
-      font-size: clamp(1.0625rem, 0.95rem + 0.5vw, 1.25rem);
+      font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
       line-height: 1.45;
       color: rgba(255, 255, 255, 0.9);
     }
-    .maq-hero__step-num {
+    .maq-steps__num {
       flex-shrink: 0;
       display: inline-flex;
       align-items: center;
@@ -218,47 +135,11 @@ $tla_active      = '';
       font-size: 1.1875rem;
       box-shadow: 0 4px 12px rgba(201, 150, 28, 0.3);
     }
-    /* Tip chip — top-right on the hero, mirrors the worksheet tip cards */
-    .maq-hero__tip {
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(234, 194, 90, 0.4);
-      border-radius: var(--radius-2xl);
-      padding: clamp(18px, 2.4vw, 24px);
-      backdrop-filter: blur(8px);
-      display: flex;
-      gap: 14px;
-      align-items: flex-start;
-    }
-    .maq-hero__tip-icon {
-      flex-shrink: 0;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 44px; height: 44px;
-      border-radius: 50%;
-      background: var(--maq-navy);
-      border: 1px solid rgba(234, 194, 90, 0.5);
-      color: var(--maq-brass-bright);
-    }
-    .maq-hero__tip-icon svg { width: 22px; height: 22px; }
-    .maq-hero__tip-label {
-      font-family: var(--font-body);
-      font-weight: 700;
-      color: var(--maq-brass-bright);
-      font-size: 0.9375rem;
-      margin: 0 0 4px;
-    }
-    .maq-hero__tip-text {
-      font-family: var(--font-body);
-      font-size: clamp(1.0625rem, 1rem + 0.3vw, 1.1875rem);
-      line-height: 1.5;
-      color: rgba(255, 255, 255, 0.78);
-      margin: 0;
-    }
+    .maq-steps__text strong { color: var(--maq-brass-bright); font-weight: 700; }
 
     /* ── Worksheet body ─────────────────────────────────────────────────────── */
     #maq-start { scroll-margin-top: calc(var(--header-h) + 24px); }
-    .maq-sheet { padding-block: clamp(40px, 6vw, 88px); }
+    .maq-sheet { padding-top: clamp(40px, 6vw, 88px); padding-bottom: clamp(40px, 6vw, 88px); }
     .maq-sheet__intro {
       max-width: 46rem;
       margin: 0 auto clamp(28px, 4vw, 48px);
@@ -622,42 +503,7 @@ $tla_active      = '';
 
   <main class="maq">
 
-    <!-- ── 1. HERO ──────────────────────────────────────────────────────────── -->
-    <section class="maq-hero" aria-labelledby="maq-hero-title">
-      <div class="container">
-        <div class="maq-hero__inner">
-          <div>
-            <h1 id="maq-hero-title" class="maq-hero__title">
-              The Mortgage Advisor AI Questionnaire
-              <span class="maq-hero__title-sub">Teach AI how your business works.</span>
-            </h1>
-            <p class="maq-hero__lede">
-              Generic AI gives generic output because it doesn't know you or your business.
-              This questionnaire will help you teach it everything &mdash; your borrowers, your
-              voice, your guardrails &mdash; so what it writes actually sounds like you.
-            </p>
-          </div>
-          <div class="maq-hero__aside">
-            <ol class="maq-hero__steps">
-              <li class="maq-hero__step">
-                <span class="maq-hero__step-num">1</span>
-                <span>Answer the questions below &mdash; your work saves automatically in this browser.</span>
-              </li>
-              <li class="maq-hero__step">
-                <span class="maq-hero__step-num">2</span>
-                <span>Tap <strong>Copy</strong> to grab all your answers at once.</span>
-              </li>
-              <li class="maq-hero__step">
-                <span class="maq-hero__step-num">3</span>
-                <span>Paste into your AI assistant and turn them into your Custom Instructions.</span>
-              </li>
-            </ol>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── 2. WORKSHEET ─────────────────────────────────────────────────────── -->
+    <!-- ── 1. WORKSHEET ─────────────────────────────────────────────────────── -->
     <section class="maq-sheet" id="maq-start" aria-labelledby="maq-sheet-title">
       <div class="container">
         <div class="maq-sheet__intro">
@@ -665,6 +511,22 @@ $tla_active      = '';
           <p>Briefly answer these questions to teach your AI who you serve, how you sound,
              and how you solve problems.</p>
         </div>
+
+        <!-- How it works — 1·2·3, horizontal, above Section A -->
+        <ol class="maq-steps" aria-label="How it works">
+          <li class="maq-steps__item">
+            <span class="maq-steps__num">1</span>
+            <span class="maq-steps__text">Answer the questions below &mdash; your work saves automatically in this browser.</span>
+          </li>
+          <li class="maq-steps__item">
+            <span class="maq-steps__num">2</span>
+            <span class="maq-steps__text">Tap <strong>Copy</strong> to grab all your answers at once.</span>
+          </li>
+          <li class="maq-steps__item">
+            <span class="maq-steps__num">3</span>
+            <span class="maq-steps__text">Paste into your AI assistant and turn them into your Custom Instructions.</span>
+          </li>
+        </ol>
 
         <form id="maq-worksheet" autocomplete="off" novalidate>
 
