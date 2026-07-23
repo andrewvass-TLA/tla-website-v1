@@ -156,15 +156,18 @@ $tla_active      = '';
       line-height: 1.08;
       letter-spacing: -0.02em;
       margin: 0;
-      color: #ffffff;
-    }
-    .maq-hero__title .maq-hero__title-sub {
-      display: block;
-      margin-top: 0.15em;
       background: var(--maq-grad);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+    }
+    .maq-hero__title .maq-hero__title-sub {
+      display: block;
+      margin-top: 0.15em;
+      background: none;
+      -webkit-background-clip: initial;
+      background-clip: initial;
+      color: #ffffff;
     }
     .maq-hero__lede {
       font-family: var(--font-body);
@@ -174,19 +177,23 @@ $tla_active      = '';
       max-width: 40rem;
       margin: var(--space-md) 0 0;
     }
-    /* Right column: "how it works" steps stacked above the tip card */
+    /* Right column: "how it works" steps, vertically centered in the hero */
     .maq-hero__aside {
+      align-self: center;
       display: flex;
       flex-direction: column;
-      gap: clamp(20px, 2.6vw, 32px);
     }
-    /* "How it works" steps */
+    /* "How it works" steps — housed in the hero box */
     .maq-hero__steps {
       list-style: none;
       margin: 0;
-      padding: 0;
+      padding: clamp(20px, 2.8vw, 28px);
       display: grid;
       gap: clamp(16px, 2vw, 22px);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(234, 194, 90, 0.4);
+      border-radius: var(--radius-2xl);
+      backdrop-filter: blur(8px);
     }
     .maq-hero__step {
       display: flex;
@@ -625,9 +632,9 @@ $tla_active      = '';
               <span class="maq-hero__title-sub">Teach AI how your business works.</span>
             </h1>
             <p class="maq-hero__lede">
-              Use this worksheet to teach AI how your mortgage business works &mdash; so it
-              can write, plan, and communicate more like you. Fill it in below, then copy
-              your answers straight into your AI assistant.
+              Generic AI gives generic output because it doesn't know you or your business.
+              This questionnaire will help you teach it everything &mdash; your borrowers, your
+              voice, your guardrails &mdash; so what it writes actually sounds like you.
             </p>
           </div>
           <div class="maq-hero__aside">
@@ -645,15 +652,6 @@ $tla_active      = '';
                 <span>Paste into your AI assistant and turn them into your Custom Instructions.</span>
               </li>
             </ol>
-            <aside class="maq-hero__tip" aria-label="Tip">
-            <span class="maq-hero__tip-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-4 10.5c.6.6 1 1.2 1 2V16h6v-.5c0-.8.4-1.4 1-2A6 6 0 0 0 12 3Z" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            </span>
-            <div>
-              <p class="maq-hero__tip-label">Tip</p>
-              <p class="maq-hero__tip-text">Write short bullet answers. You can refine them later with AI &mdash; done beats perfect.</p>
-            </div>
-            </aside>
           </div>
         </div>
       </div>
@@ -663,9 +661,9 @@ $tla_active      = '';
     <section class="maq-sheet" id="maq-start" aria-labelledby="maq-sheet-title">
       <div class="container">
         <div class="maq-sheet__intro">
-          <h2 id="maq-sheet-title">Fill in your operating manual</h2>
-          <p>Five sections, eight questions each. Answer what you can &mdash; every field saves
-             automatically as you type.</p>
+          <h2 id="maq-sheet-title">40 questions. One time. Every Prompt Better.</h2>
+          <p>Briefly answer these questions to teach your AI who you serve, how you sound,
+             and how you solve problems.</p>
         </div>
 
         <form id="maq-worksheet" autocomplete="off" novalidate>
