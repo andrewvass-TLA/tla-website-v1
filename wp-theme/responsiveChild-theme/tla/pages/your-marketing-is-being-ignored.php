@@ -11,11 +11,9 @@ $tla_description = 'Watch the replay of Your Marketing Is Being Ignored — And 
 $tla_active      = '';
 ?>
   <style>
-    /* TODO: replace REPLACE_WITH_WISTIA_ID (3 places: this swatch selector, the
-       embed loader script, and the <wistia-player> element) before shipping. */
     /* Blur-up swatch while the Wistia web component defines itself */
-    wistia-player[media-id='REPLACE_WITH_WISTIA_ID']:not(:defined) {
-      background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/REPLACE_WITH_WISTIA_ID/swatch');
+    wistia-player[media-id='serwg0uf2i']:not(:defined) {
+      background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/serwg0uf2i/swatch');
       display: block;
       filter: blur(5px);
       padding-top: 56.25%;
@@ -416,10 +414,9 @@ $tla_active      = '';
         </div>
         <div class="rp-video__frame">
           <!-- Wistia loader scripts live in <body> (the build strips <head> scripts) -->
-          <!-- TODO: replace REPLACE_WITH_WISTIA_ID with the real media ID before shipping -->
           <script src="https://fast.wistia.com/player.js" async></script>
-          <script src="https://fast.wistia.com/embed/REPLACE_WITH_WISTIA_ID.js" async type="module"></script>
-          <wistia-player media-id="REPLACE_WITH_WISTIA_ID" seo="false" aspect="1.7777777777777777"></wistia-player>
+          <script src="https://fast.wistia.com/embed/serwg0uf2i.js" async type="module"></script>
+          <wistia-player media-id="serwg0uf2i" seo="false" aspect="1.7777777777777777"></wistia-player>
         </div>
       </div>
     </section>
