@@ -73,11 +73,12 @@ $tla_active      = '';
         background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
         border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       }
-      /* The band is fixed (navy) and overlays the hero's navy top — no white
-         gap. Add the band's height to the hero's top padding so the hero text
-         starts below the band. */
+      /* chrome.css already gives `body > main` a 72px top pad to clear the fixed
+         header. The savings band is fixed just below that header (~44px tall),
+         so add the band's height + spacing on top so the eyebrow starts clear
+         of the band. */
       .naq-hero {
-        padding-top: calc(44px + clamp(48px, 7vw, 104px));
+        padding-top: calc(44px + clamp(24px, 6vw, 48px));
       }
       /* Shrink the button so the full "Join The Loan Atlas" label fits beside
          the logo now that the savings copy has moved to the band below. */
