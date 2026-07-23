@@ -1,0 +1,754 @@
+<?php
+/**
+ * Body partial for /namb-ai-operating-manual/ (TLA Full HTML template).
+ * Generated from public/namb-ai-questionnaire.html by scripts/convert-pages.sh — do not hand-edit;
+ * edit the source HTML (or the shared header/footer partials) and re-run.
+ */
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+
+$tla_title       = 'The Mortgage Advisor AI Operating Manual — The Loan Atlas';
+$tla_description = 'Answer 40 short questions about your business and teach AI who you serve, how you solve problems, and how you sound — so what it writes actually sounds like you.';
+$tla_active      = '';
+?>
+  <style>
+    .naq {
+      --naq-navy: #021c36;
+      --naq-navy-deep: #060e1c;
+      --naq-brass: #c9961c;
+      --naq-brass-bright: #eac25a;
+      --naq-grad: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      background: var(--background);
+    }
+
+    /* ── Header: logo left, savings line + CTA right (matches the questionnaire) ── */
+    .site-header--naq .site-header__inner { justify-content: space-between; }
+    /* Savings line to the left of the CTA. */
+    .naq-header-save {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 1rem;
+      line-height: 1.3;
+      letter-spacing: 0.01em;
+      color: #ffffff;
+      text-align: right;
+      max-width: 18rem;
+    }
+    .naq-header-save__amt {
+      font-weight: 800;
+      /* Brass gradient hardcoded — the header sits outside <main class="naq">,
+         so the --naq-grad token isn't in scope here. */
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+    /* Enlarged header CTA — bigger pad + text than the base .btn--header.
+       chrome.css loads last and sets font-size at ≥540px with 2-class
+       specificity, so match it with a 3-class selector to win. */
+    .site-header.site-header--naq .btn--header {
+      padding: 12px 22px;
+      font-size: 1rem;
+      border-radius: var(--radius-lg);
+    }
+    /* Always show the full "Join The Loan Atlas" label. */
+    .site-header--naq .btn--header .btn__short { display: none; }
+    .site-header--naq .btn--header .btn__full  { display: inline; }
+
+    /* On narrow screens the savings copy won't fit beside the logo + full
+       button, so drop it out of the header into a full-width band directly
+       below the fixed header. The header keeps just logo + button. */
+    @media (max-width: 767.98px) {
+      .naq-header-save {
+        position: fixed;
+        top: var(--header-h, 72px);
+        left: 0;
+        right: 0;
+        z-index: 49;
+        max-width: none;
+        text-align: center;
+        font-size: 0.875rem;
+        line-height: 1.3;
+        padding: 8px 16px;
+        background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      /* The band is fixed (navy) and overlays the hero's navy top — no white
+         gap. Add the band's height to the hero's top padding so the hero text
+         starts below the band. */
+      .naq-hero {
+        padding-top: calc(44px + clamp(48px, 7vw, 104px));
+      }
+      /* Shrink the button so the full "Join The Loan Atlas" label fits beside
+         the logo now that the savings copy has moved to the band below. */
+      .site-header.site-header--naq .btn--header {
+        padding: 9px 15px;
+        font-size: 0.8125rem;
+      }
+    }
+    @media (max-width: 400px) {
+      .site-header.site-header--naq .btn--header { padding: 8px 12px; font-size: 0.75rem; }
+      .site-header.site-header--naq .brand__logo { height: 24px; }
+    }
+
+    /* ══════════════════════════════════════════════════════════════════════════
+       HERO — dark band, two columns (copy left · form right)
+       ══════════════════════════════════════════════════════════════════════════ */
+    .naq-hero {
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      padding-block: clamp(48px, 7vw, 104px);
+    }
+    .naq-hero__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(32px, 4vw, 56px);
+      align-items: center;
+    }
+    @media (min-width: 900px) {
+      .naq-hero__grid {
+        grid-template-columns: 1.05fr 0.95fr;
+        gap: clamp(40px, 4vw, 72px);
+      }
+    }
+
+    /* ── Left column — copy ─────────────────────────────────────────────────── */
+    .naq-hero__eyebrow {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--naq-brass-bright);
+      margin: 0 0 var(--space-sm);
+    }
+    .naq-hero__title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2.25rem, 1.5rem + 3vw, 3.5rem);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      /* Small bottom padding so background-clip: text doesn't crop the
+         descender on "g" (Operating). */
+      padding-bottom: 0.12em;
+      margin: 0 0 var(--space-sm);
+      text-wrap: balance;
+      background: var(--naq-grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+    .naq-hero__sub {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
+      line-height: 1.25;
+      letter-spacing: -0.015em;
+      color: #ffffff;
+      margin: 0 0 var(--space-md);
+      text-wrap: balance;
+    }
+    .naq-hero__lede {
+      font-family: var(--font-body);
+      font-size: clamp(1.0625rem, 0.95rem + 0.5vw, 1.25rem);
+      line-height: 1.55;
+      color: rgba(255, 255, 255, 0.82);
+      margin: 0 0 var(--space-md);
+      max-width: 34rem;
+    }
+    .naq-hero__lede strong {
+      font-weight: 700;
+      background: var(--naq-grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      color: transparent;
+    }
+
+    /* Frustrations list — red ✗ bullets (matches the slide) */
+    .naq-pains {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+      max-width: 36rem;
+    }
+    .naq-pains__item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    .naq-pains__x {
+      flex: none;
+      width: 26px;
+      height: 26px;
+      margin-top: 1px;
+      border-radius: 50%;
+      background: #dc2626;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .naq-pains__x svg { width: 13px; height: 13px; }
+
+    /* ── Right column — GHL form card ───────────────────────────────────────── */
+    .naq-formcard {
+      background: #ffffff;
+      border: 1px solid rgba(234, 194, 90, 0.4);
+      border-radius: var(--radius-2xl);
+      box-shadow:
+        inset 0 0 0 1px rgba(234, 194, 90, 0.12),
+        0 40px 90px rgba(2, 28, 54, 0.5),
+        0 0 60px rgba(234, 194, 90, 0.14);
+      padding: clamp(20px, 2vw, 28px) clamp(18px, 2.4vw, 32px);
+      overflow: hidden;
+      text-align: center;
+    }
+    .naq-formcard__head {
+      margin-bottom: var(--space-md);
+    }
+    .naq-formcard__title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.25rem, 1rem + 1vw, 1.625rem);
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      color: var(--primary);
+      margin: 0 0 8px;
+    }
+    .naq-formcard__sub {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.55;
+      color: var(--on-surface-variant);
+      margin: 0;
+    }
+    /* Placeholder box — sized to hold a real LeadConnector form (~620px). Swap
+       the .naq-formcard__placeholder div for the commented-out iframe below. */
+    .naq-formcard__embed {
+      min-height: 620px;
+      display: flex;
+    }
+    .naq-formcard__embed iframe {
+      display: block;
+      width: 100%;
+      min-height: 620px;
+      border: none;
+    }
+    .naq-formcard__placeholder {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border: 2px dashed rgba(2, 28, 54, 0.28);
+      border-radius: var(--radius-lg);
+      background:
+        repeating-linear-gradient(
+          45deg,
+          rgba(2, 28, 54, 0.02),
+          rgba(2, 28, 54, 0.02) 12px,
+          rgba(2, 28, 54, 0.05) 12px,
+          rgba(2, 28, 54, 0.05) 24px
+        );
+      color: rgba(2, 28, 54, 0.55);
+      font-family: var(--font-body);
+      text-align: center;
+      padding: 24px;
+    }
+    .naq-formcard__placeholder-label {
+      font-weight: 700;
+      font-size: 0.8125rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(2, 28, 54, 0.7);
+    }
+    .naq-formcard__placeholder-note {
+      font-size: 0.9375rem;
+      line-height: 1.5;
+      max-width: 22rem;
+    }
+
+    /* ══════════════════════════════════════════════════════════════════════════
+       PRICING CARD — NAMB exclusive discount (ported from mastermind.html's
+       .mm-offer / .mm-step pricing pattern, scoped to .naq-*)
+       ══════════════════════════════════════════════════════════════════════════ */
+    .naq-pricing {
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      padding-block: clamp(56px, 7vw, 104px);
+      position: relative;
+      overflow: hidden;
+    }
+    /* Consultation dashboard photo behind the card — blurred and very faint so
+       it reads only as a subtle texture (matches the ACM replay pricing band).
+       Its own layer so the blur doesn't affect the card/content above it. */
+    .naq-pricing::after {
+      content: '';
+      position: absolute;
+      inset: -60px;
+      z-index: 0;
+      background: url('<?php echo TLA_BASE; ?>/assets/consultation-header.png') center / cover no-repeat;
+      filter: blur(8px);
+      opacity: 0.12;
+      pointer-events: none;
+    }
+    /* Gold radial glow at the top-left of the band. */
+    .naq-pricing::before {
+      content: '';
+      position: absolute;
+      top: -80px;
+      left: 6%;
+      width: 480px;
+      height: 480px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.1), transparent);
+      filter: blur(70px);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .naq-pricing > .container { position: relative; z-index: 1; }
+    .naq-plan {
+      --naq-plan-pad: clamp(28px, 4vw, 56px);
+      max-width: 72rem;
+      margin-inline: auto;
+      background: linear-gradient(135deg, #0a1628 0%, #021c36 55%, #0a223d 100%);
+      border-radius: var(--radius-3xl);
+      border: 1px solid rgba(234, 194, 90, 0.4);
+      box-shadow:
+        0 40px 90px rgba(2, 28, 54, 0.45),
+        0 0 60px rgba(234, 194, 90, 0.14),
+        inset 0 0 0 1px rgba(234, 194, 90, 0.12);
+      padding: var(--naq-plan-pad);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    /* The pricing content (eyebrow → CTA) sits centered above the wider
+       what's-inside band below. */
+    .naq-plan__offer { max-width: 48rem; margin-inline: auto; }
+    .naq-plan::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.2), transparent);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    .naq-plan > * { position: relative; z-index: 1; }
+
+    .naq-plan__eyebrow {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: 0.8125rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--naq-brass-bright);
+      background: rgba(234, 194, 90, 0.14);
+      border: 1px solid rgba(234, 194, 90, 0.32);
+      border-radius: var(--radius-full);
+      padding: 8px 20px;
+      margin: 0 0 var(--space-md);
+    }
+    .naq-plan__title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.875rem, 1.3rem + 2.6vw, 2.75rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin: 0 0 var(--space-lg);
+      text-wrap: balance;
+    }
+
+    /* Two price blocks — monthly + annual */
+    .naq-plan__steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      align-items: stretch;
+      max-width: 40rem;
+      margin: 0 auto var(--space-lg);
+    }
+    @media (min-width: 620px) {
+      .naq-plan__steps { grid-template-columns: 1fr 1fr; }
+    }
+    .naq-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      border-radius: var(--radius-2xl);
+      padding: clamp(28px, 3.5vw, 44px) var(--space-md);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+    .naq-step--annual {
+      background: rgba(234, 194, 90, 0.1);
+      border: 1px solid rgba(234, 194, 90, 0.45);
+    }
+    .naq-step__label {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--naq-brass-bright);
+    }
+    .naq-step__was {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.625rem);
+      color: rgba(255, 255, 255, 0.82);
+    }
+    .naq-step__strike {
+      position: relative;
+      white-space: nowrap;
+    }
+    .naq-step__strike::after {
+      content: '';
+      position: absolute;
+      left: -2px;
+      right: -2px;
+      top: 50%;
+      height: 3px;
+      background: var(--naq-brass-bright);
+      transform: rotate(-6deg);
+    }
+    .naq-step__price {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      font-size: clamp(2.75rem, 1.8rem + 4.6vw, 4.25rem);
+    }
+    .naq-step--annual .naq-step__price {
+      background: var(--naq-grad);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .naq-step__price span {
+      font-size: 0.32em;
+      font-weight: 700;
+      letter-spacing: 0;
+      -webkit-text-fill-color: initial;
+    }
+    .naq-step__sub {
+      display: block;
+      font-family: var(--font-body);
+      font-size: 0.9375rem;
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.72);
+      line-height: 1.4;
+    }
+    .naq-step__sub strong { color: #ffffff; font-weight: 700; }
+
+    /* Savings pill */
+    .naq-plan__save {
+      margin: 0 0 var(--space-xl);
+    }
+    .naq-plan__save-pill {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 0.9rem + 0.5vw, 1.1875rem);
+      font-weight: 600;
+      color: #6ee7a8;
+      background: rgba(52, 211, 153, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      border-radius: var(--radius-full);
+      padding: 12px 28px;
+      line-height: 1.5;
+    }
+    .naq-plan__save-pill em { font-style: normal; font-weight: 800; color: #34d399; }
+
+    .naq-plan__cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    /* Enlarged landing-page CTA — bigger pad + text than the shared .btn--lg
+       (matches .btn--landing on the mastermind / ACM replay pages). */
+    .naq-plan__cta .btn--gold.btn--lg {
+      font-size: clamp(1.0625rem, 0.95rem + 0.6vw, 1.3125rem);
+      padding: clamp(20px, 1.6vw, 26px) clamp(36px, 4vw, 56px);
+      border-radius: var(--radius-2xl);
+      box-shadow: 0 10px 32px rgba(201, 150, 28, 0.34);
+    }
+    .naq-plan__fine {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.55);
+      margin: var(--space-md) 0 0;
+      line-height: 1.5;
+    }
+
+    /* ── What's-inside band: checklist (left) · full-bleed image (right) ──────
+       Ported from the ACM replay card's .mm-inside. The band clears the card's
+       bottom padding so the image reaches the card's bottom + right edges. */
+    .naq-inside {
+      margin-top: clamp(36px, 4vw, 56px);
+      margin-bottom: calc(-1 * var(--naq-plan-pad));
+      padding-top: clamp(36px, 4vw, 56px);
+      border-top: 1px solid transparent;
+      border-image: linear-gradient(90deg, transparent, rgba(234, 194, 90, 0.55), transparent) 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(28px, 3.5vw, 48px);
+      align-items: stretch;
+      text-align: left;
+    }
+    @media (min-width: 900px) {
+      .naq-inside {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: clamp(40px, 4vw, 64px);
+      }
+    }
+    .naq-inside__col { min-width: 0; }
+    @media (min-width: 900px) {
+      .naq-inside__col--text { padding-bottom: var(--naq-plan-pad); }
+    }
+    .naq-inside__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: clamp(14px, 1.6vw, 20px);
+    }
+    .naq-inside__item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 14px;
+      align-items: start;
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+      line-height: 1.4;
+      color: rgba(255, 255, 255, 0.82);
+    }
+    .naq-inside__item strong { color: #ffffff; font-weight: 700; }
+    .naq-inside__check {
+      flex-shrink: 0;
+      width: 26px;
+      height: 26px;
+      margin-top: 2px;
+      border-radius: var(--radius-full);
+      background: #34d399;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 0 4px rgba(52, 211, 153, 0.16);
+    }
+    .naq-inside__check svg { width: 15px; height: 15px; display: block; }
+
+    /* Full-bleed image — reaches the card's right + bottom edges. Negative
+       right/bottom margins cancel the card padding; the card's overflow:hidden
+       + radius clip the image to the rounded bottom-right corner. */
+    .naq-inside__media {
+      margin: 0 calc(-1 * var(--naq-plan-pad)) calc(-1 * var(--naq-plan-pad)) 0;
+      align-self: stretch;
+    }
+    .naq-inside__img { display: block; width: 100%; height: auto; }
+    @media (min-width: 900px) {
+      .naq-inside__media { position: relative; }
+      .naq-inside__img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: left center;
+      }
+    }
+    @media (max-width: 899.98px) {
+      .naq-inside__media {
+        margin: 0 calc(-1 * var(--naq-plan-pad)) calc(-1 * var(--naq-plan-pad));
+      }
+    }
+  </style>
+
+
+  <!-- ── Header — logo left, savings line + CTA right (page-local landing nav) ── -->
+  <header class="site-header site-header--naq">
+    <div class="site-header__inner">
+      <a class="brand" href="/" aria-label="The Loan Atlas">
+        <img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
+      </a>
+      <div class="site-header__actions">
+        <span class="naq-header-save">Save <span class="naq-header-save__amt">$1,200</span> on your membership with your NAMB discount!</span>
+        <a class="btn btn--header" href="https://theloanatlas.com/NAMB" target="_blank" rel="noopener">
+          <span class="btn__full">Join The Loan Atlas</span>
+          <span class="btn__short">Join</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="naq">
+
+    <!-- ── HERO — copy (left) · GHL form (right) ────────────────────────────── -->
+    <section class="naq-hero" aria-labelledby="naq-title">
+      <div class="container">
+        <div class="naq-hero__grid">
+
+          <!-- LEFT: copy -->
+          <div class="naq-hero__copy">
+            <span class="naq-hero__eyebrow">40 Questions. One Time. Every Prompt Better.</span>
+            <h1 id="naq-title" class="naq-hero__title">The Mortgage Advisor AI Operating Manual</h1>
+            <p class="naq-hero__sub">Teach AI who you serve, how you solve problems, and how you sound.</p>
+            <p class="naq-hero__lede">Answer <strong>40 short questions</strong> about your business and say goodbye to these frustrations for good:</p>
+            <ul class="naq-pains">
+              <li class="naq-pains__item">
+                <span class="naq-pains__x" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5 5l10 10M15 5L5 15" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+                <span>&ldquo;I tried AI and it sounds nothing like me.&rdquo;</span>
+              </li>
+              <li class="naq-pains__item">
+                <span class="naq-pains__x" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5 5l10 10M15 5L5 15" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+                <span>&ldquo;I spend more time fixing the AI&rsquo;s output than it would&rsquo;ve taken to write it myself.&rdquo;</span>
+              </li>
+              <li class="naq-pains__item">
+                <span class="naq-pains__x" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5 5l10 10M15 5L5 15" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+                <span>&ldquo;Everyone&rsquo;s marketing sounds the same now, including mine.&rdquo;</span>
+              </li>
+              <li class="naq-pains__item">
+                <span class="naq-pains__x" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M5 5l10 10M15 5L5 15" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/></svg></span>
+                <span>&ldquo;I can&rsquo;t get AI to understand my business, my audience, or how I really talk.&rdquo;</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- RIGHT: GHL LeadConnector form card -->
+          <div class="naq-formcard">
+            <div class="naq-formcard__head">
+              <h2 class="naq-formcard__title">Get the Operating Manual</h2>
+              <p class="naq-formcard__sub">Enter your details and we&rsquo;ll send you the questionnaire.</p>
+            </div>
+            <div class="naq-formcard__embed">
+              <!-- =========================================================
+                   GHL FORM PLACEHOLDER
+                   To wire up the real form: (1) delete the placeholder
+                   <div> below, (2) uncomment the iframe, (3) swap the
+                   src / id / data-form-* values for this form's GHL id,
+                   and (4) uncomment form_embed.js at the bottom of <body>.
+
+                   <iframe
+                     src="https://api.leadconnectorhq.com/widget/form/REPLACE_FORM_ID"
+                     style="width:100%;height:100%;border:none;border-radius:3px"
+                     id="inline-REPLACE_FORM_ID"
+                     data-layout="{'id':'INLINE'}"
+                     data-trigger-type="alwaysShow"
+                     data-trigger-value=""
+                     data-activation-type="alwaysActivated"
+                     data-activation-value=""
+                     data-deactivation-type="neverDeactivate"
+                     data-deactivation-value=""
+                     data-form-name="LM: NAMB AI Operating Manual"
+                     data-height="754"
+                     data-layout-iframe-id="inline-REPLACE_FORM_ID"
+                     data-form-id="REPLACE_FORM_ID"
+                     title="LM: NAMB AI Operating Manual">
+                   </iframe>
+                   ========================================================= -->
+              <div class="naq-formcard__placeholder">
+                <span class="naq-formcard__placeholder-label">GHL Form Embed</span>
+                <span class="naq-formcard__placeholder-note">Paste the LeadConnector inline form here. The commented-out iframe snippet above is ready to fill in.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ── PRICING — NAMB exclusive discount ────────────────────────────────── -->
+    <section class="naq-pricing" aria-labelledby="naq-pricing-title">
+      <div class="container">
+        <article class="naq-plan">
+          <div class="naq-plan__offer">
+          <span class="naq-plan__eyebrow">NAMB Exclusive</span>
+          <h2 id="naq-pricing-title" class="naq-plan__title">Full access to The Loan Atlas — at your NAMB member rate.</h2>
+
+          <div class="naq-plan__steps">
+            <div class="naq-step naq-step--monthly">
+              <span class="naq-step__label">Monthly</span>
+              <span class="naq-step__was"><span class="naq-step__strike">$349/mo</span></span>
+              <span class="naq-step__price">$249<span>/mo</span></span>
+              <span class="naq-step__sub">Billed monthly</span>
+            </div>
+            <div class="naq-step naq-step--annual">
+              <span class="naq-step__label">Annual · Best Value</span>
+              <span class="naq-step__was"><span class="naq-step__strike">$3,490/yr</span></span>
+              <span class="naq-step__price">$2,490<span>/yr</span></span>
+              <span class="naq-step__sub"><strong>Save $1,200</strong> vs. monthly</span>
+            </div>
+          </div>
+
+          <p class="naq-plan__save"><span class="naq-plan__save-pill">Save <em>$1,200 a year</em> with your NAMB exclusive discount</span></p>
+
+          <div class="naq-plan__cta">
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-namb/">Start Your Transformation</a>
+          </div>
+          <p class="naq-plan__fine">12-month commitment. Offer available to new members only.</p>
+          </div>
+
+          <!-- BOTTOM — what's inside: checklist (left) · full-bleed image (right) -->
+          <div class="naq-inside">
+            <div class="naq-inside__col naq-inside__col--text">
+              <ul class="naq-inside__list">
+                <li class="naq-inside__item">
+                  <span class="naq-inside__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#052e16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span><strong>Seven live, one-hour coaching calls</strong> every month</span>
+                </li>
+                <li class="naq-inside__item">
+                  <span class="naq-inside__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#052e16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span><strong>200+ training modules</strong> to help you along the 8 Disciplines of Loan Origination Mastery</span>
+                </li>
+                <li class="naq-inside__item">
+                  <span class="naq-inside__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#052e16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span><strong>An all-star faculty of coaches and mentors</strong> with over $29 billion in collective loan funding</span>
+                </li>
+                <li class="naq-inside__item">
+                  <span class="naq-inside__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#052e16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span><strong>The Perfect Loan Process™</strong> – Streamline your entire loan process from initial inquiry to final approval</span>
+                </li>
+                <li class="naq-inside__item">
+                  <span class="naq-inside__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#052e16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span><strong>AI Sales &amp; Scripting Coach</strong> – Confidently overcome every objection</span>
+                </li>
+                <li class="naq-inside__item">
+                  <span class="naq-inside__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#052e16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span><strong>Health, Mindset, &amp; Vitality Coach</strong> – Respond with intention and stop reacting to the day</span>
+                </li>
+                <li class="naq-inside__item">
+                  <span class="naq-inside__check" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10.5l4 4 8-9" stroke="#052e16" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+                  <span><strong>Talk to Tim</strong> – Overcome any obstacle in this small group monthly coaching session with Tim Braheem</span>
+                </li>
+              </ul>
+            </div>
+            <div class="naq-inside__col naq-inside__media">
+              <img class="naq-inside__img" src="<?php echo TLA_BASE; ?>/assets/hero image.png" alt="Inside The Loan Atlas — dashboard and AI coaching platform" loading="lazy" />
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+  </main>
+
+<?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>
+
+  <!-- LeadConnector form embed — uncomment once the real GHL iframe is in place -->
+  <!-- <script src="https://link.msgsndr.com/js/form_embed.js"></script> -->
