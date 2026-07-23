@@ -245,48 +245,16 @@
     /* Placeholder box — sized to hold a real LeadConnector form (~620px). Swap
        the .naq-formcard__placeholder div for the commented-out iframe below. */
     .naq-formcard__embed {
-      min-height: 620px;
+      min-height: 520px;
       display: flex;
     }
+    /* form_embed.js resizes the iframe to the form's own height (~514px);
+       keep a floor so there's no empty gap before the script runs. */
     .naq-formcard__embed iframe {
       display: block;
       width: 100%;
-      min-height: 620px;
+      min-height: 514px;
       border: none;
-    }
-    .naq-formcard__placeholder {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      border: 2px dashed rgba(2, 28, 54, 0.28);
-      border-radius: var(--radius-lg);
-      background:
-        repeating-linear-gradient(
-          45deg,
-          rgba(2, 28, 54, 0.02),
-          rgba(2, 28, 54, 0.02) 12px,
-          rgba(2, 28, 54, 0.05) 12px,
-          rgba(2, 28, 54, 0.05) 24px
-        );
-      color: rgba(2, 28, 54, 0.55);
-      font-family: var(--font-body);
-      text-align: center;
-      padding: 24px;
-    }
-    .naq-formcard__placeholder-label {
-      font-weight: 700;
-      font-size: 0.8125rem;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(2, 28, 54, 0.7);
-    }
-    .naq-formcard__placeholder-note {
-      font-size: 0.9375rem;
-      line-height: 1.5;
-      max-width: 22rem;
     }
 
     /* ══════════════════════════════════════════════════════════════════════════
@@ -651,35 +619,23 @@
               <p class="naq-formcard__sub">Enter your details and we&rsquo;ll send you the questionnaire.</p>
             </div>
             <div class="naq-formcard__embed">
-              <!-- =========================================================
-                   GHL FORM PLACEHOLDER
-                   To wire up the real form: (1) delete the placeholder
-                   <div> below, (2) uncomment the iframe, (3) swap the
-                   src / id / data-form-* values for this form's GHL id,
-                   and (4) uncomment form_embed.js at the bottom of <body>.
-
-                   <iframe
-                     src="https://api.leadconnectorhq.com/widget/form/REPLACE_FORM_ID"
-                     style="width:100%;height:100%;border:none;border-radius:3px"
-                     id="inline-REPLACE_FORM_ID"
-                     data-layout="{'id':'INLINE'}"
-                     data-trigger-type="alwaysShow"
-                     data-trigger-value=""
-                     data-activation-type="alwaysActivated"
-                     data-activation-value=""
-                     data-deactivation-type="neverDeactivate"
-                     data-deactivation-value=""
-                     data-form-name="LM: NAMB AI Operating Manual"
-                     data-height="754"
-                     data-layout-iframe-id="inline-REPLACE_FORM_ID"
-                     data-form-id="REPLACE_FORM_ID"
-                     title="LM: NAMB AI Operating Manual">
-                   </iframe>
-                   ========================================================= -->
-              <div class="naq-formcard__placeholder">
-                <span class="naq-formcard__placeholder-label">GHL Form Embed</span>
-                <span class="naq-formcard__placeholder-note">Paste the LeadConnector inline form here. The commented-out iframe snippet above is ready to fill in.</span>
-              </div>
+              <iframe
+                src="https://api.leadconnectorhq.com/widget/form/kAALoM0qH1soqgENiXFt"
+                style="width:100%;height:100%;border:none;border-radius:0px"
+                id="inline-kAALoM0qH1soqgENiXFt"
+                data-layout="{'id':'INLINE'}"
+                data-trigger-type="alwaysShow"
+                data-trigger-value=""
+                data-activation-type="alwaysActivated"
+                data-activation-value=""
+                data-deactivation-type="neverDeactivate"
+                data-deactivation-value=""
+                data-form-name="NAMB 7.23.26"
+                data-height="514"
+                data-layout-iframe-id="inline-kAALoM0qH1soqgENiXFt"
+                data-form-id="kAALoM0qH1soqgENiXFt"
+                title="NAMB 7.23.26">
+              </iframe>
             </div>
           </div>
 
@@ -765,8 +721,8 @@
 <!-- TLA_FOOTER -->
 
   <script src="js/nav.js"></script>
-  <!-- LeadConnector form embed — uncomment once the real GHL iframe is in place -->
-  <!-- <script src="https://link.msgsndr.com/js/form_embed.js"></script> -->
+  <!-- LeadConnector form embed (NAMB 7.23.26 form) -->
+  <script src="https://link.msgsndr.com/js/form_embed.js"></script>
 </body>
 
 </html>
