@@ -44,7 +44,7 @@ $tla_is = function ( $key ) use ( $tla_active ) {
             <a class="nav__dropdown-item" href="https://www.theloanatlas.com/5-scripts-for-dominating-point-of-sale/" role="menuitem">Sales Scripts</a>
             <a class="nav__dropdown-item" href="https://go.theloanatlas.com/refinance-masterplan" target="_blank" rel="noopener" role="menuitem">Refinance Masterplan</a>
             <a class="nav__dropdown-item" href="https://www.theloanatlas.com/ai-originator-masterplan/" role="menuitem">AI-Empowered Originator Masterplan</a>
-            <a class="nav__dropdown-item" href="https://www.theloanatlas.com/podcast-revamp/" target="_blank" rel="noopener" role="menuitem">The 360 Experience</a>
+            <a class="nav__dropdown-item" href="https://www.theloanatlas.com/podcast/" role="menuitem">The 360 Experience Podcast</a>
             <a class="nav__dropdown-item" href="/contact/" role="menuitem">Contact Us</a>
           </div>
         </div>
@@ -72,7 +72,7 @@ $tla_is = function ( $key ) use ( $tla_active ) {
       <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/5-scripts-for-dominating-point-of-sale/">Sales Scripts</a>
       <a class="mobile-nav__link mobile-nav__sublink" href="https://go.theloanatlas.com/refinance-masterplan" target="_blank" rel="noopener">Refinance Masterplan</a>
       <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/ai-originator-masterplan/">AI-Empowered Originator Masterplan</a>
-      <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/podcast-revamp/" target="_blank" rel="noopener">The 360 Experience</a>
+      <a class="mobile-nav__link mobile-nav__sublink" href="https://www.theloanatlas.com/podcast/">The 360 Experience Podcast</a>
       <a class="mobile-nav__link mobile-nav__sublink" href="/contact/">Contact Us</a>
       <a class="btn btn--primary btn--header mobile-nav__cta" href="/join/">Join The Loan Atlas</a>
     </div>
