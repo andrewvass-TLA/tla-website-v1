@@ -155,6 +155,8 @@
       box-shadow: 0 20px 50px rgba(2, 28, 54, 0.45);
     }
     .ev-feature-card__media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* Media is an <a> now that the featured event has a detail page */
+    a.ev-feature-card__media { display: block; }
 
     .ev-feature-card__copy {
       padding-right: clamp(8px, 1.5vw, 24px);
@@ -205,6 +207,8 @@
       width: 100%; height: 100%; object-fit: cover; display: block;
       transition: transform 320ms ease;
     }
+    /* Media is an <a> on cards that have a detail page (office hours) */
+    a.ev-card__media { display: block; }
     .ev-card:hover .ev-card__media img { transform: scale(1.04); }
     .ev-card__body {
       display: flex; flex-direction: column; flex: 1;
@@ -464,26 +468,26 @@
 
           <div class="ev-feature-card__grid">
             <!-- Square thumbnail -->
-            <div class="ev-feature-card__media">
-              <img src="assets/live-events/Masterclass-2026-Playbook-0716.png" alt="2026 Mid-Year Playbook masterclass — The Loan Atlas" loading="eager" />
-            </div>
+            <a class="ev-feature-card__media" href="lead-generation-that-converts.html" tabindex="-1" aria-hidden="true">
+              <img src="assets/live-events/Masterclass-Lead-Generation-That-Converts-0806-1x1.jpg" alt="Lead Generation That Converts masterclass — The Loan Atlas" loading="eager" />
+            </a>
 
             <!-- Copy -->
             <div class="ev-feature-card__copy">
               <span class="ev-tag ev-tag--on-dark ev-tag--masterclass">Next Live Masterclass</span>
-              <h1 id="ev-featured-heading" class="ev-feature-card__title">2026 Mid-Year Playbook: What Top Producers Are Doing Now</h1>
+              <h1 id="ev-featured-heading" class="ev-feature-card__title">Lead Generation That Converts: What Loan Originators Should Do Now</h1>
               <div class="ev-feature-card__meta">
                 <span class="ev-feature-card__meta-item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                  Thursday, July 16, 2026
+                  Thursday, August 6, 2026
                 </span>
                 <span class="ev-feature-card__meta-item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg>
-                  2:00 PM PT
+                  11:00 AM PT
                 </span>
               </div>
-              <p class="ev-feature-card__desc">Top-producing Loan Atlas faculty members will share what they are doubling down on, what they have stopped doing, and what they believe loan officers need to focus on for the second half of the year.</p>
-              <button type="button" class="btn btn--gold btn--xl" data-ev-modal>JOIN THIS MASTERCLASS</button>
+              <p class="ev-feature-card__desc">Tim Braheem will interview Michael Regan and Jay Voorhees. They will share what is actually working right now to generate leads, build trust, and create consistent conversations without depending on constant social media posting or complicated digital marketing strategies.</p>
+              <a class="btn btn--gold btn--xl" href="lead-generation-that-converts.html">Learn More and Get Access</a>
             </div>
           </div>
 
@@ -502,67 +506,93 @@
         <div class="ev-grid" data-reveal-stagger="80">
 
           <article class="ev-card">
-            <div class="ev-card__media"><img src="assets/live-events/AI-Lab-Inside-Platinum-0717.png" alt="AI Lab — Inside Platinum" loading="lazy" /></div>
+            <a class="ev-card__media" href="talk-to-tim.html" tabindex="-1" aria-hidden="true"><img src="assets/live-events/Talk-to-Tim-0731.png" alt="Talk to Tim live session" loading="lazy" /></a>
             <div class="ev-card__body">
               <div class="ev-card__date">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Jul 17, 2026 · 3:00 PM PT
-              </div>
-              <h3 class="ev-card__title">AI Lab: Inside Platinum</h3>
-              <p class="ev-card__desc">Learn how to use the new Loan Atlas Platinum to build a marketing execution system that saves you time, improves your marketing, and gets you paid.</p>
-              <div class="ev-card__foot"><button type="button" class="ev-card__join" data-ev-modal>Get Access</button></div>
-            </div>
-          </article>
-
-          <article class="ev-card">
-            <div class="ev-card__media"><img src="assets/live-events/Office-Hours-Jay-Dacey-0722.png" alt="Office Hours with Jay Dacey" loading="lazy" /></div>
-            <div class="ev-card__body">
-              <div class="ev-card__date">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Jul 22, 2026 · 11:00 AM PT
-              </div>
-              <h3 class="ev-card__title">Office Hours with Jay Dacey</h3>
-              <p class="ev-card__desc">Join this session with Jay Dacey, whose niche / specialty is in the area of Database Management, Perfect Loan Process, First Time Home Buyers and Divorce Situations.</p>
-              <div class="ev-card__foot"><button type="button" class="ev-card__join" data-ev-modal>Get Access</button></div>
-            </div>
-          </article>
-
-          <article class="ev-card">
-            <div class="ev-card__media"><img src="assets/live-events/Masterclass-Mortgage-Success-Plan-0723.png" alt="The Mortgage Success Plan Masterclass" loading="lazy" /></div>
-            <div class="ev-card__body">
-              <div class="ev-card__date">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Jul 23, 2026 · 2:00 PM PT
-              </div>
-              <h3 class="ev-card__title">Building The Ultimate Mortgage Success Plan</h3>
-              <p class="ev-card__desc">How to plan and execute effectively in today's market.</p>
-              <div class="ev-card__foot"><button type="button" class="ev-card__join" data-ev-modal>Get Access</button></div>
-            </div>
-          </article>
-
-          <article class="ev-card">
-            <div class="ev-card__media"><img src="assets/live-events/Office-Hours-Steve-Grossman-0729.png" alt="Office Hours with Steve Grossman" loading="lazy" /></div>
-            <div class="ev-card__body">
-              <div class="ev-card__date">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Jul 29, 2026 · 11:00 AM PT
-              </div>
-              <h3 class="ev-card__title">Office Hours with Steve Grossman</h3>
-              <p class="ev-card__desc">Join this session with Steve Grossman, whose niche / specialty is in the area of Strategist, Mentor and Networker. Come with your request for help or simply join the call to hear from others and learn what they are working on in their business.</p>
-              <div class="ev-card__foot"><button type="button" class="ev-card__join" data-ev-modal>Get Access</button></div>
-            </div>
-          </article>
-
-          <article class="ev-card">
-            <div class="ev-card__media"><img src="assets/live-events/Talk-to-Tim-0731.png" alt="Talk to Tim live session" loading="lazy" /></div>
-            <div class="ev-card__body">
-              <div class="ev-card__date">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Jul 31, 2026 · 12:00 PM PT
+                Jul 31, 2026 · 10:00 AM PT
               </div>
               <h3 class="ev-card__title">Talk to Tim</h3>
               <p class="ev-card__desc">Business or personal, Tim Braheem brings out his decades of experience to help you overcome whatever challenges are keeping you from reaching peak performance.</p>
-              <div class="ev-card__foot"><button type="button" class="ev-card__join" data-ev-modal>Get Access</button></div>
+              <div class="ev-card__foot"><a class="ev-card__join" href="talk-to-tim.html">Learn More</a></div>
+            </div>
+          </article>
+
+          <article class="ev-card">
+            <a class="ev-card__media" href="office-hours-trevor-carlson.html" tabindex="-1" aria-hidden="true"><img src="assets/live-events/Office-Hours-Trevor-Carlson-0805.png" alt="Office Hours with Trevor Carlson" loading="lazy" /></a>
+            <div class="ev-card__body">
+              <div class="ev-card__date">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Aug 5, 2026 · 11:00 AM PT
+              </div>
+              <h3 class="ev-card__title">Office Hours with Trevor Carlson</h3>
+              <p class="ev-card__desc">Join this session with Trevor Carlson, whose niche / specialty is in the area of Reverse Mortgage, Systems and Consumer Direct Marketing.</p>
+              <div class="ev-card__foot"><a class="ev-card__join" href="office-hours-trevor-carlson.html">Learn More</a></div>
+            </div>
+          </article>
+
+          <article class="ev-card">
+            <a class="ev-card__media" href="office-hours-michael-belfor.html" tabindex="-1" aria-hidden="true"><img src="assets/live-events/Office-Hours-Michael-Belfor-0812.png" alt="Office Hours with Michael Belfor" loading="lazy" /></a>
+            <div class="ev-card__body">
+              <div class="ev-card__date">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Aug 12, 2026 · 11:00 AM PT
+              </div>
+              <h3 class="ev-card__title">Office Hours with Michael Belfor</h3>
+              <p class="ev-card__desc">Join this session with Michael Belfor, whose niche / specialty is in the area of Advanced Loan Structuring, Market Literacy, and AI-Powered Efficiency.</p>
+              <div class="ev-card__foot"><a class="ev-card__join" href="office-hours-michael-belfor.html">Learn More</a></div>
+            </div>
+          </article>
+
+          <article class="ev-card">
+            <a class="ev-card__media" href="ai-lab-success-with-follow-up-pro.html" tabindex="-1" aria-hidden="true"><img src="assets/live-events/AI-Lab-Success-With-Follow-Up-Pro-0813-1x1.jpg" alt="AI Lab: Success With Follow Up Pro" loading="lazy" /></a>
+            <div class="ev-card__body">
+              <div class="ev-card__date">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Aug 13, 2026 · 11:00 AM PT
+              </div>
+              <h3 class="ev-card__title">AI Lab: Success With Follow Up Pro</h3>
+              <p class="ev-card__desc">Join us for a live Follow-Up Pro Show &amp; Tell, where two Loan Atlas members will show how they've made Follow-Up Pro part of their daily workflow to stay consistent and create a better experience for borrowers and referral partners.</p>
+              <div class="ev-card__foot"><a class="ev-card__join" href="ai-lab-success-with-follow-up-pro.html">Learn More</a></div>
+            </div>
+          </article>
+
+          <article class="ev-card">
+            <a class="ev-card__media" href="office-hours-becky-staples.html" tabindex="-1" aria-hidden="true"><img src="assets/live-events/Office-Hours-Beck-Staples-0819.png" alt="Office Hours with Becky Staples" loading="lazy" /></a>
+            <div class="ev-card__body">
+              <div class="ev-card__date">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Aug 19, 2026 · 11:00 AM PT
+              </div>
+              <h3 class="ev-card__title">Office Hours with Becky Staples</h3>
+              <p class="ev-card__desc">Join this session with Becky Staples, whose niche / specialty is in the area of Fundamentals, Production Systems, and Consistent Execution.</p>
+              <div class="ev-card__foot"><a class="ev-card__join" href="office-hours-becky-staples.html">Learn More</a></div>
+            </div>
+          </article>
+
+          <article class="ev-card">
+            <a class="ev-card__media" href="market-update-with-barry-habib.html" tabindex="-1" aria-hidden="true"><img src="assets/live-events/Market-Update-Barry-Habib-0820-1x1.jpg" alt="Masterclass with Barry Habib" loading="lazy" /></a>
+            <div class="ev-card__body">
+              <div class="ev-card__date">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Aug 20, 2026 · 11:00 AM PT
+              </div>
+              <h3 class="ev-card__title">Masterclass with Barry Habib</h3>
+              <p class="ev-card__desc">Join Tim Braheem for an exclusive Loan Atlas webinar with Barry Habib, CEO of MBS Highway and the leading economist of the mortgage industry. Gain expert insights into where the mortgage and real estate markets are headed.</p>
+              <div class="ev-card__foot"><a class="ev-card__join" href="market-update-with-barry-habib.html">Learn More</a></div>
+            </div>
+          </article>
+
+          <article class="ev-card">
+            <a class="ev-card__media" href="office-hours-tyler-osby.html" tabindex="-1" aria-hidden="true"><img src="assets/live-events/Office-Hours-Tyler-Osby-0826.png" alt="Office Hours with Tyler Osby" loading="lazy" /></a>
+            <div class="ev-card__body">
+              <div class="ev-card__date">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Aug 26, 2026 · 11:00 AM PT
+              </div>
+              <h3 class="ev-card__title">Office Hours with Tyler Osby</h3>
+              <p class="ev-card__desc">Join this session with Tyler Osby, whose niche / specialty is in the area of Systems, Technology, Scripting and Business Development.</p>
+              <div class="ev-card__foot"><a class="ev-card__join" href="office-hours-tyler-osby.html">Learn More</a></div>
             </div>
           </article>
 
@@ -579,6 +609,24 @@
         </header>
 
         <div class="ev-library" data-reveal-stagger="90">
+
+          <!-- Whole card is clickable → replay detail page -->
+          <a class="ev-pastcard" href="replay-2026-mid-year-playbook.html">
+            <div class="ev-pastcard__media">
+              <img src="assets/live-events/past-events/Masterclass-2026-Mid-Year-Playbook-0716-16x9.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="ev-pastcard__body">
+              <span class="ev-pastcard__recorded">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Recorded on Jul 16, 2026
+              </span>
+              <h3 class="ev-pastcard__title">2026 Mid-Year Playbook: What Top Producers Are Doing Now</h3>
+              <p class="ev-pastcard__desc">Top-producing Loan Atlas faculty members shared what they are doubling down on, what they have stopped doing, and what they believe loan officers need to focus on for the second half of the year.</p>
+              <div class="ev-pastcard__foot">
+                <span class="ev-pastcard__watch">Access the Replay <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+              </div>
+            </div>
+          </a>
 
           <!-- Whole card is clickable → replay detail page -->
           <a class="ev-pastcard" href="replay-winning-the-ai-game.html">
@@ -686,11 +734,11 @@
         <!-- Square event tiles, full-bleed across the top, fading into the navy -->
         <div class="ev-modal__strip" aria-hidden="true">
           <div class="ev-modal__strip-row">
-            <img src="assets/live-events/AI-Lab-Inside-Platinum-0717.png" alt="" loading="lazy" />
             <img src="assets/live-events/Masterclass-2026-Playbook-0716.png" alt="" loading="lazy" />
-            <img src="assets/live-events/Office-Hours-Jay-Dacey-0722.png" alt="" loading="lazy" />
+            <img src="assets/live-events/Masterclass-Lead-Generation-That-Converts-0806-1x1.jpg" alt="" loading="lazy" />
+            <img src="assets/live-events/Masterclass-Massive-Leverage-0709-1x1.png" alt="" loading="lazy" />
             <img src="assets/live-events/Talk-to-Tim-0731.png" alt="" loading="lazy" />
-            <img src="assets/live-events/Masterclass-Mortgage-Success-Plan-0723.png" alt="" loading="lazy" />
+            <img src="assets/live-events/Masterclass-Fuel-Your-Fire-0611.png" alt="" loading="lazy" />
           </div>
         </div>
         <div class="ev-modal__head-in">

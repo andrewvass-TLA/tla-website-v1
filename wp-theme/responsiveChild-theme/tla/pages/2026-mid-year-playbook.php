@@ -1,22 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Office Hours with Caleb Legrand — The Loan Atlas</title>
-  <meta name="description" content="Join Caleb Legrand's live office hours inside The Loan Atlas — bring your live deals and get real-time answers from a top-producing coach." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/chrome.css" />
+<?php
+/**
+ * Body partial for /2026-mid-year-playbook/ (TLA Full HTML template).
+ * Generated from public/replay-2026-mid-year-playbook.html by scripts/convert-pages.sh — do not hand-edit;
+ * edit the source HTML (or the shared header/footer partials) and re-run.
+ */
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-  <!-- ============================================================
-       OFFICE HOURS DETAIL — fresh standalone design, namespaced .oh-*.
-       Udacity-style two-column layout (no hero band): wide content
-       column on the left, sticky join/booking sidebar on the right.
-       Brand colors/fonts/logo via tokens; layout/components bespoke.
-       ============================================================ -->
+$tla_title       = '2026 Mid-Year Playbook — Masterclass Replay — The Loan Atlas';
+$tla_description = 'Watch the replay of the 2026 Mid-Year Playbook — Tim Braheem sits down with three of The Loan Atlas faculty\'s top producers to unpack what\'s actually driving their production right now, from the fringe products carrying volume to the outreach that reopens cold agent relationships.';
+$tla_active      = '';
+?>
   <style>
     .oh { background: var(--background); }
 
@@ -35,9 +28,10 @@
       box-shadow: var(--shadow-lg);
       padding: clamp(28px, 3.5vw, 48px);
     }
+    /* even flow gap between every section in the card */
     .oh-main > * + * { margin-top: clamp(36px, 4.5vw, 64px); }
-    /* the first section sits closer to the title/meta header than inter-section gaps */
-    .oh-main > .oh-header + * { margin-top: clamp(28px, 3vw, 40px); }
+    /* sections carry no extra leading space of their own — the flow gap is the gap */
+    .oh-main section > :first-child { margin-top: 0; }
 
     /* Hero image bleeds to the top edges of the white card (artifact-style) */
     .oh-thumb {
@@ -48,17 +42,18 @@
     }
     .oh-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    /* Header order: thumb → meta (date/time) → title.
+    /* Header order: thumb → meta (date/type) → title.
        Meta sits below the bled image; title sits close beneath the meta. */
     .oh-header > * + * { margin-top: 0; }
     .oh-header .oh-thumb + .oh-meta { margin-top: clamp(24px, 3vw, 32px); }
     .oh-header .oh-meta + .oh-title { margin-top: 10px; }
-    /* Bottom CTA — centered at the foot of the white card */
+    /* Bottom CTA — centered below the Taught By section */
     .oh-cta-foot { display: flex; justify-content: center; }
 
-    /* Full-width join CTA (gold .tlc-btn, stretched) — under the title
+    /* Full-width watch CTA (gold .tlc-btn, stretched) — under the title
        and again at the bottom of the card */
-    .oh-join-btn { width: 100%; font-size: 1.125rem; padding-block: 16px; }
+    .oh-watch-btn { width: 100%; font-size: 1.125rem; padding-block: 16px; }
+    .oh-header .oh-watch-btn { margin-top: clamp(22px, 2.8vw, 32px); }
 
     .oh-title {
       font-family: var(--font-display);
@@ -85,52 +80,91 @@
       color: var(--on-surface-variant); margin: 14px 0 0;
     }
 
-    /* Specialties chips */
-    .oh-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
-    .oh-chip {
-      font-family: var(--font-body); font-size: 0.875rem; font-weight: 600;
-      padding: 9px 16px; border-radius: var(--radius-full);
-      background: var(--surface-container-low); color: var(--on-surface);
-      border: 1px solid var(--outline-variant);
+    /* "You'll learn" list — brass check bullets */
+    .oh-list {
+      list-style: none; margin: 18px 0 0; padding: 0;
+      display: flex; flex-direction: column; gap: 14px;
     }
+    .oh-list li {
+      display: grid; grid-template-columns: 20px 1fr; gap: 12px; align-items: start;
+      font-family: var(--font-body); font-size: 1.0625rem; line-height: 1.6;
+      color: var(--on-surface-variant);
+    }
+    .oh-list svg { width: 20px; height: 20px; margin-top: 3px; color: var(--brass); }
 
-    /* About Caleb */
-    .oh-about { display: grid; grid-template-columns: 96px 1fr; gap: 20px; align-items: start; margin-top: 18px; }
-    .oh-about__photo {
-      width: 96px; height: 96px; border-radius: var(--radius-2xl); overflow: hidden;
-      background: var(--surface-container); display: grid; place-items: center;
-      border: 1px solid var(--outline-variant); color: var(--on-surface-variant);
+    /* Pull-quote — shared .quote-card testimonial block (styles.css).
+       Override the marquee-specific flex sizing so it flows in the column;
+       with the gold mark omitted, let the text span its empty grid column. */
+    .oh-main .quote-card {
+      flex: initial;
+      width: auto;
     }
-    .oh-about__photo svg { width: 40px; height: 40px; }
-    .oh-about__photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-    .oh-about__body p { margin: 0; }
-    .oh-about__body p + p { margin-top: 12px; }
+    .oh-main .quote-card__quote,
+    .oh-main .quote-card__attr { grid-column: 1 / -1; }
+    /* the quote sits a bit tighter in the flow than full section gaps */
+    .oh-main > .quote-card,
+    .oh-main > .quote-card + * { margin-top: clamp(22px, 2.8vw, 36px); }
 
-    /* Production stat row */
-    .oh-stats {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(16px, 2vw, 28px);
-      margin-top: 22px;
-    }
-    .oh-stats--2 { grid-template-columns: repeat(2, 1fr); }
-    .oh-stat {
-      background: var(--surface-container-lowest);
-      border: 1px solid var(--outline-variant);
+    /* Taught By — presenter medallion cards on the canonical dark band.
+       Brass-gradient ring around the headshot; role split into a brass
+       eyebrow (title) + muted company line. */
+    .oh-people { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 20px; }
+    .oh-person {
+      position: relative; overflow: hidden;
+      display: flex; align-items: center; gap: 18px;
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 55%, #081527 100%);
+      border: 1px solid rgba(234, 194, 90, 0.22);
       border-radius: var(--radius-2xl);
-      padding: clamp(20px, 2.2vw, 28px);
+      padding: 20px 22px;
+      transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
     }
-    .oh-stat__num {
-      font-family: var(--font-display);
-      font-size: clamp(1.75rem, 1.2rem + 1.8vw, 2.5rem); font-weight: 800;
-      letter-spacing: -0.02em; line-height: 1;
+    /* faint brass glow drifting in from the top-right corner */
+    .oh-person::before {
+      content: ""; position: absolute; top: -70%; right: -18%;
+      width: 220px; height: 220px; border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.16), transparent);
+      filter: blur(28px); pointer-events: none;
+    }
+    .oh-person:hover {
+      transform: translateY(-3px);
+      border-color: rgba(234, 194, 90, 0.55);
+      box-shadow: 0 16px 36px rgba(2, 28, 54, 0.38);
+    }
+    .oh-person__photo {
+      width: 80px; height: 80px; flex: none;
+      border-radius: 50%; padding: 3px;
       background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
-      -webkit-background-clip: text; background-clip: text; color: transparent;
+      box-shadow: 0 6px 18px rgba(2, 12, 26, 0.5);
     }
-    .oh-stat__label {
-      font-family: var(--font-body); font-size: 0.9375rem; font-weight: 600;
-      color: var(--on-surface-variant); margin-top: 10px;
+    .oh-person__photo img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      border-radius: 50%;
+      /* Headshots are portrait (~475x600) cropped into a square medallion.
+         Default centering cuts the top of the head off, so bias the crop
+         upward to keep the face framed. */
+      object-position: 50% 18%;
+      /* navy gap between photo and gradient ring — reads as a medallion */
+      border: 3px solid #081527;
+      /* headshot PNGs are cut out on transparency — fill behind them so the
+         brass ring gradient doesn't show through the subject */
+      background: #081527;
+    }
+    .oh-person__body { position: relative; z-index: 1; }
+    .oh-person__name {
+      font-family: var(--font-display); font-size: 1.125rem; font-weight: 800;
+      letter-spacing: -0.01em; color: #fff; margin: 0;
+    }
+    .oh-person__role {
+      font-family: var(--font-body); font-size: 0.6875rem; font-weight: 700;
+      letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--brass-bright); margin: 6px 0 0;
+    }
+    .oh-person__org {
+      font-family: var(--font-body); font-size: 0.875rem; font-weight: 500;
+      line-height: 1.4; color: rgba(255, 255, 255, 0.65); margin: 3px 0 0;
     }
 
-    /* Caleb's faculty video — 16:9 embed */
+    /* Replay video — 16:9 embed */
     .oh-video {
       position: relative; aspect-ratio: 16 / 9; overflow: hidden;
       border-radius: var(--radius-xl); border: 1px solid var(--outline-variant);
@@ -195,16 +229,20 @@
     @media (max-width: 900px) {
       .oh-grid { grid-template-columns: 1fr; }
       .oh-side { position: static; }
-      .oh-stats { grid-template-columns: 1fr 1fr; }
     }
     @media (max-width: 520px) {
-      .oh-stats { grid-template-columns: 1fr; }
-      .oh-about { grid-template-columns: 1fr; }
+      .oh-people { grid-template-columns: 1fr; }
+    }
+
+    /* --- Motion fallback --------------------------------------------- */
+    @media (prefers-reduced-motion: reduce) {
+      .oh-person { transition: none; }
+      .oh-person:hover { transform: none; }
     }
 
     /* ================================================================
        ACCESS MODAL — ported from the live-events page (.ev-modal);
-       opened by either "Join Caleb's Office Hours" CTA.
+       opened by the sticky action bar CTA.
        ================================================================ */
     .ev-modal {
       position: fixed; inset: 0; z-index: 1000;
@@ -325,10 +363,9 @@
       .ev-modal__dialog { transform: none; }
     }
   </style>
-</head>
-<body>
 
-<!-- TLA_HEADER -->
+
+<?php include get_stylesheet_directory() . '/tla/partials/header.php'; ?>
 
   <main class="site-main oh">
 
@@ -339,85 +376,90 @@
           <!-- ─────────── LEFT: content ─────────── -->
           <div class="oh-main">
 
-            <!-- Header: thumbnail + title + date -->
+            <!-- Header: thumbnail + meta + title -->
             <div class="oh-header" data-reveal="up">
               <div class="oh-thumb">
-                <img src="assets/live-events/Office-Hours-Caleb-Legrand-0701-16x9.png" alt="Office Hours with Caleb Legrand" loading="eager" />
+                <img src="<?php echo TLA_BASE; ?>/assets/live-events/past-events/Masterclass-2026-Mid-Year-Playbook-0716-16x9.jpg" alt="2026 Mid-Year Playbook masterclass — The Loan Atlas" loading="eager" />
               </div>
               <div class="oh-meta">
                 <span class="oh-meta__item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                  Jul 1, 2026
-                </span>
-                <span class="oh-meta__item">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg>
-                  11:00 AM PT
+                  Recorded on Jul 16, 2026
                 </span>
               </div>
-              <h1 class="oh-title">Office Hours with Caleb LeGrand</h1>
+              <h1 class="oh-title">2026 Mid-Year Playbook: What Top Producers Are Doing Now</h1>
+              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch This Masterclass</button>
             </div>
 
-            <!-- What is Office Hours -->
+            <!-- About this masterclass -->
             <section data-reveal="up">
-              <h2 class="oh-h2">What is Office Hours?</h2>
-              <p class="oh-prose">Office Hours are the implementation engine of The Loan Atlas. Once a week, for 60 minutes, you get direct access to faculty who've overcome the challenges you're facing.</p>
-              <p class="oh-prose">You bring the real problems — an appraisal that blew up, a script that isn't landing, the mindset you can't quite shake — and you walk out with a clear next move instead of carrying it around for another week. This is where you stay accountable, get unstuck fast, and keep moving forward with a community of people who genuinely want to see you win.</p>
+              <p class="oh-prose">It's a tough market, yet a handful of originators are having one of their best years yet. In this mid-year masterclass, Tim Braheem sits down with three of The Loan Atlas faculty's top producers to unpack what's actually driving their production right now. They each do business differently, but they all win the same way: by doing the little things exceptionally well.</p>
             </section>
 
-            <!-- Caleb's faculty video -->
+            <!-- What you'll learn -->
             <section data-reveal="up">
-              <div class="oh-video">
-                <iframe src="https://www.youtube-nocookie.com/embed/SBjOcwAn2UM"
-                  title="Caleb LeGrand — Faculty introduction"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-              </div>
+              <h2 class="oh-h2">What You'll Learn</h2>
+              <ul class="oh-list">
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>The &ldquo;fringe&rdquo; products quietly carrying production &mdash; construction-to-perm, non-QM, reverse, and renovation/ADU loans &mdash; plus how to name and market them so borrowers say yes (hint: never call it &ldquo;non-QM&rdquo;).</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>The one-line text that reopens cold agent relationships &mdash; the exact outreach one presenter is using to book meetings with agents worn out by multiple-offer chaos.</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>&ldquo;Turning the screen around&rdquo; &mdash; how to show a borrower live pricing across a dozen investors on the first call, neutralize rate shoppers, and earn instant trust.</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>The financial-advisor system behind 15 closed loans from just two new partners &mdash; the &ldquo;page 5&rdquo; conversation, the 1-to-10 rating question, and the debt-monitoring &ldquo;hero call&rdquo; that makes you un-shoppable.</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Three loans out of one transaction &mdash; structuring purchases, renovation loans, and refis so a single client becomes a multi-year pipeline.</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>How to ask for the commitment &mdash; the value-first close top producers use in 2026 without ever pinning a borrower to the wall.</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>The affordability wave worth positioning around now &mdash; manufactured homes, ADUs, and bond programs almost no one is claiming.</span></li>
+              </ul>
             </section>
 
-            <!-- About Caleb -->
+            <!-- Pull-quote — shared testimonial block (no gold mark; inline quotes instead) -->
+            <figure class="quote-card" data-reveal="up">
+              <blockquote class="quote-card__quote">&ldquo;The market is dynamic. You&rsquo;re probably going to have to pivot your approach every 60 to 90 days. The underlying fundamentals don&rsquo;t change, but how you go about them does.&rdquo;</blockquote>
+              <figcaption class="quote-card__attr">
+                <div class="quote-card__name">Caleb LeGrand</div>
+              </figcaption>
+            </figure>
+
+            <!-- Taught by -->
             <section data-reveal="up">
-              <h2 class="oh-h2">About Caleb LeGrand</h2>
-              <div class="oh-about">
-                <div class="oh-about__photo">
-                  <img src="assets/caleb-legrand-headshot.png" alt="Caleb LeGrand" loading="lazy" />
+              <h2 class="oh-h2">Taught By</h2>
+              <div class="oh-people">
+                <div class="oh-person">
+                  <div class="oh-person__photo"><img src="<?php echo TLA_BASE; ?>/assets/tim-braheem-headshot.png" alt="Tim Braheem" loading="lazy" /></div>
+                  <div class="oh-person__body">
+                    <p class="oh-person__name">Tim Braheem</p>
+                    <p class="oh-person__role">Founder</p>
+                    <p class="oh-person__org">The Loan Atlas</p>
+                  </div>
                 </div>
-                <div class="oh-about__body">
-                  <p>Caleb has helped more than 5,017 families across $1.12B+ in lifetime production while building one of the most respected branch teams in the industry. His work is grounded in the day-to-day systems that make consistency possible.</p>
-                  <p>His specialty is The Perfect Loan Process, the System for Selling, and the builder business — installing the execution systems that take a top originator from solo producer to a team that runs without chaos.</p>
+                <div class="oh-person">
+                  <div class="oh-person__photo"><img src="<?php echo TLA_BASE; ?>/assets/caleb-legrand-headshot.png" alt="Caleb LeGrand" loading="lazy" /></div>
+                  <div class="oh-person__body">
+                    <p class="oh-person__name">Caleb LeGrand</p>
+                    <p class="oh-person__role">Faculty</p>
+                    <p class="oh-person__org">The Loan Atlas</p>
+                  </div>
                 </div>
-              </div>
-            </section>
-
-            <!-- Specialties -->
-            <section data-reveal="up">
-              <h2 class="oh-h2">Caleb's Specialties</h2>
-              <div class="oh-chips">
-                <span class="oh-chip">The Perfect Loan Process</span>
-                <span class="oh-chip">The System for Selling</span>
-                <span class="oh-chip">The Builder Business</span>
-                <span class="oh-chip">Execution Systems</span>
-                <span class="oh-chip">Team Building</span>
-              </div>
-            </section>
-
-            <!-- 2025 Production -->
-            <section data-reveal="up">
-              <h2 class="oh-h2">Caleb's 2025 Production</h2>
-              <div class="oh-stats oh-stats--2">
-                <div class="oh-stat">
-                  <div class="oh-stat__num" data-countup="69.7" data-countup-prefix="$" data-countup-suffix="M">$69.7M</div>
-                  <div class="oh-stat__label">Total funded volume</div>
+                <div class="oh-person">
+                  <div class="oh-person__photo"><img src="<?php echo TLA_BASE; ?>/assets/jay-dacey-headshot.png" alt="Jay Dacey" loading="lazy" /></div>
+                  <div class="oh-person__body">
+                    <p class="oh-person__name">Jay Dacey</p>
+                    <p class="oh-person__role">Faculty</p>
+                    <p class="oh-person__org">The Loan Atlas</p>
+                  </div>
                 </div>
-                <div class="oh-stat">
-                  <div class="oh-stat__num" data-countup="200" data-countup-suffix="">200</div>
-                  <div class="oh-stat__label">Families served</div>
+                <div class="oh-person">
+                  <div class="oh-person__photo"><img src="<?php echo TLA_BASE; ?>/assets/josh-burruss-headshot.png" alt="Josh Burruss" loading="lazy" /></div>
+                  <div class="oh-person__body">
+                    <p class="oh-person__name">Josh Burruss</p>
+                    <p class="oh-person__role">Faculty</p>
+                    <p class="oh-person__org">The Loan Atlas</p>
+                  </div>
                 </div>
               </div>
             </section>
 
             <!-- Bottom CTA — opens the access modal -->
             <div class="oh-cta-foot" data-reveal="up">
-              <button type="button" class="tlc-btn oh-join-btn" data-ev-modal>Join Caleb's Office Hours</button>
+              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch This Masterclass</button>
             </div>
 
           </div>
@@ -427,7 +469,7 @@
 
             <!-- Column header — frames the two cards as an either/or choice -->
             <div class="oh-side__head">
-              <h2 class="oh-side__title">Want to Be Coached By Caleb?</h2>
+              <h2 class="oh-side__title">Get On-Demand Access to Every Masterclass</h2>
               <p class="oh-side__sub">Join The Loan Atlas to get immediate access, or schedule your free business assessment to see everything inside.</p>
             </div>
 
@@ -435,20 +477,20 @@
             <div class="tlc-navy">
               <div class="tlc-navy__in">
                 <h3 class="tlc-navy__title">Join The Loan Atlas</h3>
-                <p class="tlc-navy__text">Office hours are included with membership. Here's everything you unlock inside The Loan Atlas:</p>
+                <p class="tlc-navy__text">Every masterclass replay is included with membership. Here's everything you unlock inside The Loan Atlas:</p>
                 <!-- Brass gradient definition for the bare checkmarks below -->
                 <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><linearGradient id="tlcGoldCheck" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c9961c"/><stop offset="50%" stop-color="#eac25a"/><stop offset="100%" stop-color="#ffd56c"/></linearGradient></defs></svg>
                 <ul class="tlc-list">
-                  <li><svg class="tlc-chk tlc-chk--bare" viewBox="0 0 24 24" fill="none" stroke="url(#tlcGoldCheck)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>Seven live coaching calls</strong> every month, including this one</span></li>
+                  <li><svg class="tlc-chk tlc-chk--bare" viewBox="0 0 24 24" fill="none" stroke="url(#tlcGoldCheck)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>Live + on-demand access</strong> to every masterclass, office hours and AI Lab</span></li>
+                  <li><svg class="tlc-chk tlc-chk--bare" viewBox="0 0 24 24" fill="none" stroke="url(#tlcGoldCheck)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>Seven live coaching calls</strong> every month</span></li>
                   <li><svg class="tlc-chk tlc-chk--bare" viewBox="0 0 24 24" fill="none" stroke="url(#tlcGoldCheck)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>200+ training modules</strong> across the 8 Disciplines of Loan Origination Mastery</span></li>
                   <li><svg class="tlc-chk tlc-chk--bare" viewBox="0 0 24 24" fill="none" stroke="url(#tlcGoldCheck)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>An all-star faculty</strong> with over $29 billion in collective loan funding</span></li>
-                  <li><svg class="tlc-chk tlc-chk--bare" viewBox="0 0 24 24" fill="none" stroke="url(#tlcGoldCheck)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>The Perfect Loan Process™</strong> — from initial inquiry to final approval</span></li>
                   <li><svg class="tlc-chk tlc-chk--bare" viewBox="0 0 24 24" fill="none" stroke="url(#tlcGoldCheck)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>The Ultimate AI GPT Coach</strong> for scripting, follow-up, realtor relationships and more</span></li>
                 </ul>
-                <a class="tlc-btn" href="pricing.html">View Membership Options</a>
+                <a class="tlc-btn" href="/join/">View Membership Options</a>
               </div>
               <div class="oh-join__media">
-                <img src="assets/hero image.png" alt="The Loan Atlas member platform" loading="lazy" />
+                <img src="<?php echo TLA_BASE; ?>/assets/hero image.png" alt="The Loan Atlas member platform" loading="lazy" />
               </div>
             </div>
 
@@ -465,7 +507,7 @@
                 <!-- LeadConnector booking widget — same as consultation.html -->
                 <iframe src="https://api.leadconnectorhq.com/widget/booking/sNSShvRjEhTdDcR9MTmx"
                   class="oh-book__iframe" scrolling="no"
-                  id="oh-booking-caleb" title="Schedule Booking"></iframe>
+                  id="oh-booking-replay-mid-year-playbook" title="Schedule Booking"></iframe>
               </div>
             </div>
 
@@ -489,17 +531,17 @@
         <!-- Square event tiles, full-bleed across the top, fading into the navy -->
         <div class="ev-modal__strip" aria-hidden="true">
           <div class="ev-modal__strip-row">
-            <img src="assets/live-events/AI-Lab-Inside-Platinum-0717.png" alt="" loading="lazy" />
-            <img src="assets/live-events/Office-Hours-Caleb-Legrand-0701.png" alt="" loading="lazy" />
-            <img src="assets/live-events/Office-Hours-Jay-Dacey-0722.png" alt="" loading="lazy" />
-            <img src="assets/live-events/Talk-to-Tim-0731.png" alt="" loading="lazy" />
-            <img src="assets/live-events/Masterclass-Mortgage-Success-Plan-0723.png" alt="" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/live-events/AI-Lab-Inside-Platinum-0717.png" alt="" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/live-events/Masterclass-Lead-Generation-That-Converts-0806-1x1.jpg" alt="" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Jay-Dacey-0722.png" alt="" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/live-events/Talk-to-Tim-0731.png" alt="" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/live-events/Masterclass-Mortgage-Success-Plan-0723.png" alt="" loading="lazy" />
           </div>
         </div>
         <div class="ev-modal__head-in">
           <span class="tlc-eyebrow">Join The Loan Atlas</span>
           <h2 class="ev-modal__title" id="ev-modal-title">Get Access to All Past &amp; Future Live Trainings and Coaching Calls</h2>
-          <p class="ev-modal__sub">Every office hours, masterclass, AI Lab and Talk to Tim session — live and on demand — is included with your Loan Atlas membership.</p>
+          <p class="ev-modal__sub">Every masterclass, AI Lab and Talk to Tim session — live and on demand — is included with your Loan Atlas membership.</p>
         </div>
       </div>
 
@@ -519,10 +561,10 @@
               <li><svg class="tlc-chk tlc-chk--bare" viewBox="0 0 24 24" fill="none" stroke="url(#evGoldCheck)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>An all-star faculty</strong> with over $29 billion in collective loan funding</span></li>
               <li><svg class="tlc-chk tlc-chk--bare" viewBox="0 0 24 24" fill="none" stroke="url(#evGoldCheck)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>The Ultimate AI GPT Coach</strong> for scripting, follow-up, realtor relationships and more</span></li>
             </ul>
-            <a class="tlc-btn" href="pricing.html">View Membership Options</a>
+            <a class="tlc-btn" href="/join/">View Membership Options</a>
           </div>
           <div class="ev-join__media">
-            <img src="assets/hero image.png" alt="The Loan Atlas member platform" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/hero image.png" alt="The Loan Atlas member platform" loading="lazy" />
           </div>
         </div>
 
@@ -546,10 +588,8 @@
     </div>
   </div>
 
-<!-- TLA_FOOTER -->
+<?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>
 
-  <script src="js/nav.js"></script>
-  <script src="js/animations.js" defer></script>
   <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
   <script>
     /* ── Access modal: every CTA with [data-ev-modal] opens it ── */
@@ -593,5 +633,3 @@
       });
     })();
   </script>
-</body>
-</html>

@@ -1,22 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Office Hours with Caleb Legrand — The Loan Atlas</title>
-  <meta name="description" content="Join Caleb Legrand's live office hours inside The Loan Atlas — bring your live deals and get real-time answers from a top-producing coach." />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/chrome.css" />
+<?php
+/**
+ * Body partial for /talk-to-tim/ (TLA Full HTML template).
+ * Generated from public/talk-to-tim.html by scripts/convert-pages.sh — do not hand-edit;
+ * edit the source HTML (or the shared header/footer partials) and re-run.
+ */
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-  <!-- ============================================================
-       OFFICE HOURS DETAIL — fresh standalone design, namespaced .oh-*.
-       Udacity-style two-column layout (no hero band): wide content
-       column on the left, sticky join/booking sidebar on the right.
-       Brand colors/fonts/logo via tokens; layout/components bespoke.
-       ============================================================ -->
+$tla_title       = 'Talk to Tim — The Loan Atlas';
+$tla_description = 'Join Talk to Tim inside The Loan Atlas — a monthly live coaching session where Tim Braheem works through the mindset, leadership and personal-development blocks holding your business back.';
+$tla_active      = '';
+?>
   <style>
     .oh { background: var(--background); }
 
@@ -94,7 +87,7 @@
       border: 1px solid var(--outline-variant);
     }
 
-    /* About Caleb */
+    /* About Tim */
     .oh-about { display: grid; grid-template-columns: 96px 1fr; gap: 20px; align-items: start; margin-top: 18px; }
     .oh-about__photo {
       width: 96px; height: 96px; border-radius: var(--radius-2xl); overflow: hidden;
@@ -130,7 +123,7 @@
       color: var(--on-surface-variant); margin-top: 10px;
     }
 
-    /* Caleb's faculty video — 16:9 embed */
+    /* Tim's faculty video — 16:9 embed */
     .oh-video {
       position: relative; aspect-ratio: 16 / 9; overflow: hidden;
       border-radius: var(--radius-xl); border: 1px solid var(--outline-variant);
@@ -204,7 +197,7 @@
 
     /* ================================================================
        ACCESS MODAL — ported from the live-events page (.ev-modal);
-       opened by either "Join Caleb's Office Hours" CTA.
+       opened by either "Join Talk to Tim" CTA.
        ================================================================ */
     .ev-modal {
       position: fixed; inset: 0; z-index: 1000;
@@ -325,10 +318,9 @@
       .ev-modal__dialog { transform: none; }
     }
   </style>
-</head>
-<body>
 
-<!-- TLA_HEADER -->
+
+<?php include get_stylesheet_directory() . '/tla/partials/header.php'; ?>
 
   <main class="site-main oh">
 
@@ -342,82 +334,83 @@
             <!-- Header: thumbnail + title + date -->
             <div class="oh-header" data-reveal="up">
               <div class="oh-thumb">
-                <img src="assets/live-events/Office-Hours-Caleb-Legrand-0701-16x9.png" alt="Office Hours with Caleb Legrand" loading="eager" />
+                <img src="<?php echo TLA_BASE; ?>/assets/live-events/Talk-to-Tim-0731-16x9.jpg" alt="Talk to Tim" loading="eager" />
               </div>
               <div class="oh-meta">
                 <span class="oh-meta__item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                  Jul 1, 2026
+                  Jul 31, 2026
                 </span>
                 <span class="oh-meta__item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg>
-                  11:00 AM PT
+                  10:00 AM PT
                 </span>
               </div>
-              <h1 class="oh-title">Office Hours with Caleb LeGrand</h1>
+              <h1 class="oh-title">Talk to Tim</h1>
             </div>
 
-            <!-- What is Office Hours -->
+            <!-- What is Talk to Tim -->
             <section data-reveal="up">
-              <h2 class="oh-h2">What is Office Hours?</h2>
-              <p class="oh-prose">Office Hours are the implementation engine of The Loan Atlas. Once a week, for 60 minutes, you get direct access to faculty who've overcome the challenges you're facing.</p>
-              <p class="oh-prose">You bring the real problems — an appraisal that blew up, a script that isn't landing, the mindset you can't quite shake — and you walk out with a clear next move instead of carrying it around for another week. This is where you stay accountable, get unstuck fast, and keep moving forward with a community of people who genuinely want to see you win.</p>
+              <h2 class="oh-h2">What Is Talk to Tim?</h2>
+              <p class="oh-prose">The thing holding your business back usually isn't the market, the rates, or your competition. It's what's happening between your ears. The fear of making the call. The story you tell yourself about who you are and what you're capable of. The stress you carry home that nobody sees.</p>
+              <p class="oh-prose">Talk to Tim is where you go to work on that. Once a month, for 60 to 90 minutes, Tim Braheem gets in the room with you to coach you through the deeper stuff: the mindset blocks, the leadership doubts, the fear of change, the confusion about where your business is even going.</p>
+              <p class="oh-prose">Using everything he's spent decades developing, Tim will help you break through the patterns that keep repeating. Because you can have every script and system in the world, but if you don't evolve who you are, nothing really changes.</p>
             </section>
 
-            <!-- Caleb's faculty video -->
+            <!-- Tim's faculty video -->
             <section data-reveal="up">
               <div class="oh-video">
-                <iframe src="https://www.youtube-nocookie.com/embed/SBjOcwAn2UM"
-                  title="Caleb LeGrand — Faculty introduction"
+                <iframe src="https://www.youtube-nocookie.com/embed/2k1XrsEIKJ0"
+                  title="Tim Braheem — Faculty introduction"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
               </div>
             </section>
 
-            <!-- About Caleb -->
+            <!-- About Tim -->
             <section data-reveal="up">
-              <h2 class="oh-h2">About Caleb LeGrand</h2>
+              <h2 class="oh-h2">About Tim Braheem</h2>
               <div class="oh-about">
                 <div class="oh-about__photo">
-                  <img src="assets/caleb-legrand-headshot.png" alt="Caleb LeGrand" loading="lazy" />
+                  <img src="<?php echo TLA_BASE; ?>/assets/tim-braheem-headshot.png" alt="Tim Braheem" loading="lazy" />
                 </div>
                 <div class="oh-about__body">
-                  <p>Caleb has helped more than 5,017 families across $1.12B+ in lifetime production while building one of the most respected branch teams in the industry. His work is grounded in the day-to-day systems that make consistency possible.</p>
-                  <p>His specialty is The Perfect Loan Process, the System for Selling, and the builder business — installing the execution systems that take a top originator from solo producer to a team that runs without chaos.</p>
+                  <p>Tim is the founder of The Loan Atlas and the foundation it's built on. He's a producer who built coaching because he couldn't find coaching that worked — and now teaches the operating system he wishes he'd had in the seat, every week, alongside the rest of the faculty. 25+ years as a mortgage originator with $1.4B in personal loan volume. Founded First Rate Financial in 1995 and co-founded Loantoolbox.com in 2001, which reached 10,800 paying members by 2006 and was named to the Inc. 500. Host of <em>The 360 Experience</em> podcast.</p>
+                  <p>He is the architect of the Perfect Loan Process, the scripting frameworks, and the personal development work that runs underneath everything The Loan Atlas teaches — and he leads Talk to Tim, the monthly coaching session where members bring real situations and Tim works through them live.</p>
                 </div>
               </div>
             </section>
 
             <!-- Specialties -->
             <section data-reveal="up">
-              <h2 class="oh-h2">Caleb's Specialties</h2>
+              <h2 class="oh-h2">Tim's Specialties</h2>
               <div class="oh-chips">
+                <span class="oh-chip">Mindset &amp; Personal Development</span>
                 <span class="oh-chip">The Perfect Loan Process</span>
-                <span class="oh-chip">The System for Selling</span>
-                <span class="oh-chip">The Builder Business</span>
-                <span class="oh-chip">Execution Systems</span>
-                <span class="oh-chip">Team Building</span>
+                <span class="oh-chip">Scripting Frameworks</span>
+                <span class="oh-chip">Leadership</span>
+                <span class="oh-chip">Peak Performance Coaching</span>
               </div>
             </section>
 
-            <!-- 2025 Production -->
+            <!-- Career production -->
             <section data-reveal="up">
-              <h2 class="oh-h2">Caleb's 2025 Production</h2>
+              <h2 class="oh-h2">Tim's Career Production</h2>
               <div class="oh-stats oh-stats--2">
                 <div class="oh-stat">
-                  <div class="oh-stat__num" data-countup="69.7" data-countup-prefix="$" data-countup-suffix="M">$69.7M</div>
-                  <div class="oh-stat__label">Total funded volume</div>
+                  <div class="oh-stat__num" data-countup="1.4" data-countup-prefix="$" data-countup-suffix="B">$1.4B</div>
+                  <div class="oh-stat__label">Personal loan volume</div>
                 </div>
                 <div class="oh-stat">
-                  <div class="oh-stat__num" data-countup="200" data-countup-suffix="">200</div>
-                  <div class="oh-stat__label">Families served</div>
+                  <div class="oh-stat__num" data-countup="25" data-countup-suffix="+">25+</div>
+                  <div class="oh-stat__label">Years as an originator</div>
                 </div>
               </div>
             </section>
 
             <!-- Bottom CTA — opens the access modal -->
             <div class="oh-cta-foot" data-reveal="up">
-              <button type="button" class="tlc-btn oh-join-btn" data-ev-modal>Join Caleb's Office Hours</button>
+              <button type="button" class="tlc-btn oh-join-btn" data-ev-modal>Join Talk to Tim</button>
             </div>
 
           </div>
@@ -427,7 +420,7 @@
 
             <!-- Column header — frames the two cards as an either/or choice -->
             <div class="oh-side__head">
-              <h2 class="oh-side__title">Want to Be Coached By Caleb?</h2>
+              <h2 class="oh-side__title">Want to Be Coached By Tim?</h2>
               <p class="oh-side__sub">Join The Loan Atlas to get immediate access, or schedule your free business assessment to see everything inside.</p>
             </div>
 
@@ -435,7 +428,7 @@
             <div class="tlc-navy">
               <div class="tlc-navy__in">
                 <h3 class="tlc-navy__title">Join The Loan Atlas</h3>
-                <p class="tlc-navy__text">Office hours are included with membership. Here's everything you unlock inside The Loan Atlas:</p>
+                <p class="tlc-navy__text">Talk to Tim is included with membership. Here's everything you unlock inside The Loan Atlas:</p>
                 <!-- Brass gradient definition for the bare checkmarks below -->
                 <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><linearGradient id="tlcGoldCheck" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c9961c"/><stop offset="50%" stop-color="#eac25a"/><stop offset="100%" stop-color="#ffd56c"/></linearGradient></defs></svg>
                 <ul class="tlc-list">
@@ -445,10 +438,10 @@
                   <li><svg class="tlc-chk tlc-chk--bare" viewBox="0 0 24 24" fill="none" stroke="url(#tlcGoldCheck)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>The Perfect Loan Process™</strong> — from initial inquiry to final approval</span></li>
                   <li><svg class="tlc-chk tlc-chk--bare" viewBox="0 0 24 24" fill="none" stroke="url(#tlcGoldCheck)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>The Ultimate AI GPT Coach</strong> for scripting, follow-up, realtor relationships and more</span></li>
                 </ul>
-                <a class="tlc-btn" href="pricing.html">View Membership Options</a>
+                <a class="tlc-btn" href="/join/">View Membership Options</a>
               </div>
               <div class="oh-join__media">
-                <img src="assets/hero image.png" alt="The Loan Atlas member platform" loading="lazy" />
+                <img src="<?php echo TLA_BASE; ?>/assets/hero image.png" alt="The Loan Atlas member platform" loading="lazy" />
               </div>
             </div>
 
@@ -465,7 +458,7 @@
                 <!-- LeadConnector booking widget — same as consultation.html -->
                 <iframe src="https://api.leadconnectorhq.com/widget/booking/sNSShvRjEhTdDcR9MTmx"
                   class="oh-book__iframe" scrolling="no"
-                  id="oh-booking-caleb" title="Schedule Booking"></iframe>
+                  id="oh-booking-tim" title="Schedule Booking"></iframe>
               </div>
             </div>
 
@@ -489,11 +482,11 @@
         <!-- Square event tiles, full-bleed across the top, fading into the navy -->
         <div class="ev-modal__strip" aria-hidden="true">
           <div class="ev-modal__strip-row">
-            <img src="assets/live-events/AI-Lab-Inside-Platinum-0717.png" alt="" loading="lazy" />
-            <img src="assets/live-events/Office-Hours-Caleb-Legrand-0701.png" alt="" loading="lazy" />
-            <img src="assets/live-events/Office-Hours-Jay-Dacey-0722.png" alt="" loading="lazy" />
-            <img src="assets/live-events/Talk-to-Tim-0731.png" alt="" loading="lazy" />
-            <img src="assets/live-events/Masterclass-Mortgage-Success-Plan-0723.png" alt="" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/live-events/AI-Lab-Inside-Platinum-0717.png" alt="" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/live-events/Talk-to-Tim-0731.png" alt="" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Jay-Dacey-0722.png" alt="" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/live-events/Talk-to-Tim-0731.png" alt="" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/live-events/Masterclass-Mortgage-Success-Plan-0723.png" alt="" loading="lazy" />
           </div>
         </div>
         <div class="ev-modal__head-in">
@@ -519,10 +512,10 @@
               <li><svg class="tlc-chk tlc-chk--bare" viewBox="0 0 24 24" fill="none" stroke="url(#evGoldCheck)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>An all-star faculty</strong> with over $29 billion in collective loan funding</span></li>
               <li><svg class="tlc-chk tlc-chk--bare" viewBox="0 0 24 24" fill="none" stroke="url(#evGoldCheck)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>The Ultimate AI GPT Coach</strong> for scripting, follow-up, realtor relationships and more</span></li>
             </ul>
-            <a class="tlc-btn" href="pricing.html">View Membership Options</a>
+            <a class="tlc-btn" href="/join/">View Membership Options</a>
           </div>
           <div class="ev-join__media">
-            <img src="assets/hero image.png" alt="The Loan Atlas member platform" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/hero image.png" alt="The Loan Atlas member platform" loading="lazy" />
           </div>
         </div>
 
@@ -546,10 +539,8 @@
     </div>
   </div>
 
-<!-- TLA_FOOTER -->
+<?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>
 
-  <script src="js/nav.js"></script>
-  <script src="js/animations.js" defer></script>
   <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
   <script>
     /* ── Access modal: every CTA with [data-ev-modal] opens it ── */
@@ -593,5 +584,3 @@
       });
     })();
   </script>
-</body>
-</html>

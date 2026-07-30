@@ -13,22 +13,6 @@ $tla_active      = '';
   <style>
     .oh { background: var(--background); }
 
-    /* --- Breadcrumb -------------------------------------------------- */
-    .oh-crumbs {
-      border-bottom: 1px solid var(--outline-variant);
-      background: var(--surface-container-lowest);
-    }
-    .oh-crumbs__inner {
-      display: flex; flex-wrap: wrap; align-items: center; gap: 8px;
-      padding-block: 14px;
-      font-family: var(--font-body); font-size: 0.8125rem; font-weight: 600;
-      color: var(--on-surface-variant);
-    }
-    .oh-crumbs a { color: var(--on-surface-variant); transition: color 150ms ease; }
-    .oh-crumbs a:hover { color: var(--brass); }
-    .oh-crumbs__sep { color: var(--outline); }
-    .oh-crumbs__current { color: var(--on-surface); }
-
     /* --- Two-column grid (content + sticky sidebar) ------------------ */
     .oh-layout { padding-block: clamp(32px, 4vw, 56px) clamp(56px, 7vw, 104px); }
     .oh-grid {
@@ -62,6 +46,12 @@ $tla_active      = '';
     .oh-header > * + * { margin-top: 0; }
     .oh-header .oh-thumb + .oh-meta { margin-top: clamp(24px, 3vw, 32px); }
     .oh-header .oh-meta + .oh-title { margin-top: 10px; }
+    /* Bottom CTA — centered at the foot of the white card */
+    .oh-cta-foot { display: flex; justify-content: center; }
+
+    /* Full-width join CTA (gold .tlc-btn, stretched) — under the title
+       and again at the bottom of the card */
+    .oh-join-btn { width: 100%; font-size: 1.125rem; padding-block: 16px; }
 
     .oh-title {
       font-family: var(--font-display);
@@ -141,18 +131,6 @@ $tla_active      = '';
     }
     .oh-video iframe { width: 100%; height: 100%; border: 0; display: block; }
 
-    /* Notify-me callout uses the shared B4 .tlc-notify component (styles.css).
-       Here it's pinned as a footer: bleeds out of the white card's padding on
-       the left/right/bottom so it spans flush to the card edges, with the
-       bottom corners rounded to match the card and the top corners squared. */
-    .oh-notify-footer {
-      --bleed: clamp(28px, 3.5vw, 48px);
-      /* +1px on the bled sides swallows the card's 1px border so it sits flush */
-      margin: var(--bleed) calc(-1 * var(--bleed) - 1px) calc(-1 * var(--bleed) - 1px);
-      width: auto;
-      border-radius: 0 0 var(--radius-3xl) var(--radius-3xl);
-    }
-
     /* --- Right column (sticky sidebar) ------------------------------- */
     .oh-side { position: sticky; top: calc(var(--header-h) + 16px); display: flex; flex-direction: column; gap: 18px; }
 
@@ -185,6 +163,20 @@ $tla_active      = '';
       content: ""; flex: 1; height: 1px; background: var(--outline-variant);
     }
 
+    /* Booking card header — restyled to match the navy slab above it:
+       navy gradient cap with the 4px gold gradient line (vs. the shared
+       component's solid gold cap). Scoped to the sidebar only. */
+    .oh-side .tlc-split__cap {
+      position: relative;
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      padding-top: 19px;
+    }
+    .oh-side .tlc-split__cap::before {
+      content: ""; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+    }
+    .oh-side .tlc-split__cap-title { color: #fff; }
+
     /* Booking calendar embed — mirrors consultation.html .booking-card__iframe.
        Bleeds to the card edges below the A2 split body's intro copy. */
     .oh-book__iframe {
@@ -203,9 +195,127 @@ $tla_active      = '';
       .oh-about { grid-template-columns: 1fr; }
     }
 
-    /* --- Motion fallback --------------------------------------------- */
+    /* ================================================================
+       ACCESS MODAL — ported from the live-events page (.ev-modal);
+       opened by either "Join Caleb's Office Hours" CTA.
+       ================================================================ */
+    .ev-modal {
+      position: fixed; inset: 0; z-index: 1000;
+      display: grid; place-items: center;
+      padding: clamp(16px, 4vw, 40px);
+    }
+    .ev-modal[hidden] { display: none; }
+    .ev-modal__backdrop {
+      position: absolute; inset: 0;
+      background: rgba(2, 12, 26, 0.62);
+      backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      opacity: 0; transition: opacity 200ms ease;
+    }
+    .ev-modal.is-open .ev-modal__backdrop { opacity: 1; }
+
+    .ev-modal__dialog {
+      position: relative; z-index: 1;
+      width: min(980px, 100%); max-height: 92vh;
+      overflow-x: hidden; overflow-y: auto;
+      background: var(--surface-container-lowest);
+      border-radius: var(--radius-3xl);
+      box-shadow: 0 40px 100px rgba(2, 28, 54, 0.45);
+      opacity: 0; transform: translateY(16px) scale(0.985);
+      transition: opacity 220ms ease, transform 220ms ease;
+    }
+    .ev-modal.is-open .ev-modal__dialog { opacity: 1; transform: none; }
+
+    .ev-modal__close {
+      position: absolute; top: 14px; right: 14px; z-index: 3;
+      width: 40px; height: 40px; display: grid; place-items: center;
+      border-radius: 50%; color: #fff;
+      background: rgba(2, 12, 26, 0.45);
+      border: 1px solid rgba(255, 255, 255, 0.22);
+      transition: background 150ms ease, transform 150ms ease;
+    }
+    .ev-modal__close:hover { background: rgba(2, 12, 26, 0.7); transform: scale(1.05); }
+    .ev-modal__close svg { width: 20px; height: 20px; }
+
+    /* Navy header band — holds the image strip + heading */
+    .ev-modal__head {
+      position: relative; overflow: hidden;
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      color: var(--on-primary);
+      border-radius: var(--radius-3xl) var(--radius-3xl) 0 0;
+    }
+
+    /* Image strip — square event tiles full-bleed across the top of the navy
+       band, flush together, fading down into the navy (and softly at the
+       sides) just like the live-events collage. */
+    .ev-modal__strip { position: relative; }
+    .ev-modal__strip-row {
+      display: grid; grid-template-columns: repeat(5, 1fr);
+    }
+    .ev-modal__strip-row img {
+      width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block;
+    }
+    /* Gradient fade: tiles dissolve into the navy at the bottom + edges. */
+    .ev-modal__strip::after {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background:
+        linear-gradient(180deg, rgba(6, 14, 28, 0) 38%, rgba(6, 14, 28, 0.65) 78%, #021c36 100%),
+        linear-gradient(90deg, rgba(6, 14, 28, 0.55) 0%, rgba(6, 14, 28, 0) 12%, rgba(6, 14, 28, 0) 88%, rgba(6, 14, 28, 0.55) 100%);
+    }
+
+    /* Heading */
+    .ev-modal__head-in {
+      position: relative; z-index: 1;
+      padding: clamp(22px, 3vw, 32px) clamp(24px, 4vw, 48px) clamp(28px, 3.5vw, 40px);
+      text-align: center; max-width: 40rem; margin-inline: auto;
+    }
+    .ev-modal__head-in .tlc-eyebrow { color: var(--brass-bright); justify-content: center; }
+    .ev-modal__title {
+      font-family: var(--font-display); font-weight: 800;
+      font-size: clamp(1.5rem, 1.15rem + 1.6vw, 2.125rem);
+      line-height: 1.1; letter-spacing: -0.02em; color: #fff; margin: 10px 0 0;
+    }
+    .ev-modal__sub {
+      font-family: var(--font-body); font-size: 1rem; line-height: 1.6;
+      color: rgba(255, 255, 255, 0.80); margin: 12px 0 0;
+    }
+
+    /* Body — two columns with an "or" divider between */
+    .ev-modal__body {
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      gap: clamp(20px, 2.4vw, 32px); align-items: stretch;
+      padding: clamp(24px, 3.2vw, 40px);
+    }
+    .ev-modal__body .tlc-navy,
+    .ev-modal__body .tlc-split { height: 100%; }
+    /* Member-platform image at the bottom of the navy Join card; bleeds flush
+       to the card edges, below the button. The .tlc-navy clips it via overflow. */
+    .ev-modal__body .tlc-navy { display: flex; flex-direction: column; }
+    .ev-modal__body .tlc-navy .tlc-navy__in { flex: 1; }
+    .ev-join__media { margin-top: auto; }
+    .ev-join__media img { display: block; width: 100%; height: auto; }
+    .ev-modal__or {
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      color: var(--on-surface-variant);
+      font-family: var(--font-display); font-weight: 700; font-size: 0.8125rem;
+      text-transform: uppercase; letter-spacing: 0.12em;
+    }
+    .ev-modal__or::before, .ev-modal__or::after {
+      content: ""; flex: 1; width: 1px; background: var(--outline-variant);
+    }
+    .ev-modal__book-iframe {
+      display: block; width: calc(100% + 44px); margin-left: -22px;
+      min-height: 560px; border: none; overflow: hidden;
+    }
+
+    @media (max-width: 760px) {
+      .ev-modal__body { grid-template-columns: 1fr; }
+      .ev-modal__or { flex-direction: row; }
+      .ev-modal__or::before, .ev-modal__or::after { width: auto; height: 1px; }
+    }
+
     @media (prefers-reduced-motion: reduce) {
-      .oh-crumbs a { transition: none; }
+      .ev-modal__backdrop, .ev-modal__dialog, .ev-modal__close { transition: none; }
+      .ev-modal__dialog { transform: none; }
     }
   </style>
 
@@ -213,17 +323,6 @@ $tla_active      = '';
 <?php include get_stylesheet_directory() . '/tla/partials/header.php'; ?>
 
   <main class="site-main oh">
-
-    <!-- Breadcrumb -->
-    <nav class="oh-crumbs" aria-label="Breadcrumb">
-      <div class="container">
-        <div class="oh-crumbs__inner">
-          <a href="/live-events/">Live Events</a>
-          <span class="oh-crumbs__sep">›</span>
-          <span class="oh-crumbs__current">Office Hours with Caleb LeGrand</span>
-        </div>
-      </div>
-    </nav>
 
     <div class="oh-layout">
       <div class="container">
@@ -253,7 +352,8 @@ $tla_active      = '';
             <!-- What is Office Hours -->
             <section data-reveal="up">
               <h2 class="oh-h2">What is Office Hours?</h2>
-              <p class="oh-prose">Office Hours is a live, members-only working session where you bring your real deals, scenarios and questions and get answers in real time. No slides, no theory — just a top-producing coach helping you move your pipeline forward. This is placeholder copy describing the format.</p>
+              <p class="oh-prose">Office Hours are the implementation engine of The Loan Atlas. Once a week, for 60 minutes, you get direct access to faculty who've overcome the challenges you're facing.</p>
+              <p class="oh-prose">You bring the real problems — an appraisal that blew up, a script that isn't landing, the mindset you can't quite shake — and you walk out with a clear next move instead of carrying it around for another week. This is where you stay accountable, get unstuck fast, and keep moving forward with a community of people who genuinely want to see you win.</p>
             </section>
 
             <!-- Caleb's faculty video -->
@@ -263,18 +363,6 @@ $tla_active      = '';
                   title="Caleb LeGrand — Faculty introduction"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-              </div>
-            </section>
-
-            <!-- Specialties -->
-            <section data-reveal="up">
-              <h2 class="oh-h2">Caleb's Specialties</h2>
-              <div class="oh-chips">
-                <span class="oh-chip">The Perfect Loan Process</span>
-                <span class="oh-chip">The System for Selling</span>
-                <span class="oh-chip">The Builder Business</span>
-                <span class="oh-chip">Execution Systems</span>
-                <span class="oh-chip">Team Building</span>
               </div>
             </section>
 
@@ -289,6 +377,18 @@ $tla_active      = '';
                   <p>Caleb has helped more than 5,017 families across $1.12B+ in lifetime production while building one of the most respected branch teams in the industry. His work is grounded in the day-to-day systems that make consistency possible.</p>
                   <p>His specialty is The Perfect Loan Process, the System for Selling, and the builder business — installing the execution systems that take a top originator from solo producer to a team that runs without chaos.</p>
                 </div>
+              </div>
+            </section>
+
+            <!-- Specialties -->
+            <section data-reveal="up">
+              <h2 class="oh-h2">Caleb's Specialties</h2>
+              <div class="oh-chips">
+                <span class="oh-chip">The Perfect Loan Process</span>
+                <span class="oh-chip">The System for Selling</span>
+                <span class="oh-chip">The Builder Business</span>
+                <span class="oh-chip">Execution Systems</span>
+                <span class="oh-chip">Team Building</span>
               </div>
             </section>
 
@@ -307,29 +407,9 @@ $tla_active      = '';
               </div>
             </section>
 
-            <!-- Notify-me callout — shared B4 Notify Collage (.tlc-notify).
-                 PLACEHOLDER form (no endpoint yet). -->
-            <div class="tlc-notify oh-notify-footer" data-reveal="up">
-              <!-- Left collage: 2×3 grid of past live events, fading into the navy -->
-              <div class="tlc-notify__art" aria-hidden="true">
-                <img src="<?php echo TLA_BASE; ?>/assets/live-events/Talk-to-Tim-0731.png" alt="" loading="lazy" />
-                <img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Kelly-Marsh-0715.png" alt="" loading="lazy" />
-                <img src="<?php echo TLA_BASE; ?>/assets/live-events/AI-Lab-Inside-Platinum-0717.png" alt="" loading="lazy" />
-                <img src="<?php echo TLA_BASE; ?>/assets/live-events/Masterclass-2026-Playbook-0716.png" alt="" loading="lazy" />
-                <img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Caleb-Legrand-0701.png" alt="" loading="lazy" />
-                <img src="<?php echo TLA_BASE; ?>/assets/live-events/Masterclass-Fuel-Your-Fire-0611.png" alt="" loading="lazy" />
-              </div>
-              <div class="tlc-notify__in">
-                <span class="tlc-eyebrow">Stay in the Loop</span>
-                <h2 class="tlc-notify__title">Get notified about upcoming events</h2>
-                <p class="tlc-notify__sub">Be the first to know about upcoming office hours, masterclasses and AI Labs inside The Loan Atlas.</p>
-                <!-- TODO: wire this form to the real notify/subscribe endpoint -->
-                <form class="tlc-notify__form" action="#" onsubmit="return false;">
-                  <div class="tlc-notify__field"><input type="text" name="name" placeholder="Your name" aria-label="Your name" /></div>
-                  <div class="tlc-notify__field"><input type="email" name="email" placeholder="Email address" aria-label="Email address" /></div>
-                  <button type="submit" class="tlc-btn">Notify Me</button>
-                </form>
-              </div>
+            <!-- Bottom CTA — opens the access modal -->
+            <div class="oh-cta-foot" data-reveal="up">
+              <button type="button" class="tlc-btn oh-join-btn" data-ev-modal>Join Caleb's Office Hours</button>
             </div>
 
           </div>
@@ -339,8 +419,8 @@ $tla_active      = '';
 
             <!-- Column header — frames the two cards as an either/or choice -->
             <div class="oh-side__head">
-              <h2 class="oh-side__title">Want to Join This Office Hours?</h2>
-              <p class="oh-side__sub">Start your membership or schedule your coaching call to see everything inside.</p>
+              <h2 class="oh-side__title">Want to Be Coached By Caleb?</h2>
+              <p class="oh-side__sub">Join The Loan Atlas to get immediate access, or schedule your free business assessment to see everything inside.</p>
             </div>
 
             <!-- Card 1 — Join The Loan Atlas — A1 Navy Slab callout (.tlc-navy) -->
@@ -370,10 +450,10 @@ $tla_active      = '';
             <!-- Card 2 — Free coaching session — A2 Gold-Header Split (.tlc-split) -->
             <div class="tlc-split">
               <div class="tlc-split__cap">
-                <h3 class="tlc-split__cap-title">Book a Free Coaching Session</h3>
+                <h3 class="tlc-split__cap-title">Schedule Your Free Business Assessment</h3>
               </div>
               <div class="tlc-split__body" style="padding-bottom:0;">
-                <p style="margin-bottom:14px;">Sit down with a coach one-on-one — no cost, no obligation. Pick a time below.</p>
+                <p style="margin-bottom:14px;">Get a tour of The Loan Atlas and walk away with a clear read on what's actually holding your production back and what you can do to fix it.</p>
                 <!-- LeadConnector booking widget — same as consultation.html -->
                 <iframe src="https://api.leadconnectorhq.com/widget/booking/sNSShvRjEhTdDcR9MTmx"
                   class="oh-book__iframe" scrolling="no"
@@ -389,6 +469,117 @@ $tla_active      = '';
 
   </main>
 
+  <div class="ev-modal" id="ev-access-modal" hidden>
+    <div class="ev-modal__backdrop" data-ev-close></div>
+    <div class="ev-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="ev-modal-title">
+      <button type="button" class="ev-modal__close" data-ev-close aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+
+      <!-- Navy header band: uncropped image strip + heading -->
+      <div class="ev-modal__head">
+        <!-- Square event tiles, full-bleed across the top, fading into the navy -->
+        <div class="ev-modal__strip" aria-hidden="true">
+          <div class="ev-modal__strip-row">
+            <img src="<?php echo TLA_BASE; ?>/assets/live-events/AI-Lab-Inside-Platinum-0717.png" alt="" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Caleb-Legrand-0701.png" alt="" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Jay-Dacey-0722.png" alt="" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/live-events/Talk-to-Tim-0731.png" alt="" loading="lazy" />
+            <img src="<?php echo TLA_BASE; ?>/assets/live-events/Masterclass-Mortgage-Success-Plan-0723.png" alt="" loading="lazy" />
+          </div>
+        </div>
+        <div class="ev-modal__head-in">
+          <span class="tlc-eyebrow">Join The Loan Atlas</span>
+          <h2 class="ev-modal__title" id="ev-modal-title">Get Access to All Past &amp; Future Live Trainings and Coaching Calls</h2>
+          <p class="ev-modal__sub">Every office hours, masterclass, AI Lab and Talk to Tim session — live and on demand — is included with your Loan Atlas membership.</p>
+        </div>
+      </div>
+
+      <!-- Two-column body: join (left) + book a call (right) -->
+      <div class="ev-modal__body">
+
+        <!-- LEFT — Join The Loan Atlas (navy slab) -->
+        <div class="tlc-navy">
+          <div class="tlc-navy__in">
+            <h3 class="tlc-navy__title">Join The Loan Atlas</h3>
+            <p class="tlc-navy__text">Unlock every live event plus everything inside the membership:</p>
+            <svg width="0" height="0" aria-hidden="true" style="position:absolute"><defs><linearGradient id="evGoldCheck" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#c9961c"/><stop offset="50%" stop-color="#eac25a"/><stop offset="100%" stop-color="#ffd56c"/></linearGradient></defs></svg>
+            <ul class="tlc-list">
+              <li><svg class="tlc-chk tlc-chk--bare" viewBox="0 0 24 24" fill="none" stroke="url(#evGoldCheck)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>Live + on-demand access</strong> to every masterclass, office hours and AI Lab</span></li>
+              <li><svg class="tlc-chk tlc-chk--bare" viewBox="0 0 24 24" fill="none" stroke="url(#evGoldCheck)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>Seven live coaching calls</strong> every month</span></li>
+              <li><svg class="tlc-chk tlc-chk--bare" viewBox="0 0 24 24" fill="none" stroke="url(#evGoldCheck)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>200+ training modules</strong> across the 8 Disciplines of Loan Origination Mastery</span></li>
+              <li><svg class="tlc-chk tlc-chk--bare" viewBox="0 0 24 24" fill="none" stroke="url(#evGoldCheck)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>An all-star faculty</strong> with over $29 billion in collective loan funding</span></li>
+              <li><svg class="tlc-chk tlc-chk--bare" viewBox="0 0 24 24" fill="none" stroke="url(#evGoldCheck)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>The Ultimate AI GPT Coach</strong> for scripting, follow-up, realtor relationships and more</span></li>
+            </ul>
+            <a class="tlc-btn" href="/join/">View Membership Options</a>
+          </div>
+          <div class="ev-join__media">
+            <img src="<?php echo TLA_BASE; ?>/assets/hero image.png" alt="The Loan Atlas member platform" loading="lazy" />
+          </div>
+        </div>
+
+        <!-- Either/or divider -->
+        <div class="ev-modal__or" aria-hidden="true"><span>or</span></div>
+
+        <!-- RIGHT — Book a free coaching session (gold-header split + calendar) -->
+        <div class="tlc-split">
+          <div class="tlc-split__cap">
+            <h3 class="tlc-split__cap-title">Book a Free Coaching Session</h3>
+          </div>
+          <div class="tlc-split__body" style="padding-bottom:0;">
+            <p style="margin-bottom:14px;">Get a tour of everything inside The Loan Atlas and find out what your business is missing. Pick a time below.</p>
+            <iframe src="https://api.leadconnectorhq.com/widget/booking/sNSShvRjEhTdDcR9MTmx"
+              class="ev-modal__book-iframe" scrolling="no"
+              id="ev-modal-booking" title="Schedule Booking"></iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
 <?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>
 
   <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+  <script>
+    /* ── Access modal: every CTA with [data-ev-modal] opens it ── */
+    (function () {
+      var modal = document.getElementById('ev-access-modal');
+      if (!modal) return;
+      var dialog = modal.querySelector('.ev-modal__dialog');
+      var lastFocus = null;
+
+      function open(e) {
+        if (e) e.preventDefault();
+        lastFocus = document.activeElement;
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+        /* next frame so the transition runs */
+        requestAnimationFrame(function () { modal.classList.add('is-open'); });
+        var closeBtn = modal.querySelector('.ev-modal__close');
+        if (closeBtn) closeBtn.focus();
+      }
+      function close() {
+        modal.classList.remove('is-open');
+        document.body.style.overflow = '';
+        var onEnd = function () {
+          modal.hidden = true;
+          dialog.removeEventListener('transitionend', onEnd);
+        };
+        dialog.addEventListener('transitionend', onEnd);
+        /* fallback if no transition fires */
+        setTimeout(function () { if (!modal.classList.contains('is-open')) modal.hidden = true; }, 320);
+        if (lastFocus && lastFocus.focus) lastFocus.focus();
+      }
+
+      document.querySelectorAll('[data-ev-modal]').forEach(function (btn) {
+        btn.addEventListener('click', open);
+      });
+      modal.querySelectorAll('[data-ev-close]').forEach(function (el) {
+        el.addEventListener('click', close);
+      });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape' && !modal.hidden) close();
+      });
+    })();
+  </script>
