@@ -6,7 +6,7 @@
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-$tla_title       = 'Masterclass with Barry Habib — The Loan Atlas';
+$tla_title       = 'Market Update with Barry Habib — The Loan Atlas';
 $tla_description = 'Join Tim Braheem for an exclusive Loan Atlas webinar with Barry Habib, CEO of MBS Highway and the leading economist of the mortgage industry — expert insight into where the mortgage and real estate markets are headed.';
 $tla_active      = '';
 ?>
@@ -381,7 +381,7 @@ $tla_active      = '';
             <!-- Header: thumbnail + meta + title -->
             <div class="oh-header" data-reveal="up">
               <div class="oh-thumb">
-                <img src="<?php echo TLA_BASE; ?>/assets/live-events/Market-Update-Barry-Habib-0820-16x9.jpg" alt="Masterclass with Barry Habib — The Loan Atlas" loading="eager" />
+                <img src="<?php echo TLA_BASE; ?>/assets/live-events/Market-Update-Barry-Habib-0820-16x9.jpg" alt="Market Update with Barry Habib — The Loan Atlas" loading="eager" />
               </div>
               <div class="oh-meta">
                 <span class="oh-meta__item">
@@ -393,10 +393,10 @@ $tla_active      = '';
                   11:00 AM PT
                 </span>
               </div>
-              <h1 class="oh-title">Masterclass with Barry Habib</h1>
+              <h1 class="oh-title">Market Update with Barry Habib</h1>
             </div>
 
-            <!-- About this masterclass -->
+            <!-- About this event -->
             <section data-reveal="up">
               <p class="oh-prose">Join Tim Braheem for an exclusive Loan Atlas webinar with Barry Habib, CEO of MBS Highway and the leading economist of the mortgage industry.</p>
             </section>
@@ -438,7 +438,7 @@ $tla_active      = '';
 
             <!-- Bottom CTA — opens the access modal -->
             <div class="oh-cta-foot" data-reveal="up">
-              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Join This Masterclass</button>
+              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Join This Market Update</button>
             </div>
 
           </div>
@@ -448,7 +448,7 @@ $tla_active      = '';
 
             <!-- Column header — frames the two cards as an either/or choice -->
             <div class="oh-side__head">
-              <h2 class="oh-side__title">Want to Join This Masterclass?</h2>
+              <h2 class="oh-side__title">Want to Join This Market Update?</h2>
               <p class="oh-side__sub">Join The Loan Atlas to get immediate access, or schedule your free business assessment to see everything inside.</p>
             </div>
 
