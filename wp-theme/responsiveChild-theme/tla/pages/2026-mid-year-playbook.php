@@ -505,9 +505,9 @@ $tla_active      = '';
               <div class="tlc-split__body" style="padding-bottom:0;">
                 <p style="margin-bottom:14px;">Get a tour of The Loan Atlas and walk away with a clear read on what's actually holding your production back and what you can do to fix it.</p>
                 <!-- LeadConnector booking widget — same as consultation.html -->
-                <iframe src="https://api.leadconnectorhq.com/widget/booking/sNSShvRjEhTdDcR9MTmx"
-                  class="oh-book__iframe" scrolling="no"
-                  id="oh-booking-replay-mid-year-playbook" title="Schedule Booking"></iframe>
+                <iframe src="https://api.leadconnectorhq.com/widget/booking/5MfGSBd2cfTjpKzdFXGi"
+                  class="oh-book__iframe" allow="payment" scrolling="no"
+                  id="oh-booking-replay-mid-year-playbook" data-embed-id="oh-booking-replay-mid-year-playbook" title="Schedule Booking"></iframe>
               </div>
             </div>
 
@@ -578,9 +578,9 @@ $tla_active      = '';
           </div>
           <div class="tlc-split__body" style="padding-bottom:0;">
             <p style="margin-bottom:14px;">Get a tour of everything inside The Loan Atlas and find out what your business is missing. Pick a time below.</p>
-            <iframe src="https://api.leadconnectorhq.com/widget/booking/sNSShvRjEhTdDcR9MTmx"
-              class="ev-modal__book-iframe" scrolling="no"
-              id="ev-modal-booking" title="Schedule Booking"></iframe>
+            <iframe src="https://api.leadconnectorhq.com/widget/booking/5MfGSBd2cfTjpKzdFXGi"
+              class="ev-modal__book-iframe" allow="payment" scrolling="no"
+              id="ev-modal-booking" data-embed-id="ev-modal-booking" title="Schedule Booking"></iframe>
           </div>
         </div>
 
