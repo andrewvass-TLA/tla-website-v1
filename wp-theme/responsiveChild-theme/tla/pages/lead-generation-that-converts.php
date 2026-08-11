@@ -53,6 +53,8 @@ $tla_active      = '';
     /* Full-width watch CTA (gold .tlc-btn, stretched) — under the title
        and again at the bottom of the card */
     .oh-watch-btn { width: 100%; font-size: 1.125rem; padding-block: 16px; }
+    /* In-flow CTA closing the intro section, above "What You'll Learn" */
+    .oh-prose + .oh-watch-btn { margin-top: clamp(22px, 2.8vw, 32px); }
 
     .oh-title {
       font-family: var(--font-display);
@@ -381,16 +383,12 @@ $tla_active      = '';
             <!-- Header: thumbnail + meta + title -->
             <div class="oh-header" data-reveal="up">
               <div class="oh-thumb">
-                <img src="<?php echo TLA_BASE; ?>/assets/live-events/Masterclass-Lead-Generation-That-Converts-0806-16x9.jpg" alt="Lead Generation That Converts masterclass — The Loan Atlas" loading="eager" />
+                <img src="<?php echo TLA_BASE; ?>/assets/live-events/past-events/Masterclass-Lead-Generation-That-Converts-0806-16x9.png" alt="Lead Generation That Converts masterclass — The Loan Atlas" loading="eager" />
               </div>
               <div class="oh-meta">
                 <span class="oh-meta__item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                  Thursday, August 6, 2026
-                </span>
-                <span class="oh-meta__item">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg>
-                  11:00 AM PT
+                  Recorded on Aug 6, 2026
                 </span>
               </div>
               <h1 class="oh-title">Lead Generation That Converts: What Loan Originators Should Do Now</h1>
@@ -400,6 +398,7 @@ $tla_active      = '';
             <section data-reveal="up">
               <p class="oh-prose">Most loan originators are working harder than ever to stay visible, create content, follow up with leads, and build referral relationships. But in today's market, more activity does not always create more opportunity.</p>
               <p class="oh-prose">In this Loan Atlas webinar, Tim Braheem will interview Michael Regan and Jay Voorhees. They will share what is actually working right now to generate leads, build trust, and create consistent conversations without depending on constant social media posting or complicated digital marketing strategies. You'll hear practical insight from originators who have tested both modern marketing and old-school relationship building, and are focusing their time on the activities that create the highest return.</p>
+              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch This Masterclass</button>
             </section>
 
             <!-- What you'll learn -->
@@ -416,7 +415,7 @@ $tla_active      = '';
 
             <!-- Presenters -->
             <section data-reveal="up">
-              <h2 class="oh-h2">Your Presenters</h2>
+              <h2 class="oh-h2">Taught By</h2>
               <div class="oh-people">
                 <div class="oh-person">
                   <div class="oh-person__photo"><img src="<?php echo TLA_BASE; ?>/assets/tim-braheem-headshot.png" alt="Tim Braheem" loading="lazy" /></div>
@@ -447,7 +446,7 @@ $tla_active      = '';
 
             <!-- Bottom CTA — opens the access modal -->
             <div class="oh-cta-foot" data-reveal="up">
-              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Join This Masterclass</button>
+              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch This Masterclass</button>
             </div>
 
           </div>

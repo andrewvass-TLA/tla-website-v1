@@ -461,26 +461,26 @@ $tla_active      = 'events';
 
           <div class="ev-feature-card__grid">
             <!-- Square thumbnail -->
-            <a class="ev-feature-card__media" href="/lead-generation-that-converts/" tabindex="-1" aria-hidden="true">
-              <img src="<?php echo TLA_BASE; ?>/assets/live-events/Masterclass-Lead-Generation-That-Converts-0806-1x1.jpg" alt="Lead Generation That Converts masterclass — The Loan Atlas" loading="eager" />
+            <a class="ev-feature-card__media" href="/market-update-with-barry-habib/" tabindex="-1" aria-hidden="true">
+              <img src="<?php echo TLA_BASE; ?>/assets/live-events/Market-Update-Barry-Habib-0820-1x1.jpg" alt="Market Update with Barry Habib — The Loan Atlas" loading="eager" />
             </a>
 
             <!-- Copy -->
             <div class="ev-feature-card__copy">
-              <span class="ev-tag ev-tag--on-dark ev-tag--masterclass">Next Live Masterclass</span>
-              <h1 id="ev-featured-heading" class="ev-feature-card__title">Lead Generation That Converts: What Loan Originators Should Do Now</h1>
+              <span class="ev-tag ev-tag--on-dark ev-tag--masterclass">Next Live Market Update</span>
+              <h1 id="ev-featured-heading" class="ev-feature-card__title">Market Update with Barry Habib</h1>
               <div class="ev-feature-card__meta">
                 <span class="ev-feature-card__meta-item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                  Thursday, August 6, 2026
+                  Thursday, August 20, 2026
                 </span>
                 <span class="ev-feature-card__meta-item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg>
                   11:00 AM PT
                 </span>
               </div>
-              <p class="ev-feature-card__desc">Tim Braheem will interview Michael Regan and Jay Voorhees. They will share what is actually working right now to generate leads, build trust, and create consistent conversations without depending on constant social media posting or complicated digital marketing strategies.</p>
-              <a class="btn btn--gold btn--xl" href="/lead-generation-that-converts/">Learn More and Get Access</a>
+              <p class="ev-feature-card__desc">Join Tim Braheem for an exclusive Loan Atlas webinar with Barry Habib, CEO of MBS Highway and the leading economist of the mortgage industry. Gain expert insights into where the mortgage and real estate markets are headed.</p>
+              <a class="btn btn--gold btn--xl" href="/market-update-with-barry-habib/">Learn More and Get Access</a>
             </div>
           </div>
 
@@ -499,32 +499,6 @@ $tla_active      = 'events';
         <div class="ev-grid" data-reveal-stagger="80">
 
           <article class="ev-card">
-            <a class="ev-card__media" href="/talk-to-tim/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Talk-to-Tim-0731.png" alt="Talk to Tim live session" loading="lazy" /></a>
-            <div class="ev-card__body">
-              <div class="ev-card__date">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Jul 31, 2026 · 10:00 AM PT
-              </div>
-              <h3 class="ev-card__title">Talk to Tim</h3>
-              <p class="ev-card__desc">Business or personal, Tim Braheem brings out his decades of experience to help you overcome whatever challenges are keeping you from reaching peak performance.</p>
-              <div class="ev-card__foot"><a class="ev-card__join" href="/talk-to-tim/">Learn More</a></div>
-            </div>
-          </article>
-
-          <article class="ev-card">
-            <a class="ev-card__media" href="/office-hours-trevor-carlson/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Trevor-Carlson-0805.png" alt="Office Hours with Trevor Carlson" loading="lazy" /></a>
-            <div class="ev-card__body">
-              <div class="ev-card__date">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Aug 5, 2026 · 11:00 AM PT
-              </div>
-              <h3 class="ev-card__title">Office Hours with Trevor Carlson</h3>
-              <p class="ev-card__desc">Join this session with Trevor Carlson, whose niche / specialty is in the area of Reverse Mortgage, Systems and Consumer Direct Marketing.</p>
-              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-trevor-carlson/">Learn More</a></div>
-            </div>
-          </article>
-
-          <article class="ev-card">
             <a class="ev-card__media" href="/office-hours-michael-belfor/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Michael-Belfor-0812.png" alt="Office Hours with Michael Belfor" loading="lazy" /></a>
             <div class="ev-card__body">
               <div class="ev-card__date">
@@ -533,7 +507,7 @@ $tla_active      = 'events';
               </div>
               <h3 class="ev-card__title">Office Hours with Michael Belfor</h3>
               <p class="ev-card__desc">Join this session with Michael Belfor, whose niche / specialty is in the area of Advanced Loan Structuring, Market Literacy, and AI-Powered Efficiency.</p>
-              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-michael-belfor/">Learn More</a></div>
+              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-michael-belfor/">Get Access</a></div>
             </div>
           </article>
 
@@ -546,7 +520,7 @@ $tla_active      = 'events';
               </div>
               <h3 class="ev-card__title">AI Lab: Success With Follow Up Pro</h3>
               <p class="ev-card__desc">Join us for a live Follow-Up Pro Show &amp; Tell, where two Loan Atlas members will show how they've made Follow-Up Pro part of their daily workflow to stay consistent and create a better experience for borrowers and referral partners.</p>
-              <div class="ev-card__foot"><a class="ev-card__join" href="/ai-lab-success-with-follow-up-pro/">Learn More</a></div>
+              <div class="ev-card__foot"><a class="ev-card__join" href="/ai-lab-success-with-follow-up-pro/">Get Access</a></div>
             </div>
           </article>
 
@@ -559,20 +533,7 @@ $tla_active      = 'events';
               </div>
               <h3 class="ev-card__title">Office Hours with Becky Staples</h3>
               <p class="ev-card__desc">Join this session with Becky Staples, whose niche / specialty is in the area of Fundamentals, Production Systems, and Consistent Execution.</p>
-              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-becky-staples/">Learn More</a></div>
-            </div>
-          </article>
-
-          <article class="ev-card">
-            <a class="ev-card__media" href="/market-update-with-barry-habib/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Market-Update-Barry-Habib-0820-1x1.jpg" alt="Market Update with Barry Habib" loading="lazy" /></a>
-            <div class="ev-card__body">
-              <div class="ev-card__date">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Aug 20, 2026 · 11:00 AM PT
-              </div>
-              <h3 class="ev-card__title">Market Update with Barry Habib</h3>
-              <p class="ev-card__desc">Join Tim Braheem for an exclusive Loan Atlas webinar with Barry Habib, CEO of MBS Highway and the leading economist of the mortgage industry. Gain expert insights into where the mortgage and real estate markets are headed.</p>
-              <div class="ev-card__foot"><a class="ev-card__join" href="/market-update-with-barry-habib/">Learn More</a></div>
+              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-becky-staples/">Get Access</a></div>
             </div>
           </article>
 
@@ -585,7 +546,7 @@ $tla_active      = 'events';
               </div>
               <h3 class="ev-card__title">Office Hours with Tyler Osby</h3>
               <p class="ev-card__desc">Join this session with Tyler Osby, whose niche / specialty is in the area of Systems, Technology, Scripting and Business Development.</p>
-              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-tyler-osby/">Learn More</a></div>
+              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-tyler-osby/">Get Access</a></div>
             </div>
           </article>
 
@@ -602,6 +563,24 @@ $tla_active      = 'events';
         </header>
 
         <div class="ev-library" data-reveal-stagger="90">
+
+          <!-- Whole card is clickable → replay detail page -->
+          <a class="ev-pastcard" href="/lead-generation-that-converts/">
+            <div class="ev-pastcard__media">
+              <img src="<?php echo TLA_BASE; ?>/assets/live-events/past-events/Masterclass-Lead-Generation-That-Converts-0806-16x9.png" alt="" loading="lazy" />
+            </div>
+            <div class="ev-pastcard__body">
+              <span class="ev-pastcard__recorded">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Recorded on Aug 6, 2026
+              </span>
+              <h3 class="ev-pastcard__title">Lead Generation That Converts: What Loan Originators Should Do Now</h3>
+              <p class="ev-pastcard__desc">Tim Braheem interviewed Michael Regan and Jay Voorhees. They shared what is actually working right now to generate leads, build trust, and create consistent conversations without depending on constant social media posting or complicated digital marketing strategies.</p>
+              <div class="ev-pastcard__foot">
+                <span class="ev-pastcard__watch">Access the Replay <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+              </div>
+            </div>
+          </a>
 
           <!-- Whole card is clickable → replay detail page -->
           <a class="ev-pastcard" href="/2026-mid-year-playbook/">
