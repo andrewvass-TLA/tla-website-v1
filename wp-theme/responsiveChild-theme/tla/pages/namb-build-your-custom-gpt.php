@@ -507,6 +507,8 @@ $tla_active      = '';
       font-weight: 500;
       color: rgba(255, 255, 255, 0.72);
       line-height: 1.4;
+      /* Extra breathing room under the big price (adds to the .naq-step 10px gap). */
+      margin-top: 10px;
     }
     .naq-step__sub strong { color: #ffffff; font-weight: 700; }
 
@@ -743,7 +745,7 @@ $tla_active      = '';
               <span class="naq-step__label">Annual · Best Value</span>
               <span class="naq-step__was"><span class="naq-step__strike">$3,490/yr</span></span>
               <span class="naq-step__price">$2,490<span>/yr</span></span>
-              <span class="naq-step__sub"><strong>Save $1,200</strong> vs. monthly</span>
+              <span class="naq-step__sub">Get <strong>TWO MONTHS</strong> for free with your annual membership!</span>
             </div>
           </div>
 
