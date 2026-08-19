@@ -1,7 +1,7 @@
 <?php
 /**
  * Body partial for /join-mastermind-2026/ (TLA Full HTML template).
- * Generated from public/mastermind.html by scripts/convert-pages.sh — do not hand-edit;
+ * Generated from public/custom-sales-pages/mastermind.html by scripts/convert-pages.sh — do not hand-edit;
  * edit the source HTML (or the shared header/footer partials) and re-run.
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }

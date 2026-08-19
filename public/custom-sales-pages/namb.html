@@ -1,15 +1,20 @@
-<?php
-/**
- * Body partial for /acm/ (TLA Full HTML template).
- * Generated from public/custom-sales-pages/acm.html by scripts/convert-pages.sh — do not hand-edit;
- * edit the source HTML (or the shared header/footer partials) and re-run.
- */
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+<!DOCTYPE html>
+<html lang="en">
 
-$tla_title       = 'ACM Preferred Account — Exclusive Loan Atlas Pricing';
-$tla_description = 'ACM Preferred Account pricing: full access to The Loan Atlas at $199/mo locked in — down from $349/mo.';
-$tla_active      = '';
-?>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NAMB Preferred Account — Exclusive Loan Atlas Pricing</title>
+  <meta name="description"
+    content="NAMB member pricing: full access to The Loan Atlas at $249/mo — down from $349/mo — or $2,490/yr with two months free." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/chrome.css" />
   <style>
     /* ── MASTERMIND-SPECIFIC STYLES (page-scoped) ───────────────────────────── */
 
@@ -72,44 +77,44 @@ $tla_active      = '';
     /* ── Nav co-brand + CTA (page-scoped; injected by the script at the bottom of
        this page). The header switches from centered to space-between so the logo
        lockup sits left and the Claim button sits right. ──────────────────────── */
-    .site-header--acm .site-header__inner {
+    .site-header--namb .site-header__inner {
       justify-content: space-between;
       gap: clamp(12px, 2vw, 24px);
     }
-    .acm-nav-lockup {
+    .namb-nav-lockup {
       display: inline-flex;
       align-items: center;
       gap: clamp(14px, 2vw, 24px);
       min-width: 0;
     }
-    .acm-nav-lockup__divider {
+    .namb-nav-lockup__divider {
       width: 1px;
       height: clamp(24px, 4vw, 34px);
       background: rgba(255, 255, 255, 0.22);
       flex-shrink: 0;
     }
-    .acm-nav-lockup__acm {
+    .namb-nav-lockup__namb {
       height: 24px;
       width: auto;
       display: block;
     }
-    @media (min-width: 540px) { .acm-nav-lockup__acm { height: 30px; } }
-    @media (min-width: 880px) { .acm-nav-lockup__acm { height: 34px; } }
+    @media (min-width: 540px) { .namb-nav-lockup__namb { height: 30px; } }
+    @media (min-width: 880px) { .namb-nav-lockup__namb { height: 34px; } }
     /* On smaller screens, use the short button label so it fits beside the logo. */
     @media (max-width: 767.98px) {
-      .site-header--acm .btn--header .btn__short { display: inline; }
-      .site-header--acm .btn--header .btn__full { display: none; }
+      .site-header--namb .btn--header .btn__short { display: inline; }
+      .site-header--namb .btn--header .btn__full { display: none; }
     }
-    /* On very small screens, drop the ACM wordmark so the logo + button still fit. */
+    /* On very small screens, drop the NAMB wordmark so the logo + button still fit. */
     @media (max-width: 559.98px) {
-      .site-header--acm .acm-nav-lockup__divider,
-      .site-header--acm .acm-nav-lockup__acm { display: none; }
+      .site-header--namb .namb-nav-lockup__divider,
+      .site-header--namb .namb-nav-lockup__namb { display: none; }
     }
 
     /* ── Hero (reuses lp-intro; tightened for offer focus) ──────────────────── */
 
     /* Eyebrow above the hero heading. */
-    .acm-hero-eyebrow {
+    .namb-hero-eyebrow {
       font-family: var(--font-body);
       font-weight: 700;
       font-size: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);
@@ -1221,53 +1226,8 @@ $tla_active      = '';
     }
 
     /* Pricing card gets a little scroll offset so the sticky header clears it. */
-    #acm-form {
+    #namb-form {
       scroll-margin-top: calc(var(--header-h) + 24px);
-    }
-    /* ── Embedded ACM enrollment form (nested inside the pricing card) ───────── */
-    .acm-form {
-      position: relative;
-      z-index: 1;
-      margin-top: var(--space-lg);
-      /* Fill (nearly) the whole card. The embedded form has no internal width cap,
-         so it grows with the iframe as the box widens. */
-      max-width: 48rem;
-      margin-inline: auto;
-      background: #ffffff;
-      border: 1px solid rgba(234, 194, 90, 0.4);
-      border-radius: var(--radius-2xl);
-      box-shadow: inset 0 0 0 1px rgba(234, 194, 90, 0.12);
-      padding: clamp(16px, 2vw, 24px) clamp(16px, 2.4vw, 32px);
-      overflow: hidden;
-      text-align: center;
-    }
-    .acm-form__head {
-      text-align: center;
-      margin-bottom: var(--space-md);
-    }
-    .acm-form__title {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
-      line-height: 1.15;
-      letter-spacing: -0.015em;
-      color: var(--primary);
-      margin: 0 0 8px;
-    }
-    .acm-form__sub {
-      font-family: var(--font-body);
-      font-size: 1rem;
-      line-height: 1.55;
-      color: var(--on-surface-variant);
-      margin: 0;
-    }
-    /* The LeadConnector embed script sizes the iframe to the form's own content
-       height (~520px); keep a smaller floor so there's no big empty gap below the
-       form before the script runs. */
-    .acm-form__embed iframe {
-      display: block;
-      width: 100%;
-      min-height: 560px;
     }
     .lp-proof-card {
       max-width: 64rem;
@@ -1569,8 +1529,8 @@ $tla_active      = '';
       position: relative;
       z-index: 1;
     }
-    /* Co-branded logo lockup — Loan Atlas | ACM (styled to match the nav lockup:
-       gold logo, thin vertical divider, ACM logo bare in brand blue). */
+    /* Co-branded logo lockup — Loan Atlas | NAMB (styled to match the nav lockup:
+       gold logo, thin vertical divider, NAMB logo bare in brand blue). */
     .mm-plan__lockup {
       display: flex;
       align-items: center;
@@ -1579,7 +1539,7 @@ $tla_active      = '';
       gap: clamp(12px, 2.5vw, 26px);
       margin-bottom: var(--space-lg);
     }
-    /* Gold Loan Atlas logo — matched to the ACM logo's image height. */
+    /* Gold Loan Atlas logo — matched to the NAMB logo's image height. */
     .mm-plan__lockup-atlas {
       height: clamp(32px, 4.6vw, 46px);
       width: auto;
@@ -1978,11 +1938,160 @@ $tla_active      = '';
       .hm-system__name,
       .hm-chat__msg--bot { transition: none; }
     }
-  </style>
 
+    /* ══════════════════════════════════════════════════════════════════════════
+       NAMB EXCLUSIVE PRICING — two-tier monthly/annual card.
+       Ported from public/namb-build-your-custom-gpt.html so both pricing
+       sections on this page present the identical NAMB member offer.
+       Uses literal brass values (this page defines no --naq-* tokens).
+       ══════════════════════════════════════════════════════════════════════════ */
+    .naq-plan {
+      --naq-plan-pad: clamp(28px, 4vw, 56px);
+      max-width: 72rem;
+      margin-inline: auto;
+      background: linear-gradient(135deg, #0a1628 0%, #021c36 55%, #0a223d 100%);
+      border-radius: var(--radius-3xl);
+      border: 1px solid rgba(234, 194, 90, 0.4);
+      box-shadow:
+        0 40px 90px rgba(2, 28, 54, 0.45),
+        0 0 60px rgba(234, 194, 90, 0.14),
+        inset 0 0 0 1px rgba(234, 194, 90, 0.12);
+      padding: var(--naq-plan-pad);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .naq-plan__offer { max-width: 48rem; margin-inline: auto; }
+    .naq-plan::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.2), transparent);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    .naq-plan > * { position: relative; z-index: 1; }
+
+    .naq-plan__title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.875rem, 1.3rem + 2.6vw, 2.75rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin: 0 0 var(--space-lg);
+      text-wrap: balance;
+    }
+
+    /* Two price blocks — monthly + annual */
+    .naq-plan__steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      align-items: stretch;
+      max-width: 40rem;
+      margin: 0 auto var(--space-lg);
+    }
+    @media (min-width: 620px) {
+      .naq-plan__steps { grid-template-columns: 1fr 1fr; }
+    }
+    .naq-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      border-radius: var(--radius-2xl);
+      padding: clamp(28px, 3.5vw, 44px) var(--space-md);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+    .naq-step--annual {
+      background: rgba(234, 194, 90, 0.1);
+      border: 1px solid rgba(234, 194, 90, 0.45);
+    }
+    .naq-step__was {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.625rem);
+      color: rgba(255, 255, 255, 0.82);
+    }
+    .naq-step__strike {
+      position: relative;
+      white-space: nowrap;
+    }
+    .naq-step__strike::after {
+      content: '';
+      position: absolute;
+      left: -2px;
+      right: -2px;
+      top: 50%;
+      height: 3px;
+      background: #eac25a;
+      transform: rotate(-6deg);
+    }
+    .naq-step__price {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      font-size: clamp(2.75rem, 1.8rem + 4.6vw, 4.25rem);
+      /* Breathing room around the headline price (adds to the .naq-step 10px gap). */
+      margin-block: clamp(10px, 1.4vw, 18px);
+    }
+    .naq-step--annual .naq-step__price {
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .naq-step__price span {
+      font-size: 0.32em;
+      font-weight: 700;
+      letter-spacing: 0;
+      -webkit-text-fill-color: initial;
+    }
+    .naq-step__sub {
+      display: block;
+      font-family: var(--font-body);
+      font-size: clamp(1.0625rem, 0.98rem + 0.35vw, 1.1875rem);
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.78);
+      line-height: 1.45;
+    }
+    .naq-step__sub strong { color: #ffffff; font-weight: 700; }
+
+
+    .naq-plan__cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .naq-plan__cta .btn--gold.btn--lg {
+      font-size: clamp(1.0625rem, 0.95rem + 0.6vw, 1.3125rem);
+      padding: clamp(20px, 1.6vw, 26px) clamp(36px, 4vw, 56px);
+      border-radius: var(--radius-2xl);
+      box-shadow: 0 10px 32px rgba(201, 150, 28, 0.34);
+    }
+    .naq-plan__fine {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.55);
+      margin: var(--space-md) 0 0;
+      line-height: 1.5;
+    }
+  </style>
+</head>
+
+<body>
 
   <!-- ── Header (minimal landing chrome — logo only) ─────────────────────────── -->
-<?php include get_stylesheet_directory() . '/tla/partials/header-minimal.php'; ?>
+<!-- TLA_HEADER_MINIMAL -->
 
   <main>
 
@@ -1990,11 +2099,11 @@ $tla_active      = '';
     <section class="lp-intro" aria-labelledby="mm-hero-heading">
       <div class="container">
         <div class="lp-intro__content">
-          <p class="acm-hero-eyebrow" data-hero-step="1">ACM Preferred Account</p>
+          <p class="namb-hero-eyebrow" data-hero-step="1">NAMB Preferred Account</p>
           <h1 id="mm-hero-heading" class="lp-intro__title" data-hero-step="2">Close More Loans <span class="mm-hero-gold">With Less Chaos</span></h1>
           <p class="lp-intro__subtitle" data-hero-step="3">Five AI-powered systems, live coaching every week, and the tools to turn ignored marketing into real clients.</p>
           <div class="lp-intro__actions" data-hero-step="4">
-            <a class="btn btn--gold btn--lg" href="#acm-form">Claim Your ACM Preferred Membership</a>
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-namb/">Activate Your NAMB Preferred Account</a>
           </div>
         </div>
       </div>
@@ -2009,7 +2118,7 @@ $tla_active      = '';
         <div class="hm-backdrop" aria-hidden="true">
           <div class="lp-intro__stage">
             <div class="lp-intro__glow" aria-hidden="true"></div>
-            <img class="lp-intro__dash" src="<?php echo TLA_BASE; ?>/assets/dashboard.png" alt="The Loan Atlas member dashboard" loading="eager" />
+            <img class="lp-intro__dash" src="../assets/dashboard.png" alt="The Loan Atlas member dashboard" loading="eager" />
           </div>
         </div>
 
@@ -2032,7 +2141,7 @@ $tla_active      = '';
                  white bot bubble w/ Loan Atlas avatar + dark right-aligned user bubble -->
             <div class="hm-chat" data-hm-chat aria-label="A sample conversation with The Loan Atlas">
               <div class="hm-chat__bot">
-                <span class="hm-chat__avatar"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" /></span>
+                <span class="hm-chat__avatar"><img src="../assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" /></span>
                 <div class="hm-chat__msg hm-chat__msg--bot" data-hm-heading>What's Your Sales Challenge Today?</div>
               </div>
               <div class="hm-chat__msg hm-chat__msg--user">
@@ -2048,41 +2157,33 @@ $tla_active      = '';
     <!-- ── 2. OFFER HIGHLIGHT CARD ──────────────────────────────────────────── -->
     <section class="mm-offer" aria-labelledby="mm-offer-heading">
       <div class="container">
-        <div id="acm-form" class="mm-offer__card" data-reveal="scale">
-          <div class="mm-plan__lockup" aria-label="The Loan Atlas — ACM Preferred Account pricing">
-            <img class="mm-plan__lockup-atlas" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" />
+        <div id="namb-form" class="mm-offer__card" data-reveal="scale">
+          <div class="mm-plan__lockup" aria-label="The Loan Atlas — NAMB Preferred Account pricing">
+            <img class="mm-plan__lockup-atlas" src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" />
             <span class="mm-plan__lockup-x" aria-hidden="true"></span>
-            <img class="mm-plan__lockup-mm" src="<?php echo TLA_BASE; ?>/assets/acm-logo-primary-blue.webp" alt="Atlantic Coast Mortgage" />
+            <img class="mm-plan__lockup-mm" src="../assets/namb-logo.webp" alt="NAMB" />
           </div>
-          <h3 id="mm-offer-heading" class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Complete the Form to Activate Your ACM Preferred Account for just <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">$199/mo</span></h3>
+          <div class="naq-plan__offer">
+          <h2 id="mm-offer-heading" class="naq-plan__title">Activate Your NAMB Preferred Account and <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Save $1,200!</span></h2>
 
-          <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$1,800</em> in Annual Savings — Exclusively for ACM Originators</span></p>
+          <div class="naq-plan__steps">
+            <div class="naq-step naq-step--monthly">
+              <span class="naq-step__was"><span class="naq-step__strike">$349/mo</span></span>
+              <span class="naq-step__price">$249<span>/mo</span></span>
+              <span class="naq-step__sub">Billed monthly</span>
+            </div>
+            <div class="naq-step naq-step--annual">
+              <span class="naq-step__was"><span class="naq-step__strike">$3,490/yr</span></span>
+              <span class="naq-step__price">$2,490<span>/yr</span></span>
+              <span class="naq-step__sub">Get <strong>TWO MONTHS</strong> for free with your annual membership!</span>
+            </div>
+          </div>
 
-          <!-- ── Embedded ACM enrollment form (inside the top offer card) ─────── -->
-          <div class="acm-form">
-            <div class="acm-form__head">
-              <h4 class="acm-form__title">Activate Your ACM Preferred Account</h4>
-              <p class="acm-form__sub">Complete the form below and our team will get you set up at $199/mo.</p>
-            </div>
-            <div class="acm-form__embed">
-              <iframe
-                src="https://api.leadconnectorhq.com/widget/form/iZbKtYJN0Ia5ayRrxOwU"
-                style="width:100%;height:100%;border:none;border-radius:3px"
-                id="inline-iZbKtYJN0Ia5ayRrxOwU-top"
-                data-layout="{'id':'INLINE'}"
-                data-trigger-type="alwaysShow"
-                data-trigger-value=""
-                data-activation-type="alwaysActivated"
-                data-activation-value=""
-                data-deactivation-type="neverDeactivate"
-                data-deactivation-value=""
-                data-form-name="CA: ACM"
-                data-height="754"
-                data-layout-iframe-id="inline-iZbKtYJN0Ia5ayRrxOwU-top"
-                data-form-id="iZbKtYJN0Ia5ayRrxOwU"
-                title="CA: ACM">
-              </iframe>
-            </div>
+
+          <div class="naq-plan__cta">
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-namb/">Activate Your NAMB Preferred Account</a>
+          </div>
+          <p class="naq-plan__fine">12-month commitment. Offer available to new members only.</p>
           </div>
         </div>
       </div>
@@ -2096,30 +2197,30 @@ $tla_active      = '';
       <div class="trust__marquee">
         <div class="trust__track">
           <ul class="trust__group">
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/american-pacific-logo.webp" alt="American Pacific Mortgage"></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/acm-logo.webp" alt="Atlantic Coast Mortgage"></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/cross-country-logo.webp" alt="CrossCountry Mortgage"></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/UWM-logo.png" alt="United Wholesale Mortgage"></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/fairway-logo.png" alt="Fairway Independent Mortgage"></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/CMG-logo.svg" alt="CMG Financial"></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/swbc-logo.png" alt="SWBC Mortgage"></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/better-logo.png" alt="Better"></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/lower-mortgage-logo.svg" alt="Lower"></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/rate-logo.png" alt="Rate"></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/loan-depot-logo.png" alt="loanDepot"></li>
+            <li class="trust__logo"><img src="../assets/american-pacific-logo.webp" alt="American Pacific Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/acm-logo.webp" alt="Atlantic Coast Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/cross-country-logo.webp" alt="CrossCountry Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/UWM-logo.png" alt="United Wholesale Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/fairway-logo.png" alt="Fairway Independent Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/CMG-logo.svg" alt="CMG Financial"></li>
+            <li class="trust__logo"><img src="../assets/swbc-logo.png" alt="SWBC Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/better-logo.png" alt="Better"></li>
+            <li class="trust__logo"><img src="../assets/lower-mortgage-logo.svg" alt="Lower"></li>
+            <li class="trust__logo"><img src="../assets/rate-logo.png" alt="Rate"></li>
+            <li class="trust__logo"><img src="../assets/loan-depot-logo.png" alt="loanDepot"></li>
           </ul>
           <ul class="trust__group" aria-hidden="true">
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/american-pacific-logo.webp" alt=""></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/acm-logo.webp" alt=""></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/cross-country-logo.webp" alt=""></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/UWM-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/fairway-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/CMG-logo.svg" alt=""></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/swbc-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/better-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/lower-mortgage-logo.svg" alt=""></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/rate-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/loan-depot-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/american-pacific-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="../assets/acm-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="../assets/cross-country-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="../assets/UWM-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/fairway-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/CMG-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="../assets/swbc-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/better-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/lower-mortgage-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="../assets/rate-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/loan-depot-logo.png" alt=""></li>
           </ul>
         </div>
       </div>
@@ -2135,7 +2236,7 @@ $tla_active      = '';
               The loan officers pulling away from the pack aren&rsquo;t working harder than you. They&rsquo;re running systems that compound their production every month.
             </p>
             <p class="text-brass" style="font-family: var(--font-display); font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.125rem); font-weight: 800; line-height: 1.25; letter-spacing: -0.015em; margin: 0;">
-              With your ACM Preferred Pricing, you can install them all for less than the commission of one extra loan.
+              With your NAMB Preferred Pricing, you can install them all for less than the commission of one extra loan.
             </p>
           </div>
 
@@ -2208,7 +2309,7 @@ $tla_active      = '';
 
           <div class="mm-row" data-reveal="up">
             <div class="mm-row__media mm-row__media--phone mm-row__media--bi" data-reveal="fade">
-            <img src="<?php echo TLA_BASE; ?>/assets/loan-officer-business-intelligence.png" alt="Loan Officer Business Intelligence" loading="lazy">
+            <img src="../assets/loan-officer-business-intelligence.png" alt="Loan Officer Business Intelligence" loading="lazy">
           </div>
             <div class="mm-row__copy">
               <span class="mm-row__eyebrow">AI Business Intelligence</span>
@@ -2223,15 +2324,15 @@ $tla_active      = '';
               <h3 class="mm-row__title">A weekly plan built around your real goals</h3>
               <p class="mm-row__desc">Turn big-picture goals into a focused weekly priority list tied to your actual pipeline. Walk into every week knowing exactly what moves the needle — and what to ignore.</p>
             </div>
-            <div class="mm-row__media mm-row__media--phone"><img src="<?php echo TLA_BASE; ?>/assets/loan-officer-business-planning.png" alt="Loan Officer Business Planning" loading="lazy"></div>
+            <div class="mm-row__media mm-row__media--phone"><img src="../assets/loan-officer-business-planning.png" alt="Loan Officer Business Planning" loading="lazy"></div>
           </div>
 
           <div class="mm-row" data-reveal="up">
             <div class="mm-card-stack">
-              <img class="mm-card-stack__img" src="<?php echo TLA_BASE; ?>/assets/what's-inside-office-hours.jpg" alt="Office Hours" loading="lazy">
-              <img class="mm-card-stack__img" src="<?php echo TLA_BASE; ?>/assets/what's-inside-talk-to-tim.jpg" alt="Talk to Tim" loading="lazy">
-              <img class="mm-card-stack__img" src="<?php echo TLA_BASE; ?>/assets/what's-inside-masterclass.jpg" alt="Masterclass" loading="lazy">
-              <img class="mm-card-stack__img" src="<?php echo TLA_BASE; ?>/assets/what's-inside-ai-labs.jpg" alt="AI Labs" loading="lazy">
+              <img class="mm-card-stack__img" src="../assets/what's-inside-office-hours.jpg" alt="Office Hours" loading="lazy">
+              <img class="mm-card-stack__img" src="../assets/what's-inside-talk-to-tim.jpg" alt="Talk to Tim" loading="lazy">
+              <img class="mm-card-stack__img" src="../assets/what's-inside-masterclass.jpg" alt="Masterclass" loading="lazy">
+              <img class="mm-card-stack__img" src="../assets/what's-inside-ai-labs.jpg" alt="AI Labs" loading="lazy">
             </div>
             <div class="mm-row__copy">
               <span class="mm-row__eyebrow">Live Coaching Every Week</span>
@@ -2241,7 +2342,7 @@ $tla_active      = '';
           </div>
 
           <div class="mm-row mm-row--flip" data-reveal="up">
-            <div class="mm-row__media mm-row__media--phone mm-row__media--crop"><img src="<?php echo TLA_BASE; ?>/assets/sales-coach-phone.png" alt="AI Sales &amp; Scripting Coach on a phone" loading="lazy"></div>
+            <div class="mm-row__media mm-row__media--phone mm-row__media--crop"><img src="../assets/sales-coach-phone.png" alt="AI Sales &amp; Scripting Coach on a phone" loading="lazy"></div>
             <div class="mm-row__copy">
               <span class="mm-row__eyebrow">AI Sales &amp; Scripting Coaches</span>
               <h3 class="mm-row__title">The right words for every conversation, in your pocket</h3>
@@ -2250,7 +2351,7 @@ $tla_active      = '';
           </div>
 
           <div class="mm-row" data-reveal="up">
-            <div class="mm-row__media mm-row__media--phone"><img src="<?php echo TLA_BASE; ?>/assets/scripts-presentation-templates.png" alt="Scripts, presentations, and templates library" loading="lazy"></div>
+            <div class="mm-row__media mm-row__media--phone"><img src="../assets/scripts-presentation-templates.png" alt="Scripts, presentations, and templates library" loading="lazy"></div>
             <div class="mm-row__copy">
               <span class="mm-row__eyebrow">Scripts, Presentations &amp; Templates</span>
               <h3 class="mm-row__title">Pre-built and proven resources to help you present with confidence</h3>
@@ -2259,7 +2360,7 @@ $tla_active      = '';
           </div>
 
           <div class="mm-row mm-row--flip" data-reveal="up">
-            <div class="mm-row__media"><img src="<?php echo TLA_BASE; ?>/assets/private-member-community.png" alt="The Loan Atlas private member community" loading="lazy"></div>
+            <div class="mm-row__media"><img src="../assets/private-member-community.png" alt="The Loan Atlas private member community" loading="lazy"></div>
             <div class="mm-row__copy">
               <span class="mm-row__eyebrow">A Community of Active Originators</span>
               <h3 class="mm-row__title">Never solve a problem alone again</h3>
@@ -2282,7 +2383,7 @@ $tla_active      = '';
 
           <figure class="mm-tcard">
             <div class="mm-tcard__photo">
-              <img src="<?php echo TLA_BASE; ?>/assets/gian-ceretto.png" alt="Gian Ceretto" loading="lazy">
+              <img src="../assets/gian-ceretto.png" alt="Gian Ceretto" loading="lazy">
             </div>
             <div class="mm-tcard__body">
               <span class="mm-tcard__stars" aria-label="5 out of 5 stars">★★★★★</span>
@@ -2296,7 +2397,7 @@ $tla_active      = '';
 
           <figure class="mm-tcard">
             <div class="mm-tcard__photo">
-              <img src="<?php echo TLA_BASE; ?>/assets/sue botelho.jpeg" alt="Sue Botelho" loading="lazy">
+              <img src="../assets/sue botelho.jpeg" alt="Sue Botelho" loading="lazy">
             </div>
             <div class="mm-tcard__body">
               <span class="mm-tcard__stars" aria-label="5 out of 5 stars">★★★★★</span>
@@ -2310,7 +2411,7 @@ $tla_active      = '';
 
           <figure class="mm-tcard">
             <div class="mm-tcard__photo">
-              <img src="<?php echo TLA_BASE; ?>/assets/edgardo-balentine.jpeg" alt="Edgardo Valentine" loading="lazy">
+              <img src="../assets/edgardo-balentine.jpeg" alt="Edgardo Valentine" loading="lazy">
             </div>
             <div class="mm-tcard__body">
               <span class="mm-tcard__stars" aria-label="5 out of 5 stars">★★★★★</span>
@@ -2338,7 +2439,7 @@ $tla_active      = '';
             <blockquote class="lp-proof-card__quote">"The wealth that's in The Loan Atlas is absolutely incredible. Imagine how valuable it is to have access to the smartest minds in our industry."</blockquote>
             <figcaption class="lp-proof-card__test-head" style="margin-top: var(--space-md); margin-bottom: 0;">
               <div class="lp-proof-card__photo">
-                <img src="<?php echo TLA_BASE; ?>/assets/barry-habib.jpg" alt="Barry Habib">
+                <img src="../assets/barry-habib.jpg" alt="Barry Habib">
               </div>
               <div>
                 <cite class="lp-proof-card__attr-name" style="font-style: normal;">Barry Habib</cite>
@@ -2350,49 +2451,41 @@ $tla_active      = '';
       </div>
     </section>
 
-    <!-- ── 12. ACM PRICING ──────────────────────────────────────────────────── -->
+    <!-- ── 12. NAMB PRICING ──────────────────────────────────────────────────── -->
     <section class="mm-pricing" id="pricing" aria-labelledby="pricing-heading">
       <div class="container">
         <div class="center" data-reveal="up" style="max-width: 46rem; margin-inline: auto;">
-          <h2 id="pricing-heading" class="t-display" style="color: #ffffff; font-weight: 800; margin-bottom: var(--space-sm);">Everything You Need to Scale. <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Exclusive ACM Pricing.</span></h2>
-          <p class="t-body-lg" style="color: rgba(255, 255, 255, 0.68); font-size: clamp(1.125rem, 0.95rem + 0.6vw, 1.375rem);">Full access to everything above — the AI systems, live coaching, the curriculum, the community — at exclusive ACM Preferred Account pricing.</p>
+          <h2 id="pricing-heading" class="t-display" style="color: #ffffff; font-weight: 800; margin-bottom: var(--space-sm);">Everything You Need to Scale. <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Exclusive NAMB Pricing.</span></h2>
+          <p class="t-body-lg" style="color: rgba(255, 255, 255, 0.68); font-size: clamp(1.125rem, 0.95rem + 0.6vw, 1.375rem);">Full access to everything above — the AI systems, live coaching, the curriculum, the community — at exclusive NAMB Preferred Account pricing.</p>
         </div>
 
-        <article id="acm-pricing-card" class="mm-plan" data-reveal="scale">
-          <div class="mm-plan__lockup" aria-label="The Loan Atlas — ACM Preferred Account pricing">
-            <img class="mm-plan__lockup-atlas" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" />
+        <article id="namb-pricing-card" class="mm-plan" data-reveal="scale">
+          <div class="mm-plan__lockup" aria-label="The Loan Atlas — NAMB Preferred Account pricing">
+            <img class="mm-plan__lockup-atlas" src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" />
             <span class="mm-plan__lockup-x" aria-hidden="true"></span>
-            <img class="mm-plan__lockup-mm" src="<?php echo TLA_BASE; ?>/assets/acm-logo-primary-blue.webp" alt="Atlantic Coast Mortgage" />
+            <img class="mm-plan__lockup-mm" src="../assets/namb-logo.webp" alt="NAMB" />
           </div>
-          <h3 class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Complete the Form to Activate Your ACM Preferred Account for just <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">$199/mo</span></h3>
+          <div class="naq-plan__offer">
+          <h3 class="naq-plan__title">Activate Your NAMB Preferred Account and <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Save $1,200!</span></h3>
 
-          <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$1,800</em> in Annual Savings — Exclusively for ACM Originators</span></p>
+          <div class="naq-plan__steps">
+            <div class="naq-step naq-step--monthly">
+              <span class="naq-step__was"><span class="naq-step__strike">$349/mo</span></span>
+              <span class="naq-step__price">$249<span>/mo</span></span>
+              <span class="naq-step__sub">Billed monthly</span>
+            </div>
+            <div class="naq-step naq-step--annual">
+              <span class="naq-step__was"><span class="naq-step__strike">$3,490/yr</span></span>
+              <span class="naq-step__price">$2,490<span>/yr</span></span>
+              <span class="naq-step__sub">Get <strong>TWO MONTHS</strong> for free with your annual membership!</span>
+            </div>
+          </div>
 
-          <!-- ── Embedded ACM enrollment form (inside the pricing card) ──────── -->
-          <div class="acm-form">
-            <div class="acm-form__head">
-              <h4 class="acm-form__title">Activate Your ACM Preferred Account</h4>
-              <p class="acm-form__sub">Complete the form below and our team will get you set up at $199/mo.</p>
-            </div>
-            <div class="acm-form__embed">
-              <iframe
-                src="https://api.leadconnectorhq.com/widget/form/iZbKtYJN0Ia5ayRrxOwU"
-                style="width:100%;height:100%;border:none;border-radius:3px"
-                id="inline-iZbKtYJN0Ia5ayRrxOwU"
-                data-layout="{'id':'INLINE'}"
-                data-trigger-type="alwaysShow"
-                data-trigger-value=""
-                data-activation-type="alwaysActivated"
-                data-activation-value=""
-                data-deactivation-type="neverDeactivate"
-                data-deactivation-value=""
-                data-form-name="CA: ACM"
-                data-height="754"
-                data-layout-iframe-id="inline-iZbKtYJN0Ia5ayRrxOwU"
-                data-form-id="iZbKtYJN0Ia5ayRrxOwU"
-                title="CA: ACM">
-              </iframe>
-            </div>
+
+          <div class="naq-plan__cta">
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-namb/">Activate Your NAMB Preferred Account</a>
+          </div>
+          <p class="naq-plan__fine">12-month commitment. Offer available to new members only.</p>
           </div>
         </article>
 
@@ -2403,51 +2496,53 @@ $tla_active      = '';
   </main>
 
   <!-- ── Footer (standard site chrome) ──────────────────────────────────────── -->
-<?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>
+<!-- TLA_FOOTER -->
 
-  <!-- Add the ACM logo beside the Loan Atlas logo, and a "Claim" CTA button, into
+  <!-- Add the NAMB logo beside the Loan Atlas logo, and a "Claim" CTA button, into
        the minimal nav header (page-scoped — the header partial is shared, so we
        inject here rather than editing the shared partial). -->
   <script>
     (function () {
       var header = document.querySelector('.site-header--minimal');
       var brand = header && header.querySelector('.brand');
-      if (!header || !brand || document.querySelector('.acm-nav-lockup__acm')) return;
+      if (!header || !brand || document.querySelector('.namb-nav-lockup__namb')) return;
       var logo = brand.querySelector('.brand__logo');
       if (!logo) return;
       // Flag the header so its layout switches from centered to space-between.
-      header.classList.add('site-header--acm');
-      // Derive the ACM asset URL from the (already correctly-resolved) Loan Atlas
+      header.classList.add('site-header--namb');
+      // Derive the NAMB asset URL from the (already correctly-resolved) Loan Atlas
       // logo src, so it works whether the base is /assets/ (built) or ./assets/ (raw).
-      var acmSrc = logo.getAttribute('src').replace(/[^/]+$/, 'acm-logo-primary-blue.webp');
+      var nambSrc = logo.getAttribute('src').replace(/[^/]+$/, 'namb-logo.webp');
       var divider = document.createElement('span');
-      divider.className = 'acm-nav-lockup__divider';
+      divider.className = 'namb-nav-lockup__divider';
       divider.setAttribute('aria-hidden', 'true');
-      var acm = document.createElement('img');
-      acm.className = 'acm-nav-lockup__acm';
-      acm.src = acmSrc;
-      acm.alt = 'Atlantic Coast Mortgage';
-      // Group brand + divider + ACM logo into one lockup so space-between keeps
+      var namb = document.createElement('img');
+      namb.className = 'namb-nav-lockup__namb';
+      namb.src = nambSrc;
+      namb.alt = 'NAMB';
+      // Group brand + divider + NAMB logo into one lockup so space-between keeps
       // them together on the left (button goes on the right).
       var lockup = document.createElement('div');
-      lockup.className = 'acm-nav-lockup';
+      lockup.className = 'namb-nav-lockup';
       brand.parentNode.insertBefore(lockup, brand);
       lockup.appendChild(brand);
       lockup.appendChild(divider);
-      lockup.appendChild(acm);
+      lockup.appendChild(namb);
 
       // Header CTA — matches the main-site nav button style.
       var actions = document.createElement('div');
       actions.className = 'site-header__actions';
       var cta = document.createElement('a');
       cta.className = 'btn btn--primary btn--header';
-      cta.href = '#acm-form';
-      cta.innerHTML = '<span class="btn__short">Claim Membership</span><span class="btn__full">Claim Your ACM Membership</span>';
+      cta.href = '#namb-form';
+      cta.innerHTML = '<span class="btn__short">Claim Membership</span><span class="btn__full">Claim Your NAMB Membership</span>';
       actions.appendChild(cta);
       header.querySelector('.site-header__inner').appendChild(actions);
     })();
   </script>
-  <!-- LeadConnector form embed (ACM enrollment form) -->
+  <script src="../js/nav.js"></script>
+  <script src="../js/animations.js" defer></script>
+  <!-- LeadConnector form embed (NAMB enrollment form) -->
   <script src="https://link.msgsndr.com/js/form_embed.js"></script>
   <script>
     // ── Hero system-cycling chat: eyebrow + name (left) + bot heading + typed input ──
@@ -2560,3 +2655,6 @@ $tla_active      = '';
       }
     })();
   </script>
+</body>
+
+</html>

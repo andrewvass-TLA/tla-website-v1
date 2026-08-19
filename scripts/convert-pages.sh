@@ -81,7 +81,7 @@ convert() {
   #    scripts (carousel, inline blocks, form embeds) and post-footer markup
   #    (e.g. the faculty modal) are preserved wherever they sit.
   awk 'NR>'"$body_open"' && NR<'"$body_close"'' "$file" \
-    | grep -vE '<script[^>]*src="js/(nav|animations)\.js' \
+    | grep -vE '<script[^>]*src="(\.\./)*js/(nav|animations)\.js' \
     | perl -0pe "s{<!-- TLA_HEADER_MINIMAL -->}{<?php include get_stylesheet_directory() . '/tla/partials/header-minimal.php'; ?>}g;
                  s{<!-- TLA_HEADER -->}{<?php include get_stylesheet_directory() . '/tla/partials/header.php'; ?>}g;
                  s{<!-- TLA_FOOTER -->}{<?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>}g" \
@@ -108,11 +108,11 @@ php_str() {
 rewrite() {
   local f="$1"
   # assets/, js/, css/ in src="" / href="" -> TLA_BASE
-  perl -0pi -e 's/((?:src|href)=")assets\//$1<?php echo TLA_BASE; ?>\/assets\//g' "$f"
-  perl -0pi -e 's/((?:src|href)=")js\//$1<?php echo TLA_BASE; ?>\/js\//g'         "$f"
-  perl -0pi -e 's/((?:src|href)=")css\//$1<?php echo TLA_BASE; ?>\/css\//g'       "$f"
+  perl -0pi -e 's/((?:src|href)=")(?:\.\.\/)*assets\//$1<?php echo TLA_BASE; ?>\/assets\//g' "$f"
+  perl -0pi -e 's/((?:src|href)=")(?:\.\.\/)*js\//$1<?php echo TLA_BASE; ?>\/js\//g'         "$f"
+  perl -0pi -e 's/((?:src|href)=")(?:\.\.\/)*css\//$1<?php echo TLA_BASE; ?>\/css\//g'       "$f"
   # CSS url(assets/...) inside inline <style>
-  perl -0pi -e "s/url\((['\"]?)assets\//url(\${1}<?php echo TLA_BASE; ?>\/assets\//g" "$f"
+  perl -0pi -e "s/url\((['\"]?)(?:\.\.\/)*assets\//url(\${1}<?php echo TLA_BASE; ?>\/assets\//g" "$f"
 
   # Internal *.html links -> WP slugs
   perl -0pi -e 's/href="index\.html"/href="\/"/g'                         "$f"
@@ -175,9 +175,10 @@ convert replay-ai-lab-follow-up-pro ai-lab-follow-up-pro      ""
 convert replay-2026-mid-year-playbook 2026-mid-year-playbook   ""
 convert replay-execute-on-mastermind execute-on-mastermind    ""
 convert replay-your-marketing-is-being-ignored acm-replay-072326 ""
-convert mastermind              join-mastermind-2026          ""
+convert custom-sales-pages/mastermind join-mastermind-2026          ""
 convert camp-irvine             camp-irvine                   ""
-convert acm                     acm                           ""
+convert custom-sales-pages/acm       acm                           ""
+convert custom-sales-pages/namb      namb                          ""
 convert launch-namb-ai-operating-manual launch-namb-ai-operating-manual  ""
 convert namb-ai-operating-manual namb-ai-operating-manual      ""
 convert namb-build-your-custom-gpt namb-build-your-custom-gpt    ""

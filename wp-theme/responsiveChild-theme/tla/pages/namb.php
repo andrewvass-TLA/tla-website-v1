@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+<?php
+/**
+ * Body partial for /namb/ (TLA Full HTML template).
+ * Generated from public/custom-sales-pages/namb.html by scripts/convert-pages.sh — do not hand-edit;
+ * edit the source HTML (or the shared header/footer partials) and re-run.
+ */
+if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Mastermind Summit 2026 — Exclusive Loan Atlas Offer</title>
-  <meta name="description"
-    content="An offer exclusively for Mastermind Summit 2026 attendees: full access to The Loan Atlas at $249/mo locked in, plus 6 months free of Platinum Marketing — over $1,800 in savings." />
-  <meta name="robots" content="noindex, nofollow" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
-    rel="stylesheet" />
-  <link rel="stylesheet" href="css/styles.css" />
-  <link rel="stylesheet" href="css/chrome.css" />
+$tla_title       = 'NAMB Preferred Account — Exclusive Loan Atlas Pricing';
+$tla_description = 'NAMB member pricing: full access to The Loan Atlas at $249/mo — down from $349/mo — or $2,490/yr with two months free.';
+$tla_active      = '';
+?>
   <style>
     /* ── MASTERMIND-SPECIFIC STYLES (page-scoped) ───────────────────────────── */
 
@@ -74,7 +69,55 @@
       .mm-bar__hide-sm { display: none; }
     }
 
+    /* ── Nav co-brand + CTA (page-scoped; injected by the script at the bottom of
+       this page). The header switches from centered to space-between so the logo
+       lockup sits left and the Claim button sits right. ──────────────────────── */
+    .site-header--namb .site-header__inner {
+      justify-content: space-between;
+      gap: clamp(12px, 2vw, 24px);
+    }
+    .namb-nav-lockup {
+      display: inline-flex;
+      align-items: center;
+      gap: clamp(14px, 2vw, 24px);
+      min-width: 0;
+    }
+    .namb-nav-lockup__divider {
+      width: 1px;
+      height: clamp(24px, 4vw, 34px);
+      background: rgba(255, 255, 255, 0.22);
+      flex-shrink: 0;
+    }
+    .namb-nav-lockup__namb {
+      height: 24px;
+      width: auto;
+      display: block;
+    }
+    @media (min-width: 540px) { .namb-nav-lockup__namb { height: 30px; } }
+    @media (min-width: 880px) { .namb-nav-lockup__namb { height: 34px; } }
+    /* On smaller screens, use the short button label so it fits beside the logo. */
+    @media (max-width: 767.98px) {
+      .site-header--namb .btn--header .btn__short { display: inline; }
+      .site-header--namb .btn--header .btn__full { display: none; }
+    }
+    /* On very small screens, drop the NAMB wordmark so the logo + button still fit. */
+    @media (max-width: 559.98px) {
+      .site-header--namb .namb-nav-lockup__divider,
+      .site-header--namb .namb-nav-lockup__namb { display: none; }
+    }
+
     /* ── Hero (reuses lp-intro; tightened for offer focus) ──────────────────── */
+
+    /* Eyebrow above the hero heading. */
+    .namb-hero-eyebrow {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      margin: 0 0 var(--space-md);
+    }
 
     /* ── Larger landing-page CTA — bigger pad + text than the shared .btn--lg ── */
     .btn--landing,
@@ -137,21 +180,10 @@
 
     /* ── Offer highlight card (the flyer centerpiece) ───────────────────────── */
     .mm-offer {
-      background-image: url('assets/bellagio.png');
-      background-size: cover;
-      background-position: center;
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
       padding-block: clamp(48px, 6vw, 88px);
       position: relative;
       overflow: hidden;
-    }
-    /* Navy gradient overlay over the bellagio photo */
-    .mm-offer::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(160deg, rgba(6, 14, 28, 0.92) 0%, rgba(2, 28, 54, 0.88) 50%, rgba(6, 14, 28, 0.94) 100%);
-      pointer-events: none;
-      z-index: 0;
     }
     .mm-offer > .container { position: relative; z-index: 1; }
     .mm-offer__card {
@@ -188,7 +220,8 @@
     .mm-offer__hero-title {
       position: relative;
       z-index: 1;
-      margin-bottom: var(--space-md);
+      margin-top: var(--space-sm);
+      margin-bottom: var(--space-lg);
     }
     .mm-offer__strike {
       position: relative;
@@ -1186,6 +1219,11 @@
       color: #ffffff;
       text-align: center;
     }
+
+    /* Pricing card gets a little scroll offset so the sticky header clears it. */
+    #namb-form {
+      scroll-margin-top: calc(var(--header-h) + 24px);
+    }
     .lp-proof-card {
       max-width: 64rem;
       margin-inline: auto;
@@ -1486,34 +1524,32 @@
       position: relative;
       z-index: 1;
     }
-    /* Co-branded logo lockup — Loan Atlas × Mastermind */
+    /* Co-branded logo lockup — Loan Atlas | NAMB (styled to match the nav lockup:
+       gold logo, thin vertical divider, NAMB logo bare in brand blue). */
     .mm-plan__lockup {
       display: flex;
       align-items: center;
       justify-content: center;
       flex-wrap: wrap;
       gap: clamp(12px, 2.5vw, 26px);
-      margin-bottom: var(--space-md);
+      margin-bottom: var(--space-lg);
     }
-    /* Both marks sized to a similar visual height, sitting bare on the card */
+    /* Gold Loan Atlas logo — matched to the NAMB logo's image height. */
     .mm-plan__lockup-atlas {
-      height: clamp(56px, 8vw, 84px);
+      height: clamp(32px, 4.6vw, 46px);
       width: auto;
       display: block;
     }
     .mm-plan__lockup-x {
-      font-family: var(--font-display);
-      font-weight: 400;
-      font-size: clamp(1.125rem, 0.9rem + 0.8vw, 1.5rem);
-      color: rgba(234, 194, 90, 0.7);
-      line-height: 1;
+      width: 1px;
+      height: clamp(26px, 4vw, 38px);
+      background: rgba(255, 255, 255, 0.22);
+      flex-shrink: 0;
     }
     .mm-plan__lockup-mm {
-      height: clamp(48px, 7vw, 70px);
+      height: clamp(32px, 4.6vw, 46px);
       width: auto;
       display: block;
-      /* recolor the black/red mastermind logo to solid white */
-      filter: brightness(0) invert(1);
     }
     .mm-plan__sponsored {
       font-family: var(--font-body);
@@ -1897,25 +1933,158 @@
       .hm-system__name,
       .hm-chat__msg--bot { transition: none; }
     }
-  </style>
-</head>
 
-<body>
+    /* ══════════════════════════════════════════════════════════════════════════
+       NAMB EXCLUSIVE PRICING — two-tier monthly/annual card.
+       Ported from public/namb-build-your-custom-gpt.html so both pricing
+       sections on this page present the identical NAMB member offer.
+       Uses literal brass values (this page defines no --naq-* tokens).
+       ══════════════════════════════════════════════════════════════════════════ */
+    .naq-plan {
+      --naq-plan-pad: clamp(28px, 4vw, 56px);
+      max-width: 72rem;
+      margin-inline: auto;
+      background: linear-gradient(135deg, #0a1628 0%, #021c36 55%, #0a223d 100%);
+      border-radius: var(--radius-3xl);
+      border: 1px solid rgba(234, 194, 90, 0.4);
+      box-shadow:
+        0 40px 90px rgba(2, 28, 54, 0.45),
+        0 0 60px rgba(234, 194, 90, 0.14),
+        inset 0 0 0 1px rgba(234, 194, 90, 0.12);
+      padding: var(--naq-plan-pad);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .naq-plan__offer { max-width: 48rem; margin-inline: auto; }
+    .naq-plan::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.2), transparent);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    .naq-plan > * { position: relative; z-index: 1; }
+
+    .naq-plan__title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.875rem, 1.3rem + 2.6vw, 2.75rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin: 0 0 var(--space-lg);
+      text-wrap: balance;
+    }
+
+    /* Two price blocks — monthly + annual */
+    .naq-plan__steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      align-items: stretch;
+      max-width: 40rem;
+      margin: 0 auto var(--space-lg);
+    }
+    @media (min-width: 620px) {
+      .naq-plan__steps { grid-template-columns: 1fr 1fr; }
+    }
+    .naq-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      border-radius: var(--radius-2xl);
+      padding: clamp(28px, 3.5vw, 44px) var(--space-md);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+    .naq-step--annual {
+      background: rgba(234, 194, 90, 0.1);
+      border: 1px solid rgba(234, 194, 90, 0.45);
+    }
+    .naq-step__was {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.625rem);
+      color: rgba(255, 255, 255, 0.82);
+    }
+    .naq-step__strike {
+      position: relative;
+      white-space: nowrap;
+    }
+    .naq-step__strike::after {
+      content: '';
+      position: absolute;
+      left: -2px;
+      right: -2px;
+      top: 50%;
+      height: 3px;
+      background: #eac25a;
+      transform: rotate(-6deg);
+    }
+    .naq-step__price {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      font-size: clamp(2.75rem, 1.8rem + 4.6vw, 4.25rem);
+      /* Breathing room around the headline price (adds to the .naq-step 10px gap). */
+      margin-block: clamp(10px, 1.4vw, 18px);
+    }
+    .naq-step--annual .naq-step__price {
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .naq-step__price span {
+      font-size: 0.32em;
+      font-weight: 700;
+      letter-spacing: 0;
+      -webkit-text-fill-color: initial;
+    }
+    .naq-step__sub {
+      display: block;
+      font-family: var(--font-body);
+      font-size: clamp(1.0625rem, 0.98rem + 0.35vw, 1.1875rem);
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.78);
+      line-height: 1.45;
+    }
+    .naq-step__sub strong { color: #ffffff; font-weight: 700; }
+
+
+    .naq-plan__cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .naq-plan__cta .btn--gold.btn--lg {
+      font-size: clamp(1.0625rem, 0.95rem + 0.6vw, 1.3125rem);
+      padding: clamp(20px, 1.6vw, 26px) clamp(36px, 4vw, 56px);
+      border-radius: var(--radius-2xl);
+      box-shadow: 0 10px 32px rgba(201, 150, 28, 0.34);
+    }
+    .naq-plan__fine {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.55);
+      margin: var(--space-md) 0 0;
+      line-height: 1.5;
+    }
+  </style>
+
 
   <!-- ── Header (minimal landing chrome — logo only) ─────────────────────────── -->
-<!-- TLA_HEADER_MINIMAL -->
-
-  <!-- ── Sticky offer bar ───────────────────────────────────────────────────── -->
-  <div class="mm-bar">
-    <div class="mm-bar__inner">
-      <p class="mm-bar__text">
-        <strong>Mastermind Exclusive</strong>
-        <span class="mm-bar__sep">·</span>
-        Save $100/mo + 6 Months Free Platinum Marketing
-      </p>
-      <a class="mm-bar__btn" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Claim Offer</a>
-    </div>
-  </div>
+<?php include get_stylesheet_directory() . '/tla/partials/header-minimal.php'; ?>
 
   <main>
 
@@ -1923,10 +2092,11 @@
     <section class="lp-intro" aria-labelledby="mm-hero-heading">
       <div class="container">
         <div class="lp-intro__content">
+          <p class="namb-hero-eyebrow" data-hero-step="1">NAMB Preferred Account</p>
           <h1 id="mm-hero-heading" class="lp-intro__title" data-hero-step="2">Close More Loans <span class="mm-hero-gold">With Less Chaos</span></h1>
-          <p class="lp-intro__subtitle" data-hero-step="3">Five AI-powered systems, live coaching every week, and the tools to turn ignored marketing into real clients — <em>at a price exclusively for Mastermind.</em></p>
+          <p class="lp-intro__subtitle" data-hero-step="3">Five AI-powered systems, live coaching every week, and the tools to turn ignored marketing into real clients.</p>
           <div class="lp-intro__actions" data-hero-step="4">
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Start Your Transformation</a>
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-namb/">Activate Your NAMB Preferred Account</a>
           </div>
         </div>
       </div>
@@ -1941,7 +2111,7 @@
         <div class="hm-backdrop" aria-hidden="true">
           <div class="lp-intro__stage">
             <div class="lp-intro__glow" aria-hidden="true"></div>
-            <img class="lp-intro__dash" src="assets/dashboard.png" alt="The Loan Atlas member dashboard" loading="eager" />
+            <img class="lp-intro__dash" src="<?php echo TLA_BASE; ?>/assets/dashboard.png" alt="The Loan Atlas member dashboard" loading="eager" />
           </div>
         </div>
 
@@ -1964,7 +2134,7 @@
                  white bot bubble w/ Loan Atlas avatar + dark right-aligned user bubble -->
             <div class="hm-chat" data-hm-chat aria-label="A sample conversation with The Loan Atlas">
               <div class="hm-chat__bot">
-                <span class="hm-chat__avatar"><img src="assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" /></span>
+                <span class="hm-chat__avatar"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" /></span>
                 <div class="hm-chat__msg hm-chat__msg--bot" data-hm-heading>What's Your Sales Challenge Today?</div>
               </div>
               <div class="hm-chat__msg hm-chat__msg--user">
@@ -1980,33 +2150,34 @@
     <!-- ── 2. OFFER HIGHLIGHT CARD ──────────────────────────────────────────── -->
     <section class="mm-offer" aria-labelledby="mm-offer-heading">
       <div class="container">
-        <div class="mm-offer__card" data-reveal="scale">
-          <div class="mm-plan__lockup" aria-label="The Loan Atlas — official Mastermind Summit 2026 offer">
-            <img class="mm-plan__lockup-atlas" src="assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" />
-            <span class="mm-plan__lockup-x" aria-hidden="true">×</span>
-            <img class="mm-plan__lockup-mm" src="assets/mastermind-logo.webp" alt="Mastermind Summit 2026" />
+        <div id="namb-form" class="mm-offer__card" data-reveal="scale">
+          <div class="mm-plan__lockup" aria-label="The Loan Atlas — NAMB Preferred Account pricing">
+            <img class="mm-plan__lockup-atlas" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" />
+            <span class="mm-plan__lockup-x" aria-hidden="true"></span>
+            <img class="mm-plan__lockup-mm" src="<?php echo TLA_BASE; ?>/assets/namb-logo.webp" alt="NAMB" />
           </div>
-          <h3 class="mm-plan__hero-title mm-offer__hero-title"><span class="mm-plan__hero-plat">Platinum</span> Super Bonus</h3>
+          <div class="naq-plan__offer">
+          <h2 id="mm-offer-heading" class="naq-plan__title">Activate Your NAMB Preferred Account and <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Save $1,200!</span></h2>
 
-          <div id="mm-offer-heading" class="mm-offer__steps" style="grid-template-columns: 1fr; max-width: 22rem;">
-            <div class="mm-step mm-step--rest">
-              <span class="mm-step__was"><span class="mm-offer__strike">$349/mo</span></span>
-              <span class="mm-step__price">$249<span style="font-size: 0.32em; font-weight: 700; letter-spacing: 0;">/mo</span></span>
-              <span class="mm-step__sub"><strong>Locked in</strong> — no increase</span>
+          <div class="naq-plan__steps">
+            <div class="naq-step naq-step--monthly">
+              <span class="naq-step__was"><span class="naq-step__strike">$349/mo</span></span>
+              <span class="naq-step__price">$249<span>/mo</span></span>
+              <span class="naq-step__sub">Billed monthly</span>
+            </div>
+            <div class="naq-step naq-step--annual">
+              <span class="naq-step__was"><span class="naq-step__strike">$3,490/yr</span></span>
+              <span class="naq-step__price">$2,490<span>/yr</span></span>
+              <span class="naq-step__sub">Get <strong>TWO MONTHS</strong> for free with your annual membership!</span>
             </div>
           </div>
 
-          <p class="mm-plan__plus"><span>plus <em>6 months FREE</em> of Platinum Marketing</span></p>
 
-          <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$1,800</em> in Annual Savings — Exclusively for Mastermind Attendees</span></p>
-
-          <div class="mm-offer__cta">
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Start Your Transformation</a>
-            <a href="consultation-mastermind.html" style="font-size: 0.9375rem; color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;">
-              Have questions? Book a free coaching session
-            </a>
+          <div class="naq-plan__cta">
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-namb/">Activate Your NAMB Preferred Account</a>
           </div>
-          <p class="mm-offer__fine">12-month commitment. Offer exclusively for Mastermind Summit 2026 attendees. Available to new members only.</p>
+          <p class="naq-plan__fine">12-month commitment. Offer available to new members only.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -2019,30 +2190,30 @@
       <div class="trust__marquee">
         <div class="trust__track">
           <ul class="trust__group">
-            <li class="trust__logo"><img src="assets/american-pacific-logo.webp" alt="American Pacific Mortgage"></li>
-            <li class="trust__logo"><img src="assets/acm-logo.webp" alt="Atlantic Coast Mortgage"></li>
-            <li class="trust__logo"><img src="assets/cross-country-logo.webp" alt="CrossCountry Mortgage"></li>
-            <li class="trust__logo"><img src="assets/UWM-logo.png" alt="United Wholesale Mortgage"></li>
-            <li class="trust__logo"><img src="assets/fairway-logo.png" alt="Fairway Independent Mortgage"></li>
-            <li class="trust__logo"><img src="assets/CMG-logo.svg" alt="CMG Financial"></li>
-            <li class="trust__logo"><img src="assets/swbc-logo.png" alt="SWBC Mortgage"></li>
-            <li class="trust__logo"><img src="assets/better-logo.png" alt="Better"></li>
-            <li class="trust__logo"><img src="assets/lower-mortgage-logo.svg" alt="Lower"></li>
-            <li class="trust__logo"><img src="assets/rate-logo.png" alt="Rate"></li>
-            <li class="trust__logo"><img src="assets/loan-depot-logo.png" alt="loanDepot"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/american-pacific-logo.webp" alt="American Pacific Mortgage"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/acm-logo.webp" alt="Atlantic Coast Mortgage"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/cross-country-logo.webp" alt="CrossCountry Mortgage"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/UWM-logo.png" alt="United Wholesale Mortgage"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/fairway-logo.png" alt="Fairway Independent Mortgage"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/CMG-logo.svg" alt="CMG Financial"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/swbc-logo.png" alt="SWBC Mortgage"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/better-logo.png" alt="Better"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/lower-mortgage-logo.svg" alt="Lower"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/rate-logo.png" alt="Rate"></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/loan-depot-logo.png" alt="loanDepot"></li>
           </ul>
           <ul class="trust__group" aria-hidden="true">
-            <li class="trust__logo"><img src="assets/american-pacific-logo.webp" alt=""></li>
-            <li class="trust__logo"><img src="assets/acm-logo.webp" alt=""></li>
-            <li class="trust__logo"><img src="assets/cross-country-logo.webp" alt=""></li>
-            <li class="trust__logo"><img src="assets/UWM-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="assets/fairway-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="assets/CMG-logo.svg" alt=""></li>
-            <li class="trust__logo"><img src="assets/swbc-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="assets/better-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="assets/lower-mortgage-logo.svg" alt=""></li>
-            <li class="trust__logo"><img src="assets/rate-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="assets/loan-depot-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/american-pacific-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/acm-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/cross-country-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/UWM-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/fairway-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/CMG-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/swbc-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/better-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/lower-mortgage-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/rate-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/loan-depot-logo.png" alt=""></li>
           </ul>
         </div>
       </div>
@@ -2054,11 +2225,11 @@
         <div class="lp-bridge__stack">
           <!-- TOP: copy -->
           <div class="lp-bridge__inner" data-reveal="up">
-            <p class="t-headline-md" style="line-height: 1.5; margin: 0 0 var(--space-md);">
+            <p class="t-headline-md" style="font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.125rem); line-height: 1.35; margin: 0 0 var(--space-md);">
               The loan officers pulling away from the pack aren&rsquo;t working harder than you. They&rsquo;re running systems that compound their production every month.
             </p>
             <p class="text-brass" style="font-family: var(--font-display); font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.125rem); font-weight: 800; line-height: 1.25; letter-spacing: -0.015em; margin: 0;">
-              Mastermind is your chance to install them all &mdash; for less than the commission of one extra loan.
+              With your NAMB Preferred Pricing, you can install them all for less than the commission of one extra loan.
             </p>
           </div>
 
@@ -2069,11 +2240,6 @@
                 src="https://player.mediadelivery.net/embed/684087/c27ffc9d-ddca-4238-b29a-15849e2347f8?autoplay=false&loop=false&muted=false&preload=true&responsive=true"
                 loading="lazy" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;" allowfullscreen="true"></iframe>
             </div>
-          </div>
-
-          <!-- CTA -->
-          <div class="lp-bridge__cta" data-reveal="up">
-            <a class="btn btn--gold btn--lg btn--landing" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Start Your Transformation</a>
           </div>
 
         </div>
@@ -2136,7 +2302,7 @@
 
           <div class="mm-row" data-reveal="up">
             <div class="mm-row__media mm-row__media--phone mm-row__media--bi" data-reveal="fade">
-            <img src="assets/loan-officer-business-intelligence.png" alt="Loan Officer Business Intelligence" loading="lazy">
+            <img src="<?php echo TLA_BASE; ?>/assets/loan-officer-business-intelligence.png" alt="Loan Officer Business Intelligence" loading="lazy">
           </div>
             <div class="mm-row__copy">
               <span class="mm-row__eyebrow">AI Business Intelligence</span>
@@ -2151,15 +2317,15 @@
               <h3 class="mm-row__title">A weekly plan built around your real goals</h3>
               <p class="mm-row__desc">Turn big-picture goals into a focused weekly priority list tied to your actual pipeline. Walk into every week knowing exactly what moves the needle — and what to ignore.</p>
             </div>
-            <div class="mm-row__media mm-row__media--phone"><img src="assets/loan-officer-business-planning.png" alt="Loan Officer Business Planning" loading="lazy"></div>
+            <div class="mm-row__media mm-row__media--phone"><img src="<?php echo TLA_BASE; ?>/assets/loan-officer-business-planning.png" alt="Loan Officer Business Planning" loading="lazy"></div>
           </div>
 
           <div class="mm-row" data-reveal="up">
             <div class="mm-card-stack">
-              <img class="mm-card-stack__img" src="assets/what's-inside-office-hours.jpg" alt="Office Hours" loading="lazy">
-              <img class="mm-card-stack__img" src="assets/what's-inside-talk-to-tim.jpg" alt="Talk to Tim" loading="lazy">
-              <img class="mm-card-stack__img" src="assets/what's-inside-masterclass.jpg" alt="Masterclass" loading="lazy">
-              <img class="mm-card-stack__img" src="assets/what's-inside-ai-labs.jpg" alt="AI Labs" loading="lazy">
+              <img class="mm-card-stack__img" src="<?php echo TLA_BASE; ?>/assets/what's-inside-office-hours.jpg" alt="Office Hours" loading="lazy">
+              <img class="mm-card-stack__img" src="<?php echo TLA_BASE; ?>/assets/what's-inside-talk-to-tim.jpg" alt="Talk to Tim" loading="lazy">
+              <img class="mm-card-stack__img" src="<?php echo TLA_BASE; ?>/assets/what's-inside-masterclass.jpg" alt="Masterclass" loading="lazy">
+              <img class="mm-card-stack__img" src="<?php echo TLA_BASE; ?>/assets/what's-inside-ai-labs.jpg" alt="AI Labs" loading="lazy">
             </div>
             <div class="mm-row__copy">
               <span class="mm-row__eyebrow">Live Coaching Every Week</span>
@@ -2169,7 +2335,7 @@
           </div>
 
           <div class="mm-row mm-row--flip" data-reveal="up">
-            <div class="mm-row__media mm-row__media--phone mm-row__media--crop"><img src="assets/sales-coach-phone.png" alt="AI Sales &amp; Scripting Coach on a phone" loading="lazy"></div>
+            <div class="mm-row__media mm-row__media--phone mm-row__media--crop"><img src="<?php echo TLA_BASE; ?>/assets/sales-coach-phone.png" alt="AI Sales &amp; Scripting Coach on a phone" loading="lazy"></div>
             <div class="mm-row__copy">
               <span class="mm-row__eyebrow">AI Sales &amp; Scripting Coaches</span>
               <h3 class="mm-row__title">The right words for every conversation, in your pocket</h3>
@@ -2178,7 +2344,7 @@
           </div>
 
           <div class="mm-row" data-reveal="up">
-            <div class="mm-row__media mm-row__media--phone"><img src="assets/scripts-presentation-templates.png" alt="Scripts, presentations, and templates library" loading="lazy"></div>
+            <div class="mm-row__media mm-row__media--phone"><img src="<?php echo TLA_BASE; ?>/assets/scripts-presentation-templates.png" alt="Scripts, presentations, and templates library" loading="lazy"></div>
             <div class="mm-row__copy">
               <span class="mm-row__eyebrow">Scripts, Presentations &amp; Templates</span>
               <h3 class="mm-row__title">Pre-built and proven resources to help you present with confidence</h3>
@@ -2187,7 +2353,7 @@
           </div>
 
           <div class="mm-row mm-row--flip" data-reveal="up">
-            <div class="mm-row__media"><img src="assets/private-member-community.png" alt="The Loan Atlas private member community" loading="lazy"></div>
+            <div class="mm-row__media"><img src="<?php echo TLA_BASE; ?>/assets/private-member-community.png" alt="The Loan Atlas private member community" loading="lazy"></div>
             <div class="mm-row__copy">
               <span class="mm-row__eyebrow">A Community of Active Originators</span>
               <h3 class="mm-row__title">Never solve a problem alone again</h3>
@@ -2196,138 +2362,6 @@
           </div>
 
         </div>
-      </div>
-    </section>
-
-    <!-- ── 7b. PLATINUM MARKETING ───────────────────────────────────────────── -->
-    <section class="mm-plat" id="platinum" aria-labelledby="plat-heading">
-      <div class="mm-plat__glow" aria-hidden="true"></div>
-
-      <!-- Faded background collage of every Platinum asset -->
-      <div class="mm-plat__bg" aria-hidden="true">
-        <img src="assets/platinum-landing-page-1.png" alt="" loading="lazy">
-        <img src="assets/platinum-presentation-deck-1.png" alt="" loading="lazy">
-        <img src="assets/platinum-flyer-1.jpeg" alt="" loading="lazy">
-        <img src="assets/platinum-social-image-1.jpeg" alt="" loading="lazy">
-        <img src="assets/platinum-newsletter.png" alt="" loading="lazy">
-        <img src="assets/platinum-presentation-deck-2.png" alt="" loading="lazy">
-        <img src="assets/platinum-social-image-2.jpeg" alt="" loading="lazy">
-        <img src="assets/platinum-landing-page-2.png" alt="" loading="lazy">
-        <img src="assets/platinum-flyer-2.jpeg" alt="" loading="lazy">
-        <img src="assets/platinum-social-image-3.jpeg" alt="" loading="lazy">
-        <img src="assets/platinum-social-image-4.png" alt="" loading="lazy">
-      </div>
-
-      <div class="container">
-
-        <div class="mm-plat__header" data-reveal="up">
-          <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
-            <span class="eyebrow__text" style="color: var(--brass-bright);">Just Launched for Mastermind</span>
-          </span>
-          <h2 id="plat-heading" class="mm-plat__title">Platinum Marketing</h2>
-          <p class="mm-plat__subhead">
-            Take your marketing from ignored to <span class="mm-plat__subhead-em" style="font-weight: 800;">irresistible.</span>
-          </p>
-        </div>
-
-        <!-- Full-width box: checklist (left) + offer (right) -->
-        <div class="mm-plat__offer" data-reveal="scale">
-          <div class="mm-plat__offer-list">
-            <ul class="checklist checklist--inverse mm-plat__list">
-              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Marketing Assistant</li>
-              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Decks &amp; Flyers</li>
-              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Newsletters</li>
-              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Email Campaigns</li>
-              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Social Graphics</li>
-              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Landing Pages</li>
-            </ul>
-          </div>
-
-          <div class="mm-plat__offer-deal">
-            <div class="mm-plat__price-tag">
-              <span class="mm-plat__price-was">$100<span>/mo</span></span>
-              <span class="mm-plat__price-now">6 Months FREE</span>
-            </div>
-            <p class="mm-plat__price-note">then $69/mo, or cancel anytime.</p>
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">Start Your Transformation</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── 9. 8 DISCIPLINES ─────────────────────────────────────────────────── -->
-    <section class="disc-section" id="disciplines">
-      <div class="disc-section__inner">
-
-        <div class="disc-split">
-
-          <!-- LEFT: heading + body + testimonial -->
-          <div class="disc-copy" data-reveal="up">
-            <h2 class="disc-copy__title">Built upon the <em>8 Disciplines</em> of Mortgage Origination Mastery.</h2>
-            <p class="disc-copy__lede">Nobody taught you how to run a mortgage business. They taught you how to originate loans. The 8 Disciplines cover what's actually required to do both — so you're constantly improving and building a business that compounds month after month.</p>
-
-            <!-- Inline testimonial quote (homepage quote-card style) -->
-            <figure class="quote-card quote-card--block">
-              <span class="quote-card__mark" aria-hidden="true">&ldquo;</span>
-              <blockquote class="quote-card__quote">If you did nothing else but go through the System for Selling module &mdash; it&rsquo;ll change your career and your life.</blockquote>
-              <figcaption class="quote-card__attr">
-                <div class="quote-card__name">Jim Juergens</div>
-                <div class="quote-card__org">NEO Home Loans</div>
-              </figcaption>
-            </figure>
-          </div>
-
-          <!-- RIGHT: vertical marquee of module thumbnails -->
-          <div class="disc-marquee" aria-hidden="true">
-            <div class="disc-marquee__col disc-marquee__col--up">
-              <div class="disc-marquee__track">
-                <div class="disc-thumb"><img src="assets/connect-with-target-agents-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/Minimizing-Taxes-Maximizing-Investments-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/fixed-adjustable-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/handling-a-negative-review-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/peak-performance-rituals-module-thumbnail.jpg" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/experiencing-your-genius-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/reverse%20mortgages-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/turning-clients-into-advocates-module-thumbnail.jpg" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/ultimate-business-planning-tool-module-thumbnail.jpg" alt="" /></div>
-                <!-- duplicate set for seamless loop -->
-                <div class="disc-thumb"><img src="assets/connect-with-target-agents-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/Minimizing-Taxes-Maximizing-Investments-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/fixed-adjustable-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/handling-a-negative-review-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/peak-performance-rituals-module-thumbnail.jpg" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/experiencing-your-genius-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/reverse%20mortgages-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/turning-clients-into-advocates-module-thumbnail.jpg" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/ultimate-business-planning-tool-module-thumbnail.jpg" alt="" /></div>
-              </div>
-            </div>
-
-            <div class="disc-marquee__col disc-marquee__col--down">
-              <div class="disc-marquee__track">
-                <div class="disc-thumb"><img src="assets/female-empowerment-module-thumbnail.jpg" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/email-optimization-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/gratitude-calls-module-thumbnail.jpg" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/handling-objections-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/employee-reviews-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/the-process-for-creating-content-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/presenting-new-lead-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/take-care-of-your-epople-module-thumbnail.png" alt="" /></div>
-                <!-- duplicate set for seamless loop -->
-                <div class="disc-thumb"><img src="assets/female-empowerment-module-thumbnail.jpg" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/email-optimization-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/gratitude-calls-module-thumbnail.jpg" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/handling-objections-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/employee-reviews-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/the-process-for-creating-content-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/presenting-new-lead-module-thumbnail.png" alt="" /></div>
-                <div class="disc-thumb"><img src="assets/take-care-of-your-epople-module-thumbnail.png" alt="" /></div>
-              </div>
-            </div>
-          </div>
-
-        </div><!-- /disc-split -->
-
       </div>
     </section>
 
@@ -2342,7 +2376,7 @@
 
           <figure class="mm-tcard">
             <div class="mm-tcard__photo">
-              <img src="assets/gian-ceretto.png" alt="Gian Ceretto" loading="lazy">
+              <img src="<?php echo TLA_BASE; ?>/assets/gian-ceretto.png" alt="Gian Ceretto" loading="lazy">
             </div>
             <div class="mm-tcard__body">
               <span class="mm-tcard__stars" aria-label="5 out of 5 stars">★★★★★</span>
@@ -2356,7 +2390,7 @@
 
           <figure class="mm-tcard">
             <div class="mm-tcard__photo">
-              <img src="assets/sue botelho.jpeg" alt="Sue Botelho" loading="lazy">
+              <img src="<?php echo TLA_BASE; ?>/assets/sue botelho.jpeg" alt="Sue Botelho" loading="lazy">
             </div>
             <div class="mm-tcard__body">
               <span class="mm-tcard__stars" aria-label="5 out of 5 stars">★★★★★</span>
@@ -2370,7 +2404,7 @@
 
           <figure class="mm-tcard">
             <div class="mm-tcard__photo">
-              <img src="assets/edgardo-balentine.jpeg" alt="Edgardo Valentine" loading="lazy">
+              <img src="<?php echo TLA_BASE; ?>/assets/edgardo-balentine.jpeg" alt="Edgardo Valentine" loading="lazy">
             </div>
             <div class="mm-tcard__body">
               <span class="mm-tcard__stars" aria-label="5 out of 5 stars">★★★★★</span>
@@ -2398,7 +2432,7 @@
             <blockquote class="lp-proof-card__quote">"The wealth that's in The Loan Atlas is absolutely incredible. Imagine how valuable it is to have access to the smartest minds in our industry."</blockquote>
             <figcaption class="lp-proof-card__test-head" style="margin-top: var(--space-md); margin-bottom: 0;">
               <div class="lp-proof-card__photo">
-                <img src="assets/barry-habib.jpg" alt="Barry Habib">
+                <img src="<?php echo TLA_BASE; ?>/assets/barry-habib.jpg" alt="Barry Habib">
               </div>
               <div>
                 <cite class="lp-proof-card__attr-name" style="font-style: normal;">Barry Habib</cite>
@@ -2410,71 +2444,42 @@
       </div>
     </section>
 
-    <!-- ── 12. MASTERMIND PRICING ───────────────────────────────────────────── -->
+    <!-- ── 12. NAMB PRICING ──────────────────────────────────────────────────── -->
     <section class="mm-pricing" id="pricing" aria-labelledby="pricing-heading">
       <div class="container">
         <div class="center" data-reveal="up" style="max-width: 46rem; margin-inline: auto;">
-          <h2 id="pricing-heading" class="t-display" style="color: #ffffff; font-weight: 800; margin-bottom: var(--space-sm);">Everything You Need to Scale. <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">A Price Only for Mastermind.</span></h2>
-          <p class="t-body-lg" style="color: rgba(255, 255, 255, 0.68); font-size: clamp(1.125rem, 0.95rem + 0.6vw, 1.375rem);">Full access to everything above — the AI systems, live coaching, the curriculum, the community — at the exclusive Mastermind Summit rate.</p>
+          <h2 id="pricing-heading" class="t-display" style="color: #ffffff; font-weight: 800; margin-bottom: var(--space-sm);">Everything You Need to Scale. <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Exclusive NAMB Pricing.</span></h2>
+          <p class="t-body-lg" style="color: rgba(255, 255, 255, 0.68); font-size: clamp(1.125rem, 0.95rem + 0.6vw, 1.375rem);">Full access to everything above — the AI systems, live coaching, the curriculum, the community — at exclusive NAMB Preferred Account pricing.</p>
         </div>
 
-        <article class="mm-plan" data-reveal="scale">
-          <div class="mm-plan__lockup" aria-label="The Loan Atlas — official Mastermind Summit 2026 offer">
-            <img class="mm-plan__lockup-atlas" src="assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" />
-            <span class="mm-plan__lockup-x" aria-hidden="true">×</span>
-            <img class="mm-plan__lockup-mm" src="assets/mastermind-logo.webp" alt="Mastermind Summit 2026" />
+        <article id="namb-pricing-card" class="mm-plan" data-reveal="scale">
+          <div class="mm-plan__lockup" aria-label="The Loan Atlas — NAMB Preferred Account pricing">
+            <img class="mm-plan__lockup-atlas" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" />
+            <span class="mm-plan__lockup-x" aria-hidden="true"></span>
+            <img class="mm-plan__lockup-mm" src="<?php echo TLA_BASE; ?>/assets/namb-logo.webp" alt="NAMB" />
           </div>
-          <h3 class="mm-plan__hero-title mm-offer__hero-title"><span class="mm-plan__hero-plat">Platinum</span> Super Bonus</h3>
+          <div class="naq-plan__offer">
+          <h3 class="naq-plan__title">Activate Your NAMB Preferred Account and <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Save $1,200!</span></h3>
 
-          <div class="mm-offer__steps" style="grid-template-columns: 1fr; max-width: 22rem;">
-            <div class="mm-step mm-step--rest">
-              <span class="mm-step__was"><span class="mm-offer__strike">$349/mo</span></span>
-              <span class="mm-step__price">$249<span style="font-size: 0.32em; font-weight: 700; letter-spacing: 0;">/mo</span></span>
-              <span class="mm-step__sub"><strong>Locked in</strong> — no increase</span>
+          <div class="naq-plan__steps">
+            <div class="naq-step naq-step--monthly">
+              <span class="naq-step__was"><span class="naq-step__strike">$349/mo</span></span>
+              <span class="naq-step__price">$249<span>/mo</span></span>
+              <span class="naq-step__sub">Billed monthly</span>
+            </div>
+            <div class="naq-step naq-step--annual">
+              <span class="naq-step__was"><span class="naq-step__strike">$3,490/yr</span></span>
+              <span class="naq-step__price">$2,490<span>/yr</span></span>
+              <span class="naq-step__sub">Get <strong>TWO MONTHS</strong> for free with your annual membership!</span>
             </div>
           </div>
 
-          <p class="mm-plan__plus"><span>plus <em>6 months FREE</em> of Platinum Marketing</span></p>
 
-          <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$1,800</em> in Annual Savings — Exclusively for Mastermind Attendees</span></p>
-
-          <div class="mm-plan__cta">
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mastermind-2026/">
-              Start Your Transformation
-            </a>
-            <a href="consultation-mastermind.html" style="font-size: 0.9375rem; color: rgba(255,255,255,0.7); text-decoration: underline; text-underline-offset: 4px; text-decoration-thickness: 1px;">
-              Have questions? Book a free coaching session
-            </a>
+          <div class="naq-plan__cta">
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-namb/">Activate Your NAMB Preferred Account</a>
           </div>
-
-          <ul class="mm-plan__list">
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              5 AI-powered systems to help you close twice the loans in half the time
-            </li>
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Live weekly and monthly coaching sessions
-            </li>
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              200+ training modules
-            </li>
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Full library of scripts, templates, and playbooks
-            </li>
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Platinum Marketing free for 6 months (then $69/mo, or cancel)
-            </li>
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              New tools and content added every month
-            </li>
-          </ul>
-
-          <p class="mm-plan__fine">12-month commitment. Offer exclusively for Mastermind Summit 2026 attendees. Available to new members only.</p>
+          <p class="naq-plan__fine">12-month commitment. Offer available to new members only.</p>
+          </div>
         </article>
 
         <p class="mm-page-footnote">* Past 12 months, ending 2/15/2026. Must have closed one loan in last 90 days (154,000 LO population).</p>
@@ -2484,10 +2489,52 @@
   </main>
 
   <!-- ── Footer (standard site chrome) ──────────────────────────────────────── -->
-<!-- TLA_FOOTER -->
+<?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>
 
-  <script src="js/nav.js"></script>
-  <script src="js/animations.js" defer></script>
+  <!-- Add the NAMB logo beside the Loan Atlas logo, and a "Claim" CTA button, into
+       the minimal nav header (page-scoped — the header partial is shared, so we
+       inject here rather than editing the shared partial). -->
+  <script>
+    (function () {
+      var header = document.querySelector('.site-header--minimal');
+      var brand = header && header.querySelector('.brand');
+      if (!header || !brand || document.querySelector('.namb-nav-lockup__namb')) return;
+      var logo = brand.querySelector('.brand__logo');
+      if (!logo) return;
+      // Flag the header so its layout switches from centered to space-between.
+      header.classList.add('site-header--namb');
+      // Derive the NAMB asset URL from the (already correctly-resolved) Loan Atlas
+      // logo src, so it works whether the base is /assets/ (built) or ./assets/ (raw).
+      var nambSrc = logo.getAttribute('src').replace(/[^/]+$/, 'namb-logo.webp');
+      var divider = document.createElement('span');
+      divider.className = 'namb-nav-lockup__divider';
+      divider.setAttribute('aria-hidden', 'true');
+      var namb = document.createElement('img');
+      namb.className = 'namb-nav-lockup__namb';
+      namb.src = nambSrc;
+      namb.alt = 'NAMB';
+      // Group brand + divider + NAMB logo into one lockup so space-between keeps
+      // them together on the left (button goes on the right).
+      var lockup = document.createElement('div');
+      lockup.className = 'namb-nav-lockup';
+      brand.parentNode.insertBefore(lockup, brand);
+      lockup.appendChild(brand);
+      lockup.appendChild(divider);
+      lockup.appendChild(namb);
+
+      // Header CTA — matches the main-site nav button style.
+      var actions = document.createElement('div');
+      actions.className = 'site-header__actions';
+      var cta = document.createElement('a');
+      cta.className = 'btn btn--primary btn--header';
+      cta.href = '#namb-form';
+      cta.innerHTML = '<span class="btn__short">Claim Membership</span><span class="btn__full">Claim Your NAMB Membership</span>';
+      actions.appendChild(cta);
+      header.querySelector('.site-header__inner').appendChild(actions);
+    })();
+  </script>
+  <!-- LeadConnector form embed (NAMB enrollment form) -->
+  <script src="https://link.msgsndr.com/js/form_embed.js"></script>
   <script>
     // ── Hero system-cycling chat: eyebrow + name (left) + bot heading + typed input ──
     (function () {
@@ -2520,12 +2567,6 @@
           name: 'AI Strategic Thought Partner',
           heading: 'What Decision Can I Help You Think Through?',
           message: 'Should I hire an LOA or stay solo this year?'
-        },
-        {
-          eyebrow: 'Turn Ignored Marketing Into Real Clients',
-          name: 'Platinum Marketing',
-          heading: 'What Should We Create Today?',
-          message: 'Create a flyer for my new 5%-down program'
         }
       ];
 
@@ -2605,6 +2646,3 @@
       }
     })();
   </script>
-</body>
-
-</html>
