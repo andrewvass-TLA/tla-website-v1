@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- ============================================================================
+       INDIVIDUAL TRAINING COURSE PAGE — COPY-AND-FILL TEMPLATE
+       ============================================================================
+
+       Sells ONE recorded training for ONE price via a direct checkout link.
+       Layout is modeled on a Coursera course page: information-dense, with a
+       sticky tabbed section nav. Design suite lives in ../css/trainings.css
+       (.trn-* namespace) — shared by every page in this folder, so DO NOT
+       paste page CSS inline here.
+
+       -- HOW TO USE -------------------------------------------------------------
+       1. Copy this file to public/trainings/<your-slug>.html
+       2. Replace every [[TOKEN]]. Unreplaced tokens are loud on the page by
+          design — [[BRACKETS]] are meant to be impossible to miss.
+       3. Register it in scripts/convert-pages.sh, in the slug map (~line 155):
+                convert trainings/<your-slug>   <your-slug>   ""
+          Empty third field = no nav highlight (correct for sales pages).
+          NOTE: a missing file only prints "SKIP", so a forgotten line means the
+          page silently never builds.
+       4. If another page will link here, also add a rewrite() line (~line 108):
+                s/href="trainings\/<your-slug>\.html"/href="\/<your-slug>\/"/g
+       5. npm run build && npm run preview
+          Judge from wp-theme/_preview-<your-slug>.html — NEVER from this raw
+          file, which has no header/footer.
+       6. WP Admin: Pages > Add New > slug = <your-slug> > Template
+          "TLA Full HTML" > empty body > Publish. Do not open in Elementor.
+          Then purge BOTH WP Engine and Cloudflare caches.
+
+       -- TOKENS ----------------------------------------------------------------
+       [[PAGE_TITLE]]      <title> text
+       [[META_DESC]]       meta description, ~155 chars
+       [[TRAINING_TITLE]]  Literal training name. Used in the sticky nav, the
+                           stats card and the schema — NOT the H1.
+       [[HEADLINE]]        H1 — sells the OUTCOME. Wrap 2-4 words in
+                           <span class="trn-gold">…</span> for brass emphasis.
+       [[SUBTITLE]]        One sentence: what it is and who it is for.
+       [[PRICE]]           e.g. "$47" — appears 5x; keep them consistent.
+       [[CHECKOUT_URL]]    https://members.theloanatlas.com/checkouts/<slug>/
+                           Must exist on the members side or every CTA 404s.
+       [[EYEBROW]]         Short label above the H1, e.g. "Top Producer Playbook".
+       [[GETS_LABEL]]      Line above the price naming the deliverables, e.g.
+                           "Get The Full Recording + Scripts". Must match what
+                           the "What's included" section actually lists.
+       [[POSTER]]          Preview poster, relative to assets/ — 16:9 art, e.g.
+                           live-events/past-events/<name>-16x9.jpg.
+       [[POSTER_ALT]]      Describe the art: title + who appears in it.
+       [[WISTIA_ID]]       Only if a real preview clip exists; otherwise leave
+                           the Wistia block commented out.
+       [[COMPARE_AT]]      Struck was-price beside the price, e.g. "$50". Delete
+                           the element if there is no honest higher price.
+       [[SKILL_1..n]]      Skills-you'll-gain pills. Sentence case, 2-4 words.
+       [[CHAPTER_n_*]]     Chapter rows: title, runtime, summary.
+       [[INCLUDE_n]] + [[..._VALUE]] + [[TOTAL_VALUE]]   Value stack. Must add up.
+       [[PERSON_n_*]]      Instructor cards: name / role / org / headshot file.
+       [[STAT_n_*]]        Faculty credibility figures. REAL, attributable only.
+       [[QUOTE]] [[QUOTE_ATTR]]   A real line from inside the training.
+       [[TESTI_n_*]]       Testimonial cards. See the honesty rules below.
+       [[FAQ_Q/A_1..5]]    Objection handlers.
+
+       -- HOUSE RULES THAT BITE -------------------------------------------------
+       * ASSET paths use ../ — the build rewrites ../assets, ../css and ../js to
+         TLA_BASE automatically.
+       * INTERNAL PAGE links must be BARE — href="pricing.html", NOT
+         href="../pricing.html". rewrite() in convert-pages.sh only matches the
+         bare form, so a ../ prefix ships a dead link.
+       * Video loader <script>s MUST live in the <body>, not <head> — the build
+         strips head scripts. (See namb-build-your-custom-gpt.html.)
+       * The sticky nav needs BOTH [data-trn-nav] on the bar AND
+         [data-trn-nav-sentinel] just above it. Every tab href must match a
+         section id, or that tab is dropped at runtime.
+       * Section ids drive the nav. If you add/remove a section, update the rail.
+
+       -- HONESTY RULES (do not break these) -----------------------------------
+       * No star ratings, no review counts, no enrollment counts — we have no
+         such data. Do not invent them.
+       * No guarantee block. The Loan Atlas does not offer a refund on these.
+       * Testimonials: the site's member quotes are about MEMBERSHIP, not about
+         any one training. Attribute them as member feedback, never as reviews
+         of this course, and never fabricate "Learner since 20xx" metadata.
+       * Credibility stats must be real and attributable (faculty.html's
+         facultyData object is the source of truth for production figures).
+       ========================================================================== -->
+
+  <title>[[PAGE_TITLE]] — The Loan Atlas</title>
+  <meta name="description" content="[[META_DESC]]" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/trainings.css" />
+  <link rel="stylesheet" href="../css/chrome.css" />
+</head>
+<body>
+
+<!-- TLA_HEADER_MINIMAL -->
+
+  <main class="site-main trn">
+
+    <!-- ============ HERO (light) ============ -->
+    <section class="trn-hero">
+      <div class="trn-wrap">
+        <div class="trn-hero__grid">
+        <div class="trn-hero__in">
+          <p class="trn-hero__eyebrow">[[EYEBROW]]</p>
+          <h1 class="trn-h1">[[HEADLINE]]</h1>
+          <p class="trn-hero__sub">[[SUBTITLE]]</p>
+
+          <p class="trn-hero__gets">[[GETS_LABEL]]</p>
+          <div class="trn-hero__buy">
+            <span class="trn-price">
+              <span class="trn-price__now">[[PRICE]]</span>
+              <!-- DELETE the next line if there is no honest compare-at price -->
+              <span class="trn-price__was">[[COMPARE_AT]]</span>
+            </span>
+            <a class="trn-btn" href="[[CHECKOUT_URL]]">Get Instant Access</a>
+          </div>
+
+          <p class="trn-hero__incl">
+            Included with
+            <span class="trn-hero__incl-lockup">
+              <img class="trn-hero__incl-logo" src="../assets/Loan Atlas logomark-18.png" alt="" />
+              <span class="trn-hero__incl-name">The Loan Atlas</span>
+            </span>
+            <span class="trn-hero__incl-sep" aria-hidden="true">&middot;</span>
+            <a class="trn-link" href="pricing.html">Learn more</a>
+          </p>
+        </div>
+
+        <!-- Course preview. 16:9 frame: poster image + play affordance until a
+             real preview clip exists. When you have one, delete the <img> and
+             the button and uncomment the Wistia block below. The loader
+             scripts MUST stay in the body — the build strips head scripts. -->
+        <div class="trn-hero__video">
+          <span class="trn-hero__vlabel">Course preview</span>
+          <img src="../assets/[[POSTER]]" alt="[[POSTER_ALT]]"
+               width="1920" height="1080" loading="eager" />
+          <button type="button" class="trn-hero__play" aria-label="Play course preview">
+            <span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="6 3 20 12 6 21 6 3"></polygon></svg></span>
+          </button>
+
+          <!-- REAL PREVIEW (uncomment + set the media id):
+          <wistia-player media-id="[[WISTIA_ID]]" aspect="1.7777777777777777"></wistia-player>
+          -->
+        </div>
+        <!--
+        <script src="https://fast.wistia.com/player.js" async></script>
+        <script src="https://fast.wistia.com/embed/[[WISTIA_ID]].js" async type="module"></script>
+        -->
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Sentinel: the nav flips to its collapsed state once this scrolls out. -->
+    <div data-trn-nav-sentinel aria-hidden="true"></div>
+
+    <!-- ============ STICKY SECTION NAV ============ -->
+    <nav class="trn-nav" data-trn-nav aria-label="Course sections">
+      <div class="trn-nav__in">
+        <p class="trn-nav__title">[[TRAINING_TITLE]]</p>
+        <ul class="trn-nav__rail">
+          <li><a class="trn-nav__tab" href="#about">About</a></li>
+          <li><a class="trn-nav__tab" href="#curriculum">What's covered</a></li>
+          <li><a class="trn-nav__tab" href="#instructors">Instructors</a></li>
+          <li><a class="trn-nav__tab" href="#testimonials">Testimonials</a></li>
+          <li><a class="trn-nav__tab" href="#faq">FAQ</a></li>
+        </ul>
+        <div class="trn-nav__cta">
+          <a class="trn-btn trn-btn--sm" href="[[CHECKOUT_URL]]">Get Access &middot; [[PRICE]]</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ============ ABOUT + SKILLS ============ -->
+    <section class="trn-sec" id="about">
+      <div class="trn-wrap">
+        <div class="trn-about__grid">
+
+          <div>
+            <h2 class="trn-h2">What you'll learn</h2>
+            <p class="trn-prose">[[ABOUT_PARA_1]]</p>
+            <p class="trn-prose">[[ABOUT_PARA_2]]</p>
+          </div>
+
+          <div>
+            <div class="trn-about__block">
+              <p class="trn-sub">Skills you'll gain</p>
+              <ul class="trn-pills">
+                <li class="trn-pill">[[SKILL_1]]</li>
+                <li class="trn-pill">[[SKILL_2]]</li>
+                <li class="trn-pill">[[SKILL_3]]</li>
+                <li class="trn-pill">[[SKILL_4]]</li>
+                <li class="trn-pill">[[SKILL_5]]</li>
+                <li class="trn-pill">[[SKILL_6]]</li>
+              </ul>
+            </div>
+
+            <div class="trn-about__block">
+              <p class="trn-sub">Details to know</p>
+              <div class="trn-details">
+                <div class="trn-detail">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                  <p class="trn-detail__t">Lifetime access</p>
+                  <p class="trn-detail__s">One-time payment, nothing to cancel</p>
+                </div>
+                <div class="trn-detail">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m2 9 10 6 10-6"></path></svg>
+                  <p class="trn-detail__t">Instant delivery</p>
+                  <p class="trn-detail__s">Login arrives the moment you check out</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SOCIAL PROOF (membership pitch + employer logos) ============ -->
+    <!-- Bespoke .trn-social card, not the site-wide .trust marquee. Six logos
+         chosen for compatible aspect ratios (2.1-3.9:1); the two ultra-wide
+         marks (CrossCountry 6.5:1, loanDepot 5.1:1) are left out so no single
+         logo dominates the grid. -->
+    <section class="trn-sec trn-sec--tight">
+      <div class="trn-wrap">
+        <div class="trn-social">
+          <div>
+            <h2 class="trn-social__title">See how top producers at the country&rsquo;s leading lenders are building their business</h2>
+            <p class="trn-social__cta-wrap">
+              <a class="trn-social__cta" href="pricing.html">Learn more about Loan Atlas <span class="trn-nowrap">membership<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"></polyline></svg></span></a>
+            </p>
+          </div>
+          <ul class="trn-social__logos">
+            <li><img src="../assets/UWM-logo.png" alt="UWM" loading="lazy" /></li>
+            <li><img src="../assets/rate-logo.png" alt="Guaranteed Rate" loading="lazy" /></li>
+            <li><img src="../assets/fairway-logo.png" alt="Fairway Independent Mortgage" loading="lazy" /></li>
+            <li><img src="../assets/american-pacific-logo.webp" alt="American Pacific Mortgage" loading="lazy" /></li>
+            <li><img src="../assets/better-logo.png" alt="Better" loading="lazy" /></li>
+            <li><img src="../assets/swbc-logo.png" alt="SWBC Mortgage" loading="lazy" /></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CURRICULUM ============ -->
+    <section class="trn-sec" id="curriculum">
+      <div class="trn-wrap trn-curric">
+        <h2 class="trn-h2">What's covered</h2>
+        <p class="trn-prose">[[CURRICULUM_INTRO]]</p>
+
+        <div class="trn-curric__list">
+          <!-- Repeat per chapter. Native <details> — no JS. -->
+          <details class="trn-chapter">
+            <summary>
+              <span class="trn-chapter__n">1</span>
+              <span class="trn-chapter__t">[[CHAPTER_1_TITLE]]</span>
+              <span class="trn-chapter__meta">[[CHAPTER_1_RUNTIME]]</span>
+            </summary>
+            <p class="trn-chapter__body">[[CHAPTER_1_SUMMARY]]</p>
+          </details>
+          <details class="trn-chapter">
+            <summary>
+              <span class="trn-chapter__n">2</span>
+              <span class="trn-chapter__t">[[CHAPTER_2_TITLE]]</span>
+              <span class="trn-chapter__meta">[[CHAPTER_2_RUNTIME]]</span>
+            </summary>
+            <p class="trn-chapter__body">[[CHAPTER_2_SUMMARY]]</p>
+          </details>
+          <details class="trn-chapter">
+            <summary>
+              <span class="trn-chapter__n">3</span>
+              <span class="trn-chapter__t">[[CHAPTER_3_TITLE]]</span>
+              <span class="trn-chapter__meta">[[CHAPTER_3_RUNTIME]]</span>
+            </summary>
+            <p class="trn-chapter__body">[[CHAPTER_3_SUMMARY]]</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHAT'S INCLUDED + VALUE STACK (dark) ============ -->
+    <section class="trn-sec trn-sec--dark">
+      <div class="trn-wrap trn-incl">
+        <div class="trn-incl__grid">
+
+          <div data-reveal="up">
+            <p class="trn-eyebrow">What's included</p>
+            <h2 class="trn-h2">Buy it once. Keep it for good.</h2>
+            <ul class="trn-checks">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="#eac25a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>[[INCLUDE_BULLET_1]]</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="#eac25a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>[[INCLUDE_BULLET_2]]</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="#eac25a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>[[INCLUDE_BULLET_3]]</span></li>
+            </ul>
+          </div>
+
+          <div class="trn-stack" data-reveal="up">
+            <div class="trn-stack__row">
+              <span>[[INCLUDE_1]]</span>
+              <span class="trn-stack__val">[[INCLUDE_1_VALUE]]</span>
+            </div>
+            <div class="trn-stack__row">
+              <span>[[INCLUDE_2]]</span>
+              <span class="trn-stack__val">[[INCLUDE_2_VALUE]]</span>
+            </div>
+            <div class="trn-stack__row">
+              <span>[[INCLUDE_3]]</span>
+              <span class="trn-stack__val">[[INCLUDE_3_VALUE]]</span>
+            </div>
+            <div class="trn-stack__total">
+              <span>Total value</span>
+              <span class="trn-stack__val">[[TOTAL_VALUE]]</span>
+            </div>
+            <p class="trn-stack__pay">
+              <span>Yours today for</span>
+              <strong>[[PRICE]]</strong>
+            </p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ INSTRUCTORS ============ -->
+    <section class="trn-sec" id="instructors">
+      <div class="trn-wrap trn-faculty">
+        <h2 class="trn-h2">Instructors</h2>
+        <p class="trn-prose">[[INSTRUCTORS_INTRO]]</p>
+        <div class="trn-faculty__grid" data-reveal-stagger="70">
+          <!-- Repeat per instructor (4-up on desktop). Headshot extensions are
+               inconsistent (.png/.jpg/.jpeg/.webp) — look the real file up. -->
+          <div class="trn-person">
+            <div class="trn-person__photo"><span><img src="../assets/[[PERSON_1_PHOTO]]" alt="[[PERSON_1_NAME]]" loading="lazy" /></span></div>
+            <p class="trn-person__name">[[PERSON_1_NAME]]</p>
+            <p class="trn-person__role">[[PERSON_1_ROLE]]</p>
+            <p class="trn-person__org">[[PERSON_1_ORG]]</p>
+          </div>
+          <div class="trn-person">
+            <div class="trn-person__photo"><span><img src="../assets/[[PERSON_2_PHOTO]]" alt="[[PERSON_2_NAME]]" loading="lazy" /></span></div>
+            <p class="trn-person__name">[[PERSON_2_NAME]]</p>
+            <p class="trn-person__role">[[PERSON_2_ROLE]]</p>
+            <p class="trn-person__org">[[PERSON_2_ORG]]</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FACULTY CREDIBILITY (dark) ============ -->
+    <section class="trn-sec trn-sec--dark">
+      <div class="trn-wrap trn-proof trn-center">
+        <p class="trn-eyebrow">Who's teaching this</p>
+        <h2 class="trn-h2">The numbers behind the advice</h2>
+
+        <!-- REAL, attributable figures only. Label the period accurately. -->
+        <div class="trn-proof__stats" data-reveal-stagger="80">
+          <div class="trn-pstat">
+            <p class="trn-pstat__num">[[STAT_1_NUM]]</p>
+            <p class="trn-pstat__label">[[STAT_1_LABEL]]</p>
+          </div>
+          <div class="trn-pstat">
+            <p class="trn-pstat__num">[[STAT_2_NUM]]</p>
+            <p class="trn-pstat__label">[[STAT_2_LABEL]]</p>
+          </div>
+          <div class="trn-pstat">
+            <p class="trn-pstat__num">[[STAT_3_NUM]]</p>
+            <p class="trn-pstat__label">[[STAT_3_LABEL]]</p>
+          </div>
+          <div class="trn-pstat">
+            <p class="trn-pstat__num">[[STAT_4_NUM]]</p>
+            <p class="trn-pstat__label">[[STAT_4_LABEL]]</p>
+          </div>
+        </div>
+
+        <figure class="trn-quote" data-reveal="up">
+          <blockquote>&ldquo;[[QUOTE]]&rdquo;</blockquote>
+          <figcaption>[[QUOTE_ATTR]]</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section class="trn-sec" id="testimonials">
+      <div class="trn-wrap trn-testi">
+        <h2 class="trn-h2">Why originators choose The Loan Atlas</h2>
+        <!-- Frame these accurately. If the quotes are about membership rather
+             than this specific training, say so here — do not imply they are
+             course reviews. -->
+        <p class="trn-prose">[[TESTIMONIALS_INTRO]]</p>
+
+        <div class="trn-testi__grid" data-reveal-stagger="70">
+          <!-- Photo optional: if no headshot exists, put initials in
+               .trn-tcard__photo instead of an <img>. Never invent a photo. -->
+          <div class="trn-tcard">
+            <div class="trn-tcard__head">
+              <span class="trn-tcard__photo">[[TESTI_1_INITIALS]]</span>
+              <span>
+                <p class="trn-tcard__name">[[TESTI_1_NAME]]</p>
+                <p class="trn-tcard__org">[[TESTI_1_ORG]]</p>
+              </span>
+            </div>
+            <p class="trn-tcard__quote">&ldquo;[[TESTI_1_QUOTE]]&rdquo;</p>
+          </div>
+          <div class="trn-tcard">
+            <div class="trn-tcard__head">
+              <span class="trn-tcard__photo"><img src="../assets/[[TESTI_2_PHOTO]]" alt="[[TESTI_2_NAME]]" loading="lazy" /></span>
+              <span>
+                <p class="trn-tcard__name">[[TESTI_2_NAME]]</p>
+                <p class="trn-tcard__org">[[TESTI_2_ORG]]</p>
+              </span>
+            </div>
+            <p class="trn-tcard__quote">&ldquo;[[TESTI_2_QUOTE]]&rdquo;</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ MEMBERSHIP UPSELL ============ -->
+    <section class="trn-sec trn-sec--tight">
+      <div class="trn-wrap">
+        <div class="trn-upsell" data-reveal="up">
+          <div class="trn-upsell__body">
+            <p class="trn-eyebrow">Or get everything</p>
+            <h2 class="trn-upsell__title">This masterclass is included free with membership</h2>
+            <p class="trn-upsell__text">[[UPSELL_TEXT]]</p>
+            <div class="trn-upsell__actions">
+              <a class="trn-btn" href="pricing.html">See membership options</a>
+              <a class="trn-link" href="consultation.html">Book a free coaching session</a>
+            </div>
+          </div>
+          <div class="trn-upsell__media">
+            <img src="../assets/hero image.png" alt="The Loan Atlas member platform" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="trn-sec trn-sec--tight" id="faq">
+      <div class="trn-wrap">
+        <h2 class="trn-h2">Frequently asked questions</h2>
+        <div class="trn-faq__grid">
+
+          <div class="trn-faq__list">
+            <details class="trn-faq__item">
+              <summary>[[FAQ_Q_1]]</summary>
+              <p class="trn-faq__body">[[FAQ_A_1]]</p>
+            </details>
+            <details class="trn-faq__item">
+              <summary>[[FAQ_Q_2]]</summary>
+              <p class="trn-faq__body">[[FAQ_A_2]]</p>
+            </details>
+            <details class="trn-faq__item">
+              <summary>[[FAQ_Q_3]]</summary>
+              <p class="trn-faq__body">[[FAQ_A_3]]</p>
+            </details>
+            <details class="trn-faq__item">
+              <summary>[[FAQ_Q_4]]</summary>
+              <p class="trn-faq__body">[[FAQ_A_4]]</p>
+            </details>
+            <details class="trn-faq__item">
+              <summary>[[FAQ_Q_5]]</summary>
+              <p class="trn-faq__body">[[FAQ_A_5]]</p>
+            </details>
+          </div>
+
+          <aside class="trn-aside">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+            <p class="trn-aside__t">More questions</p>
+            <p>Talk to a coach before you buy — no pitch, no obligation.</p>
+            <hr class="trn-aside__hr" />
+            <p><a class="trn-link" href="contact.html">Contact us</a></p>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FINAL CTA (dark) ============ -->
+    <section class="trn-sec trn-sec--dark">
+      <div class="trn-wrap trn-wrap--narrow trn-close">
+        <h2 class="trn-h2">[[CLOSE_HEADING]]</h2>
+        <p class="trn-lead">[[CLOSE_SUB]]</p>
+        <div class="trn-price">
+          <span class="trn-price__now">[[PRICE]]</span>
+          <span class="trn-price__note">one-time</span>
+        </div>
+        <a class="trn-btn" href="[[CHECKOUT_URL]]">Get Instant Access</a>
+        <p class="trn-close__fine">[[CLOSE_FINE]]</p>
+      </div>
+    </section>
+
+  </main>
+
+<!-- TLA_FOOTER -->
+
+  <script src="../js/nav.js"></script>
+  <script src="../js/animations.js" defer></script>
+
+</body>
+</html>

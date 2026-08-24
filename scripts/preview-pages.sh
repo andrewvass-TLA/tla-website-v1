@@ -48,6 +48,9 @@ for partial in "$TLA"/pages/*.php; do
 
   title=$(perl -0ne "if(/\\\$tla_title\\s*=\\s*'((?:[^'\\\\]|\\\\.)*)'/s){print \$1; exit}" "$partial")
   active=$(perl -0ne "if(/\\\$tla_active\\s*=\\s*'((?:[^'\\\\]|\\\\.)*)'/s){print \$1; exit}" "$partial")
+  # Page-family stylesheets the partial opted into, so the preview loads the
+  # same CSS as production (see $tla_styles in tla-fullhtml-template.php).
+  extra_css=$(perl -0ne 'if(/\$tla_styles\s*=\s*array\(([^)]*)\)/s){ my $a=$1; while($a=~/'\''([A-Za-z0-9._-]+\.css)'\''/g){ print "$1\n" } }' "$partial")
 
   # Render the shared header with THIS page's active key so the highlight matches prod.
   HDR=$(mktemp)
@@ -59,7 +62,13 @@ for partial in "$TLA"/pages/*.php; do
     echo "<title>PREVIEW — ${title:-$slug}</title>"
     echo '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>'
     echo '<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&family=Antonio:wght@400;500;600;700&display=swap" rel="stylesheet">'
-    echo "<link rel=\"stylesheet\" href=\"$BASE/css/styles.css\"><link rel=\"stylesheet\" href=\"$BASE/css/chrome.css\">"
+    # Order matches tla-fullhtml-template.php: styles → page-family → chrome.
+    echo "<link rel=\"stylesheet\" href=\"$BASE/css/styles.css\">"
+    while IFS= read -r css; do
+      [ -n "$css" ] || continue
+      echo "<link rel=\"stylesheet\" href=\"$BASE/css/$css\">"
+    done <<< "$extra_css"
+    echo "<link rel=\"stylesheet\" href=\"$BASE/css/chrome.css\">"
     echo '</head><body>'
 
     # Body: strip the PHP header block, inline header/footer from temp files

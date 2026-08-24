@@ -1,0 +1,1441 @@
+/* ============================================================================
+   trainings.css — Individual Training course pages (.trn-* namespace)
+
+   Sells ONE recorded training for ONE price. Modeled on a Coursera course
+   page: information-dense and credibility-led, with a sticky tabbed section
+   nav — NOT a linear long-form sales funnel.
+
+   Loaded AFTER styles.css (for the design tokens) and BEFORE chrome.css (so
+   the fixed site header always wins). Wired up via the $tla_styles mechanism
+   in tla-fullhtml-template.php; convert-pages.sh detects the <link> tag
+   automatically and emits it.
+
+   Shared across every page in public/trainings/ — deliberately NOT an inline
+   <style> block, because these pages are copy-and-filled per product and
+   inlining would re-duplicate the whole suite with every new training.
+
+   Brand carryovers only (per .claude/DESIGN.md fresh-page rules): Midnight
+   Slate, brass, Manrope + Inter, the logo. Layout / card shapes / motion /
+   FAQ treatment are all built fresh here.
+
+   Contents
+     1.  Page shell, section rhythm, typography
+     2.  Buttons + price lockup
+     3.  Hero (light)                    .trn-hero
+     4.  Sticky tab nav                  .trn-nav      <- the new mechanism
+     5.  About + skills pills            .trn-about / .trn-pill
+     5b. Social proof (logos + pitch)    .trn-social
+     6.  Curriculum chapter rows         .trn-curric
+     7.  What's included + value stack   .trn-incl / .trn-stack
+     8.  Instructors                     .trn-faculty / .trn-person
+     9.  Faculty credibility + quote     .trn-proof / .trn-quote
+     10. Testimonials (4-up, avatars)    .trn-testi
+     11. Membership upsell               .trn-upsell
+     12. FAQ                             .trn-faq
+     13. Final CTA                       .trn-close
+     14. Reduced motion
+   ========================================================================== */
+
+
+/* -- 1. Page shell, section rhythm, typography --------------------------- */
+
+.trn {
+  /* Slightly darker page ground so the white section cards read as raised.
+     Modeled on the LinkedIn Learning course page. */
+  background: #eceff1;
+  /* Height of the sticky sub-nav. Feeds the anchor-offset calc below so every
+     in-page link clears BOTH the fixed 72px header and this bar. No other
+     page in the repo stacks two sticky bars, hence the explicit token. */
+  --trn-nav-h: 56px;
+}
+
+/* Sections are white cards on the darker ground, evenly spaced. The wrap
+   supplies the gutter; the card supplies the padding. Per DESIGN.md the
+   fresh-page rules override the house light/dark section rhythm on a page
+   built to an external reference. */
+.trn-sec { padding-block: 0; }
+.trn-sec + .trn-sec { margin-top: clamp(16px, 1.8vw, 24px); }
+.trn-sec--tight { padding-block: 0; }
+
+/* The white card itself. */
+.trn-card {
+  background: var(--surface-container-lowest);
+  border: 1px solid rgba(2, 28, 54, 0.07);
+  border-radius: var(--radius-lg);
+  padding: clamp(24px, 3vw, 40px);
+}
+/* Accent card: subtle brass-tinted fill for the one block that should carry
+   more weight than its neighbours. */
+.trn-card--accent {
+  background: linear-gradient(180deg, #fbf7ee 0%, #ffffff 62%);
+  border-color: rgba(201, 150, 28, 0.28);
+}
+
+/* Body wrapper: clears the sticky nav above and the footer below. */
+.trn-body { padding-block: clamp(20px, 2.4vw, 32px) clamp(32px, 4vw, 56px); }
+
+/* Every scroll target clears header + sticky nav. Extends the existing
+   `scroll-margin-top: calc(var(--header-h) + 24px)` convention from
+   custom-sales-pages/acm.html. html{scroll-behavior:smooth} is already global. */
+.trn-sec[id],
+.trn-anchor {
+  scroll-margin-top: calc(var(--header-h) + var(--trn-nav-h) + 24px);
+}
+
+/* NOTE: this page family no longer uses dark bands — every section is a
+   white card on a light ground. Use .trn-card--accent for emphasis. */
+
+.trn-wrap {
+  max-width: 1080px;
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+.trn-wrap--narrow { max-width: 780px; }
+.trn-center { text-align: center; }
+
+.trn-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 0;
+}
+
+
+.trn-h1 {
+  font-family: var(--font-display);
+  /* Compact per the reference — the hero is an information block, not a
+     billboard. */
+  font-size: clamp(1.75rem, 1.35rem + 1.7vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  margin: 8px 0 0;
+  color: var(--primary);
+}
+.trn-h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.625rem, 1.25rem + 1.6vw, 2.25rem);
+  font-weight: 800;
+  line-height: 1.16;
+  letter-spacing: -0.022em;
+  margin: 10px 0 0;
+  color: var(--primary);
+}
+
+
+.trn-h3 {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0;
+  color: var(--primary);
+}
+
+
+/* Brass-gradient emphasis inside a heading. */
+.trn-gold {
+  background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.trn-lead {
+  font-family: var(--font-body);
+  font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem);
+  line-height: 1.6;
+  color: var(--on-surface-variant);
+  margin: 14px 0 0;
+}
+
+
+.trn-prose {
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.68;
+  color: var(--on-surface-variant);
+  margin: 14px 0 0;
+  max-width: 68ch;
+}
+
+
+
+/* -- 2. Buttons + price lockup ------------------------------------------- */
+
+.trn-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  text-decoration: none;
+  padding: 15px 30px;
+  border: 0;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+  color: #021c36;
+  box-shadow: 0 8px 22px -6px rgba(201, 150, 28, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.trn-btn:hover {
+  background: linear-gradient(135deg, #b3841a 0%, #d6ae47 50%, #f6c95c 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -8px rgba(201, 150, 28, 0.58);
+}
+.trn-btn:focus-visible {
+  outline: 3px solid var(--brass);
+  outline-offset: 3px;
+}
+.trn-btn--block { width: 100%; }
+.trn-btn--sm { font-size: 0.875rem; padding: 10px 20px; }
+
+/* Quiet secondary link — the membership cross-sell must never compete with
+   the buy button. */
+.trn-link {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--on-surface-variant);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+  transition: color 0.15s ease;
+}
+.trn-link:hover { color: var(--primary); }
+
+
+
+.trn-price {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.trn-price__now {
+  font-family: var(--font-display);
+  font-size: clamp(2.25rem, 1.8rem + 2vw, 3rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--primary);
+}
+.trn-price__note {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--on-surface-variant);
+}
+
+
+/* Struck compare-at price. The rule is drawn as a pseudo-element rather than
+   line-through so its weight and angle stay consistent across browsers. */
+.trn-price__was {
+  position: relative;
+  font-family: var(--font-display);
+  font-size: 1.375rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--outline);
+}
+.trn-price__was::after {
+  content: '';
+  position: absolute;
+  left: -3px;
+  right: -3px;
+  top: 48%;
+  height: 2px;
+  background: currentColor;
+  transform: rotate(-9deg);
+}
+
+
+
+/* -- 3. Hero (light, Coursera-style) ------------------------------------- */
+
+.trn-hero {
+  position: relative;
+  overflow: hidden;
+  /* White hero, sitting above the darker body ground. */
+  background: var(--surface-container-lowest);
+  padding-block: clamp(28px, 3.4vw, 44px) clamp(30px, 3.6vw, 46px);
+}
+/* Faint brass watermark arc bleeding off the right edge. Decorative only. */
+.trn-hero::after {
+  content: '';
+  position: absolute;
+  top: -180px;
+  right: -220px;
+  width: 720px;
+  height: 720px;
+  border-radius: 50%;
+  border: 84px solid rgba(201, 150, 28, 0.045);
+  pointer-events: none;
+}
+@media (max-width: 899px) {
+  .trn-hero::after {
+    width: 440px;
+    height: 440px;
+    border-width: 52px;
+    right: -210px;
+    top: -140px;
+  }
+}
+
+/* Two-column: copy left, square key art right. Collapses to one column and
+   drops the art below the copy under 900px. */
+.trn-hero__grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  /* The 16:9 preview is far shorter than a square, so let it take more width
+     or the media column reads as under-filled next to the headline. */
+  .trn-hero__grid { grid-template-columns: 1fr 1.05fr; }
+}
+.trn-hero__in {
+  position: relative;
+  z-index: 1;
+  max-width: 640px;
+}
+
+/* Course-preview player. 16:9 frame holding a poster image plus a play
+   affordance; swap the inner <img> for the real embed when there is one (see
+   the commented Wistia block in the template). */
+.trn-hero__video {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  border: 1px solid rgba(2, 28, 54, 0.1);
+  box-shadow: 0 20px 48px -14px rgba(2, 28, 54, 0.3);
+  background: var(--primary);
+}
+.trn-hero__video img,
+.trn-hero__video iframe,
+.trn-hero__video wistia-player {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: cover;
+}
+
+/* Play overlay. A <button> so it is focusable and announced; it becomes the
+   real play trigger once an embed is wired in. */
+.trn-hero__play {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background: linear-gradient(180deg, rgba(2, 28, 54, 0.08) 0%, rgba(2, 28, 54, 0.42) 100%);
+  transition: background 0.2s ease;
+}
+.trn-hero__play:hover { background: linear-gradient(180deg, rgba(2, 28, 54, 0.16) 0%, rgba(2, 28, 54, 0.5) 100%); }
+.trn-hero__play:focus-visible {
+  outline: 3px solid var(--brass-bright);
+  outline-offset: -4px;
+}
+.trn-hero__play span {
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+  box-shadow: 0 10px 30px rgba(201, 150, 28, 0.45);
+  transition: transform 0.2s ease;
+}
+.trn-hero__play:hover span { transform: scale(1.06); }
+.trn-hero__play svg {
+  width: 24px;
+  height: 24px;
+  color: var(--primary);
+  /* Nudge the triangle so it reads as optically centred in the circle. */
+  margin-left: 3px;
+}
+
+/* "Preview" pill. Top-RIGHT: the 16:9 poster art has a red REPLAY badge baked
+   into its top-left corner, which this would otherwise sit on top of. */
+.trn-hero__vlabel {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  z-index: 1;
+  padding: 5px 11px;
+  border-radius: var(--radius-full);
+  background: rgba(2, 28, 54, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--brass-bright);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trn-hero__play,
+  .trn-hero__play span { transition: none; }
+  .trn-hero__play:hover span { transform: none; }
+}
+/* Hero eyebrow — replaces the brand logo that used to sit above the H1. */
+.trn-hero__eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 0;
+}
+.trn-hero__sub {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--on-surface-variant);
+  margin: 14px 0 0;
+  max-width: 62ch;
+}
+
+/* Compact fact row under the H1. */
+.trn-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin: 12px 0 0;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--on-surface-variant);
+}
+.trn-meta span { white-space: nowrap; }
+.trn-meta span:not(:last-child)::after {
+  content: '·';
+  margin-left: 10px;
+  color: var(--outline);
+}
+/* Narrow screens: the facts stack, so a trailing dot would dangle. */
+@media (max-width: 559px) {
+  .trn-meta span:not(:last-child)::after { content: none; }
+  .trn-meta { gap: 4px 12px; }
+}
+
+/* Stacked instructor avatars + count. */
+.trn-avatars {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 14px 0 0;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  color: var(--on-surface-variant);
+}
+.trn-avatars__stack { display: flex; }
+.trn-avatars__stack img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: top center;
+  border: 2px solid #fff;
+  background: var(--surface-container);
+}
+.trn-avatars__stack img + img { margin-left: -10px; }
+
+/* Caption under the hero media, as in the reference. */
+.trn-hero__cap {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: var(--on-surface-variant);
+  margin: 10px 0 0;
+  text-align: center;
+}
+.trn-hero__cap strong { color: var(--on-surface); font-weight: 600; }
+
+/* Small label above the price/CTA row, naming what the purchase delivers. */
+.trn-hero__gets {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: -0.005em;
+  color: var(--primary);
+  margin: clamp(24px, 3vw, 32px) 0 0;
+}
+/* The label owns the top gap, so the row below it sits tight. */
+.trn-hero__gets + .trn-hero__buy { margin-top: 10px; }
+
+/* Price sits to the LEFT of the button. */
+.trn-hero__buy {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  flex-wrap: wrap;
+  margin-top: clamp(24px, 3vw, 32px);
+}
+/* "Included with [logo] · Learn more" — an inline brand lockup rather than a
+   text label, so the membership reads as a named product. */
+.trn-hero__incl {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  color: var(--on-surface-variant);
+  margin: 18px 0 0;
+}
+/* Brand lockup: logomark + live text. The full wordmark asset carries a
+   tagline that turns to mush below ~28px, and 28px is too tall to sit inline
+   in a 15px line — so the mark is the image and the name is real type, which
+   stays crisp at any size and is selectable/readable by assistive tech. */
+.trn-hero__incl-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.trn-hero__incl-logo {
+  height: 20px;
+  width: auto;
+  display: block;
+}
+.trn-hero__incl-name {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+.trn-hero__incl-sep {
+  color: var(--outline-variant);
+  user-select: none;
+}
+
+
+/* -- 4. Sticky tab nav (the new mechanism) ------------------------------- */
+
+/* Sits directly beneath the fixed 72px site header (z-index 50 in chrome.css).
+   z-index 40 is the settled band for "sticky under the header" — the same
+   value the .mm-bar pattern uses on the custom sales pages. */
+.trn-nav {
+  position: sticky;
+  top: var(--header-h);
+  z-index: 40;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: saturate(180%) blur(10px);
+  -webkit-backdrop-filter: saturate(180%) blur(10px);
+  border-bottom: 1px solid var(--outline-variant);
+}
+.trn-nav__in {
+  max-width: 1080px;
+  margin-inline: auto;
+  padding-inline: 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+/* Collapsed state: title + Enroll button fade in once the hero is passed.
+   Opacity/transform only — never display — so the tab rail never reflows. */
+/* The title occupies its slot from the start (only its opacity animates), so
+   the tab rail keeps the same left-aligned position whether the bar is
+   collapsed or not — it must not drift to centre when the title is invisible. */
+.trn-nav__title {
+  display: none;
+  min-width: 0;
+  max-width: 30%;
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.trn-nav__cta {
+  margin-left: auto;
+  flex-shrink: 0;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-4px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.trn-nav.is-stuck .trn-nav__cta {
+  opacity: 1;
+  pointer-events: auto;
+  transform: none;
+}
+@media (min-width: 900px) {
+  .trn-nav__title { display: block; }
+  .trn-nav.is-stuck .trn-nav__title { opacity: 1; }
+}
+
+/* Tab rail. Horizontal overflow-scroll on narrow screens using the
+   negative-gutter bleed technique from .wi2-tabs__rail. */
+.trn-nav__rail {
+  display: flex;
+  align-items: stretch;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  min-width: 0;
+  /* Claim the free space so the tabs stay left-aligned; without this the
+     CTA's margin-left:auto would centre the rail while the title is hidden. */
+  flex: 1 1 auto;
+}
+@media (max-width: 899px) {
+  .trn-nav__in { gap: 12px; }
+  .trn-nav__rail {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin-inline: -24px;
+    padding-inline: 24px;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .trn-nav__rail::-webkit-scrollbar { display: none; }
+}
+
+.trn-nav__tab {
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  padding: 17px 14px;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--on-surface-variant);
+  text-decoration: none;
+  border-bottom: 3px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.trn-nav__tab:hover { color: var(--primary); }
+.trn-nav__tab:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: -3px;
+  border-radius: var(--radius);
+}
+/* Active tab — brass underline, matching the reference's underline treatment. */
+.trn-nav__tab.is-active {
+  color: var(--primary);
+  border-bottom-color: var(--brass);
+}
+
+
+/* -- 5. About + skills pills -------------------------------------------- */
+
+.trn-about__grid {
+  display: grid;
+  gap: clamp(28px, 4vw, 56px);
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .trn-about__grid { grid-template-columns: 1.35fr 1fr; }
+}
+
+.trn-sub {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0 0 12px;
+}
+.trn-about__block + .trn-about__block { margin-top: clamp(26px, 3vw, 38px); }
+
+/* "By the end you'll be able to" outcome list. Brass check + text, two-column
+   on wide screens. Sized explicitly — an unsized inline <svg> renders at its
+   default box, not the 22px this needs. */
+.trn-learn__list {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.trn-learn__list li {
+  display: grid;
+  grid-template-columns: 22px 1fr;
+  gap: 12px;
+  align-items: start;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--on-surface-variant);
+}
+.trn-learn__list svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Skills pills — values ported from the .oh-chip component on the
+   office-hours pages, which is already the neutral grey wrapping pill this
+   needs. It lives page-local there, so it is copied rather than shared. */
+.trn-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.trn-pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 600;
+  padding: 9px 16px;
+  border-radius: var(--radius-full);
+  background: var(--surface-container-low);
+  color: var(--on-surface);
+  border: 1px solid var(--outline-variant);
+}
+
+/* "Details to know" — small icon + label + sub rows */
+.trn-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 26px 44px;
+  margin-top: 18px;
+}
+.trn-detail { max-width: 240px; }
+.trn-detail svg {
+  width: 22px;
+  height: 22px;
+  color: var(--brass);
+  display: block;
+  margin-bottom: 10px;
+}
+.trn-detail__t {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+}
+.trn-detail__s {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--on-surface-variant);
+  margin: 4px 0 0;
+}
+
+
+/* -- 5b. Social-proof card (membership pitch + employer logos) ---------- */
+
+/* Bespoke to this page family — deliberately NOT the site-wide .trust
+   marquee. A bordered card: pitch copy + CTA link on the left, a static
+   logo grid on the right. Static (no animation) so the logos read as
+   evidence rather than decoration. */
+/* Sits inside a .trn-card, so it draws no chrome of its own — a bordered box
+   inside a bordered card reads as a double frame. */
+.trn-social {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(20px, 2.6vw, 36px);
+  align-items: center;
+}
+@media (min-width: 820px) {
+  .trn-social { grid-template-columns: 1.15fr 1fr; }
+}
+.trn-social__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 1.05rem + 0.7vw, 1.5rem);
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.018em;
+  color: var(--primary);
+  margin: 0;
+  max-width: 26ch;
+}
+/* Inline (not inline-flex) so a wrapped label keeps the arrow tucked against
+   the last word instead of stranding it at the far right of the column. */
+.trn-social__cta {
+  display: inline;
+  margin-top: 16px;
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--brass);
+  text-decoration: none;
+  transition: color 0.15s ease;
+}
+.trn-social__cta-wrap { margin: 16px 0 0; }
+/* Keeps the final word and the chevron together on one line. */
+.trn-nowrap { white-space: nowrap; }
+.trn-social__cta:hover { color: var(--primary); }
+.trn-social__cta svg {
+  /* inline-block, not the default inline: as a bare inline replaced element
+     the chevron gets pushed to its own line even inside a nowrap span. */
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  vertical-align: -2px;
+  margin-left: 5px;
+  transition: transform 0.15s ease;
+}
+.trn-social__cta:hover svg { transform: translateX(3px); }
+
+/* Logo grid. Each cell caps BOTH height and width, because these logos run
+   from 2.1:1 to 6.5:1 — height alone would let the wide ones dominate. */
+.trn-social__logos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(18px, 2.4vw, 30px) clamp(14px, 2vw, 26px);
+  align-items: center;
+  justify-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.trn-social__logos li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+.trn-social__logos img {
+  display: block;
+  max-height: 28px;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  /* Desaturate so the wall of brand colors doesn't fight the page. */
+  filter: grayscale(100%);
+  opacity: 0.72;
+  transition: filter 0.2s ease, opacity 0.2s ease;
+}
+.trn-social:hover .trn-social__logos img {
+  filter: grayscale(0%);
+  opacity: 1;
+}
+@media (max-width: 479px) {
+  .trn-social__logos { grid-template-columns: repeat(2, 1fr); }
+  .trn-social__logos img { max-height: 24px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .trn-social__cta,
+  .trn-social__cta svg,
+  .trn-social__logos img { transition: none; }
+  .trn-social__cta:hover svg { transform: none; }
+}
+
+
+/* -- 6. Curriculum chapter rows ----------------------------------------- */
+
+.trn-curric__list {
+  margin-top: clamp(24px, 3vw, 34px);
+  background: var(--surface-container-lowest);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+}
+/* Native <details> — zero JavaScript. */
+.trn-chapter + .trn-chapter { border-top: 1px solid var(--outline-variant); }
+.trn-chapter > summary {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px clamp(18px, 2.4vw, 28px);
+  cursor: pointer;
+  list-style: none;
+}
+.trn-chapter > summary::-webkit-details-marker { display: none; }
+.trn-chapter > summary:hover { background: var(--surface-container-low); }
+.trn-chapter > summary:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: -2px;
+}
+.trn-chapter__n {
+  flex-shrink: 0;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--surface-container);
+  color: var(--on-surface-variant);
+  font-family: var(--font-display);
+  font-size: 0.8125rem;
+  font-weight: 700;
+}
+.trn-chapter[open] .trn-chapter__n {
+  background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+  color: #021c36;
+}
+.trn-chapter__t {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.35;
+  color: var(--primary);
+  margin: 0;
+}
+.trn-chapter > summary::after {
+  content: '';
+  flex-shrink: 0;
+  width: 9px;
+  height: 9px;
+  border-right: 2px solid var(--on-surface-variant);
+  border-bottom: 2px solid var(--on-surface-variant);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+.trn-chapter[open] > summary::after { transform: rotate(-135deg); }
+.trn-chapter__body {
+  padding: 0 clamp(18px, 2.4vw, 28px) 20px calc(clamp(18px, 2.4vw, 28px) + 46px);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--on-surface-variant);
+  margin: 0;
+  max-width: 74ch;
+}
+@media (max-width: 599px) {
+  .trn-chapter__body { padding-left: clamp(18px, 2.4vw, 28px); }
+}
+
+
+/* -- 7. What's included + value stack (dark) ---------------------------- */
+
+.trn-incl__grid {
+  display: grid;
+  gap: clamp(28px, 4vw, 52px);
+  align-items: start;
+  margin-top: clamp(24px, 3vw, 34px);
+}
+@media (min-width: 900px) {
+  .trn-incl__grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* Included-items list. Was glass-on-dark; now a plain light list since every
+   section is a white card. */
+.trn-stack {
+  margin-top: 4px;
+}
+.trn-stack__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 15px;
+  border-bottom: 1px solid var(--outline-variant);
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--on-surface-variant);
+}
+.trn-stack__row strong { color: var(--on-surface); font-weight: 700; }
+.trn-stack__row:first-child { padding-top: 0; }
+.trn-stack__val {
+  flex-shrink: 0;
+  font-weight: 700;
+  color: var(--brass);
+  font-variant-numeric: tabular-nums;
+}
+.trn-stack__total {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 16px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+.trn-stack__total .trn-stack__val {
+  position: relative;
+  font-size: 1.0625rem;
+  color: var(--outline);
+}
+.trn-stack__total .trn-stack__val::after {
+  content: '';
+  position: absolute;
+  left: -3px;
+  right: -3px;
+  top: 50%;
+  height: 2px;
+  background: currentColor;
+  transform: rotate(-7deg);
+}
+.trn-stack__pay {
+  margin: 18px 0 0;
+  padding-top: 18px;
+  border-top: 1px solid rgba(201, 150, 28, 0.35);
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+.trn-stack__pay strong {
+  font-size: 1.75rem;
+  line-height: 1;
+  color: var(--primary);
+}
+
+/* Brass check list (used in the includes column) */
+.trn-checks {
+  list-style: none;
+  margin: 16px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+.trn-checks li {
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 12px;
+  align-items: start;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--on-surface-variant);
+}
+.trn-checks svg { width: 20px; height: 20px; margin-top: 2px; flex-shrink: 0; }
+
+
+/* -- 8. Instructors ----------------------------------------------------- */
+
+.trn-faculty__grid {
+  display: grid;
+  gap: 16px;
+  margin-top: clamp(24px, 3vw, 34px);
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 860px) {
+  .trn-faculty__grid { grid-template-columns: repeat(4, 1fr); }
+}
+.trn-person {
+  text-align: center;
+  background: var(--surface-container-lowest);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-xl);
+  padding: 22px 16px 18px;
+}
+.trn-person__photo {
+  width: 84px;
+  height: 84px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  padding: 3px;
+  background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+}
+.trn-person__photo > span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: var(--primary);
+}
+.trn-person__photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.trn-person__name {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+}
+.trn-person__role {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 6px 0 0;
+}
+.trn-person__org {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  line-height: 1.4;
+  color: var(--on-surface-variant);
+  margin: 3px 0 0;
+}
+/* Short bio under the org line. Left-aligned even though the card is centred —
+   a centred paragraph of this length is hard to read. */
+.trn-person__bio {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--on-surface-variant);
+  text-align: left;
+  margin: 14px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--outline-variant);
+}
+
+
+/* -- 9. Faculty credibility + pull-quote (dark) ------------------------ */
+
+.trn-proof__stats {
+  display: grid;
+  gap: 20px;
+  margin-top: clamp(24px, 3vw, 34px);
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 780px) {
+  .trn-proof__stats { grid-template-columns: repeat(4, 1fr); }
+}
+.trn-pstat { text-align: center; }
+.trn-pstat__num {
+  font-family: var(--font-display);
+  font-size: clamp(1.875rem, 1.5rem + 1.3vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--brass);
+  margin: 0;
+}
+.trn-pstat__label {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--on-surface-variant);
+  margin: 9px 0 0;
+}
+
+.trn-quote {
+  max-width: 760px;
+  margin: clamp(26px, 3.2vw, 40px) auto 0;
+  padding: 22px 26px;
+  background: var(--surface-container-low);
+  border-left: 3px solid var(--brass);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+  text-align: left;
+}
+.trn-quote blockquote {
+  font-family: var(--font-display);
+  font-size: clamp(1.0625rem, 1rem + 0.5vw, 1.25rem);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: -0.012em;
+  color: var(--primary);
+  margin: 0;
+}
+.trn-quote figcaption {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin: 14px 0 0;
+}
+
+
+/* -- 10. Testimonials — 4-up compact cards with inline avatars ---------- */
+
+.trn-testi__grid {
+  display: grid;
+  gap: 16px;
+  margin-top: clamp(24px, 3vw, 34px);
+  grid-template-columns: 1fr;
+}
+@media (min-width: 620px) {
+  .trn-testi__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1000px) {
+  .trn-testi__grid { grid-template-columns: repeat(4, 1fr); }
+}
+.trn-tcard {
+  background: var(--surface-container-lowest);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-lg);
+  padding: 20px;
+}
+.trn-tcard__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.trn-tcard__photo {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  display: grid;
+  place-items: center;
+  /* Doubles as the ground behind transparent cutout headshots AND as the
+     initials chip when no photo exists. */
+  background: var(--surface-container);
+  color: var(--on-surface-variant);
+  font-family: var(--font-display);
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+.trn-tcard__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+.trn-tcard__name {
+  font-family: var(--font-display);
+  font-size: 0.9375rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 0;
+}
+.trn-tcard__org {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  line-height: 1.35;
+  color: var(--on-surface-variant);
+  margin: 2px 0 0;
+}
+.trn-tcard__quote {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  color: var(--on-surface-variant);
+  margin: 14px 0 0;
+}
+
+
+/* -- 11. Membership upsell — one wide card ----------------------------- */
+
+.trn-upsell {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+  background: linear-gradient(160deg, #060e1c 0%, #021c36 55%, #071e39 100%);
+  box-shadow: 0 18px 44px -16px rgba(2, 28, 54, 0.45);
+}
+/* Brass top edge, drawn as a pseudo-element (border-image paints unevenly
+   against a single rounded edge). */
+.trn-upsell::before {
+  content: '';
+  position: absolute;
+  inset-inline: 0;
+  top: 0;
+  height: 4px;
+  background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+  z-index: 2;
+}
+@media (min-width: 820px) {
+  .trn-upsell { grid-template-columns: 1.25fr 0.75fr; }
+}
+.trn-upsell__body {
+  padding: clamp(26px, 3.4vw, 44px);
+  position: relative;
+  z-index: 1;
+}
+.trn-upsell__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.375rem, 1.1rem + 1vw, 1.75rem);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin: 10px 0 0;
+}
+.trn-upsell__text {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.76);
+  margin: 12px 0 0;
+  max-width: 46ch;
+}
+.trn-upsell__actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 22px;
+}
+.trn-upsell__media {
+  position: relative;
+  min-height: 180px;
+}
+.trn-upsell__media img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: left center;
+}
+/* Fade the image into the navy so there is no hard seam. */
+.trn-upsell__media::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, #021c36 0%, rgba(2, 28, 54, 0.55) 38%, rgba(2, 28, 54, 0) 100%);
+}
+@media (max-width: 819px) {
+  .trn-upsell__media { min-height: 150px; order: -1; }
+  .trn-upsell__media::after {
+    background: linear-gradient(180deg, rgba(2, 28, 54, 0) 25%, rgba(2, 28, 54, 0.85) 78%, #021c36 100%);
+  }
+}
+
+
+/* -- 12. FAQ ----------------------------------------------------------- */
+
+/* Flat divider rows (the reference uses hairlines, not boxed cards).
+   Native <details>/<summary> — zero JavaScript. */
+.trn-faq__grid {
+  display: grid;
+  gap: clamp(24px, 4vw, 48px);
+  align-items: start;
+}
+@media (min-width: 900px) {
+  .trn-faq__grid { grid-template-columns: 1.6fr 1fr; }
+}
+.trn-faq__list { margin-top: 6px; }
+.trn-faq__item { border-bottom: 1px solid var(--outline-variant); }
+.trn-faq__item:first-child { border-top: 1px solid var(--outline-variant); }
+.trn-faq__item summary {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 0;
+  cursor: pointer;
+  list-style: none;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--primary);
+  transition: color 0.15s ease;
+}
+.trn-faq__item summary::-webkit-details-marker { display: none; }
+.trn-faq__item summary:hover { color: var(--brass); }
+.trn-faq__item summary:focus-visible {
+  outline: 2px solid var(--brass);
+  outline-offset: 2px;
+  border-radius: var(--radius);
+}
+/* Chevron leads on the left, as in the reference. */
+.trn-faq__item summary::before {
+  content: '';
+  flex-shrink: 0;
+  width: 9px;
+  height: 9px;
+  margin-top: 6px;
+  border-right: 2px solid var(--brass);
+  border-bottom: 2px solid var(--brass);
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+.trn-faq__item[open] summary::before { transform: rotate(-135deg); }
+.trn-faq__item[open] summary { color: var(--brass); }
+.trn-faq__body {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--on-surface-variant);
+  padding: 0 0 20px 25px;
+  margin: 0;
+  max-width: 68ch;
+}
+
+/* "More questions" aside */
+.trn-aside {
+  background: var(--surface-container-lowest);
+  border: 1px solid var(--outline-variant);
+  border-radius: var(--radius-xl);
+  padding: 24px;
+}
+.trn-aside svg { width: 22px; height: 22px; color: var(--brass); display: block; }
+.trn-aside__t {
+  font-family: var(--font-display);
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 12px 0 0;
+}
+.trn-aside__hr {
+  border: 0;
+  border-top: 1px solid var(--outline-variant);
+  margin: 18px 0;
+}
+.trn-aside p {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--on-surface-variant);
+  margin: 8px 0 0;
+}
+
+
+/* -- 13. Final CTA ----------------------------------------------------- */
+
+.trn-close { text-align: center; }
+.trn-close .trn-price { justify-content: center; margin-top: 18px; }
+.trn-close .trn-btn { margin-top: 22px; }
+.trn-close__fine {
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  color: var(--on-surface-variant);
+  margin: 16px 0 0;
+}
+
+
+/* -- 14. Reduced motion ------------------------------------------------ */
+
+/* DESIGN.md: every new motion needs a reduced-motion fallback. The sticky nav
+   stays fully functional — only its transitions are removed. */
+@media (prefers-reduced-motion: reduce) {
+  .trn-nav__title,
+  .trn-nav__cta,
+  .trn-nav__tab,
+  .trn-btn,
+  .trn-link,
+  .trn-chapter > summary::after,
+  .trn-faq__item summary,
+  .trn-faq__item summary::before {
+    transition: none;
+  }
+  .trn-btn:hover { transform: none; }
+  .trn-nav__cta { transform: none; }
+}

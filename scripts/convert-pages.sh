@@ -63,6 +63,27 @@ convert() {
     printf '$tla_title       = %s;\n' "$(php_str "$title")"
     printf '$tla_description = %s;\n' "$(php_str "$desc")"
     printf '$tla_active      = %s;\n' "$(php_str "$active")"
+
+    # Page-family stylesheets: any css/*.css the source links other than the
+    # two the template always loads (styles.css, chrome.css). The template
+    # renders these between those two. Lets a group of pages share one
+    # stylesheet instead of each inlining a copy of it.
+    local extra_css
+    extra_css=$(perl -0ne 'while (/<link[^>]+href="(?:\.\.\/)*css\/([A-Za-z0-9._-]+\.css)"/g) {
+        next if $1 eq "styles.css" || $1 eq "chrome.css";
+        print "$1\n";
+      }' "$file" | awk '!seen[$0]++')
+    if [ -n "$extra_css" ]; then
+      printf '$tla_styles      = array('
+      local first=1
+      while IFS= read -r css; do
+        [ -n "$css" ] || continue
+        [ $first -eq 1 ] || printf ', '
+        printf '%s' "$(php_str "$css")"
+        first=0
+      done <<< "$extra_css"
+      printf ');\n'
+    fi
     echo "?>"
   } > "$tmp"
 
@@ -146,6 +167,7 @@ rewrite() {
   perl -0pi -e 's/href="terms-of-use\.html"/href="\/terms-of-use\/"/g'          "$f"
   perl -0pi -e 's/href="end-user-agreement\.html"/href="\/end-user-agreement\/"/g' "$f"
   perl -0pi -e 's/href="platinum-marketing\.html"/href="\/platinum-marketing\/"/g' "$f"
+  perl -0pi -e 's/href="contact\.html"/href="\/contact\/"/g'             "$f"
   perl -0pi -e 's/href="blog\.html"/href="\/blog\/"/g'                   "$f"
   perl -0pi -e 's/href="blog-post\.html"/href="\/blog-post\/"/g'         "$f"
   perl -0pi -e 's/href="blog-archive\.html"/href="\/blog-archive\/"/g'   "$f"
@@ -189,9 +211,17 @@ convert terms-of-use            terms-of-use                  ""
 convert end-user-agreement      end-user-agreement            ""
 convert ai-originator-masterplan ai-originator-masterplan     ""
 convert perfect-loan-process    perfect-loan-process          ""
+# Draft revision of the PLP page, staged for review at /plp-draft/. The live
+# page above is unchanged; fold the draft back in and drop this line once approved.
+convert plp-draft               plp-draft                     ""
 convert 5-scripts               5-scripts-for-dominating-point-of-sale  ""
 convert contact                 contact                       ""
 convert platinum-marketing      platinum-marketing            ""
+# Individual training sales pages (public/trainings/, .trn-* suite). One page
+# per training sold à la carte. public/trainings/_template.html is the
+# copy-and-fill source and is deliberately NOT listed here (never deploys).
+# Staged on a draft slug for review; move to its real slug once approved.
+convert trainings/2026-mid-year-playbook-masterclass standalone-product-draft ""
 # NOTE: blog/blog-post/blog-archive are NOT fullhtml partials — the live blog
 # is rendered by home.php/single.php/archive.php (WP post loop) with CSS in
 # tla/css/blog.css. Do NOT add them here. The blog*.html link rewrites in

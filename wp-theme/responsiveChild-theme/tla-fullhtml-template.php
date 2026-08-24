@@ -38,6 +38,12 @@ if ( ! file_exists( $tla_partial ) ) {
 $tla_title       = '';
 $tla_description = '';
 $tla_image       = ''; // optional per-page social card; falls back to the shared default
+// Optional extra stylesheets, as basenames in tla/css/ (e.g. 'trainings.css').
+// A partial can push onto this to load a page-family stylesheet that is shared
+// by several pages but not by the whole site. Loaded after styles.css and
+// before chrome.css, so chrome always wins. Empty for every page that does not
+// opt in, so existing pages are unaffected.
+$tla_styles      = array();
 ob_start();
 include $tla_partial;
 $tla_body = ob_get_clean();
@@ -95,6 +101,22 @@ $tla_body = ob_get_clean();
   $tla_chrome_v = @filemtime( "$tla_css_dir/chrome.css" ) ?: 3;
 ?>
   <link rel="stylesheet" href="<?php echo esc_url( TLA_BASE ); ?>/css/styles.css?v=<?php echo $tla_styles_v; ?>" />
+<?php
+  // Page-family stylesheets opted into via $tla_styles (see above). Basename
+  // only — anything with a slash or without a .css suffix is ignored.
+  foreach ( $tla_styles as $tla_extra ) {
+    $tla_extra = basename( (string) $tla_extra );
+    if ( ! preg_match( '/^[A-Za-z0-9._-]+\.css$/', $tla_extra ) ) { continue; }
+    if ( ! file_exists( "$tla_css_dir/$tla_extra" ) ) { continue; }
+    $tla_extra_v = @filemtime( "$tla_css_dir/$tla_extra" ) ?: 3;
+    printf(
+      "  <link rel=\"stylesheet\" href=\"%s/css/%s?v=%s\" />\n",
+      esc_url( TLA_BASE ),
+      rawurlencode( $tla_extra ),
+      esc_attr( $tla_extra_v )
+    );
+  }
+?>
   <link rel="stylesheet" href="<?php echo esc_url( TLA_BASE ); ?>/css/chrome.css?v=<?php echo $tla_chrome_v; ?>" />
 <?php wp_head(); // lets SEO / analytics plugins inject into <head> ?>
 </head>
