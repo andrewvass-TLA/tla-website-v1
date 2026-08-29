@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>The Perfect Loan Process — Free Download | The Loan Atlas</title>
   <meta name="description"
-    content="Download the Perfect Loan Process — the free 72-step framework behind the most consistent, referral-generating loan originators in the country. No credit card. No sales call." />
+    content="Download the Perfect Loan Process — the free 72-step framework behind the most consistent, referral-generating loan originators in the country." />
 
   <!-- Open Graph / Facebook / LinkedIn / iMessage / Slack -->
   <meta property="og:type" content="website" />
@@ -37,11 +37,12 @@
   <link rel="stylesheet" href="css/chrome.css?v=3" />
 
   <!-- ─────────────────────────────────────────────────────────────────────
-       PERFECT LOAN PROCESS — page-scoped fresh design (.plp-*)
+       PERFECT LOAN PROCESS (/perfect-loan-process/) — page-scoped design (.plp-*)
+
        A modern rounded-panel SaaS layout (modeled on the supplied reference):
        big rounded panels, a circular hero frame, floating mini-cards, an icon
-       feature split, a 3-card row, a navy band wrapping a light panel, a
-       6-card grid with a featured center, and a proof split with a stat badge.
+       feature split, a navy band wrapping a light panel, a 6-card grid with a
+       featured center, and a proof split with a stat badge.
        Identity = The Loan Atlas house palette: Midnight Slate navy #021c36 +
        Brass #c9961c/#eac25a accents on cool light surfaces. The .plp-* tokens
        below are mapped onto the brand palette so this page reads as house style
@@ -92,7 +93,7 @@
       line-height: 1.05;
       letter-spacing: -0.03em;
       color: var(--plp-green-ink);
-      margin: 16px 0 0;
+      margin: clamp(20px, 2vw, 26px) 0 0;
     }
     .plp-h2 {
       font-family: var(--font-display);
@@ -103,6 +104,13 @@
       margin: 0;
     }
     .plp-h2--center { text-align: center; }
+    /* brass gradient text — same treatment as the custom sales pages */
+    .plp-goldtext {
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
     .plp-sub {
       font-family: var(--font-body);
       font-size: clamp(1rem, 0.96rem + 0.3vw, 1.1875rem);
@@ -137,20 +145,25 @@
     .plp-prose__body p:first-child { margin-top: 0; }
     .plp-prose__body p strong { color: var(--plp-ink); font-weight: 700; }
     .plp-prose__body p em { font-style: italic; }
-    /* the closing payoff line — a bold, brass-keyed standout */
+    /* the closing payoff line — reads as normal body copy; only the bold phrase
+       is emphasised, underscored with a brass gradient rule */
     .plp-prose__payoff {
-      margin-top: clamp(28px, 3.5vw, 40px) !important;
-      padding: 20px 26px;
-      background: var(--plp-mint);
-      border-left: 3px solid var(--plp-green);
-      border-radius: var(--plp-r-card);
-      font-family: var(--font-display) !important;
-      font-size: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem) !important;
-      font-weight: 700 !important;
-      line-height: 1.3 !important;
+      margin-top: clamp(24px, 3vw, 32px) !important;
       color: var(--plp-ink) !important;
     }
-    .plp-prose__payoff strong { color: var(--plp-green-ink) !important; }
+    .plp-prose__payoff strong {
+      position: relative;
+      font-weight: 700;
+      color: var(--plp-green-ink) !important;
+      /* gradient underline drawn as a background so it sits clear of the
+         descenders, unlike text-decoration */
+      background-image: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      background-repeat: no-repeat;
+      background-size: 100% 3px;
+      background-position: 0 100%;
+      padding-bottom: 3px;
+      border-radius: 1px;
+    }
 
     /* ── THE DIFFERENCE — two-column: copy left, image right ── */
     .plp-problem { display: grid; gap: clamp(32px, 5vw, 64px); align-items: center; }
@@ -166,25 +179,17 @@
     .plp-problem__body p strong { color: var(--plp-ink); font-weight: 700; }
     /* reuse the payoff treatment from .plp-prose__payoff */
     .plp-problem__body .plp-prose__payoff { margin-top: clamp(24px, 3vw, 32px) !important; }
-    /* image placeholder (swap for a real <img> later) */
-    .plp-imgph {
-      position: relative;
+    /* the section image — the art is already 4:5, so cover crops nothing */
+    .plp-problem__img {
+      display: block;
+      width: 100%;
+      height: auto;
       aspect-ratio: 4 / 5;
+      object-fit: cover;
       border-radius: var(--plp-r-panel);
-      background:
-        repeating-linear-gradient(135deg, transparent 0 22px, rgba(2,28,54,0.025) 22px 44px),
-        var(--plp-mint);
-      border: 1.5px dashed var(--plp-line);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      color: var(--plp-muted);
-      text-align: center;
+      background: var(--plp-mint);
+      box-shadow: 0 30px 60px -30px rgba(2, 28, 54, 0.38);
     }
-    .plp-imgph svg { width: 46px; height: 46px; stroke: var(--plp-green); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; opacity: 0.8; }
-    .plp-imgph span { font-family: var(--font-body); font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; }
 
     /* ═══════════════════════ HERO (full-bleed) ═══════════════════════ */
     .plp-hero {
@@ -215,65 +220,60 @@
       padding-top: clamp(40px, 5vw, 80px);
     }
     /* copy gets bottom padding; the media column bleeds to the very bottom */
-    .plp-hero__copy { padding-bottom: clamp(40px, 5vw, 80px); }
+    .plp-hero__copy { padding-bottom: clamp(96px, 9vw, 150px); }
     @media (min-width: 900px) { .plp-hero__grid { grid-template-columns: 1.05fr 0.95fr; } }
 
-    .plp-hero__lede { font-size: clamp(1rem, 0.95rem + 0.4vw, 1.1875rem); line-height: 1.55; color: var(--plp-green-deep); margin: 18px 0 0; max-width: 30rem; }
-    .plp-hero__actions { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
-    .plp-hero__stats { margin: 30px 0 0; display: flex; flex-wrap: wrap; gap: 28px 44px; }
+    .plp-hero__lede { font-size: clamp(1rem, 0.95rem + 0.4vw, 1.1875rem); line-height: 1.6; color: var(--plp-green-deep); margin: clamp(20px, 2.2vw, 28px) 0 0; max-width: 30rem; }
+    /* the CTA gets the biggest gap in the stack so it reads as its own beat */
+    .plp-hero__actions { margin-top: clamp(30px, 3.4vw, 44px); display: flex; flex-wrap: wrap; gap: 12px; }
+    .plp-hero__stats { margin: clamp(34px, 3.8vw, 48px) 0 0; display: flex; flex-wrap: wrap; gap: 28px clamp(40px, 4vw, 56px); }
     .plp-stat__num { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); color: var(--plp-green-ink); line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
-    .plp-stat__label { font-size: 0.9375rem; color: var(--plp-green-deep); margin-top: 4px; }
-    .plp-hero__note { margin: 18px 0 0; font-size: 0.84rem; font-style: italic; color: rgba(2, 28, 54, 0.62); }
+    .plp-stat__label { font-size: 0.9375rem; color: var(--plp-green-deep); margin-top: 6px; }
+    /* page CTAs — larger, more confident button copy (no trailing arrow) */
+    .plp-btn { font-size: clamp(1rem, 0.94rem + 0.28vw, 1.125rem); }
+    .plp-btn.btn--lg { font-size: clamp(1.0625rem, 0.98rem + 0.36vw, 1.25rem); }
 
-    /* ── Hero composite: pages behind, Tim cropped & bleeding to bottom + off
-          the right edge, floating card in front ── */
+    /* ── Hero composite: tinted disc behind, the PLP cover centered on top,
+          floating card in front ── */
     .plp-hero__stage {
       position: relative;
-      align-self: stretch;            /* fill the grid row so Tim bleeds to the bottom */
-      min-height: clamp(360px, 44vw, 600px);
+      align-self: stretch;
+      min-height: clamp(400px, 48vw, 640px);
     }
     /* the soft tinted disc sitting behind everything */
     .plp-hero__disc {
       position: absolute;
-      right: 4%;
+      /* pulled right so the disc bleeds off the right edge of the hero rather
+         than spilling left into the copy column */
+      right: -18%;
       top: 50%;
       transform: translateY(-50%);
-      width: min(118%, 560px);
+      width: min(105%, 620px);
       aspect-ratio: 1;
       border-radius: 50%;
       background: radial-gradient(circle at 50% 45%, #dfe3e7 0%, #cdd2d8 72%, #c1c7ce 100%);
       z-index: 0;
     }
-    /* plp-composite-2 — the fanned process pages, behind Tim, extending off
-       the right edge of the hero */
-    .plp-hero__pages {
-      position: absolute;
-      z-index: 1;
-      right: -16%;
-      top: 8%;
-      width: min(118%, 760px);
-      height: auto;
-      filter: drop-shadow(0 24px 44px rgba(2, 28, 54, 0.32));
-      pointer-events: none;
-    }
-    /* Tim — cropped, bleeding to the bottom of the hero, in front of the pages */
-    .plp-hero__tim {
+    /* PLP-cover — the angled book mockup, centered on the disc. The art already
+       carries its own soft shadow, so only a light extra drop-shadow is added to
+       seat it on the tinted disc. */
+    .plp-hero__cover {
       position: absolute;
       z-index: 2;
-      left: 50%;
-      bottom: 0;                       /* bleeds to the hero's bottom edge */
-      transform: translateX(-52%);
-      width: min(94%, 460px);
+      left: 58%;
+      top: 46%;
+      transform: translate(-50%, -50%);
+      width: min(94%, 480px);
       height: auto;
-      filter: drop-shadow(0 18px 30px rgba(2, 28, 54, 0.28));
+      filter: drop-shadow(0 26px 44px rgba(2, 28, 54, 0.26));
       pointer-events: none;
     }
-    /* floating mini-card stays in front of Tim */
+    /* floating mini-card stays in front of the cover */
     .plp-minicard {
       position: absolute;
       z-index: 3;
       left: -4%;
-      bottom: 12%;
+      bottom: 24%;
       background: #fff;
       border-radius: 16px;
       box-shadow: 0 20px 44px -18px rgba(2, 28, 54, 0.5);
@@ -283,20 +283,18 @@
     .plp-minicard__head { display: flex; align-items: center; gap: 10px; }
     .plp-minicard__badge { width: 34px; height: 34px; border-radius: 9px; background: var(--plp-green); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
     .plp-minicard__badge svg { width: 19px; height: 19px; stroke: #fff; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
-    .plp-minicard__title { font-family: var(--font-display); font-weight: 700; font-size: 0.9375rem; color: var(--plp-ink); }
-    .plp-minicard__sub { font-size: 0.78rem; color: var(--plp-muted); }
+    .plp-minicard__title { font-family: var(--font-display); font-weight: 700; font-size: 0.9375rem; line-height: 1.3; color: var(--plp-ink); }
     .plp-minicard__rows { margin: 12px 0 0; display: grid; gap: 7px; }
     .plp-minicard__row { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--plp-muted); }
     .plp-minicard__row svg { width: 15px; height: 15px; stroke: var(--plp-green); fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0; }
 
     /* Hero composite — below the 2-col breakpoint, give the stage a fixed
-       height so Tim + pages still bleed correctly under the stacked copy. */
+       height so the cover + disc still sit correctly under the stacked copy. */
     @media (max-width: 899px) {
       .plp-hero__grid { min-height: 0; }
       .plp-hero__copy { padding-bottom: 0; }
-      .plp-hero__stage { height: clamp(340px, 78vw, 460px); margin-top: 8px; }
-      .plp-hero__pages { right: -14%; top: 6%; width: min(108%, 620px); }
-      .plp-hero__tim { width: min(72%, 360px); }
+      .plp-hero__stage { height: clamp(380px, 88vw, 520px); margin-top: 8px; }
+      .plp-hero__cover { width: min(78%, 370px); }
       .plp-minicard { left: 0; bottom: 6%; }
     }
     @media (max-width: 520px) {
@@ -361,97 +359,268 @@
     .plp-feat__desc { font-size: 0.9375rem; line-height: 1.5; color: var(--plp-muted); margin-top: 3px; }
 
     /* ═══════════════ WHAT IT IS — installs card grid ═══════════════ */
-    .plp-installs__intro { max-width: 46rem; margin: 16px auto 0; text-align: center; }
+    /* the two intro paragraphs — matched to the PROBLEM section's prose rhythm:
+       same gap under the heading, same inter-paragraph gap, same type scale. */
+    .plp-installs__intro {
+      max-width: 46rem;
+      margin: 18px auto 0;
+      text-align: center;
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem);
+      line-height: 1.7;
+    }
+    .plp-installs__intro:first-of-type { margin-top: clamp(20px, 2.5vw, 28px); }
+    /* the question the PLP answers — set apart on its own line, heavier and a
+       step larger than the intro copy, with the three interrogatives called out
+       in caps under the brass gradient rule. */
+    .plp-installs__question {
+      max-width: 46rem;
+      margin: clamp(18px, 2vw, 24px) auto 0;
+      text-align: center;
+      font-family: var(--font-body);
+      font-size: clamp(1.1875rem, 1.05rem + 0.6vw, 1.4375rem);
+      line-height: 1.6;
+      font-weight: 700;
+      color: var(--plp-ink);
+    }
+    /* brass gradient underline drawn as a background so it clears descenders
+       (same technique as .plp-prose__payoff strong) */
+    .plp-underline {
+      background-image: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      background-repeat: no-repeat;
+      background-size: 100% 3px;
+      background-position: 0 100%;
+      padding-bottom: 3px;
+      border-radius: 1px;
+      font-style: normal;
+      letter-spacing: 0.01em;
+    }
+    /* ── "What the PLP installs" — one floating panel ──────────────────────────
+       Heading, then a split: a successful-team photo on the left and the six
+       outcomes on the right. Brass connector lines run from the photo out to
+       each item and draw themselves in as the items fly in, so the section
+       reads as a visual claim: this team succeeds BECAUSE of these six things.
+       No numerals (parallel outcomes, not ordered steps) and no icons. */
+    .plp-installs__panel {
+      margin-top: clamp(44px, 5vw, 68px);
+      border-radius: var(--plp-r-panel);
+      padding: clamp(26px, 3.2vw, 52px);
+      border: 1.5px solid transparent;
+      background:
+        linear-gradient(var(--plp-card), var(--plp-card)) padding-box,
+        linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%) border-box;
+      box-shadow: 0 40px 90px -50px rgba(2, 28, 54, 0.45);
+    }
+    /* heading — title case, with the brass gradient underline */
     .plp-installs__lead {
       text-align: center;
       font-family: var(--font-display);
-      font-weight: 700;
-      font-size: 1.0625rem;
-      color: var(--plp-ink);
-      margin: clamp(40px, 5vw, 60px) 0 0;
-    }
-    .plp-installs__grid {
-      margin-top: clamp(20px, 2.5vw, 28px);
-      display: grid;
-      gap: 18px;
-    }
-    @media (min-width: 640px) { .plp-installs__grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 980px) { .plp-installs__grid { grid-template-columns: repeat(3, 1fr); } }
-    .plp-icard {
-      background: var(--plp-card);
-      border: 1px solid var(--plp-line);
-      border-radius: var(--plp-r-card);
-      padding: clamp(22px, 2.4vw, 30px);
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-    .plp-icard:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 20px 44px -24px rgba(2, 28, 54, 0.4);
-      border-color: rgba(2, 28, 54, 0.18);
-    }
-    .plp-icard__icon {
-      width: 48px; height: 48px; border-radius: 14px;
-      background: var(--plp-mint);
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 18px;
-    }
-    .plp-icard__icon svg { width: 24px; height: 24px; stroke: var(--plp-green); fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-    .plp-icard__title { font-family: var(--font-display); font-weight: 700; font-size: 1.0625rem; line-height: 1.4; color: var(--plp-ink); }
-    .plp-installs__foot { max-width: 44rem; margin: clamp(36px, 4vw, 52px) auto 0; text-align: center; }
-    .plp-installs__cta { margin-top: 28px; text-align: center; }
-
-    /* ═══════════════ WHO BUILT IT (founder split) ═══════════════ */
-    .plp-founder__photo { position: relative; }
-    .plp-founder__photo .plp-mediablock__bg { background: var(--plp-mint-panel); }
-    .plp-founder__name { font-family: var(--font-display); font-weight: 800; font-size: 1.125rem; color: var(--plp-ink); margin-top: 18px; }
-    .plp-founder__title { font-size: 0.9375rem; color: var(--plp-muted); margin-top: 2px; }
-    .plp-pullquote {
-      margin: 26px 0 0;
-      padding: 22px 26px;
-      background: var(--plp-mint);
-      border-left: 3px solid var(--plp-green);
-      border-radius: var(--plp-r-card);
-    }
-    .plp-pullquote p {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: clamp(1.125rem, 1rem + 0.5vw, 1.375rem);
-      line-height: 1.4;
-      font-style: italic;
-      color: var(--plp-ink);
+      font-weight: 800;
+      font-size: clamp(1.375rem, 1.15rem + 1vw, 1.875rem);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      color: var(--plp-green-ink);
       margin: 0;
     }
-    .plp-pullquote cite { display: block; margin-top: 12px; font-style: normal; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--plp-green-deep); }
+    .plp-installs__lead::after {
+      content: "";
+      display: block;
+      width: 88px; height: 3px;
+      margin: 14px auto 0;
+      border-radius: 2px;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+    }
 
-    /* ═══════════════ 3-CARD ROW ═══════════════ */
-    .plp-trio { margin-top: clamp(36px, 4vw, 52px); display: grid; gap: 18px; }
-    @media (min-width: 760px) { .plp-trio { grid-template-columns: repeat(3, 1fr); } }
-    .plp-tcard {
+    /* ── the split ── */
+    .plp-viz {
+      position: relative;
+      margin-top: clamp(28px, 3.2vw, 44px);
+      display: grid;
+      gap: clamp(20px, 2.4vw, 32px);
+    }
+    /* photo left / items right only once there's room for the connectors */
+    @media (min-width: 900px) {
+      .plp-viz { grid-template-columns: 0.92fr 1.08fr; gap: clamp(48px, 5vw, 88px); align-items: center; }
+    }
+
+    /* the team photo */
+    .plp-viz__media { position: relative; }
+    .plp-viz__img {
+      display: block;
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
       border-radius: var(--plp-r-card);
-      padding: clamp(26px, 3vw, 36px);
-      background: var(--plp-card);
-      text-align: center;
-      border: 1px solid var(--plp-line);
+      background: var(--plp-mint-panel);
+      box-shadow: 0 30px 60px -30px rgba(2, 28, 54, 0.42);
     }
-    .plp-tcard__icon { width: 52px; height: 52px; border-radius: 50%; background: #fff; border: 1px solid var(--plp-line); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
-    .plp-tcard__icon svg { width: 24px; height: 24px; stroke: var(--plp-green-deep); fill: none; stroke-width: 1.9; stroke-linecap: round; stroke-linejoin: round; }
-    .plp-tcard__title { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--plp-ink); }
-    .plp-tcard__desc { font-size: 0.9rem; line-height: 1.5; color: var(--plp-muted); margin-top: 8px; }
-    /* featured center card */
-    .plp-tcard--feature {
-      background: linear-gradient(165deg, var(--plp-mint-panel) 0%, #d8dbe0 100%);
-      border-color: transparent;
+    /* ── the six items ── */
+    .plp-viz__list { position: relative; z-index: 2; display: grid; gap: 10px; }
+    .plp-vitem {
+      position: relative;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
-      gap: 6px;
+      align-items: center;
+      gap: 12px;
+      padding: clamp(13px, 1.4vw, 17px) clamp(15px, 1.6vw, 20px);
+      border-radius: 12px;
+      background: linear-gradient(165deg, var(--plp-navy-soft) 0%, var(--plp-navy) 100%);
+      box-shadow: 0 16px 34px -20px rgba(2, 28, 54, 0.5);
+      /* fly in from the right, toward the photo */
+      opacity: 0;
+      transform: translateX(26px);
+      transition:
+        opacity 620ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+      transition-delay: var(--vi-delay, 0ms);
     }
-    .plp-tcard--feature .plp-bignum { font-family: var(--font-display); font-weight: 800; font-size: clamp(2.25rem, 1.8rem + 2vw, 3rem); color: var(--plp-green-ink); line-height: 1; letter-spacing: -0.03em; font-variant-numeric: tabular-nums; }
-    .plp-tcard--feature .plp-bigsub { font-size: 0.95rem; font-weight: 600; color: var(--plp-green-deep); margin-bottom: 14px; }
-    .plp-tcard--feature .plp-bigsub:last-child { margin-bottom: 0; }
+    [data-reveal].is-revealed .plp-vitem { opacity: 1; transform: none; }
+    .plp-vitem:nth-child(1) { --vi-delay: 240ms; }
+    .plp-vitem:nth-child(2) { --vi-delay: 380ms; }
+    .plp-vitem:nth-child(3) { --vi-delay: 520ms; }
+    .plp-vitem:nth-child(4) { --vi-delay: 660ms; }
+    .plp-vitem:nth-child(5) { --vi-delay: 800ms; }
+    .plp-vitem:nth-child(6) { --vi-delay: 940ms; }
+    /* brass dot on the left edge — the point each connector line lands on */
+    .plp-vitem__dot {
+      flex-shrink: 0;
+      width: 9px; height: 9px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c9961c 0%, #ffd56c 100%);
+      box-shadow: 0 0 0 3px rgba(234, 194, 90, 0.18);
+    }
+    .plp-vitem__text {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(0.875rem, 0.85rem + 0.2vw, 1rem);
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.94);
+    }
+
+    /* ── the connector lines ──
+       An SVG sitting behind the list, spanning the gap between photo and items.
+       Each path is dash-offset out of view and draws in on reveal. */
+    /* Sized in real pixels (viewBox set from measured DOM geometry by the
+       inline script below), so strokes stay hairline-thin and the endpoints
+       land exactly on the photo edge and each item's dot. */
+    .plp-viz__wires {
+      display: none;                     /* only where the two columns sit side by side */
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    @media (min-width: 900px) { .plp-viz__wires { display: block; } }
+    .plp-viz__wire {
+      fill: none;
+      stroke: url(#plpWireGrad);
+      stroke-width: 1.5;
+      stroke-linecap: round;
+      stroke-dasharray: var(--len, 400);
+      stroke-dashoffset: var(--len, 400);
+      transition: stroke-dashoffset 760ms cubic-bezier(0.22, 1, 0.36, 1);
+      transition-delay: var(--w-delay, 0ms);
+    }
+    [data-reveal].is-revealed .plp-viz__wire { stroke-dashoffset: 0; }
+    .plp-viz__wire:nth-of-type(1) { --w-delay: 200ms; }
+    .plp-viz__wire:nth-of-type(2) { --w-delay: 340ms; }
+    .plp-viz__wire:nth-of-type(3) { --w-delay: 480ms; }
+    .plp-viz__wire:nth-of-type(4) { --w-delay: 620ms; }
+    .plp-viz__wire:nth-of-type(5) { --w-delay: 760ms; }
+    .plp-viz__wire:nth-of-type(6) { --w-delay: 900ms; }
+    /* the origin node on the photo's edge that every line runs from */
+    .plp-viz__hub { fill: #eac25a; }
+    .plp-viz__hubring {
+      fill: none;
+      stroke: #eac25a;
+      stroke-width: 1.25;
+      opacity: 0.45;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .plp-vitem { opacity: 1; transform: none; transition: none; }
+      .plp-viz__wire { stroke-dashoffset: 0; transition: none; }
+    }
+
+    /* ═══════════════ WHO BUILT IT (founder split) ═══════════════ */
+    /* founder copy — same prose rhythm as the PROBLEM / installs sections:
+       a wider gap under the heading, 18px between paragraphs, larger measure. */
+    .plp-founder__body {
+      margin-top: 18px;
+      font-size: clamp(1.0625rem, 1rem + 0.35vw, 1.1875rem);
+      line-height: 1.7;
+    }
+    .plp-founder__body:first-of-type { margin-top: clamp(20px, 2.5vw, 28px); }
+    .plp-founder__body strong { color: var(--plp-ink); font-weight: 700; }
+    .plp-founder__photo { position: relative; }
+    .plp-founder__photo .plp-mediablock__bg { background: var(--plp-mint-panel); }
+    /* Crop the portrait well in from its native 743x1024 full-body shot: a
+       squarer 1:1 frame anchored at the very top keeps his head and shoulders
+       and drops the empty lower body. Done in CSS so the asset stays untouched. */
+    .plp-founder__photo .plp-mediablock__img {
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      object-position: 50% 0%;
+    }
+    .plp-founder__name { font-family: var(--font-display); font-weight: 800; font-size: 1.125rem; color: var(--plp-ink); margin-top: 18px; }
+    .plp-founder__title { font-size: 0.9375rem; color: var(--plp-muted); margin-top: 2px; }
+
+    /* ── Tim's video: a full-width row below the split ──
+       16:9 wants horizontal room, so it gets the whole container rather than
+       half of it. Capped and centred so it doesn't outrun the copy above. */
+    .plp-founder__video {
+      margin: clamp(44px, 5vw, 72px) auto 0;
+      max-width: 60rem;
+    }
+    .plp-videoframe {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      border-radius: var(--plp-r-panel);
+      overflow: hidden;
+      background: #0d1420;
+      box-shadow: 0 34px 70px -30px rgba(2, 28, 54, 0.45);
+    }
+
 
     /* ═══════════════ NAVY BAND wrapping a green panel ═══════════════ */
-    .plp-darkband { background: var(--plp-navy); padding-block: clamp(40px, 5vw, 72px); }
+    /* The band carries the photo: plp-bg-1 blurred behind a translucent navy
+       gradient, so the art reads as atmosphere and the copy stays legible.
+       Blur is applied to a ::before layer (not the band) so it can be scaled
+       past the edges — blurring an element flush to its box samples the
+       transparent outside and leaves pale fringes at the seams. */
+    .plp-darkband {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      background: var(--plp-navy);
+      padding-block: clamp(40px, 5vw, 72px);
+    }
+    .plp-darkband::before {
+      content: "";
+      position: absolute;
+      inset: -4%;                       /* overscan so the blur has real pixels to sample */
+      z-index: -2;
+      background-image: url("assets/plp-bg-1.png");
+      background-size: cover;
+      background-position: center;
+      filter: blur(7px) saturate(0.9);
+      transform: scale(1.06);
+      pointer-events: none;
+    }
+    /* translucent navy gradient over the photo */
+    .plp-darkband::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: linear-gradient(160deg,
+        rgba(6, 14, 28, 0.90) 0%,
+        rgba(2, 28, 54, 0.82) 50%,
+        rgba(6, 14, 28, 0.92) 100%);
+      pointer-events: none;
+    }
+
     .plp-greenpanel {
       position: relative;
       overflow: hidden;
@@ -475,7 +644,6 @@
     .plp-greenpanel > * { position: relative; z-index: 1; }
     .plp-greenpanel .plp-h2 { color: var(--plp-green-ink); }
     .plp-greenpanel__sub { font-size: 1.0625rem; line-height: 1.55; color: var(--plp-green-deep); margin: 14px auto 0; max-width: 40rem; }
-    .plp-greenpanel__cta { margin-top: 24px; }
 
     .plp-roles { margin-top: clamp(32px, 4vw, 44px); display: grid; gap: 16px; }
     @media (min-width: 680px) { .plp-roles { grid-template-columns: repeat(2, 1fr); } }
@@ -491,80 +659,131 @@
     .plp-role__name { font-family: var(--font-display); font-weight: 700; font-size: 1.0625rem; color: var(--plp-ink); margin: 12px 0 6px; }
     .plp-role__desc { font-size: 0.875rem; line-height: 1.5; color: var(--plp-muted); }
 
-    /* ═══════════════ 6-CARD GRID (featured center = Tim) ═══════════════ */
-    .plp-grid6 { margin-top: clamp(36px, 4vw, 52px); display: grid; gap: 18px; }
-    @media (min-width: 720px) { .plp-grid6 { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1000px) { .plp-grid6 { grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(2, 1fr); } }
-    .plp-fcard {
-      background: var(--plp-card);
+    /* ═══════════════ FLOATING FEATURE ROW (overlaps the hero) ═══════════════ */
+    /* The band itself carries no top padding — the card row is pulled up with a
+       negative margin so it straddles the hero's bottom edge. */
+    .plp-floatfeat { position: relative; z-index: 3; padding-block: 0 clamp(40px, 5vw, 72px); }
+    .plp-floatfeat__grid {
+      margin-top: clamp(-56px, -5vw, -88px);
+      display: grid;
+      gap: 18px;
+    }
+    @media (min-width: 640px)  { .plp-floatfeat__grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1060px) { .plp-floatfeat__grid { grid-template-columns: repeat(4, 1fr); } }
+    .plp-ffcard {
+      background: #fff;
       border: 1px solid var(--plp-line);
       border-radius: var(--plp-r-card);
-      padding: clamp(24px, 2.5vw, 34px);
+      padding: clamp(24px, 2.4vw, 32px) clamp(20px, 2vw, 26px);
       text-align: center;
+      box-shadow: 0 26px 54px -26px rgba(2, 28, 54, 0.34);
+      transition: transform 220ms ease, box-shadow 220ms ease;
     }
-    .plp-fcard__icon { width: 64px; height: 64px; border-radius: 50%; background: #fff; border: 1px solid var(--plp-line); display: flex; align-items: center; justify-content: center; margin: 0 auto 20px; }
-    .plp-fcard__icon svg { width: 27px; height: 27px; stroke: var(--plp-green-deep); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-    .plp-fcard__title { font-family: var(--font-display); font-weight: 700; font-size: 1.1875rem; color: var(--plp-ink); }
-    .plp-fcard__desc { font-size: 0.9rem; line-height: 1.5; color: var(--plp-muted); margin-top: 8px; }
-    /* featured center: spans the middle column, both rows on desktop */
-    .plp-fcard--feature {
-      background: linear-gradient(170deg, var(--plp-mint-panel) 0%, #d4d8dd 100%);
-      border-color: transparent;
+    @media (hover: hover) {
+      .plp-ffcard:hover { transform: translateY(-4px); box-shadow: 0 34px 64px -26px rgba(2, 28, 54, 0.42); }
+    }
+    .plp-ffcard__icon { width: 56px; height: 56px; border-radius: 50%; background: var(--plp-mint-panel); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; }
+    .plp-ffcard__icon svg { width: 25px; height: 25px; stroke: var(--plp-green-deep); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .plp-ffcard__title { font-family: var(--font-display); font-weight: 700; font-size: 1.0625rem; color: var(--plp-ink); }
+    .plp-ffcard__desc { font-size: 0.875rem; line-height: 1.55; color: var(--plp-muted); margin-top: 8px; }
+    /* Below the 2-col breakpoint the row no longer overlaps — stacked cards
+       hanging off the hero would cover the copy. */
+    @media (max-width: 639px) {
+      .plp-floatfeat__grid { margin-top: clamp(-40px, -7vw, -56px); }
+    }
+
+    /* ═══════════════ TESTIMONIALS — image-rich cards ═══════════════ */
+    /* Ported from the custom sales pages' .mm-tcard design: white card, circular
+       avatar straddling the top edge inside a brass gradient ring, brass stars,
+       italic display quote, rule-separated attribution. Uses .plp-* tokens
+       (this page carries no house --space-*/--shadow-* tokens). */
+    /* White, not mint: the preceding founder band is already mint — a second mint
+       band would merge into one flat slab, and white gives the cards' shadows a
+       clean ground. The top hairline holds the seam. */
+    .plp-testimonials { background: var(--plp-card); border-top: 1px solid var(--plp-line); }
+    .plp-tcards {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: clamp(64px, 6vw, 32px);   /* tall gap when stacked so avatars clear the card above */
+      margin-top: clamp(76px, 7vw, 92px);
+    }
+    @media (min-width: 760px) {
+      .plp-tcards { grid-template-columns: repeat(3, 1fr); align-items: stretch; }
+    }
+    /* cards fill the row height so the three bottom edges and attribution rules
+       line up even when the quotes differ in length */
+    .plp-tcards > .plp-tcard { height: 100%; }
+    .plp-tcard {
+      position: relative;
+      margin: 0;
+      background: var(--plp-card);
+      border: 1px solid var(--plp-line);
+      border-radius: var(--plp-r-panel);
+      box-shadow: 0 26px 54px -26px rgba(2, 28, 54, 0.34);
+      padding: 0 clamp(22px, 2.4vw, 32px) clamp(26px, 2.6vw, 34px);
       display: flex;
       flex-direction: column;
-      padding: clamp(26px, 3vw, 38px);
-    }
-    @media (min-width: 1000px) { .plp-fcard--feature { grid-column: 2; grid-row: 1 / span 2; } }
-    .plp-fcard--feature .plp-fcard__title { color: var(--plp-green-ink); }
-    .plp-fcard--feature .plp-fcard__desc { color: var(--plp-green-deep); }
-    .plp-fcard__photo { margin-top: auto; position: relative; padding-top: 14px; }
-    .plp-fcard__photo img { display: block; width: 100%; max-width: 230px; height: auto; margin: 0 auto; filter: drop-shadow(0 18px 26px rgba(2, 28, 54, 0.28)); }
-    .plp-personcard {
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 16px 34px -16px rgba(2, 28, 54, 0.4);
-      padding: 12px 16px;
-      margin: -16px auto 0;
-      width: min(90%, 250px);
-      position: relative;
-      z-index: 1;
+      align-items: center;
       text-align: center;
     }
-    .plp-personcard__name { font-family: var(--font-display); font-weight: 700; font-size: 0.9375rem; color: var(--plp-ink); }
-    .plp-personcard__role { font-size: 0.78rem; color: var(--plp-muted); }
-
-    /* ═══════════════ PROOF (full-width testimonials + bleeding image) ═══════════════ */
-    /* section crops the image at its bottom edge; no bottom padding so the
-       image bleeds all the way down. */
-    .plp-proof { overflow: hidden; padding-bottom: 0; }
-    /* original testimonial formatting — brass left-border quotes, stacked */
-    .plp-quotes { margin: clamp(28px, 3.5vw, 44px) 0 0; display: grid; gap: 18px; }
-    @media (min-width: 820px) { .plp-quotes { grid-template-columns: repeat(3, 1fr); } }
-    .plp-quote {
-      border-left: 3px solid var(--plp-green);
-      padding: 4px 0 4px 18px;
+    /* circular avatar straddling the top edge, with brass gradient ring */
+    .plp-tcard__photo {
+      width: 96px;
+      height: 96px;
+      margin-top: -48px;
+      margin-bottom: 24px;
+      flex-shrink: 0;
+      padding: 3px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      box-shadow: 0 10px 28px rgba(2, 28, 54, 0.22);
     }
-    .plp-quote p { font-size: 1.0625rem; line-height: 1.5; color: var(--plp-ink); margin: 0; font-style: italic; }
-    .plp-quote cite { display: block; margin-top: 8px; font-style: normal; font-weight: 700; font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--plp-green-deep); }
-    .plp-proof__actions { margin-top: clamp(32px, 4vw, 44px); display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-    /* large image, shown at natural proportions, full-bleed past the content.
-       The section's bottom edge crops it — only its TOP portion is visible;
-       the bottom is clipped where the next section begins. The negative bottom
-       margin reaches past the section boundary so it's cut off, not letterboxed.
-       Sized wider than the viewport so its full top half reads at a large scale. */
-    .plp-proof__media {
-      margin-top: clamp(-40px, -3vw, -16px);
-      width: min(1600px, 130vw);
-      margin-left: 50%;
-      transform: translateX(-50%);
-      margin-bottom: clamp(-180px, -14vw, -90px);
-      line-height: 0;
-    }
-    .plp-proof__img {
-      display: block;
+    .plp-tcard__photo img {
       width: 100%;
-      max-width: none;
-      height: auto;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      /* these headshots are framed with headroom — pull the crop up off centre
+         so the circle lands on the face, not the forehead */
+      object-position: 50% 22%;
+      display: block;
+      background: #f2f4f6;
+    }
+    .plp-tcard__body { display: flex; flex-direction: column; align-items: center; flex: 1; }
+    .plp-tcard__stars {
+      font-size: 1rem;
+      letter-spacing: 0.18em;
+      color: var(--plp-green);
+      margin-bottom: 16px;
+    }
+    .plp-tcard__quote {
+      margin: 0 0 24px;
+      font-family: var(--font-display);
+      font-style: italic;
+      font-weight: 500;
+      font-size: 1.0625rem;
+      line-height: 1.55;
+      color: var(--plp-ink);
+      flex: 1;
+    }
+    .plp-tcard__attr {
+      padding-top: 24px;
+      border-top: 1px solid var(--plp-line);
+      width: 100%;
+    }
+    .plp-tcard__name {
+      display: block;
+      font-family: var(--font-display);
+      font-size: 0.9375rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      color: var(--plp-green-ink);
+    }
+    .plp-tcard__org {
+      display: block;
+      font-size: 0.8125rem;
+      color: var(--plp-muted);
+      margin-top: 3px;
     }
 
     /* ═══════════════ CLOSING CTA ═══════════════ */
@@ -646,28 +865,71 @@
       margin: 0 auto clamp(20px, 3vw, 30px);
       max-width: 22em;
     }
+    /* the lead-in copy above the form */
+    .plp-formcard__body {
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 0.96rem + 0.3vw, 1.125rem);
+      line-height: 1.6;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.82);
+      margin: 0 auto clamp(22px, 3vw, 32px);
+      max-width: 34em;
+    }
     .plp-formcard__embed { width: 100%; max-width: 680px; margin-inline: auto; border-radius: 16px; overflow: hidden; background: #fff; }
-    .plp-formcard__embed iframe { display: block; width: 100%; height: 400px; }
-    @media (max-width: 700px) { .plp-formcard__embed iframe { height: 660px; } }
+    .plp-formcard__embed iframe { display: block; width: 100%; height: 528px; }
+    @media (max-width: 700px) { .plp-formcard__embed iframe { height: 680px; } }
 
-    /* ═══════════════ STICKY MOBILE CTA ═══════════════ */
-    .plp-sticky {
+    /* ═══════════════ STICKY TOP CTA BAR ═══════════════
+       Slides down from under the fixed 72px site header once the hero's own
+       CTA has scrolled out of view, so the offer is always one click away. */
+    .plp-topbar {
       position: fixed;
-      left: 0; right: 0; bottom: 0;
-      z-index: 60;
+      top: 72px;
+      left: 0; right: 0;
+      z-index: 49; /* under .site-header (50) so the nav drawer still wins */
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 12px 16px calc(12px + env(safe-area-inset-bottom));
-      background: var(--plp-green-ink);
-      border-top: 1px solid rgba(255, 255, 255, 0.14);
-      box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.28);
+      justify-content: center;
+      gap: clamp(16px, 3vw, 32px);
+      padding: 12px clamp(16px, 3vw, 28px);
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      border-bottom: 1px solid rgba(201, 150, 28, 0.34);
+      box-shadow: 0 10px 30px -12px rgba(2, 28, 54, 0.55);
+      transform: translateY(-102%);
+      opacity: 0;
+      visibility: hidden;
+      transition: transform 320ms cubic-bezier(.22,.61,.36,1), opacity 220ms ease, visibility 0s linear 320ms;
     }
-    .plp-sticky__label { font-family: var(--font-display); font-weight: 700; font-size: 0.9375rem; line-height: 1.2; color: #fff; flex: 1; min-width: 0; }
-    .plp-sticky .btn { flex-shrink: 0; white-space: nowrap; }
-    @media (min-width: 768px) { .plp-sticky { display: none; } }
-    @media (max-width: 767px) { .plp-close { padding-bottom: calc(clamp(40px, 5vw, 72px) + 76px); } }
+    .plp-topbar.is-visible {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+      transition: transform 320ms cubic-bezier(.22,.61,.36,1), opacity 220ms ease, visibility 0s;
+    }
+    .plp-topbar__label {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(0.9375rem, 0.86rem + 0.34vw, 1.125rem);
+      line-height: 1.25;
+      letter-spacing: -0.01em;
+      color: #fff;
+      margin: 0;
+    }
+    .plp-topbar .btn { flex-shrink: 0; white-space: nowrap; }
+    /* phones: stack tighter, shrink the headline, and let the button sit full
+       width beneath it so both strings stay legible */
+    @media (max-width: 900px) {
+      .plp-topbar { gap: 10px; padding: 10px clamp(12px, 3vw, 20px); }
+      .plp-topbar__label { font-size: 0.875rem; line-height: 1.3; }
+    }
+    @media (max-width: 640px) {
+      .plp-topbar { flex-direction: column; align-items: stretch; text-align: center; gap: 8px; padding: 10px 14px; }
+      .plp-topbar__label { font-size: 0.8125rem; }
+      .plp-topbar .btn { width: 100%; justify-content: center; padding-block: 10px; font-size: 0.9375rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .plp-topbar { transition: opacity 200ms ease, visibility 0s; transform: none; }
+    }
 
     /* ═══════════════ reduced motion ═══════════════ */
     @media (prefers-reduced-motion: reduce) {
@@ -690,14 +952,14 @@
           <div class="plp-hero__copy">
             <span class="plp-eyebrow plp-eyebrow--on-mint" data-hero-step>The Perfect Loan Process</span>
               <h1 id="plp-hero-heading" class="plp-h1" data-hero-step>
-                Create a 5-star client experience that wins you repeat business
+                Create a 5-Star Client Experience That Wins You Repeat Business
               </h1>
               <p class="plp-hero__lede" data-hero-step>
                 Download the 72-step framework behind the most consistent,
-                referral-generating originators in the country
+                referral-generating originators in the country.
               </p>
               <div class="plp-hero__actions" data-hero-step>
-                <a class="btn btn--gold btn--lg" href="#get-the-plp" data-scroll-to-form>Start Building Your Perfect Loan Process →</a>
+                <a class="btn btn--gold btn--lg plp-btn" href="#get-the-plp" data-scroll-to-form>Start Building Your Perfect Loan Process</a>
               </div>
               <div class="plp-hero__stats" data-hero-step>
                 <div>
@@ -713,24 +975,19 @@
                   <div class="plp-stat__label">standard for every file</div>
                 </div>
               </div>
-              <p class="plp-hero__note" data-hero-step>No credit card. No sales call. Just the framework.</p>
             </div>
 
-            <!-- Composite: fanned pages behind → Tim cropped, bleeds to bottom
+            <!-- Composite: tinted disc behind → the PLP cover angled on top
                  → floating mini-card in front -->
             <div class="plp-hero__stage" data-hero-step aria-hidden="true">
               <span class="plp-hero__disc"></span>
-              <img class="plp-hero__pages" src="assets/plp-composite-2.png" alt="" loading="eager" />
-              <img class="plp-hero__tim" src="assets/tim-braheem-smiling.webp" alt="" loading="eager" />
+              <img class="plp-hero__cover" src="assets/PLP-cover.webp" alt="" loading="eager" />
               <div class="plp-minicard">
                 <div class="plp-minicard__head">
                   <span class="plp-minicard__badge">
                     <svg viewBox="0 0 24 24"><path d="M4 4h11l5 5v11a0 0 0 0 1 0 0H4z" /><polyline points="9 13 11 15 15 11" /></svg>
                   </span>
-                  <span>
-                    <span class="plp-minicard__title">The Perfect Loan Process</span><br />
-                    <span class="plp-minicard__sub">72-step operating system</span>
-                  </span>
+                  <span class="plp-minicard__title">The 72-Step Mortgage Operating System</span>
                 </div>
                 <div class="plp-minicard__rows">
                   <div class="plp-minicard__row"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg>Inquiry → pre-approval scripts</div>
@@ -749,15 +1006,15 @@
         <button type="button" class="plp-modal__close" aria-label="Close" data-close-form>
           <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18" /><line x1="6" y1="6" x2="18" y2="18" /></svg>
         </button>
-        <h2 id="plp-modal-title" class="plp-formcard__title">Start Building Your Perfect Loan Process</h2>
+        <h2 id="plp-modal-title" class="plp-formcard__title">Turn Every Loan Into a Referral-Generating Machine</h2>
+        <p class="plp-formcard__body">Fill out the form and we'll send you the complete Perfect Loan Process — and the steps to get it started — completely for free.</p>
         <!-- LeadConnector (GoHighLevel) inline form embed. form_embed.js (bottom of
-             this file) reads the data-* attrs and auto-resizes the iframe.
-             TODO: swap PLP_FORM_ID for the real GoHighLevel form-id before shipping. -->
+             this file) reads the data-* attrs and auto-resizes the iframe. -->
         <div class="plp-formcard__embed">
           <iframe
-            src="https://api.leadconnectorhq.com/widget/form/PLP_FORM_ID"
-            style="width:100%;height:100%;border:none;border-radius:0px"
-            id="inline-PLP_FORM_ID"
+            src="https://api.leadconnectorhq.com/widget/form/M9t6Hip4hhJqYLd4uBSM"
+            style="width:100%;height:100%;border:none;border-radius:3px"
+            id="inline-M9t6Hip4hhJqYLd4uBSM"
             data-layout="{'id':'INLINE'}"
             data-trigger-type="alwaysShow"
             data-trigger-value=""
@@ -765,33 +1022,62 @@
             data-activation-value=""
             data-deactivation-type="neverDeactivate"
             data-deactivation-value=""
-            data-form-name="LM: The Perfect Loan Process"
-            data-height="498"
-            data-layout-iframe-id="inline-PLP_FORM_ID"
-            data-form-id="PLP_FORM_ID"
-            title="LM: The Perfect Loan Process"></iframe>
+            data-form-name="LM: Perfect Loan Process"
+            data-height="528"
+            data-layout-iframe-id="inline-M9t6Hip4hhJqYLd4uBSM"
+            data-form-id="M9t6Hip4hhJqYLd4uBSM"
+            data-cookie-consent="true"
+            data-cookie-consent-provider="auto"
+            title="LM: Perfect Loan Process"></iframe>
         </div>
       </div>
     </dialog>
+
+    <!-- ═══════════════ FLOATING FEATURE ROW (overlaps the hero) ═══════════════ -->
+    <section class="plp-floatfeat" aria-label="What the Perfect Loan Process gives you">
+      <div class="container plp-shell">
+        <div class="plp-floatfeat__grid" data-reveal="up" data-reveal-stagger="80">
+          <div class="plp-ffcard">
+            <span class="plp-ffcard__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg></span>
+            <div class="plp-ffcard__title">Find the right rhythm</div>
+            <p class="plp-ffcard__desc">A predictable cadence that works the same on file #1 and file #100.</p>
+          </div>
+          <div class="plp-ffcard">
+            <span class="plp-ffcard__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></span>
+            <div class="plp-ffcard__title">Stop the scramble</div>
+            <p class="plp-ffcard__desc">No more files falling apart mid-process and last-minute heroics.</p>
+          </div>
+          <div class="plp-ffcard">
+            <span class="plp-ffcard__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg></span>
+            <div class="plp-ffcard__title">Communicate proactively</div>
+            <p class="plp-ffcard__desc">End the anxious "what's happening?" calls before they start.</p>
+          </div>
+          <div class="plp-ffcard">
+            <span class="plp-ffcard__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg></span>
+            <div class="plp-ffcard__title">Earn the referral</div>
+            <p class="plp-ffcard__desc">A post-closing sequence designed to turn clients into advocates.</p>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <!-- ═══════════════ PROBLEM ═══════════════ -->
     <section class="plp-section" aria-labelledby="plp-problem-heading">
       <div class="container plp-shell">
         <div class="plp-problem">
           <div class="plp-problem__copy" data-reveal="up">
-            <h2 id="plp-problem-heading" class="plp-h2">The Originators Winning Right Now Have One Thing You Can See</h2>
+            <h2 id="plp-problem-heading" class="plp-h2">Profitable Originators Who Generate Consistent Referrals Have One Thing In Common</h2>
             <div class="plp-problem__body">
               <p>It's not more leads. It's not better rates. It's not a different personality.</p>
               <p>It's a written, role-specific, repeatable process for every single step — from the first inquiry call to the post-closing phone call.</p>
               <p>The originators who earn referrals on every deal, who have clients sending thank-you notes, whose Realtor partners stop working with anyone else — they are not more talented than you. They have a system that makes them look like they are.</p>
-              <p class="plp-prose__payoff">That system is called <strong>The Perfect Loan Process.</strong></p>
+              <p class="plp-prose__payoff">That system is called <strong>The Perfect Loan Process</strong>.</p>
             </div>
           </div>
-          <div class="plp-problem__media" data-reveal="right" aria-hidden="true">
-            <div class="plp-imgph">
-              <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
-              <span>Image placeholder</span>
-            </div>
+          <div class="plp-problem__media" data-reveal="right">
+            <img class="plp-problem__img" src="assets/plp-inline-image.png"
+                 width="1080" height="1350" loading="lazy" decoding="async"
+                 alt="A loan originator working through the Perfect Loan Process with a client" />
           </div>
         </div>
       </div>
@@ -801,68 +1087,65 @@
     <section class="plp-section plp-section--mint" aria-labelledby="plp-installs-heading">
       <div class="container plp-shell">
         <div class="plp-prose__head" data-reveal="up">
-          <span class="plp-eyebrow plp-eyebrow--center">What it is</span>
-          <h2 id="plp-installs-heading" class="plp-h2 plp-h2--center" style="margin-top:14px;">72 Steps. Four Roles. One Standard for Every Loan.</h2>
+          <h2 id="plp-installs-heading" class="plp-h2 plp-h2--center">72 Steps. Four Roles. One Standard for Every Loan.</h2>
         </div>
         <p class="plp-sub plp-installs__intro" data-reveal="up">The Perfect Loan Process is the complete, end-to-end operating system for a mortgage origination team. It maps every critical step from first contact through post-closing — with clear ownership assigned to the Loan Originator, Transaction Coordinator, Loan Processor, and Production Assistant.</p>
-        <p class="plp-sub plp-installs__intro" data-reveal="up">It was built to answer one question: <em>What has to happen, by whom, and in what order, for every single client to have an experience they tell people about?</em></p>
+        <p class="plp-sub plp-installs__intro" data-reveal="up">It gives you the answer to the most important question in your mortgage business:</p>
+        <p class="plp-installs__question" data-reveal="up"><span class="plp-underline">WHAT</span> has to happen, by <span class="plp-underline">WHOM</span>, and in <span class="plp-underline">WHAT ORDER</span> for every single client to have an experience they tell people about?</p>
 
-        <p class="plp-installs__lead" data-reveal="up">What the PLP installs in your business:</p>
-        <div class="plp-installs__grid" data-reveal="up" data-reveal-stagger="80">
-          <div class="plp-icard">
-            <span class="plp-icard__icon"><svg viewBox="0 0 24 24"><path d="M12 2l2.4 6.9H21l-5.3 4 2 6.8L12 16l-5.7 3.7 2-6.8L3 8.9h6.6z"/></svg></span>
-            <div class="plp-icard__title">A consistent, wow-worthy client experience from inquiry to funding</div>
-          </div>
-          <div class="plp-icard">
-            <span class="plp-icard__icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
-            <div class="plp-icard__title">Clear team accountability at every stage — no more dropped batons</div>
-          </div>
-          <div class="plp-icard">
-            <span class="plp-icard__icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
-            <div class="plp-icard__title">Proactive communication that eliminates the anxious "what's happening?" calls</div>
-          </div>
-          <div class="plp-icard">
-            <span class="plp-icard__icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/><path d="M3 12h2"/></svg></span>
-            <div class="plp-icard__title">An under-promise, over-deliver standard that earns reviews and referrals</div>
-          </div>
-          <div class="plp-icard">
-            <span class="plp-icard__icon"><svg viewBox="0 0 24 24"><path d="M4 7h11"/><path d="M4 7l3-3M4 7l3 3"/><path d="M20 17H9"/><path d="M20 17l-3-3M20 17l-3 3"/></svg></span>
-            <div class="plp-icard__title">A clean, scripted handoff system between every role on your team</div>
-          </div>
-          <div class="plp-icard">
-            <span class="plp-icard__icon"><svg viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></span>
-            <div class="plp-icard__title">A post-closing follow-up sequence designed to turn clients into a referral engine</div>
-          </div>
-        </div>
+        <!-- One floating panel: heading, then a split — the successful team on
+             the left, the six things their process gives them on the right,
+             with brass connector lines drawing from the photo to each item. -->
+        <div class="plp-installs__panel" data-reveal="up">
+          <p class="plp-installs__lead">What The Perfect Loan Process Installs In Your Business</p>
 
-        <p class="plp-sub plp-installs__foot" data-reveal="up">And if you're building a team — or already running one — the PLP becomes the baseline standard everyone operates from, so your client experience doesn't depend on which originator or coordinator happened to handle the file.</p>
-        <div class="plp-installs__cta" data-reveal="up">
-          <a class="btn btn--gold btn--lg" href="#get-the-plp" data-scroll-to-form>Start Building Your Perfect Loan Process →</a>
-        </div>
-      </div>
-    </section>
+          <div class="plp-viz">
+            <!-- left: the team -->
+            <div class="plp-viz__media">
+              <img class="plp-viz__img" src="assets/plp-inline-image-2.png"
+                   width="1080" height="1350" loading="lazy" decoding="async"
+                   alt="A mortgage origination team working together" />
+            </div>
 
-    <!-- ═══════════════ 3-CARD ROW ═══════════════ -->
-    <section class="plp-section" aria-labelledby="plp-trio-heading">
-      <div class="container plp-shell">
-        <h2 id="plp-trio-heading" class="plp-h2 plp-h2--center" data-reveal="up">72 steps. 4 roles. One standard.</h2>
-        <p class="plp-sub plp-sub--center" data-reveal="up">End-to-end ownership from first contact to post-closing — built so every client gets an experience they tell people about.</p>
-        <div class="plp-trio" data-reveal="up" data-reveal-stagger="100">
-          <div class="plp-tcard">
-            <span class="plp-tcard__icon"><svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6" /><line x1="8" y1="12" x2="21" y2="12" /><line x1="8" y1="18" x2="21" y2="18" /><circle cx="3.5" cy="6" r="1.5" /><circle cx="3.5" cy="12" r="1.5" /><circle cx="3.5" cy="18" r="1.5" /></svg></span>
-            <div class="plp-tcard__title">Every step mapped</div>
-            <p class="plp-tcard__desc">72 critical actions, in order, so nothing slips through the cracks.</p>
+            <!-- the connectors: photo → each outcome (paths built from measured
+                 geometry so they land precisely; see the script below) -->
+            <svg class="plp-viz__wires" aria-hidden="true" focusable="false">
+              <defs>
+                <linearGradient id="plpWireGrad" x1="0" y1="0" x2="1" y2="0">
+                  <stop offset="0%" stop-color="#c9961c" stop-opacity="0.9" />
+                  <stop offset="55%" stop-color="#eac25a" stop-opacity="0.75" />
+                  <stop offset="100%" stop-color="#ffd56c" stop-opacity="0.45" />
+                </linearGradient>
+              </defs>
+            </svg>
+
+            <!-- right: what the process gives them -->
+            <div class="plp-viz__list">
+              <div class="plp-vitem">
+                <span class="plp-vitem__dot" aria-hidden="true"></span>
+                <div class="plp-vitem__text">A consistent, wow-worthy client experience from inquiry to funding</div>
+              </div>
+              <div class="plp-vitem">
+                <span class="plp-vitem__dot" aria-hidden="true"></span>
+                <div class="plp-vitem__text">Clear team accountability at every stage — no more dropped batons</div>
+              </div>
+              <div class="plp-vitem">
+                <span class="plp-vitem__dot" aria-hidden="true"></span>
+                <div class="plp-vitem__text">Proactive communication that eliminates the anxious &quot;what's happening?&quot; calls</div>
+              </div>
+              <div class="plp-vitem">
+                <span class="plp-vitem__dot" aria-hidden="true"></span>
+                <div class="plp-vitem__text">An under-promise, over-deliver standard that earns reviews and referrals</div>
+              </div>
+              <div class="plp-vitem">
+                <span class="plp-vitem__dot" aria-hidden="true"></span>
+                <div class="plp-vitem__text">A clean, scripted handoff system between every role on your team</div>
+              </div>
+              <div class="plp-vitem">
+                <span class="plp-vitem__dot" aria-hidden="true"></span>
+                <div class="plp-vitem__text">A post-closing follow-up sequence designed to turn clients into a referral engine</div>
           </div>
-          <div class="plp-tcard plp-tcard--feature">
-            <div class="plp-bignum" data-countup="8.2" data-countup-prefix="$" data-countup-suffix="M">$8.2M</div>
-            <div class="plp-bigsub">more closed per year vs. the industry average</div>
-            <div class="plp-bignum" data-countup="72" data-countup-suffix="">72</div>
-            <div class="plp-bigsub">defined steps across 4 roles</div>
-          </div>
-          <div class="plp-tcard">
-            <span class="plp-tcard__icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" /><circle cx="9" cy="7" r="4" /><path d="M23 21v-2a4 4 0 0 0-3-3.87" /><path d="M16 3.13a4 4 0 0 1 0 7.75" /></svg></span>
-            <div class="plp-tcard__title">Clear role ownership</div>
-            <p class="plp-tcard__desc">LO, coordinator, processor & assistant each know exactly what's theirs.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -872,12 +1155,8 @@
     <section class="plp-darkband" aria-labelledby="plp-roles-heading">
       <div class="container plp-shell">
         <div class="plp-greenpanel">
-          <span class="plp-eyebrow plp-eyebrow--center plp-eyebrow--on-mint" data-reveal="up">Built on the front lines</span>
-          <h2 id="plp-roles-heading" class="plp-h2" style="margin-top:12px;" data-reveal="up">One playbook for your whole team</h2>
-          <p class="plp-greenpanel__sub" data-reveal="up">The PLP assigns every action to a role — so your client experience never depends on who happened to touch the file.</p>
-          <div class="plp-greenpanel__cta" data-reveal="up">
-            <a class="btn btn--gold btn--lg" href="#get-the-plp" data-scroll-to-form>Get it free</a>
-          </div>
+          <h2 id="plp-roles-heading" class="plp-h2" data-reveal="up">One Playbook for Your Whole Team</h2>
+          <p class="plp-greenpanel__sub" data-reveal="up">The Perfect Loan Process assigns every action to a role — so your client experience never depends on who happened to touch the file.</p>
           <div class="plp-roles" data-reveal="up" data-reveal-stagger="80">
             <div class="plp-role"><span class="plp-role__tag">Role 01</span><div class="plp-role__name">Loan Originator</div><p class="plp-role__desc">Owns the first call, expectations and the under-promise / over-deliver standard.</p></div>
             <div class="plp-role"><span class="plp-role__tag">Role 02</span><div class="plp-role__name">Transaction Coordinator</div><p class="plp-role__desc">Drives the file forward and keeps every party informed at each stage.</p></div>
@@ -901,93 +1180,74 @@
             <div class="plp-founder__title">Co-founder, The Loan Atlas</div>
           </div>
           <div class="plp-split__copy" data-reveal="up">
-            <span class="plp-eyebrow">Who built it</span>
-            <h2 id="plp-founder-heading" class="plp-h2" style="margin-top:14px;">Created by Tim Braheem</h2>
-            <p class="plp-sub" style="margin-top:16px;"><strong>Tim Braheem</strong> spent 25+ years as a producing loan originator and closed over <strong>$1.4 billion</strong> in personal loan volume. He didn't design the Perfect Loan Process in theory. He built it by originating — watching what broke, fixing it, writing it down, and running it again until it didn't break.</p>
-            <p class="plp-sub" style="margin-top:16px;">It's the same process he refined over decades of coaching top producers, and it's the foundation The Loan Atlas is built on today.</p>
-            <figure class="plp-pullquote" data-reveal="up">
-              <p>"Perfection is what we're striving for. The name is intentional — it defines the goal. And the goal is to, on every single loan, exceed everyone's expectations."</p>
-              <cite>Tim Braheem</cite>
-            </figure>
+            <h2 id="plp-founder-heading" class="plp-h2">Built On 25+ Years of Experience.<br />
+              <span class="plp-goldtext">Responsible For Billions In Funded Loans.</span></h2>
+            <p class="plp-sub plp-founder__body"><strong>Tim Braheem</strong> spent 25+ years as a producing loan originator and closed over <strong>$1.4 billion</strong> in personal loan volume. He didn't design the Perfect Loan Process in theory. He built it by originating — watching what broke, fixing it, writing it down, and running it again until it didn't break.</p>
+            <p class="plp-sub plp-founder__body">It's the same process he refined over decades of coaching top producers, and it's the foundation The Loan Atlas is built on today.</p>
           </div>
+        </div>
+
+        <!-- Tim's video — full width beneath the split -->
+        <div class="plp-founder__video" data-reveal="up">
+          <iframe class="plp-videoframe"
+            src="https://www.youtube.com/embed/P2w_6IUhbnc?si=_ncyf-R8qRSupzr4"
+            title="Tim Braheem on building the Perfect Loan Process"
+            frameborder="0" loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════════ 6-CARD GRID (featured center = Tim) ═══════════════ -->
-    <section class="plp-section" aria-labelledby="plp-grid-heading">
+    <!-- ═══════════════ TESTIMONIALS ═══════════════ -->
+    <section class="plp-section plp-testimonials" aria-labelledby="plp-testimonials-heading">
       <div class="container plp-shell">
-        <h2 id="plp-grid-heading" class="plp-h2 plp-h2--center" data-reveal="up">Why originators swear by it</h2>
-        <p class="plp-sub plp-sub--center" data-reveal="up">It wasn't built in a classroom. It was built by originating — and refined over 25+ years.</p>
-        <div class="plp-grid6" data-reveal="up" data-reveal-stagger="80">
-          <div class="plp-fcard">
-            <span class="plp-fcard__icon"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7" /><line x1="21" y1="21" x2="16.65" y2="16.65" /></svg></span>
-            <div class="plp-fcard__title">Find the right rhythm</div>
-            <p class="plp-fcard__desc">A predictable cadence that works the same on file #1 and file #100.</p>
-          </div>
-          <!-- featured center -->
-          <div class="plp-fcard plp-fcard--feature">
-            <div class="plp-fcard__title">From the originator who built it</div>
-            <p class="plp-fcard__desc">$1.4B in personal volume. The Perfect Loan Process is the system behind it.</p>
-            <div class="plp-fcard__photo">
-              <img src="assets/tim-braheem-smiling.webp" alt="Tim Braheem" loading="lazy" />
+        <h2 id="plp-testimonials-heading" class="plp-h2 plp-h2--center" data-reveal="up">What Happens When You Operate With a Perfect Loan Process</h2>
+
+        <div class="plp-tcards" data-reveal-stagger="120">
+
+          <figure class="plp-tcard">
+            <div class="plp-tcard__photo">
+              <img src="assets/sarahjane-trier-headshot.jpg" alt="SarahJane Trier" loading="lazy" />
             </div>
-            <div class="plp-personcard">
-              <div class="plp-personcard__name">Tim Braheem</div>
-              <div class="plp-personcard__role">Co-founder, The Loan Atlas</div>
+            <div class="plp-tcard__body">
+              <span class="plp-tcard__stars" aria-label="5 out of 5 stars">★★★★★</span>
+              <blockquote class="plp-tcard__quote">After 32 years in this industry, I will tell you it's worth every single penny.</blockquote>
+              <figcaption class="plp-tcard__attr">
+                <span class="plp-tcard__name">SarahJane Trier</span>
+                <span class="plp-tcard__org">Bell Bank Mortgage</span>
+              </figcaption>
             </div>
-          </div>
-          <div class="plp-fcard">
-            <span class="plp-fcard__icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg></span>
-            <div class="plp-fcard__title">Stop the scramble</div>
-            <p class="plp-fcard__desc">No more files falling apart mid-process and last-minute heroics.</p>
-          </div>
-          <div class="plp-fcard">
-            <span class="plp-fcard__icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" /></svg></span>
-            <div class="plp-fcard__title">Communicate proactively</div>
-            <p class="plp-fcard__desc">End the anxious "what's happening?" calls before they start.</p>
-          </div>
-          <div class="plp-fcard">
-            <span class="plp-fcard__icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12" /></svg></span>
-            <div class="plp-fcard__title">Earn the referral</div>
-            <p class="plp-fcard__desc">A post-closing sequence designed to turn clients into advocates.</p>
-          </div>
-        </div>
-      </div>
-    </section>
+          </figure>
 
-    <!-- ═══════════════ PROOF (full-width) ═══════════════ -->
-    <section class="plp-section plp-section--mint plp-proof" aria-labelledby="plp-proof-heading">
-      <div class="container plp-shell">
-        <h2 id="plp-proof-heading" class="plp-h2 plp-h2--center" data-reveal="up">What Happens When You Have a Perfect Loan Process</h2>
-        <div class="plp-quotes" data-reveal="up" data-reveal-stagger="80">
-          <figure class="plp-quote"><p>"After 32 years in this industry, I will tell you it's worth every single penny."</p><cite>Sarajane Trier</cite></figure>
-          <figure class="plp-quote"><p>"I wish I would have known about this 5 years ago. I've been looking for this level of support my entire Loan Officer career of 15 years."</p><cite>Jill Coss</cite></figure>
-          <figure class="plp-quote"><p>"If you're considering joining The Loan Atlas, it's been the best investment I've ever made — and you will make it back within your first month's production."</p><cite>Gian Ceretto</cite></figure>
-        </div>
-        <div class="plp-proof__actions" data-reveal="up">
-          <a class="btn btn--gold btn--lg" href="#get-the-plp" data-scroll-to-form>Start Building Your Perfect Loan Process →</a>
-        </div>
-      </div>
-      <div class="plp-proof__media" data-reveal="up" aria-hidden="true">
-        <img class="plp-proof__img" src="assets/plp-composite-2.png" alt="" loading="lazy" />
-      </div>
-    </section>
+          <figure class="plp-tcard">
+            <div class="plp-tcard__photo">
+              <img src="assets/jill-coss-headshot.jpeg" alt="Jill Coss" loading="lazy" />
+            </div>
+            <div class="plp-tcard__body">
+              <span class="plp-tcard__stars" aria-label="5 out of 5 stars">★★★★★</span>
+              <blockquote class="plp-tcard__quote">I wish I would have known about this 5 years ago. I've been looking for this level of support my entire Loan Officer career of 15 years.</blockquote>
+              <figcaption class="plp-tcard__attr">
+                <span class="plp-tcard__name">Jill Coss</span>
+                <span class="plp-tcard__org">Equity Smart Home Loans</span>
+              </figcaption>
+            </div>
+          </figure>
 
-    <!-- ═══════════════ THE FOUNDATION ═══════════════ -->
-    <section class="plp-section" aria-labelledby="plp-foundation-heading">
-      <div class="container plp-shell">
-        <div class="plp-prose">
-          <div class="plp-prose__head">
-            <span class="plp-eyebrow plp-eyebrow--center" data-reveal="up">The foundation</span>
-            <h2 id="plp-foundation-heading" class="plp-h2 plp-h2--center" style="margin-top:14px;" data-reveal="up">The Foundation for Every Top-Producing Originator</h2>
-          </div>
-          <div class="plp-prose__body" data-reveal="up">
-            <p>The Perfect Loan Process isn't one lesson inside The Loan Atlas. It's the foundation everything else is built on.</p>
-            <p>Every system, every script, every coaching session inside the platform traces back to the same idea: that a great mortgage business is run on systems. The scripts that make the baton passes clean. The communication templates that make clients feel taken care of before they think to call. The AI tools that help you execute it consistently. They all sit on top of this framework.</p>
-            <p class="plp-prose__payoff">That's why the originators who build their business around it don't just close more loans — they close more <em>predictably</em>. <strong>Loan Atlas members close an average of $8.2M more per year</strong> than the industry average.</p>
-            <p>Once the process is in place, your mortgage business will run itself.</p>
-          </div>
+          <figure class="plp-tcard">
+            <div class="plp-tcard__photo">
+              <img src="assets/gian-ceretto.png" alt="Gian Ceretto" loading="lazy" />
+            </div>
+            <div class="plp-tcard__body">
+              <span class="plp-tcard__stars" aria-label="5 out of 5 stars">★★★★★</span>
+              <blockquote class="plp-tcard__quote">If you're considering joining The Loan Atlas, it's been the best investment I've ever made — and you will make it back within your first month's production.</blockquote>
+              <figcaption class="plp-tcard__attr">
+                <span class="plp-tcard__name">Gian Ceretto</span>
+                <span class="plp-tcard__org">Prosperity Home Mortgage</span>
+              </figcaption>
+            </div>
+          </figure>
+
         </div>
       </div>
     </section>
@@ -996,10 +1256,10 @@
     <section class="plp-close" aria-labelledby="plp-close-heading">
       <div class="container plp-shell">
         <div class="plp-close__panel" data-reveal="up">
-          <h2 id="plp-close-heading" class="plp-h2">Start Building Your Perfect Loan Process</h2>
+          <h2 id="plp-close-heading" class="plp-h2">Turn Every Loan Into a Referral-Generating Machine</h2>
           <p class="plp-close__sub">Every consistent originator is running a process. Download the framework that's funded billions in loan volume, and start building yours today.</p>
           <div class="plp-close__actions">
-            <a class="btn btn--gold btn--lg" href="#get-the-plp" data-scroll-to-form>Start Building Your Perfect Loan Process →</a>
+            <a class="btn btn--gold btn--lg plp-btn" href="#get-the-plp" data-scroll-to-form>Start Building Your Perfect Loan Process</a>
           </div>
         </div>
       </div>
@@ -1009,10 +1269,10 @@
 
 <!-- TLA_FOOTER -->
 
-  <!-- Sticky mobile CTA bar (small screens only) -->
-  <div class="plp-sticky" role="region" aria-label="Download the Perfect Loan Process">
-    <span class="plp-sticky__label">The Perfect Loan Process — Free</span>
-    <a class="btn btn--gold" href="#get-the-plp" data-scroll-to-form>Start Building →</a>
+  <!-- Sticky top CTA bar — revealed on scroll (desktop / tablet) -->
+  <div class="plp-topbar" id="plp-topbar" role="region" aria-label="Get the Perfect Loan Process">
+    <p class="plp-topbar__label">Create a 5-Star Client Experience That Wins You Repeat Business</p>
+    <a class="btn btn--gold plp-btn" href="#get-the-plp" data-scroll-to-form>Start Building Your Perfect Loan Process</a>
   </div>
 
   <script src="js/nav.js?v=3"></script>
@@ -1050,6 +1310,93 @@
       // Click on the backdrop (the dialog element itself, outside the card) closes.
       modal.addEventListener('click', function (e) {
         if (e.target === modal) closeModal();
+      });
+    })();
+  </script>
+  <!-- Reveal the sticky top CTA bar once the hero's own button scrolls away.
+       Uses an IntersectionObserver on the hero CTA so there is no scroll
+       handler running on every frame. -->
+  <script>
+    (function () {
+      var bar = document.getElementById('plp-topbar');
+      var heroCta = document.querySelector('.plp-hero__actions');
+      if (!bar || !heroCta || !('IntersectionObserver' in window)) return;
+
+      var io = new IntersectionObserver(function (entries) {
+        // show the bar only once the hero CTA has left the viewport upward
+        var e = entries[0];
+        var gone = !e.isIntersecting && e.boundingClientRect.top < 0;
+        bar.classList.toggle('is-visible', gone);
+      }, { rootMargin: '-72px 0px 0px 0px', threshold: 0 });
+
+      io.observe(heroCta);
+    })();
+  </script>
+  <!-- Connector wires for the "What the PLP installs" panel. Paths are built
+       from measured DOM geometry (photo edge → each item's dot) so the strokes
+       stay hairline and the endpoints land exactly, then re-measured on resize.
+       Honors prefers-reduced-motion: lines are drawn already-complete. -->
+  <script>
+    (function () {
+      var viz = document.querySelector('.plp-viz');
+      if (!viz) return;
+      var svg = viz.querySelector('.plp-viz__wires');
+      var media = viz.querySelector('.plp-viz__media');
+      var dots = viz.querySelectorAll('.plp-vitem__dot');
+      if (!svg || !media || !dots.length) return;
+
+      var NS = 'http://www.w3.org/2000/svg';
+      var delays = [200, 340, 480, 620, 760, 900];
+
+      function draw() {
+        // only when the two columns actually sit side by side
+        if (getComputedStyle(svg).display === 'none') return;
+
+        var box = viz.getBoundingClientRect();
+        var mb = media.getBoundingClientRect();
+        svg.setAttribute('viewBox', '0 0 ' + box.width + ' ' + box.height);
+
+        // clear previous paths (keep <defs>)
+        svg.querySelectorAll('.plp-viz__wire, .plp-viz__hub, .plp-viz__hubring').forEach(function (n) { n.remove(); });
+
+        // hub: right edge of the photo, vertically centred on it
+        var hx = mb.right - box.left;
+        var hy = mb.top + mb.height / 2 - box.top;
+
+        var ring = document.createElementNS(NS, 'circle');
+        ring.setAttribute('class', 'plp-viz__hubring');
+        ring.setAttribute('cx', hx); ring.setAttribute('cy', hy); ring.setAttribute('r', 9);
+        svg.appendChild(ring);
+        var hub = document.createElementNS(NS, 'circle');
+        hub.setAttribute('class', 'plp-viz__hub');
+        hub.setAttribute('cx', hx); hub.setAttribute('cy', hy); hub.setAttribute('r', 4);
+        svg.appendChild(hub);
+
+        dots.forEach(function (dot, i) {
+          var db = dot.getBoundingClientRect();
+          var tx = db.left - box.left - 4;               // stop just shy of the dot
+          var ty = db.top + db.height / 2 - box.top;
+          // leave the hub horizontally, arrive horizontally: an S-curve
+          var mid = hx + (tx - hx) * 0.55;
+          var d = 'M ' + hx + ' ' + hy + ' C ' + mid + ' ' + hy + ', ' + mid + ' ' + ty + ', ' + tx + ' ' + ty;
+
+          var path = document.createElementNS(NS, 'path');
+          path.setAttribute('class', 'plp-viz__wire');
+          path.setAttribute('d', d);
+          svg.appendChild(path);
+
+          var len = path.getTotalLength();
+          path.style.setProperty('--len', len);
+          path.style.setProperty('--w-delay', (delays[i] || 0) + 'ms');
+        });
+      }
+
+      draw();
+      // redraw once fonts/images settle and on resize
+      window.addEventListener('load', draw);
+      var t;
+      window.addEventListener('resize', function () {
+        clearTimeout(t); t = setTimeout(draw, 150);
       });
     })();
   </script>

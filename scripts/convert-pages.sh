@@ -213,9 +213,6 @@ convert terms-of-use            terms-of-use                  ""
 convert end-user-agreement      end-user-agreement            ""
 convert ai-originator-masterplan ai-originator-masterplan     ""
 convert perfect-loan-process    perfect-loan-process          ""
-# Draft revision of the PLP page, staged for review at /plp-draft/. The live
-# page above is unchanged; fold the draft back in and drop this line once approved.
-convert plp-draft               plp-draft                     ""
 convert 5-scripts               5-scripts-for-dominating-point-of-sale  ""
 convert contact                 contact                       ""
 convert platinum-marketing      platinum-marketing            ""
