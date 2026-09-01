@@ -461,26 +461,26 @@ $tla_active      = 'events';
 
           <div class="ev-feature-card__grid">
             <!-- Square thumbnail -->
-            <a class="ev-feature-card__media" href="/market-update-with-barry-habib/" tabindex="-1" aria-hidden="true">
-              <img src="<?php echo TLA_BASE; ?>/assets/live-events/Market-Update-Barry-Habib-0820-1x1.jpg" alt="Market Update with Barry Habib — The Loan Atlas" loading="eager" />
+            <a class="ev-feature-card__media" href="/leveraging-google-reviews-to-attract-clients-and-agents/" tabindex="-1" aria-hidden="true">
+              <img src="<?php echo TLA_BASE; ?>/assets/live-events/September-2026-Masterclass-Leveraging-Google-Reviews-500x500.png" alt="Leveraging Google Reviews to Attract Clients and Agents — The Loan Atlas" loading="eager" />
             </a>
 
             <!-- Copy -->
             <div class="ev-feature-card__copy">
-              <span class="ev-tag ev-tag--on-dark ev-tag--masterclass">Next Live Market Update</span>
-              <h1 id="ev-featured-heading" class="ev-feature-card__title">Market Update with Barry Habib</h1>
+              <span class="ev-tag ev-tag--on-dark ev-tag--masterclass">Next Live Masterclass</span>
+              <h1 id="ev-featured-heading" class="ev-feature-card__title">Leveraging Google Reviews to Attract Clients and Agents</h1>
               <div class="ev-feature-card__meta">
                 <span class="ev-feature-card__meta-item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                  Thursday, August 20, 2026
+                  Thursday, September 3, 2026
                 </span>
                 <span class="ev-feature-card__meta-item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg>
                   11:00 AM PT
                 </span>
               </div>
-              <p class="ev-feature-card__desc">Join Tim Braheem for an exclusive Loan Atlas webinar with Barry Habib, CEO of MBS Highway and the leading economist of the mortgage industry. Gain expert insights into where the mortgage and real estate markets are headed.</p>
-              <a class="btn btn--gold btn--xl" href="/market-update-with-barry-habib/">Learn More and Get Access</a>
+              <p class="ev-feature-card__desc">Join Tyler Osby and Giuseppe Battaglioli for a live master class on using reviews more intentionally throughout the mortgage process &mdash; how to ask for them, where to use them, and how to turn client and agent experiences into a consistent business development tool.</p>
+              <a class="btn btn--gold btn--xl" href="/leveraging-google-reviews-to-attract-clients-and-agents/">Learn More and Get Access</a>
             </div>
           </div>
 
@@ -499,54 +499,80 @@ $tla_active      = 'events';
         <div class="ev-grid" data-reveal-stagger="80">
 
           <article class="ev-card">
-            <a class="ev-card__media" href="/office-hours-michael-belfor/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Michael-Belfor-0812.png" alt="Office Hours with Michael Belfor" loading="lazy" /></a>
+            <a class="ev-card__media" href="/office-hours-brent-hicks/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Brent-Hicks-Square.png" alt="Office Hours with Brent Hicks" loading="lazy" /></a>
             <div class="ev-card__body">
               <div class="ev-card__date">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Aug 12, 2026 · 11:00 AM PT
+                Sep 2, 2026 &middot; 11:00 AM PT
               </div>
-              <h3 class="ev-card__title">Office Hours with Michael Belfor</h3>
-              <p class="ev-card__desc">Join this session with Michael Belfor, whose niche / specialty is in the area of Advanced Loan Structuring, Market Literacy, and AI-Powered Efficiency.</p>
-              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-michael-belfor/">Get Access</a></div>
+              <h3 class="ev-card__title">Office Hours with Brent Hicks</h3>
+              <p class="ev-card__desc">Join this session with Brent Hicks, whose niche / specialty is in the area of Leadership, Team Building, and Recruiting.</p>
+              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-brent-hicks/">Get Access</a></div>
             </div>
           </article>
 
           <article class="ev-card">
-            <a class="ev-card__media" href="/ai-lab-success-with-follow-up-pro/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/AI-Lab-Success-With-Follow-Up-Pro-0813-1x1.jpg" alt="AI Lab: Success With Follow Up Pro" loading="lazy" /></a>
+            <a class="ev-card__media" href="/office-hours-marc-bui/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Marc-Bui-Square.png" alt="Office Hours with Marc Bui" loading="lazy" /></a>
             <div class="ev-card__body">
               <div class="ev-card__date">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Aug 13, 2026 · 11:00 AM PT
+                Sep 9, 2026 &middot; 11:00 AM PT
               </div>
-              <h3 class="ev-card__title">AI Lab: Success With Follow Up Pro</h3>
-              <p class="ev-card__desc">Join us for a live Follow-Up Pro Show &amp; Tell, where two Loan Atlas members will show how they've made Follow-Up Pro part of their daily workflow to stay consistent and create a better experience for borrowers and referral partners.</p>
-              <div class="ev-card__foot"><a class="ev-card__join" href="/ai-lab-success-with-follow-up-pro/">Get Access</a></div>
+              <h3 class="ev-card__title">Office Hours with Marc Bui</h3>
+              <p class="ev-card__desc">Join this session with Marc Bui, whose niche / specialty is in the area of Social Media Marketing, Instagram, and Content That Builds Pipeline.</p>
+              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-marc-bui/">Get Access</a></div>
             </div>
           </article>
 
           <article class="ev-card">
-            <a class="ev-card__media" href="/office-hours-becky-staples/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Beck-Staples-0819.png" alt="Office Hours with Becky Staples" loading="lazy" /></a>
+            <a class="ev-card__media" href="/office-hours-julie-weix/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Julie-Weix-Square.png" alt="Office Hours with Julie Weix" loading="lazy" /></a>
             <div class="ev-card__body">
               <div class="ev-card__date">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Aug 19, 2026 · 11:00 AM PT
+                Sep 16, 2026 &middot; 11:00 AM PT
               </div>
-              <h3 class="ev-card__title">Office Hours with Becky Staples</h3>
-              <p class="ev-card__desc">Join this session with Becky Staples, whose niche / specialty is in the area of Fundamentals, Production Systems, and Consistent Execution.</p>
-              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-becky-staples/">Get Access</a></div>
+              <h3 class="ev-card__title">Office Hours with Julie Weix</h3>
+              <p class="ev-card__desc">Join this session with Julie Weix, whose niche / specialty is in the area of Leadership, Personal Development, Mindset, and Time &amp; Task Management.</p>
+              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-julie-weix/">Get Access</a></div>
             </div>
           </article>
 
           <article class="ev-card">
-            <a class="ev-card__media" href="/office-hours-tyler-osby/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Tyler-Osby-0826.png" alt="Office Hours with Tyler Osby" loading="lazy" /></a>
+            <a class="ev-card__media" href="/talk-to-tim/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Talk-To-Tim-Square.png" alt="Talk to Tim" loading="lazy" /></a>
             <div class="ev-card__body">
               <div class="ev-card__date">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Aug 26, 2026 · 11:00 AM PT
+                Sep 22, 2026 &middot; 12:00 PM PT
               </div>
-              <h3 class="ev-card__title">Office Hours with Tyler Osby</h3>
-              <p class="ev-card__desc">Join this session with Tyler Osby, whose niche / specialty is in the area of Systems, Technology, Scripting and Business Development.</p>
-              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-tyler-osby/">Get Access</a></div>
+              <h3 class="ev-card__title">Talk to Tim</h3>
+              <p class="ev-card__desc">Once a month, Tim Braheem gets in the room with you to coach you through the deeper stuff: the mindset blocks, the leadership doubts, and the fear of change holding your business back.</p>
+              <div class="ev-card__foot"><a class="ev-card__join" href="/talk-to-tim/">Get Access</a></div>
+            </div>
+          </article>
+
+          <article class="ev-card">
+            <a class="ev-card__media" href="/office-hours-josh-mettle/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Josh-Mettle-Square.png" alt="Office Hours with Josh Mettle" loading="lazy" /></a>
+            <div class="ev-card__body">
+              <div class="ev-card__date">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Sep 23, 2026 &middot; 11:00 AM PT
+              </div>
+              <h3 class="ev-card__title">Office Hours with Josh Mettle</h3>
+              <p class="ev-card__desc">Join this session with Josh Mettle, whose niche / specialty is in the area of Marketing, Content, Audience-Building and Consumer-Direct Strategy.</p>
+              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-josh-mettle/">Get Access</a></div>
+            </div>
+          </article>
+
+          <article class="ev-card">
+            <a class="ev-card__media" href="/office-hours-jay-dacey/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Jay-Dacey-Square.png" alt="Office Hours with Jay Dacey" loading="lazy" /></a>
+            <div class="ev-card__body">
+              <div class="ev-card__date">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Sep 30, 2026 &middot; 11:00 AM PT
+              </div>
+              <h3 class="ev-card__title">Office Hours with Jay Dacey</h3>
+              <p class="ev-card__desc">Join this session with Jay Dacey, whose niche / specialty is in the area of Database Management, the Perfect Loan Process, First-Time Homebuyers and Divorce Situations.</p>
+              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-jay-dacey/">Get Access</a></div>
             </div>
           </article>
 
@@ -563,6 +589,24 @@ $tla_active      = 'events';
         </header>
 
         <div class="ev-library" data-reveal-stagger="90">
+
+          <!-- Whole card is clickable → replay detail page -->
+          <a class="ev-pastcard" href="/market-update-with-barry-habib/">
+            <div class="ev-pastcard__media">
+              <img src="<?php echo TLA_BASE; ?>/assets/live-events/past-events/Market-Update-Barry-Habib-0820-16x9.jpg" alt="" loading="lazy" />
+            </div>
+            <div class="ev-pastcard__body">
+              <span class="ev-pastcard__recorded">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Recorded on Aug 20, 2026
+              </span>
+              <h3 class="ev-pastcard__title">Market Update with Barry Habib</h3>
+              <p class="ev-pastcard__desc">Tim Braheem and Barry Habib gave a clear read on where rates are actually headed and where the deals are hiding when they aren&rsquo;t obvious &mdash; the economic picture behind the headlines, the objection-proof presentations to bring to clients and Realtors, and the daily discipline that separates originators who grow from the ones waiting it out.</p>
+              <div class="ev-pastcard__foot">
+                <span class="ev-pastcard__watch">Access the Replay <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+              </div>
+            </div>
+          </a>
 
           <!-- Whole card is clickable → replay detail page -->
           <a class="ev-pastcard" href="/lead-generation-that-converts/">

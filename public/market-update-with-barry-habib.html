@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Market Update with Barry Habib — The Loan Atlas</title>
-  <meta name="description" content="Join Tim Braheem for an exclusive Loan Atlas webinar with Barry Habib, CEO of MBS Highway and the leading economist of the mortgage industry — expert insight into where the mortgage and real estate markets are headed." />
+  <meta name="description" content="Tim Braheem and Barry Habib on where rates are actually headed — and where the deals are hiding when they aren’t obvious. The economic picture behind the headlines, the wealth-creation refinance and rent-vs-own presentations, and the call script for reactivating your database." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -54,13 +54,28 @@
     /* Header order: thumb → meta (date/type) → title.
        Meta sits below the bled image; title sits close beneath the meta. */
     .oh-header > * + * { margin-top: 0; }
-    .oh-header .oh-thumb + .oh-meta { margin-top: clamp(24px, 3vw, 32px); }
-    .oh-header .oh-meta + .oh-title { margin-top: 10px; }
+    .oh-header .oh-thumb + .oh-titleblock { margin-top: clamp(24px, 3vw, 32px); }
+
+    /* Title block — one symmetric rhythm token so the title sits the same
+       distance from the date/time above it as from the body copy below it.
+       Declared on .oh-main so it is in scope for BOTH the rule inside the
+       block and the sibling-section rule below it. The optical trims cancel
+       the line-height slack of the neighbouring text, so the *visible* gaps
+       match rather than just the box margins. */
+    .oh-main { --oh-title-gap: clamp(20px, 2.2vw, 26px); }
+    .oh-titleblock .oh-meta + .oh-title {
+      /* meta leaves 2.5px slack below; the tight display face overflows its
+         box by 6px above — so add back the 3.5px difference */
+      margin-top: calc(var(--oh-title-gap) + 3.5px);
+    }
+    .oh-main > .oh-header + section {
+      /* title overflows 5.6px below, body copy holds 4px above */
+      margin-top: calc(var(--oh-title-gap) + 1.6px);
+    }
     /* Bottom CTA — centered below the Taught By section */
     .oh-cta-foot { display: flex; justify-content: center; }
 
-    /* Full-width watch CTA (gold .tlc-btn, stretched) — under the title
-       and again at the bottom of the card */
+    /* Full-width watch CTA (gold .tlc-btn, stretched) — at the bottom of the card */
     .oh-watch-btn { width: 100%; font-size: 1.125rem; padding-block: 16px; }
 
     .oh-title {
@@ -99,6 +114,35 @@
       color: var(--on-surface-variant);
     }
     .oh-list svg { width: 20px; height: 20px; margin-top: 3px; color: var(--brass); }
+    /* A paragraph closing out a list is a new thought, not a sixth bullet.
+       This gap is tuned so the visible space BELOW the last checklist item
+       matches the visible space ABOVE the section heading — the band gap
+       (39px) less the ~4px of descender slack the list leaves under its
+       final line, so both read as the same distance. */
+    .oh-list + .oh-prose {
+      /* Derived from the band gap so the two stay matched as it scales.
+         The 8px trim is the measured optical difference between the two
+         pairings: above the heading, body text meets a display h2 whose tight
+         line-height pulls its cap-height up; here a list item meets body copy,
+         and both sides carry their own leading. Tuned so the two visible gaps
+         land within 1px of each other at every width. */
+      margin-top: calc(var(--oh-band-gap) - 8px);
+    }
+
+    /* Section band — a section that reads as evenly inset from its neighbours.
+       The token lives on .oh-main so it is in scope for the trailing-sibling
+       rule too. Above the band the neighbour is body copy (~4px of descender
+       slack); below it the neighbour is a display h2 (~9px of cap-height
+       slack), so the trims differ to make the two visible gaps match. */
+    /* Capped at 48px: the container stops growing at 1280px, so a vw-tracked
+       gap keeps expanding after the text column has stopped, which visibly
+       over-spaces the section on wide screens. */
+    .oh-main { --oh-band-gap: clamp(40px, 3.4vw, 48px); }
+    /* Both edges meet the same pairing — body copy (4px slack below) against a
+       display h2 (which overflows its box by 3px above) — so both sides carry
+       the identical 1px trim and the visible gaps come out equal. */
+    .oh-main > .oh-band,
+    .oh-main > .oh-band + * { margin-top: calc(var(--oh-band-gap) - 1px); }
 
     /* Pull-quote — shared .quote-card testimonial block (styles.css).
        Override the marquee-specific flex sizing so it flows in the column;
@@ -391,37 +435,45 @@
             <!-- Header: thumbnail + meta + title -->
             <div class="oh-header" data-reveal="up">
               <div class="oh-thumb">
-                <img src="assets/live-events/Market-Update-Barry-Habib-0820-16x9.jpg" alt="Market Update with Barry Habib — The Loan Atlas" loading="eager" />
+                <img src="assets/live-events/past-events/Market-Update-Barry-Habib-0820-16x9.jpg" alt="Market Update with Barry Habib — The Loan Atlas" loading="eager" />
               </div>
+              <div class="oh-titleblock">
               <div class="oh-meta">
                 <span class="oh-meta__item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                  Thursday, August 20, 2026
-                </span>
-                <span class="oh-meta__item">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg>
-                  11:00 AM PT
+                  Recorded on Aug 20, 2026
                 </span>
               </div>
               <h1 class="oh-title">Market Update with Barry Habib</h1>
+              </div>
             </div>
 
             <!-- About this event -->
             <section data-reveal="up">
-              <p class="oh-prose">Join Tim Braheem for an exclusive Loan Atlas webinar with Barry Habib, CEO of MBS Highway and the leading economist of the mortgage industry.</p>
+              <p class="oh-prose">Rates climbed through the summer, the phone got quieter, and the deals that used to be obvious dried up. If you&rsquo;re waiting for the market to hand you closings again, you&rsquo;re going to be waiting a while&hellip;and watching the originators who know where to look pull ahead.</p>
+              <p class="oh-prose">In this special session inside the Loan Atlas, Tim Braheem and Barry Habib give a clear read on where rates are actually headed and, more importantly, where the deals are hiding when they aren&rsquo;t obvious. You&rsquo;ll get the real economic picture behind the headlines, the objection-proof presentations to bring to clients and Realtors, and the daily discipline that separates the originators who grow in this market from the ones waiting it out.</p>
             </section>
 
             <!-- What you'll learn -->
-            <section data-reveal="up">
+            <section class="oh-band" data-reveal="up">
               <h2 class="oh-h2">What You&rsquo;ll Learn</h2>
-              <p class="oh-prose">Gain expert insights into where the mortgage and real estate markets are headed:</p>
               <ul class="oh-list">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>What&rsquo;s next for rates?&hellip;Don&rsquo;t miss the next rate drop opportunity</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Explain the hidden opportunity in home purchases to your Realtors and borrowers</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>How to fend off competitors and AI from stealing your refis</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Strategic scripting to close more opportunities and gain more referral relationships</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Get Barry Habib&rsquo;s real read on where rates are headed &mdash; the truth behind the oil, Fed, and inflation headlines &mdash; so you can walk into every client and Realtor conversation with a clear, confident point of view instead of guessing</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Master the wealth-creation refinance presentation that turns past clients you&rsquo;d written off as &ldquo;locked in&rdquo; at a low rate into closings &mdash; same monthly payment, years shaved off their loan, real equity built for their family</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Learn the rent-vs-own reframe that shows a client why 3% appreciation on a home can beat 10% in an investment account, and how to shut down the &ldquo;renting is cheaper&rdquo; objection before it&rsquo;s ever raised</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Walk away with the exact call script for reactivating your database &mdash; &ldquo;last time we saved rate, this time we save years and create wealth&rdquo; &mdash; the outreach that turns a handful of morning calls into two-plus extra loans a month</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Apply the same wealth-creation conversation to move-up buyers who feel stuck in their current home, opening a second pipeline of deals in a market where they&rsquo;re hard to find</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>See why your presentation is where every deal is won or lost, and how to build one so airtight it answers every objection before a client can voice it</span></li>
               </ul>
             </section>
+
+            <!-- Pull-quote — shared testimonial block (no gold mark; inline quotes instead) -->
+            <figure class="quote-card" data-reveal="up">
+              <blockquote class="quote-card__quote">&ldquo;Great originators know where to find deals when it&rsquo;s not so obvious. They know what rocks to turn over to yield rewards.&rdquo;</blockquote>
+              <figcaption class="quote-card__attr">
+                <div class="quote-card__name">Tim Braheem</div>
+              </figcaption>
+            </figure>
 
             <!-- Presenters -->
             <section data-reveal="up">
@@ -448,7 +500,7 @@
 
             <!-- Bottom CTA — opens the access modal -->
             <div class="oh-cta-foot" data-reveal="up">
-              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Join This Market Update</button>
+              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch the Full Replay</button>
             </div>
 
           </div>
@@ -458,7 +510,7 @@
 
             <!-- Column header — frames the two cards as an either/or choice -->
             <div class="oh-side__head">
-              <h2 class="oh-side__title">Want to Join This Market Update?</h2>
+              <h2 class="oh-side__title">Get On-Demand Access to Every Live Event</h2>
               <p class="oh-side__sub">Join The Loan Atlas to get immediate access, or schedule your free business assessment to see everything inside.</p>
             </div>
 
@@ -521,7 +573,7 @@
         <div class="ev-modal__strip" aria-hidden="true">
           <div class="ev-modal__strip-row">
             <img src="assets/live-events/AI-Lab-Inside-Platinum-0717.png" alt="" loading="lazy" />
-            <img src="assets/live-events/Market-Update-Barry-Habib-0820-1x1.jpg" alt="" loading="lazy" />
+            <img src="assets/live-events/past-events/Market-Update-Barry-Habib-0820-1x1.jpg" alt="" loading="lazy" />
             <img src="assets/live-events/Office-Hours-Jay-Dacey-0722.png" alt="" loading="lazy" />
             <img src="assets/live-events/Talk-to-Tim-0731.png" alt="" loading="lazy" />
             <img src="assets/live-events/Masterclass-Mortgage-Success-Plan-0723.png" alt="" loading="lazy" />

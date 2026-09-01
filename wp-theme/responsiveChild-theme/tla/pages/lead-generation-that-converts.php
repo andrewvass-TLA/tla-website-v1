@@ -398,7 +398,7 @@ $tla_active      = '';
             <section data-reveal="up">
               <p class="oh-prose">Most loan originators are working harder than ever to stay visible, create content, follow up with leads, and build referral relationships. But in today's market, more activity does not always create more opportunity.</p>
               <p class="oh-prose">In this Loan Atlas webinar, Tim Braheem will interview Michael Regan and Jay Voorhees. They will share what is actually working right now to generate leads, build trust, and create consistent conversations without depending on constant social media posting or complicated digital marketing strategies. You'll hear practical insight from originators who have tested both modern marketing and old-school relationship building, and are focusing their time on the activities that create the highest return.</p>
-              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch This Masterclass</button>
+              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch the Full Replay</button>
             </section>
 
             <!-- What you'll learn -->
@@ -446,7 +446,7 @@ $tla_active      = '';
 
             <!-- Bottom CTA — opens the access modal -->
             <div class="oh-cta-foot" data-reveal="up">
-              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch This Masterclass</button>
+              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch the Full Replay</button>
             </div>
 
           </div>

@@ -381,7 +381,7 @@ $tla_active      = '';
                 </span>
               </div>
               <h1 class="oh-title">Winning the AI Game: How Top Loan Originators Are Using AI to Gain Massive Leverage</h1>
-              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch This Masterclass</button>
+              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch the Full Replay</button>
             </div>
 
             <!-- About this masterclass -->
@@ -453,7 +453,7 @@ $tla_active      = '';
 
             <!-- Bottom CTA — opens the access modal -->
             <div class="oh-cta-foot" data-reveal="up">
-              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch This Masterclass</button>
+              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch the Full Replay</button>
             </div>
 
           </div>

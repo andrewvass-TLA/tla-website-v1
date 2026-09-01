@@ -381,7 +381,7 @@ $tla_active      = '';
                 </span>
               </div>
               <h1 class="oh-title">AI Lab: Follow Up Pro &ndash; Analyze, Organize, and Execute on Every Conversation in 90 Seconds</h1>
-              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch This AI Lab</button>
+              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch the Full Replay</button>
             </div>
 
             <!-- About this AI Lab -->
@@ -431,7 +431,7 @@ $tla_active      = '';
 
             <!-- Bottom CTA — opens the access modal -->
             <div class="oh-cta-foot" data-reveal="up">
-              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch This AI Lab</button>
+              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch the Full Replay</button>
             </div>
 
           </div>

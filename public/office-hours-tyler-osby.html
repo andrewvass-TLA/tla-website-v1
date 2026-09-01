@@ -36,8 +36,8 @@
       padding: clamp(28px, 3.5vw, 48px);
     }
     .oh-main > * + * { margin-top: clamp(36px, 4.5vw, 64px); }
-    /* the first section sits closer to the title/meta header than inter-section gaps */
-    .oh-main > .oh-header + * { margin-top: clamp(28px, 3vw, 40px); }
+    /* sections carry no extra leading space of their own — the flow gap is the gap */
+    .oh-main section > :first-child { margin-top: 0; }
 
     /* Hero image bleeds to the top edges of the white card (artifact-style) */
     .oh-thumb {
@@ -51,8 +51,24 @@
     /* Header order: thumb → meta (date/time) → title.
        Meta sits below the bled image; title sits close beneath the meta. */
     .oh-header > * + * { margin-top: 0; }
-    .oh-header .oh-thumb + .oh-meta { margin-top: clamp(24px, 3vw, 32px); }
-    .oh-header .oh-meta + .oh-title { margin-top: 10px; }
+    .oh-header .oh-thumb + .oh-titleblock { margin-top: clamp(24px, 3vw, 32px); }
+
+    /* Title block — one symmetric rhythm token so the title sits the same
+       distance from the date/time above it as from the body copy below it.
+       Declared on .oh-main so it is in scope for BOTH the rule inside the
+       block and the sibling-section rule below it. The optical trims cancel
+       the line-height slack of the neighbouring text, so the *visible* gaps
+       match rather than just the box margins. */
+    .oh-main { --oh-title-gap: clamp(20px, 2.2vw, 26px); }
+    .oh-titleblock .oh-meta + .oh-title {
+      /* meta leaves 2.5px slack below; the tight display face overflows its
+         box by 6px above — so add back the 3.5px difference */
+      margin-top: calc(var(--oh-title-gap) + 3.5px);
+    }
+    .oh-main > .oh-header + section {
+      /* title overflows 5.6px below, body copy holds 4px above */
+      margin-top: calc(var(--oh-title-gap) + 1.6px);
+    }
     /* Bottom CTA — centered at the foot of the white card */
     .oh-cta-foot { display: flex; justify-content: center; }
 
@@ -344,6 +360,7 @@
               <div class="oh-thumb">
                 <img src="assets/live-events/Office-Hours-Tyler-Osby-0826-16x9.jpg" alt="Office Hours with Tyler Osby" loading="eager" />
               </div>
+              <div class="oh-titleblock">
               <div class="oh-meta">
                 <span class="oh-meta__item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -355,6 +372,7 @@
                 </span>
               </div>
               <h1 class="oh-title">Office Hours with Tyler Osby</h1>
+              </div>
             </div>
 
             <!-- What is Office Hours -->
