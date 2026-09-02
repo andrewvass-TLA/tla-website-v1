@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>VMBA Sticky Bar — Mockups</title>
+<meta name="robots" content="noindex, nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="../css/styles.css" />
+<link rel="stylesheet" href="../css/chrome.css" />
+<style>
+/* ── Mockup harness (not shipped) ──────────────────────────────────────────── */
+body { background: #eef2f6; }
+body > main { padding-top: 0; }
+.mk-wrap { max-width: 1180px; margin-inline: auto; padding: 40px 24px 96px; }
+.mk-lede { font-family: var(--font-body); color: #3d5674; max-width: 60ch; margin: 0 0 40px; line-height: 1.6; }
+.mk-lede h1 { font-family: var(--font-display); font-size: 1.75rem; color: var(--primary); margin: 0 0 8px; }
+.mk-case { margin-bottom: 56px; }
+.mk-case__head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 4px; }
+.mk-case__num { font-family: var(--font-display); font-weight: 800; font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: #fff; background: var(--primary); padding: 4px 9px; border-radius: 4px; }
+.mk-case__name { font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; color: var(--primary); margin: 0; }
+.mk-case__note { font-family: var(--font-body); font-size: 0.875rem; color: #5b7391; margin: 6px 0 16px; line-height: 1.55; max-width: 72ch; }
+/* Frame that fakes the top of the real page: dark fixed header + bar + hero peek */
+.mk-frame { border-radius: 12px; overflow: hidden; box-shadow: 0 18px 44px rgba(2,28,54,0.16); background: #fff; }
+.mk-hdr { height: 72px; background: rgba(2,28,54,0.96); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(255,255,255,0.08); }
+.mk-hdr img { height: 30px; width: auto; display: block; }
+.mk-peek { padding: 34px 24px 44px; text-align: center; background: #f7f9fb; }
+.mk-peek__t { font-family: var(--font-display); font-weight: 700; font-size: clamp(1.5rem,3.2vw,2.1rem); color: var(--primary); margin: 0 0 10px; line-height: 1.15; }
+.mk-peek__t em { font-style: normal; background: linear-gradient(135deg,#c9961c 0%,#eac25a 50%,#ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.mk-peek__p { font-family: var(--font-body); font-size: 0.9375rem; color: #5b7391; margin: 0; }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   A — BRASS MARQUEE: full brass gradient, three-cell rhythm, shimmer sweep
+   ══════════════════════════════════════════════════════════════════════════ */
+.va { position: relative; overflow: hidden; background: linear-gradient(135deg,#b8860f 0%,#c9961c 22%,#eac25a 52%,#ffd56c 74%,#c9961c 100%); color: #021c36; box-shadow: 0 8px 24px rgba(2,28,54,0.2); }
+.va::after { content: ""; position: absolute; inset: 0; background: linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.55) 48%, transparent 66%); transform: translateX(-100%); animation: va-sheen 5.5s ease-in-out 1.2s infinite; pointer-events: none; }
+@keyframes va-sheen { 0% { transform: translateX(-100%);} 55%,100% { transform: translateX(120%);} }
+.va__inner { position: relative; z-index: 1; max-width: var(--container-max); margin-inline: auto; padding: 11px var(--gutter); display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: wrap; }
+.va__cell { display: flex; align-items: center; gap: 8px; padding-inline: 18px; font-family: var(--font-body); line-height: 1.2; }
+.va__cell + .va__cell { border-left: 1px solid rgba(2,28,54,0.22); }
+.va__badge { font-weight: 900; font-size: 0.6875rem; letter-spacing: 0.14em; text-transform: uppercase; background: #021c36; color: #ffd56c; padding: 5px 10px; border-radius: 3px; white-space: nowrap; }
+.va__price { font-family: var(--font-display); font-weight: 800; font-size: 1.0625rem; letter-spacing: -0.01em; white-space: nowrap; }
+.va__price s { font-weight: 600; font-size: 0.8125rem; opacity: 0.55; margin-right: 6px; }
+.va__plus { font-weight: 700; font-size: 0.875rem; white-space: nowrap; }
+.va__save { font-weight: 800; font-size: 0.875rem; white-space: nowrap; }
+.va__cta { margin-left: 18px; display: inline-flex; align-items: center; gap: 7px; background: #021c36; color: #fff; font-family: var(--font-body); font-weight: 800; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 10px 20px; border-radius: var(--radius-full); white-space: nowrap; transition: transform 160ms ease, box-shadow 160ms ease; }
+.va__cta:hover { transform: translateY(-1px); box-shadow: 0 10px 22px rgba(2,28,54,0.35); }
+.va__cta svg { width: 13px; height: 13px; }
+@media (max-width: 1023px) { .va__cell { padding-inline: 12px; } .va__plus, .va__price s { display: none; } }
+@media (max-width: 719px) {
+  .va__inner { padding: 9px 16px; gap: 8px 10px; }
+  .va__cell { padding-inline: 0; border-left: 0 !important; }
+  .va__plus { display: inline; font-size: 0.75rem; }
+  .va__plus .va__plus-long { display: none; }
+  .va__cta { margin-left: 0; padding: 8px 16px; font-size: 0.6875rem; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   B — MIDNIGHT AUTHORITY: dark bar, brass hairline, co-brand lockup
+   ══════════════════════════════════════════════════════════════════════════ */
+.vb { position: relative; background: linear-gradient(160deg,#060e1c 0%,#021c36 50%,#060e1c 100%); border-bottom: 2px solid transparent; border-image: linear-gradient(90deg,#c9961c,#ffd56c,#c9961c) 1; box-shadow: 0 8px 26px rgba(2,28,54,0.28); }
+.vb__inner { max-width: var(--container-max); margin-inline: auto; padding: 12px var(--gutter); display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+.vb__left { display: flex; align-items: center; gap: 16px; min-width: 0; }
+.vb__logo { height: 26px; width: auto; border-radius: 3px; display: block; flex-shrink: 0; background: #fff; padding: 2px 4px; }
+.vb__eyebrow { font-family: var(--font-body); font-weight: 800; font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase; color: #eac25a; display: block; margin-bottom: 2px; }
+.vb__line { font-family: var(--font-display); font-weight: 700; font-size: 0.9375rem; color: #fff; line-height: 1.25; margin: 0; }
+.vb__line b { background: linear-gradient(135deg,#c9961c 0%,#eac25a 50%,#ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 800; }
+.vb__line span { color: rgba(255,255,255,0.5); padding-inline: 6px; }
+.vb__right { display: flex; align-items: center; gap: 18px; flex-shrink: 0; }
+.vb__save { font-family: var(--font-body); font-weight: 800; font-size: 0.8125rem; color: #6ee7a0; white-space: nowrap; display: inline-flex; align-items: center; gap: 6px; }
+.vb__save::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: #6ee7a0; box-shadow: 0 0 0 0 rgba(110,231,160,0.7); animation: vb-pulse 2.4s ease-out infinite; }
+@keyframes vb-pulse { 0% { box-shadow: 0 0 0 0 rgba(110,231,160,0.7);} 70%,100% { box-shadow: 0 0 0 9px rgba(110,231,160,0);} }
+.vb__cta { display: inline-flex; align-items: center; gap: 7px; background: linear-gradient(135deg,#c9961c 0%,#eac25a 50%,#ffd56c 100%); color: #021c36; font-family: var(--font-body); font-weight: 800; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 10px 20px; border-radius: var(--radius-full); white-space: nowrap; transition: transform 160ms ease, box-shadow 160ms ease; }
+.vb__cta:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(234,194,90,0.4); }
+@media (max-width: 899px) { .vb__save { display: none; } }
+@media (max-width: 639px) {
+  .vb__inner { padding: 10px 16px; gap: 12px; }
+  .vb__logo { display: none; }
+  .vb__line { font-size: 0.75rem; line-height: 1.35; }
+  .vb__line span { padding-inline: 4px; }
+  .vb__line .vb__hide-sm { display: none; }
+  .vb__cta { padding: 8px 15px; font-size: 0.6875rem; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   C — SPLIT LEDGER: dark left plate, brass right plate, price front and center
+   ══════════════════════════════════════════════════════════════════════════ */
+.vc { display: flex; box-shadow: 0 8px 26px rgba(2,28,54,0.22); }
+.vc__dark { flex: 1 1 auto; background: linear-gradient(160deg,#060e1c 0%,#021c36 60%,#0a2545 100%); display: flex; align-items: center; justify-content: flex-end; padding: 0 clamp(16px,3vw,34px); min-width: 0; }
+.vc__darkin { display: flex; align-items: center; gap: clamp(14px,2.2vw,26px); padding-block: 11px; }
+.vc__tag { font-family: var(--font-body); font-weight: 900; font-size: 0.625rem; letter-spacing: 0.2em; text-transform: uppercase; color: #eac25a; border: 1px solid rgba(234,194,90,0.45); padding: 5px 9px; border-radius: 3px; white-space: nowrap; }
+.vc__price { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.0625rem,2vw,1.375rem); color: #fff; letter-spacing: -0.02em; white-space: nowrap; line-height: 1; }
+.vc__price i { font-style: normal; font-size: 0.5em; font-weight: 700; letter-spacing: 0; opacity: 0.75; }
+.vc__price s { display: block; font-family: var(--font-body); font-size: 0.6875rem; font-weight: 600; opacity: 0.5; letter-spacing: 0; margin-bottom: 2px; }
+.vc__free { font-family: var(--font-body); font-size: 0.8125rem; font-weight: 700; color: rgba(255,255,255,0.92); line-height: 1.3; white-space: nowrap; }
+.vc__free b { color: #eac25a; font-weight: 800; }
+.vc__gold { flex: 0 0 auto; background: linear-gradient(135deg,#c9961c 0%,#eac25a 55%,#ffd56c 100%); display: flex; align-items: center; gap: clamp(12px,2vw,20px); padding: 0 clamp(16px,3vw,30px); position: relative; }
+.vc__gold::before { content: ""; position: absolute; left: -26px; top: 0; bottom: 0; width: 28px; background: linear-gradient(135deg,#c9961c,#eac25a); clip-path: polygon(100% 0, 100% 100%, 0 100%); }
+.vc__save { font-family: var(--font-display); font-weight: 800; font-size: clamp(0.875rem,1.6vw,1rem); color: #021c36; white-space: nowrap; line-height: 1.15; }
+.vc__save small { display: block; font-family: var(--font-body); font-size: 0.625rem; font-weight: 800; letter-spacing: 0.12em; text-transform: uppercase; opacity: 0.62; }
+.vc__cta { display: inline-flex; align-items: center; gap: 6px; background: #021c36; color: #fff; font-family: var(--font-body); font-weight: 800; font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 9px 18px; border-radius: var(--radius-full); white-space: nowrap; transition: transform 160ms ease, box-shadow 160ms ease; }
+.vc__cta:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(2,28,54,0.4); }
+@media (max-width: 1099px) { .vc__free { display: none; } }
+@media (max-width: 719px) {
+  .vc { flex-direction: column; }
+  .vc__dark, .vc__gold { justify-content: center; padding: 8px 16px; }
+  .vc__gold::before { display: none; }
+  .vc__tag { font-size: 0.5625rem; padding: 4px 7px; }
+  .vc__price s { display: inline; margin: 0 6px 0 0; }
+  .vc__darkin { padding-block: 8px; gap: 10px; flex-wrap: wrap; justify-content: center; }
+  .vc__free { display: block; flex-basis: 100%; text-align: center; font-size: 0.75rem; white-space: normal; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   D — TICKET STUB: notched brass coupon on midnight, dashed perforation
+   ══════════════════════════════════════════════════════════════════════════ */
+.vd { background: linear-gradient(160deg,#060e1c 0%,#021c36 50%,#060e1c 100%); box-shadow: 0 8px 26px rgba(2,28,54,0.26); }
+.vd__inner { max-width: var(--container-max); margin-inline: auto; padding: 9px var(--gutter); display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; }
+.vd__stub { display: flex; align-items: stretch; background: linear-gradient(135deg,#c9961c 0%,#eac25a 52%,#ffd56c 100%); border-radius: 6px; overflow: hidden; box-shadow: 0 4px 14px rgba(0,0,0,0.3); }
+.vd__stub-l { display: flex; flex-direction: column; justify-content: center; padding: 7px 16px; border-right: 2px dashed rgba(2,28,54,0.3); }
+.vd__stub-r { display: flex; align-items: center; gap: 12px; padding: 7px 16px; }
+.vd__k { font-family: var(--font-body); font-weight: 900; font-size: 0.5625rem; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(2,28,54,0.7); }
+.vd__v { font-family: var(--font-display); font-weight: 800; font-size: 1.0625rem; color: #021c36; letter-spacing: -0.01em; line-height: 1.1; }
+.vd__v i { font-style: normal; font-size: 0.55em; font-weight: 700; }
+.vd__free { font-family: var(--font-body); font-weight: 700; font-size: 0.8125rem; color: #021c36; line-height: 1.25; max-width: 17ch; }
+.vd__free b { font-weight: 900; }
+.vd__save { display: inline-flex; align-items: center; gap: 7px; font-family: var(--font-display); font-weight: 800; font-size: 0.9375rem; color: #ffd56c; white-space: nowrap; }
+.vd__save svg { width: 15px; height: 15px; flex-shrink: 0; }
+.vd__cta { display: inline-flex; align-items: center; gap: 6px; background: transparent; color: #fff; border: 1.5px solid rgba(234,194,90,0.6); font-family: var(--font-body); font-weight: 800; font-size: 0.75rem; letter-spacing: 0.05em; text-transform: uppercase; padding: 8px 18px; border-radius: var(--radius-full); white-space: nowrap; transition: background 160ms ease, color 160ms ease, transform 160ms ease; }
+.vd__cta:hover { background: linear-gradient(135deg,#c9961c,#ffd56c); color: #021c36; border-color: transparent; transform: translateY(-1px); }
+@media (max-width: 899px) { .vd__free { max-width: 14ch; font-size: 0.75rem; } }
+@media (max-width: 639px) {
+  .vd__inner { padding: 8px 14px; gap: 8px 10px; }
+  .vd__stub-l { padding: 6px 11px; }
+  .vd__stub-r { padding: 6px 11px; }
+  .vd__free { max-width: 13ch; font-size: 0.6875rem; line-height: 1.2; }
+  .vd__save { font-size: 0.75rem; flex-basis: 100%; justify-content: center; }
+  .vd__cta { padding: 7px 15px; font-size: 0.6875rem; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   E — SPOTLIT PANEL: dark bar, radial brass spotlight behind the price
+   ══════════════════════════════════════════════════════════════════════════ */
+.ve { position: relative; overflow: hidden; background: #04162b; box-shadow: 0 8px 26px rgba(2,28,54,0.28); }
+.ve::before { content: ""; position: absolute; left: 50%; top: -140%; width: 620px; height: 340%; transform: translateX(-50%); background: radial-gradient(ellipse at center, rgba(234,194,90,0.30) 0%, rgba(201,150,28,0.10) 45%, transparent 72%); pointer-events: none; }
+.ve::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(234,194,90,0.75), transparent); }
+.ve__inner { position: relative; z-index: 1; max-width: var(--container-max); margin-inline: auto; padding: 12px var(--gutter); display: flex; align-items: center; justify-content: center; gap: clamp(14px,2.4vw,28px); flex-wrap: wrap; text-align: center; }
+.ve__eyebrow { font-family: var(--font-body); font-weight: 900; font-size: 0.625rem; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(255,255,255,0.55); white-space: nowrap; }
+.ve__eyebrow b { color: #eac25a; font-weight: 900; }
+.ve__hero { display: inline-flex; align-items: baseline; gap: 10px; white-space: nowrap; }
+.ve__num { font-family: var(--font-display); font-weight: 800; font-size: clamp(1.25rem,2.6vw,1.75rem); letter-spacing: -0.03em; background: linear-gradient(135deg,#c9961c 0%,#eac25a 45%,#ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent; line-height: 1; }
+.ve__num i { font-style: normal; font-size: 0.42em; font-weight: 700; letter-spacing: 0; }
+.ve__was { font-family: var(--font-body); font-size: 0.8125rem; font-weight: 600; color: rgba(255,255,255,0.42); text-decoration: line-through; }
+.ve__pluspill { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-body); font-weight: 700; font-size: 0.8125rem; color: #fff; background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.14); padding: 6px 13px; border-radius: var(--radius-full); white-space: nowrap; }
+.ve__pluspill b { color: #ffd56c; font-weight: 800; }
+.ve__save { font-family: var(--font-body); font-weight: 800; font-size: 0.8125rem; color: #6ee7a0; white-space: nowrap; }
+.ve__cta { display: inline-flex; align-items: center; gap: 7px; background: linear-gradient(135deg,#c9961c 0%,#eac25a 50%,#ffd56c 100%); color: #021c36; font-family: var(--font-body); font-weight: 800; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 10px 20px; border-radius: var(--radius-full); white-space: nowrap; transition: transform 160ms ease, box-shadow 160ms ease; }
+.ve__cta:hover { transform: translateY(-1px); box-shadow: 0 10px 24px rgba(234,194,90,0.38); }
+@media (max-width: 1023px) { .ve__save { display: none; } }
+@media (max-width: 767px) { .ve__eyebrow { font-size: 0.5625rem; letter-spacing: 0.16em; } }
+@media (max-width: 639px) {
+  .ve__inner { padding: 9px 14px; gap: 4px 10px; flex-wrap: wrap; }
+  .ve__eyebrow { flex-basis: 100%; }
+  .ve__hero { gap: 7px; }
+  .ve__num { font-size: 1.375rem; }
+  .ve__pluspill { background: none; border: 0; padding: 0; font-size: 0.75rem; }
+  .ve__was { display: none; }
+  .ve__cta { padding: 7px 14px; font-size: 0.6875rem; }
+}
+
+/* ══════════════════════════════════════════════════════════════════════════
+   F — TWO-TIER STACK: thin brass eyebrow strip + dark detail row
+   ══════════════════════════════════════════════════════════════════════════ */
+.vf { position: relative; border-bottom: 2px solid transparent; border-image: linear-gradient(90deg,#c9961c,#ffd56c,#c9961c) 1; box-shadow: 0 8px 26px rgba(2,28,54,0.28); }
+.vf__strip { background: linear-gradient(135deg,#c9961c 0%,#eac25a 50%,#ffd56c 100%); }
+.vf__strip-in { max-width: var(--container-max); margin-inline: auto; padding: 5px var(--gutter); display: flex; align-items: center; justify-content: center; gap: 12px; }
+.vf__strip-in span { font-family: var(--font-body); font-weight: 900; font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase; color: #021c36; text-align: center; }
+.vf__strip-in::before, .vf__strip-in::after { content: ""; height: 1px; width: clamp(20px,6vw,70px); background: rgba(2,28,54,0.32); }
+.vf__row { background: linear-gradient(160deg,#060e1c 0%,#021c36 50%,#060e1c 100%); }
+/* Two nested axes so the copy and the pill are both honest:
+   - .vf__row-in centres its children, so the text group and the CTA pill share
+     one vertical centre line.
+   - .vf__copy inside it is baseline-aligned, so the price, offer and savings
+     still sit on one optical line.
+   Baseline-aligning the pill alongside the text (or centring it against the
+   full row) is what made it read as low. */
+.vf__row-in { max-width: var(--container-max); margin-inline: auto; padding: 13px var(--gutter); display: flex; align-items: center; justify-content: center; gap: clamp(16px,2.6vw,30px); flex-wrap: wrap; }
+.vf__copy { display: flex; align-items: baseline; justify-content: center; gap: clamp(9px,1.3vw,14px); flex-wrap: wrap; }
+.vf__save { margin-left: clamp(7px,1.3vw,16px); }
+.vf__price { font-family: var(--font-display); font-weight: 800; font-size: 1.5rem; color: #fff; letter-spacing: -0.02em; white-space: nowrap; line-height: 1.1; }
+.vf__price i { font-style: normal; font-size: 0.46em; font-weight: 700; opacity: 0.72; letter-spacing: 0; }
+.vf__price s { font-family: var(--font-display); font-size: 0.6em; font-weight: 600; opacity: 0.42; margin-right: 9px; letter-spacing: 0; }
+.vf__plus { align-self: center; font-family: var(--font-display); font-weight: 700; font-size: 1.25rem; line-height: 1; color: rgba(234,194,90,0.85); flex-shrink: 0; /* optical nudge: the glyph's ink sits above its box centre */ transform: translateY(-0.02em); }
+.vf__free { font-family: var(--font-display); font-weight: 700; font-size: 1.0625rem; color: rgba(255,255,255,0.94); white-space: nowrap; line-height: 1.1; }
+.vf__free b { color: #eac25a; font-weight: 800; }
+.vf__save { font-family: var(--font-display); font-weight: 800; font-size: 1.0625rem; color: #6ee7a0; white-space: nowrap; line-height: 1.1; }
+.vf__cta { display: inline-flex; align-items: center; gap: 6px; background: linear-gradient(135deg,#c9961c 0%,#eac25a 50%,#ffd56c 100%); color: #021c36; font-family: var(--font-body); font-weight: 800; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; padding: 10px 20px; border-radius: var(--radius-full); white-space: nowrap; transition: transform 160ms ease, box-shadow 160ms ease; }
+.vf__cta:hover { transform: translateY(-1px); box-shadow: 0 8px 20px rgba(234,194,90,0.35); }
+@media (max-width: 1099px) {
+  .vf__price { font-size: 1.3125rem; }
+  .vf__free, .vf__save { font-size: 0.9375rem; }
+  .vf__plus { font-size: 1.125rem; }
+}
+@media (max-width: 899px) {
+  .vf__price { font-size: 1.1875rem; }
+  .vf__free, .vf__save { font-size: 0.875rem; }
+  .vf__plus { font-size: 1rem; }
+}
+@media (max-width: 639px) {
+  .vf__row-in { padding: 9px 14px; gap: 8px 12px; }
+  .vf__copy { gap: 4px 12px; }
+  .vf__price { font-size: 1.25rem; }
+  .vf__price s { display: none; }
+  .vf__plus { display: none; }
+  .vf__free { flex-basis: 100%; text-align: center; font-size: 0.8125rem; order: 3; }
+  .vf__free::before { content: "+ "; color: rgba(234,194,90,0.85); font-weight: 700; }
+  .vf__save { margin-left: 0; }
+  .vf__save { font-size: 0.8125rem; }
+  .vf__cta { padding: 8px 17px; font-size: 0.6875rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .va::after, .vb__save::before { animation: none; }
+  .va::after { display: none; }
+  .va__cta:hover, .vb__cta:hover, .vc__cta:hover, .vd__cta:hover, .ve__cta:hover, .vf__cta:hover { transform: none; }
+}
+</style>
+</head>
+<body>
+<main>
+<div class="mk-wrap">
+
+  <div class="mk-lede">
+    <h1>VMBA sticky offer bar — six directions</h1>
+    <p>Each is shown under a replica of the live 72px minimal header, with a slice of hero
+       beneath, so you can judge weight and contrast in place. All six carry the same three
+       facts: VMBA preferred pricing, $149/mo + 3 months free Platinum Marketing, and the
+       $2,700 saving. Resize the window to check the mobile collapse.</p>
+  </div>
+
+  <!-- ── A ──────────────────────────────────────────────────────────────────── -->
+  <section class="mk-case">
+    <div class="mk-case__head"><span class="mk-case__num">A</span><h2 class="mk-case__name">Brass Marquee</h2></div>
+    <p class="mk-case__note">Full brass gradient with a slow light sweep, facts split into three
+      divided cells, midnight pill CTA. Loudest option — reads as a banner, matches the existing
+      <code>.mm-bar</code> family but far more structured.</p>
+    <div class="mk-frame">
+      <div class="mk-hdr"><img src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" /></div>
+      <div class="va">
+        <div class="va__inner">
+          <div class="va__cell"><span class="va__badge">VMBA Preferred Pricing</span></div>
+          <div class="va__cell"><span class="va__price"><s>$349</s>$149<span style="font-size:0.6em;font-weight:700">/mo</span></span></div>
+          <div class="va__cell va__cell--plus"><span class="va__plus">+ 3 Months FREE Platinum<span class="va__plus-long"> Marketing</span></span></div>
+          <div class="va__cell"><span class="va__save">Save $2,700</span></div>
+          <a class="va__cta" href="#">Claim Offer
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M9 4.5 12.5 8 9 11.5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="mk-peek"><h3 class="mk-peek__t">Close More Loans <em>With Less Chaos</em></h3><p class="mk-peek__p">The Loan Atlas installs 5 AI-powered systems into your mortgage business.</p></div>
+    </div>
+  </section>
+
+  <!-- ── B ──────────────────────────────────────────────────────────────────── -->
+  <section class="mk-case">
+    <div class="mk-case__head"><span class="mk-case__num">B</span><h2 class="mk-case__name">Midnight Authority</h2></div>
+    <p class="mk-case__note">Dark band that continues the header, brass-gradient hairline underneath,
+      VMBA mark on the left as co-brand proof. Brass is reserved for the price and the CTA; the
+      saving gets a quiet pulsing green dot. Most premium / least shouty.</p>
+    <div class="mk-frame">
+      <div class="mk-hdr"><img src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" /></div>
+      <div class="vb">
+        <div class="vb__inner">
+          <div class="vb__left">
+            <img class="vb__logo" src="../assets/vmba-logo.jpg" alt="VMBA" />
+            <div>
+              <span class="vb__eyebrow">VMBA Preferred Pricing</span>
+              <p class="vb__line"><b>$149/mo</b><span>·</span>3 Months FREE Platinum Marketing</p>
+            </div>
+          </div>
+          <div class="vb__right">
+            <span class="vb__save">Save $2,700</span>
+            <a class="vb__cta" href="#">Claim Offer</a>
+          </div>
+        </div>
+      </div>
+      <div class="mk-peek"><h3 class="mk-peek__t">Close More Loans <em>With Less Chaos</em></h3><p class="mk-peek__p">The Loan Atlas installs 5 AI-powered systems into your mortgage business.</p></div>
+    </div>
+  </section>
+
+  <!-- ── C ──────────────────────────────────────────────────────────────────── -->
+  <section class="mk-case">
+    <div class="mk-case__head"><span class="mk-case__num">C</span><h2 class="mk-case__name">Split Ledger</h2></div>
+    <p class="mk-case__note">Edge-to-edge two-plate bar: midnight left holds the pricing, an angled
+      brass plate on the right holds the saving and the CTA. Strong horizontal read, and the diagonal
+      seam gives it motion without animation.</p>
+    <div class="mk-frame">
+      <div class="mk-hdr"><img src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" /></div>
+      <div class="vc">
+        <div class="vc__dark">
+          <div class="vc__darkin">
+            <span class="vc__tag">VMBA Preferred</span>
+            <span class="vc__price"><s>$349/mo</s>$149<i>/mo</i></span>
+            <span class="vc__free">+ <b>3 months free</b> Platinum Marketing</span>
+          </div>
+        </div>
+        <div class="vc__gold">
+          <span class="vc__save"><small>You Save</small>$2,700</span>
+          <a class="vc__cta" href="#">Claim Offer</a>
+        </div>
+      </div>
+      <div class="mk-peek"><h3 class="mk-peek__t">Close More Loans <em>With Less Chaos</em></h3><p class="mk-peek__p">The Loan Atlas installs 5 AI-powered systems into your mortgage business.</p></div>
+    </div>
+  </section>
+
+  <!-- ── D ──────────────────────────────────────────────────────────────────── -->
+  <section class="mk-case">
+    <div class="mk-case__head"><span class="mk-case__num">D</span><h2 class="mk-case__name">Ticket Stub</h2></div>
+    <p class="mk-case__note">The offer sits inside a brass coupon with a dashed perforation, floated
+      on the dark band. Most literal "this is a members-only voucher" cue; outline CTA keeps the
+      brass claim on the coupon itself.</p>
+    <div class="mk-frame">
+      <div class="mk-hdr"><img src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" /></div>
+      <div class="vd">
+        <div class="vd__inner">
+          <div class="vd__stub">
+            <div class="vd__stub-l">
+              <span class="vd__k">VMBA Preferred</span>
+              <span class="vd__v">$149<i>/mo</i></span>
+            </div>
+            <div class="vd__stub-r">
+              <span class="vd__free">+ <b>3 Months FREE</b> Platinum Marketing</span>
+            </div>
+          </div>
+          <span class="vd__save">
+            <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 1.8 10 6l4.5.5-3.3 3.1.9 4.5L8 11.9 3.9 14.1l.9-4.5L1.5 6.5 6 6z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            Save $2,700
+          </span>
+          <a class="vd__cta" href="#">Claim Offer</a>
+        </div>
+      </div>
+      <div class="mk-peek"><h3 class="mk-peek__t">Close More Loans <em>With Less Chaos</em></h3><p class="mk-peek__p">The Loan Atlas installs 5 AI-powered systems into your mortgage business.</p></div>
+    </div>
+  </section>
+
+  <!-- ── E ──────────────────────────────────────────────────────────────────── -->
+  <section class="mk-case">
+    <div class="mk-case__head"><span class="mk-case__num">E</span><h2 class="mk-case__name">Spotlit Panel</h2></div>
+    <p class="mk-case__note">Dark bar with a soft brass spotlight behind the centre, so the $149
+      glows without a solid gold slab. Everything is centred and the price is the single largest
+      thing on the bar. Reads well over both the dark header and the light hero.</p>
+    <div class="mk-frame">
+      <div class="mk-hdr"><img src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" /></div>
+      <div class="ve">
+        <div class="ve__inner">
+          <span class="ve__eyebrow"><b>VMBA</b> Preferred Pricing</span>
+          <span class="ve__hero">
+            <span class="ve__was">$349/mo</span>
+            <span class="ve__num">$149<i>/mo</i></span>
+          </span>
+          <span class="ve__pluspill">+ <b>3 Months FREE</b> Platinum Marketing</span>
+          <span class="ve__save">Save $2,700</span>
+          <a class="ve__cta" href="#">Claim Offer</a>
+        </div>
+      </div>
+      <div class="mk-peek"><h3 class="mk-peek__t">Close More Loans <em>With Less Chaos</em></h3><p class="mk-peek__p">The Loan Atlas installs 5 AI-powered systems into your mortgage business.</p></div>
+    </div>
+  </section>
+
+  <!-- ── F ──────────────────────────────────────────────────────────────────── -->
+  <section class="mk-case">
+    <div class="mk-case__head"><span class="mk-case__num">F</span><h2 class="mk-case__name">Two-Tier Stack</h2></div>
+    <p class="mk-case__note">A 26px brass eyebrow strip labels the audience, and a dark row below
+      carries the numbers. Gives the "VMBA Preferred Pricing" line real prominence without stealing
+      space from the offer. Copy sits on one shared baseline — price, offer and savings all in Manrope at a
+      single optical line. Now carries B's brass-gradient bottom border and drop shadow. Tallest of the six,
+      but the most readable at a glance.</p>
+    <div class="mk-frame">
+      <div class="mk-hdr"><img src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" /></div>
+      <div class="vf">
+        <div class="vf__strip"><div class="vf__strip-in">
+          <span>VMBA Preferred Pricing</span>
+        </div></div>
+        <div class="vf__row"><div class="vf__row-in">
+          <div class="vf__copy">
+            <span class="vf__price"><s>$349/mo</s>$149<i>/mo</i></span>
+            <span class="vf__plus" aria-hidden="true">+</span>
+            <span class="vf__free"><b>3 Months FREE</b> Platinum Marketing</span>
+            <span class="vf__save">Save $2,700</span>
+          </div>
+          <a class="vf__cta" href="#">Claim Offer</a>
+        </div></div>
+      </div>
+      <div class="mk-peek"><h3 class="mk-peek__t">Close More Loans <em>With Less Chaos</em></h3><p class="mk-peek__p">The Loan Atlas installs 5 AI-powered systems into your mortgage business.</p></div>
+    </div>
+  </section>
+
+</div>
+</main>
+</body>
+</html>

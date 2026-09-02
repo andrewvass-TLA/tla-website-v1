@@ -1,72 +1,220 @@
-<?php
-/**
- * Body partial for /vmba/ (TLA Full HTML template).
- * Generated from public/custom-sales-pages/vmba.html by scripts/convert-pages.sh — do not hand-edit;
- * edit the source HTML (or the shared header/footer partials) and re-run.
- */
-if ( ! defined( 'ABSPATH' ) ) { exit; }
+<!DOCTYPE html>
+<html lang="en">
 
-$tla_title       = 'VMBA Preferred Account — Exclusive Loan Atlas Pricing';
-$tla_description = 'VMBA member pricing: full access to The Loan Atlas at $149/mo — down from $349/mo — locked in, plus 3 months free of Platinum Marketing.';
-$tla_active      = '';
-?>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VMBA Platinum Super Bonus — Exclusive Loan Atlas Pricing</title>
+  <meta name="description"
+    content="VMBA member pricing: full access to The Loan Atlas at $199/mo — down from $349/mo — locked in, plus 3 months free of Platinum Marketing." />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link rel="stylesheet" href="../css/chrome.css" />
   <style>
     /* ── MASTERMIND-SPECIFIC STYLES (page-scoped) ───────────────────────────── */
 
-    /* ── Sticky offer bar — pinned under the header ─────────────────────────── */
-    .mm-bar {
+    /* ── Sticky offer bar — pinned under the header ─────────────────────────────
+       Two tiers: a thin brass strip naming the audience, and a dark row carrying
+       the numbers. The dark row continues the header's gradient so the bar reads
+       as part of the chrome rather than a banner stapled below it. ──────────── */
+    .vmba-bar {
       position: sticky;
       top: var(--header-h);
       z-index: 40;
-      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
-      color: #021c36;
-      box-shadow: 0 6px 20px rgba(2, 28, 54, 0.18);
+      border-bottom: 2px solid transparent;
+      border-image: linear-gradient(90deg, #c9961c, #ffd56c, #c9961c) 1;
+      box-shadow: 0 8px 26px rgba(2, 28, 54, 0.28);
     }
-    .mm-bar__inner {
+
+    /* The whole bar is one link to checkout. It stays a plain block that
+       inherits its children's colors, so the two tiers look identical to the
+       pre-link version — only the cursor, a subtle brightening on hover and the
+       focus ring signal that it's clickable. No hover lift on purpose: the bar
+       is sticky, so shifting it would slide it against the scrolling page. */
+    .vmba-bar__link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      transition: filter 0.2s ease;
+    }
+    .vmba-bar__link:hover {
+      filter: brightness(1.06);
+    }
+    .vmba-bar__link:focus-visible {
+      outline: 3px solid #ffd56c;
+      outline-offset: -3px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .vmba-bar__link { transition: none; }
+    }
+
+    /* Tier 1 — brass audience strip. The rules either side of the label are
+       pseudo-elements so the markup stays a single span. */
+    .vmba-bar__strip {
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+    }
+    .vmba-bar__strip-in {
       max-width: var(--container-max);
       margin-inline: auto;
-      padding: 10px var(--gutter);
+      padding: 9px var(--gutter);
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px 16px;
+      gap: 12px;
+    }
+    .vmba-bar__strip-in::before,
+    .vmba-bar__strip-in::after {
+      content: "";
+      height: 1px;
+      width: clamp(20px, 6vw, 70px);
+      background: rgba(2, 28, 54, 0.32);
+    }
+    .vmba-bar__label {
+      font-family: var(--font-body);
+      font-weight: 900;
+      font-size: 0.9375rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #021c36;
       text-align: center;
     }
-    .mm-bar__text {
-      font-family: var(--font-body);
-      font-size: 0.875rem;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-      line-height: 1.3;
+
+    /* Tier 2 — dark detail row.
+       Two nested axes so the copy and the pill are both honest:
+       - .vmba-bar__row-in centres its children, so the text group and the CTA
+         share one vertical centre line.
+       - .vmba-bar__copy inside it is baseline-aligned, so the price, offer and
+         savings sit on one optical line. */
+    .vmba-bar__row {
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
     }
-    .mm-bar__text strong { font-weight: 800; }
-    .mm-bar__sep {
-      opacity: 0.5;
-      padding-inline: 4px;
-    }
-    .mm-bar__btn {
-      flex-shrink: 0;
-      display: inline-flex;
+    .vmba-bar__row-in {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding: 17px var(--gutter);
+      display: flex;
       align-items: center;
-      gap: 6px;
-      background: #021c36;
+      justify-content: center;
+    }
+    .vmba-bar__copy {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: clamp(9px, 1.3vw, 14px);
+      flex-wrap: wrap;
+    }
+    .vmba-bar__price {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.875rem;
       color: #ffffff;
-      font-family: var(--font-body);
-      font-size: 0.8125rem;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+    .vmba-bar__price i {
+      font-style: normal;
+      font-size: 0.46em;
       font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      padding: 8px 18px;
-      border-radius: var(--radius-full);
-      transition: transform 150ms ease, box-shadow 150ms ease;
+      opacity: 0.72;
+      letter-spacing: 0;
     }
-    .mm-bar__btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba(2, 28, 54, 0.3);
+    .vmba-bar__price s {
+      font-family: var(--font-display);
+      font-size: 0.6em;
+      font-weight: 600;
+      opacity: 0.42;
+      margin-right: 9px;
+      letter-spacing: 0;
     }
-    @media (max-width: 600px) {
-      .mm-bar__hide-sm { display: none; }
+    /* The + is its own element, centred between the two facts. It is
+       align-self: center rather than on the shared baseline because the glyph's
+       ink sits high in its em box — baselining it floats it above centre. */
+    .vmba-bar__plus {
+      align-self: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.5rem;
+      line-height: 1;
+      color: rgba(234, 194, 90, 0.85);
+      flex-shrink: 0;
+      transform: translateY(-0.02em);
+    }
+    .vmba-bar__free {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.3125rem;
+      color: rgba(255, 255, 255, 0.94);
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+    .vmba-bar__free b { color: #eac25a; font-weight: 800; }
+    .vmba-bar__save {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.3125rem;
+      color: #6ee7a0;
+      white-space: nowrap;
+      line-height: 1.1;
+      margin-left: clamp(7px, 1.3vw, 16px);
+    }
+    /* Step the type down so the row holds one line as long as possible. */
+    @media (max-width: 1279px) {
+      .vmba-bar__label { font-size: 0.875rem; letter-spacing: 0.15em; }
+      .vmba-bar__row-in { padding: 15px var(--gutter); }
+      .vmba-bar__price { font-size: 1.625rem; }
+      .vmba-bar__free, .vmba-bar__save { font-size: 1.125rem; }
+      .vmba-bar__plus { font-size: 1.3125rem; }
+    }
+    @media (max-width: 1099px) {
+      .vmba-bar__label { font-size: 0.8125rem; letter-spacing: 0.14em; }
+      .vmba-bar__price { font-size: 1.375rem; }
+      .vmba-bar__free, .vmba-bar__save { font-size: 1rem; }
+      .vmba-bar__plus { font-size: 1.1875rem; }
+    }
+    @media (max-width: 899px) {
+      .vmba-bar__strip-in { padding: 6px var(--gutter); }
+      .vmba-bar__label { font-size: 0.75rem; letter-spacing: 0.12em; }
+      .vmba-bar__row-in { padding: 13px var(--gutter); }
+      .vmba-bar__price { font-size: 1.1875rem; }
+      .vmba-bar__free, .vmba-bar__save { font-size: 0.875rem; }
+      .vmba-bar__plus { font-size: 1rem; }
+    }
+    /* Below 640px the offer copy takes its own centred line, so the standalone
+       + would be orphaned beside the price — hide it and inline it instead. */
+    @media (max-width: 639px) {
+      .vmba-bar__label { font-size: 0.625rem; letter-spacing: 0.06em; }
+      .vmba-bar__strip-in::before,
+      .vmba-bar__strip-in::after { width: clamp(12px, 4vw, 40px); }
+      .vmba-bar__row-in { padding: 9px 14px; gap: 8px 12px; }
+      .vmba-bar__copy { gap: 4px 12px; }
+      .vmba-bar__price { font-size: 1.25rem; }
+      .vmba-bar__price s { display: none; }
+      .vmba-bar__plus { display: none; }
+      .vmba-bar__free {
+        flex-basis: 100%;
+        text-align: center;
+        font-size: 0.8125rem;
+        order: 3;
+      }
+      .vmba-bar__free::before {
+        content: "+ ";
+        color: rgba(234, 194, 90, 0.85);
+        font-weight: 700;
+      }
+      .vmba-bar__save { font-size: 0.8125rem; margin-left: 0; }
+    }
+    /* Narrowest phones: the label is wider than the strip at full tracking. */
+    @media (max-width: 380px) {
+      .vmba-bar__label { font-size: 0.625rem; letter-spacing: 0.06em; }
+      .vmba-bar__strip-in { gap: 8px; }
+      .vmba-bar__strip-in::before,
+      .vmba-bar__strip-in::after { display: none; }
     }
 
     /* ── Nav co-brand + CTA (page-scoped; injected by the script at the bottom of
@@ -109,16 +257,6 @@ $tla_active      = '';
     /* ── Hero (reuses lp-intro; tightened for offer focus) ──────────────────── */
 
     /* Eyebrow above the hero heading. */
-    /* Savings line directly above the hero CTA — bold italic green. */
-    .vmba-hero-save {
-      font-family: var(--font-body);
-      font-weight: 800;
-      font-style: italic;
-      font-size: clamp(1.125rem, 0.95rem + 0.6vw, 1.375rem);
-      color: var(--success);
-      margin: var(--space-md) 0 0;
-    }
-
     /* ── Larger landing-page CTA — bigger pad + text than the shared .btn--lg ── */
     .btn--landing,
     .lp-intro .btn--gold.btn--lg,
@@ -286,7 +424,7 @@ $tla_active      = '';
       display: block;
       font-family: var(--font-display);
       font-weight: 700;
-      font-size: clamp(1.375rem, 1.1rem + 1vw, 1.875rem);
+      font-size: clamp(1.75rem, 1.35rem + 1.4vw, 2.5rem);
       color: rgba(255, 255, 255, 0.85);
     }
     .mm-step__was .mm-offer__strike {
@@ -304,24 +442,15 @@ $tla_active      = '';
       color: #ffffff;
     }
     .mm-step--first .mm-step__price {
-      font-size: clamp(3.25rem, 2rem + 6vw, 5rem);
+      font-size: clamp(3.75rem, 2.3rem + 7vw, 6.25rem);
       background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
     .mm-step--rest .mm-step__price {
-      font-size: clamp(3.25rem, 2rem + 6vw, 5rem);
+      font-size: clamp(3.75rem, 2.3rem + 7vw, 6.25rem);
     }
-    .mm-step__sub {
-      display: block;
-      font-family: var(--font-body);
-      font-size: 0.9375rem;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.72);
-      line-height: 1.4;
-    }
-    .mm-step__sub strong { color: #ffffff; font-weight: 700; }
     .mm-offer__arrow {
       display: flex;
       align-items: center;
@@ -990,17 +1119,38 @@ $tla_active      = '';
         inset 0 0 0 1px rgba(234, 194, 90, 0.12);
     }
     @media (min-width: 760px) {
-      .mm-plat__offer { grid-template-columns: 1fr 1fr; }
-      /* Divider in the exact middle of the box */
+      /* The price column needs more than half the box: "3 Months FREE" is
+         nowrap at up to 68px. Give it the larger share and put the divider on
+         the real column boundary rather than at 50%, so the price can never
+         cross it. --plat-split is that boundary, shared by both. */
+      .mm-plat__offer {
+        --plat-split: 44%;
+        grid-template-columns: var(--plat-split) minmax(0, 1fr);
+      }
+      /* Keep the price block clear of the divider: it sits at the start of its
+         own column rather than centred in it, so a column wider than the text
+         can never let the block drift back across the line. */
+      .mm-plat__offer-deal {
+        align-items: flex-start;
+        text-align: left;
+        padding-left: clamp(16px, 2.6vw, 40px);
+      }
+      .mm-plat__price-tag { align-items: flex-start; }
+      .mm-plat__price-note { text-align: left; }
       .mm-plat__offer::before {
         content: '';
         position: absolute;
         top: clamp(28px, 4vw, 48px);
         bottom: clamp(28px, 4vw, 48px);
-        left: 50%;
+        /* Sit midway across the grid gap that follows the first column. */
+        left: calc(clamp(28px, 4vw, 48px) + var(--plat-split));
         width: 1px;
         background: rgba(234, 194, 90, 0.22);
       }
+    }
+    /* Below ~1050px the nowrap price still crowds the line; hand it more room. */
+    @media (min-width: 760px) and (max-width: 1049.98px) {
+      .mm-plat__offer { --plat-split: 38%; }
     }
 
     .mm-plat__list-label {
@@ -1034,6 +1184,22 @@ $tla_active      = '';
       text-align: center;
     }
     .mm-plat__offer-deal .btn { width: 100%; }
+    /* The shared .eyebrow only draws a rule on its left (::before in
+       styles.css); this page-scoped ::after mirrors it on the right so the
+       label sits between two matching lines. */
+    .mm-plat__eyebrow::after {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--brass-bright);
+      flex-shrink: 0;
+    }
+    /* Match the shared ::before to the brighter brass used for this label. */
+    .mm-plat__eyebrow::before {
+      background: var(--brass-bright);
+      flex-shrink: 0;
+    }
+
     .mm-plat__price-tag {
       display: flex;
       flex-direction: column;
@@ -1045,25 +1211,32 @@ $tla_active      = '';
       position: relative;
       font-family: var(--font-display);
       font-weight: 700;
-      font-size: 2.5rem;
+      font-size: clamp(2.25rem, 1.7rem + 1.7vw, 3.25rem);
       color: rgba(255, 255, 255, 0.5);
     }
-    .mm-plat__price-was span { font-size: 1.125rem; font-weight: 600; }
-    .mm-plat__price-was::after {
+    .mm-plat__price-was span { font-size: 0.42em; font-weight: 600; letter-spacing: 0; }
+    /* Strike only the figure, not the trailing "/mo" — and keep it level.
+       The rule used to span the whole element at -8deg, which overshot the
+       digits once the price was enlarged. */
+    .mm-plat__price-was em {
+      position: relative;
+      font-style: normal;
+    }
+    .mm-plat__price-was em::after {
       content: '';
       position: absolute;
-      left: -4px;
-      right: -4px;
-      top: 52%;
+      left: -5px;
+      right: -5px;
+      top: 54%;
       height: 3px;
       border-radius: 2px;
       background: var(--brass-bright);
-      transform: rotate(-8deg);
+      transform: rotate(-6deg);
     }
     .mm-plat__price-now {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: clamp(2.25rem, 1.5rem + 2.4vw, 3rem);
+      font-size: clamp(2.25rem, 1.1rem + 2.6vw, 3.375rem);
       line-height: 0.95;
       letter-spacing: -0.03em;
       white-space: nowrap;
@@ -1074,7 +1247,7 @@ $tla_active      = '';
     }
     .mm-plat__price-note {
       font-family: var(--font-body);
-      font-size: 0.9375rem;
+      font-size: clamp(1rem, 0.92rem + 0.3vw, 1.125rem);
       line-height: 1.45;
       color: rgba(255, 255, 255, 0.78);
       margin: calc(var(--space-md) * -0.75) 0 0;
@@ -1210,14 +1383,36 @@ $tla_active      = '';
       background: var(--surface);
       padding-block: clamp(56px, 7vw, 96px);
     }
-    .mm-page-footnote {
-      margin: clamp(32px, 4vw, 48px) auto 0;
+    /* Footnote for the caption's asterisk. Its own full-width row at the base
+       of the card, pulled toward the bottom padding edge, and kept to a single
+       line — no max-width, and it shrinks rather than wrapping on narrow
+       screens (see the nowrap + clamp below). */
+    .lp-proof-card__footnote {
+      /* Positioned rather than a grid row: as a row it inherited the card's
+         56px row-gap above it, which no negative margin could collapse. */
+      position: absolute;
+      left: clamp(24px, 4vw, 56px);
+      right: clamp(24px, 4vw, 56px);
+      bottom: clamp(12px, 1.4vw, 18px);
       font-family: var(--font-body);
-      font-size: 0.9375rem;
-      font-weight: 700;
-      line-height: 1.5;
-      color: #ffffff;
+      font-size: clamp(0.625rem, 0.36rem + 0.7vw, 0.75rem);
+      font-weight: 400;
+      line-height: 1.3;
+      color: rgba(255, 255, 255, 0.45);
+      white-space: nowrap;
+      margin: 0;
+
       text-align: center;
+    }
+    @media (min-width: 760px) {
+      .lp-proof-card__footnote { text-align: left; }
+    }
+    /* Phones: one line is impossible at a readable size — wrap instead. */
+    @media (max-width: 599.98px) {
+      .lp-proof-card__footnote {
+        white-space: normal;
+        font-size: 0.6875rem;
+      }
     }
 
     /* Pricing card gets a little scroll offset so the sticky header clears it. */
@@ -1234,6 +1429,8 @@ $tla_active      = '';
         0 30px 70px rgba(2, 28, 54, 0.35),
         inset 0 0 0 1px rgba(234, 194, 90, 0.08);
       padding: clamp(32px, 4vw, 56px) clamp(24px, 4vw, 56px);
+      /* Extra bottom room for the absolutely-positioned footnote. */
+      padding-bottom: clamp(52px, 5.2vw, 74px);
       position: relative;
       overflow: hidden;
       display: grid;
@@ -1241,6 +1438,14 @@ $tla_active      = '';
       grid-template-columns: 1fr;
       align-items: center;
       text-align: center;
+    }
+    /* Narrow phones: the footnote wraps to 2–3 lines, which needs more reserved
+       space at the card's base than the desktop single line. */
+    @media (max-width: 430px) {
+      .lp-proof-card { padding-bottom: 62px; }
+    }
+    @media (max-width: 380px) {
+      .lp-proof-card { padding-bottom: 76px; }
     }
     .lp-proof-card::before {
       content: '';
@@ -1524,32 +1729,32 @@ $tla_active      = '';
       position: relative;
       z-index: 1;
     }
-    /* Co-branded logo lockup — Loan Atlas | VMBA (styled to match the nav lockup:
-       gold logo, thin vertical divider, VMBA logo bare in brand blue). */
+    /* Logo over a single-line account heading. No divider rule between them —
+       the gap alone separates the mark from the title. */
     .mm-plan__lockup {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: clamp(12px, 2.5vw, 26px);
+      gap: clamp(12px, 1.6vw, 18px);
       margin-bottom: var(--space-lg);
     }
-    /* Gold Loan Atlas logo — matched to the VMBA logo's image height. */
     .mm-plan__lockup-atlas {
       height: clamp(32px, 4.6vw, 46px);
       width: auto;
       display: block;
     }
-    .mm-plan__lockup-x {
-      width: 1px;
-      height: clamp(26px, 4vw, 38px);
-      background: rgba(255, 255, 255, 0.22);
-      flex-shrink: 0;
-    }
-    .mm-plan__lockup-mm {
-      height: clamp(32px, 4.6vw, 46px);
-      width: auto;
+    /* Account-tier heading — all white, one line at every width. */
+    .mm-plan__lockup-label {
       display: block;
+      font-family: var(--font-display);
+      font-size: clamp(0.9375rem, 0.5rem + 2.4vw, 2.875rem);
+      font-weight: 800;
+      letter-spacing: -0.015em;
+      line-height: 1.15;
+      color: #ffffff;
+      text-align: center;
+      margin: 0;
     }
     .mm-plan__sponsored {
       font-family: var(--font-body);
@@ -1600,6 +1805,24 @@ $tla_active      = '';
       height: 1px;
       background: linear-gradient(90deg, transparent, rgba(234, 194, 90, 0.5), transparent);
     }
+    /* Sub-note under the plus line. Sits close beneath it (the plus line owns a
+       large auto margin, so cancel most of the bottom half) and drops to body
+       face at a smaller size so it reads as a footnote to that line. */
+    .mm-plan__plus-note {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: clamp(1rem, 0.93rem + 0.25vw, 1.0625rem);
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.62);
+      text-align: center;
+      max-width: 34rem;
+      margin: calc(var(--space-lg) * -0.6) auto var(--space-lg);
+    }
+    .mm-plan__plus-note strong {
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
     .mm-plan__plus > span {
       flex: 0 1 auto;
     }
@@ -1611,67 +1834,24 @@ $tla_active      = '';
       background-clip: text;
       color: transparent;
     }
+    /* Savings line — sits under the card heading. No pill chrome; italic so it
+       reads as an aside to the heading rather than a second label. The lockup
+       above owns a large bottom margin, so pull up into it. */
     .mm-plan__save {
       text-align: center;
-      margin: 0 0 var(--space-xl);
-    }
-    .mm-plan__save-pill {
-      display: inline-block;
       font-family: var(--font-body);
+      font-style: italic;
       font-size: clamp(1rem, 0.9rem + 0.5vw, 1.1875rem);
       font-weight: 600;
-      letter-spacing: 0;
+      line-height: 1.4;
       color: #6ee7a8;
-      background: rgba(52, 211, 153, 0.12);
-      border: 1px solid rgba(52, 211, 153, 0.4);
-      border-radius: var(--radius-full);
-      padding: 12px 28px;
-      line-height: 1.5;
+      max-width: 46rem;
+      margin: calc(var(--space-lg) * -0.7) auto clamp(28px, 3.4vw, 48px);
     }
-    .mm-plan__save-pill em {
-      font-style: normal;
+    .mm-plan__save em {
+      font-style: italic;
       font-weight: 800;
       color: #34d399;
-    }
-    .mm-plan__list {
-      list-style: none;
-      margin: 0 auto var(--space-xl);
-      padding: var(--space-xl) 0;
-      border-block: 1px solid rgba(234, 194, 90, 0.18);
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-md);
-      text-align: left;
-      max-width: 32rem;
-    }
-    @media (min-width: 640px) {
-      .mm-plan__list {
-        grid-template-columns: 1fr 1fr;
-        gap: var(--space-md) var(--space-lg);
-        max-width: 52rem;
-      }
-    }
-    .mm-plan__list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      font-size: 0.9375rem;
-      line-height: 1.55;
-      color: rgba(255, 255, 255, 0.85);
-    }
-    .mm-plan__list .icon {
-      flex-shrink: 0;
-      width: 20px;
-      height: 20px;
-      margin-top: 2px;
-      color: var(--brass-bright);
-    }
-    .mm-plan__cta {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: var(--space-sm);
-      margin-bottom: var(--space-xl);
     }
     .mm-plan__fine {
       font-size: 0.8125rem;
@@ -2081,10 +2261,33 @@ $tla_active      = '';
       line-height: 1.5;
     }
   </style>
+</head>
 
+<body>
 
   <!-- ── Header (minimal landing chrome — logo only) ─────────────────────────── -->
-<?php include get_stylesheet_directory() . '/tla/partials/header-minimal.php'; ?>
+<!-- TLA_HEADER_MINIMAL -->
+
+  <!-- ── Sticky offer bar ───────────────────────────────────────────────────── -->
+  <div class="vmba-bar">
+    <a class="vmba-bar__link" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-vmba/" aria-label="Activate Your VMBA Platinum Super Bonus — $199/mo plus 3 months free Platinum Marketing, save $2,300">
+      <div class="vmba-bar__strip">
+        <div class="vmba-bar__strip-in">
+          <span class="vmba-bar__label">Activate Your VMBA Platinum Super Bonus</span>
+        </div>
+      </div>
+      <div class="vmba-bar__row">
+        <div class="vmba-bar__row-in">
+          <div class="vmba-bar__copy">
+            <span class="vmba-bar__price"><s>$349/mo</s>$199<i>/mo</i></span>
+            <span class="vmba-bar__plus" aria-hidden="true">+</span>
+            <span class="vmba-bar__free"><b>3 Months FREE</b> Platinum Marketing</span>
+            <span class="vmba-bar__save">Save $2,300</span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
 
   <main>
 
@@ -2094,9 +2297,8 @@ $tla_active      = '';
         <div class="lp-intro__content">
           <h1 id="mm-hero-heading" class="lp-intro__title" data-hero-step="2">Close More Loans <span class="mm-hero-gold">With Less Chaos</span></h1>
           <p class="lp-intro__subtitle" data-hero-step="3">The Loan Atlas installs 5 AI-powered systems into your mortgage business to help you make better decisions, execute faster, and stay focused on what actually drives production.</p>
-          <p class="vmba-hero-save" data-hero-step="1">Save $2,700 as a VMBA Member!</p>
           <div class="lp-intro__actions" data-hero-step="4">
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-namb/">Activate Your VMBA Preferred Account</a>
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-vmba/">Activate Your VMBA Platinum Super Bonus</a>
           </div>
         </div>
       </div>
@@ -2111,7 +2313,7 @@ $tla_active      = '';
         <div class="hm-backdrop" aria-hidden="true">
           <div class="lp-intro__stage">
             <div class="lp-intro__glow" aria-hidden="true"></div>
-            <img class="lp-intro__dash" src="<?php echo TLA_BASE; ?>/assets/dashboard.png" alt="The Loan Atlas member dashboard" loading="eager" />
+            <img class="lp-intro__dash" src="../assets/dashboard.png" alt="The Loan Atlas member dashboard" loading="eager" />
           </div>
         </div>
 
@@ -2134,7 +2336,7 @@ $tla_active      = '';
                  white bot bubble w/ Loan Atlas avatar + dark right-aligned user bubble -->
             <div class="hm-chat" data-hm-chat aria-label="A sample conversation with The Loan Atlas">
               <div class="hm-chat__bot">
-                <span class="hm-chat__avatar"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" /></span>
+                <span class="hm-chat__avatar"><img src="../assets/Loan Atlas logomark-18.png" alt="The Loan Atlas" /></span>
                 <div class="hm-chat__msg hm-chat__msg--bot" data-hm-heading>What's Your Sales Challenge Today?</div>
               </div>
               <div class="hm-chat__msg hm-chat__msg--user">
@@ -2151,25 +2353,24 @@ $tla_active      = '';
     <section class="mm-offer" aria-labelledby="mm-offer-heading">
       <div class="container">
         <div id="vmba-form" class="mm-offer__card" data-reveal="scale">
-          <div class="mm-plan__lockup" aria-label="The Loan Atlas — VMBA Preferred Account pricing">
-            <img class="mm-plan__lockup-atlas" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" />
-            <span class="mm-plan__lockup-x" aria-hidden="true"></span>
-            <img class="mm-plan__lockup-mm" src="<?php echo TLA_BASE; ?>/assets/vmba-logo.jpg" alt="VMBA" />
+          <div class="mm-plan__lockup" aria-label="The Loan Atlas — VMBA Platinum Super Bonus pricing">
+            <img class="mm-plan__lockup-atlas" src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" />
+            <h3 class="mm-plan__lockup-label">VMBA Platinum Super Bonus</h3>
           </div>
+          <p class="mm-plan__save"><em>$2,300</em> in Annual Savings — Exclusively for VMBA Members</p>
           <div id="mm-offer-heading" class="mm-offer__steps" style="grid-template-columns: 1fr; max-width: 22rem;">
             <div class="mm-step mm-step--rest">
               <span class="mm-step__was"><span class="mm-offer__strike">$349/mo</span></span>
-              <span class="mm-step__price" style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">$149<span style="font-size: 0.32em; font-weight: 700; letter-spacing: 0;">/mo</span></span>
-              <span class="mm-step__sub"><strong>Locked in</strong> — no increase</span>
+              <span class="mm-step__price" style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">$199<span style="font-size: 0.32em; font-weight: 700; letter-spacing: 0;">/mo</span></span>
             </div>
           </div>
 
           <p class="mm-plan__plus"><span>plus <em>3 months FREE</em> of Platinum Marketing</span></p>
+          <p class="mm-plan__plus-note">Then just <strong>$69/mo</strong> (full price Platinum Marketing = $99/mo)</p>
 
-          <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$2,700</em> in Annual Savings — Exclusively for VMBA Members</span></p>
 
           <div class="mm-offer__cta">
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-namb/">Activate Your VMBA Preferred Account</a>
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-vmba/">Activate Your VMBA Platinum Super Bonus</a>
           </div>
           <p class="mm-offer__fine">12-month commitment. Offer exclusively for VMBA members. Available to new members only.</p>
         </div>
@@ -2184,30 +2385,30 @@ $tla_active      = '';
       <div class="trust__marquee">
         <div class="trust__track">
           <ul class="trust__group">
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/american-pacific-logo.webp" alt="American Pacific Mortgage"></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/acm-logo.webp" alt="Atlantic Coast Mortgage"></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/cross-country-logo.webp" alt="CrossCountry Mortgage"></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/UWM-logo.png" alt="United Wholesale Mortgage"></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/fairway-logo.png" alt="Fairway Independent Mortgage"></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/CMG-logo.svg" alt="CMG Financial"></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/swbc-logo.png" alt="SWBC Mortgage"></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/better-logo.png" alt="Better"></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/lower-mortgage-logo.svg" alt="Lower"></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/rate-logo.png" alt="Rate"></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/loan-depot-logo.png" alt="loanDepot"></li>
+            <li class="trust__logo"><img src="../assets/american-pacific-logo.webp" alt="American Pacific Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/acm-logo.webp" alt="Atlantic Coast Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/cross-country-logo.webp" alt="CrossCountry Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/UWM-logo.png" alt="United Wholesale Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/fairway-logo.png" alt="Fairway Independent Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/CMG-logo.svg" alt="CMG Financial"></li>
+            <li class="trust__logo"><img src="../assets/swbc-logo.png" alt="SWBC Mortgage"></li>
+            <li class="trust__logo"><img src="../assets/better-logo.png" alt="Better"></li>
+            <li class="trust__logo"><img src="../assets/lower-mortgage-logo.svg" alt="Lower"></li>
+            <li class="trust__logo"><img src="../assets/rate-logo.png" alt="Rate"></li>
+            <li class="trust__logo"><img src="../assets/loan-depot-logo.png" alt="loanDepot"></li>
           </ul>
           <ul class="trust__group" aria-hidden="true">
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/american-pacific-logo.webp" alt=""></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/acm-logo.webp" alt=""></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/cross-country-logo.webp" alt=""></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/UWM-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/fairway-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/CMG-logo.svg" alt=""></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/swbc-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/better-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/lower-mortgage-logo.svg" alt=""></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/rate-logo.png" alt=""></li>
-            <li class="trust__logo"><img src="<?php echo TLA_BASE; ?>/assets/loan-depot-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/american-pacific-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="../assets/acm-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="../assets/cross-country-logo.webp" alt=""></li>
+            <li class="trust__logo"><img src="../assets/UWM-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/fairway-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/CMG-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="../assets/swbc-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/better-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/lower-mortgage-logo.svg" alt=""></li>
+            <li class="trust__logo"><img src="../assets/rate-logo.png" alt=""></li>
+            <li class="trust__logo"><img src="../assets/loan-depot-logo.png" alt=""></li>
           </ul>
         </div>
       </div>
@@ -2222,8 +2423,8 @@ $tla_active      = '';
             <p class="t-headline-md" style="font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.125rem); line-height: 1.35; margin: 0 0 var(--space-md);">
               The loan officers pulling away from the pack aren&rsquo;t working harder than you. They&rsquo;re running systems that compound their production every month.
             </p>
-            <p class="text-brass" style="font-family: var(--font-display); font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.125rem); font-weight: 800; line-height: 1.25; letter-spacing: -0.015em; margin: 0;">
-              With your VMBA Preferred Pricing, you can install them all for less than the commission of one extra loan.
+            <p class="text-brass" style="font-family: var(--font-display); font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.125rem); font-weight: 800; line-height: 1.35; letter-spacing: -0.015em; margin: 0;">
+              With your VMBA Platinum Super Bonus, you can install them all for less than the commission of one extra loan.
             </p>
           </div>
 
@@ -2296,7 +2497,7 @@ $tla_active      = '';
 
           <div class="mm-row" data-reveal="up">
             <div class="mm-row__media mm-row__media--phone mm-row__media--bi" data-reveal="fade">
-            <img src="<?php echo TLA_BASE; ?>/assets/loan-officer-business-intelligence.png" alt="Loan Officer Business Intelligence" loading="lazy">
+            <img src="../assets/loan-officer-business-intelligence.png" alt="Loan Officer Business Intelligence" loading="lazy">
           </div>
             <div class="mm-row__copy">
               <span class="mm-row__eyebrow">AI Business Intelligence</span>
@@ -2311,15 +2512,15 @@ $tla_active      = '';
               <h3 class="mm-row__title">A weekly plan built around your real goals</h3>
               <p class="mm-row__desc">Turn big-picture goals into a focused weekly priority list tied to your actual pipeline. Walk into every week knowing exactly what moves the needle — and what to ignore.</p>
             </div>
-            <div class="mm-row__media mm-row__media--phone"><img src="<?php echo TLA_BASE; ?>/assets/loan-officer-business-planning.png" alt="Loan Officer Business Planning" loading="lazy"></div>
+            <div class="mm-row__media mm-row__media--phone"><img src="../assets/loan-officer-business-planning.png" alt="Loan Officer Business Planning" loading="lazy"></div>
           </div>
 
           <div class="mm-row" data-reveal="up">
             <div class="mm-card-stack">
-              <img class="mm-card-stack__img" src="<?php echo TLA_BASE; ?>/assets/what's-inside-office-hours.jpg" alt="Office Hours" loading="lazy">
-              <img class="mm-card-stack__img" src="<?php echo TLA_BASE; ?>/assets/what's-inside-talk-to-tim.jpg" alt="Talk to Tim" loading="lazy">
-              <img class="mm-card-stack__img" src="<?php echo TLA_BASE; ?>/assets/what's-inside-masterclass.jpg" alt="Masterclass" loading="lazy">
-              <img class="mm-card-stack__img" src="<?php echo TLA_BASE; ?>/assets/what's-inside-ai-labs.jpg" alt="AI Labs" loading="lazy">
+              <img class="mm-card-stack__img" src="../assets/what's-inside-office-hours.jpg" alt="Office Hours" loading="lazy">
+              <img class="mm-card-stack__img" src="../assets/what's-inside-talk-to-tim.jpg" alt="Talk to Tim" loading="lazy">
+              <img class="mm-card-stack__img" src="../assets/what's-inside-masterclass.jpg" alt="Masterclass" loading="lazy">
+              <img class="mm-card-stack__img" src="../assets/what's-inside-ai-labs.jpg" alt="AI Labs" loading="lazy">
             </div>
             <div class="mm-row__copy">
               <span class="mm-row__eyebrow">Live Coaching Every Week</span>
@@ -2329,7 +2530,7 @@ $tla_active      = '';
           </div>
 
           <div class="mm-row mm-row--flip" data-reveal="up">
-            <div class="mm-row__media mm-row__media--phone mm-row__media--crop"><img src="<?php echo TLA_BASE; ?>/assets/sales-coach-phone.png" alt="AI Sales &amp; Scripting Coach on a phone" loading="lazy"></div>
+            <div class="mm-row__media mm-row__media--phone mm-row__media--crop"><img src="../assets/sales-coach-phone.png" alt="AI Sales &amp; Scripting Coach on a phone" loading="lazy"></div>
             <div class="mm-row__copy">
               <span class="mm-row__eyebrow">AI Sales &amp; Scripting Coaches</span>
               <h3 class="mm-row__title">The right words for every conversation, in your pocket</h3>
@@ -2338,7 +2539,7 @@ $tla_active      = '';
           </div>
 
           <div class="mm-row" data-reveal="up">
-            <div class="mm-row__media mm-row__media--phone"><img src="<?php echo TLA_BASE; ?>/assets/scripts-presentation-templates.png" alt="Scripts, presentations, and templates library" loading="lazy"></div>
+            <div class="mm-row__media mm-row__media--phone"><img src="../assets/scripts-presentation-templates.png" alt="Scripts, presentations, and templates library" loading="lazy"></div>
             <div class="mm-row__copy">
               <span class="mm-row__eyebrow">Scripts, Presentations &amp; Templates</span>
               <h3 class="mm-row__title">Pre-built and proven resources to help you present with confidence</h3>
@@ -2347,7 +2548,7 @@ $tla_active      = '';
           </div>
 
           <div class="mm-row mm-row--flip" data-reveal="up">
-            <div class="mm-row__media"><img src="<?php echo TLA_BASE; ?>/assets/private-member-community.png" alt="The Loan Atlas private member community" loading="lazy"></div>
+            <div class="mm-row__media"><img src="../assets/private-member-community.png" alt="The Loan Atlas private member community" loading="lazy"></div>
             <div class="mm-row__copy">
               <span class="mm-row__eyebrow">A Community of Active Originators</span>
               <h3 class="mm-row__title">Never solve a problem alone again</h3>
@@ -2365,24 +2566,24 @@ $tla_active      = '';
 
       <!-- Faded background collage of every Platinum asset -->
       <div class="mm-plat__bg" aria-hidden="true">
-        <img src="<?php echo TLA_BASE; ?>/assets/platinum-landing-page-1.png" alt="" loading="lazy">
-        <img src="<?php echo TLA_BASE; ?>/assets/platinum-presentation-deck-1.png" alt="" loading="lazy">
-        <img src="<?php echo TLA_BASE; ?>/assets/platinum-flyer-1.jpeg" alt="" loading="lazy">
-        <img src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-1.jpeg" alt="" loading="lazy">
-        <img src="<?php echo TLA_BASE; ?>/assets/platinum-newsletter.png" alt="" loading="lazy">
-        <img src="<?php echo TLA_BASE; ?>/assets/platinum-presentation-deck-2.png" alt="" loading="lazy">
-        <img src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-2.jpeg" alt="" loading="lazy">
-        <img src="<?php echo TLA_BASE; ?>/assets/platinum-landing-page-2.png" alt="" loading="lazy">
-        <img src="<?php echo TLA_BASE; ?>/assets/platinum-flyer-2.jpeg" alt="" loading="lazy">
-        <img src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-3.jpeg" alt="" loading="lazy">
-        <img src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-4.png" alt="" loading="lazy">
+        <img src="../assets/platinum-landing-page-1.png" alt="" loading="lazy">
+        <img src="../assets/platinum-presentation-deck-1.png" alt="" loading="lazy">
+        <img src="../assets/platinum-flyer-1.jpeg" alt="" loading="lazy">
+        <img src="../assets/platinum-social-image-1.jpeg" alt="" loading="lazy">
+        <img src="../assets/platinum-newsletter.png" alt="" loading="lazy">
+        <img src="../assets/platinum-presentation-deck-2.png" alt="" loading="lazy">
+        <img src="../assets/platinum-social-image-2.jpeg" alt="" loading="lazy">
+        <img src="../assets/platinum-landing-page-2.png" alt="" loading="lazy">
+        <img src="../assets/platinum-flyer-2.jpeg" alt="" loading="lazy">
+        <img src="../assets/platinum-social-image-3.jpeg" alt="" loading="lazy">
+        <img src="../assets/platinum-social-image-4.png" alt="" loading="lazy">
       </div>
 
       <div class="container">
 
         <div class="mm-plat__header" data-reveal="up">
-          <span class="eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
-            <span class="eyebrow__text" style="color: var(--brass-bright);">Just Launched</span>
+          <span class="eyebrow mm-plat__eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
+            <span class="eyebrow__text" style="color: var(--brass-bright);">New Inside The Loan Atlas</span>
           </span>
           <h2 id="plat-heading" class="mm-plat__title">Platinum Marketing</h2>
           <p class="mm-plat__subhead">
@@ -2405,11 +2606,10 @@ $tla_active      = '';
 
           <div class="mm-plat__offer-deal">
             <div class="mm-plat__price-tag">
-              <span class="mm-plat__price-was">$100<span>/mo</span></span>
+              <span class="mm-plat__price-was"><em>$99</em><span>/mo</span></span>
               <span class="mm-plat__price-now">3 Months FREE</span>
             </div>
             <p class="mm-plat__price-note">then $69/mo, or cancel anytime.</p>
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-namb/">Start Your Transformation</a>
           </div>
         </div>
       </div>
@@ -2426,7 +2626,7 @@ $tla_active      = '';
 
           <figure class="mm-tcard">
             <div class="mm-tcard__photo">
-              <img src="<?php echo TLA_BASE; ?>/assets/gian-ceretto.png" alt="Gian Ceretto" loading="lazy">
+              <img src="../assets/gian-ceretto.png" alt="Gian Ceretto" loading="lazy">
             </div>
             <div class="mm-tcard__body">
               <span class="mm-tcard__stars" aria-label="5 out of 5 stars">★★★★★</span>
@@ -2440,7 +2640,7 @@ $tla_active      = '';
 
           <figure class="mm-tcard">
             <div class="mm-tcard__photo">
-              <img src="<?php echo TLA_BASE; ?>/assets/sue botelho.jpeg" alt="Sue Botelho" loading="lazy">
+              <img src="../assets/sue botelho.jpeg" alt="Sue Botelho" loading="lazy">
             </div>
             <div class="mm-tcard__body">
               <span class="mm-tcard__stars" aria-label="5 out of 5 stars">★★★★★</span>
@@ -2454,7 +2654,7 @@ $tla_active      = '';
 
           <figure class="mm-tcard">
             <div class="mm-tcard__photo">
-              <img src="<?php echo TLA_BASE; ?>/assets/edgardo-balentine.jpeg" alt="Edgardo Valentine" loading="lazy">
+              <img src="../assets/edgardo-balentine.jpeg" alt="Edgardo Valentine" loading="lazy">
             </div>
             <div class="mm-tcard__body">
               <span class="mm-tcard__stars" aria-label="5 out of 5 stars">★★★★★</span>
@@ -2482,7 +2682,7 @@ $tla_active      = '';
             <blockquote class="lp-proof-card__quote">"The wealth that's in The Loan Atlas is absolutely incredible. Imagine how valuable it is to have access to the smartest minds in our industry."</blockquote>
             <figcaption class="lp-proof-card__test-head" style="margin-top: var(--space-md); margin-bottom: 0;">
               <div class="lp-proof-card__photo">
-                <img src="<?php echo TLA_BASE; ?>/assets/barry-habib.jpg" alt="Barry Habib">
+                <img src="../assets/barry-habib.jpg" alt="Barry Habib">
               </div>
               <div>
                 <cite class="lp-proof-card__attr-name" style="font-style: normal;">Barry Habib</cite>
@@ -2490,6 +2690,8 @@ $tla_active      = '';
               </div>
             </figcaption>
           </figure>
+
+          <p class="lp-proof-card__footnote">* Past 12 months, ending 2/15/2026. Must have closed one loan in last 90 days (154,000 LO population).</p>
         </div>
       </div>
     </section>
@@ -2499,71 +2701,41 @@ $tla_active      = '';
       <div class="container">
         <div class="center" data-reveal="up" style="max-width: 46rem; margin-inline: auto;">
           <h2 id="pricing-heading" class="t-display" style="color: #ffffff; font-weight: 800; margin-bottom: var(--space-sm);">Everything You Need to Scale. <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Exclusive VMBA Pricing.</span></h2>
-          <p class="t-body-lg" style="color: rgba(255, 255, 255, 0.68); font-size: clamp(1.125rem, 0.95rem + 0.6vw, 1.375rem);">Full access to everything above — the AI systems, live coaching, the curriculum, the community — at exclusive VMBA Preferred Account pricing.</p>
+          <p class="t-body-lg" style="color: rgba(255, 255, 255, 0.68); font-size: clamp(1.125rem, 0.95rem + 0.6vw, 1.375rem);">Full access to everything above — the AI systems, live coaching, and community — at a price reserved only for VMBA members.</p>
         </div>
 
         <article id="vmba-pricing-card" class="mm-plan" data-reveal="scale">
-          <div class="mm-plan__lockup" aria-label="The Loan Atlas — VMBA Preferred Account pricing">
-            <img class="mm-plan__lockup-atlas" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" />
-            <span class="mm-plan__lockup-x" aria-hidden="true"></span>
-            <img class="mm-plan__lockup-mm" src="<?php echo TLA_BASE; ?>/assets/vmba-logo.jpg" alt="VMBA" />
+          <div class="mm-plan__lockup" aria-label="The Loan Atlas — VMBA Platinum Super Bonus pricing">
+            <img class="mm-plan__lockup-atlas" src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" />
+            <h3 class="mm-plan__lockup-label">VMBA Platinum Super Bonus</h3>
           </div>
+          <p class="mm-plan__save"><em>$2,300</em> in Annual Savings — Exclusively for VMBA Members</p>
           <div class="mm-offer__steps" style="grid-template-columns: 1fr; max-width: 22rem;">
             <div class="mm-step mm-step--rest">
               <span class="mm-step__was"><span class="mm-offer__strike">$349/mo</span></span>
-              <span class="mm-step__price" style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">$149<span style="font-size: 0.32em; font-weight: 700; letter-spacing: 0;">/mo</span></span>
-              <span class="mm-step__sub"><strong>Locked in</strong> — no increase</span>
+              <span class="mm-step__price" style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">$199<span style="font-size: 0.32em; font-weight: 700; letter-spacing: 0;">/mo</span></span>
             </div>
           </div>
 
           <p class="mm-plan__plus"><span>plus <em>3 months FREE</em> of Platinum Marketing</span></p>
+          <p class="mm-plan__plus-note">Then just <strong>$69/mo</strong> (full price Platinum Marketing = $99/mo)</p>
 
-          <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$2,700</em> in Annual Savings — Exclusively for VMBA Members</span></p>
 
           <div class="mm-plan__cta">
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-namb/">
-              Activate Your VMBA Preferred Account
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-vmba/">
+              Activate Your VMBA Platinum Super Bonus
             </a>
           </div>
 
-          <ul class="mm-plan__list">
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              5 AI-powered systems to help you close twice the loans in half the time
-            </li>
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Live weekly and monthly coaching sessions
-            </li>
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              200+ training modules
-            </li>
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Full library of scripts, templates, and playbooks
-            </li>
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              Platinum Marketing free for 3 months (then $69/mo, or cancel)
-            </li>
-            <li>
-              <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>
-              New tools and content added every month
-            </li>
-          </ul>
-
           <p class="mm-plan__fine">12-month commitment. Offer exclusively for VMBA members. Available to new members only.</p>
         </article>
-
-        <p class="mm-page-footnote">* Past 12 months, ending 2/15/2026. Must have closed one loan in last 90 days (154,000 LO population).</p>
       </div>
     </section>
 
   </main>
 
   <!-- ── Footer (standard site chrome) ──────────────────────────────────────── -->
-<?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>
+<!-- TLA_FOOTER -->
 
   <!-- Add the VMBA logo beside the Loan Atlas logo, and a "Claim" CTA button, into
        the minimal nav header (page-scoped — the header partial is shared, so we
@@ -2607,6 +2779,8 @@ $tla_active      = '';
       header.querySelector('.site-header__inner').appendChild(actions);
     })();
   </script>
+  <script src="../js/nav.js"></script>
+  <script src="../js/animations.js" defer></script>
   <!-- LeadConnector form embed (VMBA enrollment form) -->
   <script src="https://link.msgsndr.com/js/form_embed.js"></script>
   <script>
@@ -2720,3 +2894,6 @@ $tla_active      = '';
       }
     })();
   </script>
+</body>
+
+</html>
