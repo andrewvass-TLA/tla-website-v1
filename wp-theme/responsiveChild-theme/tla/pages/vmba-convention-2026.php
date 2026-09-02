@@ -212,43 +212,6 @@ $tla_active      = '';
       .vmba-bar__strip-in::after { display: none; }
     }
 
-    /* ── Nav co-brand + CTA (page-scoped; injected by the script at the bottom of
-       this page). The header switches from centered to space-between so the logo
-       lockup sits left and the Claim button sits right. ──────────────────────── */
-    .site-header--vmba .site-header__inner {
-      justify-content: space-between;
-      gap: clamp(12px, 2vw, 24px);
-    }
-    .vmba-nav-lockup {
-      display: inline-flex;
-      align-items: center;
-      gap: clamp(14px, 2vw, 24px);
-      min-width: 0;
-    }
-    .vmba-nav-lockup__divider {
-      width: 1px;
-      height: clamp(24px, 4vw, 34px);
-      background: rgba(255, 255, 255, 0.22);
-      flex-shrink: 0;
-    }
-    .vmba-nav-lockup__vmba {
-      height: 24px;
-      width: auto;
-      display: block;
-    }
-    @media (min-width: 540px) { .vmba-nav-lockup__vmba { height: 30px; } }
-    @media (min-width: 880px) { .vmba-nav-lockup__vmba { height: 34px; } }
-    /* On smaller screens, use the short button label so it fits beside the logo. */
-    @media (max-width: 767.98px) {
-      .site-header--vmba .btn--header .btn__short { display: inline; }
-      .site-header--vmba .btn--header .btn__full { display: none; }
-    }
-    /* On very small screens, drop the VMBA wordmark so the logo + button still fit. */
-    @media (max-width: 559.98px) {
-      .site-header--vmba .vmba-nav-lockup__divider,
-      .site-header--vmba .vmba-nav-lockup__vmba { display: none; }
-    }
-
     /* ── Hero (reuses lp-intro; tightened for offer focus) ──────────────────── */
 
     /* Eyebrow above the hero heading. */
@@ -2730,48 +2693,6 @@ $tla_active      = '';
   <!-- ── Footer (standard site chrome) ──────────────────────────────────────── -->
 <?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>
 
-  <!-- Add the VMBA logo beside the Loan Atlas logo, and a "Claim" CTA button, into
-       the minimal nav header (page-scoped — the header partial is shared, so we
-       inject here rather than editing the shared partial). -->
-  <script>
-    (function () {
-      var header = document.querySelector('.site-header--minimal');
-      var brand = header && header.querySelector('.brand');
-      if (!header || !brand || document.querySelector('.vmba-nav-lockup__vmba')) return;
-      var logo = brand.querySelector('.brand__logo');
-      if (!logo) return;
-      // Flag the header so its layout switches from centered to space-between.
-      header.classList.add('site-header--vmba');
-      // Derive the VMBA asset URL from the (already correctly-resolved) Loan Atlas
-      // logo src, so it works whether the base is /assets/ (built) or ./assets/ (raw).
-      var vmbaSrc = logo.getAttribute('src').replace(/[^/]+$/, 'vmba-logo.jpg');
-      var divider = document.createElement('span');
-      divider.className = 'vmba-nav-lockup__divider';
-      divider.setAttribute('aria-hidden', 'true');
-      var vmba = document.createElement('img');
-      vmba.className = 'vmba-nav-lockup__vmba';
-      vmba.src = vmbaSrc;
-      vmba.alt = 'VMBA';
-      // Group brand + divider + VMBA logo into one lockup so space-between keeps
-      // them together on the left (button goes on the right).
-      var lockup = document.createElement('div');
-      lockup.className = 'vmba-nav-lockup';
-      brand.parentNode.insertBefore(lockup, brand);
-      lockup.appendChild(brand);
-      lockup.appendChild(divider);
-      lockup.appendChild(vmba);
-
-      // Header CTA — matches the main-site nav button style.
-      var actions = document.createElement('div');
-      actions.className = 'site-header__actions';
-      var cta = document.createElement('a');
-      cta.className = 'btn btn--primary btn--header';
-      cta.href = '#vmba-form';
-      cta.innerHTML = '<span class="btn__short">Claim Membership</span><span class="btn__full">Claim Your VMBA Membership</span>';
-      actions.appendChild(cta);
-      header.querySelector('.site-header__inner').appendChild(actions);
-    })();
-  </script>
   <!-- LeadConnector form embed (VMBA enrollment form) -->
   <script src="https://link.msgsndr.com/js/form_embed.js"></script>
   <script>
