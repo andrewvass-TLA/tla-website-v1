@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Leveraging Google Reviews to Attract Clients and Agents — The Loan Atlas</title>
-  <meta name="description" content="Join Tyler Osby and Giuseppe Battaglioli for a live Loan Atlas master class on using reviews more intentionally throughout the mortgage process — how to ask for them, where to use them, and how to turn client and agent experiences into a consistent business development tool." />
+  <title>Leveraging Google Reviews to Attract Clients and Agents — Replay — The Loan Atlas</title>
+  <meta name="description" content="Watch the replay of Leveraging Google Reviews to Attract Clients and Agents — Tyler Osby and Giuseppe Battaglioli on how to ask for reviews naturally, earn the intentional ones that pre-answer a client’s doubts, and put reviews to work at every stage of your business." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -12,10 +12,10 @@
   <link rel="stylesheet" href="css/chrome.css" />
 
   <!-- ============================================================
-       UPCOMING MASTERCLASS DETAIL — Leveraging Google Reviews to
-       Attract Clients and Agents (Sept 3, 2026).
-       Same design as the other upcoming live-event detail pages
-       (ai-lab-success-with-follow-up-pro.html), namespaced .oh-*.
+       MASTERCLASS REPLAY DETAIL — Leveraging Google Reviews to
+       Attract Clients and Agents (recorded Sept 3, 2026).
+       Same design as the other masterclass replay detail pages
+       (lead-generation-that-converts.html), namespaced .oh-*.
        Udacity-style two-column layout (no hero band): wide content
        column on the left, sticky join/booking sidebar on the right.
        Brand colors/fonts/logo via tokens; layout/components bespoke.
@@ -38,8 +38,14 @@
       box-shadow: var(--shadow-lg);
       padding: clamp(28px, 3.5vw, 48px);
     }
-    /* even flow gap between every section in the card */
-    .oh-main > * + * { margin-top: clamp(36px, 4.5vw, 64px); }
+    /* Section rhythm — the visible space between consecutive blocks in the card.
+       Capped at 48px: the container stops growing at 1280px, so a vw-tracked gap
+       keeps expanding after the text column has stopped, which over-spaces the
+       card on wide screens. */
+    .oh-main { --oh-section-gap: clamp(36px, 3.6vw, 48px); }
+    /* Body copy holds 4px of leading below; a display h2's ink overflows its box
+       3px above — so the margin gives back the 3px and trims the 4px. */
+    .oh-main > * + * { margin-top: calc(var(--oh-section-gap) - 1px); }
     /* sections carry no extra leading space of their own — the flow gap is the gap */
     .oh-main section > :first-child { margin-top: 0; }
 
@@ -52,32 +58,55 @@
     }
     .oh-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    /* Header order: thumb → meta (date/type) → title.
-       Meta sits below the bled image; title sits close beneath the meta. */
-    .oh-header > * + * { margin-top: 0; }
-    .oh-header .oh-thumb + .oh-titleblock { margin-top: clamp(24px, 3vw, 32px); }
+    /* Header order: thumb → title → meta (recorded date).
+       The title leads directly under the bled image; the recorded date sits
+       centered beneath the bottom CTA button.
 
-    /* Title block — one symmetric rhythm token so the title sits the same
-       distance from the date/time above it as from the body copy below it.
-       Declared on .oh-main so it is in scope for BOTH the rule inside the
-       block and the sibling-section rule below it. The optical trims cancel
-       the line-height slack of the neighbouring text, so the *visible* gaps
-       match rather than just the box margins. */
-    .oh-main { --oh-title-gap: clamp(20px, 2.2vw, 26px); }
-    .oh-titleblock .oh-meta + .oh-title {
-      /* meta leaves 2.5px slack below; the tight display face overflows its
-         box by 6px above — so add back the 3.5px difference */
-      margin-top: calc(var(--oh-title-gap) + 3.5px);
+       --oh-title-gap is the VISIBLE space binding the title to the image above
+       it. Each rule subtracts the line-height slack its own pairing carries
+       (measured off the rendered page: the display face's ink OVERFLOWS its box
+       by 7px above and 5.4px below; .oh-prose holds 4px of leading; .oh-meta
+       sits flush at 0) so the *ink* gaps land on the token rather than just the
+       box margins. */
+    .oh-header > * + * { margin-top: 0; }
+    .oh-main { --oh-title-gap: clamp(22px, 2.4vw, 30px); }
+
+    /* Eyebrow — brass label introducing the title, on the canonical .t-eyebrow
+       scale (0.875rem / 0.18em) rather than the smaller .tlc-eyebrow, which is
+       sized for callout cards and reads undersized beneath a 46px display title.
+       It's a block so it can carry its own margin; the image edge is hard (0)
+       and uppercase Inter sits flush in its box, so the margin IS the gap. */
+    .oh-eyebrow {
+      display: block;
+      color: var(--brass);
+      font-size: 0.875rem;
+      letter-spacing: 0.18em;
+    }
+    .oh-header .oh-thumb + .oh-eyebrow { margin-top: clamp(20px, 2.2vw, 26px); }
+    /* Eyebrow to title — a tight pairing, so it sits well inside the title
+       rhythm. The eyebrow sits flush below (0); title ink overflows 7px above. */
+    .oh-eyebrow + .oh-title { margin-top: calc(10px + 7px); }
+    .oh-header .oh-thumb + .oh-title {
+      /* image edge is hard (0); title ink overflows its box 7px above,
+         so the margin has to give that 7px back */
+      margin-top: calc(var(--oh-title-gap) + 7px);
     }
     .oh-main > .oh-header + section {
-      /* title overflows 5.6px below, body copy holds 4px above */
-      margin-top: calc(var(--oh-title-gap) + 1.6px);
+      /* a section boundary, so it takes the section rhythm. Title ink overflows
+         5.4px below; body copy holds 4px of leading above. */
+      margin-top: calc(var(--oh-section-gap) + 1.4px);
     }
-    /* Bottom CTA — centered below the Taught By section */
-    .oh-cta-foot { display: flex; justify-content: center; }
+    /* Bottom CTA — centered below the Taught By section, with the recorded
+       date centered beneath the button as a caption. The button is full-width,
+       so stretch is the default; center the date within the column. */
+    .oh-cta-foot { display: flex; flex-direction: column; align-items: center; }
+    .oh-cta-foot .oh-watch-btn { align-self: stretch; }
+    /* Caption gap — the button edge is hard (0) and the meta sits flush (0),
+       so the margin IS the visible gap. */
+    .oh-cta-foot .oh-meta { margin-top: 16px; justify-content: center; }
 
-    /* Full-width watch CTA (gold .tlc-btn, stretched) — under the title
-       and again at the bottom of the card */
+    /* Full-width watch CTA (gold .tlc-btn, stretched) — at the bottom
+       of the card */
     .oh-watch-btn { width: 100%; font-size: 1.125rem; padding-block: 16px; }
 
     .oh-title {
@@ -116,36 +145,6 @@
       color: var(--on-surface-variant);
     }
     .oh-list svg { width: 20px; height: 20px; margin-top: 3px; color: var(--brass); }
-    /* A paragraph closing out a list is a new thought, not a sixth bullet.
-       This gap is tuned so the visible space BELOW the last checklist item
-       matches the visible space ABOVE the section heading — the band gap
-       (39px) less the ~4px of descender slack the list leaves under its
-       final line, so both read as the same distance. */
-    .oh-list + .oh-prose {
-      /* Derived from the band gap so the two stay matched as it scales.
-         The 8px trim is the measured optical difference between the two
-         pairings: above the heading, body text meets a display h2 whose tight
-         line-height pulls its cap-height up; here a list item meets body copy,
-         and both sides carry their own leading. Tuned so the two visible gaps
-         land within 1px of each other at every width. */
-      margin-top: calc(var(--oh-band-gap) - 8px);
-    }
-
-    /* Section band — a section that reads as evenly inset from its neighbours.
-       The token lives on .oh-main so it is in scope for the trailing-sibling
-       rule too. Above the band the neighbour is body copy (~4px of descender
-       slack); below it the neighbour is a display h2 (~9px of cap-height
-       slack), so the trims differ to make the two visible gaps match. */
-    /* Capped at 48px: the container stops growing at 1280px, so a vw-tracked
-       gap keeps expanding after the text column has stopped, which visibly
-       over-spaces the section on wide screens. */
-    .oh-main { --oh-band-gap: clamp(40px, 3.4vw, 48px); }
-    /* Both edges meet the same pairing — body copy (4px slack below) against a
-       display h2 (which overflows its box by 3px above) — so both sides carry
-       the identical 1px trim and the visible gaps come out equal. */
-    .oh-main > .oh-band,
-    .oh-main > .oh-band + * { margin-top: calc(var(--oh-band-gap) - 1px); }
-
     /* Pull-quote — shared .quote-card testimonial block (styles.css).
        Override the marquee-specific flex sizing so it flows in the column;
        with the gold mark omitted, let the text span its empty grid column. */
@@ -155,9 +154,12 @@
     }
     .oh-main .quote-card__quote,
     .oh-main .quote-card__attr { grid-column: 1 / -1; }
-    /* the quote sits a bit tighter in the flow than full section gaps */
-    .oh-main > .quote-card,
-    .oh-main > .quote-card + * { margin-top: clamp(22px, 2.8vw, 36px); }
+    /* The quote is a bordered box: its own edges are hard, so unlike the text
+       blocks it needs no trim above. Below it, the next block opens with a
+       display h2 whose ink overflows its box 3px, so that side gives the 3px
+       back — landing both visible gaps on the section rhythm. */
+    .oh-main > .quote-card { margin-top: var(--oh-section-gap); }
+    .oh-main > .quote-card + * { margin-top: calc(var(--oh-section-gap) + 3px); }
 
     /* Taught By — presenter medallion cards on the canonical dark band.
        Brass-gradient ring around the headshot; role split into a brass
@@ -424,45 +426,41 @@
           <!-- ─────────── LEFT: content ─────────── -->
           <div class="oh-main">
 
-            <!-- Header: thumbnail + meta + title -->
+            <!-- Header: thumbnail + title -->
             <div class="oh-header" data-reveal="up">
               <div class="oh-thumb">
-                <img src="assets/live-events/Masterclass-Leveraging-Google-Reviews-0903-16x9.png" alt="Leveraging Google Reviews to Attract Clients and Agents — The Loan Atlas" loading="eager" />
+                <img src="assets/live-events/past-events/Masterclass-Leveraging-Google-Reviews-0903-16x9.png" alt="Leveraging Google Reviews to Attract Clients and Agents — The Loan Atlas" loading="eager" />
               </div>
-              <div class="oh-titleblock">
-              <div class="oh-meta">
-                <span class="oh-meta__item">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                  Thursday, September 3, 2026
-                </span>
-                <span class="oh-meta__item">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg>
-                  11:00 AM PT
-                </span>
-              </div>
+              <span class="tlc-eyebrow oh-eyebrow">Mortgage Originator Masterclass</span>
               <h1 class="oh-title">Leveraging Google Reviews to Attract Clients and Agents</h1>
-              </div>
             </div>
 
             <!-- About this masterclass -->
             <section data-reveal="up">
-              <p class="oh-prose">Reviews are no longer just a nice-to-have. In today&rsquo;s market, they are one of the most powerful ways loan officers can build trust, create social proof, and stand out before a client or referral partner ever has a conversation with them.</p>
-              <p class="oh-prose">In this next Loan Atlas master class, Tyler and Giuseppe will share how successful loan officers can use reviews more intentionally throughout the mortgage process. They will discuss how to ask for reviews, where to use them, and how to turn positive client and agent experiences into a consistent business development tool.</p>
-              <p class="oh-prose">This session will go beyond simply collecting reviews. You&rsquo;ll learn how to incorporate them into your lead follow-up, lender letters, pre-approval process, Google Business profile, social media, and referral partner communication so your reviews continue working for you long after the transaction closes.</p>
+              <p class="oh-prose">Long before a client or a referral partner ever reaches out to you, they&rsquo;ve already looked you up and started deciding whether you&rsquo;re worth trusting. Your reviews are doing that talking whether you&rsquo;re paying attention to them or not, and in today&rsquo;s market they may be the most powerful form of social proof you have.</p>
+              <p class="oh-prose">In this masterclass, Loan Atlas faculty member Tyler Osby and longtime originator Giuseppe Battaglioli show you how to make reviews work for you on purpose. Between them they&rsquo;ve earned thousands of five-star reviews (Tyler alone is past 1,472 on Google), and this goes well beyond simply collecting them. They break down how to ask for reviews naturally, how to earn the specific ones that answer a client&rsquo;s doubts before those doubts are ever spoken, and how to weave reviews through every stage of your business so they keep generating trust, clients, and agent relationships long after a loan closes.</p>
             </section>
 
             <!-- What you'll learn -->
-            <section class="oh-band" data-reveal="up">
+            <section data-reveal="up">
               <h2 class="oh-h2">What You&rsquo;ll Learn</h2>
               <ul class="oh-list">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Why reviews matter more than ever in today&rsquo;s mortgage market</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>How to ask for reviews naturally throughout the loan process</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>How to use reviews as social proof with clients, Realtors, and referral partners</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Where to incorporate reviews into your emails, lender letters, and follow-up strategy</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Why individual Google Business profiles are important for loan officers</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Why Google reviews drive real inbound business when other review platforms often don&rsquo;t</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>How to claim and own your personal Google Business profile, so your reviews follow you instead of staying with your branch</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>How to ask for reviews naturally at the right moments in the loan process, without it ever feeling awkward</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>How to earn intentional reviews tied to specific wins (fast closings, matching builder-preferred lenders, zero-down options) so each one pre-answers the next client&rsquo;s objection</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Where to put reviews to work: pre-approval and lender letters, your email signature, your website, social media, and referral-partner communication</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>How to reply to every review, repurpose them into content, and turn even a negative review into proof that you make things right</span></li>
               </ul>
-              <p class="oh-prose">You can&rsquo;t always control when someone is ready to buy, refinance, or refer, but you can control how much trust and credibility you build before that moment happens. This master class will help you use reviews more strategically so you can attract more great-fit clients, strengthen referral relationships, and create more confidence in every conversation.</p>
             </section>
+
+            <!-- Pull-quote — shared testimonial block (no gold mark; inline quotes instead) -->
+            <figure class="quote-card" data-reveal="up">
+              <blockquote class="quote-card__quote">&ldquo;Reviews are silent salespeople. People are looking into you before they ever talk to you, to figure out who you are and whether you&rsquo;re going to be good at what they&rsquo;re hiring you to do.&rdquo;</blockquote>
+              <figcaption class="quote-card__attr">
+                <div class="quote-card__name">Tyler Osby</div>
+              </figcaption>
+            </figure>
 
             <!-- Taught by -->
             <section data-reveal="up">
@@ -487,9 +485,15 @@
               </div>
             </section>
 
-            <!-- Bottom CTA — opens the access modal -->
+            <!-- Bottom CTA — opens the access modal; recorded date sits under it -->
             <div class="oh-cta-foot" data-reveal="up">
-              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Join This Masterclass</button>
+              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch the Full Replay</button>
+              <div class="oh-meta">
+                <span class="oh-meta__item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  Recorded on September 3, 2026
+                </span>
+              </div>
             </div>
 
           </div>
@@ -499,7 +503,7 @@
 
             <!-- Column header — frames the two cards as an either/or choice -->
             <div class="oh-side__head">
-              <h2 class="oh-side__title">Want to Join This Masterclass?</h2>
+              <h2 class="oh-side__title">Want to Watch This Masterclass?</h2>
               <p class="oh-side__sub">Join The Loan Atlas to get immediate access, or schedule your free business assessment to see everything inside.</p>
             </div>
 
