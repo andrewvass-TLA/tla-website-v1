@@ -1,0 +1,379 @@
+<!--
+  ============================================================================
+  THE LOAN ATLAS — Health Mindset & Vitality Coach GPT Feedback (members.theloanatlas.com)
+  ============================================================================
+  Anonymous feedback survey for the power users of the Health Mindset &
+  Vitality Coach GPT. Distributed by email only — this page is not linked from any nav.
+
+  FORM: "Power User Survey - Health Mindset & Vitality Coach"
+    LeadConnector form ID CDsbRwZWQigT1OxGP6QF — already wired in below (iframe
+    src, id, data-layout-iframe-id, data-form-id, and the fallback link). No
+    placeholder to swap. Still confirm the survey actually renders once pasted.
+
+  ⚠️ THE IFRAME IS THE RISK ON THIS SITE
+    Every other page in this family is deliberately JS-free, because multisite
+    and security-plugin sanitization strip <script> first. A GHL form normally
+    needs BOTH an <iframe> and form_embed.js.
+
+    This page drops form_embed.js entirely — its only job is postMessage
+    auto-resize, which we replace with a fixed min-height (see --scf-form-h).
+    So the page stays script-free and only the <iframe> has to survive.
+
+    There is no longer a visible fallback link under the form (removed by
+    request), so if the iframe IS stripped, the card renders with an empty gap
+    and no way forward. Verifying the form on the live front end is now the
+    only thing standing between a stripped iframe and ten people hitting a
+    dead page — do it before sending the email. If it is stripped, add a gold
+    button linking to the form URL in place of the iframe.
+
+  ⚠️ ANONYMITY — verify in GHL, not here
+    Members are logged in on this site, so a GHL form can attach submissions to
+    a known contact via URL params or cookies even with no name/email field.
+    Confirm in the form's settings, then submit a live test WHILE LOGGED IN and
+    check that no contact is attached. That test is the only real proof.
+
+  IMAGES (both on the members Media Library, verified live — HTTP 200):
+    - consultation-header.png  (/uploads/2026/08/) — page backdrop, sits under
+      the blue gradient in the .scf-stage rule below.
+    - Loan-Atlas-logo-color-1.png (/uploads/2026/06/) — logo atop the card.
+
+    If the BACKDROP is ever moved or deleted the page will NOT look broken — it
+    silently falls back to a flat navy gradient, so check the URL first if the
+    photo stops showing. A missing LOGO leaves a visible broken-image gap.
+
+  HOW TO DEPLOY:
+    1. Nothing to prepare — the form is wired and both images are live.
+    2. WP admin > new page > add ONE Custom HTML block (or a single Elementor
+       "HTML" widget) > paste EVERYTHING below the marked line (not this
+       comment).
+    3. Set <title> / meta description / OG tags in the SEO plugin fields on the
+       page — they are ignored inside a content block. Also set the page to
+       NOINDEX there; there is no <head> here to hold a robots meta tag, and
+       this page should not be discoverable.
+    4. Publish as an Administrator (Super Admin on multisite) so WordPress does
+       not filter the HTML.
+    5. Preview the LIVE FRONT END (not the editor view), then re-open and
+       re-save to confirm the block is not flagged "invalid" — the round-trip
+       test. This is what catches the iframe being silently dropped on a later
+       edit.
+
+  NOTES:
+    - No <script> by design (see above).
+    - Every selector is scoped under .tla-scf so it cannot collide with the
+      theme, and cannot collide with the .tla-plat Platinum page either.
+    - Dark sections break out of the theme container via margin: calc(50% - 50vw).
+    - Fonts load via @import with a system fallback; if the @import is stripped,
+      the page still reads cleanly in the fallback stack.
+  ============================================================================
+  PASTE FROM THE NEXT LINE DOWN ↓↓↓
+-->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap');
+
+.tla-scf {
+  /* ---- Design tokens (mirrors .claude/DESIGN.md) ---- */
+  --scf-primary: #021c36;
+  --scf-bg: #f7f9fb;
+  --scf-surface: #ffffff;
+  --scf-surface-low: #f2f4f6;
+  --scf-on-surface: #191c1e;
+  --scf-on-surface-variant: #45464d;
+  --scf-outline-variant: #c6c6cd;
+  --scf-brass: #c9961c;
+  --scf-brass-bright: #eac25a;
+  --scf-brass-gradient: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+  --scf-dark-band: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+
+  --scf-radius-lg: 0.5rem;
+  --scf-radius-xl: 0.75rem;
+  --scf-radius-2xl: 1rem;
+
+  /* Body copy size — used by all body prose on the page */
+  --scf-body-size: clamp(1.0625rem, 1rem + 0.4vw, 1.1875rem);
+
+  --scf-space-xs: 8px;
+  --scf-space-sm: 16px;
+  --scf-space-md: 24px;
+  --scf-space-lg: 40px;
+  --scf-space-xl: 64px;
+
+  /* Single-column measure — the form is the only thing on the page, so this is
+     narrower than the 1180px used on the marketing pages. */
+  --scf-container: 760px;
+
+  /* Iframe height, standing in for form_embed.js auto-resize.
+     710px matches the live form's RESTING height at desktop width (~695px
+     measured) plus a few px. Sized this way on purpose:
+       - The form grows to ~800px when all three required fields show
+         validation errors. Sizing for THAT would leave ~145px of empty white
+         under the form in the state everyone actually sees first, and because
+         GHL paints its own background only to its content height, that slack
+         renders as a visible seam across the card — it reads as broken.
+       - Sized to rest, the card hugs the form. In the rarer error state the
+         iframe scrolls internally, and GHL scrolls the first error into view,
+         so the message is still reachable.
+     Set to the measured resting height exactly, with no padding: any slack
+     shows as a faint seam where GHL's own white background stops short of the
+     iframe's bottom edge.
+     Re-measure and update if questions are ever added to the survey. */
+  --scf-form-h: 695px;
+
+  --scf-shadow: 0 4px 14px rgba(2,28,54,0.08);
+  --scf-shadow-lg: 0 12px 32px rgba(2,28,54,0.10);
+
+  --scf-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --scf-display: 'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+  /* ---- Base ---- */
+  font-family: var(--scf-sans);
+  color: var(--scf-on-surface);
+  background: var(--scf-bg);
+  line-height: 1.5;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Paint the page background full-width behind the whole component, so the
+   stage never reveals the theme's white backdrop at the sides. Dark, to match
+   the stage it sits behind. */
+.tla-scf { position: relative; }
+.tla-scf::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  bottom: 0;
+  left: calc(50% - 50vw);
+  width: 100vw;
+  background: var(--scf-primary);
+  pointer-events: none;
+}
+.tla-scf > * { position: relative; z-index: 1; }
+
+/* Reset scoped to our subtree only */
+.tla-scf *,
+.tla-scf *::before,
+.tla-scf *::after { box-sizing: border-box; }
+
+.tla-scf p,
+.tla-scf ul,
+.tla-scf ol,
+.tla-scf li,
+.tla-scf h1,
+.tla-scf h2,
+.tla-scf h3 { margin: 0; padding: 0; }
+
+.tla-scf img { max-width: 100%; height: auto; display: block; }
+.tla-scf a { color: inherit; }
+.tla-scf ul, .tla-scf ol { list-style: none; }
+
+/* ---- Layout primitives ---- */
+.tla-scf .scf-container {
+  max-width: var(--scf-container);
+  margin-inline: auto;
+  padding-inline: var(--scf-space-md);
+}
+.tla-scf .scf-bleed {
+  width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+}
+
+/* ---- Type ---- */
+.tla-scf .scf-display {
+  font-family: var(--scf-display);
+  font-weight: 800;
+  /* 10% down from clamp(2rem, 1.5rem + 2.2vw, 3rem) — this sizes the gold
+     product name. The lead-in above it compensates in .scf-display__lead so
+     only the gold shrinks. */
+  font-size: clamp(1.8rem, 1.35rem + 1.98vw, 2.7rem);
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+.tla-scf .scf-lead {
+  font-size: var(--scf-body-size);
+  line-height: 1.55;
+  color: var(--scf-on-surface-variant);
+}
+/* Pinned explicitly — the theme's own <strong> weight would otherwise apply. */
+.tla-scf strong { font-weight: 700; color: inherit; }
+.tla-scf .scf-em {
+  /* box-decoration-break makes each wrapped line paint its own copy of the
+     gradient. Without it the 135deg sweep is spread across the span's whole
+     multi-line box, so each line samples a narrow slice and the gold reads
+     flat and uneven rather than as a gradient. */
+  background: var(--scf-brass-gradient);
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  font-style: normal;
+}
+
+/* ---- STAGE ----
+   Full-page backdrop: a blue gradient laid over consultation-header.png, which
+   sits far enough back to read as texture rather than imagery. Layer order
+   matches the main site's hero pattern (public/consultation.html):
+     1. gradient tint  2. the photo  3. flat-gradient fallback if it 404s.
+   If the photo stops appearing, layer 3 is hiding the problem — check the URL. */
+.tla-scf .scf-stage {
+  background:
+    linear-gradient(160deg,
+      rgba(2, 28, 54, 0.975) 0%,
+      rgba(6, 14, 28, 0.965) 45%,
+      rgba(2, 28, 54, 0.98) 100%),
+    url('https://members.theloanatlas.com/wp-content/uploads/2026/08/consultation-header.png') center / cover no-repeat,
+    var(--scf-dark-band);
+  padding-block: clamp(40px, 6vw, 80px);
+}
+
+/* ---- CARD ----
+   Gold gradient border via a padded gradient background with an inset white
+   child — border-image cannot follow a border-radius, so this is the standard
+   workaround and it keeps the corners round. */
+.tla-scf .scf-card {
+  background: var(--scf-brass-gradient);
+  padding: 3px;
+  border-radius: var(--scf-radius-2xl);
+  box-shadow: 0 24px 60px rgba(2, 28, 54, 0.45);
+}
+.tla-scf .scf-card__inner {
+  background: var(--scf-surface);
+  /* Keep the inner corner concentric with the outer one, or the gold reads
+     thicker at the corners than along the edges. */
+  border-radius: calc(var(--scf-radius-2xl) - 3px);
+  padding: clamp(24px, 4vw, 48px);
+}
+
+/* Logo — a 5.64:1 wordmark, so it's sized by height and centered. */
+.tla-scf .scf-logo {
+  display: block;
+  height: clamp(34px, 4.5vw, 46px);
+  width: auto;
+  margin: 0 auto var(--scf-space-md);
+}
+
+.tla-scf .scf-card .scf-display { color: var(--scf-primary); text-align: center; }
+.tla-scf .scf-card .scf-lead { margin-top: var(--scf-space-md); text-align: center; }
+.tla-scf .scf-card .scf-lead strong { color: var(--scf-primary); }
+
+/* Heading is two stacked lines: a smaller lead-in above the gold product name,
+   which carries the display size. Both are blocks so they always break. */
+.tla-scf .scf-display__lead {
+  display: block;
+  /* 0.5 / 0.9 — cancels the parent's 10% reduction so this line keeps its
+     original size while the gold below it shrinks. */
+  font-size: 0.5556em;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  color: var(--scf-on-surface-variant);
+  margin-bottom: 0.35em;
+}
+.tla-scf .scf-display .scf-em { display: block; }
+
+/* Divider between the copy and the form */
+.tla-scf .scf-card__rule {
+  height: 1px;
+  background: var(--scf-outline-variant);
+  border: 0;
+  margin: var(--scf-space-lg) 0 var(--scf-space-md);
+}
+
+/* ---- FORM ----
+   Sits inside the card, so it carries no chrome of its own. */
+.tla-scf .scf-formwrap {
+  background: transparent;
+  border: none;
+  padding: 0;
+}
+/* No form_embed.js on this page, so the iframe cannot self-size — this fixed
+   height stands in for it. See --scf-form-h. */
+.tla-scf .scf-formwrap iframe {
+  display: block;
+  width: 100%;
+  min-height: var(--scf-form-h);
+  border: none;
+  background: transparent;
+}
+
+/* ============== RESPONSIVE ============== */
+@media (max-width: 600px) {
+  /* Labels wrap on narrow screens, so the same form rests taller. Measured
+     inside the card at 375px viewport. Same exact-fit logic as desktop. */
+  .tla-scf { --scf-form-h: 810px; }
+  /* Claw back horizontal room for the form: the container gutter plus the
+     card's own padding leaves it very narrow at 375px. */
+  .tla-scf .scf-container { padding-inline: var(--scf-space-sm); }
+  .tla-scf .scf-card__inner { padding: var(--scf-space-md) var(--scf-space-sm); }
+  .tla-scf .scf-formwrap { padding: var(--scf-space-xs); }
+}
+
+/* ============== REDUCED MOTION ============== */
+@media (prefers-reduced-motion: reduce) {
+  .tla-scf *,
+  .tla-scf *::before,
+  .tla-scf *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+
+<div class="tla-scf">
+
+  <!-- ============ STAGE: copy + form in one floating card ============ -->
+  <section class="scf-stage scf-bleed">
+    <div class="scf-container">
+
+      <div class="scf-card">
+        <div class="scf-card__inner">
+          <img class="scf-logo"
+            src="https://members.theloanatlas.com/wp-content/uploads/2026/06/Loan-Atlas-logo-color-1.png"
+            alt="The Loan Atlas" width="1788" height="317" />
+
+          <h1 class="scf-display">
+            <span class="scf-display__lead">Thank you for being a power user of the</span>
+            <span class="scf-em">Health Mindset &amp; Vitality Master GPT!</span>
+          </h1>
+          <p class="scf-lead">
+            Our focus is to improve our GPTs before we build anything new for you.
+            Could you please take 30 seconds to answer this 3-question survey?
+          </p>
+
+          <hr class="scf-card__rule" />
+
+          <div class="scf-formwrap">
+            <!--
+              form_embed.js is intentionally omitted (see the notes at the top of
+              this file) — the height comes from --scf-form-h instead.
+            -->
+            <iframe
+              src="https://api.leadconnectorhq.com/widget/form/CDsbRwZWQigT1OxGP6QF"
+              id="inline-CDsbRwZWQigT1OxGP6QF"
+              data-layout="{'id':'INLINE'}"
+              data-trigger-type="alwaysShow"
+              data-trigger-value=""
+              data-activation-type="alwaysActivated"
+              data-activation-value=""
+              data-deactivation-type="neverDeactivate"
+              data-deactivation-value=""
+              data-form-name="Power User Survey - Health Mindset &amp; Vitality Coach"
+              data-height="671"
+              data-layout-iframe-id="inline-CDsbRwZWQigT1OxGP6QF"
+              data-form-id="CDsbRwZWQigT1OxGP6QF"
+              title="Power User Survey - Health Mindset &amp; Vitality Coach"
+              scrolling="no"></iframe>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+<!-- ↑↑↑ PASTE UP TO HERE -->

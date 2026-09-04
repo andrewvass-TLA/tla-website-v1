@@ -223,6 +223,13 @@ $tla_active      = '';
       margin-top: var(--space-sm);
       margin-bottom: var(--space-lg);
     }
+    /* Looser than the base .mm-plan__hero-title (1.02): this headline is a full
+       sentence that wraps to 2–3 lines, so the tight display leading made the
+       lines crowd each other. Two classes, so it wins over .mm-plan__hero-title
+       no matter which rule comes later in the sheet. */
+    .mm-plan__hero-title.mm-offer__hero-title {
+      line-height: 1.18;
+    }
     .mm-offer__strike {
       position: relative;
       white-space: nowrap;

@@ -4,9 +4,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ACM Preferred Account — Exclusive Loan Atlas Pricing</title>
+  <title>APM Preferred Account — Exclusive Loan Atlas Pricing</title>
   <meta name="description"
-    content="ACM Preferred Account pricing: full access to The Loan Atlas at $199/mo locked in — down from $349/mo." />
+    content="APM Preferred Account pricing: full access to The Loan Atlas at $99/mo — down from $349/mo — a $3,000 annual savings, exclusively for APM originators." />
   <meta name="robots" content="noindex, nofollow" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,112 +18,208 @@
   <style>
     /* ── MASTERMIND-SPECIFIC STYLES (page-scoped) ───────────────────────────── */
 
-    /* ── Sticky offer bar — pinned under the header ─────────────────────────── */
-    .mm-bar {
+    /* ── Sticky offer bar — pinned under the header ─────────────────────────────
+       Two tiers: a thin brass strip naming the audience, and a dark row carrying
+       the numbers. The dark row continues the header's gradient so the bar reads
+       as part of the chrome rather than a banner stapled below it. ──────────── */
+    .apm-bar {
       position: sticky;
       top: var(--header-h);
       z-index: 40;
-      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
-      color: #021c36;
-      box-shadow: 0 6px 20px rgba(2, 28, 54, 0.18);
+      border-bottom: 2px solid transparent;
+      border-image: linear-gradient(90deg, #c9961c, #ffd56c, #c9961c) 1;
+      box-shadow: 0 8px 26px rgba(2, 28, 54, 0.28);
     }
-    .mm-bar__inner {
+
+    /* The whole bar is one link to checkout. It stays a plain block that
+       inherits its children's colors, so the two tiers look identical to the
+       pre-link version — only the cursor, a subtle brightening on hover and the
+       focus ring signal that it's clickable. No hover lift on purpose: the bar
+       is sticky, so shifting it would slide it against the scrolling page. */
+    .apm-bar__link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      transition: filter 0.2s ease;
+    }
+    .apm-bar__link:hover {
+      filter: brightness(1.06);
+    }
+    .apm-bar__link:focus-visible {
+      outline: 3px solid #ffd56c;
+      outline-offset: -3px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .apm-bar__link { transition: none; }
+    }
+
+    /* Tier 1 — brass audience strip. The rules either side of the label are
+       pseudo-elements so the markup stays a single span. */
+    .apm-bar__strip {
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+    }
+    .apm-bar__strip-in {
       max-width: var(--container-max);
       margin-inline: auto;
-      padding: 10px var(--gutter);
+      padding: 9px var(--gutter);
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: 8px 16px;
+      gap: 12px;
+    }
+    .apm-bar__strip-in::before,
+    .apm-bar__strip-in::after {
+      content: "";
+      height: 1px;
+      width: clamp(20px, 6vw, 70px);
+      background: rgba(2, 28, 54, 0.32);
+    }
+    .apm-bar__label {
+      font-family: var(--font-body);
+      font-weight: 900;
+      font-size: 0.9375rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #021c36;
       text-align: center;
     }
-    .mm-bar__text {
-      font-family: var(--font-body);
-      font-size: 0.875rem;
-      font-weight: 700;
-      letter-spacing: 0.01em;
-      line-height: 1.3;
-    }
-    .mm-bar__text strong { font-weight: 800; }
-    .mm-bar__sep {
-      opacity: 0.5;
-      padding-inline: 4px;
-    }
-    .mm-bar__btn {
-      flex-shrink: 0;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #021c36;
-      color: #ffffff;
-      font-family: var(--font-body);
-      font-size: 0.8125rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      padding: 8px 18px;
-      border-radius: var(--radius-full);
-      transition: transform 150ms ease, box-shadow 150ms ease;
-    }
-    .mm-bar__btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 20px rgba(2, 28, 54, 0.3);
-    }
-    @media (max-width: 600px) {
-      .mm-bar__hide-sm { display: none; }
-    }
 
-    /* ── Nav co-brand + CTA (page-scoped; injected by the script at the bottom of
-       this page). The header switches from centered to space-between so the logo
-       lockup sits left and the Claim button sits right. ──────────────────────── */
-    .site-header--acm .site-header__inner {
-      justify-content: space-between;
-      gap: clamp(12px, 2vw, 24px);
+    /* Tier 2 — dark detail row.
+       Two nested axes so the copy and the pill are both honest:
+       - .apm-bar__row-in centres its children, so the text group and the CTA
+         share one vertical centre line.
+       - .apm-bar__copy inside it is baseline-aligned, so the price, offer and
+         savings sit on one optical line. */
+    .apm-bar__row {
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
     }
-    .acm-nav-lockup {
-      display: inline-flex;
+    .apm-bar__row-in {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding: 17px var(--gutter);
+      display: flex;
       align-items: center;
-      gap: clamp(14px, 2vw, 24px);
-      min-width: 0;
+      justify-content: center;
     }
-    .acm-nav-lockup__divider {
-      width: 1px;
-      height: clamp(24px, 4vw, 34px);
-      background: rgba(255, 255, 255, 0.22);
+    .apm-bar__copy {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: clamp(9px, 1.3vw, 14px);
+      flex-wrap: wrap;
+    }
+    .apm-bar__price {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.875rem;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+    .apm-bar__price i {
+      font-style: normal;
+      font-size: 0.46em;
+      font-weight: 700;
+      opacity: 0.72;
+      letter-spacing: 0;
+    }
+    .apm-bar__price s {
+      font-family: var(--font-display);
+      font-size: 0.6em;
+      font-weight: 600;
+      opacity: 0.42;
+      margin-right: 9px;
+      letter-spacing: 0;
+    }
+    /* The + is its own element, centred between the two facts. It is
+       align-self: center rather than on the shared baseline because the glyph's
+       ink sits high in its em box — baselining it floats it above centre. */
+    .apm-bar__plus {
+      align-self: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.5rem;
+      line-height: 1;
+      color: rgba(234, 194, 90, 0.85);
       flex-shrink: 0;
+      transform: translateY(-0.02em);
     }
-    .acm-nav-lockup__acm {
-      height: 24px;
-      width: auto;
-      display: block;
+    .apm-bar__free {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.3125rem;
+      color: rgba(255, 255, 255, 0.94);
+      white-space: nowrap;
+      line-height: 1.1;
     }
-    @media (min-width: 540px) { .acm-nav-lockup__acm { height: 30px; } }
-    @media (min-width: 880px) { .acm-nav-lockup__acm { height: 34px; } }
-    /* On smaller screens, use the short button label so it fits beside the logo. */
-    @media (max-width: 767.98px) {
-      .site-header--acm .btn--header .btn__short { display: inline; }
-      .site-header--acm .btn--header .btn__full { display: none; }
+    .apm-bar__free b { color: #eac25a; font-weight: 800; }
+    .apm-bar__save {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.3125rem;
+      color: #6ee7a0;
+      white-space: nowrap;
+      line-height: 1.1;
+      margin-left: clamp(7px, 1.3vw, 16px);
     }
-    /* On very small screens, drop the ACM wordmark so the logo + button still fit. */
-    @media (max-width: 559.98px) {
-      .site-header--acm .acm-nav-lockup__divider,
-      .site-header--acm .acm-nav-lockup__acm { display: none; }
+    /* Step the type down so the row holds one line as long as possible. */
+    @media (max-width: 1279px) {
+      .apm-bar__label { font-size: 0.875rem; letter-spacing: 0.15em; }
+      .apm-bar__row-in { padding: 15px var(--gutter); }
+      .apm-bar__price { font-size: 1.625rem; }
+      .apm-bar__free, .apm-bar__save { font-size: 1.125rem; }
+      .apm-bar__plus { font-size: 1.3125rem; }
+    }
+    @media (max-width: 1099px) {
+      .apm-bar__label { font-size: 0.8125rem; letter-spacing: 0.14em; }
+      .apm-bar__price { font-size: 1.375rem; }
+      .apm-bar__free, .apm-bar__save { font-size: 1rem; }
+      .apm-bar__plus { font-size: 1.1875rem; }
+    }
+    @media (max-width: 899px) {
+      .apm-bar__strip-in { padding: 6px var(--gutter); }
+      .apm-bar__label { font-size: 0.75rem; letter-spacing: 0.12em; }
+      .apm-bar__row-in { padding: 13px var(--gutter); }
+      .apm-bar__price { font-size: 1.1875rem; }
+      .apm-bar__free, .apm-bar__save { font-size: 0.875rem; }
+      .apm-bar__plus { font-size: 1rem; }
+    }
+    /* Below 640px the offer copy takes its own centred line, so the standalone
+       + would be orphaned beside the price — hide it and inline it instead. */
+    @media (max-width: 639px) {
+      .apm-bar__label { font-size: 0.625rem; letter-spacing: 0.06em; }
+      .apm-bar__strip-in::before,
+      .apm-bar__strip-in::after { width: clamp(12px, 4vw, 40px); }
+      .apm-bar__row-in { padding: 9px 14px; gap: 8px 12px; }
+      .apm-bar__copy { gap: 4px 12px; }
+      .apm-bar__price { font-size: 1.25rem; }
+      .apm-bar__price s { display: none; }
+      .apm-bar__plus { display: none; }
+      .apm-bar__free {
+        flex-basis: 100%;
+        text-align: center;
+        font-size: 0.8125rem;
+        order: 3;
+      }
+      .apm-bar__free::before {
+        content: "+ ";
+        color: rgba(234, 194, 90, 0.85);
+        font-weight: 700;
+      }
+      .apm-bar__save { font-size: 0.8125rem; margin-left: 0; }
+    }
+    /* Narrowest phones: the label is wider than the strip at full tracking. */
+    @media (max-width: 380px) {
+      .apm-bar__label { font-size: 0.625rem; letter-spacing: 0.06em; }
+      .apm-bar__strip-in { gap: 8px; }
+      .apm-bar__strip-in::before,
+      .apm-bar__strip-in::after { display: none; }
     }
 
     /* ── Hero (reuses lp-intro; tightened for offer focus) ──────────────────── */
 
     /* Eyebrow above the hero heading. */
-    .acm-hero-eyebrow {
-      font-family: var(--font-body);
-      font-weight: 700;
-      font-size: clamp(0.875rem, 0.8rem + 0.3vw, 1rem);
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--brass-bright);
-      margin: 0 0 var(--space-md);
-    }
-
     /* ── Larger landing-page CTA — bigger pad + text than the shared .btn--lg ── */
     .btn--landing,
     .lp-intro .btn--gold.btn--lg,
@@ -159,20 +255,20 @@
     .lp-intro__title {
       font-size: clamp(2.5rem, 1.5rem + 3.6vw, 4.25rem);
     }
-    /* Larger hero body copy (matches the homepage hero). */
+    /* Larger hero body copy (matches the homepage hero). The shared rule caps
+       this at 40rem, which pinches this page's longer subtitle well inside the
+       headline above it — widen it to sit with the 56rem content column. */
     .lp-intro__subtitle {
       font-size: clamp(1.125rem, 0.95rem + 0.6vw, 1.375rem);
+      max-width: 52rem;
     }
-    /* "With Less Chaos" — brass gold gradient. */
+    /* "With Less Chaos" — brass gold gradient, always on its own line. */
     .mm-hero-gold {
+      display: block;
       background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-    }
-    /* One line on desktop; breaks onto its own line below the desktop breakpoint. */
-    @media (max-width: 859.98px) {
-      .mm-hero-gold { display: block; }
     }
     /* This headline is longer than the default lp-intro title, so scale it down
        on narrow screens to prevent the long words from overflowing the gutter. */
@@ -217,7 +313,7 @@
       filter: blur(50px);
       pointer-events: none;
     }
-    /* Lockup + Platinum Super Bonus title inside the offer card */
+    /* Lockup + offer-name title inside the offer card */
     .mm-offer__card .mm-plan__lockup {
       position: relative;
       z-index: 1;
@@ -298,7 +394,7 @@
       display: block;
       font-family: var(--font-display);
       font-weight: 700;
-      font-size: clamp(1.375rem, 1.1rem + 1vw, 1.875rem);
+      font-size: clamp(1.75rem, 1.35rem + 1.4vw, 2.5rem);
       color: rgba(255, 255, 255, 0.85);
     }
     .mm-step__was .mm-offer__strike {
@@ -316,24 +412,15 @@
       color: #ffffff;
     }
     .mm-step--first .mm-step__price {
-      font-size: clamp(3.25rem, 2rem + 6vw, 5rem);
+      font-size: clamp(3.75rem, 2.3rem + 7vw, 6.25rem);
       background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
     .mm-step--rest .mm-step__price {
-      font-size: clamp(3.25rem, 2rem + 6vw, 5rem);
+      font-size: clamp(3.75rem, 2.3rem + 7vw, 6.25rem);
     }
-    .mm-step__sub {
-      display: block;
-      font-family: var(--font-body);
-      font-size: 0.9375rem;
-      font-weight: 500;
-      color: rgba(255, 255, 255, 0.72);
-      line-height: 1.4;
-    }
-    .mm-step__sub strong { color: #ffffff; font-weight: 700; }
     .mm-offer__arrow {
       display: flex;
       align-items: center;
@@ -628,7 +715,7 @@
     }
     .system-card__tagline {
       font-family: var(--font-body);
-      font-size: 0.6875rem;
+      font-size: 0.8125rem;
       font-weight: 600;
       letter-spacing: 0.18em;
       text-transform: uppercase;
@@ -638,15 +725,15 @@
     }
     .system-card__title {
       font-family: var(--font-display);
-      font-size: 1.1875rem;
+      font-size: clamp(1.3125rem, 1.2rem + 0.4vw, 1.5rem);
       font-weight: 700;
       color: #ffffff;
       margin-bottom: var(--space-sm);
       line-height: 1.3;
     }
     .system-card p {
-      font-size: 0.9375rem;
-      line-height: 1.68;
+      font-size: clamp(1.03125rem, 0.98rem + 0.22vw, 1.125rem);
+      line-height: 1.62;
       color: rgba(255, 255, 255, 0.7);
       margin: 0;
     }
@@ -1002,17 +1089,38 @@
         inset 0 0 0 1px rgba(234, 194, 90, 0.12);
     }
     @media (min-width: 760px) {
-      .mm-plat__offer { grid-template-columns: 1fr 1fr; }
-      /* Divider in the exact middle of the box */
+      /* The price column needs more than half the box: "3 Months FREE" is
+         nowrap at up to 68px. Give it the larger share and put the divider on
+         the real column boundary rather than at 50%, so the price can never
+         cross it. --plat-split is that boundary, shared by both. */
+      .mm-plat__offer {
+        --plat-split: 44%;
+        grid-template-columns: var(--plat-split) minmax(0, 1fr);
+      }
+      /* Keep the price block clear of the divider: it sits at the start of its
+         own column rather than centred in it, so a column wider than the text
+         can never let the block drift back across the line. */
+      .mm-plat__offer-deal {
+        align-items: flex-start;
+        text-align: left;
+        padding-left: clamp(16px, 2.6vw, 40px);
+      }
+      .mm-plat__price-tag { align-items: flex-start; }
+      .mm-plat__price-note { text-align: left; }
       .mm-plat__offer::before {
         content: '';
         position: absolute;
         top: clamp(28px, 4vw, 48px);
         bottom: clamp(28px, 4vw, 48px);
-        left: 50%;
+        /* Sit midway across the grid gap that follows the first column. */
+        left: calc(clamp(28px, 4vw, 48px) + var(--plat-split));
         width: 1px;
         background: rgba(234, 194, 90, 0.22);
       }
+    }
+    /* Below ~1050px the nowrap price still crowds the line; hand it more room. */
+    @media (min-width: 760px) and (max-width: 1049.98px) {
+      .mm-plat__offer { --plat-split: 38%; }
     }
 
     .mm-plat__list-label {
@@ -1046,6 +1154,22 @@
       text-align: center;
     }
     .mm-plat__offer-deal .btn { width: 100%; }
+    /* The shared .eyebrow only draws a rule on its left (::before in
+       styles.css); this page-scoped ::after mirrors it on the right so the
+       label sits between two matching lines. */
+    .mm-plat__eyebrow::after {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--brass-bright);
+      flex-shrink: 0;
+    }
+    /* Match the shared ::before to the brighter brass used for this label. */
+    .mm-plat__eyebrow::before {
+      background: var(--brass-bright);
+      flex-shrink: 0;
+    }
+
     .mm-plat__price-tag {
       display: flex;
       flex-direction: column;
@@ -1057,25 +1181,32 @@
       position: relative;
       font-family: var(--font-display);
       font-weight: 700;
-      font-size: 2.5rem;
+      font-size: clamp(2.25rem, 1.7rem + 1.7vw, 3.25rem);
       color: rgba(255, 255, 255, 0.5);
     }
-    .mm-plat__price-was span { font-size: 1.125rem; font-weight: 600; }
-    .mm-plat__price-was::after {
+    .mm-plat__price-was span { font-size: 0.42em; font-weight: 600; letter-spacing: 0; }
+    /* Strike only the figure, not the trailing "/mo" — and keep it level.
+       The rule used to span the whole element at -8deg, which overshot the
+       digits once the price was enlarged. */
+    .mm-plat__price-was em {
+      position: relative;
+      font-style: normal;
+    }
+    .mm-plat__price-was em::after {
       content: '';
       position: absolute;
-      left: -4px;
-      right: -4px;
-      top: 52%;
+      left: -5px;
+      right: -5px;
+      top: 54%;
       height: 3px;
       border-radius: 2px;
       background: var(--brass-bright);
-      transform: rotate(-8deg);
+      transform: rotate(-6deg);
     }
     .mm-plat__price-now {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: clamp(2.25rem, 1.5rem + 2.4vw, 3rem);
+      font-size: clamp(2.25rem, 1.1rem + 2.6vw, 3.375rem);
       line-height: 0.95;
       letter-spacing: -0.03em;
       white-space: nowrap;
@@ -1086,7 +1217,7 @@
     }
     .mm-plat__price-note {
       font-family: var(--font-body);
-      font-size: 0.9375rem;
+      font-size: clamp(1rem, 0.92rem + 0.3vw, 1.125rem);
       line-height: 1.45;
       color: rgba(255, 255, 255, 0.78);
       margin: calc(var(--space-md) * -0.75) 0 0;
@@ -1222,22 +1353,44 @@
       background: var(--surface);
       padding-block: clamp(56px, 7vw, 96px);
     }
-    .mm-page-footnote {
-      margin: clamp(32px, 4vw, 48px) auto 0;
+    /* Footnote for the caption's asterisk. Its own full-width row at the base
+       of the card, pulled toward the bottom padding edge, and kept to a single
+       line — no max-width, and it shrinks rather than wrapping on narrow
+       screens (see the nowrap + clamp below). */
+    .lp-proof-card__footnote {
+      /* Positioned rather than a grid row: as a row it inherited the card's
+         56px row-gap above it, which no negative margin could collapse. */
+      position: absolute;
+      left: clamp(24px, 4vw, 56px);
+      right: clamp(24px, 4vw, 56px);
+      bottom: clamp(12px, 1.4vw, 18px);
       font-family: var(--font-body);
-      font-size: 0.9375rem;
-      font-weight: 700;
-      line-height: 1.5;
-      color: #ffffff;
+      font-size: clamp(0.625rem, 0.36rem + 0.7vw, 0.75rem);
+      font-weight: 400;
+      line-height: 1.3;
+      color: rgba(255, 255, 255, 0.45);
+      white-space: nowrap;
+      margin: 0;
+
       text-align: center;
+    }
+    @media (min-width: 760px) {
+      .lp-proof-card__footnote { text-align: left; }
+    }
+    /* Phones: one line is impossible at a readable size — wrap instead. */
+    @media (max-width: 599.98px) {
+      .lp-proof-card__footnote {
+        white-space: normal;
+        font-size: 0.6875rem;
+      }
     }
 
     /* Pricing card gets a little scroll offset so the sticky header clears it. */
-    #acm-form {
+    #apm-form {
       scroll-margin-top: calc(var(--header-h) + 24px);
     }
-    /* ── Embedded ACM enrollment form (nested inside the pricing card) ───────── */
-    .acm-form {
+    /* ── Embedded APM enrollment form (nested inside the pricing card) ──────── */
+    .apm-form {
       position: relative;
       z-index: 1;
       margin-top: var(--space-lg);
@@ -1253,11 +1406,11 @@
       overflow: hidden;
       text-align: center;
     }
-    .acm-form__head {
+    .apm-form__head {
       text-align: center;
       margin-bottom: var(--space-md);
     }
-    .acm-form__title {
+    .apm-form__title {
       font-family: var(--font-display);
       font-weight: 800;
       font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
@@ -1266,7 +1419,7 @@
       color: var(--primary);
       margin: 0 0 8px;
     }
-    .acm-form__sub {
+    .apm-form__sub {
       font-family: var(--font-body);
       font-size: 1rem;
       line-height: 1.55;
@@ -1274,12 +1427,57 @@
       margin: 0;
     }
     /* The LeadConnector embed script sizes the iframe to the form's own content
-       height (~520px); keep a smaller floor so there's no big empty gap below the
-       form before the script runs. */
-    .acm-form__embed iframe {
+       height (~616px per the embed); keep a floor so there's no big empty gap
+       below the form before the script runs. */
+    .apm-form__embed iframe {
       display: block;
       width: 100%;
-      min-height: 560px;
+      min-height: 620px;
+    }
+    /* Savings pill (ACM-style) — replaces the plain italic savings line. */
+    .mm-plan__save-pill {
+      display: inline-block;
+      font-family: var(--font-body);
+      font-size: clamp(1rem, 0.9rem + 0.5vw, 1.1875rem);
+      font-weight: 600;
+      letter-spacing: 0;
+      color: #6ee7a8;
+      background: rgba(52, 211, 153, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.4);
+      border-radius: var(--radius-full);
+      padding: 12px 28px;
+      line-height: 1.5;
+    }
+    .mm-plan__save-pill em {
+      font-style: normal;
+      font-weight: 800;
+      color: #34d399;
+    }
+    /* With the pill, the savings line is upright and needs normal flow spacing
+       (APM's base .mm-plan__save pulls itself up under a big hero title).
+       The gap above/below must read as equal, so this rule owns both sides:
+       the headline's margin-bottom and the form's margin-top are both zeroed
+       out below, leaving only these two values in play. */
+    .mm-plan__save.mm-plan__save--pill {
+      font-style: normal;
+      color: inherit;
+      /* Two classes: the base .mm-plan__save is declared later in this sheet
+         and its negative margin-top would otherwise win. */
+      margin-top: var(--space-lg);
+      margin-bottom: var(--space-lg);
+      margin-inline: auto;
+    }
+    /* Collapse the neighbours' own spacing into the pill's, so the visible gap
+       is symmetric. Without this the headline contributed ~12px above while
+       --space-xl + .apm-form's margin-top stacked to ~42px below.
+       Both cards order these three elements identically, so plain sibling
+       selectors are enough — no :has() needed. */
+    .mm-offer__card .mm-plan__hero-title,
+    .mm-plan .mm-plan__hero-title {
+      margin-bottom: 0;
+    }
+    .mm-plan__save--pill + .apm-form {
+      margin-top: 0;
     }
     .lp-proof-card {
       max-width: 64rem;
@@ -1291,6 +1489,8 @@
         0 30px 70px rgba(2, 28, 54, 0.35),
         inset 0 0 0 1px rgba(234, 194, 90, 0.08);
       padding: clamp(32px, 4vw, 56px) clamp(24px, 4vw, 56px);
+      /* Extra bottom room for the absolutely-positioned footnote. */
+      padding-bottom: clamp(52px, 5.2vw, 74px);
       position: relative;
       overflow: hidden;
       display: grid;
@@ -1298,6 +1498,14 @@
       grid-template-columns: 1fr;
       align-items: center;
       text-align: center;
+    }
+    /* Narrow phones: the footnote wraps to 2–3 lines, which needs more reserved
+       space at the card's base than the desktop single line. */
+    @media (max-width: 430px) {
+      .lp-proof-card { padding-bottom: 62px; }
+    }
+    @media (max-width: 380px) {
+      .lp-proof-card { padding-bottom: 76px; }
     }
     .lp-proof-card::before {
       content: '';
@@ -1554,7 +1762,6 @@
       z-index: 1;
       max-width: 64rem;
       margin-inline: auto;
-      margin-top: var(--space-xl);
       background: linear-gradient(135deg, #0a1628 0%, #021c36 55%, #0a223d 100%);
       border-radius: var(--radius-3xl);
       border: 1px solid rgba(234, 194, 90, 0.4);
@@ -1581,32 +1788,34 @@
       position: relative;
       z-index: 1;
     }
-    /* Co-branded logo lockup — Loan Atlas | ACM (styled to match the nav lockup:
-       gold logo, thin vertical divider, ACM logo bare in brand blue). */
+    /* Logo over a single-line account heading. No divider rule between them —
+       the gap alone separates the mark from the title. */
     .mm-plan__lockup {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      flex-wrap: wrap;
-      gap: clamp(12px, 2.5vw, 26px);
+      gap: clamp(12px, 1.6vw, 18px);
       margin-bottom: var(--space-lg);
     }
-    /* Gold Loan Atlas logo — matched to the ACM logo's image height. */
     .mm-plan__lockup-atlas {
       height: clamp(32px, 4.6vw, 46px);
       width: auto;
       display: block;
     }
-    .mm-plan__lockup-x {
-      width: 1px;
-      height: clamp(26px, 4vw, 38px);
-      background: rgba(255, 255, 255, 0.22);
-      flex-shrink: 0;
-    }
-    .mm-plan__lockup-mm {
-      height: clamp(32px, 4.6vw, 46px);
-      width: auto;
+    /* Account-tier heading — unused: the "APM Preferred Account" heading was
+       removed from both pricing cards (the headline below states the offer).
+       Rule kept in case the lockup heading returns. */
+    .mm-plan__lockup-label {
       display: block;
+      font-family: var(--font-display);
+      font-size: clamp(0.9375rem, 0.5rem + 2.4vw, 2.875rem);
+      font-weight: 800;
+      letter-spacing: -0.015em;
+      line-height: 1.15;
+      color: #ffffff;
+      text-align: center;
+      margin: 0;
     }
     .mm-plan__sponsored {
       font-family: var(--font-body);
@@ -1657,6 +1866,24 @@
       height: 1px;
       background: linear-gradient(90deg, transparent, rgba(234, 194, 90, 0.5), transparent);
     }
+    /* Sub-note under the plus line. Sits close beneath it (the plus line owns a
+       large auto margin, so cancel most of the bottom half) and drops to body
+       face at a smaller size so it reads as a footnote to that line. */
+    .mm-plan__plus-note {
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: clamp(1rem, 0.93rem + 0.25vw, 1.0625rem);
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.62);
+      text-align: center;
+      max-width: 34rem;
+      margin: calc(var(--space-lg) * -0.6) auto var(--space-lg);
+    }
+    .mm-plan__plus-note strong {
+      font-weight: 800;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
     .mm-plan__plus > span {
       flex: 0 1 auto;
     }
@@ -1668,67 +1895,24 @@
       background-clip: text;
       color: transparent;
     }
+    /* Savings line — sits under the card heading. No pill chrome; italic so it
+       reads as an aside to the heading rather than a second label. The lockup
+       above owns a large bottom margin, so pull up into it. */
     .mm-plan__save {
       text-align: center;
-      margin: 0 0 var(--space-xl);
-    }
-    .mm-plan__save-pill {
-      display: inline-block;
       font-family: var(--font-body);
+      font-style: italic;
       font-size: clamp(1rem, 0.9rem + 0.5vw, 1.1875rem);
       font-weight: 600;
-      letter-spacing: 0;
+      line-height: 1.4;
       color: #6ee7a8;
-      background: rgba(52, 211, 153, 0.12);
-      border: 1px solid rgba(52, 211, 153, 0.4);
-      border-radius: var(--radius-full);
-      padding: 12px 28px;
-      line-height: 1.5;
+      max-width: 46rem;
+      margin: calc(var(--space-lg) * -0.7) auto clamp(28px, 3.4vw, 48px);
     }
-    .mm-plan__save-pill em {
-      font-style: normal;
+    .mm-plan__save em {
+      font-style: italic;
       font-weight: 800;
       color: #34d399;
-    }
-    .mm-plan__list {
-      list-style: none;
-      margin: 0 auto var(--space-xl);
-      padding: var(--space-xl) 0;
-      border-block: 1px solid rgba(234, 194, 90, 0.18);
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-md);
-      text-align: left;
-      max-width: 32rem;
-    }
-    @media (min-width: 640px) {
-      .mm-plan__list {
-        grid-template-columns: 1fr 1fr;
-        gap: var(--space-md) var(--space-lg);
-        max-width: 52rem;
-      }
-    }
-    .mm-plan__list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 14px;
-      font-size: 0.9375rem;
-      line-height: 1.55;
-      color: rgba(255, 255, 255, 0.85);
-    }
-    .mm-plan__list .icon {
-      flex-shrink: 0;
-      width: 20px;
-      height: 20px;
-      margin-top: 2px;
-      color: var(--brass-bright);
-    }
-    .mm-plan__cta {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: var(--space-sm);
-      margin-bottom: var(--space-xl);
     }
     .mm-plan__fine {
       font-size: 0.8125rem;
@@ -1990,6 +2174,153 @@
       .hm-system__name,
       .hm-chat__msg--bot { transition: none; }
     }
+
+    /* ══════════════════════════════════════════════════════════════════════════
+       APM EXCLUSIVE PRICING — two-tier monthly/annual card.
+       Ported from public/custom-sales-pages/namb-conference-2026.html so both pricing
+       sections on this page present the identical APM member offer.
+       Uses literal brass values (this page defines no --naq-* tokens).
+       ══════════════════════════════════════════════════════════════════════════ */
+    .naq-plan {
+      --naq-plan-pad: clamp(28px, 4vw, 56px);
+      max-width: 72rem;
+      margin-inline: auto;
+      background: linear-gradient(135deg, #0a1628 0%, #021c36 55%, #0a223d 100%);
+      border-radius: var(--radius-3xl);
+      border: 1px solid rgba(234, 194, 90, 0.4);
+      box-shadow:
+        0 40px 90px rgba(2, 28, 54, 0.45),
+        0 0 60px rgba(234, 194, 90, 0.14),
+        inset 0 0 0 1px rgba(234, 194, 90, 0.12);
+      padding: var(--naq-plan-pad);
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+    .naq-plan__offer { max-width: 48rem; margin-inline: auto; }
+    .naq-plan::before {
+      content: '';
+      position: absolute;
+      top: -120px;
+      right: -120px;
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.2), transparent);
+      filter: blur(50px);
+      pointer-events: none;
+    }
+    .naq-plan > * { position: relative; z-index: 1; }
+
+    .naq-plan__title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.875rem, 1.3rem + 2.6vw, 2.75rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      margin: 0 0 var(--space-lg);
+      text-wrap: balance;
+    }
+
+    /* Two price blocks — monthly + annual */
+    .naq-plan__steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+      align-items: stretch;
+      max-width: 40rem;
+      margin: 0 auto var(--space-lg);
+    }
+    @media (min-width: 620px) {
+      .naq-plan__steps { grid-template-columns: 1fr 1fr; }
+    }
+    .naq-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      border-radius: var(--radius-2xl);
+      padding: clamp(28px, 3.5vw, 44px) var(--space-md);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+    }
+    .naq-step--annual {
+      background: rgba(234, 194, 90, 0.1);
+      border: 1px solid rgba(234, 194, 90, 0.45);
+    }
+    .naq-step__was {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.625rem);
+      color: rgba(255, 255, 255, 0.82);
+    }
+    .naq-step__strike {
+      position: relative;
+      white-space: nowrap;
+    }
+    .naq-step__strike::after {
+      content: '';
+      position: absolute;
+      left: -2px;
+      right: -2px;
+      top: 50%;
+      height: 3px;
+      background: #eac25a;
+      transform: rotate(-6deg);
+    }
+    .naq-step__price {
+      display: block;
+      font-family: var(--font-display);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: #ffffff;
+      font-size: clamp(2.75rem, 1.8rem + 4.6vw, 4.25rem);
+      /* Breathing room around the headline price (adds to the .naq-step 10px gap). */
+      margin-block: clamp(10px, 1.4vw, 18px);
+    }
+    .naq-step--annual .naq-step__price {
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .naq-step__price span {
+      font-size: 0.32em;
+      font-weight: 700;
+      letter-spacing: 0;
+      -webkit-text-fill-color: initial;
+    }
+    .naq-step__sub {
+      display: block;
+      font-family: var(--font-body);
+      font-size: clamp(1.0625rem, 0.98rem + 0.35vw, 1.1875rem);
+      font-weight: 500;
+      color: rgba(255, 255, 255, 0.78);
+      line-height: 1.45;
+    }
+    .naq-step__sub strong { color: #ffffff; font-weight: 700; }
+
+
+    .naq-plan__cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .naq-plan__cta .btn--gold.btn--lg {
+      font-size: clamp(1.0625rem, 0.95rem + 0.6vw, 1.3125rem);
+      padding: clamp(20px, 1.6vw, 26px) clamp(36px, 4vw, 56px);
+      border-radius: var(--radius-2xl);
+      box-shadow: 0 10px 32px rgba(201, 150, 28, 0.34);
+    }
+    .naq-plan__fine {
+      font-size: 0.8125rem;
+      color: rgba(255, 255, 255, 0.55);
+      margin: var(--space-md) 0 0;
+      line-height: 1.5;
+    }
   </style>
 </head>
 
@@ -1998,17 +2329,35 @@
   <!-- ── Header (minimal landing chrome — logo only) ─────────────────────────── -->
 <!-- TLA_HEADER_MINIMAL -->
 
+  <!-- ── Sticky offer bar ───────────────────────────────────────────────────── -->
+  <div class="apm-bar">
+    <a class="apm-bar__link" href="#apm-form" aria-label="Activate Your APM Preferred Account — $99/mo, save $3,000 a year">
+      <div class="apm-bar__strip">
+        <div class="apm-bar__strip-in">
+          <span class="apm-bar__label">Activate Your APM Preferred Account</span>
+        </div>
+      </div>
+      <div class="apm-bar__row">
+        <div class="apm-bar__row-in">
+          <div class="apm-bar__copy">
+            <span class="apm-bar__price"><s>$349/mo</s>$99<i>/mo</i></span>
+            <span class="apm-bar__save">Save $3,000/yr</span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+
   <main>
 
     <!-- ── 1. HERO ──────────────────────────────────────────────────────────── -->
     <section class="lp-intro" aria-labelledby="mm-hero-heading">
       <div class="container">
         <div class="lp-intro__content">
-          <p class="acm-hero-eyebrow" data-hero-step="1">ACM Preferred Account</p>
           <h1 id="mm-hero-heading" class="lp-intro__title" data-hero-step="2">Close More Loans <span class="mm-hero-gold">With Less Chaos</span></h1>
-          <p class="lp-intro__subtitle" data-hero-step="3">Five AI-powered systems, live coaching every week, and the tools to turn ignored marketing into real clients.</p>
+          <p class="lp-intro__subtitle" data-hero-step="3">The Loan Atlas installs 5 AI-powered systems into your mortgage business to help you make better decisions, execute faster, and stay focused on what actually drives production.</p>
           <div class="lp-intro__actions" data-hero-step="4">
-            <a class="btn btn--gold btn--lg" href="#acm-form">Claim Your ACM Preferred Membership</a>
+            <a class="btn btn--gold btn--lg" href="#apm-form">Activate Your APM Preferred Account</a>
           </div>
         </div>
       </div>
@@ -2062,27 +2411,25 @@
     <!-- ── 2. OFFER HIGHLIGHT CARD ──────────────────────────────────────────── -->
     <section class="mm-offer" aria-labelledby="mm-offer-heading">
       <div class="container">
-        <div id="acm-form" class="mm-offer__card" data-reveal="scale">
-          <div class="mm-plan__lockup" aria-label="The Loan Atlas — ACM Preferred Account pricing">
+        <div id="apm-form" class="mm-offer__card" data-reveal="scale">
+          <div class="mm-plan__lockup" aria-label="The Loan Atlas — APM Preferred Account pricing">
             <img class="mm-plan__lockup-atlas" src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" />
-            <span class="mm-plan__lockup-x" aria-hidden="true"></span>
-            <img class="mm-plan__lockup-mm" src="../assets/acm-logo-primary-blue.webp" alt="Atlantic Coast Mortgage" />
           </div>
-          <h3 id="mm-offer-heading" class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Complete the Form to Activate Your ACM Preferred Account for just <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">$199/mo</span></h3>
+          <h3 id="mm-offer-heading" class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Complete the Form to Activate Your APM Preferred Account for just <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">$99/mo</span></h3>
 
-          <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$1,800</em> in Annual Savings — Exclusively for ACM Originators</span></p>
+          <p class="mm-plan__save mm-plan__save--pill"><span class="mm-plan__save-pill"><em>$3,000</em> in Annual Savings — Exclusively for APM Originators</span></p>
 
-          <!-- ── Embedded ACM enrollment form (inside the top offer card) ─────── -->
-          <div class="acm-form">
-            <div class="acm-form__head">
-              <h4 class="acm-form__title">Activate Your ACM Preferred Account</h4>
-              <p class="acm-form__sub">Complete the form below and our team will get you set up at $199/mo.</p>
+          <!-- ── Embedded APM enrollment form (inside the top offer card) ─────── -->
+          <div class="apm-form">
+            <div class="apm-form__head">
+              <h4 class="apm-form__title">Activate Your APM Preferred Account</h4>
+              <p class="apm-form__sub">Complete the form below and our team will get you set up at $99/mo.</p>
             </div>
-            <div class="acm-form__embed">
+            <div class="apm-form__embed">
               <iframe
-                src="https://api.leadconnectorhq.com/widget/form/iZbKtYJN0Ia5ayRrxOwU"
+                src="https://api.leadconnectorhq.com/widget/form/WxgaoLJFq4q1WM1HJbkK"
                 style="width:100%;height:100%;border:none;border-radius:3px"
-                id="inline-iZbKtYJN0Ia5ayRrxOwU-top"
+                id="inline-WxgaoLJFq4q1WM1HJbkK-top"
                 data-layout="{'id':'INLINE'}"
                 data-trigger-type="alwaysShow"
                 data-trigger-value=""
@@ -2090,11 +2437,13 @@
                 data-activation-value=""
                 data-deactivation-type="neverDeactivate"
                 data-deactivation-value=""
-                data-form-name="CA: ACM"
-                data-height="754"
-                data-layout-iframe-id="inline-iZbKtYJN0Ia5ayRrxOwU-top"
-                data-form-id="iZbKtYJN0Ia5ayRrxOwU"
-                title="CA: ACM">
+                data-form-name="CA: APM"
+                data-height="616"
+                data-layout-iframe-id="inline-WxgaoLJFq4q1WM1HJbkK-top"
+                data-form-id="WxgaoLJFq4q1WM1HJbkK"
+                data-cookie-consent="true"
+                data-cookie-consent-provider="auto"
+                title="CA: APM">
               </iframe>
             </div>
           </div>
@@ -2148,8 +2497,8 @@
             <p class="t-headline-md" style="font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.125rem); line-height: 1.35; margin: 0 0 var(--space-md);">
               The loan officers pulling away from the pack aren&rsquo;t working harder than you. They&rsquo;re running systems that compound their production every month.
             </p>
-            <p class="text-brass" style="font-family: var(--font-display); font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.125rem); font-weight: 800; line-height: 1.25; letter-spacing: -0.015em; margin: 0;">
-              With your ACM Preferred Pricing, you can install them all for less than the commission of one extra loan.
+            <p class="text-brass" style="font-family: var(--font-display); font-size: clamp(1.5rem, 1.1rem + 1.4vw, 2.125rem); font-weight: 800; line-height: 1.35; letter-spacing: -0.015em; margin: 0;">
+              With your APM Preferred Account, you can install them all for less than the commission of one extra loan.
             </p>
           </div>
 
@@ -2285,6 +2634,11 @@
       </div>
     </section>
 
+    <!-- NOTE: the Platinum Marketing section (was 7b) is intentionally removed —
+         the APM Preferred Account is $99/mo flat with no free-months bonus, so
+         advertising it here would promise something the offer doesn't include.
+         Its .mm-plat__* CSS above is left in place (same as acm.html). -->
+
     <!-- ── 11. TESTIMONIALS + PROOF ─────────────────────────────────────────── -->
     <section class="lp-testimonials" id="testimonials" aria-labelledby="testimonials-heading">
       <div class="container">
@@ -2360,39 +2714,34 @@
               </div>
             </figcaption>
           </figure>
+
+          <p class="lp-proof-card__footnote">* Past 12 months, ending 2/15/2026. Must have closed one loan in last 90 days (154,000 LO population).</p>
         </div>
       </div>
     </section>
 
-    <!-- ── 12. ACM PRICING ──────────────────────────────────────────────────── -->
-    <section class="mm-pricing" id="pricing" aria-labelledby="pricing-heading">
+    <!-- ── 12. APM PRICING ──────────────────────────────────────────────────── -->
+    <section class="mm-pricing" id="pricing" aria-label="APM Preferred Account pricing">
       <div class="container">
-        <div class="center" data-reveal="up" style="max-width: 46rem; margin-inline: auto;">
-          <h2 id="pricing-heading" class="t-display" style="color: #ffffff; font-weight: 800; margin-bottom: var(--space-sm);">Everything You Need to Scale. <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Exclusive ACM Pricing.</span></h2>
-          <p class="t-body-lg" style="color: rgba(255, 255, 255, 0.68); font-size: clamp(1.125rem, 0.95rem + 0.6vw, 1.375rem);">Full access to everything above — the AI systems, live coaching, the curriculum, the community — at exclusive ACM Preferred Account pricing.</p>
-        </div>
-
-        <article id="acm-pricing-card" class="mm-plan" data-reveal="scale">
-          <div class="mm-plan__lockup" aria-label="The Loan Atlas — ACM Preferred Account pricing">
+        <article id="apm-pricing-card" class="mm-plan" data-reveal="scale">
+          <div class="mm-plan__lockup" aria-label="The Loan Atlas — APM Preferred Account pricing">
             <img class="mm-plan__lockup-atlas" src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" />
-            <span class="mm-plan__lockup-x" aria-hidden="true"></span>
-            <img class="mm-plan__lockup-mm" src="../assets/acm-logo-primary-blue.webp" alt="Atlantic Coast Mortgage" />
           </div>
-          <h3 class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Complete the Form to Activate Your ACM Preferred Account for just <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">$199/mo</span></h3>
+          <h3 class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Complete the Form to Activate Your APM Preferred Account for just <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">$99/mo</span></h3>
 
-          <p class="mm-plan__save"><span class="mm-plan__save-pill"><em>$1,800</em> in Annual Savings — Exclusively for ACM Originators</span></p>
+          <p class="mm-plan__save mm-plan__save--pill"><span class="mm-plan__save-pill"><em>$3,000</em> in Annual Savings — Exclusively for APM Originators</span></p>
 
-          <!-- ── Embedded ACM enrollment form (inside the pricing card) ──────── -->
-          <div class="acm-form">
-            <div class="acm-form__head">
-              <h4 class="acm-form__title">Activate Your ACM Preferred Account</h4>
-              <p class="acm-form__sub">Complete the form below and our team will get you set up at $199/mo.</p>
+          <!-- ── Embedded APM enrollment form (inside the pricing card) ──────── -->
+          <div class="apm-form">
+            <div class="apm-form__head">
+              <h4 class="apm-form__title">Activate Your APM Preferred Account</h4>
+              <p class="apm-form__sub">Complete the form below and our team will get you set up at $99/mo.</p>
             </div>
-            <div class="acm-form__embed">
+            <div class="apm-form__embed">
               <iframe
-                src="https://api.leadconnectorhq.com/widget/form/iZbKtYJN0Ia5ayRrxOwU"
+                src="https://api.leadconnectorhq.com/widget/form/WxgaoLJFq4q1WM1HJbkK"
                 style="width:100%;height:100%;border:none;border-radius:3px"
-                id="inline-iZbKtYJN0Ia5ayRrxOwU"
+                id="inline-WxgaoLJFq4q1WM1HJbkK"
                 data-layout="{'id':'INLINE'}"
                 data-trigger-type="alwaysShow"
                 data-trigger-value=""
@@ -2400,17 +2749,17 @@
                 data-activation-value=""
                 data-deactivation-type="neverDeactivate"
                 data-deactivation-value=""
-                data-form-name="CA: ACM"
-                data-height="754"
-                data-layout-iframe-id="inline-iZbKtYJN0Ia5ayRrxOwU"
-                data-form-id="iZbKtYJN0Ia5ayRrxOwU"
-                title="CA: ACM">
+                data-form-name="CA: APM"
+                data-height="616"
+                data-layout-iframe-id="inline-WxgaoLJFq4q1WM1HJbkK"
+                data-form-id="WxgaoLJFq4q1WM1HJbkK"
+                data-cookie-consent="true"
+                data-cookie-consent-provider="auto"
+                title="CA: APM">
               </iframe>
             </div>
           </div>
         </article>
-
-        <p class="mm-page-footnote">* Past 12 months, ending 2/15/2026. Must have closed one loan in last 90 days (154,000 LO population).</p>
       </div>
     </section>
 
@@ -2419,51 +2768,9 @@
   <!-- ── Footer (standard site chrome) ──────────────────────────────────────── -->
 <!-- TLA_FOOTER -->
 
-  <!-- Add the ACM logo beside the Loan Atlas logo, and a "Claim" CTA button, into
-       the minimal nav header (page-scoped — the header partial is shared, so we
-       inject here rather than editing the shared partial). -->
-  <script>
-    (function () {
-      var header = document.querySelector('.site-header--minimal');
-      var brand = header && header.querySelector('.brand');
-      if (!header || !brand || document.querySelector('.acm-nav-lockup__acm')) return;
-      var logo = brand.querySelector('.brand__logo');
-      if (!logo) return;
-      // Flag the header so its layout switches from centered to space-between.
-      header.classList.add('site-header--acm');
-      // Derive the ACM asset URL from the (already correctly-resolved) Loan Atlas
-      // logo src, so it works whether the base is /assets/ (built) or ./assets/ (raw).
-      var acmSrc = logo.getAttribute('src').replace(/[^/]+$/, 'acm-logo-primary-blue.webp');
-      var divider = document.createElement('span');
-      divider.className = 'acm-nav-lockup__divider';
-      divider.setAttribute('aria-hidden', 'true');
-      var acm = document.createElement('img');
-      acm.className = 'acm-nav-lockup__acm';
-      acm.src = acmSrc;
-      acm.alt = 'Atlantic Coast Mortgage';
-      // Group brand + divider + ACM logo into one lockup so space-between keeps
-      // them together on the left (button goes on the right).
-      var lockup = document.createElement('div');
-      lockup.className = 'acm-nav-lockup';
-      brand.parentNode.insertBefore(lockup, brand);
-      lockup.appendChild(brand);
-      lockup.appendChild(divider);
-      lockup.appendChild(acm);
-
-      // Header CTA — matches the main-site nav button style.
-      var actions = document.createElement('div');
-      actions.className = 'site-header__actions';
-      var cta = document.createElement('a');
-      cta.className = 'btn btn--primary btn--header';
-      cta.href = '#acm-form';
-      cta.innerHTML = '<span class="btn__short">Claim Membership</span><span class="btn__full">Claim Your ACM Membership</span>';
-      actions.appendChild(cta);
-      header.querySelector('.site-header__inner').appendChild(actions);
-    })();
-  </script>
   <script src="../js/nav.js"></script>
   <script src="../js/animations.js" defer></script>
-  <!-- LeadConnector form embed (ACM enrollment form) -->
+  <!-- LeadConnector form embed (APM enrollment form) -->
   <script src="https://link.msgsndr.com/js/form_embed.js"></script>
   <script>
     // ── Hero system-cycling chat: eyebrow + name (left) + bot heading + typed input ──
