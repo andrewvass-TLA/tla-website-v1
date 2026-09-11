@@ -1474,6 +1474,64 @@ $tla_active      = '';
     .mm-plan__save--pill + .apm-form {
       margin-top: 0;
     }
+    /* ── Price build — how the $99 is made up ────────────────────────────────
+       A parenthetical under the headline: the discounted rate plus APM's
+       subsidy. Deliberately quiet — it explains the "$99/mo" above rather
+       than competing with it, so the parens and connecting words sit back and
+       only the two figures (green, matching the site's savings accents) and
+       the brass "+" carry any weight. ────────────────────────────────────── */
+    .apm-build {
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: clamp(1.25rem, 1.02rem + 1.15vw, 1.75rem);
+      line-height: 1.45;
+      color: rgba(255, 255, 255, 0.88);
+      text-align: center;
+      /* Wide enough to hold one line on desktop — at this size a wrap would
+         split the parenthetical across rows and strand the closing paren. */
+      max-width: 54rem;
+      margin: clamp(18px, 2.2vw, 26px) auto 0;
+      text-wrap: balance;
+    }
+    /* The figures — display face, green gradient, a step up in size so the
+       numbers read first within the line. */
+    .apm-build__amount {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.24em;
+      letter-spacing: -0.015em;
+      white-space: nowrap;
+      background: linear-gradient(135deg, #34d399 0%, #6ee7a8 50%, #a7f3d0 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .apm-build__amount i {
+      font-style: normal;
+      font-size: 0.6em;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+    /* The "+" — brass, the one warm note in the line. */
+    .apm-build__op {
+      font-family: var(--font-display);
+      font-weight: 800;
+      color: var(--brass-bright);
+      padding-inline: 0.15em;
+    }
+    /* The pill's spacing contract (above) assumes the headline, the pill and
+       the form are adjacent siblings and zeroes the headline's bottom margin.
+       With the build line inserted between headline and pill, it owns the gap
+       under the headline and the pill keeps only its bottom gap. */
+    .apm-build + .mm-plan__save.mm-plan__save--pill {
+      margin-top: var(--space-md);
+    }
+    /* With the savings pill removed, the build line is the last thing before
+       the form and owns the full gap above it. */
+    .apm-build + .apm-form {
+      margin-top: clamp(28px, 3.4vw, 44px);
+    }
+
     .lp-proof-card {
       max-width: 64rem;
       margin-inline: auto;
@@ -2410,7 +2468,12 @@ $tla_active      = '';
           </div>
           <h3 id="mm-offer-heading" class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Complete the Form to Activate Your APM Preferred Account for just <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">$99/mo</span></h3>
 
+          <!-- How the $99 is made up: the discounted rate, plus APM's subsidy. -->
+          <p class="apm-build">(<span class="apm-build__amount">$149<i>/mo</i></span> discounted rate <span class="apm-build__op">+</span>&nbsp;<span class="apm-build__amount">$50<i>/mo</i></span> subsidy from APM)</p>
+
+          <!-- Savings pill — hidden for review. Uncomment to bring it back.
           <p class="mm-plan__save mm-plan__save--pill"><span class="mm-plan__save-pill"><em>$3,000</em> in Annual Savings — Exclusively for APM Originators</span></p>
+          -->
 
           <!-- ── Embedded APM enrollment form (inside the top offer card) ─────── -->
           <div class="apm-form">
@@ -2722,7 +2785,12 @@ $tla_active      = '';
           </div>
           <h3 class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Complete the Form to Activate Your APM Preferred Account for just <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">$99/mo</span></h3>
 
+          <!-- How the $99 is made up: the discounted rate, plus APM's subsidy. -->
+          <p class="apm-build">(<span class="apm-build__amount">$149<i>/mo</i></span> discounted rate <span class="apm-build__op">+</span>&nbsp;<span class="apm-build__amount">$50<i>/mo</i></span> subsidy from APM)</p>
+
+          <!-- Savings pill — hidden for review. Uncomment to bring it back.
           <p class="mm-plan__save mm-plan__save--pill"><span class="mm-plan__save-pill"><em>$3,000</em> in Annual Savings — Exclusively for APM Originators</span></p>
+          -->
 
           <!-- ── Embedded APM enrollment form (inside the pricing card) ──────── -->
           <div class="apm-form">
