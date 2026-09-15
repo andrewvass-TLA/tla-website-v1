@@ -462,26 +462,26 @@ $tla_active      = 'events';
 
           <div class="ev-feature-card__grid">
             <!-- Square thumbnail -->
-            <a class="ev-feature-card__media" href="/talk-to-tim/" tabindex="-1" aria-hidden="true">
-              <img src="<?php echo TLA_BASE; ?>/assets/live-events/Talk-To-Tim-Square.png" alt="Talk to Tim — The Loan Atlas" loading="eager" />
+            <a class="ev-feature-card__media" href="/winning-mortgage-referrals-from-listing-agents/" tabindex="-1" aria-hidden="true">
+              <img src="<?php echo TLA_BASE; ?>/assets/live-events/MBS-Highway-September-2026-500x500.png" alt="Winning Mortgage Referrals From Listing Agents — The Loan Atlas" loading="eager" />
             </a>
 
             <!-- Copy -->
             <div class="ev-feature-card__copy">
-              <span class="ev-tag ev-tag--on-dark ev-tag--talk-to-tim">Next Live Event</span>
-              <h1 id="ev-featured-heading" class="ev-feature-card__title">Talk to Tim</h1>
+              <span class="ev-tag ev-tag--on-dark ev-tag--masterclass">Next Masterclass</span>
+              <h1 id="ev-featured-heading" class="ev-feature-card__title">Winning Mortgage Referrals From Listing Agents</h1>
               <div class="ev-feature-card__meta">
                 <span class="ev-feature-card__meta-item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                  Tuesday, September 22, 2026
+                  Wednesday, September 23, 2026
                 </span>
                 <span class="ev-feature-card__meta-item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg>
-                  12:00 PM PT
+                  8:00 AM PT
                 </span>
               </div>
-              <p class="ev-feature-card__desc">Once a month, Tim Braheem gets in the room with you to coach you through the deeper stuff: the mindset blocks, the leadership doubts, and the fear of change holding your business back.</p>
-              <a class="btn btn--gold btn--xl" href="/talk-to-tim/">Learn More and Get Access</a>
+              <p class="ev-feature-card__desc">When a listing needs more buyer interest, the default answer is a price cut. Josh Mettle, Jason Drobeck and Skyler Ford show why a seller-funded buydown creates more payment relief per dollar &mdash; and how to walk a listing agent through it with the MBS Highway Seller Contribution tool.</p>
+              <a class="btn btn--gold btn--xl" href="/winning-mortgage-referrals-from-listing-agents/">Learn More and Get Access</a>
             </div>
           </div>
 
@@ -499,31 +499,7 @@ $tla_active      = 'events';
 
         <div class="ev-grid" data-reveal-stagger="80">
 
-          <article class="ev-card">
-            <a class="ev-card__media" href="/office-hours-brent-hicks/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Brent-Hicks-Square.png" alt="Office Hours with Brent Hicks" loading="lazy" /></a>
-            <div class="ev-card__body">
-              <div class="ev-card__date">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Sep 2, 2026 &middot; 11:00 AM PT
-              </div>
-              <h3 class="ev-card__title">Office Hours with Brent Hicks</h3>
-              <p class="ev-card__desc">Join this session with Brent Hicks, whose niche / specialty is in the area of Leadership, Team Building, and Recruiting.</p>
-              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-brent-hicks/">Get Access</a></div>
-            </div>
-          </article>
 
-          <article class="ev-card">
-            <a class="ev-card__media" href="/office-hours-marc-bui/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Marc-Bui-Square.png" alt="Office Hours with Marc Bui" loading="lazy" /></a>
-            <div class="ev-card__body">
-              <div class="ev-card__date">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Sep 9, 2026 &middot; 11:00 AM PT
-              </div>
-              <h3 class="ev-card__title">Office Hours with Marc Bui</h3>
-              <p class="ev-card__desc">Join this session with Marc Bui, whose niche / specialty is in the area of Social Media Marketing, Instagram, and Content That Builds Pipeline.</p>
-              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-marc-bui/">Get Access</a></div>
-            </div>
-          </article>
 
           <article class="ev-card">
             <a class="ev-card__media" href="/office-hours-julie-weix/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Julie-Weix-Square.png" alt="Office Hours with Julie Weix" loading="lazy" /></a>
@@ -535,6 +511,32 @@ $tla_active      = 'events';
               <h3 class="ev-card__title">Office Hours with Julie Weix</h3>
               <p class="ev-card__desc">Join this session with Julie Weix, whose niche / specialty is in the area of Leadership, Personal Development, Mindset, and Time &amp; Task Management.</p>
               <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-julie-weix/">Get Access</a></div>
+            </div>
+          </article>
+
+          <article class="ev-card">
+            <a class="ev-card__media" href="/talk-to-tim/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Talk-To-Tim-Square.png" alt="Talk to Tim" loading="lazy" /></a>
+            <div class="ev-card__body">
+              <div class="ev-card__date">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Sep 22, 2026 &middot; 12:00 PM PT
+              </div>
+              <h3 class="ev-card__title">Talk to Tim</h3>
+              <p class="ev-card__desc">Once a month, Tim Braheem gets in the room with you to coach you through the deeper stuff: the mindset blocks, the leadership doubts, and the fear of change holding your business back.</p>
+              <div class="ev-card__foot"><a class="ev-card__join" href="/talk-to-tim/">Get Access</a></div>
+            </div>
+          </article>
+
+          <article class="ev-card">
+            <a class="ev-card__media" href="/winning-mortgage-referrals-from-listing-agents/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/MBS-Highway-September-2026-500x500.png" alt="Winning Mortgage Referrals From Listing Agents" loading="lazy" /></a>
+            <div class="ev-card__body">
+              <div class="ev-card__date">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Sep 23, 2026 &middot; 8:00 AM PT
+              </div>
+              <h3 class="ev-card__title">Winning Mortgage Referrals From Listing Agents</h3>
+              <p class="ev-card__desc">Josh Mettle, Jason Drobeck and Skyler Ford show why a seller-funded buydown creates more buyer payment relief than an equal price cut &mdash; plus a live walkthrough of the MBS Highway Seller Contribution tool.</p>
+              <div class="ev-card__foot"><a class="ev-card__join" href="/winning-mortgage-referrals-from-listing-agents/">Get Access</a></div>
             </div>
           </article>
 

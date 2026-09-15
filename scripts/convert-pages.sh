@@ -165,6 +165,7 @@ rewrite() {
   perl -0pi -e 's/href="ai-lab-success-with-follow-up-pro\.html"/href="\/ai-lab-success-with-follow-up-pro\/"/g' "$f"
   perl -0pi -e 's/href="market-update-with-barry-habib\.html"/href="\/market-update-with-barry-habib\/"/g' "$f"
   perl -0pi -e 's/href="leveraging-google-reviews\.html"/href="\/leveraging-google-reviews-to-attract-clients-and-agents\/"/g' "$f"
+  perl -0pi -e 's/href="winning-mortgage-referrals-from-listing-agents\.html"/href="\/winning-mortgage-referrals-from-listing-agents\/"/g' "$f"
   perl -0pi -e 's/href="replay-winning-the-ai-game\.html"/href="\/winning-the-ai-game\/"/g' "$f"
   perl -0pi -e 's/href="replay-ai-lab-follow-up-pro\.html"/href="\/ai-lab-follow-up-pro\/"/g' "$f"
   perl -0pi -e 's/href="replay-2026-mid-year-playbook\.html"/href="\/2026-mid-year-playbook\/"/g' "$f"
@@ -204,6 +205,10 @@ convert lead-generation-that-converts lead-generation-that-converts ""
 convert ai-lab-success-with-follow-up-pro ai-lab-success-with-follow-up-pro ""
 convert market-update-with-barry-habib market-update-with-barry-habib ""
 convert leveraging-google-reviews leveraging-google-reviews-to-attract-clients-and-agents ""
+# Upcoming live-event (masterclass) detail pages. public/live-events/_template.html
+# is the copy-and-fill source and is deliberately NOT listed here (never deploys);
+# the pages themselves live at the root of public/ and are listed individually.
+convert winning-mortgage-referrals-from-listing-agents winning-mortgage-referrals-from-listing-agents ""
 convert replay-winning-the-ai-game winning-the-ai-game        ""
 convert replay-ai-lab-follow-up-pro ai-lab-follow-up-pro      ""
 convert replay-2026-mid-year-playbook 2026-mid-year-playbook   ""
