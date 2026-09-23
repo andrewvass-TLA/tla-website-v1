@@ -67,36 +67,13 @@
     .site-header--naq .btn--header .btn__short { display: none; }
     .site-header--naq .btn--header .btn__full  { display: inline; }
 
-    /* On narrow screens the savings copy won't fit beside the logo + full
-       button, so drop it out of the header into a full-width band directly
-       below the fixed header. The header keeps just logo + button. */
+    /* On narrow screens the savings copy won't fit beside the logo + button,
+       so drop it entirely — the header keeps just logo + button. (No band
+       below the header, so the hero needs no extra top padding here.) */
     @media (max-width: 767.98px) {
-      .naq-header-save {
-        position: fixed;
-        top: var(--header-h, 72px);
-        left: 0;
-        right: 0;
-        z-index: 49;
-        max-width: none;
-        text-align: center;
-        font-size: 0.875rem;
-        line-height: 1.3;
-        padding: 8px 16px;
-        background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      }
-      /* chrome.css already gives `body > main` a 72px top pad to clear the fixed
-         header. The savings band is fixed just below that header and is ~53px
-         tall (its copy wraps to two lines on narrow screens, more on the
-         narrowest), so the hero must add at least the band height + spacing on
-         top. Use a generous floor so the eyebrow always clears the band.
-         Doubled class raises specificity so this wins over the base .naq-hero
-         padding-top regardless of source order. */
-      .naq-hero.naq-hero {
-        padding-top: calc(64px + clamp(24px, 6vw, 40px));
-      }
+      .naq-header-save { display: none; }
       /* Shrink the button so the full "Join The Loan Atlas" label fits beside
-         the logo now that the savings copy has moved to the band below. */
+         the logo. */
       .site-header.site-header--naq .btn--header {
         padding: 9px 15px;
         font-size: 0.8125rem;
@@ -137,13 +114,12 @@
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
-        gap: clamp(28px, 3vw, 52px);
+        gap: 0;
       }
-      /* Margins are handled by the flex gap above at this breakpoint. */
-      .naq-hero__copy > .naq-hero__title,
-      .naq-hero__copy > .naq-hero__sub {
-        margin-bottom: 0;
-      }
+      /* Proximity: the subhead explains the headline, so it sits tight to it;
+         the bigger gap falls before the list, which is its own block. */
+      .naq-hero__copy > .naq-hero__title { margin-bottom: clamp(10px, 1vw, 14px); }
+      .naq-hero__copy > .naq-hero__sub   { margin-bottom: clamp(28px, 3vw, 40px); }
     }
 
     /* ── Left column — copy ─────────────────────────────────────────────────── */
@@ -156,7 +132,7 @@
       /* Small bottom padding so background-clip: text doesn't crop the
          descender on "g" (Operating). */
       padding-bottom: 0.12em;
-      margin: 0 0 var(--space-md);
+      margin: 0 0 var(--space-sm);
       text-wrap: balance;
       background: var(--naq-grad);
       -webkit-background-clip: text;
@@ -165,12 +141,12 @@
       color: transparent;
     }
     .naq-hero__sub {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: clamp(1.25rem, 1rem + 1vw, 1.75rem);
-      line-height: 1.25;
-      letter-spacing: -0.015em;
-      color: #ffffff;
+      font-family: var(--font-body);
+      font-weight: 400;
+      font-size: clamp(1.125rem, 0.98rem + 0.62vw, 1.4375rem);
+      line-height: 1.45;
+      letter-spacing: -0.005em;
+      color: rgba(255, 255, 255, 0.88);
       margin: 0 0 var(--space-lg);
       text-wrap: balance;
     }
@@ -723,7 +699,7 @@
         <img src="assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" class="brand__logo" />
       </a>
       <div class="site-header__actions">
-        <span class="naq-header-save">Save <span class="naq-header-save__amt">$1,800</span> on your membership with your MBS discount!</span>
+        <span class="naq-header-save">Save <span class="naq-header-save__amt">$1,500/yr</span> with your Highway discount!</span>
         <a class="btn btn--header" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-mbs-sep-2026/" target="_blank" rel="noopener">
           <span class="btn__full">Join The Loan Atlas</span>
           <span class="btn__short">Join</span>
