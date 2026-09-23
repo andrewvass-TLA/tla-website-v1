@@ -2155,7 +2155,7 @@ $tla_active      = '';
           <h1 id="mm-hero-heading" class="lp-intro__title" data-hero-step="2">Close More Loans <span class="mm-hero-gold">With Less Chaos</span></h1>
           <p class="lp-intro__subtitle" data-hero-step="3">Five AI-powered systems, live coaching every week, and the tools to turn ignored marketing into real clients.</p>
           <div class="lp-intro__actions" data-hero-step="4">
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-namb/">Activate Your NAMB Preferred Account</a>
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-namb3/">Activate Your NAMB Preferred Account</a>
           </div>
         </div>
       </div>
@@ -2233,7 +2233,7 @@ $tla_active      = '';
 
 
           <div class="naq-plan__cta">
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-namb/">Activate Your NAMB Preferred Account</a>
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-namb3/">Activate Your NAMB Preferred Account</a>
           </div>
           <p class="naq-plan__fine">12-month commitment. Offer available to new members only.</p>
           </div>
@@ -2592,7 +2592,7 @@ $tla_active      = '';
 
 
           <div class="naq-plan__cta">
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-namb/">Activate Your NAMB Preferred Account</a>
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-namb3/">Activate Your NAMB Preferred Account</a>
           </div>
           <p class="naq-plan__fine">12-month commitment. Offer available to new members only.</p>
           </div>
