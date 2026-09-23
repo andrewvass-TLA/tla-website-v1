@@ -11,6 +11,14 @@ $tla_description = 'Download the Seller Advantage templates — a Realtor pitch 
 $tla_active      = '';
 ?>
   <style>
+    /* Blur-up swatch while the Wistia web component defines itself */
+    wistia-player[media-id='1k07af1o60']:not(:defined) {
+      background: center / contain no-repeat url('https://fast.wistia.com/embed/medias/1k07af1o60/swatch');
+      display: block;
+      filter: blur(5px);
+      padding-top: 56.25%;
+    }
+
     .naq {
       --naq-navy: #021c36;
       --naq-navy-deep: #060e1c;
@@ -279,28 +287,8 @@ $tla_active      = '';
       line-height: 1.15;
       letter-spacing: -0.025em;
       color: var(--primary);
-      margin: 0 0 var(--space-sm);
-      text-wrap: balance;
-    }
-    .naq-replay__sub {
-      font-family: var(--font-body);
-      font-size: clamp(1.0625rem, 0.95rem + 0.5vw, 1.1875rem);
-      line-height: 1.55;
-      color: var(--on-surface-variant);
       margin: 0;
       text-wrap: balance;
-    }
-    .naq-replay__link {
-      color: var(--naq-brass);
-      font-weight: 700;
-      text-decoration: underline;
-      text-underline-offset: 4px;
-      text-decoration-thickness: 1px;
-      transition: color 0.2s ease;
-    }
-    .naq-replay__link:hover,
-    .naq-replay__link:focus-visible {
-      color: var(--naq-navy);
     }
 
     .naq-replay__frame {
@@ -311,54 +299,7 @@ $tla_active      = '';
       border: 1px solid rgba(2, 28, 54, 0.12);
       box-shadow: 0 30px 70px rgba(2, 28, 54, 0.22);
     }
-    /* Placeholder standing in for the replay until the recording is live.
-       Holds the player's 16:9 box so swapping in the real embed doesn't
-       shift the page. */
-    .naq-replay__frame--soon {
-      position: relative;
-      aspect-ratio: 16 / 9;
-      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .naq-replay__soon {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: clamp(16px, 2.2vw, 24px);
-      padding: var(--space-md);
-      text-align: center;
-    }
-    .naq-replay__play {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: clamp(64px, 7vw, 88px);
-      height: clamp(64px, 7vw, 88px);
-      border-radius: 50%;
-      background: var(--naq-grad);
-      color: var(--naq-navy);
-      box-shadow: 0 16px 40px rgba(201, 150, 28, 0.32);
-    }
-    .naq-replay__play svg {
-      width: 58%;
-      height: 58%;
-      display: block;
-      /* Nudge the triangle so it reads as optically centered in the circle. */
-      margin-left: 4%;
-    }
-    .naq-replay__soon-copy {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(1.125rem, 0.95rem + 0.9vw, 1.625rem);
-      line-height: 1.3;
-      letter-spacing: -0.015em;
-      color: #ffffff;
-      max-width: 24ch;
-      margin: 0;
-      text-wrap: balance;
-    }
+    .naq-replay__frame wistia-player { display: block; }
 
     .naq-pricing {
       background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
@@ -754,23 +695,18 @@ $tla_active      = '';
       </div>
     </section>
 
-    <!-- ── REPLAY — placeholder until the recording is published ────────────── -->
+    <!-- ── REPLAY — session recording ───────────────────────────────────────── -->
     <section class="naq-replay" aria-labelledby="naq-replay-title">
       <div class="container">
         <div class="naq-replay__head">
-          <span class="naq-replay__eyebrow">Missed the webinar?</span>
+          <span class="naq-replay__eyebrow">Watch the replay</span>
           <h2 id="naq-replay-title" class="naq-replay__title">Winning Mortgage Referrals From Listing Agents</h2>
-          <p class="naq-replay__sub">The full recording is being edited now — check back shortly to watch the replay.</p>
         </div>
-        <!-- Placeholder frame: keeps the player's 16:9 footprint so the section
-             doesn't reflow when the real embed replaces it. Not interactive. -->
-        <div class="naq-replay__frame naq-replay__frame--soon">
-          <div class="naq-replay__soon">
-            <span class="naq-replay__play" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none"><path d="M9 7.5v9l7-4.5-7-4.5z" fill="currentColor"/></svg>
-            </span>
-            <p class="naq-replay__soon-copy">Winning Referrals from Listing Agents Replay coming soon!</p>
-          </div>
+        <div class="naq-replay__frame">
+          <!-- Wistia loader scripts live in <body> (the build strips <head> scripts) -->
+          <script src="https://fast.wistia.com/player.js" async></script>
+          <script src="https://fast.wistia.com/embed/1k07af1o60.js" async type="module"></script>
+          <wistia-player media-id="1k07af1o60" seo="false" aspect="1.7777777777777777"></wistia-player>
         </div>
       </div>
     </section>
