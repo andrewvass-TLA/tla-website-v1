@@ -995,17 +995,36 @@
         inset 0 0 0 1px rgba(234, 194, 90, 0.12);
     }
     @media (min-width: 760px) {
-      .mm-plat__offer { grid-template-columns: 1fr 1fr; }
-      /* Divider in the exact middle of the box */
+      /* The price column needs more than half the box so the nowrap price can
+         never cross the divider. --plat-split is the real column boundary,
+         shared by the grid and the rule that sits on it. */
+      .mm-plat__offer {
+        --plat-split: 44%;
+        grid-template-columns: var(--plat-split) minmax(0, 1fr);
+      }
+      /* Keep the price block clear of the divider: it sits at the start of its
+         own column rather than centred in it, so a column wider than the text
+         can never let the block drift back across the line. */
+      .mm-plat__offer-deal {
+        align-items: flex-start;
+        text-align: left;
+        padding-left: clamp(16px, 2.6vw, 40px);
+      }
+      .mm-plat__price-tag { align-items: flex-start; }
       .mm-plat__offer::before {
         content: '';
         position: absolute;
         top: clamp(28px, 4vw, 48px);
         bottom: clamp(28px, 4vw, 48px);
-        left: 50%;
+        /* Sit midway across the grid gap that follows the first column. */
+        left: calc(clamp(28px, 4vw, 48px) + var(--plat-split));
         width: 1px;
         background: rgba(234, 194, 90, 0.22);
       }
+    }
+    /* Below ~1050px the nowrap price still crowds the line; hand it more room. */
+    @media (min-width: 760px) and (max-width: 1049.98px) {
+      .mm-plat__offer { --plat-split: 38%; }
     }
 
     .mm-plat__list-label {
@@ -1035,41 +1054,71 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: var(--space-lg);
+      /* Only the price tag lives here now, so centre it against the checklist
+         rather than letting it sit at the top of the column. */
+      justify-content: center;
       text-align: center;
     }
     .mm-plat__offer-deal .btn { width: 100%; }
+    /* The shared .eyebrow only draws a rule on its left (::before in
+       styles.css); this page-scoped ::after mirrors it on the right so the
+       label sits between two matching lines. */
+    .mm-plat__eyebrow::after {
+      content: '';
+      width: 32px;
+      height: 1px;
+      background: var(--brass-bright);
+      flex-shrink: 0;
+    }
+    /* Match the shared ::before to the brighter brass used for this label. */
+    .mm-plat__eyebrow::before {
+      background: var(--brass-bright);
+      flex-shrink: 0;
+    }
+
     .mm-plat__price-tag {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
+      gap: clamp(6px, 0.8vw, 12px);
       flex-shrink: 0;
     }
     .mm-plat__price-was {
       position: relative;
       font-family: var(--font-display);
       font-weight: 700;
-      font-size: 2.5rem;
+      /* The "before" price: sized to stay clearly secondary to the $69, but
+         large enough to fill the box now that the note has moved out. */
+      font-size: clamp(1.75rem, 1.2rem + 1.7vw, 2.75rem);
       color: rgba(255, 255, 255, 0.5);
+      line-height: 1;
     }
-    .mm-plat__price-was span { font-size: 1.125rem; font-weight: 600; }
-    .mm-plat__price-was::after {
+    .mm-plat__price-was span { font-size: 0.42em; font-weight: 600; letter-spacing: 0; }
+    /* Strike only the figure, not the trailing "/mo" — and keep it level.
+       A rule spanning the whole element overshoots the digits at this size. */
+    .mm-plat__price-was em {
+      position: relative;
+      font-style: normal;
+    }
+    .mm-plat__price-was em::after {
       content: '';
       position: absolute;
       left: -4px;
       right: -4px;
-      top: 52%;
-      height: 3px;
+      top: 54%;
+      /* Scales with the figure so the rule stays proportionate now that the
+         struck price is small. */
+      height: 0.09em;
+      min-height: 2px;
       border-radius: 2px;
       background: var(--brass-bright);
-      transform: rotate(-8deg);
+      transform: rotate(-6deg);
     }
     .mm-plat__price-now {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: clamp(2.25rem, 1.5rem + 2.4vw, 3rem);
-      line-height: 0.95;
+      font-size: clamp(4.5rem, 3rem + 5.2vw, 7.5rem);
+      line-height: 0.92;
       letter-spacing: -0.03em;
       white-space: nowrap;
       background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
@@ -1077,12 +1126,22 @@
       background-clip: text;
       color: transparent;
     }
+    /* "/mo" suffix rides small beside the price, like the Platinum page's. */
+    .mm-plat__price-now span {
+      font-size: 0.3em;
+      font-weight: 700;
+      letter-spacing: 0;
+      -webkit-text-fill-color: rgba(255, 255, 255, 0.6);
+    }
+    /* Caption under the offer box, not inside it. */
     .mm-plat__price-note {
       font-family: var(--font-body);
       font-size: 0.9375rem;
       line-height: 1.45;
-      color: rgba(255, 255, 255, 0.78);
-      margin: calc(var(--space-md) * -0.75) 0 0;
+      color: rgba(255, 255, 255, 0.62);
+      text-align: center;
+      max-width: 46rem;
+      margin: var(--space-md) auto 0;
     }
     .mm-plat__price-note strong { color: var(--brass-bright); font-weight: 700; }
 
@@ -2164,7 +2223,7 @@
             <img class="mm-plan__lockup-mm" src="../assets/namb-logo.webp" alt="NAMB" />
           </div>
           <div class="naq-plan__offer">
-          <h2 id="mm-offer-heading" class="naq-plan__title">Activate Your NAMB Preferred Account and <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Save $1,200!</span></h2>
+          <h2 id="mm-offer-heading" class="naq-plan__title">Join The Loan Atlas and <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Save $1,000/year</span> as a NAMB member!</h2>
 
           <div class="naq-plan__steps">
             <div class="naq-step naq-step--monthly">
@@ -2372,6 +2431,63 @@
       </div>
     </section>
 
+
+    <!-- ── 7b. PLATINUM MARKETING ───────────────────────────────────────────── -->
+    <section class="mm-plat" id="platinum" aria-labelledby="plat-heading">
+      <div class="mm-plat__glow" aria-hidden="true"></div>
+
+      <!-- Faded background collage of every Platinum asset -->
+      <div class="mm-plat__bg" aria-hidden="true">
+        <img src="../assets/platinum-landing-page-1.png" alt="" loading="lazy">
+        <img src="../assets/platinum-presentation-deck-1.png" alt="" loading="lazy">
+        <img src="../assets/platinum-flyer-1.jpeg" alt="" loading="lazy">
+        <img src="../assets/platinum-social-image-1.jpeg" alt="" loading="lazy">
+        <img src="../assets/platinum-newsletter.png" alt="" loading="lazy">
+        <img src="../assets/platinum-presentation-deck-2.png" alt="" loading="lazy">
+        <img src="../assets/platinum-social-image-2.jpeg" alt="" loading="lazy">
+        <img src="../assets/platinum-landing-page-2.png" alt="" loading="lazy">
+        <img src="../assets/platinum-flyer-2.jpeg" alt="" loading="lazy">
+        <img src="../assets/platinum-social-image-3.jpeg" alt="" loading="lazy">
+        <img src="../assets/platinum-social-image-4.png" alt="" loading="lazy">
+      </div>
+
+      <div class="container">
+
+        <div class="mm-plat__header" data-reveal="up">
+          <span class="eyebrow mm-plat__eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
+            <span class="eyebrow__text" style="color: var(--brass-bright);">New Inside The Loan Atlas</span>
+          </span>
+          <h2 id="plat-heading" class="mm-plat__title">Platinum Marketing</h2>
+          <p class="mm-plat__subhead">
+            Take your marketing from ignored to <span class="mm-plat__subhead-em" style="font-weight: 800;">irresistible.</span>
+          </p>
+        </div>
+
+        <!-- Full-width box: checklist (left) + offer (right) -->
+        <div class="mm-plat__offer" data-reveal="scale">
+          <div class="mm-plat__offer-list">
+            <ul class="checklist checklist--inverse mm-plat__list">
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Marketing Assistant</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Decks &amp; Flyers</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Newsletters</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Email Campaigns</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Social Graphics</li>
+              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Landing Pages</li>
+            </ul>
+          </div>
+
+          <div class="mm-plat__offer-deal">
+            <div class="mm-plat__price-tag">
+              <span class="mm-plat__price-was"><em>$99</em><span>/mo</span></span>
+              <span class="mm-plat__price-now">$69<span>/mo</span></span>
+            </div>
+          </div>
+        </div>
+
+        <p class="mm-plat__price-note" data-reveal="up">Additional monthly subscription not included with Loan Atlas membership. Cancel anytime.</p>
+      </div>
+    </section>
+
     <!-- ── 11. TESTIMONIALS + PROOF ─────────────────────────────────────────── -->
     <section class="lp-testimonials" id="testimonials" aria-labelledby="testimonials-heading">
       <div class="container">
@@ -2466,7 +2582,7 @@
             <img class="mm-plan__lockup-mm" src="../assets/namb-logo.webp" alt="NAMB" />
           </div>
           <div class="naq-plan__offer">
-          <h3 class="naq-plan__title">Activate Your NAMB Preferred Account and <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Save $1,200!</span></h3>
+          <h3 class="naq-plan__title">Join The Loan Atlas and <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Save $1,000/year</span> as a NAMB member!</h3>
 
           <div class="naq-plan__steps">
             <div class="naq-step naq-step--monthly">
