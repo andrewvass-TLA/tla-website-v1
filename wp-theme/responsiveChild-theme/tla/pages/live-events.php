@@ -463,13 +463,13 @@ $tla_active      = 'events';
           <div class="ev-feature-card__grid">
             <!-- Square thumbnail -->
             <a class="ev-feature-card__media" href="/winning-mortgage-referrals-from-listing-agents/" tabindex="-1" aria-hidden="true">
-              <img src="<?php echo TLA_BASE; ?>/assets/live-events/MBS-Highway-September-2026-500x500.png" alt="Winning Mortgage Referrals From Listing Agents — The Loan Atlas" loading="eager" />
+              <img src="<?php echo TLA_BASE; ?>/assets/live-events/MBS-Highway-September-2026-500x500.png" alt="Win More Referrals from Listing Agents — The Loan Atlas" loading="eager" />
             </a>
 
             <!-- Copy -->
             <div class="ev-feature-card__copy">
               <span class="ev-tag ev-tag--on-dark ev-tag--masterclass">Next Masterclass</span>
-              <h1 id="ev-featured-heading" class="ev-feature-card__title">Winning Mortgage Referrals From Listing Agents</h1>
+              <h1 id="ev-featured-heading" class="ev-feature-card__title">Win More Referrals from Listing Agents</h1>
               <div class="ev-feature-card__meta">
                 <span class="ev-feature-card__meta-item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
@@ -528,19 +528,6 @@ $tla_active      = 'events';
           </article>
 
           <article class="ev-card">
-            <a class="ev-card__media" href="/winning-mortgage-referrals-from-listing-agents/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/MBS-Highway-September-2026-500x500.png" alt="Winning Mortgage Referrals From Listing Agents" loading="lazy" /></a>
-            <div class="ev-card__body">
-              <div class="ev-card__date">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Sep 23, 2026 &middot; 8:00 AM PT
-              </div>
-              <h3 class="ev-card__title">Winning Mortgage Referrals From Listing Agents</h3>
-              <p class="ev-card__desc">Josh Mettle, Jason Drobeck and Skyler Ford show why a seller-funded buydown creates more buyer payment relief than an equal price cut &mdash; plus a live walkthrough of the MBS Highway Seller Contribution tool.</p>
-              <div class="ev-card__foot"><a class="ev-card__join" href="/winning-mortgage-referrals-from-listing-agents/">Get Access</a></div>
-            </div>
-          </article>
-
-          <article class="ev-card">
             <a class="ev-card__media" href="/office-hours-josh-mettle/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Josh-Mettle-Square.png" alt="Office Hours with Josh Mettle" loading="lazy" /></a>
             <div class="ev-card__body">
               <div class="ev-card__date">
@@ -579,6 +566,24 @@ $tla_active      = 'events';
         </header>
 
         <div class="ev-library" data-reveal-stagger="90">
+
+          <!-- Whole card is clickable → replay detail page -->
+          <a class="ev-pastcard" href="/winning-mortgage-referrals-from-listing-agents/">
+            <div class="ev-pastcard__media">
+              <img src="<?php echo TLA_BASE; ?>/assets/live-events/past-events/MBS-Highway-Winning-More-Referals-from-Listing-Agents-1920x1080-1-768x432.png" alt="" loading="lazy" />
+            </div>
+            <div class="ev-pastcard__body">
+              <span class="ev-pastcard__recorded">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Recorded on Sep 23, 2026
+              </span>
+              <h3 class="ev-pastcard__title">Win More Referrals from Listing Agents</h3>
+              <p class="ev-pastcard__desc">Josh Mettle, Jason Drobeck and Skyler Ford showed why a seller-funded buydown can create more buyer payment relief than an equal price cut &mdash; and how to walk a listing agent through it with the MBS Highway Seller Contribution tool.</p>
+              <div class="ev-pastcard__foot">
+                <span class="ev-pastcard__watch">Access the Replay <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+              </div>
+            </div>
+          </a>
 
           <!-- Whole card is clickable → replay detail page -->
           <a class="ev-pastcard" href="/leveraging-google-reviews-to-attract-clients-and-agents/">

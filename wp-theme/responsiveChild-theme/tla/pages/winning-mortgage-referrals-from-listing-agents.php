@@ -6,8 +6,8 @@
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
-$tla_title       = 'Winning Mortgage Referrals From Listing Agents — Masterclass — The Loan Atlas';
-$tla_description = 'Join Winning Mortgage Referrals From Listing Agents — Josh Mettle, Jason Drobeck and Skyler Ford show how a seller-funded buydown beats a price reduction, with a live walkthrough of the MBS Highway Seller Contribution tool.';
+$tla_title       = 'Win More Referrals from Listing Agents — Replay — The Loan Atlas';
+$tla_description = 'Watch the replay of Win More Referrals from Listing Agents — Josh Mettle, Jason Drobeck and Skyler Ford on why a seller-funded buydown can beat a price reduction, with a walkthrough of the MBS Highway Seller Contribution tool.';
 $tla_active      = '';
 ?>
   <style>
@@ -28,8 +28,14 @@ $tla_active      = '';
       box-shadow: var(--shadow-lg);
       padding: clamp(28px, 3.5vw, 48px);
     }
-    /* even flow gap between every section in the card */
-    .oh-main > * + * { margin-top: clamp(36px, 4.5vw, 64px); }
+    /* Section rhythm — the visible space between consecutive blocks in the card.
+       Capped at 48px: the container stops growing at 1280px, so a vw-tracked gap
+       keeps expanding after the text column has stopped, which over-spaces the
+       card on wide screens. */
+    .oh-main { --oh-section-gap: clamp(36px, 3.6vw, 48px); }
+    /* Body copy holds 4px of leading below; a display h2's ink overflows its box
+       3px above — so the margin gives back the 3px and trims the 4px. */
+    .oh-main > * + * { margin-top: calc(var(--oh-section-gap) - 1px); }
     /* sections carry no extra leading space of their own — the flow gap is the gap */
     .oh-main section > :first-child { margin-top: 0; }
 
@@ -42,35 +48,56 @@ $tla_active      = '';
     }
     .oh-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    /* Header order: thumb → eyebrow → title → date/time.
-       Spacing expresses grouping, not even distribution. Measured as INK gaps
-       (what the eye actually sees) the rhythm is 40 / 10 / 22 / 76:
-         image → eyebrow   40px  the header block begins
-         eyebrow → title   10px  tightest gap — the eyebrow is a label ON the
-                                 title, and its uppercase tracking already
-                                 separates the two without extra space
-         title → date/time 22px  a clear step back; this is metadata ABOUT the
-                                 event, not part of the headline
-         header → body     76px  the widest gap on the page, so the four
-                                 elements above read as ONE group
-       Each gap roughly doubles the one expressing tighter grouping, so the
-       reading order is unmistakable: label → headline → details → prose. */
-    .oh-header > * + * { margin-top: 0; }
-    .oh-header .oh-thumb + .oh-eyebrow { margin-top: clamp(30px, 3.6vw, 40px); }
-    .oh-eyebrow { margin: 0; line-height: 1.3; }
-    /* Optical, not box, spacing: the display face overflows its box upward by
-       ~6px and downward by ~5px, so the box margins below are trimmed to hit
-       the intended INK gaps of ~10px (eyebrow→title) and ~22px (title→meta). */
-    .oh-header .oh-eyebrow + .oh-title { margin-top: 16px; }
-    .oh-header .oh-title + .oh-meta { margin-top: 27px; }
-    /* Widest gap on the page separates the header block from the body copy —
-       larger than any gap inside the header, so the group reads as one unit. */
-    .oh-main > .oh-header + section { margin-top: clamp(44px, 5.2vw, 72px); }
+    /* Header order: thumb → title → meta (recorded date).
+       The title leads directly under the bled image; the recorded date sits
+       centered beneath the bottom CTA button.
 
-    /* Bottom CTA — the page's single call to action, centered below Taught By */
-    .oh-cta-foot { display: flex; justify-content: center; }
-    /* Full-width join CTA (gold .tlc-btn, stretched) */
-    .oh-join-btn { width: 100%; font-size: 1.125rem; padding-block: 16px; }
+       --oh-title-gap is the VISIBLE space binding the title to the image above
+       it. Each rule subtracts the line-height slack its own pairing carries
+       (measured off the rendered page: the display face's ink OVERFLOWS its box
+       by 7px above and 5.4px below; .oh-prose holds 4px of leading; .oh-meta
+       sits flush at 0) so the *ink* gaps land on the token rather than just the
+       box margins. */
+    .oh-header > * + * { margin-top: 0; }
+    .oh-main { --oh-title-gap: clamp(22px, 2.4vw, 30px); }
+
+    /* Eyebrow — brass label introducing the title, on the canonical .t-eyebrow
+       scale (0.875rem / 0.18em) rather than the smaller .tlc-eyebrow, which is
+       sized for callout cards and reads undersized beneath a 46px display title.
+       It's a block so it can carry its own margin; the image edge is hard (0)
+       and uppercase Inter sits flush in its box, so the margin IS the gap. */
+    .oh-eyebrow {
+      display: block;
+      color: var(--brass);
+      font-size: 0.875rem;
+      letter-spacing: 0.18em;
+    }
+    .oh-header .oh-thumb + .oh-eyebrow { margin-top: clamp(20px, 2.2vw, 26px); }
+    /* Eyebrow to title — a tight pairing, so it sits well inside the title
+       rhythm. The eyebrow sits flush below (0); title ink overflows 7px above. */
+    .oh-eyebrow + .oh-title { margin-top: calc(10px + 7px); }
+    .oh-header .oh-thumb + .oh-title {
+      /* image edge is hard (0); title ink overflows its box 7px above,
+         so the margin has to give that 7px back */
+      margin-top: calc(var(--oh-title-gap) + 7px);
+    }
+    .oh-main > .oh-header + section {
+      /* a section boundary, so it takes the section rhythm. Title ink overflows
+         5.4px below; body copy holds 4px of leading above. */
+      margin-top: calc(var(--oh-section-gap) + 1.4px);
+    }
+    /* Bottom CTA — centered below the Taught By section, with the recorded
+       date centered beneath the button as a caption. The button is full-width,
+       so stretch is the default; center the date within the column. */
+    .oh-cta-foot { display: flex; flex-direction: column; align-items: center; }
+    .oh-cta-foot .oh-watch-btn { align-self: stretch; }
+    /* Caption gap — the button edge is hard (0) and the meta sits flush (0),
+       so the margin IS the visible gap. */
+    .oh-cta-foot .oh-meta { margin-top: 16px; justify-content: center; }
+
+    /* Full-width watch CTA (gold .tlc-btn, stretched) — at the bottom
+       of the card */
+    .oh-watch-btn { width: 100%; font-size: 1.125rem; padding-block: 16px; }
 
     .oh-title {
       font-family: var(--font-display);
@@ -80,17 +107,11 @@ $tla_active      = '';
     }
     .oh-meta {
       display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px;
-      font-family: var(--font-body); font-size: 1.0625rem; font-weight: 600;
+      font-family: var(--font-body); font-size: 0.9375rem; font-weight: 600;
       color: var(--on-surface-variant);
     }
-    /* Icon stays pinned to the FIRST line when the label wraps (narrow screens),
-       rather than floating to the vertical centre of a two-line block. */
-    .oh-meta__item { display: inline-flex; align-items: flex-start; gap: 9px; }
-    /* icons track the type size so the pairing stays proportional */
-    .oh-meta__item svg {
-      width: 18px; height: 18px; color: var(--brass);
-      flex: none; margin-top: 0.15em;
-    }
+    .oh-meta__item { display: inline-flex; align-items: center; gap: 8px; }
+    .oh-meta__item svg { width: 16px; height: 16px; color: var(--brass); }
 
     .oh-h2 {
       font-family: var(--font-display);
@@ -114,7 +135,8 @@ $tla_active      = '';
       color: var(--on-surface-variant);
     }
     .oh-list svg { width: 20px; height: 20px; margin-top: 3px; color: var(--brass); }
-
+    /* bolded lead-in sentence on each learning point */
+    .oh-list strong { font-weight: 700; color: var(--on-surface); }
     /* Pull-quote — shared .quote-card testimonial block (styles.css).
        Override the marquee-specific flex sizing so it flows in the column;
        with the gold mark omitted, let the text span its empty grid column. */
@@ -124,9 +146,12 @@ $tla_active      = '';
     }
     .oh-main .quote-card__quote,
     .oh-main .quote-card__attr { grid-column: 1 / -1; }
-    /* the quote sits a bit tighter in the flow than full section gaps */
-    .oh-main > .quote-card,
-    .oh-main > .quote-card + * { margin-top: clamp(22px, 2.8vw, 36px); }
+    /* The quote is a bordered box: its own edges are hard, so unlike the text
+       blocks it needs no trim above. Below it, the next block opens with a
+       display h2 whose ink overflows its box 3px, so that side gives the 3px
+       back — landing both visible gaps on the section rhythm. */
+    .oh-main > .quote-card { margin-top: var(--oh-section-gap); }
+    .oh-main > .quote-card + * { margin-top: calc(var(--oh-section-gap) + 3px); }
 
     /* Taught By — presenter medallion cards on the canonical dark band.
        Brass-gradient ring around the headshot; role split into a brass
@@ -402,45 +427,44 @@ $tla_active      = '';
           <!-- ─────────── LEFT: content ─────────── -->
           <div class="oh-main">
 
-            <!-- Header: thumbnail → eyebrow → title → date/time -->
+            <!-- Header: thumbnail + title -->
             <div class="oh-header" data-reveal="up">
               <div class="oh-thumb">
-                <img src="<?php echo TLA_BASE; ?>/assets/live-events/MBS-Highway-Winning-More-Referals-from-Listing-Agents-1920x1080-1-768x432.png" alt="Winning Mortgage Referrals From Listing Agents masterclass &mdash; The Loan Atlas" loading="eager" />
+                <img src="<?php echo TLA_BASE; ?>/assets/live-events/past-events/MBS-Highway-Winning-More-Referals-from-Listing-Agents-1920x1080-1-768x432.png" alt="Win More Referrals from Listing Agents masterclass &mdash; The Loan Atlas" loading="eager" />
               </div>
-              <p class="t-eyebrow oh-eyebrow">Live Masterclass for Mortgage Loan Officers</p>
-              <h1 class="oh-title">Winning Mortgage Referrals From Listing Agents</h1>
-              <div class="oh-meta">
-                <span class="oh-meta__item">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                  Wednesday, September 23, 2026
-                </span>
-                <span class="oh-meta__item">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg>
-                  8:00 AM PT
-                </span>
-              </div>
+              <span class="tlc-eyebrow oh-eyebrow">Mortgage Originator Masterclass</span>
+              <h1 class="oh-title">Win More Referrals from Listing Agents</h1>
             </div>
 
             <!-- About this masterclass -->
             <section data-reveal="up">
-              <p class="oh-prose">When a resale listing needs more buyer interest, the default response is often a price reduction. A seller-funded rate buydown or closing-cost contribution creates more meaningful payment relief for the buyer than an equivalent reduction in price.</p>
-              <p class="oh-prose">Homebuilders have used this payment-first approach to make affordability easier for buyers to understand. In this webinar, Josh Mettle, Jason Drobeck and Skyler Ford from The Loan Atlas will show you how to apply the same thinking to resale listings &mdash; and use it to bring listing agents a practical solution instead of another generic lender pitch.</p>
-              <p class="oh-prose">You&rsquo;ll also see a live walkthrough of the MBS Highway Seller Contribution tool. You&rsquo;ll learn how to compare a price reduction, temporary buydown, permanent buydown and seller-paid closing costs side by side so you can clearly explain the potential buyer and seller tradeoffs.</p>
+              <p class="oh-prose">You&rsquo;ve felt the market shift. Rates in the 7s, buyers who were ready three months ago now telling you they&rsquo;d rather wait, and listings that used to move over a weekend sitting for a month. The honest reaction to all of it is to want to put your head in the sand &mdash; most of us feel that pull. But the originators still writing business right now aren&rsquo;t waiting for rates to rescue them. They&rsquo;ve gotten good at solving the one problem everyone in the transaction is actually feeling: affordability.</p>
+              <p class="oh-prose">In this session, Josh Mettle sat down with two originators from his own production team to walk through exactly how they&rsquo;re doing it. The idea is simple to say and powerful in practice &mdash; stop selling price and start selling payment, the same way the builders down the street already do. When a builder advertises a rate in the 5s, buyers pick up the phone. You can manufacture that same affordability on almost any listing, and when you do, the deal in front of you is only the start. You get pulled into the listing appointment earlier, you become the lender agents actually want at their open houses, and the market everyone&rsquo;s complaining about becomes the reason those agents start calling you back.</p>
             </section>
 
             <!-- What you'll learn -->
             <section data-reveal="up">
               <h2 class="oh-h2">What You&rsquo;ll Learn</h2>
               <ul class="oh-list">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>Why payment-focused offers can be more compelling to buyers than price reductions alone</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>How to identify when a seller contribution may create more buyer payment relief per dollar</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>How to compare price reductions, buydowns and closing-cost contributions using MBS Highway</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>How to explain the results clearly without overwhelming the agent or seller</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>How to turn the analysis into a stream of new leads from listing agents</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>How to manufacture affordability on any listing.</strong> The mechanics of funding a meaningful rate buydown from three sources &mdash; the seller, the agent, and the lender &mdash; so you can advertise a rate well below market and make the payment, not the price, the headline.</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>Why the builders are winning, and how to run their playbook.</strong> Builders stopped selling shutters and square footage and started selling rate and payment. You&rsquo;ll see how to bring that same strategy to resale listings and stale inventory.</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>The math that changes the conversation.</strong> How the same dollars that shave only ~$200 off a payment as a price cut can save $500+ a month as a permanent buydown &mdash; and how to show a seller the payment a real buyer is facing on their home so they understand what they&rsquo;re up against.</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>How to get into the deal earlier.</strong> The trigger that gets you looped in at the listing-appointment stage, so you help the agent win the listing and get introduced to the seller before the home is ever live.</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>The scripts that make you the preferred lender at every open house.</strong> The exact phone and text openers that got agents saying yes, plus how to build a list of active open houses in your market in minutes.</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>How to turn curiosity into conversations.</strong> The sign writers, QR codes, MLS photos, and flyers that capture buyers walking through &mdash; and driving past &mdash; a listing, and the follow-up that moves them into a real conversation.</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>How to market rate without the compliance headaches.</strong> What belongs on every piece you put out, and how seller-paid structuring keeps you clear of the QM and APR issues that scare most originators off this strategy.</span></li>
               </ul>
             </section>
 
-            <!-- Presenters -->
+            <!-- Pull-quote — shared testimonial block (no gold mark; inline quotes instead) -->
+            <figure class="quote-card" data-reveal="up">
+              <blockquote class="quote-card__quote">&ldquo;Sixty days ago, business wasn&rsquo;t very fun. Now business is fun again &mdash; because I finally have something valuable to share.&rdquo;</blockquote>
+              <figcaption class="quote-card__attr">
+                <div class="quote-card__name">Jason Drobeck</div>
+              </figcaption>
+            </figure>
+
+            <!-- Taught by -->
             <section data-reveal="up">
               <h2 class="oh-h2">Taught By</h2>
               <div class="oh-people">
@@ -471,9 +495,15 @@ $tla_active      = '';
               </div>
             </section>
 
-            <!-- Bottom CTA — opens the access modal -->
+            <!-- Bottom CTA — opens the access modal; recorded date sits under it -->
             <div class="oh-cta-foot" data-reveal="up">
-              <button type="button" class="tlc-btn oh-join-btn" data-ev-modal>Join This Masterclass</button>
+              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch the Full Replay</button>
+              <div class="oh-meta">
+                <span class="oh-meta__item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  Recorded on September 23, 2026
+                </span>
+              </div>
             </div>
 
           </div>
@@ -483,7 +513,7 @@ $tla_active      = '';
 
             <!-- Column header — frames the two cards as an either/or choice -->
             <div class="oh-side__head">
-              <h2 class="oh-side__title">Want to Attend This Masterclass?</h2>
+              <h2 class="oh-side__title">Want to Watch This Masterclass?</h2>
               <p class="oh-side__sub">Join The Loan Atlas to get immediate access, or schedule your free business assessment to see everything inside.</p>
             </div>
 
@@ -533,6 +563,7 @@ $tla_active      = '';
 
   </main>
 
+  <!-- ───────────────────── Access modal (opened by the action bar CTA) ───────────────────── -->
   <div class="ev-modal" id="ev-access-modal" hidden>
     <div class="ev-modal__backdrop" data-ev-close></div>
     <div class="ev-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="ev-modal-title">
