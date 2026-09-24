@@ -7,7 +7,7 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 $tla_title       = 'NAMB Preferred Account — Exclusive Loan Atlas Pricing';
-$tla_description = 'NAMB member pricing: full access to The Loan Atlas at $249/mo — down from $349/mo — or $2,490/yr with two months free.';
+$tla_description = 'NAMB member pricing: The Loan Atlas + Platinum Marketing for $318/mo — down from $448/mo — a $1,560 annual savings for NAMB members.';
 $tla_active      = '';
 ?>
   <style>
@@ -910,12 +910,6 @@ $tla_active      = '';
       border-radius: 6px;
     }
 
-    /* Full-width header */
-    .mm-plat__header {
-      text-align: center;
-      max-width: 60rem;
-      margin: 0 auto clamp(40px, 5vw, 72px);
-    }
     /* Big shiny metallic-silver headline */
     .mm-plat__title {
       font-family: var(--font-display);
@@ -923,7 +917,8 @@ $tla_active      = '';
       font-size: clamp(2.75rem, 1.6rem + 5.5vw, 6rem);
       line-height: 1.0;
       letter-spacing: -0.03em;
-      margin: 0 0 var(--space-md);
+      text-align: center;
+      margin: 0 0 clamp(20px, 3vw, 36px);
       background: linear-gradient(180deg, #ffffff 0%, #f2f6fb 30%, #c3cedd 55%, #8b9bb3 78%, #e8eef6 100%);
       -webkit-background-clip: text;
       background-clip: text;
@@ -954,181 +949,212 @@ $tla_active      = '';
     @media (prefers-reduced-motion: reduce) {
       .mm-plat__title::after { animation: none; display: none; }
     }
-    .mm-plat__subhead {
+
+    .mm-plat__headline {
       font-family: var(--font-display);
       font-weight: 600;
-      font-size: clamp(1.25rem, 1rem + 1.1vw, 1.875rem);
-      line-height: 1.35;
+      font-size: clamp(1.25rem, 0.8rem + 1.6vw, 2rem);
+      line-height: 1.15;
       letter-spacing: -0.01em;
+      text-align: center;
       color: #ffffff;
-      margin: 0 auto;
-      max-width: 44rem;
+      margin: 0 auto clamp(28px, 4vw, 48px);
+      max-width: 72rem;
       text-wrap: balance;
     }
-    .mm-plat__subhead-em {
+    .mm-plat__headline span {
       background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
-    /* Full-width box: checklist (left) + offer (right) */
-    .mm-plat__offer {
-      position: relative;
-      max-width: 60rem;
+
+    /* Light card — chat on the left, what it builds on the right */
+    .mm-plat__card {
+      max-width: 72rem;
       margin: 0 auto;
       display: grid;
       grid-template-columns: 1fr;
       gap: clamp(28px, 4vw, 48px);
       align-items: center;
-      padding: clamp(28px, 4vw, 48px);
-      background: linear-gradient(135deg, #0a1628 0%, #021c36 55%, #0a223d 100%);
-      border: 1px solid rgba(234, 194, 90, 0.4);
+      padding: clamp(24px, 3.6vw, 48px);
+      background: #f7f7f8;
+      border: 2px solid #c9961c;
       border-radius: var(--radius-3xl);
-      box-shadow:
-        0 40px 90px rgba(2, 28, 54, 0.5),
-        0 0 60px rgba(234, 194, 90, 0.14),
-        inset 0 0 0 1px rgba(234, 194, 90, 0.12);
+      box-shadow: 0 40px 90px rgba(2, 8, 20, 0.55);
+      color: #021c36;
     }
-    @media (min-width: 760px) {
-      /* The price column needs more than half the box so the nowrap price can
-         never cross the divider. --plat-split is the real column boundary,
-         shared by the grid and the rule that sits on it. */
-      .mm-plat__offer {
-        --plat-split: 44%;
-        grid-template-columns: var(--plat-split) minmax(0, 1fr);
+    @media (min-width: 900px) {
+      .mm-plat__card { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.15fr); }
+      .mm-plat__tiles {
+        border-left: 2px solid transparent;
+        border-image: linear-gradient(180deg, #eac25a, #c9961c) 1;
+        padding-left: clamp(24px, 3vw, 44px);
       }
-      /* Keep the price block clear of the divider: it sits at the start of its
-         own column rather than centred in it, so a column wider than the text
-         can never let the block drift back across the line. */
-      .mm-plat__offer-deal {
-        align-items: flex-start;
-        text-align: left;
-        padding-left: clamp(16px, 2.6vw, 40px);
-      }
-      .mm-plat__price-tag { align-items: flex-start; }
-      .mm-plat__offer::before {
-        content: '';
-        position: absolute;
-        top: clamp(28px, 4vw, 48px);
-        bottom: clamp(28px, 4vw, 48px);
-        /* Sit midway across the grid gap that follows the first column. */
-        left: calc(clamp(28px, 4vw, 48px) + var(--plat-split));
-        width: 1px;
-        background: rgba(234, 194, 90, 0.22);
-      }
-    }
-    /* Below ~1050px the nowrap price still crowds the line; hand it more room. */
-    @media (min-width: 760px) and (max-width: 1049.98px) {
-      .mm-plat__offer { --plat-split: 38%; }
     }
 
-    .mm-plat__list-label {
-      font-family: var(--font-body);
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: rgba(255, 255, 255, 0.5);
-      margin: 0 0 var(--space-md);
-    }
-    /* Left side — checklist, centered in its half */
-    .mm-plat__offer-list {
+    .mm-plat__chat {
       display: flex;
-      justify-content: center;
-    }
-    .mm-plat__list {
-      margin: 0;
-      display: inline-flex;
       flex-direction: column;
-      gap: 14px;
+      gap: clamp(14px, 1.8vw, 22px);
     }
-    .mm-plat__list li { font-size: 1.125rem; font-weight: 700; }
+    .mm-plat__msg {
+      display: flex;
+      align-items: flex-end;
+      gap: 10px;
+    }
+    .mm-plat__msg p {
+      margin: 0;
+      padding: 14px 18px;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: clamp(0.9375rem, 0.88rem + 0.25vw, 1.0625rem);
+      line-height: 1.45;
+    }
+    .mm-plat__msg--bot { max-width: 92%; }
+    .mm-plat__msg--bot p { background: #0f2742; color: #ffffff; }
+    .mm-plat__msg--user { align-self: flex-end; max-width: 88%; }
+    .mm-plat__msg--user p {
+      background: #ffffff;
+      color: #0a0f1a;
+      border: 1px solid #1f2a3a;
+    }
+    .mm-plat__avatar {
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 9999px;
+      background: #ffffff;
+      border: 1px solid #c9961c;
+      margin-bottom: 4px;
+    }
+    .mm-plat__avatar img { width: 18px; height: auto; display: block; }
+    .mm-plat__avatar--user { border: 0; }
+    .mm-plat__avatar--user svg { width: 32px; height: 32px; display: block; }
 
-    /* Right side — the deal */
-    .mm-plat__offer-deal {
+    /* Five output tiles: 3 on the first row, 2 centred on the second */
+    .mm-plat__tiles {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(20px, 2.6vw, 32px) clamp(12px, 1.6vw, 20px);
+    }
+    .mm-plat__tile:last-child { grid-column: 1 / -1; }
+    @media (min-width: 560px) {
+      .mm-plat__tiles { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+      .mm-plat__tile { grid-column: span 2; }
+      .mm-plat__tile:nth-child(4) { grid-column: 2 / span 2; }
+      .mm-plat__tile:last-child { grid-column: 4 / span 2; }
+    }
+    .mm-plat__tile {
       display: flex;
       flex-direction: column;
       align-items: center;
-      /* Only the price tag lives here now, so centre it against the checklist
-         rather than letting it sit at the top of the column. */
-      justify-content: center;
+      justify-content: flex-end; /* labels line up along each row's baseline */
+      gap: 12px;
       text-align: center;
     }
-    .mm-plat__offer-deal .btn { width: 100%; }
-    /* The shared .eyebrow only draws a rule on its left (::before in
-       styles.css); this page-scoped ::after mirrors it on the right so the
-       label sits between two matching lines. */
-    .mm-plat__eyebrow::after {
-      content: '';
-      width: 32px;
-      height: 1px;
-      background: var(--brass-bright);
-      flex-shrink: 0;
-    }
-    /* Match the shared ::before to the brighter brass used for this label. */
-    .mm-plat__eyebrow::before {
-      background: var(--brass-bright);
-      flex-shrink: 0;
-    }
-
-    .mm-plat__price-tag {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: clamp(6px, 0.8vw, 12px);
-      flex-shrink: 0;
-    }
-    .mm-plat__price-was {
-      position: relative;
-      font-family: var(--font-display);
-      font-weight: 700;
-      /* The "before" price: sized to stay clearly secondary to the $69, but
-         large enough to fill the box now that the note has moved out. */
-      font-size: clamp(1.75rem, 1.2rem + 1.7vw, 2.75rem);
-      color: rgba(255, 255, 255, 0.5);
-      line-height: 1;
-    }
-    .mm-plat__price-was span { font-size: 0.42em; font-weight: 600; letter-spacing: 0; }
-    /* Strike only the figure, not the trailing "/mo" — and keep it level.
-       A rule spanning the whole element overshoots the digits at this size. */
-    .mm-plat__price-was em {
-      position: relative;
-      font-style: normal;
-    }
-    .mm-plat__price-was em::after {
-      content: '';
-      position: absolute;
-      left: -4px;
-      right: -4px;
-      top: 54%;
-      /* Scales with the figure so the rule stays proportionate now that the
-         struck price is small. */
-      height: 0.09em;
-      min-height: 2px;
-      border-radius: 2px;
-      background: var(--brass-bright);
-      transform: rotate(-6deg);
-    }
-    .mm-plat__price-now {
+    .mm-plat__tile-label {
       font-family: var(--font-display);
       font-weight: 800;
-      font-size: clamp(4.5rem, 3rem + 5.2vw, 7.5rem);
-      line-height: 0.92;
-      letter-spacing: -0.03em;
-      white-space: nowrap;
+      font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: #0a0f1a;
+    }
+    .mm-plat__thumb {
+      position: relative;
+      width: 100%;
+      max-width: 150px;
+      height: clamp(96px, 10vw, 118px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mm-plat__thumb img {
+      display: block;
+      height: 100%;
+      width: auto;
+      max-width: 100%;
+      object-fit: cover;
+      object-position: top;
+      border-radius: 3px;
+      box-shadow: 0 6px 16px rgba(2, 28, 54, 0.18);
+    }
+    /* Two overlapping pieces: back one up-left, front one down-right */
+    .mm-plat__thumb--pair img {
+      position: absolute;
+      height: 78%;
+      width: auto;
+    }
+    .mm-plat__thumb--pair img:first-child { top: 0; left: 8%; }
+    .mm-plat__thumb--pair img:last-child { bottom: 0; right: 8%; }
+    .mm-plat__thumb--wide img { height: auto; width: 68%; }
+    .mm-plat__thumb--wide img:first-child { top: 6%; left: 4%; }
+    .mm-plat__thumb--wide img:last-child { bottom: 6%; right: 4%; }
+
+    /* Email-campaign sequence, drawn in CSS (no screenshot asset exists) */
+    .mm-plat__thumb--email { max-width: 170px; height: auto; min-height: clamp(96px, 10vw, 118px); }
+    .mm-plat__thumb--email ol {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      text-align: left;
+    }
+    .mm-plat__thumb--email li {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 2px 6px;
+      background: #ffffff;
+      border: 1px solid #e3e6ea;
+      border-radius: 3px;
+      box-shadow: 0 2px 6px rgba(2, 28, 54, 0.06);
+    }
+    .mm-plat__thumb--email b {
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 12px;
+      height: 12px;
+      border-radius: 9999px;
+      font-size: 7px;
+      font-weight: 800;
+      color: #021c36;
       background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
     }
-    /* "/mo" suffix rides small beside the price, like the Platinum page's. */
-    .mm-plat__price-now span {
-      font-size: 0.3em;
+    .mm-plat__thumb--email span {
+      min-width: 0;
+      font-family: var(--font-body);
+      font-size: 7px;
+      font-weight: 600;
+      line-height: 1.2;
+      color: #0a0f1a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .mm-plat__thumb--email i {
+      display: block;
+      font-style: normal;
+      font-size: 5.5px;
       font-weight: 700;
-      letter-spacing: 0;
-      -webkit-text-fill-color: rgba(255, 255, 255, 0.6);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #7d8594;
     }
-    /* Caption under the offer box, not inside it. */
+
+    /* Caption under the card */
     .mm-plat__price-note {
       font-family: var(--font-body);
       font-size: 0.9375rem;
@@ -1138,7 +1164,6 @@ $tla_active      = '';
       max-width: 46rem;
       margin: var(--space-md) auto 0;
     }
-    .mm-plat__price-note strong { color: var(--brass-bright); font-weight: 700; }
 
     /* ── 8 Disciplines (matches what's-inside.html top section) ─────────────── */
     .disc-section {
@@ -1994,131 +2019,178 @@ $tla_active      = '';
     }
 
     /* ══════════════════════════════════════════════════════════════════════════
-       NAMB EXCLUSIVE PRICING — two-tier monthly/annual card.
-       Ported from public/namb-build-your-custom-gpt.html so both pricing
-       sections on this page present the identical NAMB member offer.
+       NAMB PREFERRED PRICING — equation card matching the sales-deck slide:
+       Loan Atlas + Platinum = $448, navy savings band, then the $318 price.
+       Both pricing sections on this page use this identical card.
        Uses literal brass values (this page defines no --naq-* tokens).
        ══════════════════════════════════════════════════════════════════════════ */
-    .naq-plan {
-      --naq-plan-pad: clamp(28px, 4vw, 56px);
-      max-width: 72rem;
-      margin-inline: auto;
-      background: linear-gradient(135deg, #0a1628 0%, #021c36 55%, #0a223d 100%);
-      border-radius: var(--radius-3xl);
-      border: 1px solid rgba(234, 194, 90, 0.4);
-      box-shadow:
-        0 40px 90px rgba(2, 28, 54, 0.45),
-        0 0 60px rgba(234, 194, 90, 0.14),
-        inset 0 0 0 1px rgba(234, 194, 90, 0.12);
-      padding: var(--naq-plan-pad);
-      position: relative;
-      overflow: hidden;
-      text-align: center;
+    /* White card with a brass frame, overriding the dark .mm-offer__card / .mm-plan
+       base. Padding moves onto the rows so the navy band can run edge to edge. */
+    .naq-card {
+      --naq-pad: clamp(20px, 4vw, 56px);
+      border: 3px solid transparent;
+      background:
+        linear-gradient(#ffffff, #ffffff) padding-box,
+        linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%) border-box;
+      box-shadow: 0 40px 90px rgba(2, 28, 54, 0.45), 0 0 60px rgba(234, 194, 90, 0.16);
+      padding: 0;
+      color: #021c36;
     }
-    .naq-plan__offer { max-width: 48rem; margin-inline: auto; }
-    .naq-plan::before {
-      content: '';
-      position: absolute;
-      top: -120px;
-      right: -120px;
-      width: 360px;
-      height: 360px;
-      background: radial-gradient(closest-side, rgba(234, 194, 90, 0.2), transparent);
-      filter: blur(50px);
-      pointer-events: none;
-    }
-    .naq-plan > * { position: relative; z-index: 1; }
+    .naq-card::before { display: none; }
 
-    .naq-plan__title {
-      font-family: var(--font-display);
-      font-weight: 800;
-      font-size: clamp(1.875rem, 1.3rem + 2.6vw, 2.75rem);
-      line-height: 1.05;
-      letter-spacing: -0.03em;
-      color: #ffffff;
-      margin: 0 0 var(--space-lg);
-      text-wrap: balance;
+    /* Row 1 — the regular-price equation: Loan Atlas + Platinum = $448 */
+    .naq-eq {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: center;
+      gap: clamp(8px, 2.4vw, 32px);
+      padding: calc(var(--naq-pad) * 0.9) var(--naq-pad) calc(var(--naq-pad) * 0.8);
     }
-
-    /* Two price blocks — monthly + annual */
-    .naq-plan__steps {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: var(--space-md);
-      align-items: stretch;
-      max-width: 40rem;
-      margin: 0 auto var(--space-lg);
-    }
-    @media (min-width: 620px) {
-      .naq-plan__steps { grid-template-columns: 1fr 1fr; }
-    }
-    .naq-step {
+    .naq-eq__item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
-      border-radius: var(--radius-2xl);
-      padding: clamp(28px, 3.5vw, 44px) var(--space-md);
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      gap: clamp(4px, 0.8vw, 10px);
     }
-    .naq-step--annual {
-      background: rgba(234, 194, 90, 0.1);
-      border: 1px solid rgba(234, 194, 90, 0.45);
+    .naq-eq__brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 6px;
+      min-height: clamp(64px, 8vw, 100px);
     }
-    .naq-step__was {
+    .naq-eq__mark {
+      height: clamp(28px, 4vw, 52px);
+      width: auto;
       display: block;
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.625rem);
-      color: rgba(255, 255, 255, 0.82);
     }
-    .naq-step__strike {
-      position: relative;
+    .naq-eq__name {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(0.75rem, 0.55rem + 0.8vw, 1.25rem);
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      color: #0a0f1a;
       white-space: nowrap;
     }
-    .naq-step__strike::after {
-      content: '';
-      position: absolute;
-      left: -2px;
-      right: -2px;
-      top: 50%;
-      height: 3px;
-      background: #eac25a;
-      transform: rotate(-6deg);
-    }
-    .naq-step__price {
-      display: block;
+    /* Silver Platinum Marketing wordmark (no image asset exists for it) */
+    .naq-eq__plat {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       font-family: var(--font-display);
-      font-weight: 800;
-      line-height: 0.95;
-      letter-spacing: -0.03em;
-      color: #ffffff;
-      font-size: clamp(2.75rem, 1.8rem + 4.6vw, 4.25rem);
-      /* Breathing room around the headline price (adds to the .naq-step 10px gap). */
-      margin-block: clamp(10px, 1.4vw, 18px);
-    }
-    .naq-step--annual .naq-step__price {
-      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      font-weight: 700;
+      font-size: clamp(1rem, 0.7rem + 1.3vw, 1.75rem);
+      line-height: 1;
+      letter-spacing: -0.01em;
+      background: linear-gradient(180deg, #c3cad6 0%, #7d8594 55%, #a9b0bc 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
     }
-    .naq-step__price span {
-      font-size: 0.32em;
-      font-weight: 700;
-      letter-spacing: 0;
-      -webkit-text-fill-color: initial;
-    }
-    .naq-step__sub {
-      display: block;
+    .naq-eq__plat small {
       font-family: var(--font-body);
-      font-size: clamp(1.0625rem, 0.98rem + 0.35vw, 1.1875rem);
       font-weight: 500;
-      color: rgba(255, 255, 255, 0.78);
-      line-height: 1.45;
+      font-size: 0.4em;
+      letter-spacing: 0.42em;
+      margin-top: 0.35em;
+      margin-right: -0.42em; /* offset trailing tracking so it centres */
+      text-transform: uppercase;
+      color: #7d8594;
+      -webkit-text-fill-color: #7d8594;
     }
-    .naq-step__sub strong { color: #ffffff; font-weight: 700; }
+    .naq-eq__price {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(2rem, 1.1rem + 4vw, 4.25rem);
+      line-height: 1;
+      letter-spacing: -0.03em;
+      color: #2c3e5c;
+    }
+    .naq-eq__op {
+      font-family: var(--font-display);
+      font-weight: 600;
+      font-size: clamp(1.5rem, 1rem + 2vw, 2.75rem);
+      line-height: 1;
+      color: #2c3e5c;
+      align-self: center;
+    }
+    /* "= $448" stays together so a wrap never strands the equals sign */
+    .naq-eq__sum {
+      display: flex;
+      align-items: center;
+      gap: clamp(8px, 2.4vw, 32px);
+      align-self: center;
+    }
+    .naq-eq__item--total { gap: 2px; }
+    .naq-eq__per {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(0.875rem, 0.7rem + 0.7vw, 1.375rem);
+      color: #2c3e5c;
+    }
+
+    /* Row 2 — full-bleed navy band */
+    .naq-band {
+      background: linear-gradient(90deg, #2c3e5c 0%, #2c3e5c 55%, #121a28 100%);
+      padding: clamp(18px, 2.4vw, 30px) var(--naq-pad);
+      text-align: center;
+    }
+    .naq-band__title {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.5rem, 0.9rem + 2.8vw, 3rem);
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: #ffffff;
+      margin: 0 0 6px;
+      text-wrap: balance;
+    }
+    .naq-band__save {
+      font-family: var(--font-display);
+      font-weight: 500;
+      font-size: clamp(1rem, 0.85rem + 0.6vw, 1.375rem);
+      color: #ffffff;
+      margin: 0;
+    }
+    .naq-band__save strong { color: #4cc261; font-weight: 800; }
+
+    /* Row 3 — the NAMB price */
+    .naq-deal {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: calc(var(--naq-pad) * 0.9) var(--naq-pad) var(--naq-pad);
+    }
+    .naq-deal__price {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(4.5rem, 2.5rem + 9vw, 8.5rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      background: linear-gradient(90deg, #a8812f 0%, #eac87a 45%, #a8812f 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    .naq-deal__per {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: clamp(1.625rem, 1.2rem + 1.6vw, 2.5rem);
+      line-height: 1.1;
+      color: #021c36;
+      margin-top: clamp(8px, 1.2vw, 16px);
+    }
+    .naq-deal__terms {
+      font-family: var(--font-display);
+      font-weight: 400;
+      font-size: clamp(1.0625rem, 0.9rem + 0.6vw, 1.5rem);
+      color: #021c36;
+      margin: 4px 0 var(--space-lg);
+    }
 
 
     .naq-plan__cta {
@@ -2133,9 +2205,17 @@ $tla_active      = '';
       border-radius: var(--radius-2xl);
       box-shadow: 0 10px 32px rgba(201, 150, 28, 0.34);
     }
+    @media (max-width: 520px) {
+      .naq-plan__cta { align-self: stretch; }
+      .naq-plan__cta .btn--gold.btn--lg {
+        width: 100%;
+        white-space: normal;
+        padding-inline: var(--space-md);
+      }
+    }
     .naq-plan__fine {
-      font-size: 0.8125rem;
-      color: rgba(255, 255, 255, 0.55);
+      font-size: 0.9375rem;
+      color: #3a4658;
       margin: var(--space-md) 0 0;
       line-height: 1.5;
     }
@@ -2209,33 +2289,45 @@ $tla_active      = '';
     <!-- ── 2. OFFER HIGHLIGHT CARD ──────────────────────────────────────────── -->
     <section class="mm-offer" aria-labelledby="mm-offer-heading">
       <div class="container">
-        <div id="namb-form" class="mm-offer__card" data-reveal="scale">
-          <div class="mm-plan__lockup" aria-label="The Loan Atlas — NAMB Preferred Account pricing">
-            <img class="mm-plan__lockup-atlas" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" />
-            <span class="mm-plan__lockup-x" aria-hidden="true"></span>
-            <img class="mm-plan__lockup-mm" src="<?php echo TLA_BASE; ?>/assets/namb-logo.webp" alt="NAMB" />
-          </div>
-          <div class="naq-plan__offer">
-          <h2 id="mm-offer-heading" class="naq-plan__title">Join The Loan Atlas and <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Save $1,000/year</span> as a NAMB member!</h2>
-
-          <div class="naq-plan__steps">
-            <div class="naq-step naq-step--monthly">
-              <span class="naq-step__was"><span class="naq-step__strike">$349/mo</span></span>
-              <span class="naq-step__price">$249<span>/mo</span></span>
-              <span class="naq-step__sub">Billed monthly</span>
+        <div id="namb-form" class="mm-offer__card naq-card" data-reveal="scale">
+          <div class="naq-eq" role="group" aria-label="Regular price: The Loan Atlas $349 plus Platinum Marketing $99 equals $448 per month">
+            <div class="naq-eq__item">
+              <div class="naq-eq__brand">
+                <img class="naq-eq__mark" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="" />
+                <span class="naq-eq__name">The Loan Atlas</span>
+              </div>
+              <span class="naq-eq__price">$349</span>
             </div>
-            <div class="naq-step naq-step--annual">
-              <span class="naq-step__was"><span class="naq-step__strike">$3,490/yr</span></span>
-              <span class="naq-step__price">$2,490<span>/yr</span></span>
-              <span class="naq-step__sub">Get <strong>TWO MONTHS</strong> for free with your annual membership!</span>
+            <span class="naq-eq__op" aria-hidden="true">+</span>
+            <div class="naq-eq__item">
+              <div class="naq-eq__brand">
+                <img class="naq-eq__mark" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="" />
+                <span class="naq-eq__plat">Platinum<small>Marketing</small></span>
+              </div>
+              <span class="naq-eq__price">$99</span>
+            </div>
+            <div class="naq-eq__sum">
+              <span class="naq-eq__op" aria-hidden="true">=</span>
+              <div class="naq-eq__item naq-eq__item--total">
+                <span class="naq-eq__price">$448</span>
+                <span class="naq-eq__per">Per Month</span>
+              </div>
             </div>
           </div>
 
-
-          <div class="naq-plan__cta">
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-namb3/">Activate Your NAMB Preferred Account</a>
+          <div class="naq-band">
+            <h2 id="mm-offer-heading" class="naq-band__title">NAMB Preferred Pricing</h2>
+            <p class="naq-band__save"><strong>$1,560 Annual Savings</strong> for NAMB Members</p>
           </div>
-          <p class="naq-plan__fine">12-month commitment. Offer available to new members only.</p>
+
+          <div class="naq-deal">
+            <span class="naq-deal__price">$318</span>
+            <span class="naq-deal__per">Per Month</span>
+            <span class="naq-deal__terms">(annual subscription paid monthly)</span>
+            <div class="naq-plan__cta">
+              <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-namb3/">Activate Your NAMB Preferred Account</a>
+            </div>
+            <p class="naq-plan__fine">12-month commitment. Offer only available to new members.</p>
           </div>
         </div>
       </div>
@@ -2446,35 +2538,70 @@ $tla_active      = '';
 
       <div class="container">
 
-        <div class="mm-plat__header" data-reveal="up">
-          <span class="eyebrow mm-plat__eyebrow" style="justify-content: center; margin-bottom: var(--space-md);">
-            <span class="eyebrow__text" style="color: var(--brass-bright);">New Inside The Loan Atlas</span>
-          </span>
-          <h2 id="plat-heading" class="mm-plat__title">Platinum Marketing</h2>
-          <p class="mm-plat__subhead">
-            Take your marketing from ignored to <span class="mm-plat__subhead-em" style="font-weight: 800;">irresistible.</span>
-          </p>
-        </div>
+        <h2 id="plat-heading" class="mm-plat__title" data-reveal="up">Platinum Marketing</h2>
 
-        <!-- Full-width box: checklist (left) + offer (right) -->
-        <div class="mm-plat__offer" data-reveal="scale">
-          <div class="mm-plat__offer-list">
-            <ul class="checklist checklist--inverse mm-plat__list">
-              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Marketing Assistant</li>
-              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Decks &amp; Flyers</li>
-              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Newsletters</li>
-              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Email Campaigns</li>
-              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Social Graphics</li>
-              <li><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--brass-bright);"><polyline points="20 6 9 17 4 12"></polyline></svg>Landing Pages</li>
-            </ul>
-          </div>
+        <p class="mm-plat__headline" data-reveal="up">Create and deploy marketing that is <span>impossible to ignore.</span></p>
 
-          <div class="mm-plat__offer-deal">
-            <div class="mm-plat__price-tag">
-              <span class="mm-plat__price-was"><em>$99</em><span>/mo</span></span>
-              <span class="mm-plat__price-now">$69<span>/mo</span></span>
+        <!-- Light card: sample chat (left) + what it builds (right) -->
+        <div class="mm-plat__card" data-reveal="scale">
+          <div class="mm-plat__chat" aria-label="A sample conversation with Platinum Marketing">
+            <div class="mm-plat__msg mm-plat__msg--bot">
+              <span class="mm-plat__avatar"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="" /></span>
+              <p>What should we create today?</p>
+            </div>
+            <div class="mm-plat__msg mm-plat__msg--user">
+              <p>Help me win more business from an agent I just met.</p>
+              <span class="mm-plat__avatar mm-plat__avatar--user" aria-hidden="true">
+                <svg viewBox="0 0 40 40"><circle cx="20" cy="20" r="20" fill="#dbe7f5"/><circle cx="20" cy="16" r="7" fill="#e9b48f"/><path d="M13 14.5c0-5 3.2-7.5 7-7.5s7 2.5 7 7.5c-1.6-2-4-2.6-7-2.6s-5.4.6-7 2.6z" fill="#7a4a2a"/><path d="M7 36c1.8-7 7-10 13-10s11.2 3 13 10a20 20 0 0 1-26 0z" fill="#e8743b"/></svg>
+              </span>
+            </div>
+            <div class="mm-plat__msg mm-plat__msg--bot">
+              <span class="mm-plat__avatar"><img src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="" /></span>
+              <p>Great — let's build a partner pitch. Who's the audience and what's the angle?</p>
             </div>
           </div>
+
+          <ul class="mm-plat__tiles">
+            <li class="mm-plat__tile">
+              <div class="mm-plat__thumb mm-plat__thumb--pair">
+                <img src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-1.jpeg" alt="" loading="lazy">
+                <img src="<?php echo TLA_BASE; ?>/assets/platinum-social-image-2.jpeg" alt="" loading="lazy">
+              </div>
+              <span class="mm-plat__tile-label">Social Graphics</span>
+            </li>
+            <li class="mm-plat__tile">
+              <div class="mm-plat__thumb">
+                <img src="<?php echo TLA_BASE; ?>/assets/platinum-newsletter.png" alt="" loading="lazy">
+              </div>
+              <span class="mm-plat__tile-label">Newsletters</span>
+            </li>
+            <li class="mm-plat__tile">
+              <div class="mm-plat__thumb mm-plat__thumb--pair">
+                <img src="<?php echo TLA_BASE; ?>/assets/platinum-landing-page-1.png" alt="" loading="lazy">
+                <img src="<?php echo TLA_BASE; ?>/assets/platinum-landing-page-2.png" alt="" loading="lazy">
+              </div>
+              <span class="mm-plat__tile-label">Landing Pages</span>
+            </li>
+            <li class="mm-plat__tile">
+              <div class="mm-plat__thumb mm-plat__thumb--pair mm-plat__thumb--wide">
+                <img src="<?php echo TLA_BASE; ?>/assets/platinum-presentation-deck-1.png" alt="" loading="lazy">
+                <img src="<?php echo TLA_BASE; ?>/assets/platinum-presentation-deck-2.png" alt="" loading="lazy">
+              </div>
+              <span class="mm-plat__tile-label">Decks &amp; Flyers</span>
+            </li>
+            <li class="mm-plat__tile">
+              <div class="mm-plat__thumb mm-plat__thumb--email" aria-hidden="true">
+                <ol>
+                  <li><b>1</b><span><i>Email 1 · Day 0</i>Is now actually the right time to buy?</span></li>
+                  <li><b>2</b><span><i>Email 2 · Day 3</i>The number that matters more than the rate</span></li>
+                  <li><b>3</b><span><i>Email 3 · Day 7</i>How much home can you really afford?</span></li>
+                  <li><b>4</b><span><i>Email 4 · Day 10</i>3 first-time buyer mistakes to avoid</span></li>
+                  <li><b>5</b><span><i>Email 5 · Day 14</i>Ready when you are — let's run your numbers</span></li>
+                </ol>
+              </div>
+              <span class="mm-plat__tile-label">Email Campaigns</span>
+            </li>
+          </ul>
         </div>
 
         <p class="mm-plat__price-note" data-reveal="up">Additional monthly subscription not included with Loan Atlas membership. Cancel anytime.</p>
@@ -2568,33 +2695,45 @@ $tla_active      = '';
           <p class="t-body-lg" style="color: rgba(255, 255, 255, 0.68); font-size: clamp(1.125rem, 0.95rem + 0.6vw, 1.375rem);">Full access to everything above — the AI systems, live coaching, the curriculum, the community — at exclusive NAMB Preferred Account pricing.</p>
         </div>
 
-        <article id="namb-pricing-card" class="mm-plan" data-reveal="scale">
-          <div class="mm-plan__lockup" aria-label="The Loan Atlas — NAMB Preferred Account pricing">
-            <img class="mm-plan__lockup-atlas" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" />
-            <span class="mm-plan__lockup-x" aria-hidden="true"></span>
-            <img class="mm-plan__lockup-mm" src="<?php echo TLA_BASE; ?>/assets/namb-logo.webp" alt="NAMB" />
-          </div>
-          <div class="naq-plan__offer">
-          <h3 class="naq-plan__title">Join The Loan Atlas and <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Save $1,000/year</span> as a NAMB member!</h3>
-
-          <div class="naq-plan__steps">
-            <div class="naq-step naq-step--monthly">
-              <span class="naq-step__was"><span class="naq-step__strike">$349/mo</span></span>
-              <span class="naq-step__price">$249<span>/mo</span></span>
-              <span class="naq-step__sub">Billed monthly</span>
+        <article id="namb-pricing-card" class="mm-plan naq-card" data-reveal="scale">
+          <div class="naq-eq" role="group" aria-label="Regular price: The Loan Atlas $349 plus Platinum Marketing $99 equals $448 per month">
+            <div class="naq-eq__item">
+              <div class="naq-eq__brand">
+                <img class="naq-eq__mark" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="" />
+                <span class="naq-eq__name">The Loan Atlas</span>
+              </div>
+              <span class="naq-eq__price">$349</span>
             </div>
-            <div class="naq-step naq-step--annual">
-              <span class="naq-step__was"><span class="naq-step__strike">$3,490/yr</span></span>
-              <span class="naq-step__price">$2,490<span>/yr</span></span>
-              <span class="naq-step__sub">Get <strong>TWO MONTHS</strong> for free with your annual membership!</span>
+            <span class="naq-eq__op" aria-hidden="true">+</span>
+            <div class="naq-eq__item">
+              <div class="naq-eq__brand">
+                <img class="naq-eq__mark" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logomark-18.png" alt="" />
+                <span class="naq-eq__plat">Platinum<small>Marketing</small></span>
+              </div>
+              <span class="naq-eq__price">$99</span>
+            </div>
+            <div class="naq-eq__sum">
+              <span class="naq-eq__op" aria-hidden="true">=</span>
+              <div class="naq-eq__item naq-eq__item--total">
+                <span class="naq-eq__price">$448</span>
+                <span class="naq-eq__per">Per Month</span>
+              </div>
             </div>
           </div>
 
-
-          <div class="naq-plan__cta">
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-namb3/">Activate Your NAMB Preferred Account</a>
+          <div class="naq-band">
+            <h3 class="naq-band__title">NAMB Preferred Pricing</h3>
+            <p class="naq-band__save"><strong>$1,560 Annual Savings</strong> for NAMB Members</p>
           </div>
-          <p class="naq-plan__fine">12-month commitment. Offer available to new members only.</p>
+
+          <div class="naq-deal">
+            <span class="naq-deal__price">$318</span>
+            <span class="naq-deal__per">Per Month</span>
+            <span class="naq-deal__terms">(annual subscription paid monthly)</span>
+            <div class="naq-plan__cta">
+              <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-namb3/">Activate Your NAMB Preferred Account</a>
+            </div>
+            <p class="naq-plan__fine">12-month commitment. Offer only available to new members.</p>
           </div>
         </article>
 
