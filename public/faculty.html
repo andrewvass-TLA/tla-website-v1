@@ -402,6 +402,12 @@
       color: #ffffff;
       line-height: 1.5;
     }
+    .faculty-modal__production-value--specialty {
+      font-size: 0.875rem;
+      font-weight: 400;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.6;
+    }
     .faculty-modal__right {
       padding: var(--space-xl) var(--space-lg);
       display: flex;
@@ -426,16 +432,6 @@
       color: var(--on-surface-variant);
     }
     .faculty-modal__bio em { font-style: italic; }
-    .faculty-modal__specialty {
-      border-left: 3px solid var(--brass);
-      padding-left: var(--space-sm);
-    }
-    .faculty-modal__specialty-text {
-      font-size: 0.9375rem;
-      line-height: 1.6;
-      color: var(--on-surface-variant);
-      margin-top: var(--space-xs);
-    }
     .faculty-modal__video {
       position: relative;
       aspect-ratio: 16 / 9;
@@ -691,7 +687,7 @@
         <div class="faculty-grid" data-reveal-stagger="60">
           <button class="faculty-card" type="button" data-faculty="josh-burruss">
             <div class="faculty-card__photo" data-initials="JB"><img src="assets/josh-burruss-headshot.png" alt="Josh Burruss" loading="lazy" /></div>
-            <div class="faculty-card__body"><span class="faculty-card__name">Josh Burruss</span><span class="faculty-card__title">EVP &amp; Chief Lending Officer, Intercoastal Mortgage</span></div>
+            <div class="faculty-card__body"><span class="faculty-card__name">Josh Burruss</span><span class="faculty-card__title">Head of Retail Innovation, NEO Home Loans</span></div>
           </button>
           <button class="faculty-card" type="button" data-faculty="julie-weix">
             <div class="faculty-card__photo" data-initials="JW"><img src="assets/julie-weix-headshot.png" alt="Julie Weix" loading="lazy" /></div>
@@ -837,14 +833,14 @@
             <div class="faculty-modal__production-label" id="facultyModalProductionLabel">2025 Production</div>
             <div class="faculty-modal__production-value" id="facultyModalProduction"></div>
           </div>
+          <div class="faculty-modal__production">
+            <div class="faculty-modal__production-label" id="facultyModalSpecialtyLabel">Specialty</div>
+            <div class="faculty-modal__production-value faculty-modal__production-value--specialty" id="facultyModalSpecialty"></div>
+          </div>
         </div>
       </div>
       <div class="faculty-modal__right">
         <p class="faculty-modal__bio" id="facultyModalBio"></p>
-        <div class="faculty-modal__specialty">
-          <div class="faculty-modal__section-label" id="facultyModalSpecialtyLabel">Specialty</div>
-          <p class="faculty-modal__specialty-text" id="facultyModalSpecialty"></p>
-        </div>
         <div class="faculty-modal__video" id="facultyModalVideo"></div>
       </div>
     </div>
@@ -889,12 +885,12 @@
         },
         'josh-burruss': {
           name: 'Josh Burruss',
-          title: 'EVP & Chief Lending Officer, Intercoastal Mortgage',
+          title: 'Head of Retail Innovation, NEO Home Loans',
           image: 'assets/josh-burruss-headshot.png',
           initials: 'JB',
           youtubeId: 'cnr66dFho4k',
           production2025: '$82.5M volume · 125 families served',
-          bio: 'Josh has personally originated $830M in loan volume and now leads sales at one of the most respected lenders on the East Coast. His career has spanned high-volume personal production, sales leadership, and building lending relationships with national homebuilders.',
+          bio: "Josh Burruss is a distinguished figure in the mortgage industry, bringing over 21 years of experience and an impressive $900 million + in loan origination. As the Head of Retail Innovation for NEO Home Loans, powered by Better, his expertise spans secondary markets, executive management, and builder business.<br><br>His journey in the mortgage world is marked by a diverse skill set, enabling him to navigate complex loan programs with ease. This rare ability allows him to effectively communicate intricate mortgage concepts to customers and professionals, setting him apart in the field.<br><br>Josh's commitment to mentorship and warm, engaging personality makes him a standout member of The Loan Atlas faculty. His insights are invaluable for those looking to understand and excel in the nuanced world of mortgages.<br><br>Outside of his professional sphere, Josh cherishes time with his family in Aldie, Virginia. His life is enriched by hobbies like playing hockey, practicing martial arts, and honing his golf skills, reflecting a well-rounded approach to life and work. Josh's balance of professional excellence and personal passion makes him a model mentor for Loan Atlas members, guiding them through the complexities of the mortgage industry with expertise and ease.",
           specialty: 'Sales leadership and the builder business — winning and retaining builder relationships, building high-performing sales teams, and the loan-program fluency that keeps originators competitive in any market.'
         },
         'julie-weix': {
