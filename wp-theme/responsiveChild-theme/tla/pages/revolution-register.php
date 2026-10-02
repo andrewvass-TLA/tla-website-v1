@@ -1,0 +1,359 @@
+<?php
+/**
+ * Body partial for /revolution-register/ (TLA Full HTML template).
+ * Generated from public/webinar-registration-c.html by scripts/convert-pages.sh — do not hand-edit;
+ * edit the source HTML (or the shared header/footer partials) and re-run.
+ */
+if ( ! defined( 'ABSPATH' ) ) { exit; }
+
+$tla_title       = 'Winning in 2026: The Eight Disciplines of Origination Mastery — The Loan Atlas';
+$tla_description = 'A private live session with Tim Braheem, exclusively for Revolution Mortgage. Wednesday, October 14, 2026 at 11:00 AM ET.';
+$tla_active      = '';
+?>
+  <style>
+    .evc { background: var(--background); color: var(--on-surface); }
+    .evc-wrap { max-width: 1160px; margin-inline: auto; padding-inline: var(--gutter); }
+    .evc-dark { background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%); color: #fff; }
+
+    .evc-eyebrow {
+      margin: 0 0 14px; font-size: 0.8125rem; font-weight: 700; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--secondary);
+    }
+    .evc-dark .evc-eyebrow { color: var(--brass-bright); }
+    .evc-h2 {
+      font-family: var(--font-display); font-weight: 800; color: var(--primary);
+      font-size: clamp(1.75rem, 3.2vw, 2.5rem); line-height: 1.12; letter-spacing: -0.02em; margin: 0;
+    }
+    .evc-dark .evc-h2 { color: #fff; }
+    .evc-center { text-align: center; }
+
+    /* --- Buttons -------------------------------------------------------- */
+    .evc-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      padding: 16px 28px; border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      color: var(--primary); text-decoration: none;
+      font-family: var(--font-display); font-weight: 800; font-size: 0.9375rem;
+      box-shadow: 0 8px 22px rgba(201, 150, 28, 0.28);
+      transition: transform 160ms ease, filter 160ms ease, box-shadow 160ms ease;
+    }
+    .evc-btn:hover { transform: translateY(-2px); filter: brightness(1.05); box-shadow: 0 12px 28px rgba(201, 150, 28, 0.36); }
+    .evc-btn:focus-visible { outline: 3px solid var(--primary-fixed-dim); outline-offset: 3px; }
+    .evc-btn svg { width: 16px; height: 16px; }
+
+    /* --- Hero ------------------------------------------------------------ */
+    .evc-hero { position: relative; overflow: hidden; text-align: center; padding: clamp(40px, 5vw, 64px) 0 clamp(64px, 8vw, 104px); }
+    .evc-hero::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(50% 60% at 50% 0%, rgba(234, 194, 90, 0.16), transparent 70%);
+    }
+    .evc-hero > * { position: relative; }
+    /* Co-brand lockup: Loan Atlas + Revolution Mortgage, split by a hairline */
+    .evc-lockup {
+      display: flex; align-items: center; justify-content: center; gap: clamp(18px, 3vw, 32px);
+      margin: 0 auto clamp(32px, 4vw, 44px); padding-inline: 16px;
+    }
+    .evc-lockup__tla { height: clamp(26px, 3.4vw, 36px); width: auto; display: block; }
+    .evc-lockup__rev { height: clamp(40px, 5.2vw, 56px); width: auto; display: block; }
+    .evc-lockup__div { width: 1px; align-self: stretch; min-height: 40px; background: rgba(255, 255, 255, 0.28); }
+    .evc-title {
+      font-family: var(--font-display); font-weight: 800; color: #fff;
+      font-size: clamp(2.25rem, 5.4vw, 4rem); line-height: 1.04; letter-spacing: -0.03em;
+      max-width: 15em; margin: 0 auto 20px;
+    }
+    .evc-title span {
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      -webkit-background-clip: text; background-clip: text; color: transparent;
+    }
+    .evc-lede { font-size: clamp(1.0625rem, 1.6vw, 1.1875rem); line-height: 1.6; color: rgba(255, 255, 255, 0.72); max-width: 36em; margin: 0 auto 32px; }
+    /* Event facts strip — one segmented panel with a brass edge */
+    .evc-when {
+      display: inline-grid; grid-template-columns: repeat(3, auto);
+      margin-inline: 16px; text-align: left;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(234, 194, 90, 0.45); border-radius: var(--radius-2xl);
+      box-shadow: 0 0 0 6px rgba(234, 194, 90, 0.06), 0 18px 40px rgba(0, 0, 0, 0.25);
+    }
+    .evc-when__item { display: flex; align-items: center; gap: 14px; padding: 18px 28px; }
+    .evc-when__item + .evc-when__item { border-left: 1px solid rgba(255, 255, 255, 0.12); }
+    .evc-when__item i {
+      flex-shrink: 0; width: 44px; height: 44px; border-radius: 50%;
+      display: grid; place-items: center;
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); color: var(--primary);
+    }
+    .evc-when__item svg { width: 20px; height: 20px; }
+    .evc-when__item small {
+      display: block; margin-bottom: 3px;
+      font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--brass-bright);
+    }
+    .evc-when__item b { display: block; font-family: var(--font-display); font-weight: 800; font-size: 1.1875rem; color: #fff; white-space: nowrap; }
+    .evc-when__item b span { font-weight: 600; color: rgba(255, 255, 255, 0.6); font-size: 0.9375rem; }
+    @media (max-width: 760px) {
+      .evc-when { display: grid; grid-template-columns: 1fr; margin-inline: var(--gutter); }
+      .evc-when__item { padding: 16px 20px; }
+      .evc-when__item + .evc-when__item { border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.12); }
+    }
+
+    /* Hero CTA */
+    .evc-hero__cta { margin-top: clamp(28px, 3.5vw, 40px); }
+    .evc-hero__cta .evc-btn { padding: 18px 40px; font-size: 1.0625rem; }
+    .evc-hero__note { margin: 14px 0 0; font-size: 0.8125rem; color: rgba(255, 255, 255, 0.55); }
+
+    /* --- Sections ------------------------------------------------------- */
+    .evc-sec { padding-block: clamp(72px, 9vw, 120px); }
+
+    /* Why now */
+    .evc-why { max-width: 780px; margin-inline: auto; text-align: center; }
+    .evc-why__quote {
+      font-family: var(--font-display); font-weight: 800; color: var(--primary);
+      font-size: clamp(2rem, 4.4vw, 3.25rem); line-height: 1.08; letter-spacing: -0.03em; margin: 0 0 28px;
+    }
+    .evc-why__quote span { color: var(--brass); }
+    .evc-why .evc-why__txt { font-size: 1.125rem; line-height: 1.75; color: var(--on-surface-variant); margin: 0 0 18px; }
+    .evc-why strong { color: var(--primary); font-weight: 600; }
+
+    /* Agenda grid */
+    .evc-agenda { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 48px; counter-reset: ag; }
+    .evc-agenda article {
+      counter-increment: ag; position: relative;
+      background: var(--surface-container-lowest); border: 1px solid var(--surface-container-high);
+      border-radius: var(--radius-2xl); padding: 30px 28px 32px;
+      transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+    }
+    .evc-agenda article:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); border-color: rgba(201, 150, 28, 0.4); }
+    .evc-agenda article::before {
+      content: counter(ag, decimal-leading-zero); display: block; margin-bottom: 18px;
+      font-family: var(--font-display); font-weight: 800; font-size: 0.875rem; color: var(--brass);
+      letter-spacing: 0.08em;
+    }
+    .evc-agenda h3 { margin: 0 0 10px; font-family: var(--font-display); font-weight: 700; font-size: 1.1875rem; line-height: 1.3; color: var(--primary); }
+    .evc-agenda p { margin: 0; font-size: 0.9375rem; line-height: 1.65; color: var(--on-surface-variant); }
+    .evc-agenda article.is-live { background: var(--primary); border-color: var(--primary); }
+    .evc-agenda article.is-live h3 { color: #fff; }
+    .evc-agenda article.is-live p { color: rgba(255, 255, 255, 0.72); }
+    .evc-agenda article.is-live::before { color: var(--brass-bright); }
+    @media (max-width: 960px) { .evc-agenda { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 620px) { .evc-agenda { grid-template-columns: 1fr; } }
+
+    /* Speaker band */
+    .evc-speaker { position: relative; overflow: hidden; padding-top: clamp(72px, 9vw, 112px); }
+    .evc-speaker__grid { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: clamp(32px, 5vw, 72px); align-items: end; }
+    .evc-speaker__copy { padding-bottom: clamp(72px, 9vw, 112px); }
+    .evc-speaker__role { margin: 10px 0 24px; color: var(--brass-bright); font-weight: 600; }
+    .evc-speaker__copy p { color: rgba(255, 255, 255, 0.74); line-height: 1.75; margin: 0 0 16px; }
+    .evc-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 36px; }
+    .evc-stats div { padding: 18px 20px; border: 1px solid rgba(255, 255, 255, 0.12); border-radius: var(--radius-xl); background: rgba(255, 255, 255, 0.03); }
+    .evc-stats b { display: block; font-family: var(--font-display); font-weight: 800; font-size: clamp(1.5rem, 2.6vw, 2rem); color: #fff; letter-spacing: -0.02em; }
+    .evc-stats span { font-size: 0.8125rem; color: rgba(255, 255, 255, 0.6); }
+    .evc-speaker__photo { position: relative; align-self: end; display: flex; justify-content: center; }
+    .evc-speaker__photo::before {
+      content: ""; position: absolute; left: 50%; bottom: 0; width: 120%; aspect-ratio: 1; transform: translate(-50%, 35%);
+      background: radial-gradient(circle, rgba(201, 150, 28, 0.32) 0%, transparent 60%);
+    }
+    .evc-speaker__photo img { position: relative; width: 100%; max-width: 400px; height: auto; display: block; }
+    @media (max-width: 860px) {
+      .evc-speaker__grid { grid-template-columns: 1fr; }
+      .evc-speaker__copy { padding-bottom: 0; }
+      .evc-speaker__photo img { max-width: 300px; }
+    }
+    @media (max-width: 520px) { .evc-stats { grid-template-columns: 1fr; } }
+
+    /* FAQ */
+    .evc-faq { max-width: 780px; margin: 44px auto 0; display: grid; gap: 12px; }
+    .evc-faq details {
+      background: var(--surface-container-lowest); border: 1px solid var(--surface-container-high);
+      border-radius: var(--radius-xl);
+    }
+    .evc-faq summary {
+      list-style: none; cursor: pointer; position: relative; padding: 22px 60px 22px 26px;
+      font-family: var(--font-display); font-weight: 700; font-size: 1.0625rem; color: var(--primary);
+    }
+    .evc-faq summary::-webkit-details-marker { display: none; }
+    .evc-faq summary::after {
+      content: "+"; position: absolute; right: 22px; top: 50%; transform: translateY(-50%);
+      width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center;
+      background: #fbf6e8; color: var(--secondary); font-size: 1.125rem; font-weight: 700;
+    }
+    .evc-faq details[open] summary::after { content: "\2212"; }
+    .evc-faq details p { margin: 0; padding: 0 26px 24px; line-height: 1.7; color: var(--on-surface-variant); }
+
+    /* Closing card */
+    .evc-close { padding-bottom: clamp(72px, 9vw, 120px); }
+    .evc-close__card {
+      position: relative; overflow: hidden; border-radius: 24px; text-align: center;
+      padding: clamp(48px, 6vw, 72px) var(--gutter);
+    }
+    .evc-close__card::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(50% 80% at 50% 100%, rgba(234, 194, 90, 0.2), transparent 70%);
+    }
+    .evc-close__card > * { position: relative; }
+    .evc-close__card .evc-h2 { margin-bottom: 12px; }
+    .evc-close__card p { margin: 0 0 30px; color: rgba(255, 255, 255, 0.7); }
+
+    /* Mobile register bar */
+    .evc-mbar { display: none; }
+    @media (max-width: 860px) {
+      .evc-mbar {
+        display: flex; position: fixed; left: 0; right: 0; bottom: 0; z-index: 45;
+        align-items: center; justify-content: space-between; gap: 12px;
+        padding: 12px 16px; background: rgba(2, 28, 54, 0.97); color: #fff;
+        box-shadow: 0 -6px 20px rgba(2, 28, 54, 0.2);
+        transform: translateY(110%); transition: transform 200ms ease;
+      }
+      .evc-mbar.is-on { transform: none; }
+      .evc-mbar b { display: block; font-family: var(--font-display); font-size: 0.875rem; }
+      .evc-mbar span { font-size: 0.75rem; color: rgba(255, 255, 255, 0.65); }
+      .evc-mbar .evc-btn { padding: 11px 18px; font-size: 0.875rem; box-shadow: none; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .evc-btn, .evc-agenda article, .evc-mbar { transition: none; }
+      .evc-btn:hover, .evc-agenda article:hover { transform: none; }
+    }
+  </style>
+
+
+<?php include get_stylesheet_directory() . '/tla/partials/header-minimal.php'; ?>
+
+  <main class="evc">
+
+    <!-- ─────────── Hero ─────────── -->
+    <section class="evc-hero evc-dark">
+      <div class="evc-lockup">
+        <img class="evc-lockup__tla" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logo-white.png" alt="The Loan Atlas" />
+        <span class="evc-lockup__div" aria-hidden="true"></span>
+        <img class="evc-lockup__rev" src="<?php echo TLA_BASE; ?>/assets/revolution-mortgage-logo.svg" alt="Revolution Mortgage" />
+      </div>
+      <div class="evc-wrap">
+        <h1 class="evc-title">Winning in 2026: The <span>Eight Disciplines</span> of Origination Mastery</h1>
+        <p class="evc-lede">Stop waiting on rates and get deliberate about the things you can actually control&nbsp;&mdash; before January.</p>
+      </div>
+      <div class="evc-when">
+        <div class="evc-when__item"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></i><div><small>Date</small><b>Wed, Oct 14, 2026</b></div></div>
+        <div class="evc-when__item"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i><div><small>Time</small><b>11:00 AM ET <span>&middot; 8:00 AM PT</span></b></div></div>
+        <div class="evc-when__item"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3"/></svg></i><div><small>Where</small><b>Live on Zoom</b></div></div>
+      </div>
+      <div class="evc-hero__cta" id="register">
+        <a class="evc-btn" href="https://us02web.zoom.us/meeting/register/6ZpRjfvGQZWQIneX9Mqw7w" target="_blank" rel="noopener">
+          Register on Zoom
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+        </a>
+        <p class="evc-hero__note">Opens Zoom&rsquo;s registration page in a new tab. Your join link arrives by email.</p>
+      </div>
+    </section>
+
+    <!-- ─────────── Why now ─────────── -->
+    <section class="evc-sec">
+      <div class="evc-wrap evc-why" data-reveal="up">
+        <p class="evc-eyebrow">About This Session</p>
+        <p class="evc-why__quote">Hope isn&rsquo;t a plan.<br /><span>Deliberate is.</span></p>
+        <p class="evc-why__txt">This market has been hard, and most originators are waiting it out&nbsp;&mdash; hoping that when rates drop, things get easier. But hope isn&rsquo;t a plan, and the ones who come out ahead won&rsquo;t be the ones who waited. They&rsquo;ll be the ones who got deliberate about the things they can actually control before January.</p>
+        <p class="evc-why__txt">On <strong>October 14th</strong>, Tim Braheem and The Loan Atlas are going to show you how to build and run that system in a special session <strong>exclusively for Revolution Mortgage</strong>.</p>
+      </div>
+    </section>
+
+    <!-- ─────────── Agenda ─────────── -->
+    <section class="evc-sec" style="padding-top:0">
+      <div class="evc-wrap">
+        <div class="evc-center" data-reveal="up">
+          <p class="evc-eyebrow">Agenda</p>
+          <h2 class="evc-h2">What you&rsquo;ll learn</h2>
+        </div>
+        <div class="evc-agenda">
+          <article data-reveal="up"><h3>The Eight Disciplines of Origination Mastery</h3><p>An honest score on where your business is strong and where it&rsquo;s leaking.</p></article>
+          <article data-reveal="up"><h3>The conversion math</h3><p>Why lifting your conversion from two closes in ten to three can raise your income by 150%&nbsp;&mdash; and where that&rsquo;s slipping away.</p></article>
+          <article data-reveal="up"><h3>Where the deals are hiding</h3><p>The referral sources and niches most originators walk right past in a slow market.</p></article>
+          <article data-reveal="up"><h3>AI as a real advantage in 2027</h3><p>How to use it without letting it quietly replace the selling that pays you.</p></article>
+          <article data-reveal="up"><h3>The customer-service system</h3><p>The system behind Tim&rsquo;s biggest years at 500+ loans.</p></article>
+          <article class="is-live" data-reveal="up"><h3>Live coaching</h3><p>Bring what you&rsquo;re stuck on and get Tim&rsquo;s read on your real situation, in the room.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── Speaker ─────────── -->
+    <section class="evc-speaker evc-dark">
+      <div class="evc-wrap evc-speaker__grid">
+        <div class="evc-speaker__copy" data-reveal="up">
+          <p class="evc-eyebrow">Your Speaker</p>
+          <h2 class="evc-h2">Tim Braheem</h2>
+          <p class="evc-speaker__role">Founder &amp; Chief Content Officer, The Loan Atlas</p>
+          <p>Tim is the founder of The Loan Atlas and the foundation it&rsquo;s built on. He&rsquo;s a producer who built coaching because he couldn&rsquo;t find coaching that worked&nbsp;&mdash; and now teaches the operating system he wishes he&rsquo;d had in the seat.</p>
+          <p>He founded First Rate Financial in 1995 and co-founded Loantoolbox.com in 2001, which was named to the Inc.&nbsp;500. He hosts <em>The 360 Experience</em> podcast.</p>
+          <div class="evc-stats">
+            <div><b>$1.4B</b><span>Personal loan production</span></div>
+            <div><b>25+</b><span>Years as an originator</span></div>
+            <div><b>500+</b><span>Loans in his biggest years</span></div>
+          </div>
+        </div>
+        <div class="evc-speaker__photo">
+          <img src="<?php echo TLA_BASE; ?>/assets/tim-braheem-smiling.webp" alt="" loading="lazy" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── FAQ ─────────── -->
+    <section class="evc-sec">
+      <div class="evc-wrap">
+        <div class="evc-center" data-reveal="up">
+          <p class="evc-eyebrow">FAQ</p>
+          <h2 class="evc-h2">Before you register</h2>
+        </div>
+        <div class="evc-faq">
+          <details open>
+            <summary>Who is this session for?</summary>
+            <p>This is a private session for Revolution Mortgage loan originators and leaders.</p>
+          </details>
+          <details>
+            <summary>How do I join on the day?</summary>
+            <p>Register on Zoom and you&rsquo;ll receive a personal join link by email. Use that link on October 14th to enter the session.</p>
+          </details>
+          <details>
+            <summary>What time does it start in my time zone?</summary>
+            <p>11:00 AM Eastern, 10:00 AM Central, 9:00 AM Mountain, and 8:00 AM Pacific.</p>
+          </details>
+          <details>
+            <summary>Can I bring my own questions?</summary>
+            <p>Yes. The session ends with live coaching&nbsp;&mdash; bring what you&rsquo;re stuck on and get Tim&rsquo;s read on your real situation.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────────── Closing card ─────────── -->
+    <section class="evc-close">
+      <div class="evc-wrap">
+        <div class="evc-close__card evc-dark" data-reveal="up">
+          <p class="evc-eyebrow">Wednesday, October 14 &middot; 11:00 AM ET</p>
+          <h2 class="evc-h2">Reserve your seat</h2>
+          <p>A private session for Revolution Mortgage, live on Zoom.</p>
+          <a class="evc-btn" href="https://us02web.zoom.us/meeting/register/6ZpRjfvGQZWQIneX9Mqw7w" target="_blank" rel="noopener">
+            Register on Zoom
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Mobile register bar (shows once the hero Register button scrolls away) -->
+  <div class="evc-mbar" data-evc-mbar>
+    <div><b>Winning in 2026</b><span>Wed, Oct 14 &middot; 11:00 AM ET</span></div>
+    <a class="evc-btn" href="https://us02web.zoom.us/meeting/register/6ZpRjfvGQZWQIneX9Mqw7w" target="_blank" rel="noopener">Register</a>
+  </div>
+
+<?php include get_stylesheet_directory() . '/tla/partials/footer.php'; ?>
+
+  <script>
+    /* Mobile register bar: show after the hero Register button leaves the viewport */
+    (function () {
+      var bar = document.querySelector('[data-evc-mbar]');
+      var card = document.getElementById('register');
+      if (!bar || !card || !('IntersectionObserver' in window)) return;
+      new IntersectionObserver(function (entries) {
+        var e = entries[0];
+        bar.classList.toggle('is-on', !e.isIntersecting && e.boundingClientRect.top < 0);
+      }).observe(card);
+    })();
+  </script>
