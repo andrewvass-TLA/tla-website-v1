@@ -1191,7 +1191,7 @@ $tla_active      = '';
     }
 
     /* Pricing card gets a little scroll offset so the sticky header clears it. */
-    #apm-form {
+    #form {
       scroll-margin-top: calc(var(--header-h) + 24px);
     }
     /* ── Embedded CHL enrollment form (nested inside the pricing card) ──────── */
@@ -2199,7 +2199,7 @@ $tla_active      = '';
           <h1 id="mm-hero-heading" class="lp-intro__title" data-hero-step="2">Close More Loans <span class="mm-hero-gold">With Less Chaos</span></h1>
           <p class="lp-intro__subtitle" data-hero-step="3">The Loan Atlas installs 5 AI-powered systems into your mortgage business to help you make better decisions, execute faster, and stay focused on what actually drives production.</p>
           <div class="lp-intro__actions" data-hero-step="4">
-            <a class="btn btn--gold btn--lg" href="#apm-form">Claim Your Revolution Preferred Account</a>
+            <a class="btn btn--gold btn--lg" href="#form">Claim Your Revolution Preferred Account</a>
           </div>
         </div>
       </div>
@@ -2253,7 +2253,7 @@ $tla_active      = '';
     <!-- ── 2. OFFER HIGHLIGHT CARD ──────────────────────────────────────────── -->
     <section class="mm-offer" aria-labelledby="mm-offer-heading">
       <div class="container">
-        <div id="apm-form" class="mm-offer__card" data-reveal="scale">
+        <div id="form" class="mm-offer__card" data-reveal="scale">
           <div class="mm-plan__lockup" aria-label="The Loan Atlas — Revolution Preferred Account pricing">
             <img class="mm-plan__lockup-atlas" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" />
           </div>
