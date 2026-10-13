@@ -2257,10 +2257,10 @@ $tla_active      = '';
           <div class="mm-plan__lockup" aria-label="The Loan Atlas — Revolution Preferred Account pricing">
             <img class="mm-plan__lockup-atlas" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" />
           </div>
-          <h3 id="mm-offer-heading" class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Complete the Form to Activate Your <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Revolution Preferred Account</span></h3>
+          <h3 id="mm-offer-heading" class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Complete the Form to Activate Your Revolution Preferred Account for just <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">$179/mo</span></h3>
 
-          <!-- Who covers the membership. -->
-          <p class="apm-build">(<span class="apm-build__amount">$179<i>/mo</i></span> paid for by Revolution)</p>
+          <!-- How the membership is paid. -->
+          <p class="apm-build">(to be deducted from your monthly coaching budget)</p>
 
           <!-- Savings pill — hidden for review. Uncomment to bring it back.
           <p class="mm-plan__save mm-plan__save--pill"><span class="mm-plan__save-pill"><em>$3,000</em> in Annual Savings — Exclusively for CHL Originators</span></p>
@@ -2574,10 +2574,10 @@ $tla_active      = '';
           <div class="mm-plan__lockup" aria-label="The Loan Atlas — Revolution Preferred Account pricing">
             <img class="mm-plan__lockup-atlas" src="<?php echo TLA_BASE; ?>/assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" />
           </div>
-          <h3 class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Complete the Form to Activate Your <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">Revolution Preferred Account</span></h3>
+          <h3 class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Complete the Form to Activate Your Revolution Preferred Account for just <span style="background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%); -webkit-background-clip: text; background-clip: text; color: transparent;">$179/mo</span></h3>
 
-          <!-- Who covers the membership. -->
-          <p class="apm-build">(<span class="apm-build__amount">$179<i>/mo</i></span> paid for by Revolution)</p>
+          <!-- How the membership is paid. -->
+          <p class="apm-build">(to be deducted from your monthly coaching budget)</p>
 
           <!-- Savings pill — hidden for review. Uncomment to bring it back.
           <p class="mm-plan__save mm-plan__save--pill"><span class="mm-plan__save-pill"><em>$3,000</em> in Annual Savings — Exclusively for CHL Originators</span></p>
