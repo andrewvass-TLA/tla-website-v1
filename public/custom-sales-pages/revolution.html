@@ -27,6 +27,217 @@
       box-shadow: 0 8px 26px rgba(2, 28, 54, 0.28);
     }
 
+    /* ── Sticky offer bar — pinned under the header ─────────────────────────────
+       Two tiers: a thin brass strip naming the audience, and a dark row carrying
+       the numbers. The dark row continues the header's gradient so the bar reads
+       as part of the chrome rather than a banner stapled below it. ──────────── */
+    .apm-bar {
+      position: sticky;
+      top: var(--header-h);
+      z-index: 40;
+      border-bottom: 2px solid transparent;
+      border-image: linear-gradient(90deg, #c9961c, #ffd56c, #c9961c) 1;
+      box-shadow: 0 8px 26px rgba(2, 28, 54, 0.28);
+    }
+
+    /* The whole bar is one link to checkout. It stays a plain block that
+       inherits its children's colors, so the two tiers look identical to the
+       pre-link version — only the cursor, a subtle brightening on hover and the
+       focus ring signal that it's clickable. No hover lift on purpose: the bar
+       is sticky, so shifting it would slide it against the scrolling page. */
+    .apm-bar__link {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+      transition: filter 0.2s ease;
+    }
+    .apm-bar__link:hover {
+      filter: brightness(1.06);
+    }
+    .apm-bar__link:focus-visible {
+      outline: 3px solid #ffd56c;
+      outline-offset: -3px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .apm-bar__link { transition: none; }
+    }
+
+    /* Tier 1 — brass audience strip. The rules either side of the label are
+       pseudo-elements so the markup stays a single span. */
+    .apm-bar__strip {
+      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+    }
+    .apm-bar__strip-in {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding: 9px var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .apm-bar__strip-in::before,
+    .apm-bar__strip-in::after {
+      content: "";
+      height: 1px;
+      width: clamp(20px, 6vw, 70px);
+      background: rgba(2, 28, 54, 0.32);
+    }
+    .apm-bar__label {
+      font-family: var(--font-body);
+      font-weight: 900;
+      font-size: 0.9375rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #021c36;
+      text-align: center;
+    }
+
+    /* Tier 2 — dark detail row.
+       Two nested axes so the copy and the pill are both honest:
+       - .apm-bar__row-in centres its children, so the text group and the CTA
+         share one vertical centre line.
+       - .apm-bar__copy inside it is baseline-aligned, so the price, offer and
+         savings sit on one optical line. */
+    .apm-bar__row {
+      background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+    }
+    .apm-bar__row-in {
+      max-width: var(--container-max);
+      margin-inline: auto;
+      padding: 17px var(--gutter);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .apm-bar__copy {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: clamp(9px, 1.3vw, 14px);
+      flex-wrap: wrap;
+    }
+    .apm-bar__price {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.875rem;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+    .apm-bar__price i {
+      font-style: normal;
+      font-size: 0.46em;
+      font-weight: 700;
+      opacity: 0.72;
+      letter-spacing: 0;
+    }
+    .apm-bar__price s {
+      font-family: var(--font-display);
+      font-size: 0.6em;
+      font-weight: 600;
+      opacity: 0.42;
+      margin-right: 9px;
+      letter-spacing: 0;
+    }
+    /* The + is its own element, centred between the two facts. It is
+       align-self: center rather than on the shared baseline because the glyph's
+       ink sits high in its em box — baselining it floats it above centre. */
+    .apm-bar__plus {
+      align-self: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.5rem;
+      line-height: 1;
+      color: rgba(234, 194, 90, 0.85);
+      flex-shrink: 0;
+      transform: translateY(-0.02em);
+    }
+    .apm-bar__free {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.3125rem;
+      color: rgba(255, 255, 255, 0.94);
+      white-space: nowrap;
+      line-height: 1.1;
+    }
+    .apm-bar__free b { color: #eac25a; font-weight: 800; }
+    /* Revolution: the $0/mo in green, then the incentive line beside it. */
+    .apm-bar__zero { color: #6ee7a0; font-weight: 800; }
+    .apm-bar__with {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.3125rem;
+      color: rgba(255, 255, 255, 0.94);
+      line-height: 1.1;
+    }
+    .apm-bar__save {
+      font-family: var(--font-display);
+      font-weight: 800;
+      font-size: 1.3125rem;
+      color: #6ee7a0;
+      white-space: nowrap;
+      line-height: 1.1;
+      margin-left: clamp(7px, 1.3vw, 16px);
+    }
+    /* Step the type down so the row holds one line as long as possible. */
+    @media (max-width: 1279px) {
+      .apm-bar__label { font-size: 0.875rem; letter-spacing: 0.15em; }
+      .apm-bar__row-in { padding: 15px var(--gutter); }
+      .apm-bar__price { font-size: 1.625rem; }
+      .apm-bar__free, .apm-bar__save { font-size: 1.125rem; }
+      .apm-bar__plus { font-size: 1.3125rem; }
+      .apm-bar__with { font-size: 1.125rem; }
+    }
+    @media (max-width: 1099px) {
+      .apm-bar__label { font-size: 0.8125rem; letter-spacing: 0.14em; }
+      .apm-bar__price { font-size: 1.375rem; }
+      .apm-bar__free, .apm-bar__save { font-size: 1rem; }
+      .apm-bar__plus { font-size: 1.1875rem; }
+      .apm-bar__with { font-size: 1rem; }
+    }
+    @media (max-width: 899px) {
+      .apm-bar__strip-in { padding: 6px var(--gutter); }
+      .apm-bar__label { font-size: 0.75rem; letter-spacing: 0.12em; }
+      .apm-bar__row-in { padding: 13px var(--gutter); }
+      .apm-bar__price { font-size: 1.1875rem; }
+      .apm-bar__free, .apm-bar__save { font-size: 0.875rem; }
+      .apm-bar__plus { font-size: 1rem; }
+    }
+    /* Below 640px the offer copy takes its own centred line, so the standalone
+       + would be orphaned beside the price — hide it and inline it instead. */
+    @media (max-width: 639px) {
+      .apm-bar__label { font-size: 0.625rem; letter-spacing: 0.06em; }
+      .apm-bar__strip-in::before,
+      .apm-bar__strip-in::after { width: clamp(12px, 4vw, 40px); }
+      .apm-bar__row-in { padding: 9px 14px; gap: 8px 12px; }
+      .apm-bar__copy { gap: 4px 12px; }
+      .apm-bar__price { font-size: 1.25rem; }
+      .apm-bar__price s { display: none; }
+      .apm-bar__plus { display: none; }
+      .apm-bar__free {
+        flex-basis: 100%;
+        text-align: center;
+        font-size: 0.8125rem;
+        order: 3;
+      }
+      .apm-bar__free::before {
+        content: "+ ";
+        color: rgba(234, 194, 90, 0.85);
+        font-weight: 700;
+      }
+      .apm-bar__save { font-size: 0.8125rem; margin-left: 0; }
+      .apm-bar__with { font-size: 0.875rem; }
+    }
+    /* Narrowest phones: the label is wider than the strip at full tracking. */
+    @media (max-width: 380px) {
+      .apm-bar__label { font-size: 0.625rem; letter-spacing: 0.06em; }
+      .apm-bar__strip-in { gap: 8px; }
+      .apm-bar__strip-in::before,
+      .apm-bar__strip-in::after { display: none; }
+    }
+
     /* ── Hero (reuses lp-intro; tightened for offer focus) ──────────────────── */
 
     /* Eyebrow above the hero heading. */
@@ -1195,30 +1406,137 @@
       }
     }
 
-    /* "$0/mo" in the pricing-card headings — the headline number. Its own line,
-       roughly double the heading size, brass gradient with a soft brass glow
-       (drop-shadow, since text-shadow doesn't render on clipped text). */
-    .apm-zero {
-      display: block;
-      margin-top: 0.12em;
-      font-size: 2.1em;
+    /* ── Price ladder — Normal → Revolution → Your price ─────────────────────
+       The two muted, crossed-out reference prices stack in the left column
+       ($349 ↓ $179); an arrow from the middle of that stack points right to the
+       brass-framed "Your Price" card, which spans the stack's full height. Same
+       width as the form below so the card reads as one column. Below 640px it
+       turns 90°: $349 → $179 side by side, then ↓ to a full-width $0 card. ── */
+    .rv-ladder {
+      position: relative;
+      z-index: 1;
+      max-width: 48rem;
+      margin: clamp(22px, 2.6vw, 32px) auto 0;
+      display: grid;
+      grid-template-columns: 1fr auto 1.35fr;
+      grid-template-rows: auto auto auto;
+      align-items: stretch;
+      gap: 6px clamp(10px, 1.6vw, 18px);
+      text-align: center;
+    }
+    .rv-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: clamp(14px, 1.8vw, 20px) 12px;
+      border-radius: var(--radius-2xl);
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(255, 255, 255, 0.04);
+    }
+    .rv-step__label {
+      font-family: var(--font-body);
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+    }
+    .rv-step__price {
+      font-family: var(--font-display);
       font-weight: 800;
+      font-size: clamp(1.75rem, 1.4rem + 1.2vw, 2.375rem);
       line-height: 1;
-      letter-spacing: -0.035em;
-      background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      letter-spacing: -0.03em;
+      color: rgba(255, 255, 255, 0.72);
+    }
+    .rv-step__price i {
+      font-style: normal;
+      font-size: 0.45em;
+      font-weight: 700;
+      letter-spacing: 0;
+      opacity: 0.75;
+    }
+    /* Reference prices are struck with a brass rule rather than the default
+       thin line, so the cross-out reads at a glance. */
+    .rv-step__price s {
+      text-decoration-line: line-through;
+      text-decoration-color: rgba(234, 194, 90, 0.85);
+      text-decoration-thickness: 3px;
+    }
+    .rv-step--normal .rv-step__price { color: rgba(255, 255, 255, 0.45); }
+
+    .rv-ladder__arrow {
+      display: flex;
+      color: rgba(234, 194, 90, 0.8);
+    }
+    .rv-ladder__arrow svg { width: 20px; height: 20px; }
+    .rv-step--normal { grid-column: 1; grid-row: 1; }
+    .rv-ladder__arrow--down { grid-column: 1; grid-row: 2; justify-content: center; }
+    .rv-ladder__arrow--down svg { transform: rotate(90deg); }
+    .rv-step--rev { grid-column: 1; grid-row: 3; }
+    .rv-ladder__arrow--right { grid-column: 2; grid-row: 1 / 4; align-items: center; }
+    .rv-step--you { grid-column: 3; grid-row: 1 / 4; }
+
+    /* The payoff card: brass gradient border (padding-box/border-box trick),
+       a warm inner wash and a soft brass glow. */
+    .rv-step--you {
+      gap: clamp(12px, 1.4vw, 18px);
+      padding: clamp(18px, 2.2vw, 24px) 14px;
+      border: 2px solid transparent;
+      background:
+        linear-gradient(160deg, #0b2747 0%, #06182e 100%) padding-box,
+        linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%) border-box;
+      box-shadow: 0 14px 40px rgba(234, 194, 90, 0.18);
+    }
+    .rv-step--you .rv-step__label { color: #eac25a; font-size: 1.1875rem; }
+    .rv-step--you .rv-step__price {
+      font-size: clamp(3rem, 2.2rem + 3vw, 4.5rem);
+      letter-spacing: -0.04em;
+      /* Green — the site's savings accent (same gradient as .apm-build__amount). */
+      background: linear-gradient(135deg, #34d399 0%, #6ee7a8 50%, #a7f3d0 100%);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
-      filter: drop-shadow(0 6px 26px rgba(234, 194, 90, 0.38));
+      filter: drop-shadow(0 6px 22px rgba(110, 231, 168, 0.3));
     }
-    .apm-zero i {
-      font-style: normal;
-      font-size: 0.42em;
-      font-weight: 700;
-      letter-spacing: -0.01em;
+    .rv-step--you .rv-step__price i { opacity: 1; }
+    .rv-step__tag {
+      font-family: var(--font-body);
+      font-weight: 600;
+      font-size: 1.25rem;
+      line-height: 1.35;
+      color: #ffffff;
+      text-wrap: balance;
     }
 
-    /* Qualification footnote under the form (keyed to the * in the build line). */
+    /* The ladder is the last thing before the form and owns the gap above it. */
+    .rv-ladder + .apm-form {
+      margin-top: clamp(28px, 3.4vw, 44px);
+    }
+
+    @media (max-width: 639px) {
+      .rv-ladder {
+        grid-template-columns: 1fr auto 1fr;
+        grid-template-rows: auto auto auto;
+        gap: 6px 8px;
+      }
+      .rv-step--normal { grid-column: 1; grid-row: 1; }
+      .rv-ladder__arrow--down { grid-column: 2; grid-row: 1; align-items: center; }
+      .rv-ladder__arrow--down svg { transform: none; }
+      .rv-step--rev { grid-column: 3; grid-row: 1; }
+      .rv-ladder__arrow--right { grid-column: 1 / -1; grid-row: 2; justify-content: center; }
+      .rv-ladder__arrow--right svg { transform: rotate(90deg); }
+      .rv-step--you { grid-column: 1 / -1; grid-row: 3; }
+      .rv-ladder__arrow svg { width: 16px; height: 16px; }
+      .rv-step__label { font-size: 0.6875rem; letter-spacing: 0.1em; }
+      .rv-step--you .rv-step__label { font-size: 1rem; }
+      .rv-step__tag { font-size: 1.125rem; }
+    }
+
+
+    /* Qualification footnote under the form (keyed to the * in the ladder tag). */
     .apm-note {
       position: relative;
       z-index: 1;
@@ -1231,6 +1549,153 @@
       text-align: center;
       text-wrap: pretty;
     }
+
+    /* ── Revolution Coaching Incentive — branch-manager tiers ─────────────────
+       A deliberate replica of Revolution Mortgage's own incentive slide, so it
+       carries THEIR look (cream ground, teal accents, Montserrat) rather than
+       the Loan Atlas palette: logo + teal rule + heading + teal-dot rules on the
+       left, four white volume → incentive cards on the right, compliance line
+       under a hairline. Stacks to one column below 900px. Montserrat is loaded
+       by a <link> just above the section. ────────────────────────────────── */
+    .rv-inc {
+      --rv-teal: #2cccd3;
+      --rv-ink: #111111;
+      --rv-cream: #faf8f3;
+      --rv-line: #e8e4da;
+      background: var(--rv-cream);
+      color: var(--rv-ink);
+      font-family: 'Montserrat', var(--font-display);
+      padding-block: clamp(48px, 6vw, 80px) clamp(28px, 3vw, 40px);
+      /* Clears the fixed header when jumped to; the See Full Terms script adds
+         the sticky offer bar's live height on top of this. */
+      scroll-margin-top: var(--header-h);
+    }
+    .rv-inc__grid {
+      display: grid;
+      gap: clamp(36px, 5vw, 64px);
+    }
+    @media (min-width: 900px) {
+      .rv-inc__grid { grid-template-columns: 1.1fr 1fr; align-items: stretch; }
+    }
+    /* Left column: logo top, heading middle, rules bottom — spread to the
+       height of the card stack like the slide. */
+    .rv-inc__intro {
+      display: flex;
+      flex-direction: column;
+      gap: clamp(28px, 4vw, 48px);
+    }
+    @media (min-width: 900px) {
+      .rv-inc__intro { justify-content: space-between; padding-block: 0 4px; }
+    }
+    .rv-inc__logo {
+      display: block;
+      width: clamp(88px, 8vw, 110px);
+      height: auto;
+    }
+    .rv-inc__rule {
+      display: block;
+      width: 62px;
+      height: 5px;
+      background: var(--rv-teal);
+      margin-bottom: clamp(20px, 2.4vw, 30px);
+    }
+    .rv-inc__title {
+      font-family: 'Montserrat', var(--font-display);
+      font-weight: 700;
+      font-size: clamp(2.125rem, 1.4rem + 2.6vw, 3.375rem);
+      line-height: 1.1;
+      letter-spacing: -0.015em;
+      color: var(--rv-ink);
+      margin: 0;
+    }
+    .rv-inc__list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 14px;
+      max-width: 30rem;
+    }
+    .rv-inc__list li {
+      position: relative;
+      padding-left: 24px;
+      font-family: 'Montserrat', var(--font-body);
+      font-weight: 500;
+      font-size: clamp(1.0625rem, 0.98rem + 0.4vw, 1.3125rem);
+      line-height: 1.35;
+      color: var(--rv-ink);
+    }
+    .rv-inc__list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.5em;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--rv-teal);
+    }
+
+    .rv-inc__tiers {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      gap: 12px;
+    }
+    .rv-tier {
+      background: #ffffff;
+      border: 1px solid var(--rv-line);
+      border-radius: 14px;
+      padding: 6px clamp(18px, 2.2vw, 26px);
+    }
+    .rv-tier__row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      padding-block: 10px;
+    }
+    .rv-tier__row + .rv-tier__row { border-top: 1px solid var(--rv-line); }
+    .rv-tier__label {
+      font-family: 'Montserrat', var(--font-body);
+      font-weight: 700;
+      font-size: clamp(0.75rem, 0.68rem + 0.3vw, 0.9375rem);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--rv-ink);
+    }
+    .rv-tier__value {
+      font-family: 'Montserrat', var(--font-display);
+      font-weight: 700;
+      font-size: clamp(1.375rem, 1.05rem + 1.3vw, 2rem);
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+      color: var(--rv-ink);
+      white-space: nowrap;
+    }
+
+    .rv-inc__legal {
+      margin: clamp(28px, 3vw, 36px) 0 0;
+      padding-top: clamp(16px, 1.8vw, 22px);
+      border-top: 1px solid var(--rv-line);
+      font-family: 'Montserrat', var(--font-body);
+      font-weight: 500;
+      font-size: clamp(0.75rem, 0.7rem + 0.2vw, 0.875rem);
+      line-height: 1.6;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--rv-ink);
+    }
+
+    /* Plain hyperlink blue — lightened from the browser default (#0000ee),
+       which is unreadable on the dark card. */
+    .apm-note a {
+      color: #4da3ff;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .apm-note a:hover { color: #7cbcff; }
 
     /* Pricing card gets a little scroll offset so the sticky header clears it. */
     #form {
@@ -2234,6 +2699,25 @@
   <!-- ── Header (minimal landing chrome — logo only) ─────────────────────────── -->
 <!-- TLA_HEADER_MINIMAL -->
 
+  <!-- ── Sticky offer bar ───────────────────────────────────────────────────── -->
+  <div class="apm-bar">
+    <a class="apm-bar__link" href="#form" aria-label="Activate Your Revolution Preferred Account — $0/mo with Revolution Coaching Incentive">
+      <div class="apm-bar__strip">
+        <div class="apm-bar__strip-in">
+          <span class="apm-bar__label">Activate Your Revolution Preferred Account</span>
+        </div>
+      </div>
+      <div class="apm-bar__row">
+        <div class="apm-bar__row-in">
+          <div class="apm-bar__copy">
+            <span class="apm-bar__price"><s>$179/mo</s><b class="apm-bar__zero">$0<i>/mo</i></b></span>
+            <span class="apm-bar__with">with Revolution Coaching Incentive</span>
+          </div>
+        </div>
+      </div>
+    </a>
+  </div>
+
   <main>
 
     <!-- ── 1. HERO ──────────────────────────────────────────────────────────── -->
@@ -2301,10 +2785,26 @@
           <div class="mm-plan__lockup" aria-label="The Loan Atlas — Revolution Preferred Account pricing">
             <img class="mm-plan__lockup-atlas" src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" />
           </div>
-          <h3 id="mm-offer-heading" class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Complete the Form to Activate Your Revolution Preferred Account for <span class="apm-zero">$0<i>/mo</i></span></h3>
+          <h3 id="mm-offer-heading" class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Complete the Form to Activate Your Revolution Preferred Account</h3>
 
-          <!-- The discounted rate, and who covers it. -->
-          <p class="apm-build">(<span class="apm-build__amount">$179<i>/mo</i></span> discounted rate fully subsidized for qualified branches through Revolution Mortgage Coaching Incentive)</p>
+          <!-- Price ladder: normal price → Revolution price → their price. -->
+          <div class="rv-ladder">
+            <div class="rv-step rv-step--normal">
+              <span class="rv-step__label">Normal Price</span>
+              <span class="rv-step__price"><s>$349</s><i>/mo</i></span>
+            </div>
+            <span class="rv-ladder__arrow rv-ladder__arrow--down" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10h11M11 5.5 15.5 10 11 14.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div class="rv-step rv-step--rev">
+              <span class="rv-step__label">Revolution Price</span>
+              <span class="rv-step__price"><s>$179</s><i>/mo</i></span>
+            </div>
+            <span class="rv-ladder__arrow rv-ladder__arrow--right" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10h11M11 5.5 15.5 10 11 14.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div class="rv-step rv-step--you">
+              <span class="rv-step__label">Your Price</span>
+              <span class="rv-step__price">$0<i>/mo</i></span>
+              <span class="rv-step__tag">with Revolution Coaching Incentive*</span>
+            </div>
+          </div>
 
           <!-- Savings pill — hidden for review. Uncomment to bring it back.
           <p class="mm-plan__save mm-plan__save--pill"><span class="mm-plan__save-pill"><em>$3,000</em> in Annual Savings — Exclusively for CHL Originators</span></p>
@@ -2338,7 +2838,7 @@
               </iframe>
             </div>
           </div>
-          <p class="apm-note">*To qualify, branch must be profitable and average at least $1.67M/mo in loan volume. If not qualified, membership cost will be $179/mo.</p>
+          <p class="apm-note">*To qualify, branch must be profitable and average at least $1.67M/mo in loan volume. If not qualified, membership cost will be $179/mo. (<a href="#full-terms">See Full Terms</a>)</p>
         </div>
       </div>
     </section>
@@ -2619,10 +3119,26 @@
           <div class="mm-plan__lockup" aria-label="The Loan Atlas — Revolution Preferred Account pricing">
             <img class="mm-plan__lockup-atlas" src="../assets/Loan Atlas logo-gold.png" alt="The Loan Atlas" />
           </div>
-          <h3 class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Complete the Form to Activate Your Revolution Preferred Account for <span class="apm-zero">$0<i>/mo</i></span></h3>
+          <h3 class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Complete the Form to Activate Your Revolution Preferred Account</h3>
 
-          <!-- The discounted rate, and who covers it. -->
-          <p class="apm-build">(<span class="apm-build__amount">$179<i>/mo</i></span> discounted rate fully subsidized for qualified branches through Revolution Mortgage Coaching Incentive)</p>
+          <!-- Price ladder: normal price → Revolution price → their price. -->
+          <div class="rv-ladder">
+            <div class="rv-step rv-step--normal">
+              <span class="rv-step__label">Normal Price</span>
+              <span class="rv-step__price"><s>$349</s><i>/mo</i></span>
+            </div>
+            <span class="rv-ladder__arrow rv-ladder__arrow--down" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10h11M11 5.5 15.5 10 11 14.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div class="rv-step rv-step--rev">
+              <span class="rv-step__label">Revolution Price</span>
+              <span class="rv-step__price"><s>$179</s><i>/mo</i></span>
+            </div>
+            <span class="rv-ladder__arrow rv-ladder__arrow--right" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10h11M11 5.5 15.5 10 11 14.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <div class="rv-step rv-step--you">
+              <span class="rv-step__label">Your Price</span>
+              <span class="rv-step__price">$0<i>/mo</i></span>
+              <span class="rv-step__tag">with Revolution Coaching Incentive*</span>
+            </div>
+          </div>
 
           <!-- Savings pill — hidden for review. Uncomment to bring it back.
           <p class="mm-plan__save mm-plan__save--pill"><span class="mm-plan__save-pill"><em>$3,000</em> in Annual Savings — Exclusively for CHL Originators</span></p>
@@ -2656,8 +3172,47 @@
               </iframe>
             </div>
           </div>
-          <p class="apm-note">*To qualify, branch must be profitable and average at least $1.67M/mo in loan volume. If not qualified, membership cost will be $179/mo.</p>
+          <p class="apm-note">*To qualify, branch must be profitable and average at least $1.67M/mo in loan volume. If not qualified, membership cost will be $179/mo. (<a href="#full-terms">See Full Terms</a>)</p>
         </article>
+      </div>
+    </section>
+
+    <!-- ── 13. REVOLUTION COACHING INCENTIVE (replica of Revolution's slide) ── -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" />
+    <section class="rv-inc" id="full-terms" aria-labelledby="rv-inc-heading">
+      <div class="container">
+        <div class="rv-inc__grid">
+          <div class="rv-inc__intro">
+            <img class="rv-inc__logo" src="../assets/revolution-mortgage-logo.svg" alt="Revolution Mortgage" width="150" height="64" />
+            <div>
+              <span class="rv-inc__rule" aria-hidden="true"></span>
+              <h2 id="rv-inc-heading" class="rv-inc__title">Revolution Mortgage Coaching Incentive for Branch Managers</h2>
+            </div>
+            <ul class="rv-inc__list">
+              <li>P&amp;L is required to show a quarterly profit.</li>
+              <li>Volume requirements per the table must be met.</li>
+            </ul>
+          </div>
+          <ul class="rv-inc__tiers" aria-label="Coaching incentive by quarterly volume average">
+            <li class="rv-tier">
+              <div class="rv-tier__row"><span class="rv-tier__label">Quarterly Volume Avg.</span><span class="rv-tier__value">$3,500,000</span></div>
+              <div class="rv-tier__row"><span class="rv-tier__label">Coaching Incentive</span><span class="rv-tier__value">$750</span></div>
+            </li>
+            <li class="rv-tier">
+              <div class="rv-tier__row"><span class="rv-tier__label">Quarterly Volume Avg.</span><span class="rv-tier__value">$5,000,000</span></div>
+              <div class="rv-tier__row"><span class="rv-tier__label">Coaching Incentive</span><span class="rv-tier__value">$1,500</span></div>
+            </li>
+            <li class="rv-tier">
+              <div class="rv-tier__row"><span class="rv-tier__label">Quarterly Volume Avg.</span><span class="rv-tier__value">$7,000,000</span></div>
+              <div class="rv-tier__row"><span class="rv-tier__label">Coaching Incentive</span><span class="rv-tier__value">$2,700</span></div>
+            </li>
+            <li class="rv-tier">
+              <div class="rv-tier__row"><span class="rv-tier__label">Quarterly Volume Avg.</span><span class="rv-tier__value">$9,000,000</span></div>
+              <div class="rv-tier__row"><span class="rv-tier__label">Coaching Incentive</span><span class="rv-tier__value">$4,500</span></div>
+            </li>
+          </ul>
+        </div>
+        <p class="rv-inc__legal">&copy;2026 | T2 Financial LLC DBA Revolution Mortgage NMLS#1686046 is an Equal Housing Opportunity Lender.</p>
       </div>
     </section>
 
@@ -2779,6 +3334,40 @@
       } else {
         start();
       }
+    })();
+  </script>
+  <script>
+    /* "See Full Terms" → #full-terms. Lazy images between the pricing card and
+       the terms section load mid-scroll and push the target down, so a plain
+       smooth anchor jump stops short. Re-aim each time the scroll settles
+       (scrollend, with a timer fallback) until the section is in place. */
+    (function () {
+      var target = document.getElementById('full-terms');
+      if (!target) return;
+      var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      document.querySelectorAll('a[href="#full-terms"]').forEach(function (link) {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          history.replaceState(null, '', '#full-terms');
+          var tries = 0;
+          // Land below the fixed header AND the sticky offer bar (its height
+          // varies with viewport width, so measure it now).
+          var bar = document.querySelector('.apm-bar');
+          var header = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--header-h')) || 72;
+          var offset = header + (bar ? bar.offsetHeight : 0);
+          target.style.scrollMarginTop = offset + 'px';
+          function aim() {
+            target.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+          }
+          function settle() {
+            if (Math.abs(target.getBoundingClientRect().top - offset) > 4 && tries++ < 4) aim();
+            else { window.removeEventListener('scrollend', settle); clearInterval(timer); }
+          }
+          window.addEventListener('scrollend', settle);
+          var timer = setInterval(settle, 1200);
+          aim();
+        });
+      });
     })();
   </script>
 </body>
