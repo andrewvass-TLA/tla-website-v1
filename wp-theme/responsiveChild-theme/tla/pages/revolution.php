@@ -2891,8 +2891,9 @@ $tla_active      = '';
           <div class="lp-bridge__video" data-reveal="fade">
             <div class="mm-video">
               <iframe class="mm-video__frame"
-                src="https://player.mediadelivery.net/embed/684087/c27ffc9d-ddca-4238-b29a-15849e2347f8?autoplay=false&loop=false&muted=false&preload=true&responsive=true"
-                loading="lazy" allow="accelerometer;gyroscope;autoplay;encrypted-media;picture-in-picture;fullscreen;" allowfullscreen="true"></iframe>
+                src="https://www.youtube-nocookie.com/embed/ZEx8ebhgHic?rel=0&modestbranding=1&playsinline=1"
+                title="Loan Atlas Overview"
+                loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
           </div>
 
