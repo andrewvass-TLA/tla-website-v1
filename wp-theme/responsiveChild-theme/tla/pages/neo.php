@@ -1961,7 +1961,7 @@ $tla_active      = '';
 
   <!-- ── Sticky offer bar ───────────────────────────────────────────────────── -->
   <div class="neo-bar">
-    <a class="neo-bar__link" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-neo/" aria-label="Activate Your NEO Home Loans Preferred Account — $199/mo, save $1,800 a year">
+    <a class="neo-bar__link" href="https://members.theloanatlas.com/checkouts/premium-membership-neo-199/" aria-label="Activate Your NEO Home Loans Preferred Account — $199/mo, save $1,800 a year">
       <div class="neo-bar__strip">
         <div class="neo-bar__strip-in">
           <span class="neo-bar__label">Activate Your NEO Home Loans Preferred Account</span>
@@ -1987,7 +1987,7 @@ $tla_active      = '';
           <h1 id="mm-hero-heading" class="lp-intro__title" data-hero-step="2">Close More Loans <span class="mm-hero-gold">With Less Chaos</span></h1>
           <p class="lp-intro__subtitle" data-hero-step="3">The Loan Atlas installs 5 AI-powered systems into your mortgage business to help you make better decisions, execute faster, and stay focused on what actually drives production.</p>
           <div class="lp-intro__actions" data-hero-step="4">
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-neo/">Activate Your NEO Home Loans Preferred Account</a>
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-neo-199/">Activate Your NEO Home Loans Preferred Account</a>
           </div>
         </div>
       </div>
@@ -2057,7 +2057,7 @@ $tla_active      = '';
 
 
           <div class="mm-offer__cta">
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-neo/">Activate Your NEO Home Loans Preferred Account</a>
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-neo-199/">Activate Your NEO Home Loans Preferred Account</a>
           </div>
           <p class="mm-offer__fine">12-month commitment. Offer exclusively for NEO Home Loans originators. Available to new members only.</p>
         </div>
@@ -2352,7 +2352,7 @@ $tla_active      = '';
 
 
           <div class="mm-plan__cta">
-            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-checkout-neo/">
+            <a class="btn btn--gold btn--lg" href="https://members.theloanatlas.com/checkouts/premium-membership-neo-199/">
               Activate Your NEO Home Loans Preferred Account
             </a>
           </div>
