@@ -213,8 +213,12 @@ convert leveraging-google-reviews leveraging-google-reviews-to-attract-clients-a
 convert winning-mortgage-referrals-from-listing-agents winning-mortgage-referrals-from-listing-agents ""
 convert emergency-game-plan     emergency-game-plan           ""
 convert 2027-business-planning  2027-business-planning        ""
-# Revolution Mortgage webinar registration (.evc-* suite).
-convert webinar-registration-c  revolution-register           ""
+# Revolution Mortgage webinar registration (.evc-* suite). The two
+# webinar-registration*-draft lines are unused design drafts (uncommitted).
+convert webinar-registration-pages/webinar-registration    webinar-registration-draft    ""
+convert webinar-registration-pages/webinar-registration-b  webinar-registration-b-draft  ""
+convert webinar-registration-pages/revolution-register    revolution-register           ""
+convert webinar-registration-pages/register-121726       register-121726-draft         ""
 convert replay-winning-the-ai-game winning-the-ai-game        ""
 convert replay-ai-lab-follow-up-pro ai-lab-follow-up-pro      ""
 convert replay-2026-mid-year-playbook 2026-mid-year-playbook   ""
