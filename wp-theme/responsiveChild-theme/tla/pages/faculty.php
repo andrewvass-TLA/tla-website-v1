@@ -7,7 +7,7 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 $tla_title       = 'Faculty — The Loan Atlas';
-$tla_description = 'Meet 18 active originators, leaders, and strategists — collectively responsible for $29B+ in funded loan volume — who teach inside The Loan Atlas every week.';
+$tla_description = 'Meet 19 active originators, leaders, and strategists — collectively responsible for $29B+ in funded loan volume — who teach inside The Loan Atlas every week.';
 $tla_active      = 'faculty';
 ?>
   <style>
@@ -595,7 +595,7 @@ $tla_active      = 'faculty';
           <h1 id="fh-hero-heading" class="fh-hero__title" data-hero-step="2">Learn from the <em>Top&nbsp;1%</em></h1>
           <p class="fh-hero__sub" data-hero-step="3">
             Most coaching platforms give you access to <em>one</em> coach.
-            <strong>The Loan Atlas gives you access to <span data-countup="18" data-countup-commas="false">18</span> of the best minds in the mortgage business.</strong>
+            <strong>The Loan Atlas gives you access to <span data-countup="19" data-countup-commas="false">19</span> of the best minds in the mortgage business.</strong>
           </p>
           <div class="fh-hero__actions" data-hero-step="4">
             <a class="btn btn--gold btn--lg" href="/join/">Start Your Transformation</a>

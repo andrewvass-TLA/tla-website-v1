@@ -758,8 +758,8 @@ $tla_active      = '';
       <div class="container">
         <div class="faculty-inner">
           <div class="faculty-panel__content" data-reveal="left" style="padding-top: clamp(40px, 6vw, 80px);">
-            <span class="eyebrow"><span class="eyebrow__text"><span data-countup="18"
-                  data-countup-commas="false">18</span> Experienced Coaches · $<span data-countup="29"
+            <span class="eyebrow"><span class="eyebrow__text"><span data-countup="19"
+                  data-countup-commas="false">19</span> Experienced Coaches · $<span data-countup="29"
                   data-countup-commas="false">29</span> Billion Closed</span></span>
             <h2 class="t-headline-lg" style="color: var(--on-primary); margin-bottom: var(--space-md);">Systems Built by
               Top Producers Behind $29 Billion in Loan Volume</h2>

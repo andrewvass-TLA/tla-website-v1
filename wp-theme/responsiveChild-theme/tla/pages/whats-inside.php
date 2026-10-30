@@ -2695,7 +2695,7 @@ $tla_active      = 'whats-inside';
             <span class="stats-bar__label">Training Modules</span>
           </div>
           <div class="stats-bar__item">
-            <span class="stats-bar__num" data-countup="18" data-countup-commas="false">18</span>
+            <span class="stats-bar__num" data-countup="19" data-countup-commas="false">19</span>
             <span class="stats-bar__label">Experienced Coaches</span>
           </div>
           <div class="stats-bar__item">
