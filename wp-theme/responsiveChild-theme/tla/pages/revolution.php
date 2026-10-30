@@ -7,7 +7,7 @@
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
 $tla_title       = 'Revolution Preferred Account — The Loan Atlas';
-$tla_description = 'Revolution Preferred Account: full access to The Loan Atlas at $179/mo, paid for by Revolution — exclusively for Revolution originators.';
+$tla_description = 'Revolution Preferred Account: full access to The Loan Atlas at $179/mo (normally $349/mo) — exclusively for Revolution originators.';
 $tla_active      = '';
 ?>
   <style>
@@ -158,8 +158,8 @@ $tla_active      = '';
       line-height: 1.1;
     }
     .apm-bar__free b { color: #eac25a; font-weight: 800; }
-    /* Revolution: the $0/mo in green, then the incentive line beside it. */
-    .apm-bar__zero { color: #6ee7a0; font-weight: 800; }
+    /* Revolution: the $179/mo in green, then the pricing line beside it. */
+    .apm-bar__now { color: #6ee7a0; font-weight: 800; }
     .apm-bar__with {
       font-family: var(--font-display);
       font-weight: 700;
@@ -1401,12 +1401,10 @@ $tla_active      = '';
       }
     }
 
-    /* ── Price ladder — Normal → Revolution → Your price ─────────────────────
-       The two muted, crossed-out reference prices stack in the left column
-       ($349 ↓ $179); an arrow from the middle of that stack points right to the
-       brass-framed "Your Price" card, which spans the stack's full height. Same
-       width as the form below so the card reads as one column. Below 640px it
-       turns 90°: $349 → $179 side by side, then ↓ to a full-width $0 card. ── */
+    /* ── Price ladder — Normal → Revolution price ─────────────────────────────
+       The muted, crossed-out $349 sits left; an arrow points right to the
+       brass-framed $179 "Revolution Price" card. Same width as the form below
+       so the card reads as one column. Below 640px it stacks: $349 ↓ $179. ── */
     .rv-ladder {
       position: relative;
       z-index: 1;
@@ -1414,7 +1412,6 @@ $tla_active      = '';
       margin: clamp(22px, 2.6vw, 32px) auto 0;
       display: grid;
       grid-template-columns: 1fr auto 1.35fr;
-      grid-template-rows: auto auto auto;
       align-items: stretch;
       gap: 6px clamp(10px, 1.6vw, 18px);
       text-align: center;
@@ -1467,12 +1464,7 @@ $tla_active      = '';
       color: rgba(234, 194, 90, 0.8);
     }
     .rv-ladder__arrow svg { width: 20px; height: 20px; }
-    .rv-step--normal { grid-column: 1; grid-row: 1; }
-    .rv-ladder__arrow--down { grid-column: 1; grid-row: 2; justify-content: center; }
-    .rv-ladder__arrow--down svg { transform: rotate(90deg); }
-    .rv-step--rev { grid-column: 1; grid-row: 3; }
-    .rv-ladder__arrow--right { grid-column: 2; grid-row: 1 / 4; align-items: center; }
-    .rv-step--you { grid-column: 3; grid-row: 1 / 4; }
+    .rv-ladder__arrow { align-items: center; }
 
     /* The payoff card: brass gradient border (padding-box/border-box trick),
        a warm inner wash and a soft brass glow. */
@@ -1513,17 +1505,11 @@ $tla_active      = '';
 
     @media (max-width: 639px) {
       .rv-ladder {
-        grid-template-columns: 1fr auto 1fr;
-        grid-template-rows: auto auto auto;
-        gap: 6px 8px;
+        grid-template-columns: 1fr;
+        gap: 6px;
       }
-      .rv-step--normal { grid-column: 1; grid-row: 1; }
-      .rv-ladder__arrow--down { grid-column: 2; grid-row: 1; align-items: center; }
-      .rv-ladder__arrow--down svg { transform: none; }
-      .rv-step--rev { grid-column: 3; grid-row: 1; }
-      .rv-ladder__arrow--right { grid-column: 1 / -1; grid-row: 2; justify-content: center; }
-      .rv-ladder__arrow--right svg { transform: rotate(90deg); }
-      .rv-step--you { grid-column: 1 / -1; grid-row: 3; }
+      .rv-ladder__arrow { justify-content: center; }
+      .rv-ladder__arrow svg { transform: rotate(90deg); }
       .rv-ladder__arrow svg { width: 16px; height: 16px; }
       .rv-step__label { font-size: 0.6875rem; letter-spacing: 0.1em; }
       .rv-step--you .rv-step__label { font-size: 1rem; }
@@ -2694,7 +2680,7 @@ $tla_active      = '';
 
   <!-- ── Sticky offer bar ───────────────────────────────────────────────────── -->
   <div class="apm-bar">
-    <a class="apm-bar__link" href="#form" aria-label="Activate Your Revolution Preferred Account — $0/mo with Revolution Coaching Incentive">
+    <a class="apm-bar__link" href="#form" aria-label="Activate Your Revolution Preferred Account — $179/mo, normally $349/mo">
       <div class="apm-bar__strip">
         <div class="apm-bar__strip-in">
           <span class="apm-bar__label">Activate Your Revolution Preferred Account</span>
@@ -2703,8 +2689,8 @@ $tla_active      = '';
       <div class="apm-bar__row">
         <div class="apm-bar__row-in">
           <div class="apm-bar__copy">
-            <span class="apm-bar__price"><s>$179/mo</s><b class="apm-bar__zero">$0<i>/mo</i></b></span>
-            <span class="apm-bar__with">with Revolution Coaching Incentive</span>
+            <span class="apm-bar__price"><s>$349/mo</s><b class="apm-bar__now">$179<i>/mo</i></b></span>
+            <span class="apm-bar__with">Exclusive Revolution Pricing</span>
           </div>
         </div>
       </div>
@@ -2780,22 +2766,16 @@ $tla_active      = '';
           </div>
           <h3 id="mm-offer-heading" class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Complete the Form to Activate Your Revolution Preferred Account</h3>
 
-          <!-- Price ladder: normal price → Revolution price → their price. -->
+          <!-- Price ladder: normal price → Revolution price. -->
           <div class="rv-ladder">
             <div class="rv-step rv-step--normal">
               <span class="rv-step__label">Normal Price</span>
               <span class="rv-step__price"><s>$349</s><i>/mo</i></span>
             </div>
-            <span class="rv-ladder__arrow rv-ladder__arrow--down" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10h11M11 5.5 15.5 10 11 14.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <div class="rv-step rv-step--rev">
-              <span class="rv-step__label">Revolution Price</span>
-              <span class="rv-step__price"><s>$179</s><i>/mo</i></span>
-            </div>
-            <span class="rv-ladder__arrow rv-ladder__arrow--right" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10h11M11 5.5 15.5 10 11 14.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="rv-ladder__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10h11M11 5.5 15.5 10 11 14.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <div class="rv-step rv-step--you">
-              <span class="rv-step__label">Your Price</span>
-              <span class="rv-step__price">$0<i>/mo</i></span>
-              <span class="rv-step__tag">with Revolution Coaching Incentive*</span>
+              <span class="rv-step__label">Revolution Price</span>
+              <span class="rv-step__price">$179<i>/mo</i></span>
             </div>
           </div>
 
@@ -2831,7 +2811,6 @@ $tla_active      = '';
               </iframe>
             </div>
           </div>
-          <p class="apm-note">*To qualify, branch must be profitable and average at least $1.67M/mo in loan volume. If not qualified, membership cost will be $179/mo. (<a href="#full-terms">See Full Terms</a>)</p>
         </div>
       </div>
     </section>
@@ -3115,22 +3094,16 @@ $tla_active      = '';
           </div>
           <h3 class="mm-plan__hero-title mm-offer__hero-title" style="color: #ffffff;">Complete the Form to Activate Your Revolution Preferred Account</h3>
 
-          <!-- Price ladder: normal price → Revolution price → their price. -->
+          <!-- Price ladder: normal price → Revolution price. -->
           <div class="rv-ladder">
             <div class="rv-step rv-step--normal">
               <span class="rv-step__label">Normal Price</span>
               <span class="rv-step__price"><s>$349</s><i>/mo</i></span>
             </div>
-            <span class="rv-ladder__arrow rv-ladder__arrow--down" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10h11M11 5.5 15.5 10 11 14.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-            <div class="rv-step rv-step--rev">
-              <span class="rv-step__label">Revolution Price</span>
-              <span class="rv-step__price"><s>$179</s><i>/mo</i></span>
-            </div>
-            <span class="rv-ladder__arrow rv-ladder__arrow--right" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10h11M11 5.5 15.5 10 11 14.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+            <span class="rv-ladder__arrow" aria-hidden="true"><svg viewBox="0 0 20 20" fill="none"><path d="M4 10h11M11 5.5 15.5 10 11 14.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
             <div class="rv-step rv-step--you">
-              <span class="rv-step__label">Your Price</span>
-              <span class="rv-step__price">$0<i>/mo</i></span>
-              <span class="rv-step__tag">with Revolution Coaching Incentive*</span>
+              <span class="rv-step__label">Revolution Price</span>
+              <span class="rv-step__price">$179<i>/mo</i></span>
             </div>
           </div>
 
@@ -3166,7 +3139,6 @@ $tla_active      = '';
               </iframe>
             </div>
           </div>
-          <p class="apm-note">*To qualify, branch must be profitable and average at least $1.67M/mo in loan volume. If not qualified, membership cost will be $179/mo. (<a href="#full-terms">See Full Terms</a>)</p>
         </article>
       </div>
     </section>
