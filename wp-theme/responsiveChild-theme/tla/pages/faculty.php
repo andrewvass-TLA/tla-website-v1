@@ -1109,6 +1109,21 @@ $tla_active      = 'faculty';
           modal.setAttribute('open', '');
         }
         document.body.classList.add('faculty-modal-open');
+        setHash(slug);
+      }
+
+      // Deep links: /faculty/#josh-mettle opens that member's modal.
+      // replaceState keeps the URL shareable without stacking history entries or scrolling.
+      function setHash(slug) {
+        const url = location.pathname + location.search + (slug ? '#' + slug : '');
+        history.replaceState(null, '', url);
+      }
+
+      function openFromHash() {
+        const slug = decodeURIComponent(location.hash.slice(1));
+        if (!slug || !facultyData[slug]) return;
+        const card = document.querySelector(`.faculty-card[data-faculty="${CSS.escape(slug)}"]`);
+        openFaculty(slug, card);
       }
 
       function closeFaculty() {
@@ -1138,6 +1153,10 @@ $tla_active      = 'faculty';
         document.body.classList.remove('faculty-modal-open');
         modalVideo.innerHTML = '';
         modalVideo.classList.remove('faculty-modal__video--filled');
+        if (location.hash) setHash('');
       });
+
+      window.addEventListener('hashchange', openFromHash);
+      openFromHash();
     })();
   </script>
