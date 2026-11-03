@@ -3,14 +3,23 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>2027 Business Planning — Masterclass — The Loan Atlas</title>
-  <meta name="description" content="Join Josh Mettle and Cody Hardridge on October 29 to turn your 2027 goals into a measurable execution plan with the Loan Atlas AI Business Planner." />
+  <title>2027 Business Planning — Replay — The Loan Atlas</title>
+  <meta name="description" content="Watch the replay of 2027 Business Planning — Josh Mettle and Cody Hardridge on turning your 2027 goals into a measurable execution plan with the Loan Atlas AI Business Planner." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/chrome.css" />
 
+  <!-- ============================================================
+       MASTERCLASS REPLAY DETAIL — 2027 Business Planning: Turn Your
+       Goals Into an Execution Plan (recorded Oct 29, 2026).
+       Same design as the other masterclass replay detail pages
+       (lead-generation-that-converts.html), namespaced .oh-*.
+       Udacity-style two-column layout (no hero band): wide content
+       column on the left, sticky join/booking sidebar on the right.
+       Brand colors/fonts/logo via tokens; layout/components bespoke.
+       ============================================================ -->
   <style>
     .oh { background: var(--background); }
 
@@ -29,8 +38,14 @@
       box-shadow: var(--shadow-lg);
       padding: clamp(28px, 3.5vw, 48px);
     }
-    /* even flow gap between every section in the card */
-    .oh-main > * + * { margin-top: clamp(36px, 4.5vw, 64px); }
+    /* Section rhythm — the visible space between consecutive blocks in the card.
+       Capped at 48px: the container stops growing at 1280px, so a vw-tracked gap
+       keeps expanding after the text column has stopped, which over-spaces the
+       card on wide screens. */
+    .oh-main { --oh-section-gap: clamp(36px, 3.6vw, 48px); }
+    /* Body copy holds 4px of leading below; a display h2's ink overflows its box
+       3px above — so the margin gives back the 3px and trims the 4px. */
+    .oh-main > * + * { margin-top: calc(var(--oh-section-gap) - 1px); }
     /* sections carry no extra leading space of their own — the flow gap is the gap */
     .oh-main section > :first-child { margin-top: 0; }
 
@@ -43,35 +58,56 @@
     }
     .oh-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-    /* Header order: thumb → eyebrow → title → date/time.
-       Spacing expresses grouping, not even distribution. Measured as INK gaps
-       (what the eye actually sees) the rhythm is 40 / 10 / 22 / 76:
-         image → eyebrow   40px  the header block begins
-         eyebrow → title   10px  tightest gap — the eyebrow is a label ON the
-                                 title, and its uppercase tracking already
-                                 separates the two without extra space
-         title → date/time 22px  a clear step back; this is metadata ABOUT the
-                                 event, not part of the headline
-         header → body     76px  the widest gap on the page, so the four
-                                 elements above read as ONE group
-       Each gap roughly doubles the one expressing tighter grouping, so the
-       reading order is unmistakable: label → headline → details → prose. */
-    .oh-header > * + * { margin-top: 0; }
-    .oh-header .oh-thumb + .oh-eyebrow { margin-top: clamp(30px, 3.6vw, 40px); }
-    .oh-eyebrow { margin: 0; line-height: 1.3; }
-    /* Optical, not box, spacing: the display face overflows its box upward by
-       ~6px and downward by ~5px, so the box margins below are trimmed to hit
-       the intended INK gaps of ~10px (eyebrow→title) and ~22px (title→meta). */
-    .oh-header .oh-eyebrow + .oh-title { margin-top: 16px; }
-    .oh-header .oh-title + .oh-meta { margin-top: 27px; }
-    /* Widest gap on the page separates the header block from the body copy —
-       larger than any gap inside the header, so the group reads as one unit. */
-    .oh-main > .oh-header + section { margin-top: clamp(44px, 5.2vw, 72px); }
+    /* Header order: thumb → title → meta (recorded date).
+       The title leads directly under the bled image; the recorded date sits
+       centered beneath the bottom CTA button.
 
-    /* Bottom CTA — the page's single call to action, centered below Taught By */
-    .oh-cta-foot { display: flex; justify-content: center; }
-    /* Full-width join CTA (gold .tlc-btn, stretched) */
-    .oh-join-btn { width: 100%; font-size: 1.125rem; padding-block: 16px; }
+       --oh-title-gap is the VISIBLE space binding the title to the image above
+       it. Each rule subtracts the line-height slack its own pairing carries
+       (measured off the rendered page: the display face's ink OVERFLOWS its box
+       by 7px above and 5.4px below; .oh-prose holds 4px of leading; .oh-meta
+       sits flush at 0) so the *ink* gaps land on the token rather than just the
+       box margins. */
+    .oh-header > * + * { margin-top: 0; }
+    .oh-main { --oh-title-gap: clamp(22px, 2.4vw, 30px); }
+
+    /* Eyebrow — brass label introducing the title, on the canonical .t-eyebrow
+       scale (0.875rem / 0.18em) rather than the smaller .tlc-eyebrow, which is
+       sized for callout cards and reads undersized beneath a 46px display title.
+       It's a block so it can carry its own margin; the image edge is hard (0)
+       and uppercase Inter sits flush in its box, so the margin IS the gap. */
+    .oh-eyebrow {
+      display: block;
+      color: var(--brass);
+      font-size: 0.875rem;
+      letter-spacing: 0.18em;
+    }
+    .oh-header .oh-thumb + .oh-eyebrow { margin-top: clamp(20px, 2.2vw, 26px); }
+    /* Eyebrow to title — a tight pairing, so it sits well inside the title
+       rhythm. The eyebrow sits flush below (0); title ink overflows 7px above. */
+    .oh-eyebrow + .oh-title { margin-top: calc(10px + 7px); }
+    .oh-header .oh-thumb + .oh-title {
+      /* image edge is hard (0); title ink overflows its box 7px above,
+         so the margin has to give that 7px back */
+      margin-top: calc(var(--oh-title-gap) + 7px);
+    }
+    .oh-main > .oh-header + section {
+      /* a section boundary, so it takes the section rhythm. Title ink overflows
+         5.4px below; body copy holds 4px of leading above. */
+      margin-top: calc(var(--oh-section-gap) + 1.4px);
+    }
+    /* Bottom CTA — centered below the Taught By section, with the recorded
+       date centered beneath the button as a caption. The button is full-width,
+       so stretch is the default; center the date within the column. */
+    .oh-cta-foot { display: flex; flex-direction: column; align-items: center; }
+    .oh-cta-foot .oh-watch-btn { align-self: stretch; }
+    /* Caption gap — the button edge is hard (0) and the meta sits flush (0),
+       so the margin IS the visible gap. */
+    .oh-cta-foot .oh-meta { margin-top: 16px; justify-content: center; }
+
+    /* Full-width watch CTA (gold .tlc-btn, stretched) — at the bottom
+       of the card */
+    .oh-watch-btn { width: 100%; font-size: 1.125rem; padding-block: 16px; }
 
     .oh-title {
       font-family: var(--font-display);
@@ -81,17 +117,11 @@
     }
     .oh-meta {
       display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px;
-      font-family: var(--font-body); font-size: 1.0625rem; font-weight: 600;
+      font-family: var(--font-body); font-size: 0.9375rem; font-weight: 600;
       color: var(--on-surface-variant);
     }
-    /* Icon stays pinned to the FIRST line when the label wraps (narrow screens),
-       rather than floating to the vertical centre of a two-line block. */
-    .oh-meta__item { display: inline-flex; align-items: flex-start; gap: 9px; }
-    /* icons track the type size so the pairing stays proportional */
-    .oh-meta__item svg {
-      width: 18px; height: 18px; color: var(--brass);
-      flex: none; margin-top: 0.15em;
-    }
+    .oh-meta__item { display: inline-flex; align-items: center; gap: 8px; }
+    .oh-meta__item svg { width: 16px; height: 16px; color: var(--brass); }
 
     .oh-h2 {
       font-family: var(--font-display);
@@ -115,7 +145,8 @@
       color: var(--on-surface-variant);
     }
     .oh-list svg { width: 20px; height: 20px; margin-top: 3px; color: var(--brass); }
-
+    /* bolded lead-in sentence on each learning point */
+    .oh-list strong { font-weight: 700; color: var(--on-surface); }
     /* Pull-quote — shared .quote-card testimonial block (styles.css).
        Override the marquee-specific flex sizing so it flows in the column;
        with the gold mark omitted, let the text span its empty grid column. */
@@ -125,9 +156,12 @@
     }
     .oh-main .quote-card__quote,
     .oh-main .quote-card__attr { grid-column: 1 / -1; }
-    /* the quote sits a bit tighter in the flow than full section gaps */
-    .oh-main > .quote-card,
-    .oh-main > .quote-card + * { margin-top: clamp(22px, 2.8vw, 36px); }
+    /* The quote is a bordered box: its own edges are hard, so unlike the text
+       blocks it needs no trim above. Below it, the next block opens with a
+       display h2 whose ink overflows its box 3px, so that side gives the 3px
+       back — landing both visible gaps on the section rhythm. */
+    .oh-main > .quote-card { margin-top: var(--oh-section-gap); }
+    .oh-main > .quote-card + * { margin-top: calc(var(--oh-section-gap) + 3px); }
 
     /* Taught By — presenter medallion cards on the canonical dark band.
        Brass-gradient ring around the headshot; role split into a brass
@@ -404,44 +438,35 @@
           <!-- ─────────── LEFT: content ─────────── -->
           <div class="oh-main">
 
-            <!-- Header: thumbnail → eyebrow → title → date/time -->
+            <!-- Header: thumbnail + title -->
             <div class="oh-header" data-reveal="up">
               <div class="oh-thumb">
-                <img src="assets/live-events/OCTOBER_BUSINESS_PLANNING-768x432.png" alt="2027 Business Planning masterclass &mdash; The Loan Atlas" loading="eager" />
+                <img src="assets/live-events/past-events/OCTOBER_BUSINESS_PLANNING-768x432.png" alt="2027 Business Planning masterclass &mdash; The Loan Atlas" loading="eager" />
               </div>
-              <p class="t-eyebrow oh-eyebrow">Live Masterclass for Mortgage Loan Officers</p>
+              <span class="tlc-eyebrow oh-eyebrow">Mortgage Originator Masterclass</span>
               <h1 class="oh-title">2027 Business Planning &ndash; Turn Your Goals Into an Execution Plan</h1>
-              <div class="oh-meta">
-                <span class="oh-meta__item">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                  Thursday, October 29, 2026
-                </span>
-                <span class="oh-meta__item">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg>
-                  11:00 AM PT
-                </span>
-              </div>
             </div>
 
             <!-- About this masterclass -->
             <section data-reveal="up">
               <p class="oh-prose">Writing down a goal is easy. Following through when the market gets noisy, priorities compete for your attention, and the first obstacle shows up is where most plans fall apart.</p>
-              <p class="oh-prose">On October 29th at 11am PT, Josh Mettle and Cody Hardridge will help you move beyond good intentions and build a clearer plan for 2027. In this 90 minute session, you&rsquo;ll work through the mindset behind consistent execution, connect your goals to the numbers that matter, see how the Loan Atlas AI Business Planner helps build your plan, and create an accountability structure designed to help you stay on track after the webinar ends.</p>
-              <p class="oh-prose">You don&rsquo;t rise to your goals; you fall to your systems. By the end of this session you&rsquo;ll be able to build a 2027 plan grounded in your actual production numbers and the structure to keep executing it week after week.</p>
+              <p class="oh-prose">In this 90-minute masterclass, Josh Mettle and Cody Hardridge helped loan officers move beyond good intentions and build a clearer plan for 2027. They worked through the mindset behind consistent execution, connected goals to the numbers that matter, showed how the Loan Atlas AI Business Planner helps build the plan, and laid out an accountability structure designed to keep you on track long after planning season ends.</p>
+              <p class="oh-prose">You don&rsquo;t rise to your goals; you fall to your systems. Watch the replay to build a 2027 plan grounded in your actual production numbers &mdash; and the structure to keep executing it week after week.</p>
             </section>
 
             <!-- What you'll learn -->
             <section data-reveal="up">
               <h2 class="oh-h2">What You&rsquo;ll Learn</h2>
               <ul class="oh-list">
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>The mindset patterns that separate people who consistently execute on their goals from those who get knocked off course when challenges arise</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>How to turn a broad or &ldquo;half-baked&rdquo; goal into a specific, measurable, time-bound goal with clear action items</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>How to use the Loan Atlas AI Business Planner to reduce the amount of work you have to do from scratch</span></li>
-                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span>How to build an accountability cadence through Q1 2027, and keep your goals from disappearing after planning season</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>The mindset behind consistent execution.</strong> The patterns that separate people who follow through on their goals from those who get knocked off course the moment challenges arise.</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>How to sharpen a &ldquo;half-baked&rdquo; goal.</strong> Turn a broad intention into a specific, measurable, time-bound goal with clear action items attached.</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>How to connect your goals to your numbers.</strong> Ground your 2027 plan in your actual production numbers so every goal ties back to the activity that drives it.</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>How to let AI do the heavy lifting.</strong> Use the Loan Atlas AI Business Planner to cut down the work you&rsquo;d otherwise have to do from scratch.</span></li>
+                <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg><span><strong>How to build an accountability cadence that lasts.</strong> A structure that carries you through Q1 2027 and keeps your goals from disappearing after planning season.</span></li>
               </ul>
             </section>
 
-            <!-- Presenters -->
+            <!-- Taught by -->
             <section data-reveal="up">
               <h2 class="oh-h2">Taught By</h2>
               <div class="oh-people">
@@ -464,9 +489,15 @@
               </div>
             </section>
 
-            <!-- Bottom CTA — opens the access modal -->
+            <!-- Bottom CTA — opens the access modal; recorded date sits under it -->
             <div class="oh-cta-foot" data-reveal="up">
-              <button type="button" class="tlc-btn oh-join-btn" data-ev-modal>Join This Masterclass</button>
+              <button type="button" class="tlc-btn oh-watch-btn" data-ev-modal>Watch the Full Replay</button>
+              <div class="oh-meta">
+                <span class="oh-meta__item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                  Recorded on October 29, 2026
+                </span>
+              </div>
             </div>
 
           </div>
@@ -476,7 +507,7 @@
 
             <!-- Column header — frames the two cards as an either/or choice -->
             <div class="oh-side__head">
-              <h2 class="oh-side__title">Want to Attend This Masterclass?</h2>
+              <h2 class="oh-side__title">Want to Watch This Masterclass?</h2>
               <p class="oh-side__sub">Join The Loan Atlas to get immediate access, or schedule your free business assessment to see everything inside.</p>
             </div>
 
@@ -526,6 +557,7 @@
 
   </main>
 
+  <!-- ───────────────────── Access modal (opened by the action bar CTA) ───────────────────── -->
   <div class="ev-modal" id="ev-access-modal" hidden>
     <div class="ev-modal__backdrop" data-ev-close></div>
     <div class="ev-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="ev-modal-title">

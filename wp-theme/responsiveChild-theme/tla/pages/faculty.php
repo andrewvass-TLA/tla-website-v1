@@ -998,7 +998,7 @@ $tla_active      = 'faculty';
           image: 'assets/steve-grossman-headshot.png',
           initials: 'SG',
           youtubeId: 'RoCT9M3r9Hs',
-          production2025: '$52.9M volume · 95 families served',
+          production2025: '$52.9M volume · 90 families served',
           bio: 'Steve has originated more than $3B in residential loans, helped over 7,800 families, and has been ranked in the top 1% of originators every single year since 2001. Two decades of consistency at that level is a credential almost nobody in the industry holds.',
           specialty: 'Strategy and vision — the long view. Figuring out where a mortgage business is going and how to position for the next ten years, not the next ninety days.'
         },

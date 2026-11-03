@@ -462,26 +462,26 @@ $tla_active      = 'events';
 
           <div class="ev-feature-card__grid">
             <!-- Square thumbnail -->
-            <a class="ev-feature-card__media" href="/2027-business-planning/" tabindex="-1" aria-hidden="true">
-              <img src="<?php echo TLA_BASE; ?>/assets/live-events/October-2026-Business-Planning-500x500.png" alt="2027 Business Planning — The Loan Atlas" loading="eager" />
+            <a class="ev-feature-card__media" href="/office-hours-tyler-osby/" tabindex="-1" aria-hidden="true">
+              <img src="<?php echo TLA_BASE; ?>/assets/live-events/November-2026-Office-Hours-Tyler-Osby-500x500.png" alt="Office Hours with Tyler Osby — The Loan Atlas" loading="eager" />
             </a>
 
             <!-- Copy -->
             <div class="ev-feature-card__copy">
-              <span class="ev-tag ev-tag--on-dark ev-tag--masterclass">Next Masterclass</span>
-              <h1 id="ev-featured-heading" class="ev-feature-card__title">2027 Business Planning &ndash; Turn Your Goals Into an Execution Plan</h1>
+              <span class="ev-tag ev-tag--on-dark ev-tag--masterclass">Next Live Event</span>
+              <h1 id="ev-featured-heading" class="ev-feature-card__title">Office Hours with Tyler Osby</h1>
               <div class="ev-feature-card__meta">
                 <span class="ev-feature-card__meta-item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                  Thursday, October 29, 2026
+                  Wednesday, November 4, 2026
                 </span>
                 <span class="ev-feature-card__meta-item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg>
                   11:00 AM PT
                 </span>
               </div>
-              <p class="ev-feature-card__desc">Writing down a goal is easy &mdash; following through is where most plans fall apart. Josh Mettle and Cody Hardridge help you connect your 2027 goals to your real production numbers, build the plan with the Loan Atlas AI Business Planner, and set an accountability cadence that keeps you executing through Q1.</p>
-              <a class="btn btn--gold btn--xl" href="/2027-business-planning/">Learn More and Get Access</a>
+              <p class="ev-feature-card__desc">Bring your live deals and real questions to Tyler Osby &mdash; 210 families served in 2025 and one of the most systems-minded originators in the country. Tyler coaches on systems, technology, scripting and business development, turning your calls, follow-ups and workflows into something that runs without you having to remember every step.</p>
+              <a class="btn btn--gold btn--xl" href="/office-hours-tyler-osby/">Learn More and Get Access</a>
             </div>
           </div>
 
@@ -499,27 +499,38 @@ $tla_active      = 'events';
 
         <div class="ev-grid" data-reveal-stagger="80">
 
-
-
           <article class="ev-card">
-            <a class="ev-card__media" href="/office-hours-julie-weix/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Julie-Weix-Square.png" alt="Office Hours with Julie Weix" loading="lazy" /></a>
+            <a class="ev-card__media" href="/office-hours-steve-grossman/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/November-2026-Office-Hours-Steve-Grossman-500x500.png" alt="Office Hours with Steve Grossman" loading="lazy" /></a>
             <div class="ev-card__body">
               <div class="ev-card__date">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Sep 16, 2026 &middot; 11:00 AM PT
+                Nov 11, 2026 &middot; 11:00 AM PT
               </div>
-              <h3 class="ev-card__title">Office Hours with Julie Weix</h3>
-              <p class="ev-card__desc">Join this session with Julie Weix, whose niche / specialty is in the area of Leadership, Personal Development, Mindset, and Time &amp; Task Management.</p>
-              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-julie-weix/">Get Access</a></div>
+              <h3 class="ev-card__title">Office Hours with Steve Grossman</h3>
+              <p class="ev-card__desc">Join this session with Steve Grossman, whose niche / specialty is in the area of Strategy, Vision, Mentorship and Networking.</p>
+              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-steve-grossman/">Get Access</a></div>
             </div>
           </article>
 
           <article class="ev-card">
-            <a class="ev-card__media" href="/talk-to-tim/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Talk-To-Tim-Square.png" alt="Talk to Tim" loading="lazy" /></a>
+            <a class="ev-card__media" href="/office-hours-katrinka-condie/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/November-2026-Office-Hours-Katrinka-Condie-500x500.png" alt="Office Hours with Katrinka Condie" loading="lazy" /></a>
             <div class="ev-card__body">
               <div class="ev-card__date">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Sep 22, 2026 &middot; 12:00 PM PT
+                Nov 18, 2026 &middot; 11:00 AM PT
+              </div>
+              <h3 class="ev-card__title">Office Hours with Katrinka Condie</h3>
+              <p class="ev-card__desc">Join this session with Katrinka Condie, whose niche / specialty is in the area of Building Relationships, Client Connection and the Perfect Loan Process.</p>
+              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-katrinka-condie/">Get Access</a></div>
+            </div>
+          </article>
+
+          <article class="ev-card">
+            <a class="ev-card__media" href="/talk-to-tim/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/November-2026-Talk-to-Tim-500x500.png" alt="Talk to Tim" loading="lazy" /></a>
+            <div class="ev-card__body">
+              <div class="ev-card__date">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Nov 20, 2026 &middot; 10:00 AM PT
               </div>
               <h3 class="ev-card__title">Talk to Tim</h3>
               <p class="ev-card__desc">Once a month, Tim Braheem gets in the room with you to coach you through the deeper stuff: the mindset blocks, the leadership doubts, and the fear of change holding your business back.</p>
@@ -528,41 +539,15 @@ $tla_active      = 'events';
           </article>
 
           <article class="ev-card">
-            <a class="ev-card__media" href="/office-hours-josh-mettle/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Josh-Mettle-Square.png" alt="Office Hours with Josh Mettle" loading="lazy" /></a>
+            <a class="ev-card__media" href="/office-hours-jay-dacey/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/November-2026-Jay-Dacey-Office-Hours-500x500.png" alt="Office Hours with Jay Dacey" loading="lazy" /></a>
             <div class="ev-card__body">
               <div class="ev-card__date">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Sep 23, 2026 &middot; 11:00 AM PT
-              </div>
-              <h3 class="ev-card__title">Office Hours with Josh Mettle</h3>
-              <p class="ev-card__desc">Join this session with Josh Mettle, whose niche / specialty is in the area of Marketing, Content, Audience-Building and Consumer-Direct Strategy.</p>
-              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-josh-mettle/">Get Access</a></div>
-            </div>
-          </article>
-
-          <article class="ev-card">
-            <a class="ev-card__media" href="/office-hours-jay-dacey/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/Office-Hours-Jay-Dacey-Square.png" alt="Office Hours with Jay Dacey" loading="lazy" /></a>
-            <div class="ev-card__body">
-              <div class="ev-card__date">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Sep 30, 2026 &middot; 11:00 AM PT
+                Nov 25, 2026 &middot; 11:00 AM PT
               </div>
               <h3 class="ev-card__title">Office Hours with Jay Dacey</h3>
               <p class="ev-card__desc">Join this session with Jay Dacey, whose niche / specialty is in the area of Database Management, the Perfect Loan Process, First-Time Homebuyers and Divorce Situations.</p>
               <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-jay-dacey/">Get Access</a></div>
-            </div>
-          </article>
-
-          <article class="ev-card">
-            <a class="ev-card__media" href="/2027-business-planning/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/October-2026-Business-Planning-500x500.png" alt="2027 Business Planning" loading="lazy" /></a>
-            <div class="ev-card__body">
-              <div class="ev-card__date">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Oct 29, 2026 &middot; 11:00 AM PT
-              </div>
-              <h3 class="ev-card__title">2027 Business Planning &ndash; Turn Your Goals Into an Execution Plan</h3>
-              <p class="ev-card__desc">Josh Mettle and Cody Hardridge help you turn your 2027 goals into a measurable plan grounded in your real numbers &mdash; and the accountability structure to keep executing it.</p>
-              <div class="ev-card__foot"><a class="ev-card__join" href="/2027-business-planning/">Get Access</a></div>
             </div>
           </article>
 
@@ -579,6 +564,24 @@ $tla_active      = 'events';
         </header>
 
         <div class="ev-library" data-reveal-stagger="90">
+
+          <!-- Whole card is clickable → replay detail page -->
+          <a class="ev-pastcard" href="/2027-business-planning/">
+            <div class="ev-pastcard__media">
+              <img src="<?php echo TLA_BASE; ?>/assets/live-events/past-events/OCTOBER_BUSINESS_PLANNING-768x432.png" alt="" loading="lazy" />
+            </div>
+            <div class="ev-pastcard__body">
+              <span class="ev-pastcard__recorded">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                Recorded on Oct 29, 2026
+              </span>
+              <h3 class="ev-pastcard__title">2027 Business Planning &ndash; Turn Your Goals Into an Execution Plan</h3>
+              <p class="ev-pastcard__desc">Josh Mettle and Cody Hardridge showed how to turn your 2027 goals into a measurable plan grounded in your real production numbers &mdash; built with the Loan Atlas AI Business Planner, with an accountability cadence to keep you executing through Q1.</p>
+              <div class="ev-pastcard__foot">
+                <span class="ev-pastcard__watch">Access the Replay <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg></span>
+              </div>
+            </div>
+          </a>
 
           <!-- Whole card is clickable → replay detail page -->
           <a class="ev-pastcard" href="/winning-mortgage-referrals-from-listing-agents/">
