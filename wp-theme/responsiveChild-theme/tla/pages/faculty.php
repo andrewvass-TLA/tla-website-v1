@@ -1594,8 +1594,10 @@ $tla_active      = 'faculty';
           fpVideo.innerHTML = '';
         }
 
-        fpScroll.scrollTop = 0;
         if (typeof fp.showModal === 'function') fp.showModal(); else fp.setAttribute('open', '');
+        // Reset scroll AFTER opening — a closed <dialog> is display:none, so setting it before is ignored
+        fpScroll.scrollTop = 0;
+        requestAnimationFrame(() => { fpScroll.scrollTop = 0; });
         document.body.classList.add('faculty-modal-open');
         setHash(slug);
       }
@@ -1609,6 +1611,7 @@ $tla_active      = 'faculty';
       fp.addEventListener('close', () => {
         document.body.classList.remove('faculty-modal-open');
         fpVideo.innerHTML = '';
+        fpScroll.scrollTop = 0;
         if (location.hash) setHash('');
         if (lastFocused && typeof lastFocused.focus === 'function') lastFocused.focus();
       });
