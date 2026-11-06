@@ -377,7 +377,7 @@ $tla_active      = '';
             <!-- Katrinka's faculty video -->
             <section data-reveal="up">
               <div class="oh-video">
-                <iframe src="https://www.youtube-nocookie.com/embed/9VZcS5N_B30"
+                <iframe src="https://www.youtube-nocookie.com/embed/S7NQYRyMICQ"
                   title="Katrinka Condie — Faculty introduction"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
