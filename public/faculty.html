@@ -703,21 +703,13 @@
     .fp__exp li:last-child { border-bottom: 0; }
     .fp__exp li::before { content: ""; width: 18px; height: 3px; border-radius: 2px; background: var(--fp-brass-grad); flex-shrink: 0; }
 
-    /* Click-to-load video */
+    /* Video — plain YouTube embed (YouTube's own play button) */
     .fp__vid {
-      position: relative; display: block; width: 100%; padding: 0; border: 0; cursor: pointer;
+      position: relative; display: block; width: 100%;
       aspect-ratio: 16 / 9; border-radius: 4px; overflow: hidden;
-      background: #060e1c center / cover no-repeat;
+      background: #060e1c;
       box-shadow: 0 14px 30px -14px rgba(2, 28, 54, .45);
     }
-    .fp__vid-play {
-      position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
-      width: 64px; height: 64px; border-radius: var(--radius-full);
-      background: var(--fp-brass-grad); display: grid; place-items: center;
-      box-shadow: 0 8px 24px rgba(0,0,0,.35); transition: transform .2s;
-    }
-    .fp__vid:hover .fp__vid-play { transform: translate(-50%, -50%) scale(1.07); }
-    .fp__vid-play svg { width: 22px; height: 22px; margin-left: 3px; color: var(--primary); }
     .fp__vid iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
     /* Big-photo layout (default; set profile.bigPhoto: false to opt out): narrower stats, larger headshot cropped at the
@@ -773,7 +765,6 @@
     }
     @media (prefers-reduced-motion: reduce) {
       .fp[open] { animation: none; }
-      .fp__vid-play { transition: none; }
     }
   </style>
 </head>
@@ -1601,7 +1592,7 @@
 
         if (data.youtubeId) {
           const id = encodeURIComponent(data.youtubeId);
-          fpVideo.innerHTML = `<button class="fp__vid" type="button" data-yt="${id}" style="background-image:url(https://img.youtube.com/vi/${id}/hqdefault.jpg)" aria-label="Play video: Meet ${escapeAttr(data.name)}"><span class="fp__vid-play" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span></button>`;
+          fpVideo.innerHTML = `<div class="fp__vid"><iframe src="https://www.youtube-nocookie.com/embed/${id}?rel=0" title="Meet ${escapeAttr(data.name)}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>`;
         } else {
           fpVideo.innerHTML = '';
         }
@@ -1616,11 +1607,6 @@
         if (typeof fp.close === 'function') fp.close(); else fp.removeAttribute('open');
       }
 
-      fpVideo.addEventListener('click', (event) => {
-        const btn = event.target.closest('.fp__vid[data-yt]');
-        if (!btn || btn.querySelector('iframe')) return;
-        btn.insertAdjacentHTML('beforeend', `<iframe src="https://www.youtube-nocookie.com/embed/${btn.dataset.yt}?autoplay=1&rel=0" title="Faculty introduction video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`);
-      });
       fp.querySelectorAll('[data-fp-close]').forEach((btn) => btn.addEventListener('click', closeProfile));
       fp.addEventListener('click', (event) => { if (event.target === fp) closeProfile(); });
       fp.addEventListener('close', () => {
