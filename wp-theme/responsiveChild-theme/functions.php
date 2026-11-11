@@ -379,7 +379,8 @@ function tla_blog_category_filter() {
  * so editors never hand-write markup or asset paths — change them once and
  * every post that uses the shortcode updates. Each offer renders the matching
  * skin from the design set (--ai / --scripts / --podcast / --join / --consult
- * / --doc).
+ * / --doc). The Perfect Loan Process offer key is "plp" (it uses the --doc
+ * skin; "doc" is still accepted as a legacy alias).
  *
  * @param array $atts  offer (required), image ("no" for the text-only form).
  * @return string  band HTML, or empty string for an unknown offer.
@@ -395,6 +396,11 @@ function tla_cta_shortcode( $atts ) {
 	);
 
 	$key       = sanitize_key( $atts['offer'] );
+	// Legacy alias: the Perfect Loan Process offer was "doc" before it became
+	// "plp" — keep old posts that still say offer="doc" rendering.
+	if ( 'doc' === $key ) {
+		$key = 'plp';
+	}
 	$with_img  = ! in_array( strtolower( (string) $atts['image'] ), array( 'no', 'false', '0' ), true );
 	$assets    = get_stylesheet_directory_uri() . '/tla/assets';
 
@@ -455,15 +461,15 @@ function tla_cta_shortcode( $atts ) {
 			'alt'     => 'Book a consultation with a Loan Atlas coach',
 			'icon'    => 'arrow',
 		),
-		'doc' => array(
+		'plp' => array(
 			'skin'    => 'doc',
 			'eyebrow' => 'Free system',
 			'title'   => 'The Perfect Loan Process',
 			'pitch'   => 'Create a five-star client experience on every file — the repeatable process behind the referrals.',
 			'btn'     => 'Get the system',
 			'url'     => 'https://www.theloanatlas.com/perfect-loan-process/',
-			'img'     => 'perfect-loan-process.png',
-			'alt'     => 'The Perfect Loan Process system',
+			'img'     => 'PLP-cover.webp',
+			'alt'     => 'The Perfect Loan Process booklet',
 			'icon'    => 'arrow',
 		),
 	);
@@ -472,7 +478,7 @@ function tla_cta_shortcode( $atts ) {
 		// Unknown offer: render nothing on the page (avoids a broken band),
 		// but leave a hint for an editor previewing in wp-admin.
 		return current_user_can( 'edit_posts' )
-			? '<!-- [tla_cta]: unknown offer "' . esc_html( $key ) . '". Use one of: ai, scripts, podcast, join, consult, doc. -->'
+			? '<!-- [tla_cta]: unknown offer "' . esc_html( $key ) . '". Use one of: ai, scripts, podcast, join, consult, plp. -->'
 			: '';
 	}
 
@@ -533,8 +539,16 @@ function tla_cta_shortcode( $atts ) {
 			return '<div class="ctab ctab--consult ctab--consult-flat">' . $body . '</div>';
 
 		case 'doc':
-			$shot = $with_img ? '<div class="ctab__shot">' . $img . '</div>' : '';
-			return '<div class="ctab ctab--doc">' . $shot
+			// With image: the booklet cover breaks out past the card edges
+			// (like the AI band's iPad) — the --doc-img modifier reserves room.
+			$shot = '<div class="ctab__shot">' . $img . '</div>';
+			if ( $with_img ) {
+				// Button stacks under the copy (like the AI band) so the copy
+				// column stays wide and the card short enough for the breakout.
+				return '<div class="ctab ctab--doc ctab--doc-img">' . $shot
+					. '<div class="ctab__body">' . $eyebrow . $title . $pitch . $button . '</div></div>';
+			}
+			return '<div class="ctab ctab--doc">'
 				. '<div class="ctab__body">' . $eyebrow . $title . $pitch . '</div>'
 				. $button . '</div>';
 	}
