@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mockup — Blog inline CTA bands ([tla_cta])</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../public/css/styles.css" />
+  <link rel="stylesheet" href="../public/css/blog.css" />
+  <style>
+    /* Mockup scaffolding only. The bands themselves are styled entirely by the
+       real .ctab-* rules in public/css/blog.css, and their markup mirrors what
+       tla_cta_shortcode() in wp-theme/responsiveChild-theme/functions.php
+       outputs (image paths repointed at ../public/assets/). Bands are shown
+       inside a .tla-article column, as they render in a live post.
+       Resize the window below 640px to see the stacked mobile layouts. */
+    body { background: #f7f9fb; margin: 0; }
+    .mk-top { background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%); color: #fff; padding: 48px 24px 32px; }
+    .mk-top__in, .mk-main { max-width: 760px; margin: 0 auto; }
+    .mk-top .t-eyebrow { color: var(--brass-bright); margin: 0 0 8px; }
+    .mk-top h1 { color: #fff; font-family: var(--font-display); font-weight: 800; font-size: clamp(1.75rem, 4vw, 2.5rem); margin: 0 0 12px; letter-spacing: -0.01em; }
+    .mk-top p { color: rgba(255,255,255,.78); margin: 0 0 20px; line-height: 1.6; }
+    .mk-top code, .mk-label code, .mk-offer__head code { font-family: ui-monospace, Menlo, monospace; font-size: .8125em; }
+    .mk-top code { background: rgba(255,255,255,.1); padding: 2px 6px; border-radius: 4px; color: #ffd56c; }
+    .mk-nav { display: flex; flex-wrap: wrap; gap: 8px; }
+    .mk-nav a { font: 600 .8125rem var(--font-body); color: #fff; text-decoration: none; padding: 6px 12px; border: 1px solid rgba(234,194,90,.4); border-radius: 999px; }
+    .mk-nav a:hover { background: rgba(234,194,90,.15); }
+    .mk-main { padding: 16px 24px 80px; }
+    .mk-offer { padding-top: 48px; border-bottom: 1px solid var(--outline-variant); padding-bottom: 24px; }
+    .mk-offer__head { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; margin-bottom: 8px; }
+    .mk-offer__head h2 { font-family: var(--font-display); font-weight: 700; font-size: 1.5rem; margin: 0; color: var(--primary); }
+    .mk-num { font: 700 .875rem var(--font-body); color: var(--brass); }
+    .mk-offer__head code { color: var(--on-surface-variant); }
+    .mk-variant { margin-top: 24px; }
+    .mk-label { font: 700 .75rem var(--font-body); letter-spacing: .14em; text-transform: uppercase; color: var(--on-surface-variant); margin: 0 0 8px; }
+    .mk-label code { text-transform: none; letter-spacing: 0; color: var(--secondary); margin-left: 8px; }
+    .mk-article { background: var(--surface-container-lowest); border: 1px solid var(--outline-variant); border-radius: var(--radius-xl); padding: clamp(20px, 4vw, 40px); }
+    .mk-article > p:first-child { margin-top: 0; }
+    .mk-article > p:last-child { margin-bottom: 0; }
+  </style>
+</head>
+<body>
+  <div class="mk-top"><div class="mk-top__in">
+    <p class="t-eyebrow">Blog · inline CTA bands</p>
+    <h1>Mid-post CTA bands</h1>
+    <p>There are six offers, and each one has a with-image and a text-only form. In a post, insert one with <code>[tla_cta offer="…"]</code>. To get the text-only form, add <code>image="no"</code>. Each band below is shown inside a post body, the way it renders on the live blog. Make the window narrower than 640px to see the mobile layout.</p>
+    <nav class="mk-nav"><a href="#ai">01 · AI Originator Masterplan</a><a href="#scripts">02 · 5 Scripts</a><a href="#podcast">03 · 360 Experience Podcast</a><a href="#join">04 · Membership</a><a href="#consult">05 · Consultation</a><a href="#doc">06 · Perfect Loan Process</a></nav>
+  </div></div>
+  <main class="mk-main">
+  <section class="mk-offer" id="ai">
+    <header class="mk-offer__head"><span class="mk-num">01</span><h2>AI Originator Masterplan</h2><code>offer="ai"</code></header>
+    <div class="mk-variant">
+      <p class="mk-label">With image <code>[tla_cta offer="ai"]</code></p>
+      <article class="tla-article mk-article"><p>Most originators don&#039;t have a lead problem — they have a follow-up problem. The deals are already in the pipeline; they just stall between the first conversation and the application.</p>
+<div class="ctab ctab--ai"><div class="ctab__body"><h3 class="ctab__title">The AI-Empowered Originator Masterplan</h3><p class="ctab__pitch">See how the next generation of loan officers close twice the loans in half the time.</p><a class="ctab-btn ctab-btn--gold" href="https://www.theloanatlas.com/ai-originator-masterplan/">Get the plan <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><div class="ctab__device"><img src="../public/assets/ai-masterplan-ipad.png" alt="The AI-Empowered Originator Masterplan on an iPad"></div></div>
+<p>That&#039;s why the best producers treat every touchpoint as part of one system, not a string of one-off calls. Here&#039;s what that looks like in practice.</p></article>
+    </div>
+    <div class="mk-variant">
+      <p class="mk-label">Text only <code>[tla_cta offer="ai" image="no"]</code></p>
+      <article class="tla-article mk-article"><p>Most originators don&#039;t have a lead problem — they have a follow-up problem. The deals are already in the pipeline; they just stall between the first conversation and the application.</p>
+<div class="ctab ctab--ai"><div class="ctab__body"><h3 class="ctab__title">The AI-Empowered Originator Masterplan</h3><p class="ctab__pitch">See how the next generation of loan officers close twice the loans in half the time.</p><a class="ctab-btn ctab-btn--gold" href="https://www.theloanatlas.com/ai-originator-masterplan/">Get the plan <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+<p>That&#039;s why the best producers treat every touchpoint as part of one system, not a string of one-off calls. Here&#039;s what that looks like in practice.</p></article>
+    </div>
+  </section>
+  <section class="mk-offer" id="scripts">
+    <header class="mk-offer__head"><span class="mk-num">02</span><h2>5 Scripts</h2><code>offer="scripts"</code></header>
+    <div class="mk-variant">
+      <p class="mk-label">With image <code>[tla_cta offer="scripts"]</code></p>
+      <article class="tla-article mk-article"><p>Most originators don&#039;t have a lead problem — they have a follow-up problem. The deals are already in the pipeline; they just stall between the first conversation and the application.</p>
+<div class="ctab ctab--scripts"><div class="ctab__thumb"><img src="../public/assets/5-scripts-hero.png" alt="The 5 Essential Scripts guide"></div><div class="ctab__body"><p class="ctab__eyebrow">Free download</p><h3 class="ctab__title">5 Scripts for Dominating the Point of Sale</h3><p class="ctab__pitch">Stop losing deals because you didn&#039;t know what to say. The exact words, ready to use.</p></div><a class="ctab-btn ctab-btn--gold" href="https://www.theloanatlas.com/5-scripts-for-dominating-point-of-sale/">Get the scripts <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<p>That&#039;s why the best producers treat every touchpoint as part of one system, not a string of one-off calls. Here&#039;s what that looks like in practice.</p></article>
+    </div>
+    <div class="mk-variant">
+      <p class="mk-label">Text only <code>[tla_cta offer="scripts" image="no"]</code></p>
+      <article class="tla-article mk-article"><p>Most originators don&#039;t have a lead problem — they have a follow-up problem. The deals are already in the pipeline; they just stall between the first conversation and the application.</p>
+<div class="ctab ctab--scripts"><div class="ctab__body"><p class="ctab__eyebrow">Free download</p><h3 class="ctab__title">5 Scripts for Dominating the Point of Sale</h3><p class="ctab__pitch">Stop losing deals because you didn&#039;t know what to say. The exact words, ready to use.</p></div><a class="ctab-btn ctab-btn--gold" href="https://www.theloanatlas.com/5-scripts-for-dominating-point-of-sale/">Get the scripts <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<p>That&#039;s why the best producers treat every touchpoint as part of one system, not a string of one-off calls. Here&#039;s what that looks like in practice.</p></article>
+    </div>
+  </section>
+  <section class="mk-offer" id="podcast">
+    <header class="mk-offer__head"><span class="mk-num">03</span><h2>360 Experience Podcast</h2><code>offer="podcast"</code></header>
+    <div class="mk-variant">
+      <p class="mk-label">With image <code>[tla_cta offer="podcast"]</code></p>
+      <article class="tla-article mk-article"><p>Most originators don&#039;t have a lead problem — they have a follow-up problem. The deals are already in the pipeline; they just stall between the first conversation and the application.</p>
+<div class="ctab ctab--podcast"><div class="ctab__cover"><img src="../public/assets/360%20experience%20podcast.webp" alt="The 360 Experience podcast cover art"></div><div class="ctab__body"><p class="ctab__eyebrow">The 360 Experience podcast</p><h3 class="ctab__title">Real conversations with the best in the business</h3><p class="ctab__pitch">Tactics, stories, and systems from top originators — a new episode every week.</p></div><a class="ctab-btn ctab-btn--gold" href="https://www.theloanatlas.com/podcast/">Listen now <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 3v10l9-5z"/></svg></a></div>
+<p>That&#039;s why the best producers treat every touchpoint as part of one system, not a string of one-off calls. Here&#039;s what that looks like in practice.</p></article>
+    </div>
+    <div class="mk-variant">
+      <p class="mk-label">Text only <code>[tla_cta offer="podcast" image="no"]</code></p>
+      <article class="tla-article mk-article"><p>Most originators don&#039;t have a lead problem — they have a follow-up problem. The deals are already in the pipeline; they just stall between the first conversation and the application.</p>
+<div class="ctab ctab--podcast"><div class="ctab__body"><p class="ctab__eyebrow">The 360 Experience podcast</p><h3 class="ctab__title">Real conversations with the best in the business</h3><p class="ctab__pitch">Tactics, stories, and systems from top originators — a new episode every week.</p></div><a class="ctab-btn ctab-btn--gold" href="https://www.theloanatlas.com/podcast/">Listen now <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path d="M4 3v10l9-5z"/></svg></a></div>
+<p>That&#039;s why the best producers treat every touchpoint as part of one system, not a string of one-off calls. Here&#039;s what that looks like in practice.</p></article>
+    </div>
+  </section>
+  <section class="mk-offer" id="join">
+    <header class="mk-offer__head"><span class="mk-num">04</span><h2>Membership</h2><code>offer="join"</code></header>
+    <div class="mk-variant">
+      <p class="mk-label">With image <code>[tla_cta offer="join"]</code></p>
+      <article class="tla-article mk-article"><p>Most originators don&#039;t have a lead problem — they have a follow-up problem. The deals are already in the pipeline; they just stall between the first conversation and the application.</p>
+<div class="ctab ctab--join"><img class="ctab__bg" src="../public/assets/hero%20image.png" alt="Join The Loan Atlas"><div class="ctab__body"><div class="ctab__copy"><p class="ctab__eyebrow">Membership</p><h3 class="ctab__title">Join The Loan Atlas</h3><p class="ctab__pitch">Coaching, community, and the AI business system that runs your pipeline — all in one place.</p></div><a class="ctab-btn ctab-btn--gold" href="/join/">Become a member <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+<p>That&#039;s why the best producers treat every touchpoint as part of one system, not a string of one-off calls. Here&#039;s what that looks like in practice.</p></article>
+    </div>
+    <div class="mk-variant">
+      <p class="mk-label">Text only <code>[tla_cta offer="join" image="no"]</code></p>
+      <article class="tla-article mk-article"><p>Most originators don&#039;t have a lead problem — they have a follow-up problem. The deals are already in the pipeline; they just stall between the first conversation and the application.</p>
+<div class="ctab ctab--join ctab--join-flat"><div class="ctab__body"><div class="ctab__copy"><p class="ctab__eyebrow">Membership</p><h3 class="ctab__title">Join The Loan Atlas</h3><p class="ctab__pitch">Coaching, community, and the AI business system that runs your pipeline — all in one place.</p></div><a class="ctab-btn ctab-btn--gold" href="/join/">Become a member <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+<p>That&#039;s why the best producers treat every touchpoint as part of one system, not a string of one-off calls. Here&#039;s what that looks like in practice.</p></article>
+    </div>
+  </section>
+  <section class="mk-offer" id="consult">
+    <header class="mk-offer__head"><span class="mk-num">05</span><h2>Consultation</h2><code>offer="consult"</code></header>
+    <div class="mk-variant">
+      <p class="mk-label">With image <code>[tla_cta offer="consult"]</code></p>
+      <article class="tla-article mk-article"><p>Most originators don&#039;t have a lead problem — they have a follow-up problem. The deals are already in the pipeline; they just stall between the first conversation and the application.</p>
+<div class="ctab ctab--consult"><div class="ctab__body"><p class="ctab__eyebrow">Free strategy call</p><h3 class="ctab__title">Book a 1:1 consultation</h3><p class="ctab__pitch">A 30-minute call to pressure-test your growth plan with a Loan Atlas coach. No cost, no pitch.</p><a class="ctab-btn ctab-btn--gold" href="/consultation/">Book my call <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div><div class="ctab__photo"><img src="../public/assets/consultation-header.png" alt="Book a consultation with a Loan Atlas coach"></div></div>
+<p>That&#039;s why the best producers treat every touchpoint as part of one system, not a string of one-off calls. Here&#039;s what that looks like in practice.</p></article>
+    </div>
+    <div class="mk-variant">
+      <p class="mk-label">Text only <code>[tla_cta offer="consult" image="no"]</code></p>
+      <article class="tla-article mk-article"><p>Most originators don&#039;t have a lead problem — they have a follow-up problem. The deals are already in the pipeline; they just stall between the first conversation and the application.</p>
+<div class="ctab ctab--consult ctab--consult-flat"><div class="ctab__body"><p class="ctab__eyebrow">Free strategy call</p><h3 class="ctab__title">Book a 1:1 consultation</h3><p class="ctab__pitch">A 30-minute call to pressure-test your growth plan with a Loan Atlas coach. No cost, no pitch.</p><a class="ctab-btn ctab-btn--gold" href="/consultation/">Book my call <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div></div>
+<p>That&#039;s why the best producers treat every touchpoint as part of one system, not a string of one-off calls. Here&#039;s what that looks like in practice.</p></article>
+    </div>
+  </section>
+  <section class="mk-offer" id="doc">
+    <header class="mk-offer__head"><span class="mk-num">06</span><h2>Perfect Loan Process</h2><code>offer="doc"</code></header>
+    <div class="mk-variant">
+      <p class="mk-label">With image <code>[tla_cta offer="doc"]</code></p>
+      <article class="tla-article mk-article"><p>Most originators don&#039;t have a lead problem — they have a follow-up problem. The deals are already in the pipeline; they just stall between the first conversation and the application.</p>
+<div class="ctab ctab--doc"><div class="ctab__shot"><img src="../public/assets/perfect-loan-process.png" alt="The Perfect Loan Process system"></div><div class="ctab__body"><p class="ctab__eyebrow">Free system</p><h3 class="ctab__title">The Perfect Loan Process</h3><p class="ctab__pitch">Create a five-star client experience on every file — the repeatable process behind the referrals.</p></div><a class="ctab-btn ctab-btn--gold" href="https://www.theloanatlas.com/perfect-loan-process/">Get the system <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<p>That&#039;s why the best producers treat every touchpoint as part of one system, not a string of one-off calls. Here&#039;s what that looks like in practice.</p></article>
+    </div>
+    <div class="mk-variant">
+      <p class="mk-label">Text only <code>[tla_cta offer="doc" image="no"]</code></p>
+      <article class="tla-article mk-article"><p>Most originators don&#039;t have a lead problem — they have a follow-up problem. The deals are already in the pipeline; they just stall between the first conversation and the application.</p>
+<div class="ctab ctab--doc"><div class="ctab__body"><p class="ctab__eyebrow">Free system</p><h3 class="ctab__title">The Perfect Loan Process</h3><p class="ctab__pitch">Create a five-star client experience on every file — the repeatable process behind the referrals.</p></div><a class="ctab-btn ctab-btn--gold" href="https://www.theloanatlas.com/perfect-loan-process/">Get the system <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h9M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
+<p>That&#039;s why the best producers treat every touchpoint as part of one system, not a string of one-off calls. Here&#039;s what that looks like in practice.</p></article>
+    </div>
+  </section>
+  </main>
+</body>
+</html>

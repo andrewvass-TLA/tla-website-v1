@@ -1,0 +1,1089 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Faculty Popup Mockups — Josh Mettle</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=Inter:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+  <!--
+    MOCKUP ONLY — not in convert-pages.sh, does not deploy.
+    Five candidate redesigns of the faculty popup, built for long-form bios.
+    Open: npm run serve → http://localhost:4321/faculty-popup-mockup.html
+    Deep link a design: …/faculty-popup-mockup.html#d3
+  -->
+  <style>
+    :root {
+      --primary: #021c36;
+      --ink: #191c1e;
+      --ink-2: #45464d;
+      --ink-3: #6b6e76;
+      --brass: #c9961c;
+      --brass-bright: #eac25a;
+      --brass-deep: #765b00;
+      --brass-grad: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+      --dark-band: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
+      --bg: #f7f9fb;
+      --surface: #ffffff;
+      --line: #e3e6ea;
+      --line-soft: #eef0f3;
+      --display: 'Manrope', system-ui, sans-serif;
+      --body: 'Inter', system-ui, sans-serif;
+      --shadow-xl: 0 30px 80px -20px rgba(2, 28, 54, 0.45), 0 10px 30px -10px rgba(2, 28, 54, 0.25);
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; }
+    body {
+      font-family: var(--body);
+      color: var(--ink);
+      background: var(--bg);
+      -webkit-font-smoothing: antialiased;
+    }
+    body.locked { overflow: hidden; }
+    img { display: block; max-width: 100%; }
+    button { font: inherit; cursor: pointer; }
+
+    /* ======================================================================
+       Mockup index page
+       ====================================================================== */
+    .mk-head {
+      background: var(--dark-band);
+      color: #fff;
+      padding: 56px 24px 64px;
+    }
+    .mk-wrap { max-width: 1120px; margin: 0 auto; }
+    .mk-eyebrow {
+      font: 700 0.8125rem/1 var(--body);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--brass-bright);
+      margin: 0 0 14px;
+    }
+    .mk-head h1 {
+      font: 700 clamp(2rem, 4vw, 2.75rem)/1.1 var(--display);
+      letter-spacing: -0.02em;
+      margin: 0 0 14px;
+    }
+    .mk-head p { color: rgba(255,255,255,0.72); max-width: 640px; line-height: 1.6; margin: 0; }
+    .mk-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+      padding: 40px 24px 120px;
+    }
+    .mk-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: border-color .2s, box-shadow .2s, transform .2s;
+    }
+    .mk-card:hover { border-color: var(--brass); box-shadow: 0 12px 30px -16px rgba(2,28,54,.3); transform: translateY(-2px); }
+    .mk-card__num {
+      font: 800 0.75rem/1 var(--display);
+      letter-spacing: 0.12em;
+      color: var(--brass-deep);
+      text-transform: uppercase;
+    }
+    .mk-card h2 { font: 700 1.375rem/1.2 var(--display); margin: 0; color: var(--primary); }
+    .mk-card p { margin: 0; color: var(--ink-2); line-height: 1.6; font-size: 0.9375rem; }
+    .mk-card ul { margin: 0; padding-left: 18px; color: var(--ink-2); font-size: 0.875rem; line-height: 1.6; }
+    .mk-card button {
+      margin-top: auto;
+      align-self: flex-start;
+      border: 0;
+      border-radius: 999px;
+      padding: 12px 22px;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9375rem;
+    }
+    .mk-card button:hover { background: #0a2d52; }
+
+    /* Floating design switcher — sits above every overlay */
+    .mk-switch {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      transform: translateX(-50%);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px;
+      background: rgba(6, 14, 28, 0.92);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(234, 194, 90, 0.35);
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.35);
+    }
+    .mk-switch span {
+      color: rgba(255,255,255,.6);
+      font: 600 0.75rem/1 var(--body);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 0 10px 0 12px;
+    }
+    .mk-switch button {
+      width: 38px; height: 38px;
+      border-radius: 999px;
+      border: 0;
+      background: transparent;
+      color: #fff;
+      font: 700 0.9375rem/1 var(--display);
+    }
+    .mk-switch button:hover { background: rgba(255,255,255,.1); }
+    .mk-switch button[aria-pressed="true"] { background: var(--brass-grad); color: var(--primary); }
+    .mk-switch .mk-switch__close { width: auto; padding: 0 14px; font: 600 0.8125rem/1 var(--body); color: rgba(255,255,255,.75); }
+
+    /* ======================================================================
+       Shared overlay mechanics (all 5 designs)
+       ====================================================================== */
+    .ov {
+      position: fixed;
+      inset: 0;
+      z-index: 900;
+      display: none;
+      background: rgba(2, 12, 26, 0.72);
+      backdrop-filter: blur(4px);
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+    .ov.is-open { display: block; animation: ov-fade .25s ease; }
+    @keyframes ov-fade { from { opacity: 0; } to { opacity: 1; } }
+
+    .x-btn {
+      width: 40px; height: 40px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: #fff;
+      color: var(--primary);
+      display: grid; place-items: center;
+      transition: background .2s, color .2s;
+      flex-shrink: 0;
+    }
+    .x-btn:hover { background: var(--primary); color: #fff; }
+    .x-btn svg { width: 18px; height: 18px; }
+    .x-btn--dark { background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.18); color: #fff; }
+    .x-btn--dark:hover { background: #fff; color: var(--primary); }
+
+    /* Video placeholder (click-to-load YouTube) */
+    .vid {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      border-radius: 12px;
+      overflow: hidden;
+      background: #060e1c center / cover no-repeat;
+      border: 0;
+      padding: 0;
+      width: 100%;
+      display: block;
+    }
+    .vid::after {
+      content: "";
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(2,28,54,0) 40%, rgba(2,28,54,.75) 100%);
+    }
+    .vid__play {
+      position: absolute;
+      left: 50%; top: 50%;
+      transform: translate(-50%, -50%);
+      width: 64px; height: 64px;
+      border-radius: 999px;
+      background: var(--brass-grad);
+      display: grid; place-items: center;
+      z-index: 1;
+      box-shadow: 0 8px 24px rgba(0,0,0,.35);
+      transition: transform .2s;
+    }
+    .vid:hover .vid__play { transform: translate(-50%, -50%) scale(1.07); }
+    .vid__play svg { width: 22px; height: 22px; margin-left: 3px; color: var(--primary); }
+    .vid__cap {
+      position: absolute;
+      left: 16px; bottom: 14px;
+      z-index: 1;
+      color: #fff;
+      font: 600 0.875rem/1.2 var(--body);
+      text-align: left;
+    }
+    .vid iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; z-index: 2; }
+
+    .prose p { margin: 0 0 1.1em; }
+    .prose p:last-child { margin-bottom: 0; }
+    .prose em { font-style: italic; }
+
+    /* ======================================================================
+       DESIGN 1 — Editorial Split
+       Sticky photo + fact sheet on the left; long, scrollable read on the right.
+       ====================================================================== */
+    .d1 {
+      position: relative;
+      max-width: 1080px;
+      margin: 5vh auto;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: var(--shadow-xl);
+      display: grid;
+      grid-template-columns: 1fr;
+      overflow: hidden;
+      max-height: 90vh;
+    }
+    @media (min-width: 880px) {
+      .d1 { grid-template-columns: 360px 1fr; height: 90vh; }
+    }
+    .d1__aside {
+      background: var(--dark-band);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+    }
+    .d1__photo { aspect-ratio: 4 / 5; overflow: hidden; position: relative; }
+    .d1__photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+    .d1__photo::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 55%, #060e1c 100%);
+    }
+    .d1__facts { padding: 0 28px 28px; margin-top: -40px; position: relative; z-index: 1; }
+    .d1__facts dl { margin: 0; display: grid; gap: 0; }
+    .d1__fact { padding: 14px 0; border-top: 1px solid rgba(255,255,255,.1); }
+    .d1__fact:first-child { border-top: 0; }
+    .d1__fact dt {
+      font: 700 0.6875rem/1 var(--body);
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--brass-bright);
+      margin-bottom: 6px;
+    }
+    .d1__fact dd { margin: 0; font-size: 0.9375rem; line-height: 1.5; color: rgba(255,255,255,.88); }
+    .d1__fact dd strong { font: 700 1.5rem/1.1 var(--display); color: #fff; }
+    .d1__main { overflow-y: auto; position: relative; }
+    .d1__top {
+      position: sticky; top: 0; z-index: 2;
+      display: flex; justify-content: space-between; align-items: center; gap: 16px;
+      padding: 20px 40px;
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .d1__top-name { font: 700 1rem/1 var(--display); color: var(--primary); opacity: 0; transition: opacity .2s; }
+    .d1__main.scrolled .d1__top-name { opacity: 1; }
+    .d1__body { padding: 16px 40px 56px; max-width: 680px; }
+    .d1__eyebrow { font: 700 0.8125rem/1 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--brass-deep); margin: 0 0 12px; }
+    .d1__name { font: 800 clamp(2.25rem, 4vw, 3.25rem)/1.02 var(--display); letter-spacing: -0.03em; color: var(--primary); margin: 0 0 10px; }
+    .d1__role { font-size: 1.0625rem; color: var(--ink-2); margin: 0 0 32px; }
+    .d1__lede {
+      font: 500 1.375rem/1.5 var(--display);
+      color: var(--primary);
+      letter-spacing: -0.01em;
+      padding-left: 22px;
+      border-left: 3px solid var(--brass);
+      margin: 0 0 40px;
+    }
+    .d1__h {
+      font: 700 0.75rem/1 var(--body);
+      letter-spacing: .14em; text-transform: uppercase;
+      color: var(--ink-3);
+      display: flex; align-items: center; gap: 12px;
+      margin: 44px 0 18px;
+    }
+    .d1__h::after { content: ""; flex: 1; height: 1px; background: var(--line); }
+    .d1 .prose { font-size: 1.0625rem; line-height: 1.75; color: var(--ink-2); }
+    .d1__dropcap > p:first-child::first-letter {
+      float: left;
+      font: 800 3.6rem/0.85 var(--display);
+      color: var(--brass);
+      margin: 6px 10px 0 0;
+    }
+    .d1__specialty {
+      background: #fbf6e8;
+      border: 1px solid #f0e2b8;
+      border-radius: 14px;
+      padding: 22px 24px;
+      font-size: 1.0625rem; line-height: 1.6; color: var(--ink);
+    }
+    @media (max-width: 879px) {
+      .d1 { margin: 0; border-radius: 0; max-height: none; min-height: 100vh; }
+      .d1__main { overflow: visible; }
+      .d1__photo { aspect-ratio: 1 / 1; }
+      .d1__top { padding: 14px 20px; }
+      .d1__body { padding: 8px 20px 100px; }
+      .d1__top-name { opacity: 1; }
+      .d1__aside { order: 0; }
+    }
+
+    /* ======================================================================
+       DESIGN 2 — Dark Header + Tabs
+       Identity band with stat chips; content split into tabs so long copy
+       never becomes one wall.
+       ====================================================================== */
+    .d2 {
+      position: relative;
+      max-width: 860px;
+      margin: 5vh auto;
+      background: #fff;
+      border-radius: 22px;
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+    }
+    .d2__head {
+      background: var(--dark-band);
+      color: #fff;
+      padding: 36px 40px 0;
+      position: relative;
+    }
+    .d2__head::before {
+      content: ""; position: absolute; inset: 0;
+      background: radial-gradient(600px 240px at 85% 0%, rgba(234,194,90,.18), transparent 70%);
+      pointer-events: none;
+    }
+    .d2__close { position: absolute; top: 20px; right: 20px; z-index: 2; }
+    .d2__id { display: flex; gap: 24px; align-items: center; position: relative; }
+    .d2__avatar {
+      width: 112px; height: 112px; border-radius: 999px; flex-shrink: 0;
+      padding: 3px; background: var(--brass-grad);
+    }
+    .d2__avatar img { width: 100%; height: 100%; border-radius: 999px; object-fit: cover; object-position: top; border: 3px solid #021c36; }
+    .d2__name { font: 800 clamp(1.75rem, 3.4vw, 2.5rem)/1.05 var(--display); letter-spacing: -0.02em; margin: 0 0 8px; }
+    .d2__role { color: rgba(255,255,255,.72); margin: 0; font-size: 1rem; }
+    .d2__role b { color: var(--brass-bright); font-weight: 600; }
+    .d2__stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 14px;
+      overflow: hidden;
+      margin: 28px 0 0;
+      position: relative;
+    }
+    .d2__stat { background: #071a31; padding: 16px 18px; }
+    .d2__stat strong { display: block; font: 800 1.5rem/1 var(--display); background: var(--brass-grad); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 6px; }
+    .d2__stat span { font-size: 0.8125rem; color: rgba(255,255,255,.65); }
+    .d2__tabs { display: flex; gap: 4px; margin-top: 24px; position: relative; overflow-x: auto; scrollbar-width: none; }
+    .d2__tab {
+      border: 0; background: transparent;
+      color: rgba(255,255,255,.62);
+      padding: 14px 18px;
+      font: 600 0.9375rem/1 var(--body);
+      border-radius: 10px 10px 0 0;
+      white-space: nowrap;
+      transition: color .2s, background .2s;
+    }
+    .d2__tab:hover { color: #fff; }
+    .d2__tab[aria-selected="true"] { background: #fff; color: var(--primary); }
+    .d2__panel { padding: 36px 40px 44px; display: none; }
+    .d2__panel.is-active { display: block; animation: ov-fade .25s ease; }
+    .d2__panel .prose { font-size: 1.0625rem; line-height: 1.75; color: var(--ink-2); max-width: 680px; }
+    .d2__label { font: 700 0.75rem/1 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--brass-deep); margin: 0 0 12px; }
+    .d2__short { font: 500 1.25rem/1.55 var(--display); color: var(--primary); margin: 0 0 32px; }
+    .d2__two { display: grid; gap: 24px; grid-template-columns: 1fr; }
+    @media (min-width: 720px) { .d2__two { grid-template-columns: 1fr 1fr; align-items: start; } }
+    .d2__box { border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+    .d2__box p { margin: 0; line-height: 1.65; color: var(--ink-2); }
+    .d2__next {
+      margin-top: 32px;
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 0; background: none; padding: 0;
+      color: var(--brass-deep); font-weight: 600;
+    }
+    .d2__next:hover { text-decoration: underline; }
+    @media (max-width: 640px) {
+      .d2 { margin: 0; border-radius: 0; min-height: 100vh; }
+      .d2__head { padding: 28px 20px 0; }
+      .d2__id { flex-direction: column; align-items: flex-start; gap: 16px; }
+      .d2__avatar { width: 88px; height: 88px; }
+      .d2__stats { grid-template-columns: 1fr 1fr 1fr; }
+      .d2__stat { padding: 12px; }
+      .d2__stat strong { font-size: 1.125rem; }
+      .d2__stat span { font-size: 0.75rem; }
+      .d2__panel { padding: 28px 20px 100px; }
+    }
+
+    /* ======================================================================
+       DESIGN 3 — Side Drawer
+       Full-height panel slides in from the right. Page context stays visible.
+       Built for reading: narrow measure, sticky compressing header.
+       ====================================================================== */
+    .ov--d3 { overflow: hidden; }
+    .d3 {
+      position: absolute;
+      top: 0; right: 0; bottom: 0;
+      width: min(640px, 100%);
+      background: #fff;
+      box-shadow: -30px 0 80px -20px rgba(0,0,0,.5);
+      display: flex; flex-direction: column;
+      animation: d3-in .38s cubic-bezier(.2,.8,.2,1);
+    }
+    @keyframes d3-in { from { transform: translateX(100%); } to { transform: none; } }
+    .d3__bar {
+      display: flex; align-items: center; gap: 14px;
+      padding: 16px 28px;
+      border-bottom: 1px solid var(--line-soft);
+      background: #fff;
+      position: relative; z-index: 2;
+    }
+    .d3__bar-mini { display: flex; align-items: center; gap: 12px; opacity: 0; transform: translateY(4px); transition: opacity .2s, transform .2s; }
+    .d3.scrolled .d3__bar-mini { opacity: 1; transform: none; }
+    .d3__bar-mini img { width: 36px; height: 36px; border-radius: 999px; object-fit: cover; object-position: top; }
+    .d3__bar-mini b { font: 700 1rem/1.1 var(--display); color: var(--primary); display: block; }
+    .d3__bar-mini small { font-size: .8125rem; color: var(--ink-3); }
+    .d3__bar .x-btn { margin-left: auto; }
+    .d3__scroll { overflow-y: auto; flex: 1; position: relative; }
+    .d3__hero { position: relative; height: 340px; background: var(--dark-band); overflow: hidden; }
+    .d3__hero img {
+      position: absolute; right: 0; bottom: 0;
+      height: 100%; width: auto;
+      mask-image: linear-gradient(90deg, transparent 0%, #000 35%);
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 35%);
+    }
+    .d3__hero-txt { position: absolute; left: 32px; bottom: 32px; right: 45%; color: #fff; z-index: 1; }
+    .d3__hero-txt .tag {
+      display: inline-block;
+      font: 700 .6875rem/1 var(--body); letter-spacing: .14em; text-transform: uppercase;
+      color: var(--primary); background: var(--brass-grad);
+      padding: 6px 10px; border-radius: 999px; margin-bottom: 14px;
+    }
+    .d3__hero-txt h2 { font: 800 2.25rem/1.02 var(--display); letter-spacing: -.02em; margin: 0 0 10px; }
+    .d3__hero-txt p { margin: 0; color: rgba(255,255,255,.75); font-size: .9375rem; line-height: 1.45; }
+    .d3__meta {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--line-soft);
+    }
+    .d3__meta div { padding: 18px 20px; border-left: 1px solid var(--line-soft); }
+    .d3__meta div:first-child { border-left: 0; padding-left: 32px; }
+    .d3__meta dt { font: 700 .6875rem/1 var(--body); letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 6px; }
+    .d3__meta dd { margin: 0; font: 700 1.125rem/1.2 var(--display); color: var(--primary); }
+    .d3__content { padding: 32px 32px 120px; }
+    .d3__content .prose { font-size: 1.0625rem; line-height: 1.8; color: var(--ink-2); }
+    .d3__sec { margin-bottom: 40px; }
+    .d3__sec h3 { font: 700 1.25rem/1.3 var(--display); color: var(--primary); margin: 0 0 14px; }
+    .d3__short { font: 500 1.1875rem/1.6 var(--display); color: var(--primary); margin: 0; }
+    .d3__spec { display: flex; gap: 16px; padding: 20px; background: var(--bg); border-radius: 14px; }
+    .d3__spec-icon { width: 44px; height: 44px; border-radius: 12px; background: var(--primary); color: var(--brass-bright); display: grid; place-items: center; flex-shrink: 0; }
+    .d3__spec-icon svg { width: 22px; height: 22px; }
+    .d3__spec p { margin: 0; line-height: 1.6; color: var(--ink); }
+    .d3__toc { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 32px; }
+    .d3__toc a {
+      font-size: .8125rem; font-weight: 600; color: var(--primary);
+      padding: 8px 14px; border-radius: 999px; border: 1px solid var(--line);
+      text-decoration: none;
+    }
+    .d3__toc a:hover { border-color: var(--brass); background: #fbf6e8; }
+    @media (max-width: 560px) {
+      .d3__hero { height: 300px; }
+      .d3__hero-txt { left: 20px; right: 38%; bottom: 24px; }
+      .d3__hero-txt h2 { font-size: 1.75rem; }
+      .d3__meta div:first-child { padding-left: 20px; }
+      .d3__meta div { padding: 14px 12px; }
+      .d3__meta dd { font-size: .9375rem; }
+      .d3__content { padding: 28px 20px 120px; }
+      .d3__bar { padding: 12px 16px; }
+    }
+
+    /* ======================================================================
+       DESIGN 4 — Magazine Feature
+       Near-full-screen, light, editorial. Big type, newspaper-style two-column
+       body on desktop, pull quote, fact rail.
+       ====================================================================== */
+    .d4 {
+      position: relative;
+      max-width: 1180px;
+      margin: 3vh auto;
+      background: #fdfcf9;
+      border-radius: 6px;
+      box-shadow: var(--shadow-xl);
+      padding: 56px 64px 72px;
+    }
+    .d4__close { position: absolute; top: 20px; right: 20px; }
+    .d4__kicker {
+      display: flex; align-items: center; gap: 14px;
+      font: 700 .9375rem/1 var(--body); letter-spacing: .18em; text-transform: uppercase;
+      color: var(--brass-deep);
+      padding-bottom: 18px; margin-bottom: 36px;
+      border-bottom: 2px solid var(--primary);
+    }
+    .d4__logo { height: 38px; width: auto; }
+    .d4__kicker-rule { width: 1px; height: 30px; background: var(--ink-3); opacity: .5; flex-shrink: 0; margin: 0 6px; }
+    .d4__top { display: grid; gap: 48px; grid-template-columns: 1fr; align-items: center; }
+    @media (min-width: 900px) { .d4__top { grid-template-columns: 1.35fr 1fr; } .d4__top > div { padding-bottom: 56px; } }
+    .d4__name { font: 800 clamp(3rem, 7vw, 5.5rem)/0.92 var(--display); letter-spacing: -0.045em; color: var(--primary); margin: 0 0 24px; }
+    .d4__name em { font-style: normal; background: var(--brass-grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .d4__dek { font: 400 1.375rem/1.5 var(--body); color: var(--ink-2); margin: 0; max-width: 560px; }
+    /* Headshot is a cutout PNG: sit it flush on the divider so it "stands" on the line */
+    .d4__photo { position: relative; align-self: end; display: flex; justify-content: center; margin: 0; }
+    .d4__photo img { width: auto; max-width: 100%; height: auto; max-height: 480px; filter: saturate(.95); }
+    .d4__rail {
+      display: grid; grid-template-columns: 1fr;
+      border-top: 2px solid var(--primary);
+      margin: 8px 0 0; max-width: 560px;
+    }
+    .d4__rail div { padding: 20px 28px 20px 0; border-bottom: 1px solid var(--line); }
+    .d4__sep { color: var(--brass); font-weight: 400; margin: 0 6px; }
+    .d4__role { font: 600 1.25rem/1.3 var(--display); color: var(--ink-2); margin: -8px 0 28px; }
+    .d4__rail dt { font: 700 .6875rem/1 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px; white-space: nowrap; }
+    .d4__rail dd { margin: 0; font: 700 1.25rem/1.25 var(--display); color: var(--primary); white-space: nowrap; }
+    .d4__cols { margin-top: 0; padding-top: 48px; border-top: 1px solid var(--line); }
+    .d4__cols { columns: 1; column-gap: 56px; font-size: 1.0625rem; line-height: 1.75; color: var(--ink-2); }
+    @media (min-width: 900px) { .d4__cols { columns: 2; } }
+    .d4__cols p { margin: 0 0 1.1em; break-inside: avoid-column; }
+    .d4__cols > p:first-child::first-letter {
+      float: left; font: 800 4.2rem/.8 var(--display); color: var(--primary); margin: 8px 12px 0 0;
+    }
+    .d4__pull {
+      break-inside: avoid;
+      margin: 8px 0 28px;
+      padding: 22px 0;
+      border-top: 3px solid var(--brass);
+      border-bottom: 1px solid var(--line);
+      font: 700 1.375rem/1.35 var(--display);
+      color: var(--primary);
+      letter-spacing: -.01em;
+    }
+    /* Expertise + video share one panel so they read as a single section */
+    .d4__foot {
+      display: grid; gap: 32px; grid-template-columns: 1fr;
+      margin-top: 56px;
+      padding: 40px;
+      background: #f4f0e6;
+      border-top: 3px solid var(--brass);
+      border-radius: 0 0 6px 6px;
+    }
+    @media (min-width: 900px) { .d4__foot { grid-template-columns: 1fr 1.15fr; gap: 48px; align-items: center; } }
+    .d4__foot h3 { font: 800 1.75rem/1.15 var(--display); letter-spacing: -.02em; color: var(--primary); margin: 0 0 18px; }
+    .d4__exp { list-style: none; margin: 0; padding: 0; }
+    .d4__exp li {
+      display: flex; align-items: center; gap: 14px;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(2, 28, 54, .1);
+      font: 500 1.0625rem/1.3 var(--body); color: var(--ink);
+    }
+    .d4__exp li:last-child { border-bottom: 0; }
+    .d4__exp li::before { content: ""; width: 18px; height: 3px; border-radius: 2px; background: var(--brass-grad); flex-shrink: 0; }
+    .d4__foot .vid { border-radius: 4px; box-shadow: 0 14px 30px -14px rgba(2, 28, 54, .45); }
+    .d4__foot .vid__cap, .d4__foot .vid::after { display: none; }
+    /* Under 900px: headshot stays beside the name + title and stands on the
+       stats' top rule; stats run full width underneath. */
+    @media (max-width: 899px) {
+      .d4__top {
+        grid-template-columns: 1fr auto;
+        grid-template-areas: "name photo" "role photo" "rail rail";
+        grid-template-rows: 1fr auto auto;
+        column-gap: 16px; row-gap: 0;
+        align-items: end;
+      }
+      .d4__top > div { display: contents; }
+      .d4__name { grid-area: name; margin-bottom: 14px; }
+      .d4__role { grid-area: role; margin: 0 0 24px; }
+      .d4__photo { grid-area: photo; }
+      .d4__photo img { max-height: 300px; }
+      .d4__rail { grid-area: rail; margin: 0; max-width: none; }
+      .d4__rail div:last-child { border-bottom: 0; }
+      .d4__cols { margin-top: 40px; }
+    }
+    @media (max-width: 760px) {
+      .d4 { margin: 0; border-radius: 0; padding: 64px 20px 110px; }
+      .d4__rail div { padding: 16px 12px 16px 0; }
+      .d4__rail dd { font-size: 1.0625rem; }
+      .d4__role { font-size: 1rem; margin-bottom: 20px; }
+      .d4__name { font-size: 2.75rem; }
+      .d4__cols { padding-top: 32px; }
+      .d4__foot { padding: 28px 20px; margin-left: -20px; margin-right: -20px; border-radius: 0; }
+      .d4__foot h3 { font-size: 1.5rem; }
+      .d4__photo img { max-height: 190px; }
+      .d4__cols { margin-top: 32px; }
+      .d4__logo { height: 26px; }
+      .d4__kicker-rule { height: 22px; margin: 0 2px; }
+      .d4__kicker { font-size: .75rem; gap: 10px; }
+    }
+
+    /* ======================================================================
+       DESIGN 5 — Compact Card + Expand
+       Opens small and scannable (close to today's popup). "Read full bio"
+       grows it in place; Background becomes a career timeline.
+       ====================================================================== */
+    .d5 {
+      position: relative;
+      max-width: 760px;
+      margin: 6vh auto;
+      background: #fff;
+      border-radius: 24px;
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+    }
+    .d5__close { position: absolute; top: 18px; right: 18px; z-index: 3; }
+    .d5__top { display: grid; grid-template-columns: 220px 1fr; }
+    .d5__photo { position: relative; background: var(--primary); }
+    .d5__photo img { width: 100%; height: 100%; object-fit: cover; object-position: top; min-height: 280px; }
+    .d5__photo .since {
+      position: absolute; left: 14px; bottom: 14px;
+      background: rgba(6,14,28,.85); backdrop-filter: blur(6px);
+      color: #fff; border-radius: 10px; padding: 8px 12px;
+      font-size: .75rem; line-height: 1.2;
+    }
+    .d5__photo .since b { display: block; font: 800 1.125rem/1 var(--display); color: var(--brass-bright); }
+    .d5__id { padding: 32px 36px 28px; display: flex; flex-direction: column; }
+    .d5__name { font: 800 2rem/1.05 var(--display); letter-spacing: -.02em; color: var(--primary); margin: 0 0 6px; padding-right: 40px; }
+    .d5__role { color: var(--ink-3); font-size: .9375rem; margin: 0 0 18px; }
+    .d5__short { font-size: 1rem; line-height: 1.65; color: var(--ink-2); margin: 0 0 18px; }
+    .d5__chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: auto; }
+    .d5__chip { font: 600 .8125rem/1 var(--body); padding: 8px 12px; border-radius: 999px; background: #fbf6e8; color: var(--brass-deep); border: 1px solid #f0e2b8; }
+    .d5__spec {
+      margin: 0; padding: 20px 36px;
+      background: var(--dark-band); color: rgba(255,255,255,.88);
+      display: flex; gap: 16px; align-items: baseline;
+      font-size: .9688rem; line-height: 1.6;
+    }
+    .d5__spec b { color: var(--brass-bright); font: 700 .6875rem/1 var(--body); letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; }
+    .d5__more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .45s cubic-bezier(.2,.8,.2,1); }
+    .d5.is-expanded .d5__more { grid-template-rows: 1fr; }
+    .d5__more > div { overflow: hidden; }
+    .d5__more-inner { padding: 36px 36px 8px; }
+    .d5__h { font: 700 .75rem/1 var(--body); letter-spacing: .14em; text-transform: uppercase; color: var(--ink-3); margin: 0 0 20px; }
+    .d5__timeline { list-style: none; margin: 0 0 40px; padding: 0; position: relative; }
+    .d5__timeline::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: 8px; width: 2px; background: linear-gradient(var(--brass), var(--line)); }
+    .d5__timeline li { position: relative; padding: 0 0 22px 36px; }
+    .d5__timeline li::before { content: ""; position: absolute; left: 0; top: 3px; width: 16px; height: 16px; border-radius: 999px; background: #fff; border: 3px solid var(--brass); }
+    .d5__timeline li:last-child { padding-bottom: 0; }
+    .d5__timeline b { font: 800 1rem/1.2 var(--display); color: var(--primary); display: block; margin-bottom: 4px; }
+    .d5__timeline span { font-size: .9375rem; color: var(--ink-2); line-height: 1.55; }
+    .d5 .prose { font-size: 1.0313rem; line-height: 1.75; color: var(--ink-2); }
+    .d5__vid { margin: 32px 0 0; }
+    .d5__toggle {
+      width: 100%;
+      border: 0; border-top: 1px solid var(--line-soft);
+      background: #fff;
+      padding: 18px;
+      display: flex; align-items: center; justify-content: center; gap: 10px;
+      font: 600 .9375rem/1 var(--body); color: var(--primary);
+      transition: background .2s;
+    }
+    .d5__toggle:hover { background: var(--bg); }
+    .d5__toggle svg { width: 18px; height: 18px; transition: transform .3s; color: var(--brass); }
+    .d5.is-expanded .d5__toggle svg { transform: rotate(180deg); }
+    .d5.is-expanded .d5__toggle { position: sticky; bottom: 0; box-shadow: 0 -8px 20px -12px rgba(2,28,54,.25); }
+    @media (max-width: 640px) {
+      .d5 { margin: 0; border-radius: 0; min-height: 100vh; }
+      .d5__top { grid-template-columns: 1fr; }
+      .d5__photo img { aspect-ratio: 1/1; min-height: 0; }
+      .d5__id { padding: 24px 20px; }
+      .d5__spec { padding: 18px 20px; flex-direction: column; gap: 8px; }
+      .d5__more-inner { padding: 28px 20px 8px; }
+      .d5__toggle { margin-bottom: 72px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="mk-head">
+    <div class="mk-wrap">
+      <p class="mk-eyebrow">Mockup · Faculty popup redesign</p>
+      <h1>Five popup designs for long-form bios</h1>
+      <p>Every design uses the same content for Josh Mettle: started, current role, short bio, background, full bio, specialty and video. Open one, then use the switcher at the bottom of the screen to flip between them. Press Esc to close.</p>
+    </div>
+  </header>
+
+  <main class="mk-wrap mk-grid">
+    <article class="mk-card">
+      <span class="mk-card__num">Design 01</span>
+      <h2>Editorial Split</h2>
+      <p>Closest to today's layout, rebuilt for reading. A dark photo column stays put while the bio scrolls on the right.</p>
+      <ul><li>Short bio becomes the opening lede</li><li>Drop-cap full bio, readable line length</li><li>Name moves into a sticky bar as you scroll</li></ul>
+      <button type="button" data-open="1">Open Design 1</button>
+    </article>
+    <article class="mk-card">
+      <span class="mk-card__num">Design 02</span>
+      <h2>Dark Header + Tabs</h2>
+      <p>A brand-forward identity band with stat chips. Content is split into Overview / Full Bio / Background tabs, so you never face one wall of text.</p>
+      <ul><li>Shortest scroll of the five</li><li>Overview tab works as a teaser</li><li>Good when bios vary a lot in length</li></ul>
+      <button type="button" data-open="2">Open Design 2</button>
+    </article>
+    <article class="mk-card">
+      <span class="mk-card__num">Design 03</span>
+      <h2>Side Drawer</h2>
+      <p>A full-height panel slides in from the right, keeping the faculty grid visible. It reads like an article: a narrow column, section jump links and a compact sticky header.</p>
+      <ul><li>Best fit for very long bios</li><li>Feels app-like, especially on mobile</li><li>Jump links for Background / Full Bio / Video</li></ul>
+      <button type="button" data-open="3">Open Design 3</button>
+    </article>
+    <article class="mk-card">
+      <span class="mk-card__num">Design 04</span>
+      <h2>Magazine Feature</h2>
+      <p>A nearly full-screen editorial profile: large headline name with the background as the intro, a fact rail, full-width two-column bio with a pull quote, then specialty and video side by side.</p>
+      <ul><li>Most premium / "featured profile" feel</li><li>Fits the most text above the fold on desktop</li><li>Collapses to one column on mobile</li></ul>
+      <button type="button" data-open="4">Open Design 4</button>
+    </article>
+    <article class="mk-card">
+      <span class="mk-card__num">Design 05</span>
+      <h2>Compact Card + Expand</h2>
+      <p>Opens small and scannable, like today's popup. "Read full bio" expands it in place to show a career timeline, the full bio and the video.</p>
+      <ul><li>Light first impression, depth on demand</li><li>Background shown as a timeline</li><li>Sticky collapse button once expanded</li></ul>
+      <button type="button" data-open="5">Open Design 5</button>
+    </article>
+  </main>
+
+  <!-- ==================== DESIGN 1 ==================== -->
+  <div class="ov" id="ov1" role="dialog" aria-modal="true" aria-label="Josh Mettle — Design 1">
+    <div class="d1">
+      <aside class="d1__aside">
+        <div class="d1__photo"><img src="assets/josh-mettle-headshot.png" alt="Josh Mettle" /></div>
+        <div class="d1__facts">
+          <dl>
+            <div class="d1__fact"><dt>In the industry since</dt><dd><strong>2001</strong></dd></div>
+            <div class="d1__fact"><dt>Personal production</dt><dd><strong>$1.17B</strong></dd></div>
+            <div class="d1__fact"><dt>Current role</dt><dd>Division President at NEO Home Loans</dd></div>
+            <div class="d1__fact"><dt>Recognition</dt><dd>Top 1% of mortgage originators, 2020 — <em>Mortgage Executive Magazine</em></dd></div>
+          </dl>
+        </div>
+      </aside>
+      <div class="d1__main" data-scrollwatch>
+        <div class="d1__top">
+          <span class="d1__top-name">Josh Mettle</span>
+          <button class="x-btn" type="button" aria-label="Close" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+        </div>
+        <div class="d1__body">
+          <p class="d1__eyebrow">Loan Atlas Faculty</p>
+          <h2 class="d1__name">Josh Mettle</h2>
+          <p class="d1__role">Division President, NEO Home Loans · Faculty Mentor since 2023</p>
+          <p class="d1__lede" data-slot="short"></p>
+
+          <h3 class="d1__h">Specialty</h3>
+          <div class="d1__specialty" data-slot="specialty"></div>
+
+          <h3 class="d1__h">Background</h3>
+          <div class="prose"><p data-slot="background"></p></div>
+
+          <h3 class="d1__h">Full Bio</h3>
+          <div class="prose d1__dropcap" data-slot="full"></div>
+
+          <h3 class="d1__h">Hear from Josh</h3>
+          <div data-slot="video"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== DESIGN 2 ==================== -->
+  <div class="ov" id="ov2" role="dialog" aria-modal="true" aria-label="Josh Mettle — Design 2">
+    <div class="d2">
+      <div class="d2__head">
+        <button class="x-btn x-btn--dark d2__close" type="button" aria-label="Close" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+        <div class="d2__id">
+          <div class="d2__avatar"><img src="assets/josh-mettle-headshot.png" alt="Josh Mettle" /></div>
+          <div>
+            <h2 class="d2__name">Josh Mettle</h2>
+            <p class="d2__role"><b>Division President</b> · NEO Home Loans</p>
+          </div>
+        </div>
+        <div class="d2__stats">
+          <div class="d2__stat"><strong>2001</strong><span>Started in mortgage</span></div>
+          <div class="d2__stat"><strong>$1.17B</strong><span>Personal production</span></div>
+          <div class="d2__stat"><strong>Top 1%</strong><span>Originators, 2020</span></div>
+        </div>
+        <div class="d2__tabs" role="tablist">
+          <button class="d2__tab" role="tab" aria-selected="true" data-tab="overview">Overview</button>
+          <button class="d2__tab" role="tab" aria-selected="false" data-tab="full">Full Bio</button>
+          <button class="d2__tab" role="tab" aria-selected="false" data-tab="background">Background</button>
+          <button class="d2__tab" role="tab" aria-selected="false" data-tab="video">Video</button>
+        </div>
+      </div>
+      <section class="d2__panel is-active" data-panel="overview">
+        <p class="d2__label">About Josh</p>
+        <p class="d2__short" data-slot="short"></p>
+        <div class="d2__two">
+          <div class="d2__box"><p class="d2__label">Specialty</p><p data-slot="specialty"></p></div>
+          <div class="d2__box"><p class="d2__label">Current Role</p><p>Division President at NEO Home Loans and Co-founder of Triibe Coaching.</p></div>
+        </div>
+        <button class="d2__next" type="button" data-goto="full">Read Josh's full bio →</button>
+      </section>
+      <section class="d2__panel" data-panel="full">
+        <div class="prose" data-slot="full"></div>
+      </section>
+      <section class="d2__panel" data-panel="background">
+        <div class="prose"><p data-slot="background"></p></div>
+      </section>
+      <section class="d2__panel" data-panel="video">
+        <div data-slot="video"></div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ==================== DESIGN 3 ==================== -->
+  <div class="ov ov--d3" id="ov3" role="dialog" aria-modal="true" aria-label="Josh Mettle — Design 3">
+    <div class="d3">
+      <div class="d3__bar">
+        <div class="d3__bar-mini">
+          <img src="assets/josh-mettle-headshot.png" alt="" />
+          <div><b>Josh Mettle</b><small>Division President, NEO Home Loans</small></div>
+        </div>
+        <button class="x-btn" type="button" aria-label="Close" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      </div>
+      <div class="d3__scroll" data-scrollwatch>
+        <div class="d3__hero">
+          <img src="assets/josh-mettle-headshot.png" alt="Josh Mettle" />
+          <div class="d3__hero-txt">
+            <span class="tag">Faculty Mentor</span>
+            <h2>Josh Mettle</h2>
+            <p>Division President at NEO Home Loans</p>
+          </div>
+        </div>
+        <dl class="d3__meta">
+          <div><dt>Started</dt><dd>2001</dd></div>
+          <div><dt>Production</dt><dd>$1.17B</dd></div>
+          <div><dt>Ranked</dt><dd>Top 1%</dd></div>
+        </dl>
+        <div class="d3__content">
+          <nav class="d3__toc">
+            <a href="#d3-background">Background</a>
+            <a href="#d3-full">Full Bio</a>
+            <a href="#d3-video">Video</a>
+          </nav>
+          <div class="d3__sec"><p class="d3__short" data-slot="short"></p></div>
+          <div class="d3__sec">
+            <div class="d3__spec">
+              <div class="d3__spec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 15 8.5 22 9.3 17 14 18.2 21 12 17.8 5.8 21 7 14 2 9.3 9 8.5z"/></svg></div>
+              <div><p style="font:700 .6875rem/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--brass-deep);margin-bottom:8px">Specialty</p><p data-slot="specialty"></p></div>
+            </div>
+          </div>
+          <div class="d3__sec" id="d3-background"><h3>Background</h3><div class="prose"><p data-slot="background"></p></div></div>
+          <div class="d3__sec" id="d3-full"><h3>Full Bio</h3><div class="prose" data-slot="full"></div></div>
+          <div class="d3__sec" id="d3-video"><h3>Hear from Josh</h3><div data-slot="video"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== DESIGN 4 ==================== -->
+  <div class="ov" id="ov4" role="dialog" aria-modal="true" aria-label="Josh Mettle — Design 4">
+    <article class="d4">
+      <button class="x-btn d4__close" type="button" aria-label="Close" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      <div class="d4__kicker"><img class="d4__logo" src="assets/Loan Atlas logo-color.png" alt="The Loan Atlas" /><span class="d4__kicker-rule" aria-hidden="true"></span><span>Faculty Profile</span></div>
+      <div class="d4__top">
+        <div>
+          <h2 class="d4__name">Josh<br /><em>Mettle</em></h2>
+          <p class="d4__role">Division President, NEO Home Loans</p>
+          <dl class="d4__rail">
+            <div><dt>Originating Since</dt><dd>2001</dd></div>
+            <div><dt>2025 Production</dt><dd>$191M Volume <span class="d4__sep">|</span> 358 Families Served</dd></div>
+          </dl>
+        </div>
+        <figure class="d4__photo">
+          <img src="assets/josh-mettle-headshot.png" alt="Josh Mettle" />
+        </figure>
+      </div>
+      <div class="d4__cols" id="d4cols"></div>
+      <div class="d4__foot">
+        <div class="d4__spec"><h3>Josh's Areas of Expertise</h3>
+          <ul class="d4__exp">
+            <li>Marketing</li>
+            <li>Consumer Direct</li>
+            <li>Health and Wellness</li>
+            <li>Financial Freedom</li>
+          </ul>
+        </div>
+        <div data-slot="video"></div>
+      </div>
+    </article>
+  </div>
+
+  <!-- ==================== DESIGN 5 ==================== -->
+  <div class="ov" id="ov5" role="dialog" aria-modal="true" aria-label="Josh Mettle — Design 5">
+    <div class="d5">
+      <button class="x-btn d5__close" type="button" aria-label="Close" data-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+      <div class="d5__top">
+        <div class="d5__photo">
+          <img src="assets/josh-mettle-headshot.png" alt="Josh Mettle" />
+          <div class="since"><b>2001</b>in the industry</div>
+        </div>
+        <div class="d5__id">
+          <h2 class="d5__name">Josh Mettle</h2>
+          <p class="d5__role">Division President at NEO Home Loans</p>
+          <p class="d5__short" data-slot="short"></p>
+          <div class="d5__chips">
+            <span class="d5__chip">$1.17B production</span>
+            <span class="d5__chip">Top 1% · 2020</span>
+            <span class="d5__chip">Author &amp; podcast host</span>
+          </div>
+        </div>
+      </div>
+      <p class="d5__spec"><b>Specialty</b><span data-slot="specialty"></span></p>
+      <div class="d5__more">
+        <div>
+          <div class="d5__more-inner">
+            <h3 class="d5__h">Career path</h3>
+            <ol class="d5__timeline">
+              <li><b>2001</b><span>Starts in the mortgage industry</span></li>
+              <li><b>2020</b><span>Ranked top 1% of mortgage originators by <em>Mortgage Executive Magazine</em></span></li>
+              <li><b>2023</b><span>Joins The Loan Atlas as a Faculty Mentor</span></li>
+              <li><b>Today</b><span>Division President at NEO Home Loans · Co-founder of Triibe Coaching · $1.17B personal production</span></li>
+            </ol>
+            <h3 class="d5__h">Background</h3>
+            <div class="prose" style="margin-bottom:36px"><p data-slot="background"></p></div>
+            <h3 class="d5__h">Full Bio</h3>
+            <div class="prose" data-slot="full"></div>
+            <div class="d5__vid" data-slot="video"></div>
+          </div>
+        </div>
+      </div>
+      <button class="d5__toggle" type="button" aria-expanded="false" data-expand>
+        <span>Read full bio</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Floating switcher -->
+  <nav class="mk-switch" aria-label="Switch design" hidden>
+    <span>Design</span>
+    <button type="button" data-open="1" aria-pressed="false">1</button>
+    <button type="button" data-open="2" aria-pressed="false">2</button>
+    <button type="button" data-open="3" aria-pressed="false">3</button>
+    <button type="button" data-open="4" aria-pressed="false">4</button>
+    <button type="button" data-open="5" aria-pressed="false">5</button>
+    <button type="button" class="mk-switch__close" data-close>Close ✕</button>
+  </nav>
+
+  <script>
+    (function () {
+      // ---- Single content source (mirrors what a facultyData entry would hold) ----
+      const josh = {
+        youtubeId: 'NVz6KMeSf9k',
+        started: '2001',
+        role: 'Division President at NEO Home Loans',
+        short: "Josh is an industry-leading author and mortgage originator, ranking in the top 1% of mortgage originators in 2020 by <em>Mortgage Executive Magazine</em>. Josh's personal production is $1.17B.",
+        background: 'With more than 22 years in the mortgage industry and over $1.17 billion in personal production, Josh Mettle was an ideal candidate to share his knowledge and philosophy and become a Faculty Mentor for the Loan Atlas in 2023.',
+        full: [
+          'Josh is a Division President at NEO Home Loans and Co-founder of Triibe Coaching. NEO represents a new way of doing home loans for people looking to maximize their wealth through proactively managing their mortgages and utilizing various wealth creation strategies over the life of a loan. With the help of Josh and his team, homeowners can work towards creating generational wealth and financial independence.',
+          'With Triibe Coaching, Josh has worked with mortgage professionals for several years to help them excel in their careers and personal lives, making every aspect of life more abundant. Members of the Triibe look to Josh for coaching on content marketing, financial freedom, adapting quickly to market conditions, and spending their time where it will have the most impact.',
+          'On top of being a seasoned mortgage professional and professional life coach, Josh is an industry-leading author and podcast host. His drive to help create successful homebuyers and investors is illustrated in his book, <em>Why Physician Home Loans Fail</em>, and his podcast, <em>Infinite Financial Freedom</em>.',
+          'His podcast, <em>Infinite Financial Freedom</em>, interviews financial advisors, investors, and entrepreneurs who have found success and financial freedom through smart money management. Topics include personal finance, investing, real estate, retirement planning, and living your best life. These topics all align with Josh’s overall philosophy and goal of helping homeowners get the most out of their investments.',
+          'The many years of mortgage industry experience combined with the valuable experience of coaching mortgage professionals and being a podcast personality who is afraid to tackle even the most complex topics make Josh Mettle a solid mentor and member of the Loan Atlas faculty.'
+        ],
+        specialty: 'Marketing that compounds — content, audience-building, consumer-direct strategy. Also drives the faculty’s work on health, energy, and financial freedom.',
+        pull: 'Homeowners can work towards creating generational wealth and financial independence.'
+      };
+
+      const fullHTML = josh.full.map(p => '<p>' + p + '</p>').join('');
+      const videoHTML = () =>
+        '<button class="vid" type="button" data-yt="' + josh.youtubeId + '" style="background-image:url(https://img.youtube.com/vi/' + josh.youtubeId + '/hqdefault.jpg)" aria-label="Play video: Meet Josh Mettle">' +
+          '<span class="vid__play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span>' +
+          '<span class="vid__cap">Meet Josh Mettle</span>' +
+        '</button>';
+
+      document.querySelectorAll('[data-slot]').forEach(el => {
+        const k = el.dataset.slot;
+        if (k === 'full') el.innerHTML = fullHTML;
+        else if (k === 'video') el.innerHTML = videoHTML();
+        else el.innerHTML = josh[k];
+      });
+
+      // Design 4: two-column body with a pull quote after paragraph 1
+      const cols = document.getElementById('d4cols');
+      cols.innerHTML = josh.full.map((p, i) =>
+        '<p>' + p + '</p>' + (i === 0 ? '<blockquote class="d4__pull">“' + josh.pull + '”</blockquote>' : '')
+      ).join('');
+
+      // Click-to-load video
+      document.addEventListener('click', e => {
+        const v = e.target.closest('.vid[data-yt]');
+        if (!v || v.querySelector('iframe')) return;
+        v.insertAdjacentHTML('beforeend',
+          '<iframe src="https://www.youtube-nocookie.com/embed/' + v.dataset.yt + '?autoplay=1&rel=0" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen title="Josh Mettle video"></iframe>');
+      });
+
+      // ---- Open / close / switch ----
+      const switcher = document.querySelector('.mk-switch');
+      let current = null;
+
+      function stopVideos() {
+        document.querySelectorAll('.vid iframe').forEach(f => f.remove());
+      }
+      function open(n) {
+        stopVideos();
+        document.querySelectorAll('.ov').forEach(o => o.classList.remove('is-open'));
+        const ov = document.getElementById('ov' + n);
+        ov.classList.add('is-open');
+        ov.scrollTop = 0;
+        ov.querySelectorAll('[data-scrollwatch]').forEach(s => { s.scrollTop = 0; });
+        current = n;
+        document.body.classList.add('locked');
+        switcher.hidden = false;
+        switcher.querySelectorAll('[data-open]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.open === String(n))));
+        history.replaceState(null, '', '#d' + n);
+        const x = ov.querySelector('[data-close]');
+        if (x) x.focus({ preventScroll: true });
+      }
+      function close() {
+        stopVideos();
+        document.querySelectorAll('.ov').forEach(o => o.classList.remove('is-open'));
+        document.body.classList.remove('locked');
+        switcher.hidden = true;
+        current = null;
+        history.replaceState(null, '', location.pathname);
+      }
+
+      document.addEventListener('click', e => {
+        const o = e.target.closest('[data-open]');
+        if (o) { open(o.dataset.open); return; }
+        if (e.target.closest('[data-close]')) { close(); return; }
+        // Backdrop click closes
+        if (e.target.classList && e.target.classList.contains('ov')) close();
+      });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && current) close();
+        if (current && /^[1-5]$/.test(e.key)) open(e.key);
+      });
+
+      // Sticky-header reveal on scroll (Design 1 + 3)
+      document.querySelectorAll('[data-scrollwatch]').forEach(s => {
+        const target = s.closest('.d3') || s;
+        s.addEventListener('scroll', () => target.classList.toggle('scrolled', s.scrollTop > 140), { passive: true });
+      });
+      // Design 1 on mobile scrolls the overlay instead of the inner column
+      document.getElementById('ov1').addEventListener('scroll', function () {
+        this.querySelector('.d1__main').classList.toggle('scrolled', this.scrollTop > 140);
+      }, { passive: true });
+
+      // Design 2 tabs
+      const d2 = document.querySelector('.d2');
+      function d2Tab(name) {
+        d2.querySelectorAll('.d2__tab').forEach(t => t.setAttribute('aria-selected', String(t.dataset.tab === name)));
+        d2.querySelectorAll('.d2__panel').forEach(p => p.classList.toggle('is-active', p.dataset.panel === name));
+        stopVideos();
+      }
+      d2.addEventListener('click', e => {
+        const t = e.target.closest('[data-tab],[data-goto]');
+        if (t) d2Tab(t.dataset.tab || t.dataset.goto);
+      });
+
+      // Design 3 jump links scroll the drawer, not the page
+      document.querySelectorAll('.d3__toc a').forEach(a => a.addEventListener('click', e => {
+        e.preventDefault();
+        const sc = document.querySelector('.d3__scroll');
+        const t = document.querySelector(a.getAttribute('href'));
+        sc.scrollTo({ top: t.offsetTop - 12, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+      }));
+
+      // Design 5 expand
+      const d5 = document.querySelector('.d5');
+      d5.querySelector('[data-expand]').addEventListener('click', function () {
+        const exp = d5.classList.toggle('is-expanded');
+        this.setAttribute('aria-expanded', String(exp));
+        this.querySelector('span').textContent = exp ? 'Show less' : 'Read full bio';
+        if (!exp) document.getElementById('ov5').scrollTo({ top: 0 });
+      });
+
+      // Deep link: #d1 … #d5
+      const m = location.hash.match(/^#d([1-5])$/);
+      if (m) open(m[1]);
+    })();
+  </script>
+</body>
+</html>

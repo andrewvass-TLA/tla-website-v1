@@ -461,7 +461,7 @@ function tla_cta_shortcode( $atts ) {
 			'title'   => 'The Perfect Loan Process',
 			'pitch'   => 'Create a five-star client experience on every file — the repeatable process behind the referrals.',
 			'btn'     => 'Get the system',
-			'url'     => 'https://go.theloanatlas.com/perfect-loan-process',
+			'url'     => 'https://www.theloanatlas.com/perfect-loan-process/',
 			'img'     => 'perfect-loan-process.png',
 			'alt'     => 'The Perfect Loan Process system',
 			'icon'    => 'arrow',

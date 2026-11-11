@@ -10,7 +10,7 @@ lives here for version control only; deploy is a manual copy-paste into WP.
 
 This page mirrors the public marketing page (`../public/platinum-marketing.html`,
 theloanatlas.com/platinum-marketing) in look and content, rebuilt JS-free and re-pointed at the
-members' **free 6-month activation** offer.
+members' **$49/mo member-pricing** offer (permanently discounted from $69/mo).
 
 ## Deploy (copy-paste, no SFTP / no theme edits)
 1. **All images are wired** to the members.theloanatlas.com Media Library
@@ -36,4 +36,4 @@ members' **free 6-month activation** offer.
 ## Before publishing — confirm
 - The publishing user is an **Administrator** (Super Admin if multisite) so HTML isn't filtered.
 - Whether a **full-width / canvas page template** exists (makes the breakout unnecessary).
-- The **FAQ billing answer** wording matches the real terms of the 6-month offer.
+- The **FAQ billing answer** wording matches the real terms of the $49/mo member-pricing offer.

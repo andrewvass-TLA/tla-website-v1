@@ -106,7 +106,7 @@ if ( $is_first && have_posts() ) :
         </a>
 
         <!-- 3 · Perfect Loan Process -->
-        <a class="res-card res-card--doc" href="https://go.theloanatlas.com/perfect-loan-process">
+        <a class="res-card res-card--doc" href="https://www.theloanatlas.com/perfect-loan-process/">
           <div class="res-card__shot"><img src="<?php echo esc_url( TLA_BASE ); ?>/assets/perfect-loan-process.png" alt="The Perfect Loan Process framework pages" /></div>
           <div class="res-card__pad">
             <h3 class="res-card__title">The Perfect Loan Process</h3>
