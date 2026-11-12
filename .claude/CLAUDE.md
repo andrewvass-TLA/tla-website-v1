@@ -20,7 +20,7 @@ into a PHP theme partial. Playwright is present **only** for design-review scree
 every build.** There are three copies of each page; you only author one.
 
 ```bash
-npm run serve     # localhost:4321 — quick raw-source dev server (no nav/footer chrome)
+npm run serve     # localhost:4321 — raw-source dev server (no nav/footer chrome); /mockups/ too
 npm run build     # scripts/convert-pages.sh — regenerates wp-theme/…/tla/ from public/
 npm run preview   # scripts/preview-pages.sh — assembles wp-theme/_preview-*.html
 npm run ship "msg"# build → preview → commit → push (push to main auto-deploys in ~30s)
@@ -65,7 +65,13 @@ legal/utility (`privacy-policy`, `terms-of-use`, `end-user-agreement`).
 > port any mockup change INTO them. `_preview-blog*.html` previews the mockup, not the
 > live page.
 
-`hero-mockup*.html` and `patterns.html` are experiments/reference — **not live**.
+**Mockups live in `/mockups/` at the repo root (NOT in `public/`)** — `hero-mockup*.html`,
+`patterns.html`, section mockups, `emails/`. They never deploy. Put every new mockup there.
+View them with `npm run serve` at `http://localhost:4321/mockups/<file>.html`. Live pages in
+`public/` are grouped into subfolders (`live-events/`, `partnership-sales-pages/`,
+`webinar-offers/`, `webinar-registration/`, `webinar-replays/`, `trainings/`); each still uses
+root-style paths (`css/…`, `assets/…`, `pricing.html`) — the build and dev server handle that.
+A new page must be added to the slug map in `scripts/convert-pages.sh` with its folder prefix.
 
 **Shared resources (linked by every page, in this order):**
 - `css/styles.css` (~8,200 lines) — design tokens at the top, then the component

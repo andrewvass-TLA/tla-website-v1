@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 const { chromium } = require('playwright');
-const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const devServer = require('./dev-server');
 
 const ROOT = path.resolve(__dirname, '..', 'public');
 const PORT = Number(process.env.PORT || 4321);
@@ -15,38 +15,10 @@ const VIEWPORTS = [
   { name: 'mobile', width: 390, height: 844 },
 ];
 
-const MIME = {
-  '.html': 'text/html; charset=utf-8',
-  '.css':  'text/css; charset=utf-8',
-  '.js':   'application/javascript; charset=utf-8',
-  '.json': 'application/json; charset=utf-8',
-  '.svg':  'image/svg+xml',
-  '.png':  'image/png',
-  '.jpg':  'image/jpeg',
-  '.jpeg': 'image/jpeg',
-  '.webp': 'image/webp',
-  '.woff': 'font/woff',
-  '.woff2':'font/woff2',
-};
-
 function startServer() {
-  return new Promise((resolve) => {
-    const server = http.createServer((req, res) => {
-      try {
-        const urlPath = decodeURIComponent(req.url.split('?')[0]);
-        const safe = path.normalize(urlPath).replace(/^([/\\])+/, '');
-        const filePath = path.join(ROOT, safe);
-        if (!filePath.startsWith(ROOT) || !fs.existsSync(filePath) || fs.statSync(filePath).isDirectory()) {
-          res.writeHead(404); res.end('Not found'); return;
-        }
-        res.writeHead(200, { 'Content-Type': MIME[path.extname(filePath).toLowerCase()] || 'application/octet-stream' });
-        fs.createReadStream(filePath).pipe(res);
-      } catch (e) {
-        res.writeHead(500); res.end(String(e));
-      }
-    });
-    server.listen(PORT, () => resolve(server));
-  });
+  // Same resolver as `npm run serve`: public/ at /, mockups/ at /mockups/, with
+  // css/js/assets fallbacks for pages in subfolders.
+  return devServer.start(PORT);
 }
 
 function ts() {

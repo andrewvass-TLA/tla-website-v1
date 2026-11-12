@@ -1,7 +1,7 @@
 <?php
 /**
  * Body partial for /office-hours-marc-bui/ (TLA Full HTML template).
- * Generated from public/office-hours-marc-bui.html by scripts/convert-pages.sh — do not hand-edit;
+ * Generated from public/live-events/office-hours-marc-bui.html by scripts/convert-pages.sh — do not hand-edit;
  * edit the source HTML (or the shared header/footer partials) and re-run.
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }

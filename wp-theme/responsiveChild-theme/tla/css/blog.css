@@ -82,7 +82,7 @@ body { --blog-overlap: clamp(64px, 9vw, 132px); }
 .blog-masthead {
   background: linear-gradient(160deg, #060e1c 0%, #021c36 50%, #060e1c 100%);
   color: var(--on-primary);
-  padding-block: calc(var(--header-h) + clamp(40px, 5vw, 64px)) clamp(40px, 5vw, 72px);
+  padding-block: calc(var(--header-h) + clamp(40px, 5vw, 56px)) clamp(40px, 5vw, 72px);
   position: relative; overflow: hidden;
 }
 /* Radial glow accents — same treatment as the enterprise/corporate hero. */
@@ -108,6 +108,13 @@ body { --blog-overlap: clamp(64px, 9vw, 132px); }
   font-style: normal;
   background: linear-gradient(135deg, #c9961c, #eac25a, #ffd56c);
   -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+/* Subtitle — matches the events page hero dek (.ev-hero__dek). */
+.blog-masthead__sub {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.1875rem); line-height: 1.7;
+  color: rgba(255, 255, 255, 0.68);
+  margin: 16px 0 0; max-width: 40rem;
 }
 
 /* Featured (hero) post */
@@ -310,7 +317,7 @@ body { --blog-overlap: clamp(64px, 9vw, 132px); }
 }
 /* H3 — subtle deep-gold gradient text. */
 .tla-article h3 {
-  font-family: var(--font-display); font-size: 1.125rem; line-height: 1.35;
+  font-family: var(--font-display); font-size: 1.25rem; line-height: 1.35;
   font-weight: 700; margin: 1.6em 0 0.4em; scroll-margin-top: 88px; width: fit-content;
   background: linear-gradient(135deg, #a87a16 0%, #c9961c 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -324,6 +331,10 @@ body { --blog-overlap: clamp(64px, 9vw, 132px); }
 .tla-article a { color: var(--brass); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
 .tla-article a:hover { color: var(--secondary); }
 .tla-article strong { font-weight: 700; color: var(--on-surface); }
+/* Inline formatting inside a heading takes the HEADING's color. Editors often
+   bold a whole heading (<h3><strong>…</strong></h3>); without this, the
+   strong rule above paints it black over the H3's gold gradient text. */
+.tla-article :is(h1, h2, h3, h4, h5, h6) :is(strong, b, em, i, span) { color: inherit; }
 /* Restore list markers (styles.css resets ul{list-style:none} globally). */
 .tla-article ul { margin: 0 0 1.25em; padding-left: 1.4em; list-style: disc; }
 .tla-article ol { margin: 0 0 1.25em; padding-left: 1.4em; list-style: decimal; }

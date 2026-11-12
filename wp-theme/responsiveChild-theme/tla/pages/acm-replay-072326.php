@@ -1,7 +1,7 @@
 <?php
 /**
  * Body partial for /acm-replay-072326/ (TLA Full HTML template).
- * Generated from public/replay-your-marketing-is-being-ignored.html by scripts/convert-pages.sh — do not hand-edit;
+ * Generated from public/live-events/replay-your-marketing-is-being-ignored.html by scripts/convert-pages.sh — do not hand-edit;
  * edit the source HTML (or the shared header/footer partials) and re-run.
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }

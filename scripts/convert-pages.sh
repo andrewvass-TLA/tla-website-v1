@@ -19,6 +19,7 @@ set -euo pipefail
 SRC="public"
 TLA="wp-theme/responsiveChild-theme/tla"
 OUT="$TLA/pages"
+MISSING=()   # source files listed below that no longer exist (see end-of-run warning)
 mkdir -p "$OUT"
 
 # Sync shared static assets from public/ into the theme. These (css/js/assets)
@@ -35,7 +36,7 @@ rsync -a --delete "$SRC/assets/" "$TLA/assets/"
 convert() {
   local src="$1" slug="$2" active="$3"
   local file="$SRC/$src.html"
-  [ -f "$file" ] || { echo "SKIP (missing): $file"; return; }
+  [ -f "$file" ] || { echo "SKIP (missing): $file"; MISSING+=("$file -> /$slug/"); return; }
 
   local title desc
   title=$(grep -oE '<title>[^<]*</title>' "$file" | head -1 | sed -E 's/<[^>]*>//g')
@@ -149,7 +150,6 @@ rewrite() {
   perl -0pi -e 's/href="perfect-loan-process\.html"/href="\/perfect-loan-process\/"/g' "$f"
   perl -0pi -e 's/href="5-scripts\.html"/href="\/5-scripts-for-dominating-point-of-sale\/"/g' "$f"
   perl -0pi -e 's/href="events\.html"/href="\/live-events\/"/g'           "$f"
-  perl -0pi -e 's/href="event-detail\.html"/href="\/event-detail\/"/g'    "$f"
   perl -0pi -e 's/href="office-hours-caleb-legrand\.html"/href="\/office-hours-caleb-legrand\/"/g' "$f"
   perl -0pi -e 's/href="office-hours-trevor-carlson\.html"/href="\/office-hours-trevor-carlson\/"/g' "$f"
   perl -0pi -e 's/href="office-hours-michael-belfor\.html"/href="\/office-hours-michael-belfor\/"/g' "$f"
@@ -193,57 +193,56 @@ convert whats-inside            whats-inside                  whats-inside
 convert sales-individual        membership                    membership
 convert consultation            consultation                  ""
 convert events                  live-events                   events
-convert event-detail            event-detail                  ""
-convert office-hours-caleb-legrand office-hours-caleb-legrand  ""
-convert office-hours-trevor-carlson office-hours-trevor-carlson ""
-convert office-hours-michael-belfor office-hours-michael-belfor ""
-convert office-hours-becky-staples office-hours-becky-staples ""
-convert office-hours-tyler-osby office-hours-tyler-osby ""
-convert office-hours-josh-mettle office-hours-josh-mettle ""
-convert office-hours-marc-bui office-hours-marc-bui ""
-convert office-hours-brent-hicks office-hours-brent-hicks ""
-convert office-hours-julie-weix office-hours-julie-weix ""
-convert office-hours-steve-grossman office-hours-steve-grossman ""
-convert office-hours-katrinka-condie office-hours-katrinka-condie ""
-convert office-hours-jay-dacey office-hours-jay-dacey ""
-convert talk-to-tim              talk-to-tim                  ""
-convert lead-generation-that-converts lead-generation-that-converts ""
-convert ai-lab-success-with-follow-up-pro ai-lab-success-with-follow-up-pro ""
-convert market-update-with-barry-habib market-update-with-barry-habib ""
-convert leveraging-google-reviews leveraging-google-reviews-to-attract-clients-and-agents ""
+convert live-events/office-hours-caleb-legrand office-hours-caleb-legrand  ""
+convert live-events/office-hours-trevor-carlson office-hours-trevor-carlson ""
+convert live-events/office-hours-michael-belfor office-hours-michael-belfor ""
+convert live-events/office-hours-becky-staples office-hours-becky-staples ""
+convert live-events/office-hours-tyler-osby office-hours-tyler-osby ""
+convert live-events/office-hours-josh-mettle office-hours-josh-mettle ""
+convert live-events/office-hours-marc-bui office-hours-marc-bui ""
+convert live-events/office-hours-brent-hicks office-hours-brent-hicks ""
+convert live-events/office-hours-julie-weix office-hours-julie-weix ""
+convert live-events/office-hours-steve-grossman office-hours-steve-grossman ""
+convert live-events/office-hours-katrinka-condie office-hours-katrinka-condie ""
+convert live-events/office-hours-jay-dacey office-hours-jay-dacey ""
+convert live-events/talk-to-tim              talk-to-tim                  ""
+convert live-events/lead-generation-that-converts lead-generation-that-converts ""
+convert live-events/ai-lab-success-with-follow-up-pro ai-lab-success-with-follow-up-pro ""
+convert live-events/market-update-with-barry-habib market-update-with-barry-habib ""
+convert live-events/leveraging-google-reviews leveraging-google-reviews-to-attract-clients-and-agents ""
 # Upcoming live-event (masterclass) detail pages. public/live-events/_template.html
 # is the copy-and-fill source and is deliberately NOT listed here (never deploys);
-# the pages themselves live at the root of public/ and are listed individually.
-convert winning-mortgage-referrals-from-listing-agents winning-mortgage-referrals-from-listing-agents ""
-convert emergency-game-plan     emergency-game-plan           ""
-convert 2027-business-planning  2027-business-planning        ""
+# the pages themselves live in public/live-events/ and are listed individually.
+convert live-events/winning-mortgage-referrals-from-listing-agents winning-mortgage-referrals-from-listing-agents ""
+convert live-events/emergency-game-plan     emergency-game-plan           ""
+convert live-events/2027-business-planning  2027-business-planning        ""
 # Revolution Mortgage webinar registration (.evc-* suite). The two
 # webinar-registration*-draft lines are unused design drafts (uncommitted).
-convert webinar-registration-pages/webinar-registration    webinar-registration-draft    ""
-convert webinar-registration-pages/webinar-registration-b  webinar-registration-b-draft  ""
-convert webinar-registration-pages/revolution-register    revolution-register           ""
-convert webinar-registration-pages/register-121726       register-121726               ""
-convert replay-winning-the-ai-game winning-the-ai-game        ""
-convert replay-ai-lab-follow-up-pro ai-lab-follow-up-pro      ""
-convert replay-2026-mid-year-playbook 2026-mid-year-playbook   ""
-convert replay-execute-on-mastermind execute-on-mastermind    ""
-convert replay-your-marketing-is-being-ignored acm-replay-072326 ""
-convert replay-mbs-111926      replay-mbs-111926             ""
-convert custom-sales-pages/mastermind join-mastermind-2026          ""
-convert camp-irvine             camp-irvine                   ""
-convert custom-sales-pages/acm       acm                           ""
-convert custom-sales-pages/namb      namb                          ""
-convert custom-sales-pages/vmba-convention-2026 vmba-convention-2026 ""
-convert custom-sales-pages/namb-conference-2026 namb-conference-2026 ""
-convert custom-sales-pages/neo                  neo                           ""
-convert custom-sales-pages/apm-symposium-2026 apm-symposium-2026 ""
-convert custom-sales-pages/apm                  apm                           ""
-convert custom-sales-pages/certainty-home-lending certainty-home-lending ""
-convert custom-sales-pages/revolution           revolution                    ""
-convert launch-namb-ai-operating-manual launch-namb-ai-operating-manual  ""
-convert namb-ai-operating-manual namb-ai-operating-manual      ""
-convert namb-build-your-custom-gpt namb-build-your-custom-gpt    ""
-convert mbs-seller-advantage    mbs-seller-advantage          ""
+convert webinar-registration/webinar-registration    webinar-registration-draft    ""
+convert webinar-registration/webinar-registration-b  webinar-registration-b-draft  ""
+convert webinar-registration/revolution-register    revolution-register           ""
+convert webinar-registration/register-121726       register-121726               ""
+convert live-events/replay-winning-the-ai-game winning-the-ai-game        ""
+convert live-events/replay-ai-lab-follow-up-pro ai-lab-follow-up-pro      ""
+convert live-events/replay-2026-mid-year-playbook 2026-mid-year-playbook   ""
+convert webinar-replays/replay-execute-on-mastermind execute-on-mastermind    ""
+convert live-events/replay-your-marketing-is-being-ignored acm-replay-072326 ""
+convert webinar-replays/replay-mbs-111926      replay-mbs-111926             ""
+convert partnership-sales-pages/mastermind join-mastermind-2026          ""
+convert partnership-sales-pages/camp-irvine             camp-irvine                   ""
+convert partnership-sales-pages/acm       acm                           ""
+convert partnership-sales-pages/namb      namb                          ""
+convert partnership-sales-pages/vmba-convention-2026 vmba-convention-2026 ""
+convert partnership-sales-pages/namb-conference-2026 namb-conference-2026 ""
+convert partnership-sales-pages/neo                  neo                           ""
+convert partnership-sales-pages/apm-symposium-2026 apm-symposium-2026 ""
+convert partnership-sales-pages/apm                  apm                           ""
+convert partnership-sales-pages/certainty-home-lending certainty-home-lending ""
+convert partnership-sales-pages/revolution           revolution                    ""
+convert webinar-offers/launch-namb-ai-operating-manual launch-namb-ai-operating-manual  ""
+convert webinar-offers/namb-ai-operating-manual namb-ai-operating-manual      ""
+convert webinar-offers/namb-build-your-custom-gpt namb-build-your-custom-gpt    ""
+convert webinar-offers/mbs-seller-advantage    mbs-seller-advantage          ""
 convert consultation-corporate  enterprise-consultation       ""
 convert consultation-mastermind consultation-mastermind-2026  ""
 convert privacy-policy          privacy-policy                ""
@@ -263,5 +262,12 @@ convert trainings/2026-mid-year-playbook-masterclass standalone-product-draft ""
 # is rendered by home.php/single.php/archive.php (WP post loop) with CSS in
 # tla/css/blog.css. Do NOT add them here. The blog*.html link rewrites in
 # rewrite() are still useful (relative blog links -> /blog/ etc.).
+
+if [ ${#MISSING[@]} -gt 0 ]; then
+  echo
+  echo "⚠️  ${#MISSING[@]} page(s) SKIPPED — source file not found. Their live partials were NOT"
+  echo "   regenerated (the old .php stays as-is). Fix the path in the slug map in scripts/convert-pages.sh:"
+  printf "     %s\n" "${MISSING[@]}"
+fi
 
 echo "Done."

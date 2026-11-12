@@ -20,7 +20,8 @@ $is_first = ( 1 === $paged );
 
   <!-- ===== Masthead (with category filter) ===== -->
   <section class="blog-masthead">
-    <div class="container blog-masthead__inner">
+    <div class="container blog-masthead__inner" data-reveal="up">
+      <span class="eyebrow"><span class="eyebrow__text">Free Articles and Resources</span></span>
       <h1>Atlas <em>Insight</em></h1>
       <p class="blog-masthead__sub">Free articles and resources to help you start transforming your business.</p>
     </div>

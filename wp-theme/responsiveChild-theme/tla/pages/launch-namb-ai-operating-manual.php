@@ -1,7 +1,7 @@
 <?php
 /**
  * Body partial for /launch-namb-ai-operating-manual/ (TLA Full HTML template).
- * Generated from public/launch-namb-ai-operating-manual.html by scripts/convert-pages.sh — do not hand-edit;
+ * Generated from public/webinar-offers/launch-namb-ai-operating-manual.html by scripts/convert-pages.sh — do not hand-edit;
  * edit the source HTML (or the shared header/footer partials) and re-run.
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }

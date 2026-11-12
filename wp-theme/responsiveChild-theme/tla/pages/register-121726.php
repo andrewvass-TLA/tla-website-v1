@@ -1,7 +1,7 @@
 <?php
 /**
  * Body partial for /register-121726/ (TLA Full HTML template).
- * Generated from public/webinar-registration-pages/register-121726.html by scripts/convert-pages.sh — do not hand-edit;
+ * Generated from public/webinar-registration/register-121726.html by scripts/convert-pages.sh — do not hand-edit;
  * edit the source HTML (or the shared header/footer partials) and re-run.
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }

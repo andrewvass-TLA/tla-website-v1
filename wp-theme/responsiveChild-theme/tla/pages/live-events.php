@@ -462,26 +462,26 @@ $tla_active      = 'events';
 
           <div class="ev-feature-card__grid">
             <!-- Square thumbnail -->
-            <a class="ev-feature-card__media" href="/office-hours-tyler-osby/" tabindex="-1" aria-hidden="true">
-              <img src="<?php echo TLA_BASE; ?>/assets/live-events/November-2026-Office-Hours-Tyler-Osby-500x500.png" alt="Office Hours with Tyler Osby — The Loan Atlas" loading="eager" />
+            <a class="ev-feature-card__media" href="/office-hours-katrinka-condie/" tabindex="-1" aria-hidden="true">
+              <img src="<?php echo TLA_BASE; ?>/assets/live-events/November-2026-Office-Hours-Katrinka-Condie-500x500.png" alt="Office Hours with Katrinka Condie — The Loan Atlas" loading="eager" />
             </a>
 
             <!-- Copy -->
             <div class="ev-feature-card__copy">
               <span class="ev-tag ev-tag--on-dark ev-tag--masterclass">Next Live Event</span>
-              <h1 id="ev-featured-heading" class="ev-feature-card__title">Office Hours with Tyler Osby</h1>
+              <h1 id="ev-featured-heading" class="ev-feature-card__title">Office Hours with Katrinka Condie</h1>
               <div class="ev-feature-card__meta">
                 <span class="ev-feature-card__meta-item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                  Wednesday, November 4, 2026
+                  Wednesday, November 18, 2026
                 </span>
                 <span class="ev-feature-card__meta-item">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><polyline points="12 7 12 12 15 14"></polyline></svg>
                   11:00 AM PT
                 </span>
               </div>
-              <p class="ev-feature-card__desc">Bring your live deals and real questions to Tyler Osby &mdash; 210 families served in 2025 and one of the most systems-minded originators in the country. Tyler coaches on systems, technology, scripting and business development, turning your calls, follow-ups and workflows into something that runs without you having to remember every step.</p>
-              <a class="btn btn--gold btn--xl" href="/office-hours-tyler-osby/">Learn More and Get Access</a>
+              <p class="ev-feature-card__desc">Bring your live deals and real questions to Katrinka Condie &mdash; a top-1% originator nationwide since her second year in the business, with more than $309M in lifetime production and 755+ families served. Katrinka coaches on building relationships, deep client connection and the Perfect Loan Process, showing you how to earn trust fast with clients and referral partners alike.</p>
+              <a class="btn btn--gold btn--xl" href="/office-hours-katrinka-condie/">Learn More and Get Access</a>
             </div>
           </div>
 
@@ -498,32 +498,6 @@ $tla_active      = 'events';
         </header>
 
         <div class="ev-grid" data-reveal-stagger="80">
-
-          <article class="ev-card">
-            <a class="ev-card__media" href="/office-hours-steve-grossman/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/November-2026-Office-Hours-Steve-Grossman-500x500.png" alt="Office Hours with Steve Grossman" loading="lazy" /></a>
-            <div class="ev-card__body">
-              <div class="ev-card__date">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Nov 11, 2026 &middot; 11:00 AM PT
-              </div>
-              <h3 class="ev-card__title">Office Hours with Steve Grossman</h3>
-              <p class="ev-card__desc">Join this session with Steve Grossman, whose niche / specialty is in the area of Strategy, Vision, Mentorship and Networking.</p>
-              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-steve-grossman/">Get Access</a></div>
-            </div>
-          </article>
-
-          <article class="ev-card">
-            <a class="ev-card__media" href="/office-hours-katrinka-condie/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/November-2026-Office-Hours-Katrinka-Condie-500x500.png" alt="Office Hours with Katrinka Condie" loading="lazy" /></a>
-            <div class="ev-card__body">
-              <div class="ev-card__date">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
-                Nov 18, 2026 &middot; 11:00 AM PT
-              </div>
-              <h3 class="ev-card__title">Office Hours with Katrinka Condie</h3>
-              <p class="ev-card__desc">Join this session with Katrinka Condie, whose niche / specialty is in the area of Building Relationships, Client Connection and the Perfect Loan Process.</p>
-              <div class="ev-card__foot"><a class="ev-card__join" href="/office-hours-katrinka-condie/">Get Access</a></div>
-            </div>
-          </article>
 
           <article class="ev-card">
             <a class="ev-card__media" href="/talk-to-tim/" tabindex="-1" aria-hidden="true"><img src="<?php echo TLA_BASE; ?>/assets/live-events/November-2026-Talk-to-Tim-500x500.png" alt="Talk to Tim" loading="lazy" /></a>

@@ -1,7 +1,7 @@
 <?php
 /**
  * Body partial for /winning-the-ai-game/ (TLA Full HTML template).
- * Generated from public/replay-winning-the-ai-game.html by scripts/convert-pages.sh — do not hand-edit;
+ * Generated from public/live-events/replay-winning-the-ai-game.html by scripts/convert-pages.sh — do not hand-edit;
  * edit the source HTML (or the shared header/footer partials) and re-run.
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
