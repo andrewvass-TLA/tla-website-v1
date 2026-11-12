@@ -25,8 +25,8 @@ error_reporting( E_ALL );
 ini_set( 'display_errors', 'stderr' );
 
 $view = $argv[1] ?? 'home';
-if ( ! in_array( $view, array( 'home', 'single', 'archive' ), true ) ) {
-	fwrite( STDERR, "Unknown view '$view' (use home, single or archive)\n" );
+if ( ! in_array( $view, array( 'home', 'single', 'archive', 'search' ), true ) ) {
+	fwrite( STDERR, "Unknown view '$view' (use home, single, archive or search)\n" );
 	exit( 1 );
 }
 
@@ -43,6 +43,7 @@ define( 'TLA_PREVIEW_HOME', 'https://www.theloanatlas.com' );
 define( 'TLA_PREVIEW_HOME_FILE', '_preview-tpl-home.html' );
 define( 'TLA_PREVIEW_SINGLE_FILE', '_preview-tpl-single.html' );
 define( 'TLA_PREVIEW_ARCHIVE_FILE', '_preview-tpl-archive.html' );
+define( 'TLA_PREVIEW_SEARCH', 'referral scripts' );
 
 require __DIR__ . '/fixtures.php'; // $TLA_POSTS, $TLA_CATEGORIES, $TLA_TAGS
 
@@ -94,6 +95,10 @@ switch ( $view ) {
 			12
 		);
 		break;
+	case 'search':
+		// Search results for TLA_PREVIEW_SEARCH (rendered by archive.php, as live).
+		$wp_query = new TLA_Preview_Query( array_slice( $TLA_POSTS, 0, 5 ), 5 );
+		break;
 	default:
 		// Page 1 of /blog/: 7 posts (1 featured + 6 in the grid), 3 pages total.
 		$wp_query = new TLA_Preview_Query( array_slice( $TLA_POSTS, 0, 7 ), 21 );
@@ -123,7 +128,7 @@ function current_user_can() { return false; }
 function language_attributes() { echo 'lang="en-US"'; }
 function bloginfo( $show = '' ) { echo 'charset' === $show ? 'UTF-8' : 'The Loan Atlas'; }
 function body_class() {
-	$classes = array( 'single' => 'single single-post', 'archive' => 'archive category', 'home' => 'blog' );
+	$classes = array( 'single' => 'single single-post', 'archive' => 'archive category', 'search' => 'search search-results', 'home' => 'blog' );
 	echo 'class="' . $classes[ $GLOBALS['view'] ] . '"';
 }
 
@@ -143,6 +148,7 @@ function wp_get_document_title() {
 	switch ( $GLOBALS['view'] ) {
 		case 'single':  return tla_p()->title . ' – The Loan Atlas';
 		case 'archive': return $GLOBALS['tla_archive_cat']->name . ' – The Loan Atlas';
+		case 'search':  return 'Search results for “' . TLA_PREVIEW_SEARCH . '” – The Loan Atlas';
 		default:        return 'Atlas Insight – The Loan Atlas';
 	}
 }
@@ -158,7 +164,7 @@ function is_category() { return 'archive' === $GLOBALS['view']; }
 function is_tag() { return false; }
 function is_author() { return false; }
 function is_date() { return false; }
-function is_search() { return false; }
+function is_search() { return 'search' === $GLOBALS['view']; }
 function is_page() { return false; }
 function is_front_page() { return false; }
 function is_admin() { return false; }
@@ -235,9 +241,9 @@ function single_cat_title( $prefix = '', $display = true ) {
 	return $prefix . $name;
 }
 function single_tag_title( $prefix = '', $display = true ) { return single_cat_title( $prefix, $display ); }
-function get_the_archive_title() { return 'Category: ' . $GLOBALS['tla_archive_cat']->name; }
+function get_the_archive_title() { return is_archive() ? 'Category: ' . $GLOBALS['tla_archive_cat']->name : 'Archives'; }
 function get_the_archive_description() { return '<p>' . $GLOBALS['tla_archive_cat']->description . '</p>'; }
-function get_search_query() { return ''; }
+function get_search_query( $escaped = true ) { return is_search() ? ( $escaped ? esc_attr( TLA_PREVIEW_SEARCH ) : TLA_PREVIEW_SEARCH ) : ''; }
 
 function paginate_links( $args = array() ) {
 	$total = (int) ceil( $GLOBALS['wp_query']->found_posts / 7 );
@@ -301,4 +307,4 @@ function do_shortcode( $content ) {
 // Run the real theme.
 // ---------------------------------------------------------------------------
 require $THEME . '/functions.php';
-require $THEME . "/$view.php";
+require $THEME . '/' . ( 'search' === $view ? 'archive' : $view ) . '.php';

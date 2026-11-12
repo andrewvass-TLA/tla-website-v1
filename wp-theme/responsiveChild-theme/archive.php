@@ -39,7 +39,7 @@ $blog_url  = get_permalink( get_option( 'page_for_posts' ) ) ?: home_url( '/blog
         <p class="blog-archive-head__desc"><?php echo esc_html( $desc ); ?></p>
 <?php endif; ?>
       </div>
-<?php tla_blog_category_filter(); ?>
+<?php tla_blog_toolbar(); ?>
     </div>
   </header>
 

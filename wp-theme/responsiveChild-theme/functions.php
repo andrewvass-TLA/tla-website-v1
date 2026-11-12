@@ -340,8 +340,11 @@ function tla_blog_pagination() {
 
 /**
  * The dark category filter chip row used in the home masthead and archive
- * header. Lists top-level categories; highlights the current one. Hidden if
- * there are no categories.
+ * header. Lists top-level categories (most posts first, "Uncategorized"
+ * skipped); highlights the current one. Each chip links to WordPress's native
+ * category archive (/category/<slug>/, rendered by archive.php), so filtering
+ * is a real page with pagination — not a JS filter over the posts on screen.
+ * "All" is active on /blog/ only. Hidden if there are no categories.
  */
 function tla_blog_category_filter() {
 	$cats = get_categories( array(
@@ -349,21 +352,56 @@ function tla_blog_category_filter() {
 		'parent'     => 0,
 		'orderby'    => 'count',
 		'order'      => 'DESC',
-		'number'     => 6,
+		'number'     => 9,
 	) );
+	$cats = array_slice( array_values( array_filter( $cats, function ( $c ) {
+		return 'uncategorized' !== $c->slug;
+	} ) ), 0, 8 );
 	if ( empty( $cats ) ) {
 		return;
 	}
 	$blog_url       = get_permalink( get_option( 'page_for_posts' ) ) ?: home_url( '/blog/' );
 	$current_cat_id = is_category() ? (int) get_queried_object_id() : 0;
-	$all_active     = ( ! $current_cat_id ) ? ' blog-filter__chip--active' : '';
+	$all_active     = is_home() ? ' blog-filter__chip--active' : '';
 	?>
-	<div class="blog-filter">
-	  <a class="blog-filter__chip<?php echo $all_active; ?>" href="<?php echo esc_url( $blog_url ); ?>">All</a>
+	<nav class="blog-filter" aria-label="Browse by topic">
+	  <a class="blog-filter__chip<?php echo $all_active; ?>" href="<?php echo esc_url( $blog_url ); ?>"<?php echo $all_active ? ' aria-current="page"' : ''; ?>>All</a>
 	<?php foreach ( $cats as $cat ) :
-		$active = ( $current_cat_id === (int) $cat->term_id ) ? ' blog-filter__chip--active' : ''; ?>
-	  <a class="blog-filter__chip<?php echo $active; ?>" href="<?php echo esc_url( get_category_link( $cat->term_id ) ); ?>"><?php echo esc_html( $cat->name ); ?></a>
+		$is_current = ( $current_cat_id === (int) $cat->term_id ); ?>
+	  <a class="blog-filter__chip<?php echo $is_current ? ' blog-filter__chip--active' : ''; ?>" href="<?php echo esc_url( get_category_link( $cat->term_id ) ); ?>"<?php echo $is_current ? ' aria-current="page"' : ''; ?>><?php echo esc_html( $cat->name ); ?></a>
 	<?php endforeach; ?>
+	</nav>
+	<?php
+}
+
+/**
+ * Blog search box. A plain GET form to WordPress's native search (/?s=…),
+ * which renders through archive.php. The hidden post_type=post keeps results
+ * to blog posts (otherwise the marketing pages would show up as cards).
+ * Pre-filled with the current query on a search results page.
+ */
+function tla_blog_search_form() {
+	$query = is_search() ? get_search_query( false ) : '';
+	?>
+	<form class="blog-search" role="search" method="get" action="<?php echo esc_url( home_url( '/' ) ); ?>">
+	  <label class="visually-hidden" for="blog-search-input">Search articles</label>
+	  <svg class="blog-search__icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.25" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+	  <input class="blog-search__input" id="blog-search-input" type="search" name="s" value="<?php echo esc_attr( $query ); ?>" placeholder="Search articles" required />
+	  <input type="hidden" name="post_type" value="post" />
+	  <button class="blog-search__btn" type="submit">Search</button>
+	</form>
+	<?php
+}
+
+/**
+ * The masthead/archive-header toolbar: search box + topic chips.
+ * Used by home.php and archive.php.
+ */
+function tla_blog_toolbar() {
+	?>
+	<div class="blog-toolbar">
+	<?php tla_blog_search_form(); ?>
+	<?php tla_blog_category_filter(); ?>
 	</div>
 	<?php
 }

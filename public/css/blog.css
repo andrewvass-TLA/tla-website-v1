@@ -56,6 +56,50 @@ body { --blog-overlap: clamp(64px, 9vw, 132px); }
 .blog-filter__chip:hover { background: rgba(255, 255, 255, 0.08); color: #fff; }
 .blog-filter__chip--active { background: var(--secondary-container); color: var(--on-secondary-container); border-color: transparent; }
 
+/* --- Toolbar: search + topic chips (home masthead + archive header) ------ */
+/* DOM order is search → chips, so on mobile the search box sits on top. On
+   wide screens the chips move left and the search box pins right. */
+.blog-toolbar {
+  display: flex; flex-direction: column; align-items: stretch; gap: 16px;
+  margin-top: clamp(28px, 4vw, 44px);
+}
+.blog-toolbar .blog-filter { margin-top: 0; }
+@media (min-width: 900px) {
+  .blog-toolbar { flex-direction: row; align-items: center; justify-content: space-between; gap: 24px; }
+  .blog-toolbar .blog-filter { order: -1; flex: 1 1 auto; min-width: 0; }
+  .blog-toolbar .blog-search { flex: 0 0 clamp(280px, 28vw, 360px); }
+}
+
+.blog-search {
+  position: relative; display: flex; align-items: center;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.18); border-radius: var(--radius-full);
+  padding: 4px 4px 4px 44px;
+  transition: border-color 150ms ease, background 150ms ease;
+}
+.blog-search:focus-within { border-color: var(--brass-bright); background: rgba(255, 255, 255, 0.09); }
+.blog-search__icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: rgba(255, 255, 255, 0.6); pointer-events: none; }
+.blog-search__input {
+  flex: 1 1 auto; min-width: 0; height: 38px; padding: 0 8px 0 0;
+  background: transparent; border: 0; outline: 0; color: #fff;
+  font-family: var(--font-body); font-size: 0.9375rem;
+}
+.blog-search__input::placeholder { color: rgba(255, 255, 255, 0.55); }
+/* Native clear "×" in WebKit — hide it; the dark field makes it unreadable. */
+.blog-search__input::-webkit-search-cancel-button { -webkit-appearance: none; appearance: none; }
+.blog-search__btn {
+  flex: 0 0 auto; height: 38px; padding: 0 18px; border: 0; cursor: pointer;
+  border-radius: var(--radius-full);
+  background: linear-gradient(135deg, #c9961c 0%, #eac25a 50%, #ffd56c 100%);
+  color: var(--primary); font-family: var(--font-body); font-size: 0.875rem; font-weight: 700;
+  transition: filter 150ms ease;
+}
+.blog-search__btn:hover { filter: brightness(1.06); }
+.blog-search__btn:focus-visible { outline: 2px solid #fff; outline-offset: 2px; }
+@media (prefers-reduced-motion: reduce) {
+  .blog-search, .blog-search__btn { transition: none; }
+}
+
 /* --- Pagination ---------------------------------------------------------- */
 .blog-pagination { display: flex; justify-content: center; align-items: center; gap: 8px; margin-top: clamp(40px, 5vw, 64px); }
 .blog-pagination a, .blog-pagination span {

@@ -13,7 +13,7 @@
  * Requires PHP (`brew install php`). Not modeled: the database, plugins, the
  * parent theme. Still glance at the live page after a deploy.
  *
- * Usage:  npm run preview:blog              # all three
+ * Usage:  npm run preview:blog              # all four
  *         node scripts/preview-blog.js home # just one
  * Output: wp-theme/_preview-tpl-<template>.html  (gitignored)
  *         Run `npm run build` first so tla/css/blog.css has your public/ edits.
@@ -25,7 +25,7 @@ const { spawnSync } = require('child_process');
 
 const ROOT = path.resolve(__dirname, '..');
 const STUB = path.join(__dirname, 'blog-preview', 'wp-stub.php');
-const VIEWS = ['home', 'single', 'archive'];
+const VIEWS = ['home', 'single', 'archive', 'search']; // search renders archive.php
 
 // Find PHP: PATH first, then Homebrew's locations (editor terminals opened
 // before Homebrew was installed may not have it on PATH yet).
