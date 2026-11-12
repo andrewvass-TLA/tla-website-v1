@@ -224,6 +224,27 @@ function tla_is_blog_view() {
 }
 
 /**
+ * Force search results through our archive.php.
+ *
+ * WordPress's hierarchy for search is search.php → index.php (it never falls
+ * back to archive.php), and Elementor Pro's Theme Builder has an old "archive"
+ * template (#398) whose conditions cover search results — it swaps itself in
+ * via template_include at priority ~11. Since tla_is_blog_view() strips theme +
+ * Elementor CSS on search, that rendered as a raw unstyled page. Priority 999
+ * runs after Elementor, so /?s=… always gets the TLA blog design.
+ */
+add_filter( 'template_include', 'tla_blog_search_template', 999 );
+function tla_blog_search_template( $template ) {
+	if ( is_search() && ! is_admin() ) {
+		$ours = get_stylesheet_directory() . '/archive.php';
+		if ( file_exists( $ours ) ) {
+			return $ours;
+		}
+	}
+	return $template;
+}
+
+/**
  * Strip parent theme + Elementor CSS on blog views so they render standalone.
  * Mirrors tla_dequeue_theme_css_on_fullhtml(); our own blog CSS is hard-linked
  * in blog-head.php (not enqueued through WP), so nothing of ours is removed.

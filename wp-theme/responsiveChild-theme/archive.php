@@ -3,8 +3,10 @@
  * archive.php — category / tag / author / date archives AND search results,
  * rendered in the TLA blog design. Source mockup: public/blog-archive.html.
  *
- * WordPress falls category.php/tag.php/author.php/date.php/search.php back to
- * this file, so one template covers every term-based listing.
+ * WordPress falls category.php/tag.php/author.php/date.php back to this file.
+ * Search does NOT fall back here natively (search.php → index.php) — it is
+ * routed here by tla_blog_search_template() in functions.php, which also beats
+ * Elementor Pro's Theme Builder archive template.
  */
 if ( ! defined( 'ABSPATH' ) ) { exit; }
 
